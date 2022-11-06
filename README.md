@@ -2,11 +2,11 @@
 
 Repository for keeping different versions of nvim configurations.
 
-## Epiroc
+- Epiroc
+- User
 
-RDK
+## Usage
 
-## User
-
-C
+Initialize git repository in `.config` or initialize somewhere else and require
+`init.lua`.
 

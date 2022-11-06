@@ -9,4 +9,3 @@ local options = {
 
 map('n', '<Leader><esc>', ':nohlsearch<cr>', options)
 
-
