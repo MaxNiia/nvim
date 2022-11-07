@@ -5,7 +5,7 @@ require("bufferline").setup({
 			style = "underline",
 		},
 
-		diagnositcs = "nvim_lsp",
+		diagnostics = "nvim_lsp",
 		diagnostics_indicator = function(
 			count, 
 			level, 

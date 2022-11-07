@@ -12,8 +12,16 @@ require("telescope").setup({
 				["_"] = false,
 			},
 		},
+		fzf = {
+			fuzzy = true,
+			override_gneric_sorter = true,
+			override_file_sorter = true,
+			case_mode = "cmart_case",
+		},
 	},
 })
+
+require("telescope").load_extension('fzf')
 
 local wk = require("which-key")
 wk.register({

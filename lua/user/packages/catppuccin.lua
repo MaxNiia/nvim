@@ -10,43 +10,23 @@ require("catppuccin").setup({
 		percentage = 0.10,
 	},
 	integrations = {
-		aerial = {
-			enabled = true,
-		},
-		beacon = {
-			enabled = true,
-		},
-		bufferline = {
-			enabled = true,
-		},
-		gitsigns = {
-			enabled = true,
-		},
+		aerial = true,
+		beacon = true,
+		bufferline = true,
+		gitsigns = true,
 		indent_blankline = {
 			enabled = true,
 			colored_indent_levels = true,
 		},
-		ts_rainbow = {
-			enabled = true,
-		},
-		treesitter_context = {
-			enabled = true,
-		},
-		nvimtree = {
-			enabled = true,
-		},
-		telescope = {
-			enabled = true,
-		},
-		treesitter = {
-			enabled = true,
-		},
+		ts_rainbow = true,
+		treesitter_context = true,
+		nvimtree = true,
+		telescope = true,
+		treesitter = true,
 		native_lsp = {
 			enabled = true,
 		},
-		which_key = {
-			enabled = true,
-		},
+		which_key = true,
 	},
 })
 
