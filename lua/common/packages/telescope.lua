@@ -1,5 +1,8 @@
 require("telescope").load_extension("aerial")
 
+local actions = require("telescope.actions")
+local trouble = require("trouble.providers.telescope")
+
 require("telescope").setup({
 	defaults = {
 		i = {
@@ -17,6 +20,16 @@ require("telescope").setup({
 			override_gneric_sorter = true,
 			override_file_sorter = true,
 			case_mode = "smart_case",
+		},
+	},
+	defaults = {
+		mappings = {
+			i = { 
+				["<c-t>"] = trouble.open_with_trouble 
+			},
+			n = { 
+				["<c-t>"] = trouble.open_with_trouble 
+			},
 		},
 	},
 })
