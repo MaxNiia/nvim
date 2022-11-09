@@ -25,28 +25,28 @@ require("telescope").load_extension('fzf')
 
 local wk = require("which-key")
 wk.register({
-	s = {
-		"<cmd>Telescope spell_suggest<CR>",
-		"Spelling",
-	},
-	t = {
-		name = "Telescope",
+	f = {
+		name = "Find",
 		t = {
 			"<cmd>Telescope<CR>",
 			"Telescope"
 		},
-		f = {
-			"<cmd>Telescope find_files<CR>",
-			"Files",
-		},
+      f = {
+         "<cmd>Telescope find_files<CR>",
+         "Files",
+      },
 		o = {
 			"<cmd>Telescope oldfiles<CR>",
 			"Old files",
 		},
-		s = {
-			"<cmd>Telescope live_grep<CR>",
-			"Search",
-		},
+      s = {
+         "<cmd>Telescope live_grep<CR>",
+         "Search",
+      },
+      d = {
+         "<cmd>Telescope spell_suggest<CR>",
+         "Dictionary",
+      },
 		g = {
 			name = "Git",
 			s = {

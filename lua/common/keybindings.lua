@@ -3,9 +3,17 @@ local map = vim.api.nvim_set_keymap
 map('n', '<Space>', '', {})
 vim.g.mapleader = ' '
 
-local options = { 
-	noremap  = true, 
-}
-
-map('n', '<Leader><esc>', ':nohlsearch<cr>', options)
+local wk = require("which-key")
+wk.register({
+   ["<esc>"] = {
+      "<cmd>nohlsearch<CR>",
+      "Clear highlight",
+   }, 
+   s = {
+      "<cmd>wall<CR>",
+      "Save all"
+   },
+}, {
+   prefix = "<leader>",
+})
 

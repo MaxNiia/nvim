@@ -50,11 +50,11 @@ require("bufferline").setup({
 
 local wk = require("which-key")
 wk.register({
-	p = {
+	j = {
 		"<cmd>BufferLinePick<CR>",
 		"Open a buffer",
 	},
-	c = {
+	k = {
 		"<cmd>BufferLinePickClose<CR>",
 		"Close a buffer",
 	},

@@ -94,9 +94,9 @@ local on_attach = function(client, bufnr)
 	},{ buffer = bufnr,
 	})
 
-	if client == clangd then
+	if client == "clangd" then
 		wk.register({
-			r = {
+			o = {
 				"<cmd>ClangdSwitchSourceHeader<CR>",
 				"Switch Header/Source"
 			},
@@ -123,10 +123,11 @@ require("lspconfig")["clangd"].setup{
 	flags = lsp_flags,
 	cmd = {
 		"clangd",
-		"--background-index=false",
-		"--clang-tidy=false",
+		"--background-index=true",
+		"--clang-tidy=true",
 		"--completion-style=detailed",
 		"--all-scopes-completion=true",
+      "--query-driver='/usr/**/clang, /usr/**/clang++, /usr/**/gcc, /usr/**/g++, /home/max/workspace/dev/**/build/rcsos-3.0.0_x86_4.9.76-rt61/Debug/c_compiler_wrapper,'/home/max/workspace/dev/**/build/rcsos-3.0.0_x86_4.9.76-rt61/Debug/cxx_compiler_wrapper",
 --		"--log=verbose",
 	},
 }
