@@ -9,7 +9,7 @@ wk.register({
 })
 
 wk.register({
-	t = {
+   ["<esc>"] = {
 		"<cmd>FloatermToggle<CR>",
 		"Terminal",
 	},

@@ -5,8 +5,8 @@ vim.g.mapleader = ' '
 
 local wk = require("which-key")
 wk.register({
-   ["<esc>"] = {
-      "<cmd>nohlsearch<CR>",
+   c  = {
+      "<cm:wqd>nohlsearch<CR>",
       "Clear highlight",
    }, 
    s = {

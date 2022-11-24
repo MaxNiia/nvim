@@ -93,12 +93,11 @@ local on_attach = function(client, bufnr)
 		},
 	},{ buffer = bufnr,
 	})
-
-	if client == "clangd" then
+	if client.name == "clangd" then
 		wk.register({
 			o = {
 				"<cmd>ClangdSwitchSourceHeader<CR>",
-				"Switch Header/Source"
+				"Switch Header/Source",
 			},
 		}, { 
 			prefix = "<leader>",
@@ -116,25 +115,53 @@ local lsp_flags = {
 require("lspconfig")["pyright"].setup{
 	on_attach = on_attach,
 	flags = lsp_flags,
+   settings = {
+      python = {
+         analysis = {
+            autoImportCompletions = true,
+            ausoSearchPaths = true,
+            diagnosticMode = "workspace",
+            useLibraryCodeForTypes = true,
+         },
+      },
+   },
 }
 
 require("lspconfig")["clangd"].setup{
 	on_attach = on_attach,
 	flags = lsp_flags,
 	cmd = {
-		"clangd",
+		"/home/max/clangd_15.0.3/bin/clangd",
 		"--background-index=true",
 		"--clang-tidy=true",
+      "--clang-format=true",
 		"--completion-style=detailed",
 		"--all-scopes-completion=true",
-      "--query-driver='/usr/**/clang, /usr/**/clang++, /usr/**/gcc, /usr/**/g++, /home/max/workspace/dev/**/build/rcsos-3.0.0_x86_4.9.76-rt61/Debug/c_compiler_wrapper,'/home/max/workspace/dev/**/build/rcsos-3.0.0_x86_4.9.76-rt61/Debug/cxx_compiler_wrapper",
---		"--log=verbose",
+      "--query-driver='/usr/bin/gcc, /usr/bin/g++'", -- gcc
 	},
 }
 
-require("lspconfig")["luau_lsp"].setup{
+require("lspconfig")["cmake"].setup{
+   buildDirectory = "build/rcsos-2.4.0_x86_4.4.50_rt63/Debug" 
+}
+
+require("lspconfig")["sumneko_lua"].setup{
 	on_attach = on_attach,
 	flags = lsp_flags,
+   settings = {
+      Lua = {
+         runtime = {
+            version = 'LuaJIT',
+         },
+         diagnostics = {'vim'},
+         workspace = {
+            libray = vim.api.nvim_get_runtime_file("", true),
+         },
+         telemetry = {
+            enable = false,
+         },
+      },
+   },
 }
 
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
