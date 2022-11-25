@@ -27,6 +27,8 @@ set.termguicolors = true
 set.textwidth = 80
 set.signcolumn = "yes"
 set.swapfile = false
+set.cul = true
+set.culopt = "both"
 
 local cmd = vim.cmd
 cmd [[
@@ -50,6 +52,6 @@ cmd [[
 ]]
 
 cmd [[
-	autocmd FileType NvimTree set numberwidth=2
+	autocmd FileType NvimTree set numberwidth=3
    autocmd FileType NvimTree set colorcolumn=+1
 ]]
