@@ -1,7 +1,8 @@
 require("nvim-tree").setup({
    view = {
-      relativenumber = true,
-      number = true,
+	adaptive_size = true,
+	relativenumber = true,
+	number = true,
    },
 })
 
