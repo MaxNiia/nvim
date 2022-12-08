@@ -12,3 +12,6 @@ Repository for keeping different versions of nvim configurations.
 Initialize git repository in `.config` or initialize somewhere else and require
 `init.lua`.
 
+## TODO
+Look at telescope project/browser.
+
