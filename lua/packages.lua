@@ -13,10 +13,10 @@ require("packages.tree")
 require("packages.treesitter")
 --require("packages.bufferline")
 require("packages.floaterm")
-require("packages.indentBlankLine")
+-- require("packages.indentBlankLine")
 require("packages.feline")
 -- require("common.packages.dap")
-
+require("packages.autopairs")
 require("leap").add_default_mappings()
 
 require("packages.catppuccin")

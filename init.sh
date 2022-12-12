@@ -1,2 +1,2 @@
 #!/bin/bash
-nvim --headless -u NONE -c 'lua require("setup").setup_paq()'
+nvim --headless -u NONE -c 'lua require("bootstrap").bootstrap_paq()'

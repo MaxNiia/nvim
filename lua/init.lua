@@ -1,4 +1,4 @@
-require("common.keybindings")
-require("common.packages")
-require("common.options")
+require("keybindings")
+require("packages")
+require("options")
 

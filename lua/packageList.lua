@@ -86,6 +86,7 @@ local packageList = {
 
 	-- Bufferline always after catppuccin
 	--"akinsho/bufferline.nvim";
+    
 }
 
 return packageList

@@ -1,5 +1,5 @@
 local set = vim.opt
 
-set.shiftwidth = 8
+set.shiftwidth = 4
 set.softtabstop = 0
 
