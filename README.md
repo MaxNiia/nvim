@@ -2,10 +2,9 @@
 
 Repository for keeping different versions of nvim configurations.
 
-- `common`: Always used.
 - Profiles: Switch on.
 - - User
-- - Epiroc
+- - Epiroc, if NVIM_EPIROC environment variable is set.
 
 ## Usage
 
