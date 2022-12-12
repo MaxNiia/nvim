@@ -1,7 +1,3 @@
--- To run enter: 
--- `nvim --headless -u NONE -c 'lua require("bootstrap").bootstrap_paq()'`
--- in a shell.
-
 local packages = require("packageList")
 
 local function clone_paq()
