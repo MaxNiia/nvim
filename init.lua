@@ -6,7 +6,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 
-require("common.init")
+require("init")
 
 if vim.env.NVIM_EPIROC then
 	require("epiroc.init")
