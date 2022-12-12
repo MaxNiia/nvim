@@ -12,7 +12,7 @@ local packageList = {
 	-- Which key
 	"folke/which-key.nvim";
 
-	-- Git 
+	-- Git
 	"lewis6991/gitsigns.nvim";
 
 	-- LSP
@@ -43,7 +43,7 @@ local packageList = {
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	};
-	
+
 	-- Beacon
 	"DanilaMihailov/beacon.nvim";
 
@@ -57,30 +57,30 @@ local packageList = {
 	"voldikss/vim-floaterm";
 
 
-   "onsails/lspkind-nvim";
+	"onsails/lspkind-nvim";
 
-   -- Autocompletion plugin
-   "hrsh7th/nvim-cmp"; 
-   -- LSP source for nvim-cmp
-   "hrsh7th/cmp-nvim-lsp"; 
-   -- Snippets source for nvim-cmp
-   "saadparwaiz1/cmp_luasnip"; 
-   -- Snippets pluginhrsh7th/nvim-cmp"
-   "L3MON4D3/LuaSnip";
+	-- Autocompletion plugin
+	"hrsh7th/nvim-cmp";
+	-- LSP source for nvim-cmp
+	"hrsh7th/cmp-nvim-lsp";
+	-- Snippets source for nvim-cmp
+	"saadparwaiz1/cmp_luasnip";
+	-- Snippets pluginhrsh7th/nvim-cmp"
+	"L3MON4D3/LuaSnip";
 
-   -- Leap
-   "tpope/vim-repeat";
-   "ggandor/leap.nvim";
+	-- Leap
+	"tpope/vim-repeat";
+	"ggandor/leap.nvim";
 
-   -- Feline
-   "feline-nvim/feline.nvim";
+	-- Feline
+	"feline-nvim/feline.nvim";
 
-   -- Debug
-   "mfussenegger/nvim-dap";
+	-- Debug
+	"mfussenegger/nvim-dap";
 
 	-- theme
 	{
-		"catppuccin/nvim", 
+		"catppuccin/nvim",
 		as = "catppuccin",
 	};
 
@@ -89,4 +89,3 @@ local packageList = {
 }
 
 return packageList
-

@@ -37,4 +37,3 @@ wk.register({
 }, {
 	prefix = "<leader>",
 })
-

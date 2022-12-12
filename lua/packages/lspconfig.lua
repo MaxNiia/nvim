@@ -31,7 +31,6 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 	-- Mappings
-	local wk = require("which-key")
 	wk.register({
 		g = {
 			name = "Go to",
@@ -162,7 +161,11 @@ require("lspconfig")["sumneko_lua"].setup {
 			runtime = {
 				version = 'LuaJIT',
 			},
-			diagnostics = { 'vim' },
+			diagnostics = {
+				globals = {
+					'vim',
+				},
+			},
 			workspace = {
 				libray = vim.api.nvim_get_runtime_file("", true),
 			},
@@ -171,6 +174,7 @@ require("lspconfig")["sumneko_lua"].setup {
 			},
 		},
 	},
+	single_file_support = true,
 }
 
 require("lspconfig")["rust_analyzer"].setup {
