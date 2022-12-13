@@ -15,6 +15,9 @@ local packageList = {
 	-- Git
 	"lewis6991/gitsigns.nvim";
 
+   -- Mason
+   "williamboman/mason.nvim";
+
 	-- LSP
 	"neovim/nvim-lspconfig";
 
