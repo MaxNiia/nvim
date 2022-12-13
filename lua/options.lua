@@ -33,27 +33,27 @@ set.swapfile = false
 -- set.winbar = ""
 
 local cmd = vim.cmd
-cmd [[
+cmd([[
 	autocmd FileType gitcommit set textwidth=72
 	autocmd FileType gitcommit set colorcolumn=+1
-]]
+]])
 
-cmd [[
+cmd([[
 	autocmd FileType c set textwidth=80
 	autocmd FileType c set colorcolumn=+1
-]]
+]])
 
-cmd [[
+cmd([[
 	autocmd FileType cpp set textwidth=80
 	autocmd FileType cpp set colorcolumn=+1
-]]
+]])
 
-cmd [[
+cmd([[
 	autocmd FileType py set textwidht=88
 	autocmd FileType py set colorcolumn=+1
-]]
+]])
 
-cmd [[
+cmd([[
 	autocmd FileType NvimTree set numberwidth=3
    autocmd FileType NvimTree set colorcolumn=+1
-]]
+]])
