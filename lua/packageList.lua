@@ -18,8 +18,14 @@ local packageList = {
    -- Mason
    "williamboman/mason.nvim";
 
+   -- Mason-LSP
+   "williamboman/mason-lspconfig.nvim";
+
 	-- LSP
 	"neovim/nvim-lspconfig";
+
+   -- Linter & Formater
+   "jose-elias-alvarez/null-ls.nvim";
 
 	-- Trouble
 	"folke/trouble.nvim";
@@ -80,6 +86,9 @@ local packageList = {
 
 	-- Debug
 	"mfussenegger/nvim-dap";
+
+   -- Todo
+   "folke/todo-comments.nvim";
 
 	-- theme
 	{
