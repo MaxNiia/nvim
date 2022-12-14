@@ -19,7 +19,7 @@ require("packages.treesitter")
 --require("packages.bufferline")
 require("packages.floaterm")
 require("packages.indentBlankLine")
-require("packages.feline")
+require("packages.feline.feline")
 -- require("common.packages.dap")
 
 require("leap").add_default_mappings()
