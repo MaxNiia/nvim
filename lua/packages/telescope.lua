@@ -33,6 +33,8 @@ require("telescope").setup({
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
 require("telescope").load_extension("project")
+require("telescope").load_extension("notify")
+require("telescope").load_extension("noice")
 
 local wk = require("which-key")
 wk.register({
@@ -65,6 +67,17 @@ wk.register({
 		p = {
 			"<cmd>Telescope project<CR>",
 			"Project",
+		},
+		n = {
+			"<cmd>Telescope noice<CR>",
+			"Noice",
+
+		},
+		m = {
+
+			"<cmd>Telescope noice<CR>",
+			"Notify",
+
 		},
 		g = {
 			name = "Git",
