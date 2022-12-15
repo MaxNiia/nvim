@@ -21,7 +21,7 @@ require("telescope").setup({
       mappings = {
          i = {
             ["<c-t>"] = trouble.open_with_trouble,
-            ["<C-h>"] = "which_key",
+            ["<c-h>"] = "which_key",
          },
          n = {
             ["<c-t>"] = trouble.open_with_trouble,

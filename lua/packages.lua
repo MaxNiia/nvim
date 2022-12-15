@@ -16,11 +16,10 @@ require("packages.autopairs")
 require("packages.todo")
 require("packages.tree")
 require("packages.treesitter")
---require("packages.bufferline")
 require("packages.floaterm")
 require("packages.indentBlankLine")
 require("packages.feline.feline")
--- require("common.packages.dap")
+-- require("packages.dap")
 
 require("leap").add_default_mappings()
 
