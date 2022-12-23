@@ -30,7 +30,8 @@ set.termguicolors = true
 set.textwidth = 80
 set.signcolumn = "yes"
 set.swapfile = false
--- set.winbar = ""
+set.cursorline = false
+set.clipboard = "unnamed"
 
 local cmd = vim.cmd
 cmd([[
