@@ -18,11 +18,9 @@ require("packages.tree")
 require("packages.treesitter")
 require("packages.floaterm")
 require("packages.indentBlankLine")
-require("packages.feline.feline")
+require("packages.feline")
 require("packages.noice_config")
 require("packages.dashboard")
 -- require("packages.dap")
 
 require("leap").add_default_mappings()
-
-require("packages.catppuccin")
