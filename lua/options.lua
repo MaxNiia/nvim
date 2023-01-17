@@ -34,6 +34,12 @@ set.cursorline = false
 set.clipboard = "unnamed"
 
 local cmd = vim.cmd
+
+cmd ([[
+	autocmd BufRead,BufNewFile *.bqn setf bqn
+	autocmd BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
+]])
+
 cmd([[
 	autocmd FileType gitcommit set textwidth=72
 	autocmd FileType gitcommit set colorcolumn=+1
