@@ -45,3 +45,8 @@ wk.register({
 }, {
    mode = "t",
 })
+
+local set = vim.g
+
+set.floaterm_width = 0.6
+set.floaterm_height = 0.95
