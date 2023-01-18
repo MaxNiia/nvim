@@ -145,6 +145,18 @@ require("lspconfig")["cmake"].setup({
     buildDirectory = "build/rcsos-2.4.0_x86_4.4.50_rt63/Debug",
 })
 
+require("lspconfig")["jsonnet_ls"].setup({
+    capabilities = capabilities,
+})
+
+require("lspconfig")["yamlls"].setup({
+    capabilities = capabilities,
+})
+
+require("lspconfig")["marksman"].setup({
+    capabilities = capabilities,
+})
+
 require("lspconfig")["sumneko_lua"].setup({
     capabilities = capabilities,
     on_attach = on_attach,

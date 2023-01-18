@@ -18,7 +18,7 @@ require("telescope").setup({
         },
     },
     defaults = {
-        wrap_results = true,
+        wrap_results = false,
         path_display = { "truncate" },
     },
 })
