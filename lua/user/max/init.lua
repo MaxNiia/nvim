@@ -2,8 +2,8 @@ require("user.default.keybindings")
 require("user.default.options")
 require("user.default.packages")
 
-if vim.env.NVIM_EPIROC then
-    require("user.max.epiroc.init")
+if vim.env.NVIM_WORK then
+    require("user.max.work.init")
 else
     require("user.max.default.init")
 end
