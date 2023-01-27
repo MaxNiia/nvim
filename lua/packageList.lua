@@ -14,6 +14,7 @@ local packageList = {
 
     -- Git
     "lewis6991/gitsigns.nvim",
+    "sindrets/diffview.nvim",
 
     -- Mason
     "williamboman/mason.nvim",
@@ -28,6 +29,9 @@ local packageList = {
     "jose-elias-alvarez/null-ls.nvim",
     "jay-babu/mason-null-ls.nvim",
 
+    -- Project
+    "ahmedkhalf/project.nvim",
+
     -- Trouble
     "folke/trouble.nvim",
 
@@ -35,8 +39,6 @@ local packageList = {
     "nvim-telescope/telescope.nvim",
 
     "nvim-telescope/telescope-file-browser.nvim",
-
-    "nvim-telescope/telescope-project.nvim",
 
     -- FZF-native
     {
