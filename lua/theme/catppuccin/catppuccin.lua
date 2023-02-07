@@ -42,9 +42,11 @@ require("catppuccin").setup({
         },
         leap = true,
         mason = true,
+        markdown = true,
         nvimtree = true,
         telescope = true,
         ts_rainbow = true,
+        telekasten = true,
         treesitter = true,
         treesitter_context = true,
         native_lsp = {

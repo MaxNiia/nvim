@@ -19,6 +19,9 @@ local packageList = {
     -- Mason
     "williamboman/mason.nvim",
 
+    -- Markdown
+    "iamcco/markdown-preview.nvim",
+
     -- Mason-LSP
     "williamboman/mason-lspconfig.nvim",
 
@@ -109,6 +112,10 @@ local packageList = {
 
     -- Dashboard
     "glepnir/dashboard-nvim",
+
+    -- Note taking - Telekasten
+    "renerocksai/calendar-vim",
+    "renerocksai/telekasten.nvim",
 
     -- Themes
     {
