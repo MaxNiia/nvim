@@ -22,7 +22,7 @@ require("packages.indentBlankLine")
 require("packages.feline")
 require("packages.noice_config")
 require("packages.telekasten")
-require("packages.persistence")
+require("packages.persisted")
 require("packages.dashboard")
 -- require("packages.dap")
 

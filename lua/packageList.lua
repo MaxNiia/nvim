@@ -118,7 +118,7 @@ local packageList = {
     "renerocksai/telekasten.nvim",
 
     -- Persistence
-    "folke/persistence.nvim",
+    "olimorris/persisted.nvim",
 
     -- Themes
     {

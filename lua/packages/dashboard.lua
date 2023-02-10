@@ -16,6 +16,12 @@ require("dashboard").setup({
             action = "Telescope projects",
             key = "p",
          },
+         {
+            desc = "Sessions",
+            group = "Label",
+            action = "Telescope persisted",
+            key = "s",
+         },
       },
    },
 })

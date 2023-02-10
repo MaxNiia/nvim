@@ -66,10 +66,15 @@ wk.register({
             "Noice",
 
         },
-        m = {
-
+        M = {
             "<cmd>Telescope notify<CR>",
             "Notify",
+
+        },
+        m = {
+
+            "<cmd>Telescope manpages<CR>",
+            "Manpages",
 
         },
         g = {
