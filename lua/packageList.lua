@@ -117,6 +117,9 @@ local packageList = {
     "renerocksai/calendar-vim",
     "renerocksai/telekasten.nvim",
 
+    -- Persistence
+    "folke/persistence.nvim",
+
     -- Themes
     {
         "catppuccin/nvim",

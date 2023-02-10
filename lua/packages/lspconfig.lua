@@ -1,29 +1,16 @@
 -- Mappings.
 local wk = require("which-key")
 wk.register({
-    j = {
+    k = {
         vim.diagnostic.open_float,
         "Open float",
     },
-    q = {
+    j = {
         vim.diagnostic.setloclist,
         "Set loc list",
     },
 }, {
     prefix = "<leader>",
-})
-
-wk.register({
-    k = {
-        vim.diagnostic.goto_prev,
-        "Previous diagnostic",
-    },
-    j = {
-        vim.diagnostic.goto_next,
-        "Next diagnostic",
-    },
-}, {
-    prefix = "<C>",
 })
 
 local on_attach = function(client, bufnr)
