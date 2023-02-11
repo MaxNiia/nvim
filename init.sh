@@ -39,7 +39,7 @@ fi
 if ! command -v cspell &> /dev/null
 then
     echo "CSPELL is not installed, installing"
-    npm install -g cspell
+    sudo npm install -g cspell
 fi
 
 
