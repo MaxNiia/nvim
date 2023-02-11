@@ -33,7 +33,7 @@ then
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
     echo "If 'nvm install 16' fails copy NVM config from profile file to bashrc"
     nvm install 16
-    corepack enable
+    sudo corepack enable
 fi
 
 if ! command -v cspell &> /dev/null
