@@ -33,13 +33,24 @@ then
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
     echo "If 'nvm install 16' fails copy NVM config from profile file to bashrc"
     nvm install 16
-    sudo corepack enable
+    corepack enable
 fi
 
 if ! command -v cspell &> /dev/null
 then
     echo "CSPELL is not installed, installing"
     sudo npm install -g cspell
+fi
+
+file=lua/default.lua
+
+if [ ! -e "$file" ] ; then
+    touch "$file"
+fi
+
+if [ ! -w "$file" ] ; then
+    echo cannot write to $file
+    exit 1
 fi
 
 echo ""
