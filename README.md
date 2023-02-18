@@ -9,7 +9,9 @@ Profiles: set with environment variables.
 Initialize git repository in `.config` or initialize somewhere else and require
 `init.lua`.
 
-To auto install packages run `init.sh`.
+To auto install packages managers run `init.sh`.
+
+Plugins will auto install and kept updated by lazy.
 
 ## WSL
 If using wsl the windows clipboard has to be installed in order to yank
@@ -21,7 +23,4 @@ unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
 chmod +x /tmp/win32yank.exe
 sudo mv /tmp/win32yank.exe /usr/local/bin/
 `
-
-## TODO
-Look at telescope project/browser.
 
