@@ -42,10 +42,4 @@ then
     sudo npm install -g cspell
 fi
 
-
-nvim --headless -u NONE -c 'lua require("bootstrap").bootstrap_paq()'
-
-cd ~/.local/share/nvim/site/pack/paqs/start/markdown-preview.nvim/
-yarn install
-
 echo ""
