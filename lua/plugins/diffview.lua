@@ -1,3 +1,3 @@
-return {{
-    "sindrets/diffview.nvim",
-}}
+return { {
+	"sindrets/diffview.nvim",
+} }
