@@ -1,6 +1,9 @@
 return {
 	{
 		"catppuccin/nvim",
+		dependencies = {
+			"nvim-lualine/lualine.nvim",
+		},
 		lazy = true,
 		name = "catppuccin",
 		config = function(_, _)
@@ -9,6 +12,9 @@ return {
 	},
 	{
 		"EdenEast/nightfox.nvim",
+		dependencies = {
+			"nvim-lualine/lualine.nvim",
+		},
 		lazy = true,
 		name = "nightfox",
 		config = function(_, _)
