@@ -13,8 +13,8 @@ return {
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
-					statusline = {},
-					winbar = { "NvimTree" },
+					statusline = { "dashboard", "lazy" },
+					winbar = { "NvimTree", "dashboard", "lazy" },
 				},
 				ignore_focus = {},
 				always_divide_middle = true,
