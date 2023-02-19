@@ -1,6 +1,9 @@
 return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
+		dependencies = {
+			"s1n7ax/nvim-window-picker",
+		},
 		cmd = "Neotree",
 		keys = {
 			{
@@ -32,8 +35,13 @@ return {
 			window = {
 				mappings = {
 					["<space>"] = "none",
+					["S"] = "split_with_window_picker",
+					["s"] = "vsplit_with_window_picker",
 				},
 			},
 		},
+		config = function(_, opts)
+			require("neo-tree").setup(opts)
+		end,
 	},
 }
