@@ -3,16 +3,38 @@ return {
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			"mason.nvim",
+			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"onsails/lspkind.nvim",
 			"SmiteshP/nvim-navic",
+			"mfussenegger/nvim-dap",
 			{
 				"hrsh7th/nvim-cmp",
 				dependencies = {
 					"hrsh7th/cmp-nvim-lsp",
 					"hrsh7th/cmp-buffer",
-					"windwp/nvim-autopairs",
+					{
+						"windwp/nvim-autopairs",
+						opts = {
+							check_ts = true,
+							ts_config = {},
+						},
+						config = function(_, opts)
+							local npairs = require("nvim-autopairs")
+							local Rule = require("nvim-autopairs.rule")
+
+							npairs.setup(opts)
+
+							local cond = require("nvim-autopairs.ts-conds")
+
+							-- press % => %% only while inside a comment or string
+							npairs.add_rules({
+								Rule("%", "%")
+									:with_pair(cond.is_ts_node({ "string", "comment" }))
+									:with_pair(cond.is_not_ts_node({ "function" })),
+							})
+						end,
+					},
 					{
 						"L3MON4D3/LuaSnip",
 						build = "make install_jsregexp",
@@ -26,14 +48,16 @@ return {
 					},
 				},
 				config = function(_, opts)
+					local handlers = require("nvim-autopairs.completion.handlers")
 					local cmp = require("cmp")
 					local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 					cmp.setup(opts)
-					cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({}))
+					cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 				end,
 			},
 		},
 		opts = {
+
 			-- options for vim.diagnostic.config()
 			diagnostics = {
 				underline = true,
