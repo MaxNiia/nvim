@@ -17,14 +17,6 @@ return {
 					vim.lsp.buf.code_action,
 					"Apply fix",
 				},
-				c = {
-					"<cm:wqd>nohlsearch<CR>",
-					"Clear highlight",
-				},
-				s = {
-					"<cmd>wall<CR>",
-					"Save all",
-				},
 				rn = {
 					vim.lsp.buf.rename,
 					"Rename",

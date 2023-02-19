@@ -101,7 +101,7 @@ return {
 					"<cmd>BufferPick<CR>",
 					"Pick Buffer",
 				},
-				["<c-P>"] = {
+				["<a-p>"] = {
 					"<cmd>BufferPickDelete<CR>",
 					"Pick Buffer Delete",
 				},

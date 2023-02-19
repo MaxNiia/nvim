@@ -71,5 +71,5 @@ cmd([[
 
 cmd([[
     autocmd FileType NvimTree set numberwidth=2
-    autocmd FIleType NvimTree set scl=no
+    autocmd FileType NvimTree set scl=no
 ]])
