@@ -90,6 +90,7 @@ return {
 						},
 					},
 				},
+				--[[
 				pyright = {
 					settings = {
 						python = {
@@ -102,6 +103,8 @@ return {
 						},
 					},
 				},
+				]]
+				pylsp = {},
 				clangd = {
 					cmd = {
 						"clangd",
