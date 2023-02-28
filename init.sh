@@ -39,7 +39,7 @@ fi
 if ! command -v cspell &> /dev/null
 then
     echo "CSPELL is not installed, installing"
-    sudo npm install -g cspell
+    npm install -g cspell
 fi
 
 file=lua/default.lua
