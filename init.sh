@@ -55,4 +55,10 @@ if [ ! -w "$file" ] ; then
     exit 1
 fi
 
+if [ ! command -v lua &> /dev/null ]
+then
+    echo "Lua not installed, installing"
+    sudo apt install lua
+fi
+
 echo ""
