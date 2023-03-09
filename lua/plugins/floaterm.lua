@@ -56,8 +56,9 @@ return {
 			})
 			local set = vim.g
 
-			set.floaterm_width = 0.6
-			set.floaterm_height = 0.95
+			set.floaterm_position = "auto"
+			set.floaterm_width = 120
+			set.floaterm_height = 40
 		end,
 	},
 }

@@ -31,7 +31,6 @@ require("catppuccin").setup({
 	},
 	integrations = {
 		aerial = true,
-		bufferline = true,
 		beacon = true,
 		cmp = true,
 		dashboard = true,
@@ -57,12 +56,14 @@ require("catppuccin").setup({
 		notify = true,
 		which_key = true,
 	},
+	--[[
 	custom_highlights = function(c)
 		return {
-			NoiceCursor = { fg = c.red },
+			-- NoiceCursor = { fg = c.red },
 			-- Comment = { fg = c.rosewater }, For BQN.
 		}
 	end,
+	]]
 })
 
 vim.cmd("colorscheme catppuccin")

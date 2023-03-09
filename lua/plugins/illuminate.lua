@@ -6,6 +6,7 @@ return {
 				providers = {
 					"lsp",
 					"treesitter",
+					"regex",
 				},
 				delay = 100,
 			})
