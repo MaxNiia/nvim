@@ -57,7 +57,6 @@ return {
 			},
 		},
 		opts = {
-
 			-- options for vim.diagnostic.config()
 			diagnostics = {
 				underline = true,
@@ -106,6 +105,13 @@ return {
 				]]
 				pylsp = {},
 				clangd = {
+					filetypes = {
+						"c",
+						"cpp",
+						"objc",
+						"objcpp",
+						"cuda",
+					},
 					cmd = {
 						"clangd",
 						"--background-index=true",
@@ -120,7 +126,6 @@ return {
 				yamlls = {},
 				marksman = {},
 				rust_analyzer = {
-
 					settings = {
 						["rust-analyzer"] = {
 							imports = {
@@ -375,7 +380,6 @@ return {
 
 	-- cmdline tools and lsp servers
 	{
-
 		"williamboman/mason.nvim",
 		cmd = "Mason",
 		keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
