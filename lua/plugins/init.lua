@@ -129,4 +129,8 @@ return {
 		lazy = true,
 		event = "BufEnter",
 	},
+	{
+		"miversen33/netman.nvim",
+		lazy = true,
+	},
 }
