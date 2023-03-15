@@ -3,7 +3,7 @@ return {
 		"nvim-neo-tree/neo-tree.nvim",
 		dependencies = {
 			"s1n7ax/nvim-window-picker",
-			"miversen33/netman.nvim",
+			-- "miversen33/netman.nvim",
 		},
 		cmd = "Neotree",
 		keys = {
@@ -37,7 +37,7 @@ return {
 				"filesystem",
 				"buffers",
 				"git_status",
-				"netman.ui.neo-tree",
+				-- "netman.ui.neo-tree",
 			},
 			event_handlers = {
 				{
