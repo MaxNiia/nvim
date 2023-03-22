@@ -33,3 +33,5 @@ chmod +x /tmp/win32yank.exe
 sudo mv /tmp/win32yank.exe /usr/local/bin/
 `
 
+# TODO
+*Look at replacing Floaterm with [toggleterm](https://github.com/akinsho/toggleterm.nvim)
