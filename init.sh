@@ -42,7 +42,7 @@ then
     npm install -g cspell
 fi
 
-file=lua/default.lua
+file=lua/user.lua
 
 if [ ! -e "$file" ] ; then
     touch "$file"
@@ -61,4 +61,5 @@ then
     sudo apt install lua
 fi
 
+# Clear output
 echo ""

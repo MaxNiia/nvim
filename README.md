@@ -6,8 +6,8 @@ Profiles: set with environment variables.
 
 ## Requirements
 
-*Neovim 8.0 or later.
-*A Nerdfont.
+-Neovim 8.0 or later.
+-A Nerdfont.
 
 ## Usage
 
@@ -20,7 +20,8 @@ Plugins will auto install and kept updated by lazy.
 
 ## Theme
 After running `init.sh` an ignored file is created in the `lua` directory. This
-file dictates what theme nvim should use.
+file dictates what theme nvim should use, as well as housing any personal
+settings.
 
 ## WSL
 If using wsl the windows clipboard has to be installed in order to yank
@@ -34,4 +35,4 @@ sudo mv /tmp/win32yank.exe /usr/local/bin/
 `
 
 # TODO
-*Look at replacing Floaterm with [toggleterm](https://github.com/akinsho/toggleterm.nvim)
+-Look at replacing Floaterm with [toggleterm](https://github.com/akinsho/toggleterm.nvim)
