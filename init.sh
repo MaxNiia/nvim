@@ -61,5 +61,12 @@ then
     sudo apt install lua
 fi
 
+if [ ! command -v nvr &> /dev/null ]
+then 
+    echo "NVR not installed installing"
+    pip3 install neovim-remote
+    git config --global core.editor 'nvr --remote-wait-silent'
+fi
+
 # Clear output
 echo ""

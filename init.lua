@@ -1,6 +1,14 @@
 -- Before Lazy
 vim.g.mapleader = " "
 
+vim.cmd([[
+if has('nvim')
+  let $GIT_EDITOR = 'nvr -cc split --remote-wait'
+endif
+
+autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
+]])
+
 require("options")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
