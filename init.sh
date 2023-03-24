@@ -27,7 +27,7 @@ then
     sudo apt-get install fzf
 fi
 
-if ! command -v nvm &> /dev/null
+if [ ! -d "${HOME}/.nvm/.git" ]
 then
     echo "NVM not installed, installing"
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
@@ -42,7 +42,7 @@ then
     npm install -g cspell
 fi
 
-file=lua/user.lua
+file="lua/user.lua"
 
 if [ ! -e "$file" ] ; then
     touch "$file"
@@ -55,13 +55,13 @@ if [ ! -w "$file" ] ; then
     exit 1
 fi
 
-if [ ! command -v lua &> /dev/null ]
+if ! command -v lua &> /dev/null
 then
     echo "Lua not installed, installing"
     sudo apt install lua
 fi
 
-if [ ! command -v nvr &> /dev/null ]
+if ! command -v nvr &> /dev/null
 then 
     echo "NVR not installed installing"
     pip3 install neovim-remote
