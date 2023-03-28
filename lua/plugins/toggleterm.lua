@@ -1,6 +1,23 @@
 return {
 	{
 		"akinsho/toggleterm.nvim",
+		dependencies = {
+			"samjwill/nvim-unception",
+			init = function()
+				-- Optional settings go here!
+				vim.g.unception_delete_replaced_buffer = false
+				vim.g.unception_open_buffer_in_new_tab = false
+				vim.g.unception_enable_flavor_text = false
+
+				vim.api.nvim_create_autocmd("User", {
+					pattern = "UnceptionEditRequestReceived",
+					callback = function()
+						-- Toggle the terminal off.
+						require("toggleterm").toggle()
+					end,
+				})
+			end,
+		},
 		opts = {
 			size = function(term)
 				if term.direction == "horizontal" then
