@@ -61,5 +61,20 @@ then
     sudo apt install lua
 fi
 
+if [ ! -e "${HOME}/.nvimstty" ] ; then
+    echo "Disabling XON/XOFF flow control"
+    touch "${HOME}/.nvimstty"
+    echo "stty -ixon" >> "${HOME}/.nvimstty"
+    if [ "${SHELL}" = "/usr/bin/zsh" ] ; then
+        echo 'source "${HOME}/.nvimstty"' >> "${HOME}/.zshrc"
+    elif [ "${SHELL}" = "/usr/bin/bash" ] ; then
+        echo 'source "${HOME}/.nvimstty"' >> "${HOME}/.bashrc"
+    else 
+        echo "Error, can't find suitable shell. Run the following line but change {shellrc} to applicable shell file"
+        echo 'echo source "\${HOME}/.nvimstty" >> "\${HOME}/.{shellrc}"'
+    fi
+fi
+
+
 # Clear output
 echo ""
