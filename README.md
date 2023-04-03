@@ -6,8 +6,8 @@ Profiles: set with environment variables.
 
 ## Requirements
 
--Neovim 8.0 or later.
--A Nerdfont.
+- Neovim 8.0 or later.
+- A Nerdfont.
 
 ## Usage
 
@@ -26,13 +26,12 @@ settings.
 ## WSL
 If using wsl the windows clipboard has to be installed in order to yank
 into and put from windows. The following command from the neovim FAQ
-does exactly that.
-`bash
+does exactly that. 
+
+```bash
 curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
 unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
 chmod +x /tmp/win32yank.exe
 sudo mv /tmp/win32yank.exe /usr/local/bin/
-`
+```
 
-# TODO
--Look at replacing Floaterm with [toggleterm](https://github.com/akinsho/toggleterm.nvim)
