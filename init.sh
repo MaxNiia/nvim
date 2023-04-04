@@ -75,6 +75,10 @@ if [ ! -e "${HOME}/.nvimstty" ] ; then
     fi
 fi
 
+if [ ! -d "~/venvs" ]; then
+    echo "Creating venvs folder"
+    mkdir ~/venvs
+fi
 
 # Clear output
 echo ""
