@@ -13,6 +13,7 @@ return {
 				local wk = require("which-key")
 				wk.register({
 					A = {
+						name = "+Aerial",
 						["["] = {
 							"<cmd>AerialPrev<CR>",
 							"Previous Aerial",
@@ -31,6 +32,26 @@ return {
 					buffer = bufnr,
 				})
 			end,
+			buftype_exclude = {
+				"nofile",
+				"terminal",
+			},
+			char = "▏",
+			context_char = "▏",
+			show_current_context = true,
+			use_treesitter = true,
+			filetype_exclude = {
+				"help",
+				"startify",
+				"aerial",
+				"alpha",
+				"dashboard",
+				"lazy",
+				"neogitstatus",
+				"NvimTree",
+				"neo-tree",
+				"Trouble",
+			},
 		},
 		config = true,
 	},
