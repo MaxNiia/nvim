@@ -2,8 +2,25 @@ return {
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		dependencies = {
-			"s1n7ax/nvim-window-picker",
-			-- "miversen33/netman.nvim",
+			{
+				"s1n7ax/nvim-window-picker",
+				lazy = true,
+				opts = {
+					filter_rules = {
+						-- filter using buffer options
+						bo = {
+							-- if the file type is one of following, the window will be ignored
+							filetype = { "neo-tree", "neo-tree-popup", "notify" },
+							-- if the buffer type is one of following, the window will be ignored
+							buftype = { "terminal", "quickfix" },
+						},
+					},
+					autoselect_one = true,
+					include_current = false,
+					use_winbar = "never",
+				},
+				config = true,
+			},
 		},
 		cmd = "Neotree",
 		keys = {
@@ -29,7 +46,6 @@ return {
 			end
 		end,
 		opts = {
-
 			source_selector = {
 				winbar = true,
 			},
@@ -42,15 +58,11 @@ return {
 			event_handlers = {
 				{
 					event = "neo_tree_buffer_enter",
-					handler = function(
-						_ --[[arg]]
-					)
-						vim.cmd([[
-					  setlocal relativenumber
-					]])
-						vim.cmd([[
-					  setlocal number
-					]])
+					handler = function(_)
+						--vim.cmd([[
+							--setlocal relativenumber
+							--setlocal number
+						--]])
 					end,
 				},
 			},
