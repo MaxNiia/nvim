@@ -27,9 +27,13 @@ return {
 				end
 				return 20
 			end,
+			on_create = function(terminal)
+				terminal.name = terminal.count
+			end,
 			open_mapping = [[<f12>]],
 			hide_number = true,
 			autochdir = true,
+			shade_terminals = true,
 			start_in_insert = true,
 			terminal_mappings = true,
 			persist_size = true,
@@ -56,18 +60,11 @@ return {
 			require("toggleterm").setup(opts)
 
 			local wk = require("which-key")
+
 			wk.register({
 				t = {
 					name = "Terminal",
-					f = {
-						"<cmd>ToggleTerm direction=float<CR>",
-						"Float",
-					},
-					t = {
-						"<cmd>ToggleTerm direction=vertical<CR>",
-						"Vertical",
-					},
-					l = {
+				l = {
 						"<cmd>ToggleTermSendCurrentLine<CR>",
 						"Send line",
 					},
@@ -75,6 +72,13 @@ return {
 			}, {
 				prefix = "<leader>",
 			})
+
+			vim.cmd([[
+				nnoremap <silent><f5> <Cmd>exe v:count1 . "ToggleTerm direction=float"<CR>
+				nnoremap <silent><f6> <Cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>
+				nnoremap <silent><f7> <Cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>
+				nnoremap <silent><f8> <Cmd> ToggleTermToggleAll <CR>
+			]])
 		end,
 	},
 }
