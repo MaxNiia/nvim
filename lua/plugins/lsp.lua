@@ -104,6 +104,7 @@ return {
 					},
 				},
 				]]
+				tsserver = {},
 				pylsp = {},
 				clangd = {
 					filetypes = {
@@ -374,6 +375,8 @@ return {
 					-- nls.builtins.formatting.prettierd,
 					nls.builtins.formatting.stylua,
 					nls.builtins.diagnostics.flake8,
+					null_ls.builtins.diagnostics.eslint,
+					null_ls.builtins.completion.spell,
 				},
 			}
 		end,

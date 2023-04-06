@@ -13,7 +13,6 @@ return {
 	},
 	{
 		"windwp/nvim-spectre",
-		-- stylua: ignore
 		keys = {
 			{ "<leader>rf", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
 		},

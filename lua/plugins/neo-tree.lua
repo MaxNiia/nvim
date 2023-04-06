@@ -31,7 +31,14 @@ return {
 				end,
 				desc = "Explorer NeoTree (cwd)",
 			},
-			{ "<leader>E", "<leader>E", desc = "Explorer NeoTree", remap = true },
+			{
+				"<leader>E",
+				function()
+					require("neo-tree.command").execute({ toggle = true})
+				end,
+				desc = "Explorer NeoTree",
+				remap = true
+			},
 		},
 		deactivate = function()
 			vim.cmd([[Neotree close]])
@@ -60,8 +67,8 @@ return {
 					event = "neo_tree_buffer_enter",
 					handler = function(_)
 						--vim.cmd([[
-							--setlocal relativenumber
-							--setlocal number
+						--setlocal relativenumber
+						--setlocal number
 						--]])
 					end,
 				},
