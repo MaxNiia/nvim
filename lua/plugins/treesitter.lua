@@ -29,6 +29,7 @@ return {
 				ensured_install = {
 					"vim",
 					"c",
+					"vimdoc",
 					"lua",
 					"cpp",
 					"rust",

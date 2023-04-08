@@ -12,7 +12,7 @@ set.expandtab = true
 set.ignorecase = true
 set.incsearch = true
 set.laststatus = 3
-set.number = false
+set.number = true
 set.numberwidth = 2
 set.rnu = true
 set.shiftwidth = 4
@@ -31,11 +31,13 @@ set.splitbelow = true
 set.splitright = true
 set.termguicolors = true
 set.textwidth = 80
-set.signcolumn = "no"--"yes:1"
+set.signcolumn = "yes:1" -- "no"
+set.foldcolumn = "auto:1"
 set.swapfile = false
 set.cursorline = false
 set.clipboard = "unnamed"
 set.scrolloff = 5
+set.mousemodel = "extend"
 
 local cmd = vim.cmd
 

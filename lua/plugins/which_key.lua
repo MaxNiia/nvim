@@ -26,11 +26,11 @@ return {
 					"Clear highlighting",
 				},
 				z = {
-					"<cmd>set norelativenumber number<CR>",
+					"<cmd>set norelativenumber<CR>",
 					"Relative OFF",
 				},
 				Z = {
-					"<cmd>set relativenumber nonumber<CR>",
+					"<cmd>set relativenumber<CR>",
 					"Relative ON",
 				},
 			}, {
