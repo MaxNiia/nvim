@@ -2,6 +2,7 @@ return {
 	{
 		"ahmedkhalf/project.nvim",
 		lazy = true,
+		event = "VeryLazy",
 		opts = {
 			manual_mode = false,
 		},

@@ -7,7 +7,6 @@ return {
 			"williamboman/mason.nvim",
 			"mfussenegger/nvim-dap",
 		},
-		event = "BufEnter",
 		lazy = true,
 		opts = {
 			ensure_installed = {

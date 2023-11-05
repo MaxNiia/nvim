@@ -25,6 +25,7 @@ return {
 			"nvim-telescope/telescope-dap.nvim",
 			"mfussenegger/nvim-dap",
 		},
+		lazy = true,
 		opts = {
 			extensions = {
 				aerial = {
