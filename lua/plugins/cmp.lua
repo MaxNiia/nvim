@@ -26,6 +26,7 @@ return {
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
+            -- "hrsh7th/cmp-copilot", Not truly supported
             "L3MON4D3/LuaSnip",
             "tzachar/fuzzy.nvim",
             "saadparwaiz1/cmp_luasnip",
@@ -35,6 +36,14 @@ return {
             "hrsh7th/cmp-path",
             "petertriho/cmp-git",
             "hrsh7th/cmp-cmdline",
+            {
+
+                "paopaol/cmp-doxygen",
+                dependencies = {
+                    "nvim-treesitter/nvim-treesitter",
+                    "nvim-treesitter/nvim-treesitter-textobjects",
+                },
+            },
         },
         config = function(_, _)
             -- luasnip setup
@@ -121,12 +130,21 @@ return {
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
                     { name = "nvim_lsp_signature_help" },
+                    -- { name = "copilot" },
+                    { name = "doxygen" },
+                    { name = "treesitter" },
                     { name = "luasnip" },
                     { name = "doxygen" },
                     { name = "fuzzy_buffer" },
                 }, {
-
-                    { name = "buffer" },
+                    {
+                        name = "buffer",
+                        option = {
+                            get_bufnrs = function()
+                                return vim.api.nvim_list_bufs()
+                            end,
+                        },
+                    },
                 }),
             })
 
