@@ -1,6 +1,8 @@
 return {
     {
         "nvim-neo-tree/neo-tree.nvim",
+        -- TODO: Move to neotree v3
+        branch = "v2.x",
         enabled = function()
             return _G.neotree
         end,
