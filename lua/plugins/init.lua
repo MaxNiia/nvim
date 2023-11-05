@@ -159,4 +159,9 @@ return {
 			require("nvim-surround").setup(opts)
 		end,
 	},
+	{
+		"norcalli/nvim-colorizer.lua",
+		lazy = true,
+		event = "BufEnter",
+	},
 }
