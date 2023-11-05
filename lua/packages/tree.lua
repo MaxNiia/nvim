@@ -17,7 +17,7 @@ require("nvim-tree").setup({
         },
     },
     renderer = {
-        symlink_destination = true,
+        symlink_destination = false,
     },
 })
 
