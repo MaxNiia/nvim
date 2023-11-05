@@ -28,6 +28,21 @@ return {
 			end
 		end,
 		opts = {
+			event_handlers = {
+				{
+					event = "neo_tree_buffer_enter",
+					handler = function(
+						_ --[[arg]]
+					)
+						vim.cmd([[
+					  setlocal relativenumber
+					]])
+						vim.cmd([[
+					  setlocal number
+					]])
+					end,
+				},
+			},
 			filesystem = {
 				bind_to_cwd = false,
 				follow_current_file = true,
