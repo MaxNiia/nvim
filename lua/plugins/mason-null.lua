@@ -122,9 +122,6 @@ return {
                     -- CMAKE
                     null_ls.builtins.diagnostics.cmake_lint,
 
-                    -- Editor config
-                    null_ls.builtins.diagnostics.editorconfig_checker,
-
                     -- Dotenv
                     null_ls.builtins.diagnostics.dotenv_linter,
 
