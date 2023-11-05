@@ -164,4 +164,9 @@ return {
 		lazy = true,
 		event = "BufEnter",
 	},
+	{
+		"Fildo7525/pretty_hover",
+		event = "LspAttach",
+		opts = {},
+	},
 }

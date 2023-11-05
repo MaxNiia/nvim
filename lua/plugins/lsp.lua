@@ -268,9 +268,21 @@ return {
 							"Go to references",
 						},
 					},
+					-- K = {
+					-- 	vim.lsp.buf.hover,
+					-- 	"Hover",
+					-- },
 					K = {
-						vim.lsp.buf.hover,
+						function()
+							require("pretty_hover").hover()
+						end,
 						"Hover",
+					},
+					["<c-q>"] = {
+						function()
+							require("pretty_hover").close()
+						end,
+						"Close Hover",
 					},
 					["<C-k>"] = {
 						vim.lsp.buf.signature_help,
