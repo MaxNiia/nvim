@@ -6,7 +6,7 @@ Profiles: set with environment variables.
 
 ## Requirements
 
-- Neovim 9.0 or later.
+- Neovim 0.9.0 or later.
 - A Nerdfont.
 
 ## Usage

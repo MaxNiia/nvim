@@ -1,5 +1,6 @@
 vim.opt.ai = true
 vim.opt.autowriteall = true
+vim.opt.hidden = false
 vim.opt.backspace = "indent,eol,start"
 vim.opt.belloff = "all"
 vim.opt.cmdheight = 0
