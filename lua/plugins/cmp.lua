@@ -40,6 +40,7 @@ return {
 				"L3MON4D3/LuaSnip",
 				build = "make install_jsregexp",
 			},
+			"saadparwaiz1/cmp_luasnip",
 		},
 		opts = {
 			snippet = {
@@ -47,6 +48,8 @@ return {
 					require("luasnip").lsp_expand(args.body)
 				end,
 			},
+			sources = {
+				{ name = 'luasnip' }, },
 		},
 		config = function(_, opts)
 			require("nvim-autopairs.completion.handlers")
