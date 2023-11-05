@@ -4,7 +4,7 @@ return {
         event = "VeryLazy",
         keys = {
             {
-                "m",
+                "<cr>",
                 mode = { "n", "x", "o" },
                 function()
                     require("flash").jump()
@@ -12,7 +12,7 @@ return {
                 desc = "Flash",
             },
             {
-                "M",
+                "m",
                 mode = { "n", "o", "x" },
                 function()
                     require("flash").treesitter()
@@ -28,7 +28,7 @@ return {
                 desc = "Remote Flash",
             },
             {
-                "R",
+                "M",
                 mode = { "o", "x" },
                 function()
                     require("flash").treesitter_search()

@@ -42,6 +42,11 @@ vim.cmd([[
     autocmd User TelescopePreviewerLoaded setlocal wrap
 ]])
 
+vim.cmd([[
+    autocmd CmdwinEnter * nnoremap <CR> <CR>
+    autocmd BufReadPost quickfix nnoremap <CR> <CR>
+]])
+
 vim.api.nvim_create_autocmd("BufWinEnter", {
     pattern = { "\\[dap-repl]\\", "DAP *" },
     callback = function(_)
