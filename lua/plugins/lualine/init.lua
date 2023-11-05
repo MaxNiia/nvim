@@ -88,32 +88,12 @@ return {
                 lualine_y = {
                     {
                         function()
-                            return require("noice").api.status.command.message.get_hl()
+                            return require("noice").api.status.message.get()
                         end,
                         cond = function()
                             return package.loaded["noice"]
                                 and require("noice").api.status.message.has()
                         end,
-                    },
-                    {
-                        function()
-                            require("noice").api.status.command.get()
-                        end,
-                        cond = function()
-                            return package.loaded["noice"]
-                                and require("noice").api.status.command.has()
-                        end,
-                        color = { fg = "#fab387" },
-                    },
-                    {
-                        function()
-                            require("noice").api.status.mode.get()
-                        end,
-                        cond = function()
-                            return package.loaded["noice"]
-                                and require("noice").api.status.mode.has()
-                        end,
-                        color = { fg = "#fab387" },
                     },
                     {
                         function()
@@ -123,7 +103,15 @@ return {
                             return package.loaded["noice"]
                                 and require("noice").api.status.search.has()
                         end,
-                        color = { fg = "#fab387" },
+                    },
+                    {
+                        function()
+                            return require("noice").api.status.command.get()
+                        end,
+                        cond = function()
+                            return package.loaded["noice"]
+                                and require("noice").api.status.command.has()
+                        end,
                     },
                     {
                         "progress",
