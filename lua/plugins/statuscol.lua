@@ -7,7 +7,10 @@ return {
 		},
 		lazy = true,
 		event = "BufEnter",
-		config = function()
+		init = function()
+			vim.o.fillchars = "foldopen:,foldclose:,foldsep:│"
+		end,
+		config = function(_, _)
 			local builtin = require("statuscol.builtin")
 
 			require("statuscol").setup({
@@ -15,14 +18,28 @@ return {
 				thousands = ",",
 				ft_ignore = {
 					"qf",
+					"neotree",
+					"oil",
+					"trouble",
 				},
 				bt_ignore = {
 					"terminal",
 					"qf",
+					"neotree",
+					"oil",
+					"trouble",
 				},
 
 				segments = {
 					{
+						args = {
+							fold = {
+								-- 'fillchars' option values:
+								close = "", -- foldclose
+								open = "", -- foldopen
+								sep = "│'", -- foldsep
+							},
+						},
 						text = {
 							builtin.foldfunc,
 							auto = true,
