@@ -32,17 +32,27 @@ return {
                 rainbow_delimiters = true,
                 native_lsp = {
                     enabled = true,
+                    virtual_text = {
+                        errors = { "italic" },
+                        hints = { "italic" },
+                        warnings = { "italic" },
+                        information = { "italic" },
+                    },
+                    underlines = {
+                        errors = { "underline" },
+                        hints = { "underline" },
+                        warnings = { "underline" },
+                        information = { "underline" },
+                    },
+                    inlay_hints = {
+                        background = true,
+                    },
                 },
                 noice = true,
-                navic = {
-                    enabled = true,
-                },
                 notify = true,
                 which_key = true,
             },
-            custom_highlights = function(
-                _ --[[c]]
-            )
+            custom_highlights = function(c)
                 return {
                     -- Comment = { fg = c.rosewater }, For BQN.
                     -- LineNr = { fg = c.pink },
@@ -50,6 +60,7 @@ return {
                     -- HarpoonRightSeparator = { bg = c.blue, fg = c.mantle },
                     -- HarpoonActive = { bg = c.blue, fg = c.mantle, bold = true },
                     -- HarpoonLeftSeparator = { bg = c.mantle, fg = c.blue },
+                    HighlightUndo = { bg = c.overlay0 },
                 }
             end,
         },

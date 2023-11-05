@@ -47,15 +47,29 @@ return {
     },
     {
         "tzachar/highlight-undo.nvim",
-        event = "BufEnter",
-        opts = {
-            hlgroup = "HighlightUndo",
-            duration = 300,
-            keymaps = {
-                { "n", "u", "undo", {} },
-                { "n", "<c-r>", "redo", {} },
-            },
+        event = { "BufEnter" },
+        dependencies = {
+            "echasnovski/mini.bracketed",
         },
+        opts = {
+            duration = 300,
+            undo = {
+                hlgroup = "HighlightUndo",
+                mode = "n",
+                lhs = "u",
+                map = "undo",
+                opts = {},
+            },
+            redo = {
+                hlgroup = "HighlightUndo",
+                mode = "n",
+                lhs = "<C-r>",
+                map = "redo",
+                opts = {},
+            },
+            highlight_for_count = true,
+        },
+        config = true,
     },
     {
         "NMAC427/guess-indent.nvim",
