@@ -8,7 +8,8 @@ return {
                 "shellcheck",
                 "shfmt",
                 "clangd",
-                "lua_ls",
+                "lua-language-server",
+                "python-lsp-server"
             },
         },
         config = function(_, opts)
