@@ -12,13 +12,13 @@ set.expandtab = true
 set.ignorecase = true
 set.incsearch = true
 set.laststatus = 3
-set.number = true
-set.numberwidth = 3
+set.number = false
+set.numberwidth = 2
+set.rnu = true
 set.shiftwidth = 4
 set.tabstop = 4
 set.expandtab = true
 set.pumblend = 0
-set.rnu = true
 set.ruler = false
 set.shiftwidth = 4
 set.smartcase = true
@@ -35,6 +35,7 @@ set.signcolumn = "no"--"yes:1"
 set.swapfile = false
 set.cursorline = false
 set.clipboard = "unnamed"
+set.scrolloff = 5
 
 local cmd = vim.cmd
 

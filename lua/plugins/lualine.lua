@@ -33,15 +33,6 @@ return {
 				lualine_b = { "branch" },
 				lualine_c = {
 					{
-						"diagnostics",
-						symbols = {
-							error = "",
-							warn = "",
-							info = "",
-							hint = "",
-						},
-					},
-					{
 						function()
 							local venv = require("swenv.api").get_current_venv()
 							if venv then
@@ -51,14 +42,6 @@ return {
 							end
 						end,
 					},
-					{
-						"filetype",
-						icon_only = true,
-						separator = "",
-						padding = { left = 1, right = 0 },
-					},
-
-					{ "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
 					{
 						function()
 							return require("nvim-navic").get_location()
@@ -85,17 +68,9 @@ return {
 							return package.loaded["noice"] and require("noice").api.status.mode.has()
 						end,
 					},
-					{
-						"diff",
-						symbols = {
-							added = "",
-							modified = "",
-							removed = "",
-						},
-					},
 				},
 				lualine_y = {
-					{ "progress", separator = " ", padding = { left = 1, right = 0 } },
+					{ "progress", separator = " ",                  padding = { left = 1, right = 0 } },
 					{ "location", padding = { left = 0, right = 1 } },
 				},
 				lualine_z = {
@@ -145,15 +120,57 @@ return {
 							newfile = "[New]", -- Text to show for newly created file before first write
 						},
 					},
+
 				},
-				lualine_x = {},
-				lualine_y = {},
+				lualine_x = {
+					{
+						"diagnostics",
+						symbols = {
+							error = "",
+							warn = "",
+							info = "",
+							hint = "",
+						},
+					},
+
+				},
+				lualine_y = {
+					{
+						"diff",
+						symbols = {
+							added = "",
+							modified = "",
+							removed = "",
+						},
+					},
+
+				},
 				lualine_z = {},
 			},
 			inactive_winbar = {
 				lualine_a = {},
-				lualine_b = {},
-				lualine_c = { "filename" },
+				lualine_b = {
+					{
+						"filetype",
+						colored = true,
+						icon_only = true,
+						icon = { align = "right" },
+					},
+				},
+				lualine_c = {
+					{
+						"filename",
+						file_status = true,
+						path = 1,
+						shortng_target = 40,
+						symbols = {
+							modified = "", -- Text to show when the file is modified.
+							readonly = "", -- Text to show when the file is non-modifiable or readonly.
+							unnamed = "[No Name]", -- Text to show for unnamed buffers.
+							newfile = "[New]", -- Text to show for newly created file before first write
+						},
+					},
+				},
 				lualine_x = {},
 				lualine_y = {},
 				lualine_z = {},
