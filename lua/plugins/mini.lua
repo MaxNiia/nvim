@@ -1,3 +1,6 @@
+-- Dotfile filter
+local show_dotfiles = false
+
 return {
     {
         "echasnovski/mini.ai",
@@ -62,18 +65,6 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         init = function()
-            -- Highlight Names
-            -- vim.api.nvim_set_hl(0, "MiniFilesBorder", { link = "" })
-            -- vim.api.nvim_set_hl(0, "MiniFilesBorderModified", { link = "" })
-            -- vim.api.nvim_set_hl(0, "MiniFilesDirectory", { link = "" })
-            -- vim.api.nvim_set_hl(0, "MiniFilesFile", { link = "" })
-            -- vim.api.nvim_set_hl(0, "MiniFilesNormal", { link = "" })
-            -- vim.api.nvim_set_hl(0, "MiniFilesTitle", { link = "" })
-            -- vim.api.nvim_set_hl(0, "MiniFilesTitleFocused", { link = "" })
-
-            -- Show dotfiles filter toggle.
-            local show_dotfiles = false
-
             local filter_show = function(_)
                 return true
             end
@@ -88,11 +79,11 @@ return {
                 MiniFiles.refresh({ content = { filter = new_filter } })
             end
 
+            -- Show dotfiles filter toggle.
             vim.api.nvim_create_autocmd("User", {
                 pattern = "MiniFilesBufferCreate",
                 callback = function(args)
                     local buf_id = args.data.buf_id
-                    -- Tweak left-hand side of mapping to your liking
                     vim.keymap.set("n", "g.", toggle_dotfiles, { buffer = buf_id })
                 end,
             })
@@ -163,6 +154,9 @@ return {
             },
             content = {
                 filter = function(fs_entry)
+                    if show_dotfiles then
+                        return true
+                    end
                     return not vim.startswith(fs_entry.name, ".")
                 end,
             },
