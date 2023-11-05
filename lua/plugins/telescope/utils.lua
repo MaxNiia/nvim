@@ -65,7 +65,7 @@ M.call_telescope = function(builtin, opts)
                 map("i", "<a-c>", function()
                     local action_state = require("telescope.actions.state")
                     local line = action_state.get_current_line()
-                    callTelescope(
+                    M.callTelescope(
                         params.builtin,
                         vim.tbl_deep_extend(
                             "force",

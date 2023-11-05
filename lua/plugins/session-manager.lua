@@ -39,6 +39,7 @@ return {
                         vim.bo.filetype ~= "git"
                         and not vim.bo.filetype ~= "gitcommit"
                         and not vim.bo.filetype ~= "gitrebase"
+                        and not vim.bo.filetype ~= ""
                     then
                         session_manager.autosave_session()
                     end

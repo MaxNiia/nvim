@@ -14,6 +14,7 @@ return {
                 dependencies = { "nvim-lua/plenary.nvim" },
             },
             "nvim-telescope/telescope-dap.nvim",
+            "nvim-telescope/telescope-live-grep-args.nvim",
             "mfussenegger/nvim-dap",
             "ThePrimeagen/harpoon",
         },
@@ -93,6 +94,9 @@ return {
                 monorepo = {
                     initial_mode = "normal",
                     layout_config = ui.layouts.small_cursor,
+                },
+                live_grep_args = {
+                    auto_quoting = true,
                 },
             },
             defaults = {
@@ -193,6 +197,7 @@ return {
             require("telescope").load_extension("noice")
             require("telescope").load_extension("dap")
             require("telescope").load_extension("refactoring")
+            require("telescope").load_extension("live_grep_args")
         end,
     },
 }

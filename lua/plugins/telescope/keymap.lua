@@ -1,5 +1,6 @@
 local utils = require("plugins.telescope.utils")
 local call_telescope = utils.call_telescope
+local lga = require("telescope-live-grep-args.shortcuts")
 
 return {
     -- LEADER r
@@ -51,12 +52,17 @@ return {
     },
     {
         "<leader>fs",
+        function()
+            require("telescope").extensions.live_grep_args.live_grep_args()
+        end,
         call_telescope("live_grep"),
         desc = "Search (root dir)",
     },
     {
         "<leader>fS",
-        call_telescope("live_grep", { cwd = false }),
+        function()
+            require("telescope").extensions.live_grep_args.live_grep_args({ cwd = false })
+        end,
         desc = "Search (cwd)",
     },
     {
@@ -84,7 +90,7 @@ return {
         "<cmd>Telescope projects<CR>",
         desc = "Project",
     },
-    { "<leader>fn", "<cmd>Telescope noice<CR>", desc = "Noice" },
+    { "<leader>fn", "<cmd>Telescope noice<CR>",  desc = "Noice" },
     { "<leader>fN", "<cmd>Telescope notify<CR>", desc = "Notify" },
     {
         "<leader>fm1",
@@ -276,17 +282,7 @@ return {
         "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>",
         desc = "Browser (cwd)",
     },
-
     -- LEADER
-    {
-        "<leader>s",
-        "<cmd>Telescope grep_string<cr>",
-        desc = "Grep string (root)",
-        mode = {
-            "v",
-            "n",
-        },
-    },
     {
         "<leader>fM",
         function()
@@ -296,12 +292,43 @@ return {
         desc = "Monorepo",
     },
     {
+        "<leader>s",
+        function()
+            lga.grep_word_under_cursor()
+        end,
+        desc = "Grep string (root)",
+        mode = {
+            "n",
+        },
+    },
+    {
         "<leader>S",
-        call_telescope("grep_string"),
+        function()
+            lga.grep_word_under_cursor({ cwd = false })
+        end,
+        desc = "Grep string (cwd)",
+        mode = {
+            "n",
+        },
+    },
+    {
+        "<leader>s",
+        function()
+            lga.grep_visual_selection()
+        end,
+        desc = "Grep string (root)",
+        mode = {
+            "v",
+        },
+    },
+    {
+        "<leader>S",
+        function()
+            lga.grep_visual_selection({ cwd = false })
+        end,
         desc = "Grep string (cwd)",
         mode = {
             "v",
-            "n",
         },
     },
     {
@@ -311,12 +338,17 @@ return {
     },
     {
         "<leader>/",
+        function()
+            require("telescope").extensions.live_grep_args.live_grep_args()
+        end,
         call_telescope("live_grep"),
-        desc = "Search (root)",
+        desc = "Search (root dir)",
     },
     {
         "<leader>?",
-        call_telescope("live_grep", { cwd = false }),
+        function()
+            require("telescope").extensions.live_grep_args.live_grep_args({ cwd = false })
+        end,
         desc = "Search (cwd)",
     },
     {
