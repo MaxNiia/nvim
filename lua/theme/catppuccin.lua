@@ -31,17 +31,9 @@ require("catppuccin").setup({
 		notify = true,
 		which_key = true,
 	},
-	highlight_overrides = {
-		all = function(_)
-			return {
-				--LineNr = { bg = color.crust, fg = color.subtext0 },
-			}
-		end,
-	},
 	--[[
 	custom_highlights = function(c)
 		return {
-			-- NoiceCursor = { fg = c.red },
 			-- Comment = { fg = c.rosewater }, For BQN.
 		}
 	end,
