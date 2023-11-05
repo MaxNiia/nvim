@@ -53,7 +53,7 @@ M.call_telescope = function(builtin, opts)
 	return function()
 		builtin = params.builtin
 		opts = params.opts
-		opts = vim.tbl_deep_extend("force", { cwd = get_root() }, opts or {})
+		opts = vim.tbl_deep_extend("force", { cwd = M.get_root() }, opts or {})
 		if builtin == "files" then
 			builtin = "find_files"
 		end
