@@ -7,7 +7,6 @@ return {
                 "stylua",
                 "shellcheck",
                 "shfmt",
-                "flake8",
             },
         },
         config = function(_, opts)

@@ -24,7 +24,7 @@ return {
                 "luasnip",
                 "markdownlint",
                 -- "mypy",
-                "pydocstyle",
+                -- "pydocstyle",
                 "stylua",
                 "zsh",
             },
@@ -83,9 +83,9 @@ return {
                 black = function(_, _)
                     null_ls.register(null_ls.builtins.formatting.black)
                 end,
-                pydocstyle = function(_, _)
-                    null_ls.register(null_ls.builtins.diagnostics.pydocstyle)
-                end,
+                -- pydocstyle = function(_, _)
+                -- 	null_ls.register(null_ls.builtins.diagnostics.pydocstyle)
+                -- end,
             }
 
             require("mason-null-ls").setup(opts)

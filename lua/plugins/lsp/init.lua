@@ -234,6 +234,44 @@ return {
 
             require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
             require("mason-lspconfig").setup_handlers({ setup })
+
+            local function mason_post_install(pkg)
+                if pkg.name ~= "python-lsp-server" then
+                    return
+                end
+
+                local venv = vim.fn.stdpath("data") .. "/mason/packages/python-lsp-server/venv"
+                local job = require("plenary.job")
+
+                job:new({
+                    command = venv .. "/bin/pip",
+                    args = {
+                        "install",
+                        "-U",
+                        "--disable-pip-version-check",
+                        "python-lsp-black",
+                        "pylsp-mypy",
+                        "pyls-isort",
+                        "pylsp-rope",
+                    },
+                    cwd = venv,
+                    env = { VIRTUAL_ENV = venv },
+                    on_exit = function()
+                        if vim.fn.executable(venv .. "/bin/black") == 1 then
+                            vim.notify("Finished installing pylsp plugins.")
+                            return
+                        end
+                    end,
+                    on_start = function()
+                        vim.notify("Installing pylsp plugins...")
+                    end,
+                    on_stderr = function(_, data)
+                        vim.notify(data, vim.log.levels.ERROR)
+                    end,
+                }):start()
+            end
+
+            require("mason-registry"):on("package:install:success", mason_post_install)
         end,
     },
 }
