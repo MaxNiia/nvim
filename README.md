@@ -25,8 +25,8 @@ personal settings.
 ## WSL
 
 First install [Scoop](https://github.com/ScoopInstaller/Scoop#installation) then
-run scoop win32yank. This will install win32yank to
-`~$HOME/scoop/apps/win32yank`. Symlink the win32yank.exe found within to
+run `scoop install win32yank`. This will install win32yank to
+`$USER/scoop/apps/win32yank`. Symlink the win32yank.exe found within to
 `/usr/local/bin`. For some reason having win32yank inside WSL makes it very slow
 and prone to crash.
 
