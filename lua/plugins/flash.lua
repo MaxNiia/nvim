@@ -99,7 +99,7 @@ return {
             config = nil,
             modes = {
                 search = {
-                    enabled = true,
+                    enabled = false,
                     highlight = { backdrop = true },
                     jump = { history = true, register = true, nohlsearch = true },
                     search = {
