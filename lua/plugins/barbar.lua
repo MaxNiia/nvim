@@ -1,99 +1,132 @@
 return {
 	{
 		"romgrk/barbar.nvim",
+		lazy = true,
+		event = "BufEnter",
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 			"folke/which-key.nvim",
+			"nvim-tree/nvim-tree.lua",
 		},
-		opts = {},
+		opts = {
+			diagnostics = {
+				-- you can use a list
+				{ enabled = true, icon = "" }, -- ERROR
+				{ enabled = true, icon = "" }, -- WARN
+				{ enabled = true, icon = "" }, -- INFO
+				{ enabled = true, icon = "" }, -- HINT
+			},
+		},
 		config = function(_, opts)
-			local wk = require("which_key")
-
+			local wk = require("which-key")
 			wk.register({
-				[","] = {
-					"cmd>BufferPrevious<CR>",
-					name = "Prev Buffer",
+				["<a-,>"] = {
+					"<cmd>BufferPrevious<CR>",
+					"Prev Buffer",
 				},
-				["."] = {
-					"cmd>BufferNext<CR>",
-					name = "Next Buffer",
+				["<a-.>"] = {
+					"<md>BufferNext<CR>",
+					"Next Buffer",
 				},
-				["1"] = {
+				["<a-1>"] = {
 					"<cmd>BufferGoto 1<CR>",
+					"1",
 				},
-				["2"] = {
+				["<a-2>"] = {
 					"<cmd>BufferGoto 2<CR>",
+					"2",
 				},
-				["3"] = {
+				["<a-3>"] = {
 					"<cmd>BufferGoto 3<CR>",
+					"3",
 				},
-				["4"] = {
+				["<a-4>"] = {
 					"<cmd>BufferGoto 4<CR>",
+					"4",
 				},
-				["5"] = {
+				["<a-5>"] = {
 					"<cmd>BufferGoto 5<CR>",
+					"5",
 				},
-				["6"] = {
+				["<a-6>"] = {
 					"<cmd>BufferGoto 6<CR>",
+					"6",
 				},
-				["7"] = {
+				["<a-7>"] = {
 					"<cmd>BufferGoto 7<CR>",
+					"7",
 				},
-				["8"] = {
+				["<a-8>"] = {
 					"<cmd>BufferGoto 8<CR>",
+					"8",
 				},
-				["9"] = {
+				["<a-9>"] = {
 					"<cmd>BufferGoto 10<CR>",
+					"9",
 				},
-				["0"] = {
+				["<a-0>"] = {
 					"<cmd>BufferLast<CR>",
+					"Last",
 				},
-				p = {
+				["<a-i>"] = {
 					"<cmd>BufferPin<CR>",
-					name = "Pin Buffer",
+					"Pin Buffer",
 				},
-				c = {
-					name = "Close Buffer",
+				["<a-c>"] = {
 					"<cmd>BufferClose<CR>",
+					"Close Buffer",
 				},
-			}, {
-				prefix = "<A>",
-			})
-
-			wk.register({
-				p = {
-					name = "Pick Buffer",
-					"<cmd>BufferPick<CR>",
-				},
-			}, {
-				prefix = "<C>",
-			})
-
-			wk.register({
-				b = {
-					name = "Barbar",
+				["<leader>"] = {
 					b = {
-						name = "Sort by Buffer number",
-						"<Cmd>BufferOrderByBufferNumber<CR>",
-					},
-					d = {
-						name = "Sort by Directory",
-						"<Cmd>BufferOrderByDirectory<CR>",
-					},
-					l = {
-						name = "Sort by Language",
-						"<Cmd>BufferOrderByLanguage<CR>",
-					},
-					w = {
-						name = "Sort by Window number",
-						"<Cmd>BufferOrderByWindowNumber<CR>",
+						name = "Bufferline",
+						b = {
+							"<cmd>BufferOrderByBufferNumber<CR>",
+							"Sort by Buffer number",
+						},
+						d = {
+							"<cmd>BufferOrderByDirectory<CR>",
+							"Sort by Directory",
+						},
+						l = {
+							"<cmd>BufferOrderByLanguage<CR>",
+							"Sort by Language",
+						},
+						w = {
+							"<cmd>BufferOrderByWindowNumber<CR>",
+							"Sort by Window number",
+						},
 					},
 				},
-			}, {
-				preifx = "<leader>",
-			})
+				["<c-p>"] = {
+					"<cmd>BufferPick<CR>",
+					"Pick Buffer",
+				},
+				["<c-P>"] = {
+					"<cmd>BufferPickDelete<CR>",
+					"Pick Buffer Delete",
+				},
+			}, {})
 
-			require("barbar").setup(opts)
+			require("bufferline").setup(opts)
+
+			local nvim_tree_events = require("nvim-tree.events")
+			local bufferline_api = require("bufferline.api")
+
+			local function get_tree_size()
+				return require("nvim-tree.view").View.width
+			end
+
+			nvim_tree_events.subscribe("TreeOpen", function()
+				bufferline_api.set_offset(get_tree_size())
+			end)
+
+			nvim_tree_events.subscribe("Resize", function()
+				bufferline_api.set_offset(get_tree_size())
+			end)
+
+			nvim_tree_events.subscribe("TreeClose", function()
+				bufferline_api.set_offset(0)
+			end)
 		end,
 	},
 }
