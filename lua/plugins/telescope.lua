@@ -106,6 +106,10 @@ return {
 						"Files",
 					},
 					b = {
+						"<cmd>Telescope buffers<CR>",
+						"Buffers",
+					},
+					d = {
 						"+Debug",
 						c = {
 							"<cmd>Telescope dap commands<CR>",
@@ -136,7 +140,7 @@ return {
 						"<cmd>Telescope live_grep<CR>",
 						"Search",
 					},
-					d = {
+					q = {
 						"<cmd>Telescope spell_suggest<CR>",
 						"Dictionary",
 					},
