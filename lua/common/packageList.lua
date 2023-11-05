@@ -18,6 +18,9 @@ local packageList = {
 	-- LSP
 	"neovim/nvim-lspconfig";
 
+	-- Trouble
+	"folke/trouble.nvim";
+
 	-- Telescope
 	"nvim-telescope/telescope.nvim";
 
@@ -53,7 +56,7 @@ local packageList = {
 	-- Floaterm
 	"voldikss/vim-floaterm";
 
-	-- Theme
+	-- theme
 	{
 		"catppuccin/nvim", 
 		as = "catppuccin",
@@ -62,11 +65,6 @@ local packageList = {
 	-- Bufferline always after catppuccin
 	"akinsho/bufferline.nvim";
 }
-
---TODO look at adding trouble
---TODO look at lspsaga
---TODO look at adding autocompletions https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
---
 
 return packageList
 
