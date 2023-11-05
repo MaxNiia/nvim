@@ -5,7 +5,7 @@ vim.g.loaded_netrwPlugin = 1
 -- Options
 vim.opt.ai = true
 vim.opt.autoread = true
-vim.opt.autoindent = false
+vim.opt.autoindent = true
 vim.opt.autowriteall = true
 vim.opt.backspace = "indent,eol,start"
 vim.opt.belloff = "all"

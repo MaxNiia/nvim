@@ -134,32 +134,6 @@ return {
 		event = "BufEnter",
 	},
 	{
-		"kylechui/nvim-surround",
-		lazy = true,
-		event = "BufEnter",
-		opts = {
-			keymaps = {
-				insert = "<C-g>s",
-				insert_line = "<C-g>S",
-				normal = "ys",
-				normal_cur = "yss",
-				normal_line = "yS",
-				normal_cur_line = "ySS",
-				visual = "S",
-				visual_line = "gS",
-				delete = "ds",
-				change = "cs",
-			},
-			highlight = {
-				duration = 0,
-			},
-			move_cursor = "begin",
-		},
-		config = function(_, opts)
-			require("nvim-surround").setup(opts)
-		end,
-	},
-	{
 		"norcalli/nvim-colorizer.lua",
 		lazy = true,
 		event = "BufEnter",
