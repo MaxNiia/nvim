@@ -46,6 +46,8 @@ file=lua/default.lua
 
 if [ ! -e "$file" ] ; then
     touch "$file"
+    echo "require('catppuccin')" >> "$file"
+    echo "-- require('nightfox')" >> "$file"
 fi
 
 if [ ! -w "$file" ] ; then
