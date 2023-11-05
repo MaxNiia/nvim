@@ -1,9 +1,9 @@
-vim.g.catppuccin_flavour = "frappe"
+vim.g.catppuccin_flavour = "mocha"
 local colors = require("catppuccin.palettes").get_palette()
 colors.none = "NONE"
 
 require("catppuccin").setup({
-   flavour = "frappe",
+   flavour = "mocha",
    compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
    transparent_background = false,
    term_colors = true,

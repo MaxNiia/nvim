@@ -20,9 +20,9 @@ require("nvim-treesitter.configs").setup({
 		"cpp",
 		"rust",
 		"regex",
-		"bask",
+		"bash",
 		"markdown",
-		"markdonw_inline",
+		"markdown_inline",
 	},
 	auto_install = true,
 })
