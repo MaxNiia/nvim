@@ -15,6 +15,9 @@ set.incsearch = true
 set.laststatus = 3
 set.number = true
 set.numberwidth = 3
+set.shiftwidth = 4
+set.tabstop = 4
+set.expandtab = true
 set.pumblend = 0
 set.rnu = true
 set.ruler = false
@@ -59,6 +62,11 @@ cmd([[
 cmd([[
     autocmd FileType python set textwidth=120
     autocmd FileType python set colorcolumn=+1
+]])
+
+cmd([[
+    autocmd FileType lua set textwidth=120
+    autocmd FileType lua set colorcolumn=+1
 ]])
 
 cmd([[

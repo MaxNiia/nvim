@@ -186,22 +186,6 @@ return {
 								"List workspace folder",
 							},
 						},
-						rn = {
-							vim.lsp.buf.rename,
-							"Rename",
-						},
-						d = {
-							function()
-								vim.lsp.buf.format({
-									async = true,
-								})
-							end,
-							"Format",
-						},
-						a = {
-							vim.lsp.buf.code_action,
-							"Apply fix",
-						},
 					},
 				}, { buffer = bufnr })
 				if client.name == "clangd" then

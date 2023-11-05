@@ -53,8 +53,8 @@ return {
 			require("telescope").load_extension("persisted")
 			require("telescope").load_extension("noice")
 
-			local actions = require("telescope.actions")
-			local trouble = require("trouble.providers.telescope")
+			require("telescope.actions")
+			require("trouble.providers.telescope")
 
 			require("telescope").setup(opts)
 
