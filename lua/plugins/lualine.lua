@@ -83,12 +83,11 @@ return {
 				lualine_c = {
 					{
 						function()
-							local venv = require("swenv.api").get_current_venv()
-							if venv then
-								return string.format("🐍 %s", venv.name)
-							else
-								return ""
-							end
+							return require("nvim-navic").get_location()
+						end,
+						cond = function()
+							return package.loaded["nvim-navic"]
+								and require("nvim-navic").is_available()
 						end,
 					},
 				},
@@ -140,6 +139,16 @@ return {
 					{
 						vim.loop.cwd,
 						type = "vim_fun",
+					},
+					{
+						function()
+							local venv = require("swenv.api").get_current_venv()
+							if venv then
+								return string.format("🐍 %s", venv.name)
+							else
+								return ""
+							end
+						end,
 					},
 				},
 			},

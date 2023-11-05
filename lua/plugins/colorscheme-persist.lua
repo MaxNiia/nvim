@@ -58,11 +58,11 @@ return {
 			-- Get stored colorscheme
 			local colorscheme = persist_colorscheme.get_colorscheme()
 
-			-- Set colorscheme
-			vim.cmd.colorscheme(colorscheme)
-
 			require("nightfox")
 			require("catppuccin")
+
+			-- Set colorscheme
+			vim.cmd.colorscheme(colorscheme)
 		end,
 	},
 }
