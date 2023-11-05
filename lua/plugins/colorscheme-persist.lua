@@ -1,3 +1,17 @@
+if IS_WINDOWS and not IS_WSL then
+    return {}
+end
+
+local function homeFilePath()
+	local home = ""
+	if IS_WINDOWS and not IS_WSL then
+		home = "$env:USERPROFILE" or ""
+	elseif IS_LINUX or IS_WSL then
+		home = os.getenv("HOME") or ""
+	end
+	return home .. "/.nvim.colorscheme-persist.lua"
+end
+
 return {
 	{
 		"propet/colorscheme-persist.nvim",
@@ -17,7 +31,7 @@ return {
 		},
 		opts = {
 			-- Absolute path to file where colorscheme should be saved
-			file_path = os.getenv("HOME") .. "/.nvim.colorscheme-persist.lua",
+			file_path = homeFilePath(),
 			-- In case there's no saved colorscheme yet
 			fallback = "catppuccin-mocha", -- "catppuccin-mocha",
 			-- List of ugly colorschemes to avoid in the selection window
