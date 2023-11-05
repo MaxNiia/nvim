@@ -1,7 +1,18 @@
+local utils = require("utils.tabline")
+
 return {
 	{
 		"kdheepak/tabline.nvim",
-		dependencies = { "nvim-lualine/lualine.nvim", "nvim-tree/nvim-web-devicons" },
+		dependencies = {
+			"nvim-lualine/lualine.nvim",
+			"nvim-tree/nvim-web-devicons",
+			"nvim-telescope/telescope.nvim",
+		},
+		init = function()
+			vim.cmd([[
+				  set sessionoptions+=tabpages,globals " store tabpages and globals in session
+				]])
+		end,
 		keys = {
 			{
 				"<tab>",
@@ -13,41 +24,29 @@ return {
 				"<cmd>TablineBufferPrevious<CR>",
 				desc = "Previous buffer",
 			},
-			-- {
-			--     "<leader>Tr",
-			--     function()
-			--         return vim.ui.input({ prompt = "Enter tab name: " }, function(input)
-			--             return "<cmd>TablineTabRename " .. tostring(input) .. " <CR>"
-			--         end)
-			--     end,
-			--     desc = "Rename tab",
-			-- },
+			{
+				"<leader>Tr",
+				utils.rename_tab,
+				desc = "Rename tab",
+			},
 			{
 				"<leader>Tt",
 				"<cmd>TablineToggleShowAllBuffers<CR>",
-				desc = "Toggle all buffers",
+				desc = "Toggle show buffers",
 			},
-			-- {
-			--     "<leader>Tn",
-			--     function()
-			--         return vim.ui.input({ prompt = "Enter files: " }, function(input)
-			--             return "<cmd>TablineTabNew " .. tostring(input) .. " <CR>"
-			--         end)
-			--     end,
-			--     desc = "New tab",
-			-- },
-			-- {
-			--     "<leader>Tb",
-			--     function()
-			--         return vim.ui.input({ prompt = "Enter files: " }, function(input)
-			--             return "<cmd>TablineBuffersBind " .. tostring(input) .. " <CR>"
-			--         end)
-			--     end,
-			--     desc = "Bind buffers",
-			-- },
+			{
+				"<leader>Tn",
+				utils.new_tab,
+				desc = "New tab",
+			},
+			{
+				"<leader>Tb",
+				utils.bind_buffers,
+				desc = "Bind buffers",
+			},
 			{
 				"<leader>Tc",
-				"<cmd>TablineClearBind<CR>",
+				"<cmd>TablineBuffersClearBind<CR>",
 				desc = "Clear bind",
 			},
 		},
