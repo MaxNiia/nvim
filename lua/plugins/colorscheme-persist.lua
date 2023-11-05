@@ -2,7 +2,7 @@ local utils = require("utils.telescope")
 
 return {
 	{
-		"MaxNiia/colorscheme-persist.nvim",
+		"propet/colorscheme-persist.nvim",
 		dependencies = {
 			"catppuccin/nvim",
 			"EdenEast/nightfox.nvim",
