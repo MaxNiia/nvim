@@ -7,7 +7,7 @@ return {
 			{
 				"MaxNiia/nvim-navbuddy",
 				keys = {
-					{ "<leader>A", "<cmd>Navbuddy<cr>" },
+					{ "<enter>", "<cmd>Navbuddy<cr>" },
 				},
 				dependencies = {
 					"SmiteshP/nvim-navic",
