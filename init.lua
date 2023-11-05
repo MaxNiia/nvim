@@ -18,3 +18,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {})
 require("default")
+require("keybinds")
