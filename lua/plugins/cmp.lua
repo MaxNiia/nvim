@@ -52,6 +52,9 @@ return {
             experimental = {
                 ghost_text = true,
             },
+            sources = {
+                { name = "luasnip" },
+            },
         },
         config = function(_, opts)
             -- luasnip setup
@@ -62,8 +65,12 @@ return {
 
             -- nvim-cmp setup
             local cmp = require("cmp")
-
-            vim.tbl_deep_extend("force", opts, {
+            cmp.setup({
+                snippet = {
+                    expand = function(args)
+                        luasnip.lsp_expand(args.body)
+                    end,
+                },
                 window = {
                     completion = cmp.config.window.bordered(),
                     docuementation = cmp.config.window.bordered(),
@@ -132,8 +139,6 @@ return {
                     { name = "buffer" },
                 }),
             })
-
-            cmp.setup(opts)
 
             -- Set configuration for specific filetype.
             cmp.setup.filetype("gitcommit", {
