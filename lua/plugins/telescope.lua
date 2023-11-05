@@ -71,17 +71,26 @@ return {
 				preview_title = "",
 				layout_strategy = "flex",
 				layout_config = {
-					height = 0.99,
-					width = 0.99,
-					flip_columns = 120,
 					prompt_position = "top",
-					horizontal = {
+					cursor = {
 						preview_cutoff = 120,
 						preview_width = 0.6,
 					},
+					horizontal = {
+						preview_cutoff = 150,
+						preview_width = 100,
+						height = 0.9,
+						width = 150,
+					},
 					vertical = {
+						height = 0.95,
+						width = 0.95,
+						preview_cutoff = 50,
 						preview_height = 0.5,
 						mirror = true,
+					},
+					flex = {
+						flip_columns = 150,
 					},
 				},
 			},
