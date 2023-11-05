@@ -36,27 +36,7 @@ return {
             "petertriho/cmp-git",
             "hrsh7th/cmp-cmdline",
         },
-        opts = {
-            snippet = {
-                expand = function(args)
-                    require("luasnip").lsp_expand(args.body)
-                end,
-            },
-            matching = {
-                disallow_fuzzy_matching = true,
-                disallow_fullfuzzy_matching = true,
-                disallow_partial_fuzzy_matching = true,
-                disallow_partial_matching = true,
-                disallow_prefix_unmatching = false,
-            },
-            experimental = {
-                ghost_text = true,
-            },
-            sources = {
-                { name = "luasnip" },
-            },
-        },
-        config = function(_, opts)
+        config = function(_, _)
             -- luasnip setup
             local luasnip = require("luasnip")
 
@@ -74,6 +54,16 @@ return {
                 window = {
                     completion = cmp.config.window.bordered(),
                     docuementation = cmp.config.window.bordered(),
+                },
+                experimental = {
+                    ghost_text = true,
+                },
+                matching = {
+                    disallow_fuzzy_matching = true,
+                    disallow_fullfuzzy_matching = true,
+                    disallow_partial_fuzzy_matching = true,
+                    disallow_partial_matching = true,
+                    disallow_prefix_unmatching = false,
                 },
                 sorting = {
                     comparators = {
