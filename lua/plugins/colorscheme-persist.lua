@@ -1,19 +1,3 @@
-local function homeFilePath()
-	local home = ""
-	if IS_WINDOWS and not IS_WSL then
-		--		require("catppuccin")
-		-- home = "$env:USERPROFILE" or ""
-		home = os.getenv("USERPROFILE") or ""
-		home = home .. "\\"
-		--		vim.cmd.colorscheme("catppuccin-mocha")
-		--home = "C:\\Users\\"
-	elseif IS_LINUX or IS_WSL then
-		home = os.getenv("HOME") or ""
-		home = home .. "/"
-	end
-	return home .. ".nvim.colorscheme-persist.lua"
-end
-
 return {
 	{
 		"MaxNiia/colorscheme-persist.nvim",
@@ -32,8 +16,6 @@ return {
 			},
 		},
 		opts = {
-			-- Absolute path to file where colorscheme should be saved
-			file_path = homeFilePath(),
 			-- In case there's no saved colorscheme yet
 			fallback = "catppuccin-mocha", -- "catppuccin-mocha",
 			-- List of ugly colorschemes to avoid in the selection window
