@@ -1,6 +1,6 @@
 local function createAICommand(method)
 	return string.format(
-		"<Cmd>lua require('nvim-magic.flows').%s(require('nvim-magic').backends.default)<CR>",
+		"<cmd>lua require('nvim-magic.flows').%s(require('nvim-magic').backends.default)<CR>",
 		method
 	)
 end
