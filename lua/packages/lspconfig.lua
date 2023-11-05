@@ -117,20 +117,13 @@ local lsp_flags = {
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.offsetEncoding = "utf-8"
 
-require("lspconfig")["pyright"].setup({
-   capabilities = capabilities,
-   on_attach = on_attach,
-   flags = lsp_flags,
-   settings = {
-      python = {
-         analysis = {
-            autoImportCompletions = true,
-            ausoSearchPaths = true,
-            diagnosticMode = "workspace",
-            useLibraryCodeForTypes = true,
-         },
-      },
-   },
+require("lspconfig")["pylsp"].setup({
+  settings = {
+    pylsp = {
+      plugins = {
+      }
+    }
+  }
 })
 
 require("lspconfig")["clangd"].setup({
