@@ -3,69 +3,91 @@ M = {}
 local file_path = vim.fn.expand("~/.local/share/nvim/niia.txt")
 
 local options = {
-    { name = "mini_files", default = true},
-    { name = "neotree", default = false},
-    { name = "toggleterm", default = true},
+    { name = "mini_files", default = true },
+    { name = "neotree", default = false },
+    { name = "toggleterm", default = true },
 }
+
+local separator = ":"
+
+local function bool_to_int(b)
+    return b and 1 or 0
+end
+
+local function int_to_bool(i)
+    return i ~= 0
+end
 
 M.save_config = function()
     local f = assert(io.open(file_path, "w"))
-    local function bool_to_int(b)
-        if b then
-            return 1
-        end
-        return 0
-    end
     for _, option in pairs(options) do
-        f:write(option.name, ":", bool_to_int(_G[option.name]), "\n")
+        f:write(option.name, separator, bool_to_int(_G[option.name]), "\n")
     end
 
     f:close()
 end
 
-M.load_config = function()
-    local function int_to_bool(i)
-        if i == 1 then
-            return true
-        else
-            return false
-        end
+local function set_default_config()
+    for _, option in pairs(options) do
+        _G[option.name] = option.default
     end
+end
 
-    local f = io.open(file_path, "r")
-    if f == nil then
-        for _, option in pairs(options) do
-            _G[option.name]= option.default
+local function read_config_file()
+    local times = 0
+
+    while true do
+        local f = io.open(file_path, "r")
+
+        if f ~= nil then
+            local lines = f:read(2 ^ 10)
+            f:close()
+            return lines
         end
-        M.save_config()
-        f = io.open(file_path, "r")
 
-        if f == nil then
+        -- If the file still couldn't be created tell the user.
+        if times > 1 then
             vim.notify("File: " .. file_path .. " can't be accessed.", vim.log.levels.ERROR)
-            return
+            return nil
+        end
+
+        times = times + 1
+
+        -- Assume that the file couldn't be read because it doesn't exist.
+        -- So set default values and try to write the file.
+        set_default_config()
+        M.save_config()
+    end
+end
+
+local function parse_config_line(line)
+    local config = { name = "", value = false }
+    -- TODO: Make this more robust. Currently can only handle 'name:int\n' lines and will assume
+    -- they are always a bool.
+    for str in string.gmatch(line, "([^" .. separator .. "]+)") do
+        if config.name == "" then
+            config.name = str
+        else
+            config.value = int_to_bool(tonumber(str))
         end
     end
 
-    local lines = f:read(2 ^ 10)
-    if lines then
-        for str in string.gmatch(lines, "([^\n]+)") do
-            local name = ""
-            local value = false
-            for s in string.gmatch(str, "([^:]+)") do
-                if name == "" then
-                    name = s
-                else
-                    value = int_to_bool(tonumber(s))
-                end
-            end
-            for _, option in pairs(options) do
-                if name == option.name then
-                    _G[option.name] = value
-                end
-            end
+    return config
+end
+
+M.load_config = function()
+    local lines = read_config_file()
+
+    if not lines then
+        return
+    end
+
+    for line in string.gmatch(lines, "([^\n]+)") do
+        local config = parse_config_line(line)
+        if config.name ~= "" then
+            _G[config.name] = config.value
         end
     end
-    f:close()
 end
 
 return M
