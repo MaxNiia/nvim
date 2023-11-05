@@ -201,10 +201,10 @@ return {
 						vim.lsp.buf.hover,
 						"Hover",
 					},
-					["<C-k>"] = {
-						vim.lsp.buf.signature_help,
-						"Signature",
-					},
+					-- ["<C-k>"] = {
+					-- 	vim.lsp.buf.signature_help,
+					-- 	"Signature",
+					-- },
 					["<leader>"] = {
 						w = {
 							name = "Workspace",
