@@ -42,7 +42,12 @@ then
     npm install -g cspell
 fi
 
-file="$CWD/lua/configs/user.lua"
+
+file="lua/configs/user.lua"
+
+if [ -e "lua/user.lua" ] ; then
+    mv "lua/user.lua" "$file"
+fi
 
 if [ ! -e "$file" ] ; then
     touch "$file"
