@@ -35,7 +35,6 @@ return {
 								"Diagnostic",
 							},
 							maxwidth = 2,
-							auto = true,
 						},
 						click = "v:lua.ScSa",
 					},
