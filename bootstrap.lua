@@ -23,6 +23,7 @@ local function bootstrap_paq()
     -- Read and install packages
     paq(packages)
     paq.install()
+    paq.update()
 end
 
 return { bootstrap_paq = bootstrap_paq }
