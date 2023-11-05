@@ -140,7 +140,33 @@ return {
 					},
 				},
 				marksman = {},
-				pylsp = {},
+				pylsp = {
+					plugins = {
+						autopep8 = {
+							enabled = true,
+						},
+						flake8 = {
+							enabled = true,
+						},
+						pycodestyle = {
+							enabled = true,
+						},
+					},
+					single_file_support = true,
+					root_dir = function(fname)
+						local root_files = {
+							"pyproject.toml",
+							"setup.py",
+							"setup.cfg",
+							"requirements.txt",
+							"Pipfile",
+						}
+						local util = require("lspconfig.util")
+						return util.root_pattern(unpack(root_files))(fname)
+							or util.find_git_ancestor(fname)
+							or vim.fn.expand("%:p:h")
+					end,
+				},
 				rust_analyzer = {
 					settings = {
 						["rust-analyzer"] = {
@@ -349,14 +375,6 @@ return {
 				lspconfig[server].setup(server_opts)
 			end
 
-			-- temp fix for lspconfig rename
-			-- https://github.com/neovim/nvim-lspconfig/pull/2439
-			-- local mappings = require("mason-lspconfig.mappings.server")
-			-- if not mappings.lspconfig_to_package.lua_ls then
-			-- 	mappings.lspconfig_to_package.lua_ls = "lua-language-server"
-			-- 	mappings.package_to_lspconfig["lua-language-server"] = "lua_ls"
-			-- end
-
 			local mlsp = require("mason-lspconfig")
 			local available = mlsp.get_available_servers()
 
@@ -451,22 +469,6 @@ return {
 
 			require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
 			require("mason-lspconfig").setup_handlers({ setup })
-
-			local util = require("lspconfig.util")
-			lspconfig.pylsp.setup({
-				root_dir = function(fname)
-					local root_files = {
-						"pyproject.toml",
-						"setup.py",
-						"setup.cfg",
-						"requirements.txt",
-						"Pipfile",
-					}
-					return util.root_pattern(unpack(root_files))(fname)
-						or util.find_git_ancestor(fname)
-						or vim.fn.expand("%:p:h")
-				end,
-			})
 		end,
 	},
 }
