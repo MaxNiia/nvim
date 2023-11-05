@@ -3,7 +3,7 @@ return {
         "SmiteshP/nvim-navic",
         opts = {
             lsp = {
-                preference = { "clangd", "pylsp" },
+                preference = { "clangd", "pyright" },
             },
             separator = "  ",
             highlight = true,

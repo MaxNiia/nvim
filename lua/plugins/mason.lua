@@ -9,7 +9,7 @@ return {
                 "shfmt",
                 "clangd",
                 "lua-language-server",
-                "python-lsp-server",
+                "pyright",
             },
             pip = {
                 upgrade_pip = true,

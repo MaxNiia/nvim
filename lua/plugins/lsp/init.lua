@@ -49,6 +49,13 @@ return {
             servers = require("plugins.lsp.servers"),
         },
         config = function(_, opts)
+            local ok, wf = pcall(require, "vim.lsp._watchfiles")
+            if ok then
+                -- disable lsp watcher. Too slow on linux
+                wf._watchfunc = function()
+                    return function() end
+                end
+            end
             require("neodev").setup()
             local lspconfig = require("lspconfig")
 
@@ -127,7 +134,7 @@ return {
                     end
 
                     -- Enable completion triggered by <c-x><c-o>
-                    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+                    vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
                     -- Mappings
                     require("plugins.lsp.keymaps").default(bufnr)
@@ -143,7 +150,11 @@ return {
                     -- Normal Mode
                 end,
             })
+        end,
+    },
+}
 
+--[[
             local function mason_post_install(pkg)
                 if pkg.name ~= "python-lsp-server" then
                     return
@@ -161,6 +172,7 @@ return {
                         "python-lsp-server[all]",
                         "python-lsp-black",
                         "pylsp-mypy",
+                        y
                         "pyls-flake8",
                         "pyls-isort",
                     },
@@ -182,6 +194,4 @@ return {
             end
 
             require("mason-registry"):on("package:install:success", mason_post_install)
-        end,
-    },
-}
+            ]]

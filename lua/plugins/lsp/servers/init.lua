@@ -9,8 +9,10 @@ return {
     jsonls = {},
     lua_ls = require("plugins.lsp.servers.lua_ls"),
     marksman = {},
-    pylsp = require("plugins.lsp.servers.pylsp"),
+    pyright = require("plugins.lsp.servers.pyright"),
     rust_analyzer = require("plugins.lsp.servers.rust_analyzer"),
     tsserver = require("plugins.lsp.servers.tsserver"),
     yamlls = {},
 }
+
+-- pylsp = require("plugins.lsp.servers.pylsp"),
