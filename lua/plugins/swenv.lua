@@ -19,7 +19,7 @@ return {
             require("swenv").setup(opts)
             local wk = require("which-key")
             wk.register({
-                v = {
+                V = {
                     function()
                         require("swenv.api").pick_venv()
                     end,

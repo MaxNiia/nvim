@@ -23,7 +23,10 @@ return {
                 markdown = true,
                 mini = true,
                 neotree = true,
-                telescope = true,
+                telescope = {
+                    enabled = true,
+                    style = "nvchad",
+                },
                 treesitter = true,
                 treesitter_context = true,
                 rainbow_delimiters = true,
@@ -37,7 +40,9 @@ return {
                 notify = true,
                 which_key = true,
             },
-            custom_highlights = function(c)
+            custom_highlights = function(
+                _ --[[c]]
+            )
                 return {
                     -- Comment = { fg = c.rosewater }, For BQN.
                     -- LineNr = { fg = c.pink },

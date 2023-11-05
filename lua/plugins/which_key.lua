@@ -9,7 +9,7 @@ return {
             { "n", "nzzzv", mode = "n" },
             { "N", "Nzzzv", mode = "n" },
             { "<esc>", "<c-\\><c-n>", mode = "t" },
-            { "<leader>P", '"_dp', mode = "x", desc = "Paste no overwrite" },
+            { "<leader>P", '"_dp', mode = "x", desc = "Paste and keep" },
             {
                 "<leader>y",
                 '"+y',

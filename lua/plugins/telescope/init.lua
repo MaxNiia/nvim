@@ -109,6 +109,7 @@ return {
                     "--line-number",
                     "--no-heading",
                     "--with-filename",
+                    "--smart-case",
                 },
                 prompt_prefix = "   ",
                 border = true,
