@@ -67,7 +67,7 @@ return {
     {
         "<leader>fb",
         function()
-            require("telescope").builtin.buffers({ sort_mru = true })
+            require("telescope.builtin").buffers({ sort_mru = true })
         end,
         desc = "Buffers",
     },

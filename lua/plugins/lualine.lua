@@ -162,13 +162,13 @@ return {
                         type = "vim_fun",
                         padding = {
                             left = 1,
-                            right = 0,
+                            right = 1,
                         },
                     },
                     {
                         padding = {
                             left = 1,
-                            right = 0,
+                            right = 1,
                         },
                         "filename",
                     },
@@ -181,10 +181,6 @@ return {
                         navic_opts = {
                             highlight = true,
                             click = true,
-                        },
-                        padding = {
-                            left = 1,
-                            right = 0,
                         },
                     },
                 },
