@@ -34,21 +34,22 @@ return {
 				{
 					ft = "qf",
 				},
-				{
-					ft = "spectre_panel",
-					open = function()
-						require("spectre").open()
-					end,
-					size = { width = 40 },
-				},
 				"dapui_console",
 				"dap-repl",
 			},
 			left = {
 				{
+					ft = "spectre_panel",
+					open = function()
+						require("spectre").open()
+					end,
+					size = { width = 80 },
+				},
+				{
 					ft = "Outline",
 					pinned = true,
 					open = "SymbolsOutline",
+					size = { width = 50 },
 				},
 				"dapui_scopes",
 				"dapui_breakpoints",
@@ -59,6 +60,9 @@ return {
 			right = {
 				{
 					ft = "help",
+					size = {
+						width = 80,
+					},
 					-- only show help buffers
 					filter = function(buf)
 						return vim.bo[buf].buftype == "help"
