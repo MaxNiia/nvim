@@ -73,7 +73,9 @@ return {
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { "branch" },
+				lualine_b = {
+					"branch",
+				},
 				lualine_c = {
 					{
 						function()
@@ -83,16 +85,6 @@ return {
 							else
 								return ""
 							end
-						end,
-						seperator = " | ",
-					},
-					{
-						function()
-							return require("nvim-navic").get_location()
-						end,
-						cond = function()
-							return package.loaded["nvim-navic"]
-								and require("nvim-navic").is_available()
 						end,
 					},
 				},
@@ -122,7 +114,7 @@ return {
 				lualine_y = {
 					{
 						"progress",
-						separator = " ",
+						separator = " |",
 						padding = {
 							left = 1,
 							right = 0,
@@ -141,11 +133,9 @@ return {
 						require("lazy.status").updates,
 						cond = require("lazy.status").has_updates,
 					},
-
 					{
-						function()
-							return " " .. os.date("%R")
-						end,
+						vim.loop.cwd,
+						type = "vim_fun",
 					},
 				},
 			},
@@ -224,7 +214,13 @@ return {
 				-- lualine_c = {}, Tabline
 				-- lualine_x = {}, Tabline
 				lualine_y = {},
-				lualine_z = {},
+				lualine_z = {
+					{
+						function()
+							return " " .. os.date("%R")
+						end,
+					},
+				},
 			},
 			winbar = {
 				lualine_a = {
@@ -257,6 +253,7 @@ return {
 							info = "",
 							hint = "",
 						},
+						separator = "|",
 					},
 					{
 						"diff",
@@ -267,7 +264,17 @@ return {
 						},
 					},
 				},
-				lualine_c = {},
+				lualine_c = {
+					{
+						function()
+							return require("nvim-navic").get_location()
+						end,
+						cond = function()
+							return package.loaded["nvim-navic"]
+								and require("nvim-navic").is_available()
+						end,
+					},
+				},
 				lualine_x = {},
 				lualine_y = {},
 				lualine_z = {},
