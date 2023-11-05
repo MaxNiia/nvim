@@ -1,5 +1,14 @@
 return {
-	"hrsh7th/cmp-buffer",
+	{
+		"tzachar/fuzzy.nvim",
+		dependencies = {
+			"nvim-telescope/telescope-fzf-native.nvim",
+		},
+	},
+	{
+		"hrsh7th/cmp-buffer",
+		dependencies = { "hrsh7th/nvim-cmp", "tzachar/fuzzy.nvim" },
+	},
 	{
 		"windwp/nvim-autopairs",
 		opts = {

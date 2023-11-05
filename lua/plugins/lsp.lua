@@ -290,9 +290,19 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = {
+					{ name = "fuzzzy_buffer" },
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
+					{ name = "buffer" },
 				},
+			})
+
+			cmp.setup.cmdline("/", {
+				sources = cmp.config.sources({
+					{
+						name = "fuzzy_buffer",
+					},
+				}),
 			})
 
 			require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
