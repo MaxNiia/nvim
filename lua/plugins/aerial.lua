@@ -1,3 +1,40 @@
+local attach = function(bufnr)
+	local wk = require("which-key")
+	wk.register({
+		["[a"] = {
+			"<cmd>AerialPrev<CR>",
+			"Previous Aerial",
+		},
+		["]a"] = {
+			"<cmd>AerialNext<CR>",
+			"Next Aerial",
+		},
+	}, {
+		buffer = bufnr
+	})
+	wk.register({
+		A = {
+			name = "+Aerial",
+			k = {
+				"<cmd>AerialPrev<CR>",
+				"Previous Aerial",
+			},
+			j = {
+				"<cmd>AerialNext<CR>",
+				"Next Aerial",
+			},
+			A = {
+				"<cmd>AerialToggle!<CR>",
+				"Toggle Aerial",
+			},
+		},
+	}, {
+		prefix = "<leader>",
+		buffer = bufnr,
+	})
+end
+
+
 return {
 	{
 		"stevearc/aerial.nvim",
@@ -9,41 +46,7 @@ return {
 			"folke/which-key.nvim",
 		},
 		opts = {
-			on_attach = function(bufnr)
-				local wk = require("which-key")
-				wk.register({
-					["[a"] = {
-						"<cmd>AerialPrev<CR>",
-						"Previous Aerial",
-					},
-					["]a"] = {
-						"<cmd>AerialNext<CR>",
-						"Next Aerial",
-					},
-				}, {
-					buffer = bufnr
-				})
-				wk.register({
-					A = {
-						name = "+Aerial",
-						["["] = {
-							"<cmd>AerialPrev<CR>",
-							"Previous Aerial",
-						},
-						["]"] = {
-							"<cmd>AerialNext<CR>",
-							"Next Aerial",
-						},
-						A = {
-							"<cmd>AerialToggle!<CR>",
-							"Toggle Aerial",
-						},
-					},
-				}, {
-					prefix = "<leader>",
-					buffer = bufnr,
-				})
-			end,
+			on_attach = attach,
 			buftype_exclude = {
 				"nofile",
 				"terminal",
@@ -52,20 +55,7 @@ return {
 			context_char = "▏",
 			show_current_context = true,
 			use_treesitter = true,
-			filetype_exclude = {
-				"help",
-				"vimdoc",
-				"cmake",
-				"startify",
-				"aerial",
-				"alpha",
-				"dashboard",
-				"lazy",
-				"neogitstatus",
-				"NvimTree",
-				"neo-tree",
-				"Trouble",
-			},
+			filetype_exclude = require("utils.exlude_files")
 		},
 		config = true,
 	},

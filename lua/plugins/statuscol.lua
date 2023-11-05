@@ -14,7 +14,6 @@ return {
 				relculright = true,
 				thousands = false,
 				ft_ignore = {
-					"neo-tree",
 					"qf",
 				},
 				bt_ignore = {
