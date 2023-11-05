@@ -6,7 +6,7 @@ return {
 		},
 		event = "BufEnter",
 		opts = {
-			filetype_ignore = require("utils.exlude_files"),
+			filetype_ignore = require("utils.exclude_files"),
 			preserve_window_layout = {
 				"this",
 				"nameless",

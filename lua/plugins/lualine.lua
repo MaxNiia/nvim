@@ -62,7 +62,8 @@ return {
 							return require("nvim-navic").get_location()
 						end,
 						cond = function()
-							return package.loaded["nvim-navic"] and require("nvim-navic").is_available()
+							return package.loaded["nvim-navic"]
+								and require("nvim-navic").is_available()
 						end,
 					},
 				},
@@ -72,7 +73,8 @@ return {
 							return require("noice").api.status.command.get()
 						end,
 						cond = function()
-							return package.loaded["noice"] and require("noice").api.status.command.has()
+							return package.loaded["noice"]
+								and require("noice").api.status.command.has()
 						end,
 					},
 					{
@@ -80,7 +82,8 @@ return {
 							return require("noice").api.status.mode.get()
 						end,
 						cond = function()
-							return package.loaded["noice"] and require("noice").api.status.mode.has()
+							return package.loaded["noice"]
+								and require("noice").api.status.mode.has()
 						end,
 					},
 					{

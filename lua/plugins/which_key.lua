@@ -57,7 +57,7 @@ return {
 
 			wk.register({
 				["<leader>"] = {
-					name = "Switch Window"
+					name = "Switch Window",
 				},
 				r = { name = "Refactor" },
 				b = { name = "Debug" },

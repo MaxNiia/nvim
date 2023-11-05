@@ -33,7 +33,8 @@ return {
 
 			require("cmp").setup({
 				enabled = function()
-					return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+					return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+						or require("cmp_dap").is_dap_buffer()
 				end,
 			})
 
@@ -53,9 +54,12 @@ return {
 							name = "Debug",
 							B = {
 								function()
-									vim.ui.input({ prompt = "Breakpoint condition: " }, function(condition)
-										dap.set_breakpoint(condition)
-									end)
+									vim.ui.input(
+										{ prompt = "Breakpoint condition: " },
+										function(condition)
+											dap.set_breakpoint(condition)
+										end
+									)
 								end,
 								"DAP set conditional breakpoint",
 							},

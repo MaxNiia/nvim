@@ -86,8 +86,8 @@ return {
 
 				cpp = false,
 				c = false,
-					h = false,
-					hpp = false,
+				h = false,
+				hpp = false,
 				cxx = false,
 			},
 			prompt_func_param_type = {
@@ -101,21 +101,21 @@ return {
 				cxx = false,
 			},
 			printf_statements = {
-                cpp = {
-                    'RFC_printf("%s")'
-                },
-                c = {
-                    'RFC_printf("%s")'
-                },
-            },
+				cpp = {
+					'RFC_printf("%s")',
+				},
+				c = {
+					'RFC_printf("%s")',
+				},
+			},
 			print_var_statements = {
-                cpp = {
-                    'RFC_printf("Path: %s -> %s")'
-                },
-                c = {
-                    'RFC_printf("Path: %s -> %s")'
-                },
-            },
+				cpp = {
+					'RFC_printf("Path: %s -> %s")',
+				},
+				c = {
+					'RFC_printf("Path: %s -> %s")',
+				},
+			},
 		},
 		config = function(_, opts)
 			require("refactoring").setup(opts)

@@ -21,7 +21,9 @@ return {
 						end
 					end
 					if not enabled then
-						require("lazy.core.loader").disable_rtp_plugin("nvim-treesitter-textobjects")
+						require("lazy.core.loader").disable_rtp_plugin(
+							"nvim-treesitter-textobjects"
+						)
 					end
 				end,
 			},

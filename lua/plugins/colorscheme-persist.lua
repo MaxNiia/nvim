@@ -1,3 +1,5 @@
+local utils = require("utils.telescope")
+
 return {
 	{
 		"MaxNiia/colorscheme-persist.nvim",
@@ -42,14 +44,7 @@ return {
 			picker_opts = {
 				initial_mode = "insert",
 				layout_strategy = "cursor",
-				layout_config = {
-					cursor = {
-						preview_cutoff = 0,
-						height = 10,
-						width = 30,
-						preview_width = 1,
-					},
-				},
+				layout_config = utils.layouts.small_cursor,
 				preview_cutoff = 0,
 				enable_preview = true,
 			},

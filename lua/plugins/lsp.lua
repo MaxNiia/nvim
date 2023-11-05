@@ -238,8 +238,9 @@ return {
 			end
 
 			local servers = opts.servers
-			local capabilities =
-				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+			local capabilities = require("cmp_nvim_lsp").default_capabilities(
+				vim.lsp.protocol.make_client_capabilities()
+			)
 
 			-- Specify otherwise clangd seems to use utf-8
 			capabilities.offsetEncoding = { "utf-16" }
@@ -307,8 +308,9 @@ return {
 				formatting = {
 					format = function(entry, vim_item)
 						if vim.tbl_contains({ "path" }, entry.source.name) then
-							local icon, hl_group =
-								require("nvim-web-devicons").get_icon(entry:get_completion_item().label)
+							local icon, hl_group = require("nvim-web-devicons").get_icon(
+								entry:get_completion_item().label
+							)
 							if icon then
 								vim_item.kind = icon
 								vim_item.kind_hl_group = hl_group

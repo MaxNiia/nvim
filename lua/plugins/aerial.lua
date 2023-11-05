@@ -57,7 +57,7 @@ return {
 			context_char = "▏",
 			show_current_context = true,
 			use_treesitter = true,
-			filetype_exclude = require("utils.exlude_files"),
+			filetype_exclude = require("utils.exclude_files"),
 		},
 	},
 }
