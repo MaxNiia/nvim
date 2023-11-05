@@ -106,11 +106,19 @@ return {
 					"<cmd>Telescope file_browser<CR>",
 					"Browser",
 				},
+				s = {
+					"<cmd>Telescope grep_string<CR>",
+					"Grep string",
+				},
 				f = {
 					name = "+Find",
 					t = {
 						"<cmd>Telescope<CR>",
 						"Telescope",
+					},
+					j = {
+						"<cmd>Telescope grep_string<CR>",
+						"Grep string",
 					},
 					f = {
 						"<cmd>Telescope find_files<CR>",
@@ -210,6 +218,21 @@ return {
 			}, {
 				prefix = "<leader>",
 			})
+
+			wk.register({
+				f = {
+					name = "+Find",
+					j = {
+
+						"<cmd>Telescope grep_string<CR>",
+						"Grep string",
+					},
+				},
+				s = {
+					"<cmd>Telescope grep_string<CR>",
+					"Grep string",
+				},
+			}, { prefix = "<leader>", mode = "v" })
 		end,
 	},
 }
