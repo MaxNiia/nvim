@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 
 vim.cmd([[
 if has('nvim')
-  let $GIT_EDITOR = 'nvr -cc split --remote-wait'
+  let $GIT_EDITOR = 'nvim --cmd "let g:unception_block_while_host_edits=1"'
 endif
 
 autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
