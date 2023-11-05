@@ -15,24 +15,6 @@ return {
         dependencies = { "hrsh7th/nvim-cmp", "tzachar/fuzzy.nvim" },
     },
     {
-        "L3MON4D3/LuaSnip",
-        lazy = true,
-        build = "make install_jsregexp",
-        opts = {
-            history = true,
-            region_check_events = "InsertEnter",
-            delete_check_events = "TextChanged,InsertLeave",
-        },
-        config = function(_, opts)
-            if opts then
-                require("luasnip").config.setup(opts)
-            end
-            vim.tbl_map(function(type)
-                require("luasnip.loaders.from_" .. type).lazy_load()
-            end, { "vscode", "snipmate", "lua" })
-        end,
-    },
-    {
         "paopaol/cmp-doxygen",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
