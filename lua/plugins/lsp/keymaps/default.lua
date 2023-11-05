@@ -39,7 +39,7 @@ return function(bufnr)
             end,
             "Close Hover",
         },
-        ["<C-k>"] = {
+        ["<c-s>"] = {
             vim.lsp.buf.signature_help,
             "Signature",
         },

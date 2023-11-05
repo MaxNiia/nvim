@@ -25,7 +25,7 @@ return {
                 "markdownlint",
                 -- "mypy",
                 -- "pydocstyle",
-                "stylua",
+                -- "stylua",
                 "zsh",
             },
             automatic_setup = true,
@@ -40,9 +40,9 @@ return {
                 cmake_format = function(_, _)
                     null_ls.register(null_ls.builtins.formatting.cmake_format)
                 end,
-                stylua = function(_, _)
-                    null_ls.register(null_ls.builtins.formatting.stylua)
-                end,
+                -- stylua = function(_, _)
+                --     null_ls.register(null_ls.builtins.formatting.stylua)
+                -- end,
                 -- flake8 = function(_, _)
                 -- 	null_ls.register(null_ls.builtins.diagnostics.flake8)
                 -- end,
