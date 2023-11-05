@@ -306,6 +306,13 @@ return {
 				desc = "Commits",
 			},
 
+			-- Harpoon
+			{
+				"<leader>fh",
+				"<cmd>Telescope harpoon marks<CR>",
+				desc = "Harpoon",
+			},
+
 			-- DAP
 			{
 				"<leader>fdc",
@@ -479,6 +486,7 @@ return {
 			},
 			"nvim-telescope/telescope-dap.nvim",
 			"mfussenegger/nvim-dap",
+			"ThePrimeagen/harpoon",
 		},
 		lazy = true,
 		opts = {
@@ -613,6 +621,7 @@ return {
 			require("telescope.actions")
 			local trouble = require("trouble.providers.telescope")
 
+			require("telescope").load_extension("harpoon")
 			require("telescope").load_extension("aerial")
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("file_browser")
@@ -626,8 +635,8 @@ return {
 			telescope.setup({
 				defaults = {
 					mappings = {
-						i = { ["<c-t>"] = trouble.open_with_trouble },
-						n = { ["<c-t>"] = trouble.open_with_trouble },
+						i = { ["<c-T>"] = trouble.open_with_trouble },
+						n = { ["<c-T>"] = trouble.open_with_trouble },
 					},
 				},
 			})

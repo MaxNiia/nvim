@@ -24,7 +24,7 @@ return {
 		},
 	},
 	mode = { "n", "x" },
-	body = "<leader>ho",
+	body = "<leader>o",
 	heads = {
 		{
 			"n",

@@ -19,7 +19,7 @@ return {
 		end,
 	},
 	mode = "n",
-	body = "<leader>hd",
+	body = "<leader>D",
 	heads = {
 		{ "H", "<C-v>h:VBox<CR>" },
 		{ "J", "<C-v>j:VBox<CR>" },

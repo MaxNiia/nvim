@@ -63,9 +63,7 @@ return {
 				b = { name = "Debug" },
 				W = { name = "Workspace" },
 				h = {
-					name = "Hydra",
-					d = "Diagram",
-					o = "Options",
+					name = "Harpoon",
 				},
 			}, { prefix = "<leader>", mode = "n" })
 

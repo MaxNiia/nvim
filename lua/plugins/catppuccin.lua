@@ -13,6 +13,7 @@ return {
 				dashboard = true,
 				gitsigns = true,
 				fidget = true,
+				harpoon = true,
 				illuminate = true,
 				indent_blankline = {
 					enabled = true,
