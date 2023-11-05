@@ -28,10 +28,9 @@ return {
                     "pylint",
                 },
                 markdown = { "markdownlint" },
-                -- NOTE: Seems wack. It doesn't find the current file.
-                -- lua = {
-                --     "luacheck",
-                -- },
+                lua = {
+                    "luacheck",
+                },
                 json = {
                     "jsonlint",
                 },

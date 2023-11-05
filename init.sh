@@ -1,31 +1,5 @@
 #!/bin/bash
 
-# This script installs various programming tools and sets up the environment.
-# It checks for the existence of each tool and installs it if not found.
-# Additionally, it creates and configures necessary files and directories.
-#
-# Tools installed:
-# - rustup (Rust toolchain installer)
-# - ripgrep (rg, a line-oriented search tool)
-# - fd-find (fdfind, a simple, fast and user-friendly alternative to 'find')
-# - fzf (a general-purpose command-line fuzzy finder)
-# - nvm (Node Version Manager)
-# - cspell (a spell checker for code)
-# - lua (Lua programming language)
-# - dotnet-sdk-7.0 (C# SDK, optional, installed if "c#" is passed as an argument)
-#
-# Files and directories created and configured:
-# - lua/configs/ai_backend.lua (configuration file for AI backend)
-# - ~/.nvimstty (disables XON/XOFF flow control)
-# - ~/venvs (creates a virtual environment for Python debugging)
-#
-# Errors:
-# - If a file cannot be written to, the script will exit with an error message.
-# - If a suitable shell is not found for disabling XON/XOFF flow control, an error message is displayed with instructions.
-#
-# Usage:
-#   ./install.sh
-
 # Install rust up
 if ! command -v rustup &> /dev/null
 then
@@ -103,6 +77,7 @@ if ! command -v lua &> /dev/null
 then
     echo "Lua not installed, installing"
     sudo apt install lua5.3
+    sudo apt install liblua5.3-dev
 fi
 
 if [ ! -e "${HOME}/.nvimstty" ] ; then

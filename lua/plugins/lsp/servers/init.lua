@@ -2,7 +2,6 @@ return {
     azure_pipelines_ls = require("plugins.lsp.servers.azure_pipelines_ls"),
     bashls = {},
     clangd = require("plugins.lsp.servers.clangd"),
-    cmake = {},
     cssls = require("plugins.lsp.servers.cssls"),
     cssmodules_ls = {},
     dockerls = {},
