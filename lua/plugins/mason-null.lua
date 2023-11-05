@@ -5,7 +5,7 @@ return {
             "williamboman/mason.nvim",
             "jose-elias-alvarez/null-ls.nvim",
         },
-        event = { "BufReadPre", "BufNewFile" },
+        event = { "BufReadPost", "BufNewFile" },
         opts = {
             ensure_installed = {
                 "beutysh",

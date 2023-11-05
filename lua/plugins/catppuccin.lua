@@ -9,6 +9,7 @@ local oled_override = function(bool)
         return {}
     end
 end
+
 return {
     {
         "catppuccin/nvim",
@@ -84,7 +85,6 @@ return {
         },
         config = function(_, opts)
             require("catppuccin").setup(opts)
-
             local colors = require("catppuccin.palettes").get_palette()
             colors.none = "NONE"
         end,

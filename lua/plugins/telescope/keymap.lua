@@ -11,6 +11,11 @@ return {
     },
     -- LEADER f
     {
+        "<leader>fc",
+        "<cmd>Telescope colorscheme<cr>",
+        desc = "Colorscheme",
+    },
+    {
         "<leader>fj",
         "<cmd>Telescope grep_string<cr>",
         desc = "Grep string (root)",
