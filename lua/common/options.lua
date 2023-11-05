@@ -1,6 +1,7 @@
 local set = vim.opt
 
 set.ai = true
+set.autowriteall = true
 set.backspace = "indent,eol,start"
 set.belloff = "all"
 set.clipboard = "unnamedplus"
@@ -46,3 +47,7 @@ cmd [[
 	autocmd FileType py set colorcolumn=+1
 ]]
 
+cmd [[
+	autocmd FileType NvimTree set numberwidth=2
+   autocmd FileType NvimTree set colorcolumn=+1
+]]
