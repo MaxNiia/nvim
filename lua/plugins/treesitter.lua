@@ -30,10 +30,6 @@ return {
         },
         build = ":TSUpdate",
         event = { "BufReadPost", "BufNewFile" },
-        keys = {
-            { "<c-space>", desc = "Increment selection" },
-            { "<bs>", desc = "Decrement selection", mode = "x" },
-        },
         opts = {
             highlight = {
                 enable = true,
@@ -67,10 +63,10 @@ return {
             incremental_selection = {
                 enable = true,
                 keymaps = {
-                    init_selection = "<C-space>",
-                    node_incremental = "<C-space>",
-                    scope_incremental = false,
-                    node_decremental = "<bs>",
+                    init_selection = "gtt",
+                    node_incremental = "gtn",
+                    scope_incremental = "gts",
+                    node_decremental = "gtm",
                 },
             },
         },
