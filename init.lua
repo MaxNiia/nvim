@@ -1,14 +1,7 @@
 require('impatient')
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
-vim.opt.termguicolors = true
-
-require("init")
-
-if vim.env.NVIM_EPIROC then
-	require("epiroc.init")
+if vim.env.NVIM_MAX then
+    require("user.max.init")
 else
-	require("user.init")
+    require("user.default.init")
 end
