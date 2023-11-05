@@ -12,6 +12,18 @@ return {
 			on_attach = function(bufnr)
 				local wk = require("which-key")
 				wk.register({
+					["[a"] = {
+						"<cmd>AerialPrev<CR>",
+						"Previous Aerial",
+					},
+					["]a"] = {
+						"<cmd>AerialNext<CR>",
+						"Next Aerial",
+					},
+				}, {
+					buffer = bufnr
+				})
+				wk.register({
 					A = {
 						name = "+Aerial",
 						["["] = {
