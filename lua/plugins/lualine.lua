@@ -48,8 +48,8 @@ return {
             options = {
                 icons_enabled = true,
                 theme = "auto",
-                component_separators = { left = "", right = "" },
-                section_separators = { left = "", right = "" },
+                component_separators = { left = "", right = "" },
+                section_separators = { left = "", right = "" },
                 disabled_filetypes = {
                     statusline = {
                         "dashboard",
@@ -89,17 +89,19 @@ return {
                     "branch",
                 },
                 lualine_c = {
-                    {
-                        function()
-                            return require("nvim-navic").get_location()
-                        end,
-                        cond = function()
-                            return package.loaded["nvim-navic"]
-                                and require("nvim-navic").is_available()
-                        end,
-                    },
+                    -- {
+                    --     function()
+                    --         return require("nvim-navic").get_location()
+                    --     end,
+                    --     cond = function()
+                    --         return package.loaded["nvim-navic"]
+                    --             and require("nvim-navic").is_available()
+                    --     end,
+                    -- },
                 },
                 lualine_x = {
+                },
+                lualine_y = {
                     {
                         function()
                             return require("noice").api.status.command.get()
@@ -121,22 +123,11 @@ return {
                     {
                         require("dap").status,
                     },
-                },
-                lualine_y = {
                     {
                         "progress",
-                        separator = " |",
-                        padding = {
-                            left = 1,
-                            right = 0,
-                        },
                     },
                     {
                         "location",
-                        padding = {
-                            left = 0,
-                            right = 1,
-                        },
                     },
                 },
                 lualine_z = {
@@ -160,20 +151,24 @@ return {
                                 local is_current = current_tab_index == i
                                 local label = tabs[i].filename
                                 local separator = "%*"
+                                local l_a_sep = ""
+                                local l_i_sep = ""
+                                local r_a_sep = ""
+                                local r_i_sep = ""
                                 if current_tab_index == i + 1 then
                                     separator = separator .. "%#HarpoonInactive#" .. " " .. "%*"
                                     separator = separator
                                         .. "%#HarpoonLeftSeparator#"
-                                        .. ""
+                                        .. r_a_sep
                                         .. "%*"
                                 elseif current_tab_index == i then
                                     separator = separator .. "%#HarpoonActive#" .. " " .. "%*"
                                     separator = separator
                                         .. "%#HarpoonRightSeparator#"
-                                        .. ""
+                                        .. r_a_sep
                                         .. "%*"
                                 else
-                                    separator = separator .. "%#HarpoonInactive#" .. " " .. "%*"
+                                    separator = separator .. "%#HarpoonInactive#" .. r_i_sep .. "%*"
                                 end
 
                                 if is_current then
