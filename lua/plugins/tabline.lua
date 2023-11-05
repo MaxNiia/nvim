@@ -8,6 +8,7 @@ return {
 			"nvim-tree/nvim-web-devicons",
 			"nvim-telescope/telescope.nvim",
 		},
+		event = "BufEnter",
 		init = function()
 			vim.cmd([[
 				  set sessionoptions+=tabpages,globals " store tabpages and globals in session
