@@ -7,7 +7,6 @@ then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh 
 fi
 
-
 # Install ripgrep
 if ! command -v rg &> /dev/null
 then
@@ -34,6 +33,7 @@ then
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
     echo "If 'nvm install 16' fails copy NVM config from profile file to bashrc"
     nvm install 16
+    corepack enable
 fi
 
 if ! command -v cspell &> /dev/null
@@ -42,5 +42,10 @@ then
     npm install -g cspell
 fi
 
+
 nvim --headless -u NONE -c 'lua require("bootstrap").bootstrap_paq()'
+
+cd ~/.local/share/nvim/site/pack/paqs/start/markdown-preview.nvim/
+yarn install
+
 echo ""
