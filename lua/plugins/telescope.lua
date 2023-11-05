@@ -95,6 +95,13 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		keys = {
+			-- LEADER r
+			{
+				"<leader>rr",
+				"<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
+				desc = "Refactor Telescope",
+				mode = "v",
+			},
 			-- LEADER f
 			{
 				"<leader>fj",
@@ -485,6 +492,7 @@ return {
 			require("telescope").load_extension("persisted")
 			require("telescope").load_extension("noice")
 			require("telescope").load_extension("dap")
+			require("telescope").load_extension("refactoring")
 
 			telescope.setup({
 				defaults = {
@@ -495,5 +503,5 @@ return {
 				},
 			})
 		end,
-	},
-}
+		},
+	}

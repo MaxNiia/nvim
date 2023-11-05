@@ -56,7 +56,10 @@ return {
 			wk.setup(opts)
 
 			wk.register({
-				r = { name = "Rename" },
+				["<leader>"] = {
+					name = "Switch Window"
+				},
+				r = { name = "Refactor" },
 				b = { name = "Debug" },
 				W = { name = "Workspace" },
 			}, { prefix = "<leader>", mode = "n" })
