@@ -34,7 +34,7 @@ vim.opt.sidescroll = 1
 vim.opt.sidescrolloff = 2
 vim.opt.signcolumn = "yes:1"
 vim.opt.smartcase = true
-vim.opt.smartindent = false
+vim.opt.smartindent = true
 vim.opt.smarttab = true
 vim.opt.softtabstop = 4
 vim.opt.spelloptions = "camel"
@@ -109,10 +109,10 @@ vim.cmd([[
 ]])
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
-	pattern = { "\\[dap-repl]\\", "DAP *" },
-	callback = function(_)
-		vim.wo.spell = false
-	end,
+    pattern = { "\\[dap-repl]\\", "DAP *" },
+    callback = function(_)
+        vim.wo.spell = false
+    end,
 })
 
 vim.cmd([[
@@ -125,13 +125,13 @@ vim.cmd([[
 ]])
 
 function ToggleTroubleAuto()
-	local ok, trouble = pcall(require, "trouble")
-	if ok then
-		vim.defer_fn(function()
-			vim.cmd("cclose")
-			trouble.open("quickfix")
-		end, 0)
-	end
+    local ok, trouble = pcall(require, "trouble")
+    if ok then
+        vim.defer_fn(function()
+            vim.cmd("cclose")
+            trouble.open("quickfix")
+        end, 0)
+    end
 end
 
 vim.cmd([[
@@ -139,28 +139,28 @@ vim.cmd([[
 ]])
 
 local function augroup(name)
-	return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
+    return vim.api.nvim_create_augroup("lazyvim_" .. name, { clear = true })
 end
 
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
-	group = augroup("checktime"),
-	command = "checktime",
+    group = augroup("checktime"),
+    command = "checktime",
 })
 --
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-	group = augroup("highlight_yank"),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+    group = augroup("highlight_yank"),
+    callback = function()
+        vim.highlight.on_yank()
+    end,
 })
 
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
-	group = augroup("resize_splits"),
-	callback = function()
-		vim.cmd("tabdo wincmd =")
-	end,
+    group = augroup("resize_splits"),
+    callback = function()
+        vim.cmd("tabdo wincmd =")
+    end,
 })
 
 -- vim.api.nvim_set_hl(0, "LspInlayHint", { link = "Comment" })
