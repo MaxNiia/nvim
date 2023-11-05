@@ -217,6 +217,7 @@ return {
             require("telescope").setup(opts)
 
             require("telescope.actions")
+            require("telescope").load_extension("aerial")
             require("telescope").load_extension("harpoon")
             require("telescope").load_extension("fzf")
             require("telescope").load_extension("file_browser")
