@@ -4,6 +4,7 @@ return {
 		lazy = true,
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
+			"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
 			"MaxNiia/nvim-navbuddy",
 			"propet/colorscheme-persist.nvim",
 			"folke/neodev.nvim",
