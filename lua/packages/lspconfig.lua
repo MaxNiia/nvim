@@ -47,7 +47,7 @@ local on_attach = function(client, bufnr)
 				"Go to implementation",
 			},
 			r = {
-				vim.lsp.buf.references,
+				require("telescope.builtin").lsp_references, {},
 				"Go to references",
 			},
 		},
