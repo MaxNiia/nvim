@@ -90,6 +90,10 @@ return {
             filesystem = {
                 components = {
                     harpoon_index = function(config, node, state)
+                        if _G.harpoon then
+                            return
+                        end
+
                         local Marked = require("harpoon.mark")
                         local path = node:get_id()
                         local succuss, index = pcall(Marked.get_index_of, path)

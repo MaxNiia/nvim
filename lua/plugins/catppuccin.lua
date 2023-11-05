@@ -26,7 +26,7 @@ return {
                 dashboard = true,
                 gitsigns = true,
                 fidget = true,
-                harpoon = true,
+                harpoon = _G.harpoon,
                 illuminate = true,
                 indent_blankline = {
                     enabled = true,
@@ -73,10 +73,6 @@ return {
                 return {
                     -- Comment = { fg = c.rosewater }, For BQN.
                     -- LineNr = { fg = c.pink },
-                    -- HarpoonInactive = { bg = c.mantle, fg = c.blue, bold = true },
-                    -- HarpoonRightSeparator = { bg = c.blue, fg = c.mantle },
-                    -- HarpoonActive = { bg = c.blue, fg = c.mantle, bold = true },
-                    -- HarpoonLeftSeparator = { bg = c.mantle, fg = c.blue },
                     HighlightUndo = { bg = c.overlay0 },
                     CopilotSuggestion = { fg = c.surface1 },
                 }

@@ -7,6 +7,7 @@ local hint = [[
   _o_ %{oled}^^^^^^^ OLED Catppuccin
   _c_ %{copilot}^^^^ Copilot
   _p_ %{popup}^^^^^^ Popup
+  _h_ %{harpoon}^^^^ Harpoon
   ^
        ^^^^                _<Esc>_
 ]]
@@ -48,6 +49,7 @@ return {
                 oled = show_state_builder("oled"),
                 copilot = show_state_builder("copilot"),
                 popup = show_state_builder("popup"),
+                harpoon = show_state_builder("harpoon"),
             },
         },
     },
@@ -60,6 +62,7 @@ return {
         head_toggle_builder("oled", "o"),
         head_toggle_builder("copilot", "c"),
         head_toggle_builder("popup", "p"),
+        head_toggle_builder("harpoon", "h"),
         { "<Esc>", nil, { exit = true } },
     },
 }

@@ -85,8 +85,8 @@ return {
     {
         "goolord/alpha-nvim",
         dependencies = {
-            "ahmedkhalf/project.nvim",
             "nvim-tree/nvim-web-devicons",
+            "nvim-telescope/telescope.nvim",
         },
         event = "VimEnter",
         opts = function()

@@ -346,11 +346,17 @@ return {
         mode = { "v", "n" },
     },
 
-    -- Harpoon
+    -- Marks
     {
         "<leader>fh",
-        "<cmd>Telescope harpoon marks<CR>",
-        desc = "Harpoon",
+        function()
+            if _G.harpoon then
+                require("telescope").extensions.harpoon()
+            else
+                require("telescope").builtin.marks()
+            end
+        end,
+        desc = _G.harpoon and "Harpoon" or "Marks",
         mode = { "v", "n" },
     },
 

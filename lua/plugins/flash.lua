@@ -4,14 +4,6 @@ return {
         event = "VeryLazy",
         keys = {
             {
-                "m",
-                mode = { "n", "x", "o" },
-                function()
-                    require("flash").jump()
-                end,
-                desc = "Jump",
-            },
-            {
                 "<cr>",
                 mode = { "n", "x", "o" },
                 function()
@@ -67,7 +59,15 @@ return {
                 desc = "Jump2D",
             },
             {
-                "M",
+                "<leader>t",
+                mode = { "n", "x", "o" },
+                function()
+                    require("flash").jump()
+                end,
+                desc = "Jump",
+            },
+            {
+                "<leader>T",
                 mode = { "n", "o", "x" },
                 function()
                     require("flash").treesitter()

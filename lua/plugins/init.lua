@@ -1,10 +1,5 @@
 return {
     {
-        "tpope/vim-obsession",
-        event = { "VimEnter" },
-        lazy = false,
-    },
-    {
         "folke/neodev.nvim",
         lazy = true,
         event = { "BufReadPre", "BufNewFile" },

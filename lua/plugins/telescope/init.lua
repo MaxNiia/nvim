@@ -16,7 +16,6 @@ return {
             "nvim-telescope/telescope-project.nvim",
             "nvim-telescope/telescope-dap.nvim",
             "nvim-telescope/telescope-live-grep-args.nvim",
-            "ThePrimeagen/harpoon",
         },
         lazy = true,
         opts = {
@@ -218,12 +217,14 @@ return {
 
             require("telescope.actions")
             require("telescope").load_extension("aerial")
-            require("telescope").load_extension("harpoon")
             require("telescope").load_extension("fzf")
             require("telescope").load_extension("file_browser")
             require("telescope").load_extension("project")
             require("telescope").load_extension("dap")
             require("telescope").load_extension("live_grep_args")
+            if _G.harpoon then
+                require("telescope").load_extension("harpoon")
+            end
 
             local lga = require("telescope-live-grep-args.shortcuts")
             local wk = require("which-key")
