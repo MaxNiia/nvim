@@ -317,6 +317,14 @@ wk.register({
 				end,
 				"Toggle relative line numbers",
 			},
+			y = {
+				"\"+y",
+				"Yank to system clipboard",
+			},
+			p = {
+				"\"+p",
+				"Paste from system clipboard",
+			},
 		}, -- leader
 		-- dap
 		["]b"] = {
@@ -380,6 +388,15 @@ wk.register({
 			s = {
 				"<cmd>Telescope grep_string<CR>",
 				"Grep string",
+			},
+			-- Misc
+			y = {
+				"\"+y",
+				"Yank to system clipboard",
+			},
+			p = {
+				"\"+p",
+				"Paste from system clipboard",
 			},
 		}, -- leader
 	}, -- visual, select
