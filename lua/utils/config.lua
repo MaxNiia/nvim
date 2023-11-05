@@ -7,6 +7,7 @@ local options = {
     { name = "toggleterm", default = true },
     { name = "oled", default = false },
     { name = "copilot", default = false },
+    { name = "popup", default = true },
 }
 
 local separator = ":"

@@ -29,6 +29,7 @@ return {
             "SmiteshP/nvim-navic",
             "AckslD/swenv.nvim",
             "catppuccin/nvim",
+            "folke/noice.nvim",
         },
         lazy = true,
         event = "BufEnter",
@@ -106,21 +107,25 @@ return {
                         },
                     },
                 },
-                lualine_x = {
-                    {
-                        function()
-                            return vim.fn.ObsessionStatus("󰆓", "󱙃")
-                        end,
-                    },
-                },
+                lualine_x = {},
                 lualine_y = {
                     {
-                        "searchcount",
-                        maxcount = 999,
-                        timeout = 500,
+                        function()
+                            return require("noice").api.statusline.mode.get()
+                        end,
+                        cond = function()
+                            return package.loaded["noice"]
+                                and require("noice").api.statusline.mode.has()
+                        end,
                     },
                     {
-                        "cmd",
+                        function()
+                            return require("noice").api.status.command.get()
+                        end,
+                        cond = function()
+                            return package.loaded["noice"]
+                                and require("noice").api.status.command.has()
+                        end,
                     },
                     {
                         "progress",
