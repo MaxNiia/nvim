@@ -19,6 +19,9 @@ return function(bufnr)
                 function()
                     require("telescope.builtin").lsp_references({
                         fname_width = require("utils.sizes").fname_width,
+                        include_declaration = false,
+                        include_current_line = true,
+                        jump_type = "never",
                     })
                 end,
                 "Go to references",

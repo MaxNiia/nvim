@@ -1,5 +1,3 @@
--- TODO: REMOVE gr right side is useless.
-
 local ui = require("plugins.telescope.ui")
 
 return {

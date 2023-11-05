@@ -1,3 +1,3 @@
 return {
-    fname_width = 80,
+    fname_width = 160,
 }
