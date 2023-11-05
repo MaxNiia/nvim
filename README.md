@@ -4,6 +4,11 @@ Repository for keeping different versions of nvim configurations.
 
 Profiles: set with environment variables.
 
+## Requirements
+
+*Neovim 8.0 or later.
+*A Nerdfont.
+
 ## Usage
 
 Initialize git repository in `.config` or initialize somewhere else and require
