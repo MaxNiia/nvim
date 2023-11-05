@@ -74,14 +74,11 @@ return {
 					horizontal = {
 						prompt_position = "top",
 						height = 0.8,
-						width = 0.7,
+						width = 0.9,
 					},
 					vertical = {
 						mirror = false,
 					},
-					width = 0.87,
-					height = 0.80,
-					preview_cutoff = 120,
 				},
 			},
 		},
