@@ -4,6 +4,7 @@ local function createAICommand(method)
 		method
 	)
 end
+
 return {
 	{
 		"ricardicus/nvim-magic",
@@ -31,7 +32,7 @@ return {
 		config = function(_, _)
 			local backend_url = require("configs.ai_backend")
 
-			-- TODO: Look at noice integrations. Maigc crashes when writing more than one field of 
+			-- TODO: Look at noice integrations. Maigc crashes when writing more than one field of
 			-- test using noice.
 			require("nvim-magic").setup({
 				backends = {
