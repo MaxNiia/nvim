@@ -5,7 +5,6 @@ return {
         "propet/colorscheme-persist.nvim",
         dependencies = {
             "catppuccin/nvim",
-            "EdenEast/nightfox.nvim",
         },
         event = "VimEnter",
         keys = {
@@ -58,7 +57,6 @@ return {
             -- Get stored colorscheme
             local colorscheme = persist_colorscheme.get_colorscheme()
 
-            require("nightfox")
             require("catppuccin")
 
             -- Set colorscheme

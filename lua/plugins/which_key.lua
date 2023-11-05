@@ -60,10 +60,7 @@ return {
                     name = "Switch Window",
                 },
                 E = { name = "Files" },
-                U = { name = "Edgy" },
                 T = { name = "Tabs" },
-                W = { name = "Sessions" },
-                r = { name = "Refactor" },
                 b = { name = "Debug" },
                 h = { name = "Harpoon" },
             }, { prefix = "<leader>", mode = "n" })

@@ -1,7 +1,3 @@
-local function get_color(group, attr)
-    return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group)), attr)
-end
-
 local function shorten_filenames(filenames)
     local shortened = {}
 
@@ -34,7 +30,6 @@ return {
             "SmiteshP/nvim-navic",
             "AckslD/swenv.nvim",
             "catppuccin/nvim",
-            "EdenEast/nightfox.nvim",
         },
         lazy = true,
         event = "BufEnter",
@@ -89,15 +84,15 @@ return {
                     "branch",
                 },
                 lualine_c = {
-                    -- {
-                    --     function()
-                    --         return require("nvim-navic").get_location()
-                    --     end,
-                    --     cond = function()
-                    --         return package.loaded["nvim-navic"]
-                    --             and require("nvim-navic").is_available()
-                    --     end,
-                    -- },
+                    {
+                        function()
+                            return require("nvim-navic").get_location()
+                        end,
+                        cond = function()
+                            return package.loaded["nvim-navic"]
+                                and require("nvim-navic").is_available()
+                        end,
+                    },
                 },
                 lualine_x = {
                 },

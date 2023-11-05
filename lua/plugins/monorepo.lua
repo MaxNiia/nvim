@@ -11,7 +11,7 @@ return {
                 function()
                     require("monorepo").toggle_project()
                 end,
-                desc = "Toggle in project",
+                desc = "Toggle project",
                 mode = "n",
             },
             {

@@ -1,4 +1,6 @@
 local ui = require("plugins.telescope.ui")
+local project_actions = require("telescope._extensions.project.actions")
+local action_state = require("telescope.actions.state")
 
 return {
     {
@@ -108,6 +110,22 @@ return {
                 live_grep_args = {
                     auto_quoting = true,
                 },
+                project = {
+                    base_dirs = {
+                        { "~/dev/", max_depth = 2 },
+                        { "~/workspace/dev/", max_depth = 2 },
+                    },
+                    on_project_selected = function(prompt_bufnr)
+                        -- Change dir to the selected project
+                        project_actions.change_working_directory(prompt_bufnr, false)
+
+                        -- Change monorepo directory to the selected project
+                        local selected_entry = action_state.get_selected_entry(prompt_bufnr)
+                        require("monorepo").change_monorepo(selected_entry.value)
+
+                        require("telescope.builtin").find_files()
+                    end,
+                },
             },
             defaults = {
                 vimgrep_arguments = {
@@ -204,6 +222,7 @@ return {
             require("telescope").load_extension("fzf")
             require("telescope").load_extension("file_browser")
             require("telescope").load_extension("projects")
+            require("telescope").load_extension("project")
             require("telescope").load_extension("notify")
             require("telescope").load_extension("noice")
             require("telescope").load_extension("dap")
