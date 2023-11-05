@@ -9,53 +9,7 @@ return {
 			"onsails/lspkind.nvim",
 			"SmiteshP/nvim-navic",
 			"mfussenegger/nvim-dap",
-			{
-				"hrsh7th/nvim-cmp",
-				dependencies = {
-					"hrsh7th/cmp-nvim-lsp",
-					"hrsh7th/cmp-buffer",
-					{
-						"windwp/nvim-autopairs",
-						opts = {
-							check_ts = true,
-							ts_config = {},
-						},
-						config = function(_, opts)
-							local npairs = require("nvim-autopairs")
-							local Rule = require("nvim-autopairs.rule")
-
-							npairs.setup(opts)
-
-							local cond = require("nvim-autopairs.ts-conds")
-
-							-- press % => %% only while inside a comment or string
-							npairs.add_rules({
-								Rule("%", "%")
-									:with_pair(cond.is_ts_node({ "string", "comment" }))
-									:with_pair(cond.is_not_ts_node({ "function" })),
-							})
-						end,
-					},
-					{
-						"L3MON4D3/LuaSnip",
-						build = "make install_jsregexp",
-					},
-				},
-				opts = {
-					snippet = {
-						expand = function(args)
-							require("luasnip").lsp_expand(args.body)
-						end,
-					},
-				},
-				config = function(_, opts)
-					local handlers = require("nvim-autopairs.completion.handlers")
-					local cmp = require("cmp")
-					local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-					cmp.setup(opts)
-					cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-				end,
-			},
+			"hrsh7th/nvim-cmp",
 		},
 		opts = {
 			-- options for vim.diagnostic.config()
@@ -76,11 +30,6 @@ return {
 				lua_ls = {
 					settings = {
 						Lua = {
-							diagnostics = {
-								globals = {
-									"vim",
-								},
-							},
 							workspace = {
 								checkThirdParty = false,
 							},
@@ -90,20 +39,6 @@ return {
 						},
 					},
 				},
-				--[[
-				pyright = {
-					settings = {
-						python = {
-							analysis = {
-								autoImportCompletions = true,
-								ausoSearchPaths = true,
-								diagnosticMode = "workspace",
-								useLibraryCodeForTypes = true,
-							},
-						},
-					},
-				},
-				]]
 				tsserver = {},
 				pylsp = {},
 				clangd = {
@@ -148,22 +83,20 @@ return {
 					},
 				},
 			},
-			setup = {
-				-- example to setup with typescript.nvim
-				-- tsserver = function(_, opts)
-				--   require("typescript").setup({ server = opts })
-				--   return true
-				-- end,
-				-- Specify * to use this function as a fallback for any server
-				-- ["*"] = function(server, opts) end,
-			},
+			setup = {},
 		},
 		config = function(_, opts)
+			-- diagnostics
 			local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+
 			for type, icon in pairs(signs) do
 				local hl = "DiagnosticSign" .. type
 				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 			end
+
+			vim.diagnostic.config(opts.diagnostics)
+
+			-- Keybinds
 			local wk = require("which-key")
 			local navic = require("nvim-navic")
 			local on_attach = function(client, bufnr)
@@ -246,12 +179,13 @@ return {
 			}, {
 				prefix = "<leader>",
 			})
-			-- diagnostics
-			vim.diagnostic.config(opts.diagnostics)
 
 			local servers = opts.servers
 			local capabilities =
 				require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+			-- Specify otherwise clangd seems to use utf-8
+			capabilities.offsetEncoding = { "utf-16" }
 
 			local function setup(server)
 				local server_opts = vim.tbl_deep_extend("force", {
@@ -294,6 +228,7 @@ return {
 					end
 				end
 			end
+
 			-- luasnip setup
 			local luasnip = require("luasnip")
 
@@ -362,126 +297,4 @@ return {
 			require("mason-lspconfig").setup_handlers({ setup })
 		end,
 	},
-
-	-- formatters
-	{
-		"jose-elias-alvarez/null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = { "mason.nvim" },
-		opts = function()
-			local nls = require("null-ls")
-			return {
-				sources = {
-					-- nls.builtins.formatting.prettierd,
-					nls.builtins.formatting.stylua,
-					nls.builtins.diagnostics.flake8,
-					nls.builtins.diagnostics.eslint,
-					nls.builtins.completion.spell,
-				},
-			}
-		end,
-	},
-
-	-- cmdline tools and lsp servers
-	{
-		"williamboman/mason.nvim",
-		cmd = "Mason",
-		keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
-		opts = {
-			ensure_installed = {
-				"stylua",
-				"shellcheck",
-				"shfmt",
-				"flake8",
-			},
-		},
-		config = function(_, opts)
-			require("mason").setup(opts)
-			local mr = require("mason-registry")
-			for _, tool in ipairs(opts.ensure_installed) do
-				local p = mr.get_package(tool)
-				if not p:is_installed() then
-					p:install()
-				end
-			end
-		end,
-	},
-	{
-		"mfussenegger/nvim-dap",
-		lazy = true,
-		event = "BufEnter",
-		dependencies = {
-			"theHamsta/nvim-dap-virtual-text",
-			dependencies = {
-				"nvim-treesitter/nvim-treesitter"
-			},
-			opts = {
-				enabled = true,
-				enabled_commands = true,
-				highlight_changed_variables = true,
-				highlight_new_as_changed = true,
-				all_references = false,
-				show_stop_reason = true,
-				commented = false,
-				only_first_definition = true,
-			},
-			config = function(_, opts)
-				require("nvim-dap-virtual-text").setup(opts)
-			end,
-		},
-		config = true,
-	},
-	{
-		"jay-babu/mason-nvim-dap.nvim",
-		dependencies = {
-			"williamboman/mason.nvim",
-			"mfussenegger/nvim-dap",
-		},
-		event = "BufEnter",
-		lazy = true,
-		opts = {
-			ensure_installed = {
-				"python",
-				"cppdbg",
-			},
-			automatic_setup = true,
-		},
-		config = function(_, opts)
-			local dap = require("dap")
-			local mason_dap = require("mason-nvim-dap")
-
-			mason_dap.setup(opts)
-			mason_dap.setup_handlers({
-				function(source_name)
-					require("mason-nvim-dap.automatic_setup")(source_name)
-				end,
-				python = function(_)
-					dap.adapters.python = {
-						type = "executable",
-						command = os.getenv("HOME") .. "/venvs/Debug/bin/python",
-						args = {
-							"-m",
-							"debugpy.adapter"
-						},
-					}
-					dap.configurations.python = {
-						{
-							type = "python",
-							request = "launch",
-							name = "Launch file",
-							program = "${file}",
-							pythonPath = function()
-								local env = os.getenv("VIRTUAL_ENV")
-								if env == nil then
-									return "/usr/bin/python3"
-								else
-									return env .. "/bin/python"
-								end
-							end,
-						},
-					}
-				end,
-			})
-		end,
-	}
 }
