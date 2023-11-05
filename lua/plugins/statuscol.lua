@@ -15,19 +15,23 @@ return {
 
 			require("statuscol").setup({
 				relculright = true,
-				thousands = ",",
+				thousands = "'",
 				ft_ignore = {
+					"Outline",
+					"terminal",
+					"toggleterm",
 					"qf",
-					-- "neotree",
-					-- "oil",
-					"trouble",
+					"Trouble",
+					"help",
 				},
 				bt_ignore = {
+					"Outline",
 					"terminal",
+					"help",
+					"nofile",
+					"toggleterm",
 					"qf",
-					-- "neotree",
-					-- "oil",
-					"trouble",
+					"Trouble",
 				},
 
 				segments = {
@@ -38,17 +42,18 @@ return {
 						},
 						click = "v:lua.ScFa",
 					},
-					-- {
-					-- 	sign = {
-					-- 		name = {
-					-- 			"Diagnostic",
-					-- 		},
-					-- 		maxwidth = 2,
-					-- 		colwidth = 1,
-					-- 		auto = false,
-					-- 	},
-					-- 	click = "v:lua.ScSa",
-					-- },
+					{
+						sign = {
+							name = {
+								"neotest",
+								"Dap",
+							},
+							maxwidth = 1,
+							colwidth = 2,
+							auto = true,
+						},
+						click = "v:lua.ScSa",
+					},
 					{
 						text = {
 							builtin.lnumfunc,
@@ -58,7 +63,7 @@ return {
 					{
 						sign = {
 							name = {
-								".*",
+								"GitSigns",
 							},
 							maxwidth = 2,
 							colwidth = 1,
