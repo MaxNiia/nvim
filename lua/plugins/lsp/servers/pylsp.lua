@@ -2,11 +2,20 @@ return {
     settings = {
         pylsp = {
             configurationSources = {
-                "pycodestyle",
                 "flake8",
             },
             plugins = {
-                pylsp_mypy = { enabled = true, live_mode = true },
+                isort = {
+                    enabled = true,
+                },
+                pylsp_mypy = {
+                    enabled = true,
+                    live_mode = true,
+                    line_length = 120,
+                },
+                mccabe = {
+                    enabled = false,
+                },
                 black = {
                     enabled = true,
                     line_length = 120,
@@ -15,20 +24,48 @@ return {
                     enabled = true,
                     line_length = 120,
                 },
+                pyflakes = {
+                    enabled = false,
+                },
                 flake8 = {
                     enabled = true,
                     maxLineLength = 120,
+                    -- indentSize = 4,
+                },
+                jedi_completion = {
+                    enabled = true,
+                    fuzzy = true,
+                },
+                jedi_definition = {
+                    enabled = true,
+                    follow_imports = true,
+                    follow_builtin_imports = true,
+                    follow_builtin_definitions = true,
+                },
+                jedi_hover = {
+                    enabled = true,
+                },
+                jedi_references = {
+                    enabled = true,
+                },
+                jedi_signature_help = {
+                    enabled = true,
+                },
+                jedi_symbols = {
+                    enabled = true,
+                    all_scopes = true,
+                    include_import_symbols = true,
                 },
                 pycodestyle = {
-                    enabled = true,
+                    enabled = false,
                     maxLineLength = 120,
+                    indentsize = 4,
                 },
                 pydocstyle = {
                     enabled = true,
-                    line_length = 120,
                 },
                 pylint = {
-                    enabled = true,
+                    enabled = false,
                     line_length = 120,
                 },
                 rope_autoimport = {

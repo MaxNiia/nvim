@@ -67,9 +67,9 @@ return {
                 typescript = function(_, _)
                     null_ls.register(require("typescript.extenstions.null-ls.code-actions"))
                 end,
-                black = function(_, _)
-                    null_ls.register(null_ls.builtins.formatting.black)
-                end,
+                -- black = function(_, _)
+                --     null_ls.register(null_ls.builtins.formatting.black)
+                -- end,
             }
 
             require("mason-null-ls").setup(opts)

@@ -11,7 +11,9 @@ return {
                 return require("swenv.api").get_venvs(venvs_path)
             end,
             venvs_path = vim.fn.expand("~/venvs"),
-            post_set_venv = nil,
+            post_set_venv = function()
+                vim.cmd.LspRestart()
+            end,
         },
         config = function(_, opts)
             require("swenv").setup(opts)

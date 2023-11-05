@@ -9,7 +9,10 @@ return {
                 "shfmt",
                 "clangd",
                 "lua-language-server",
-                "python-lsp-server"
+                "python-lsp-server",
+            },
+            pip = {
+                upgrade_pip = true,
             },
         },
         config = function(_, opts)

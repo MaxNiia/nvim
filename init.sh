@@ -40,17 +40,24 @@ then
     cargo install ripgrep
 fi
 
+# Install flake8
+if ! command -v rg &> /dev/null
+then
+    echo "flak8 could not be found, installing"
+    sudo apt install flake8 -y
+fi
+
 # Install find
 if ! command -v fdfind &> /dev/null
 then
     echo "fdfind could not be found, installing"
-    sudo apt install fd-find
+    sudo apt install fd-find -y
 fi
 
 if ! command -v fzf &> /dev/null
 then
     echo "fzf not installed, installing"
-    sudo apt-get install fzf
+    sudo apt-get install fzf -y
 fi
 
 if [ ! -d "${HOME}/.nvm/.git" ]

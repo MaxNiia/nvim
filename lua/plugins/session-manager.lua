@@ -32,19 +32,19 @@ return {
                 callback = load_callback,
             })
 
-            vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-                group = config_group,
-                callback = function()
-                    if
-                        vim.bo.filetype ~= "git"
-                        and not vim.bo.filetype ~= "gitcommit"
-                        and not vim.bo.filetype ~= "gitrebase"
-                        and not vim.bo.filetype ~= ""
-                    then
-                        session_manager.autosave_session()
-                    end
-                end,
-            })
+            -- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+            --     group = config_group,
+            --     callback = function()
+            --         if
+            --             vim.bo.filetype ~= "git"
+            --             and not vim.bo.filetype ~= "gitcommit"
+            --             and not vim.bo.filetype ~= "gitrebase"
+            --             and not vim.bo.filetype ~= ""
+            --         then
+            --             session_manager.autosave_session()
+            --         end
+            --     end,
+            -- })
         end,
     },
 }

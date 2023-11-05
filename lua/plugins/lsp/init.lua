@@ -16,6 +16,7 @@ return {
             "kevinhwang91/nvim-ufo",
             "hrsh7th/nvim-cmp",
             "hrsh7th/cmp-nvim-lsp",
+            "AckslD/swenv.nvim",
         },
         keys = {
             {
@@ -157,10 +158,11 @@ return {
                         "install",
                         "-U",
                         "--disable-pip-version-check",
+                        "python-lsp-server[all]",
                         "python-lsp-black",
                         "pylsp-mypy",
+                        "pyls-flake8",
                         "pyls-isort",
-                        -- "pylsp-rope",
                     },
                     cwd = venv,
                     env = { VIRTUAL_ENV = venv },
