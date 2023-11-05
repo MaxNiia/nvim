@@ -62,6 +62,7 @@ return {
 				cmake = {},
 				yamlls = {},
 				marksman = {},
+				tsserver = {},
 				rust_analyzer = {
 					settings = {
 						["rust-analyzer"] = {
