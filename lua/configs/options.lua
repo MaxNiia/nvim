@@ -80,6 +80,10 @@ vim.cmd([[
     autocmd FileType qf setlocal nornu
 ]])
 
+vim.cmd([[
+    autocmd User TelescopePreviewerLoaded setlocal wrap
+]])
+
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	pattern = { "\\[dap-repl]\\", "DAP *" },
 	callback = function(_)
