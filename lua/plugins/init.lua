@@ -1,5 +1,11 @@
 return {
 	{
+		"folke/neodev.nvim",
+		lazy = true,
+		event = "BufEnter",
+		config = true,
+	},
+	{
 		"NMAC427/guess-indent.nvim",
 		lazy = true,
 		event = "BufEnter",
