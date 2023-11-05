@@ -14,8 +14,9 @@ return {
 				{ enabled = true, icon = "" }, -- ERROR
 				{ enabled = true, icon = "" }, -- WARN
 				{ enabled = true, icon = "" }, -- INFO
-				{ enabled = true, icon = "" }, -- HINT
+				{ enabled = false, icon = "" }, -- HINT
 			},
+			icons = "both",
 		},
 		config = function(_, opts)
 			local wk = require("which-key")

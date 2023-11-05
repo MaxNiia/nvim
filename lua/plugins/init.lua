@@ -43,10 +43,22 @@ return {
 		event = "BufEnter",
 	},
 	{
-		"ggandor/leap.nvim",
+		"ggandor/flit.nvim",
+		dependencies = {
+
+			"ggandor/leap.nvim",
+		},
 		lazy = true,
 		event = "BufEnter",
 		config = true,
+	},
+	{
+		"ggandor/leap.nvim",
+		lazy = true,
+		event = "BufEnter",
+		config = function(_, _)
+			require("leap").add_default_mappings()
+		end,
 	},
 	{
 		"DanilaMihailov/beacon.nvim",

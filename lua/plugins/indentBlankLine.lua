@@ -2,8 +2,10 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		lazy = true,
-		event = "BufEnter",
+		event = { "BufReadPost", "BufNewFile" },
 		opts = {
+			char = "│",
+			filetype_exclude = { "help", "alpha", "dashboard", "Nvim-tree", "Trouble", "lazy" },
 			show_current_context = true,
 			show_current_context_start = true,
 		},

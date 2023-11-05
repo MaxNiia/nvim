@@ -31,6 +31,7 @@ require("catppuccin").setup({
 	},
 	integrations = {
 		aerial = true,
+		barbar = true,
 		beacon = true,
 		cmp = true,
 		dashboard = true,
