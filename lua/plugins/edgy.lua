@@ -35,13 +35,6 @@ return {
 					ft = "qf",
 				},
 				{
-					ft = "help",
-					-- only show help buffers
-					filter = function(buf)
-						return vim.bo[buf].buftype == "help"
-					end,
-				},
-				{
 					ft = "spectre_panel",
 					open = function()
 						require("spectre").open()
@@ -63,32 +56,40 @@ return {
 				"dapui_watches",
 				"dapui_scopes",
 			},
-			-- right = {
-			-- 	{
-			-- 		ft = "gitrebase",
-			-- 		size = {
-			-- 			width = 100,
-			-- 		},
-			-- 	},
-			-- 	{
-			-- 		ft = "gitcommit",
-			-- 		size = {
-			-- 			width = 72,
-			-- 		},
-			-- 	},
+			right = {
+				{
+					ft = "help",
+					-- only show help buffers
+					filter = function(buf)
+						return vim.bo[buf].buftype == "help"
+					end,
+				},
+				-- NOTE:
+				-- {
+				-- 	ft = "gitrebase",
+				-- 	size = {
+				-- 		width = 100,
+				-- 	},
+				-- },
+				-- {
+				-- 	ft = "gitcommit",
+				-- 	size = {
+				-- 		width = 72,
+				-- 	},
+				-- },
 				-- PERF: Toggleterm performs terribly with edgy.
 				-- {
 				-- 	ft = "toggleterm",
 				-- 	size = {
 				-- 		width = function()
-				-- 			return 100 -- math.min(vim.o.columns * 0.25, 100)
+				-- 			return math.min(vim.o.columns * 0.25, 100)
 				-- 		end,
 				-- 	},
 				-- 	filter = function(_, win)
 				-- 		return vim.api.nvim_win_get_config(win).relative == ""
 				-- 	end,
 				-- },
-			-- },
+			},
 		},
 	},
 }
