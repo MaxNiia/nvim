@@ -19,57 +19,78 @@ return {
 			trouble = true,
 			on_attach = function(bufnr)
 				local gs = package.loaded.gitsigns
-
-				local function map(mode, l, r, opts)
-					opts = opts or {}
-					opts.buffer = bufnr
-					vim.keymap.set(mode, l, r, opts)
-				end
+				local wk = require("which-key")
 
 				-- Navigation
-				map("n", "]h", function()
-					if vim.wo.diff then
-						return "]h"
-					end
-					vim.schedule(function()
-						gs.next_hunk()
-					end)
-					return "<Ignore>"
-				end, { expr = true })
-
-				map("n", "[h", function()
-					if vim.wo.diff then
-						return "[h"
-					end
-					vim.schedule(function()
-						gs.prev_hunk()
-					end)
-					return "<Ignore>"
-				end, { expr = true })
+				wk.register({
+					h = function()
+						if vim.wo.diff then
+							return "]h"
+						end
+						vim.schedule(function()
+							gs.next_hunk()
+						end)
+						return "<Ignore>"
+					end,
+				}, { mode = "n", prefix = "]", expr = true })
+				wk.register({
+					h = function()
+						if vim.wo.diff then
+							return "[h"
+						end
+						vim.schedule(function()
+							gs.prev_hunk()
+						end)
+						return "<Ignore>"
+					end,
+				}, { mode = "n", prefix = "[", expr = true })
 
 				-- Actions
-				map("n", "<leader>hs", gs.stage_hunk)
-				map("n", "<leader>hr", gs.reset_hunk)
-				map("v", "<leader>hs", function()
-					gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-				end)
-				map("v", "<leader>hr", function()
-					gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-				end)
-				map("n", "<leader>hS", gs.stage_buffer)
-				map("n", "<leader>hu", gs.undo_stage_hunk)
-				map("n", "<leader>hR", gs.reset_buffer)
-				map("n", "<leader>hp", gs.preview_hunk)
-				map("n", "<leader>hb", function()
-					gs.blame_line({ full = true })
-				end)
-				map("n", "<leader>hd", gs.diffthis)
-				map("n", "<leader>hD", function()
-					gs.diffthis("~")
-				end)
+				wk.register({
+					s = { gs.stage_hunk, "Stage Hunk" },
+					r = { gs.reset_hunk, "Reset Hunk" },
+
+					S = { gs.stage_buffer, "Stage Buffer" },
+					u = { gs.undo_stage_hunk, "Undo stage Hunk" },
+					R = { gs.reset_buffer, "Reset Buffer" },
+					p = { gs.preview_hunk, "Preview Hunk" },
+					b = {
+						function()
+							gs.blame_line({ full = true })
+						end,
+						"Blame line",
+					},
+					d = { gs.diffthis, "Diff this" },
+					D = {
+						function()
+							gs.diffthis("~")
+						end,
+						"DIff Home?",
+					},
+				}, { mode = "n", prefix = "<leader>", buffer = bufnr })
+
+				wk.register({
+					s = {
+						function()
+							gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+						end,
+						"Stage Hunk",
+					},
+					r = {
+						function()
+							gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+						end,
+						"Reset Hunk",
+					},
+				}, { mode = "v", prefix = "<leader>", buffer = bufnr })
 
 				-- Text object
-				map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+				wk.register({
+					h = {
+						":<C-U>Gitsigns select_hunk<CR>",
+						"Hunk",
+					},
+				}, { mode = { "o", "x" }, prefix = "i", buffer = bufnr })
 			end,
 		},
 	},
