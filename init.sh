@@ -98,6 +98,8 @@ handle_file() {
 
 # Call the function for ai_backend.lua
 handle_file "lua/configs/ai_backend.lua" "return 'https://api.openai.com/v1/engines/cushman-codex/completions'"
+handle_file "lua/configs/project_templates.lua" "return {}"
+handle_file "lua/configs/templates.lua" "return {}"
 
 if ! command -v lua &> /dev/null
 then

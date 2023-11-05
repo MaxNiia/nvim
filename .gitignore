@@ -1,3 +1,5 @@
-lazy-lock.json
-ai_backend.lua
 .luarc.json
+ai_backend.lua
+lazy-lock.json
+project_templates.lua
+templates.lua
