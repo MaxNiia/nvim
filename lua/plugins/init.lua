@@ -1,6 +1,8 @@
 return {
     {
         "tpope/vim-obsession",
+        event = { "VimEnter" },
+        lazy = false,
     },
     {
         "folke/neodev.nvim",

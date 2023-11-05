@@ -95,6 +95,15 @@ return {
                     },
                 },
                 lualine_x = {
+                    {
+                        function()
+                            local original_tabs = require("harpoon").get_mark_config().marks
+                            local tabs = shorten_filenames(original_tabs)
+                            local tabline = ""
+                            local current_tab_index = -10
+                            return vim.fn.ObsessionStatus("󰆓", "󱙃")
+                        end,
+                    },
                 },
                 lualine_y = {
                     {
