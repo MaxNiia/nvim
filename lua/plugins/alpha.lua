@@ -88,7 +88,6 @@ return {
             "nvim-telescope/telescope.nvim",
             "ahmedkhalf/project.nvim",
             "nvim-tree/nvim-web-devicons",
-            "Shatur/neovim-session-manager",
         },
         event = "VimEnter",
         opts = function()
@@ -102,11 +101,6 @@ return {
                 dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
                 dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
                 dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
-                dashboard.button(
-                    "s",
-                    " " .. " Restore Session",
-                    ":SessionManager! load_session <CR>"
-                ),
                 dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
                 dashboard.button("q", " " .. " Quit", ":qa<CR>"),
             }
