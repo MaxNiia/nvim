@@ -5,7 +5,6 @@ local hint = [[
   _i_ %{list} invisible characters
   _s_ %{spell} toggle spelling
   _w_ %{wrap} word wrap
-  _c_ %{cul} cursor line
   _n_ %{nu} number
   _r_ %{rnu} relative number
   ^
