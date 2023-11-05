@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # Install rust up 
 if ! command -v rustup &> /dev/null
 then
@@ -65,7 +66,7 @@ fi
 if ! command -v lua &> /dev/null
 then
     echo "Lua not installed, installing"
-    sudo apt install lua
+    sudo apt install lua5.3
 fi
 
 if [ ! -e "${HOME}/.nvimstty" ] ; then
