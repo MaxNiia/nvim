@@ -94,6 +94,18 @@ local packageList = {
    -- Todo
    "folke/todo-comments.nvim",
 
+   -- Notify
+   "rcarriga/nvim-notify",
+
+   -- Nui
+   "MunifTanjim/nui.nvim",
+
+   -- Noice
+   "folke/noice.nvim",
+
+   -- Dashboard
+   "glepnir/dashboard-nvim",
+
    -- theme
    {
       "catppuccin/nvim",
