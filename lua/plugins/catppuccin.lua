@@ -42,10 +42,10 @@ return {
 				return {
 					-- Comment = { fg = c.rosewater }, For BQN.
 					-- LineNr = { fg = c.pink },
-					HarpoonInactive = { bg = c.mantle, fg = c.blue, bold = true },
-					HarpoonLeftSeparator = { bg = c.blue, fg = c.mantle },
-					HarpoonActive = { bg = c.blue, fg = c.mantle, bold = true },
-					HarpoonRightSeparator = { bg = c.mantle, fg = c.blue },
+					-- HarpoonInactive = { bg = c.mantle, fg = c.blue, bold = true },
+					-- HarpoonRightSeparator = { bg = c.blue, fg = c.mantle },
+					-- HarpoonActive = { bg = c.blue, fg = c.mantle, bold = true },
+					-- HarpoonLeftSeparator = { bg = c.mantle, fg = c.blue },
 				}
 			end,
 		},

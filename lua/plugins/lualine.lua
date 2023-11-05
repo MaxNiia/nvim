@@ -156,16 +156,16 @@ return {
 									separator = separator .. "%#HarpoonInactive#" .. " " .. "%*"
 									separator = separator
 										.. "%#HarpoonLeftSeparator#"
-										.. ""
+										.. ""
 										.. "%*"
 								elseif current_tab_index == i then
 									separator = separator .. "%#HarpoonActive#" .. " " .. "%*"
 									separator = separator
 										.. "%#HarpoonRightSeparator#"
-										.. ""
+										.. ""
 										.. "%*"
 								else
-									separator = separator .. "%#HarpoonInactive#" .. " " .. "%*"
+									separator = separator .. "%#HarpoonInactive#" .. " " .. "%*"
 								end
 
 								if is_current then
@@ -323,6 +323,11 @@ return {
 		},
 		config = function(_, opts)
 			require("lualine").setup(opts)
+
+			vim.api.nvim_set_hl(0, "HarpoonActive", { link = "lualine_a_normal" })
+			vim.api.nvim_set_hl(0, "HarpoonInactive", { link = "lualine_a_inactive" })
+			vim.api.nvim_set_hl(0, "HarpoonRightSeparator", { link = "lualine_a_normal" })
+			vim.api.nvim_set_hl(0, "HarpoonLeftSeparator", { link = "lualine_a_inactive" })
 		end,
 	},
 }
