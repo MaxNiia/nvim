@@ -19,6 +19,7 @@ require("catppuccin").setup({
 		leap = true,
 		mason = true,
 		markdown = true,
+		mini = true,
 		neotree = true,
 		telescope = true,
 		treesitter = true,
