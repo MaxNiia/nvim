@@ -34,10 +34,10 @@ return {
 			{
 				"<leader>E",
 				function()
-					require("neo-tree.command").execute({ toggle = true})
+					require("neo-tree.command").execute({ toggle = true })
 				end,
 				desc = "Explorer NeoTree",
-				remap = true
+				remap = true,
 			},
 		},
 		deactivate = function()
@@ -60,16 +60,14 @@ return {
 				"filesystem",
 				"buffers",
 				"git_status",
-				-- "netman.ui.neo-tree",
 			},
 			event_handlers = {
 				{
 					event = "neo_tree_buffer_enter",
 					handler = function(_)
-						--vim.cmd([[
-						--setlocal relativenumber
-						--setlocal number
-						--]])
+						vim.cmd([[
+							setlocal relativenumber
+						]])
 					end,
 				},
 			},
