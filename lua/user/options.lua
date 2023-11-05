@@ -15,7 +15,6 @@ set.pumblend = 50
 set.rnu = true
 set.ruler = false
 set.shiftwidth = 8
-set.signcolumn = "number"
 set.smartcase = true
 set.smartindent = true
 set.smarttab = true
@@ -37,3 +36,14 @@ cmd [[
 	autocmd FileType c set textwidth=80
 	autocmd FileType c set colorcolumn=+1
 ]]
+
+cmd [[
+	autocmd FileType cpp set textwidth=80
+	autocmd FileType cpp set colorcolumn=+1
+]]
+
+cmd [[
+	autocmd FileType py set textwidht=88
+	autocmd FileType py set colorcolumn=+1
+]]
+

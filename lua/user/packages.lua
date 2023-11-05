@@ -1,22 +1,16 @@
-require "paq" {
-	-- let Paq manage itself
-	"savq/paq-nvim"; 
+local packageList = require("user.packageList")
 
-	-- Theme
-	{
-		"catppuccin/nvim", 
-		as = 'catppuccin',
-	};
+local paq = require("paq") 
+paq(packageList)
 
-	-- Depency
-	"nvim-lua/plenary.nvim";
-
-	-- LSP
-	"neovim/nvim-lspconfig";
-
-	-- ?
-	"svermeulen/vimpeccable";
-}
-
-require("user.lspconfig")
-require("user.catppuccin")
+require("nvim-web-devicons").setup()
+require("user.packages.gitsigns")
+require("user.packages.lspconfig")
+require("user.packages.telescope")
+require("user.packages.aerial")
+require("user.packages.tree")
+require("user.packages.treesitter")
+require("user.packages.bufferline")
+require("user.packages.catppuccin")
+require("user.packages.floaterm")
+require("user.packages.indentBlankLine")
