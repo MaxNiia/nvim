@@ -185,12 +185,45 @@ return {
             },
         },
         config = function(_, opts)
-            local telescope = require("telescope")
-            telescope.setup(opts)
+            local function flash(prompt_bufnr)
+                require("flash").jump({
+                    pattern = "^",
+                    label = { after = { 0, 0 } },
+                    search = {
+                        mode = "search",
+                        exclude = {
+                            function(win)
+                                return vim.bo[vim.api.nvim_win_get_buf(win)].filetype
+                                    ~= "TelescopeResults"
+                            end,
+                        },
+                    },
+                    action = function(match)
+                        local picker =
+                            require("telescope.actions.state").get_current_picker(prompt_bufnr)
+                        picker:set_selection(match.pos[1] - 1)
+                    end,
+                })
+            end
 
-            require("telescope.actions")
             local trouble = require("trouble.providers.telescope")
 
+            opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
+                mappings = {
+                    i = {
+                        ["<c-T>"] = trouble.open_with_trouble,
+                        ["<c-s>"] = flash,
+                    },
+                    n = {
+                        ["<c-T>"] = trouble.open_with_trouble,
+                        ["m"] = flash,
+                    },
+                },
+            })
+
+            local telescope = require("telescope").setup(opts)
+
+            require("telescope.actions")
             require("telescope").load_extension("harpoon")
             require("telescope").load_extension("fzf")
             require("telescope").load_extension("file_browser")
@@ -200,15 +233,6 @@ return {
             require("telescope").load_extension("noice")
             require("telescope").load_extension("dap")
             require("telescope").load_extension("refactoring")
-
-            telescope.setup({
-                defaults = {
-                    mappings = {
-                        i = { ["<c-T>"] = trouble.open_with_trouble },
-                        n = { ["<c-T>"] = trouble.open_with_trouble },
-                    },
-                },
-            })
         end,
     },
 }
