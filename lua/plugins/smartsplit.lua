@@ -1,5 +1,3 @@
-local opts = { noremap = true, silent = true }
-
 return {
 	{
 		"mrjones2014/smart-splits.nvim",
