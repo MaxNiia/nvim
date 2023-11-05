@@ -39,7 +39,6 @@ return {
             "L3MON4D3/LuaSnip",
             "tzachar/fuzzy.nvim",
             "saadparwaiz1/cmp_luasnip",
-            "paopaol/cmp-doxygen",
             "hrsh7th/cmp-nvim-lsp-document-symbol",
             "hrsh7th/cmp-nvim-lsp-signature-help",
             "hrsh7th/cmp-path",
@@ -87,11 +86,11 @@ return {
 
                     priority_weight = 2,
                     comparators = {
+                        -- Below is the default comparator list and order for nvim-cmp
                         require("copilot_cmp.comparators").prioritize,
-                        -- Below is the default comparitor list and order for nvim-cmp
                         cmp.config.compare.offset,
-                        -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
                         cmp.config.compare.exact,
+                        -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
                         cmp.config.compare.score,
                         cmp.config.compare.recently_used,
                         cmp.config.compare.locality,

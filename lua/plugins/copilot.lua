@@ -6,6 +6,7 @@ return {
         event = "InsertEnter",
         config = function()
             require("copilot").setup({
+                server_ops_overrides = {},
                 panel = {
                     enabled = false,
                     auto_refresh = false,

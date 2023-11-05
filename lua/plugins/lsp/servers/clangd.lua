@@ -5,7 +5,9 @@ local getQueryDriver = function()
     if f ~= nil then
         local lines = f:read(2 ^ 10)
         f:close()
-        return lines[1]
+        for line in string.gmatch(lines, "([^\n]+)") do
+            return line
+        end
     end
     return default
 end
