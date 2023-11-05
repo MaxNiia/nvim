@@ -1,8 +1,8 @@
 local M = {
-	layout = {},
+	layouts = {},
 }
 
-M.layout.lsp_layout = {
+M.layouts.lsp_layout = {
 	horizontal = {
 		preview_cutoff = 150,
 		preview_width = 80,
@@ -11,7 +11,7 @@ M.layout.lsp_layout = {
 	},
 }
 
-M.layout.small_cursor = {
+M.layouts.small_cursor = {
 	cursor = {
 		preview_cutoff = 0,
 		height = 10,
@@ -20,27 +20,27 @@ M.layout.small_cursor = {
 	},
 }
 
-M.layout.center = {
+M.layouts.center = {
 	width = 120,
 	height = 20,
 	mirror = false,
 	preview_cutoff = 0,
 }
 
-M.layout.cursor = {
+M.layouts.cursor = {
 	height = 40,
 	width = 100,
 	preview_cutoff = 0,
 }
 
-M.layout.horizontal = {
+M.layouts.horizontal = {
 	preview_cutoff = 120,
 	preview_width = 0.55,
 	height = 24,
 	-- width = 240,
 }
 
-M.layout.vertical = {
+M.layouts.vertical = {
 	height = 0.8,
 	width = 120,
 	preview_cutoff = 30,
@@ -48,7 +48,7 @@ M.layout.vertical = {
 	mirror = false,
 }
 
-M.layout.flex = {
+M.layouts.flex = {
 	flip_columns = 240,
 }
 
