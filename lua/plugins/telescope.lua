@@ -74,7 +74,7 @@ return {
 					horizontal = {
 						prompt_position = "top",
 						height = 0.8,
-						width = 0.55,
+						width = 0.7,
 					},
 					vertical = {
 						mirror = false,
