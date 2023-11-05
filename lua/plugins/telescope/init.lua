@@ -186,16 +186,32 @@ return {
 
             opts.extensions = vim.tbl_deep_extend("force", opts.extensions or {}, {
                 project = {
+                    initial_mode = "normal",
+                    hidden_files = false,
+                    sync_with_nvim_tree = false,
                     on_project_selected = function(prompt_bufnr)
                         local project_actions = require("telescope._extensions.project.actions")
                         -- Change dir to the selected project
-                        project_actions.change_working_directory(prompt_bufnr, false)
+                        project_actions.change_working_directory(prompt_bufnr)
+                        print(vim.fn.getcwd())
 
                         -- Change monorepo directory to the selected project
-                        local selected_entry = action_state.get_selected_entry(prompt_bufnr)
+                        local selected_entry = action_state.get_selected_entry()
                         require("monorepo").change_monorepo(selected_entry.value)
 
-                        require("telescope.builtin").find_files()
+                        -- Set session
+                        require("persistence").stop()
+                        require("persistence").start()
+                        require("persistence").load()
+
+                        -- Set shada
+                        local shada = require("utils.shada").get_current_shada()
+                        vim.o.shadafile = shada
+                        local f = io.open(shada, "r")
+                        if f == nil then
+                            vim.cmd.wshada()
+                        end
+                        pcall(vim.cmd.rshada, { bang = true })
                     end,
                 },
             })

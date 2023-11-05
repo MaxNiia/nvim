@@ -102,7 +102,7 @@ return {
     },
     {
         "<leader>fp",
-        "<cmd>Telescope projects<CR>",
+        ":lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
         desc = "Project",
         mode = { "v", "n" },
     },
