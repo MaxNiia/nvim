@@ -34,7 +34,9 @@ return {
 							name = {
 								"Diagnostic",
 							},
-							maxwidth = 2,
+							maxwidth = 1,
+							colwidth = 2,
+							auto = false,
 						},
 						click = "v:lua.ScSa",
 					},
