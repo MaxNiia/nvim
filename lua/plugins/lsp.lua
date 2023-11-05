@@ -27,25 +27,6 @@ return {
 				timeout_ms = nil,
 			},
 			servers = {
-				jsonls = {},
-				lua_ls = {
-					settings = {
-						Lua = {
-							runtime = {
-								version = "LuaJIT",
-							},
-							diagnostics = {
-								-- Get the language server to recognize the `vim` global
-								globals = { "vim" },
-							},
-							-- Do not send telemetry data containing a randomized but unique identifier
-							telemetry = {
-								enable = false,
-							},
-						},
-					},
-				},
-				pylsp = {},
 				clangd = {
 					filetypes = {
 						"c",
@@ -65,11 +46,33 @@ return {
 					},
 				},
 				cmake = {},
-				yamlls = {},
-				marksman = {},
-				tsserver = {},
 				cssls = {},
 				cssmodules_ls = {},
+				jsonls = {},
+				lua_ls = {
+					settings = {
+						Lua = {
+							runtime = {
+								version = "LuaJIT",
+							},
+							diagnostics = {
+								-- Get the language server to recognize the `vim` global
+								globals = { "vim" },
+							},
+							-- Do not send telemetry data containing a randomized but unique identifier
+							telemetry = {
+								enable = false,
+							},
+						},
+					},
+				},
+				marksman = {},
+				omnisharp = {
+					enable_import_completion = true,
+					enable_roslyn_analyzers = true,
+					organize_imports_on_format = true,
+				},
+				pylsp = {},
 				rust_analyzer = {
 					settings = {
 						["rust-analyzer"] = {
@@ -90,6 +93,8 @@ return {
 						},
 					},
 				},
+				tsserver = {},
+				yamlls = {},
 			},
 			setup = {},
 		},
