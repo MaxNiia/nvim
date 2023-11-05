@@ -6,6 +6,7 @@ return {
 			"neovim/nvim-lspconfig",
 			"nvim-neo-tree/neo-tree.nvim",
 			"SmiteshP/nvim-navic",
+			"AckslD/swenv.nvim",
 		},
 		lazy = true,
 		opts = {
@@ -41,11 +42,22 @@ return {
 						},
 					},
 					{
+						function()
+							local venv = require("swenv.api").get_current_venv()
+							if venv then
+								return string.format("🐍 %s", venv.name)
+							else
+								return ""
+							end
+						end,
+					},
+					{
 						"filetype",
 						icon_only = true,
 						separator = "",
 						padding = { left = 1, right = 0 },
 					},
+
 					{ "filename", path = 1, symbols = { modified = "  ", readonly = "", unnamed = "" } },
 					{
 						function()
@@ -74,10 +86,6 @@ return {
 						end,
 					},
 					{
-						require("lazy.status").updates,
-						cond = require("lazy.status").has_updates,
-					},
-					{
 						"diff",
 						symbols = {
 							added = "",
@@ -91,15 +99,26 @@ return {
 					{ "location", padding = { left = 0, right = 1 } },
 				},
 				lualine_z = {
-					function()
-						return " " .. os.date("%R")
-					end,
+					{
+						require("lazy.status").updates,
+						cond = require("lazy.status").has_updates,
+					},
+
+					{
+						function()
+							return " " .. os.date("%R")
+						end,
+					},
 				},
 			},
 			extensions = {
 				"aerial",
 				"fzf",
+				"lazy",
 				"neo-tree",
+				"quickfix",
+				"toggleterm",
+				"trouble",
 			},
 			inactive_sections = {},
 			tabline = {},
