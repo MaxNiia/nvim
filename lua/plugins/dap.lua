@@ -71,8 +71,8 @@ return {
 								dap.step_into,
 								"Step Into",
 							},
-								o = {
-									dap.step_out,
+							o = {
+								dap.step_out,
 								"Step Out",
 							},
 							b = {

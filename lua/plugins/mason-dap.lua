@@ -89,7 +89,7 @@ return {
 						},
 					}
 				end,
-			}
+			},
 		},
 		config = function(_, opts)
 			require("mason-nvim-dap").setup(opts)

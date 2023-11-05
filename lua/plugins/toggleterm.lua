@@ -1,6 +1,6 @@
 local function toggleTerminal(direction)
 	return function()
-		return"<cmd>" .. tostring(vim.v.count) .. "ToggleTerm direction=" .. direction .. "<cr>"
+		return "<cmd>" .. tostring(vim.v.count) .. "ToggleTerm direction=" .. direction .. "<cr>"
 	end
 end
 

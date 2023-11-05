@@ -56,24 +56,24 @@ return {
 			wk.setup(opts)
 
 			wk.register({
-				r = { name = "Rename", },
-				b = { name = "Debug", },
-				W = { name = "Workspace", },
+				r = { name = "Rename" },
+				b = { name = "Debug" },
+				W = { name = "Workspace" },
 			}, { prefix = "<leader>", mode = "n" })
 
 			wk.register({
-				c = { name = "ChatGPT", },
+				c = { name = "ChatGPT" },
 				t = { name = "Terminal" },
 				f = {
 					name = "Find",
-					d = { name = "Debug", },
-					g = { name = "Git", },
-					w = { name = "Sessions", },
-					l = { name = "LSP", },
-					t = { name = "Terminal", },
+					d = { name = "Debug" },
+					g = { name = "Git" },
+					w = { name = "Sessions" },
+					l = { name = "LSP" },
+					t = { name = "Terminal" },
 				},
-				x = { name = "Trouble", },
-			}, { prefix = "<leader>", mode = { "n", "v" }, })
+				x = { name = "Trouble" },
+			}, { prefix = "<leader>", mode = { "n", "v" } })
 		end,
 	},
 }
