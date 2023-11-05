@@ -18,6 +18,10 @@ return {
 		},
 		config = function(_, opts)
 			require("nightfox").setup(opts)
+
+			require("lualine")
+			require("lsp-inlayhints")
+			require("telescope")
 		end,
 	},
 }

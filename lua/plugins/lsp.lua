@@ -26,7 +26,7 @@ return {
 		lazy = true,
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
-			"propet/colorscheme-persist.nvim",
+			"MaxNiia/colorscheme-persist.nvim",
 			"folke/neodev.nvim",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",

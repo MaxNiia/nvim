@@ -1,20 +1,22 @@
--- if IS_WINDOWS and not IS_WSL then
---     return {}
--- end
-
 local function homeFilePath()
 	local home = ""
 	if IS_WINDOWS and not IS_WSL then
-		home = "$env:USERPROFILE" or ""
+		--		require("catppuccin")
+		-- home = "$env:USERPROFILE" or ""
+		home = os.getenv("USERPROFILE") or ""
+		home = home .. "\\"
+		--		vim.cmd.colorscheme("catppuccin-mocha")
+		--home = "C:\\Users\\"
 	elseif IS_LINUX or IS_WSL then
 		home = os.getenv("HOME") or ""
+		home = home .. "/"
 	end
-	return home .. "/.nvim.colorscheme-persist.lua"
+	return home .. ".nvim.colorscheme-persist.lua"
 end
 
 return {
 	{
-		"propet/colorscheme-persist.nvim",
+		"MaxNiia/colorscheme-persist.nvim",
 		dependencies = {
 			"catppuccin/nvim",
 			"EdenEast/nightfox.nvim",
@@ -81,10 +83,6 @@ return {
 
 			-- Set colorscheme
 			vim.cmd.colorscheme(colorscheme)
-
-			require("lualine")
-			require("lsp-inlayhints")
-			require("telescope")
 		end,
 	},
 }

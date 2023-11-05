@@ -46,6 +46,10 @@ return {
 
 			local colors = require("catppuccin.palettes").get_palette()
 			colors.none = "NONE"
+
+			require("lualine")
+			require("lsp-inlayhints")
+			require("telescope")
 		end,
 	},
 }
