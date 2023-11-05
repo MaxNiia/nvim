@@ -1,3 +1,5 @@
+-- TODO: REMOVE gr right side is useless.
+
 local ui = require("plugins.telescope.ui")
 
 return {
@@ -189,7 +191,7 @@ return {
             opts.extensions = vim.tbl_deep_extend("force", opts.extensions or {}, {
                 project = {
                     base_dirs = {
-                        { "~/dev/",           max_depth = 2 },
+                        { "~/dev/", max_depth = 2 },
                         { "~/workspace/dev/", max_depth = 2 },
                     },
                     on_project_selected = function(prompt_bufnr)

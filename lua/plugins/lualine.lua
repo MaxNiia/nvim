@@ -30,15 +30,10 @@ return {
             "SmiteshP/nvim-navic",
             "AckslD/swenv.nvim",
             "catppuccin/nvim",
+            "folke/noice.nvim",
         },
         lazy = true,
         event = "BufEnter",
-        init = function()
-            vim.api.nvim_set_hl(0, "HarpoonActive", { link = "lualine_a_normal" })
-            vim.api.nvim_set_hl(0, "HarpoonInactive", { link = "lualine_a_inactive" })
-            vim.api.nvim_set_hl(0, "HarpoonRightSeparator", { link = "lualine_a_normal" })
-            vim.api.nvim_set_hl(0, "HarpoonLeftSeparator", { link = "lualine_a_inactive" })
-        end,
         opts = {
             options = {
                 icons_enabled = true,
@@ -87,10 +82,6 @@ return {
                 lualine_x = {
                     {
                         function()
-                            local original_tabs = require("harpoon").get_mark_config().marks
-                            local tabs = shorten_filenames(original_tabs)
-                            local tabline = ""
-                            local current_tab_index = -10
                             return vim.fn.ObsessionStatus("󰆓", "󱙃")
                         end,
                     },
@@ -98,21 +89,42 @@ return {
                 lualine_y = {
                     {
                         function()
-                            return require("noice").api.status.command.get()
+                            return require("noice").api.status.command.message.get_hl()
+                        end,
+                        cond = function()
+                            return package.loaded["noice"]
+                                and require("noice").api.status.message.has()
+                        end,
+                    },
+                    {
+                        function()
+                            require("noice").api.status.command.get()
                         end,
                         cond = function()
                             return package.loaded["noice"]
                                 and require("noice").api.status.command.has()
                         end,
+                        color = { fg = "#ff9e64" },
                     },
                     {
                         function()
-                            return require("noice").api.status.mode.get()
+                            require("noice").api.status.mode.get()
                         end,
                         cond = function()
                             return package.loaded["noice"]
                                 and require("noice").api.status.mode.has()
                         end,
+                        color = { fg = "#ff9e64" },
+                    },
+                    {
+                        function()
+                            return require("noice").api.status.search.get()
+                        end,
+                        cond = function()
+                            return package.loaded["noice"]
+                                and require("noice").api.status.search.has()
+                        end,
+                        color = { fg = "#ff9e64" },
                     },
                     {
                         require("dap").status,
@@ -127,64 +139,8 @@ return {
                 lualine_z = {
                     {
                         function()
-                            local original_tabs = require("harpoon").get_mark_config().marks
-                            local tabs = shorten_filenames(original_tabs)
-                            local tabline = ""
-                            local current_tab_index = -10
-
-                            for i, tab in ipairs(original_tabs) do
-                                if
-                                    string.match(vim.fn.bufname(), tab.filename)
-                                    or vim.fn.bufname() == tab.filename
-                                then
-                                    current_tab_index = i
-                                end
-                            end
-
-                            for i, tab in ipairs(original_tabs) do
-                                local is_current = current_tab_index == i
-                                local label = tabs[i].filename
-                                local separator = "%*"
-                                local l_a_sep = ""
-                                local l_i_sep = ""
-                                local r_a_sep = ""
-                                local r_i_sep = ""
-                                if current_tab_index == i + 1 then
-                                    separator = separator .. "%#HarpoonInactive#" .. " " .. "%*"
-                                    separator = separator
-                                        .. "%#HarpoonLeftSeparator#"
-                                        .. r_a_sep
-                                        .. "%*"
-                                elseif current_tab_index == i then
-                                    separator = separator .. "%#HarpoonActive#" .. " " .. "%*"
-                                    separator = separator
-                                        .. "%#HarpoonRightSeparator#"
-                                        .. r_a_sep
-                                        .. "%*"
-                                else
-                                    separator = separator .. "%#HarpoonInactive#" .. r_i_sep .. "%*"
-                                end
-
-                                if is_current then
-                                    -- if current_tab_index == 1 then
-                                    -- 	tabline = tabline .. "%#HarpoonInactive#" .. "" .. "%*"
-                                    -- end
-                                    tabline = tabline .. "%*" .. "%#HarpoonActive#"
-                                else
-                                    tabline = tabline .. "%*" .. "%#HarpoonInactive#"
-                                end
-
-                                tabline = tabline .. " " .. label
-                                if i < #tabs then
-                                    tabline = tabline .. "%*" .. separator .. "%T"
-                                else
-                                    tabline = tabline .. " " .. "%*"
-                                end
-                            end
-                            return tabline
+                            return " " .. os.date("%R")
                         end,
-                        padding = 0,
-                        separator = "",
                     },
                 },
             },
@@ -200,8 +156,25 @@ return {
             },
             inactive_sections = {},
             tabline = {
-                lualine_a = {},
-                -- lualine_b = {} -- Tabline
+                lualine_a = {
+                    {
+                        vim.loop.cwd,
+                        type = "vim_fun",
+                        separator = "/",
+                        padding = {
+                            left = 0,
+                            right = 0,
+                        },
+                    },
+                    {
+                        padding = {
+                            left = 0,
+                            right = 0,
+                        },
+                        "filename",
+                    },
+                },
+                lualine_b = {},
                 lualine_c = {
                     {
                         "navic",
@@ -216,7 +189,7 @@ return {
                         },
                     },
                 },
-                -- lualine_x = {}, Tabline
+                lualine_x = {},
                 lualine_y = {
                     {
                         require("lazy.status").updates,
@@ -235,24 +208,32 @@ return {
                 },
                 lualine_z = {
                     {
-                        vim.loop.cwd,
-                        type = "vim_fun",
-                    },
-                    {
-                        function()
-                            return " " .. os.date("%R")
-                        end,
+                        "tabs",
+                        mode = 2,
+                        use_mode_colors = true,
                     },
                 },
             },
             winbar = {
                 lualine_a = {
                     {
+                        "fileformat",
+                        separator = "",
+                        padding = {
+                            left = 1,
+                            right = 0,
+                        },
+                    },
+                    {
                         "filetype",
                         colored = false,
                         icon_only = true,
                         icon = { align = "right" },
                         separator = "",
+                        padding = {
+                            left = 1,
+                            right = 0,
+                        },
                     },
                     {
                         "filename",
