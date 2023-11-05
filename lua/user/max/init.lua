@@ -1,7 +1,6 @@
 require("user.default.keybindings")
 require("user.default.options")
 require("user.default.packages")
-require("user.max.packages")
 
 if vim.env.NVIM_WORK then
     require("user.max.work.init")
