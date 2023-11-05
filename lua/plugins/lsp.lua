@@ -67,15 +67,6 @@ return {
 					},
 				},
 				marksman = {},
-				omnisharp_mono = {
-					--[[
-					custom_user_config = 'custom',
-					cmd = {
-					"powershell.exe",
-					"dotnet c:\\Users\\Max\\.vscode\\extensions\\ms-dotnettools.csharp-1.25.7-win32-x64\\.omnisharp\\1.39.6-net6.0\\OmniSharp.dll",
-					}
-					]]
-				},
 				pylsp = {},
 				rust_analyzer = {
 					settings = {

@@ -15,7 +15,6 @@
 # - dotnet-sdk-7.0 (C# SDK, optional, installed if "c#" is passed as an argument)
 #
 # Files and directories created and configured:
-# - lua/configs/user.lua (configuration file for user settings)
 # - lua/configs/ai_backend.lua (configuration file for AI backend)
 # - ~/.nvimstty (disables XON/XOFF flow control)
 # - ~/venvs (creates a virtual environment for Python debugging)
@@ -25,8 +24,7 @@
 # - If a suitable shell is not found for disabling XON/XOFF flow control, an error message is displayed with instructions.
 #
 # Usage:
-#   ./install.sh [c#]
-#   - Pass "c#" as an argument to install the C# SDK.
+#   ./install.sh
 
 # Install rust up 
 if ! command -v rustup &> /dev/null
@@ -90,9 +88,6 @@ handle_file() {
         echo -e "$content" >> "$file"
     fi
 }
-
-# Call the function for user.lua
-handle_file "lua/configs/user.lua" "require('catppuccin')\n-- require('nightfox')"
 
 # Call the function for ai_backend.lua
 handle_file "lua/configs/ai_backend.lua" "return 'https://api.openai.com/v1/engines/cushman-codex/completions'"
