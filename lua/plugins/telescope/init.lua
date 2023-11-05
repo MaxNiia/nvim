@@ -133,7 +133,7 @@ return {
                 entry_prefix = " ",
                 initial_mode = "insert",
                 file_sorter = require("telescope.sorters").get_fuzzy_file,
-                file_ignore_patterns = { "node_modules" },
+                file_ignore_patterns = { "/node_modules/" },
                 generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
                 selection_strategy = "reset",
                 sorting_strategy = "ascending",

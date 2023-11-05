@@ -41,8 +41,7 @@ return {
                 multi_window = true,
                 forward = true,
                 wrap = true,
-                mode = "exact",
-                incremental = false,
+                mode = "search",
                 exclude = {
                     "notify",
                     "cmp_menu",
@@ -53,7 +52,7 @@ return {
                     end,
                 },
                 trigger = "",
-                max_length = nil,
+                max_length = false,
             },
             jump = {
                 jumplist = true,
@@ -104,6 +103,7 @@ return {
                     highlight = { backdrop = true },
                     jump = { history = true, register = true, nohlsearch = true },
                     search = {
+                        incremental = true,
                     },
                 },
                 char = {
@@ -125,7 +125,10 @@ return {
                             [motion:upper()] = "prev",
                         }
                     end,
-                    search = { wrap = false },
+                    search = {
+                        wrap = false,
+                        incremental = false,
+                    },
                     highlight = { backdrop = true },
                     jump = { register = false },
                 },
