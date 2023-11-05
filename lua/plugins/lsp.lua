@@ -68,6 +68,7 @@ return {
 				yamlls = {},
 				marksman = {},
 				tsserver = {},
+				cssls = {},
 				rust_analyzer = {
 					settings = {
 						["rust-analyzer"] = {
