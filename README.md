@@ -24,12 +24,16 @@ personal settings.
 
 ## WSL
 
-If using wsl the windows clipboard has to be installed in order to yank
-into and put from windows. The following command from the neovim FAQ
-does exactly that.
+First install [Scoop](https://github.com/ScoopInstaller/Scoop#installation) then
+run scoop win32yank. This will install win32yank to
+`~$HOME/scoop/apps/win32yank`. Symlink the win32yank.exe found within to
+`/usr/local/bin`. For some reason having win32yank inside WSL makes it very slow
+and prone to crash.
+
+If this seems daunting run:
 
 ```bash
-curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip
+curl -sLo/tmp/win32yank.zip https://github.com/equalsraf/win32yank/releases/download/v0.1.1/win32yank-x64.zip
 unzip -p /tmp/win32yank.zip win32yank.exe > /tmp/win32yank.exe
 chmod +x /tmp/win32yank.exe
 sudo mv /tmp/win32yank.exe /usr/local/bin/

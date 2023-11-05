@@ -49,7 +49,6 @@ colors.none = "NONE"
 
 vim.cmd("colorscheme catppuccin")
 
-
 -- require("window-picker").setup({
 -- 	-- the foreground (text) color of the picker
 -- 	fg_color = mocha.pink,
