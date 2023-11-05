@@ -22,8 +22,8 @@ local attach = function(bufnr)
 						"<cmd>AerialNext<CR>",
 						"Next Aerial",
 					},
-					A = {
-						"<cmd>AerialToggle!<CR>",
+					t = {
+						"<cmd>AerialToggle<CR>",
 						"Toggle Aerial",
 					},
 				},
