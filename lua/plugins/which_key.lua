@@ -65,9 +65,18 @@ return {
                 W = { name = "Sessions" },
                 r = { name = "Refactor" },
                 b = { name = "Debug" },
-                g = { name = "Git" },
                 h = { name = "Harpoon" },
             }, { prefix = "<leader>", mode = "n" })
+
+            if _G.neotree then
+                wk.register({
+                    g = { name = "Git" },
+                }, { prefix = "<leader>", mode = "n" })
+            else
+                wk.register({
+                    H = { name = "Git" },
+                }, { prefix = "<leader>", mode = "n" })
+            end
 
             wk.register({
                 c = { name = "ChatGPT" },

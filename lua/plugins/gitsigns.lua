@@ -51,6 +51,11 @@ return {
                     },
                 }, { mode = "n", prefix = "[", expr = true })
 
+                local group_key = "g"
+                if _G.neotree then
+                    group_key = "H"
+                end
+
                 -- Actions
                 wk.register({
                     s = { gs.stage_hunk, "Stage Hunk" },
@@ -73,7 +78,7 @@ return {
                         end,
                         "Diff Home",
                     },
-                }, { mode = "n", prefix = "<leader>g", buffer = bufnr })
+                }, { mode = "n", prefix = "<leader>" .. group_key, buffer = bufnr })
 
                 wk.register({
                     s = {
@@ -88,7 +93,7 @@ return {
                         end,
                         "Reset Hunk",
                     },
-                }, { mode = "v", prefix = "<leader>g", buffer = bufnr })
+                }, { mode = "v", prefix = "<leader>" .. group_key, buffer = bufnr })
 
                 -- Text object
                 wk.register({

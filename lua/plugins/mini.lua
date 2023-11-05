@@ -55,6 +55,9 @@ return {
     },
     {
         "echasnovski/mini.files",
+        enabled = function()
+            return _G.mini_files
+        end,
         dependencies = {
             "nvim-tree/nvim-web-devicons",
         },

@@ -9,6 +9,8 @@ endif
 autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 ]])
 
+require("utils.config").load()
+
 local uname = vim.loop.os_uname()
 
 _G.OS = uname.sysname
@@ -33,4 +35,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {})
--- require("oil")
+
+if _G.neotree then
+    require("oil")
+end
