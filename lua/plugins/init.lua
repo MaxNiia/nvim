@@ -5,6 +5,7 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 			library = {
+				enabled = true,
 				runtime = true,
 				types = true,
 				plugins = true,

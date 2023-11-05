@@ -8,14 +8,6 @@ return {
 		end,
 	},
 	{
-		"echasnovski/mini.align",
-		version = false,
-		event = "BufEnter",
-		config = function()
-			require("mini.align").setup()
-		end,
-	},
-	{
 		"echasnovski/mini.bracketed",
 		version = false,
 		event = "BufEnter",
