@@ -4,6 +4,28 @@ return {
 		lazy = true,
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
+			{
+				"MaxNiia/nvim-navbuddy",
+				keys = {
+					{ "<leader>A", "<cmd>Navbuddy<cr>" },
+				},
+				dependencies = {
+					"SmiteshP/nvim-navic",
+					"MunifTanjim/nui.nvim",
+					"nvim-telescope/telescope.nvim", -- Optional
+				},
+				opts = {
+					lsp = { auto_attach = true },
+				},
+				config = function(_, opts)
+					local actions = require("nvim-navbuddy.actions")
+					opts["mappings"] = {
+						["c"] = actions.mini_comment(),
+					}
+
+					require("nvim-navbuddy").setup(opts)
+				end,
+			},
 			"propet/colorscheme-persist.nvim",
 			"folke/neodev.nvim",
 			"williamboman/mason.nvim",
@@ -112,6 +134,7 @@ return {
 							},
 							workspace = {
 								checkThirdParty = false,
+								library = vim.api.nvim_get_runtime_file("", true),
 							},
 						},
 					},
@@ -166,7 +189,7 @@ return {
 						},
 					},
 				},
-				azure_pipeline_ls = {
+				azure_pipelines_ls = {
 					settings = {
 						yaml = {
 							schemas = {
@@ -205,16 +228,7 @@ return {
 			local wk = require("which-key")
 			local navic = require("nvim-navic")
 			local on_attach = function(client, bufnr)
-				vim.api.nvim_create_autocmd({ "InsertEnter" }, {
-					callback = function()
-						vim.lsp.buf.inlay_hint(bufnr, true)
-					end,
-				})
-				vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-					callback = function()
-						vim.lsp.buf.inlay_hint(bufnr, false)
-					end,
-				})
+				vim.lsp.buf.inlay_hint(bufnr, true)
 
 				navic.attach(client, bufnr)
 				-- Enable completion triggered by <c-x><c-o>

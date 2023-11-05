@@ -23,6 +23,29 @@ return {
 		end,
 	},
 	{
+		"bennypowers/nvim-regexplainer",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"MunifTanjim/nui.nvim",
+		},
+		opts = {
+			filetypes = {
+				"html",
+				"js",
+				"cjs",
+				"mjs",
+				"ts",
+				"jsx",
+				"tsx",
+				"cjsx",
+				"mjsx",
+				"bash",
+				"yaml",
+				"json",
+			},
+		},
+	},
+	{
 		"NMAC427/guess-indent.nvim",
 		lazy = true,
 		event = "BufEnter",
