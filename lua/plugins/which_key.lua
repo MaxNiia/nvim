@@ -4,7 +4,7 @@ return {
 		keys = {
 			{ "H", "^", mode = { "n", "v", "o" }, desc = "End of line" },
 			{ "L", "$", mode = { "n", "v", "o" }, desc = "Start of line" },
-			{ "<c-d>", "<c-d>zz>", mode = "n" },
+			{ "<c-d>", "<c-d>zz", mode = "n" },
 			{ "<c-u>", "<c-u>zz", mode = "n" },
 			{ "n", "nzzzv", mode = "n" },
 			{ "N", "Nzzzv", mode = "n" },
