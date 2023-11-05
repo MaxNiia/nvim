@@ -42,13 +42,10 @@ return {
 				return {
 					-- Comment = { fg = c.rosewater }, For BQN.
 					-- LineNr = { fg = c.pink },
-					HarpoonInactive = { bg = c.surface2, fg = c.mauve, bold = true },
-					HarpoonLeftSeparator = { bg = c.mauve, fg = c.surface2 },
-					HarpoonActive = { bg = c.mauve, fg = c.crust, bold = true },
-					HarpoonRightSeparator = { bg = c.surface2, fg = c.mauve },
-					InclineNormal = { bg = c.mauve, fg = c.crust, bold = true },
-					InclineNormalNC = { bg = c.base, fg = c.mauve, bold = true },
-					LspInlayHint = { fg = c.surface2 },
+					HarpoonInactive = { bg = c.mantle, fg = c.blue, bold = true },
+					HarpoonLeftSeparator = { bg = c.blue, fg = c.mantle },
+					HarpoonActive = { bg = c.blue, fg = c.mantle, bold = true },
+					HarpoonRightSeparator = { bg = c.mantle, fg = c.blue },
 				}
 			end,
 		},
@@ -58,8 +55,6 @@ return {
 			local colors = require("catppuccin.palettes").get_palette()
 			colors.none = "NONE"
 
-			-- require("modicator")
-			require("incline")
 			require("lualine")
 			require("tabline")
 			require("telescope")

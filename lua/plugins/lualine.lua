@@ -133,39 +133,6 @@ return {
 				},
 				lualine_z = {
 					{
-						require("lazy.status").updates,
-						cond = require("lazy.status").has_updates,
-					},
-					{
-						vim.loop.cwd,
-						type = "vim_fun",
-					},
-					{
-						function()
-							local venv = require("swenv.api").get_current_venv()
-							if venv then
-								return string.format("🐍 %s", venv.name)
-							else
-								return ""
-							end
-						end,
-					},
-				},
-			},
-			extensions = {
-				"aerial",
-				"fzf",
-				"fugitive",
-				"lazy",
-				"neo-tree",
-				"quickfix",
-				"toggleterm",
-				"trouble",
-			},
-			inactive_sections = {},
-			tabline = {
-				lualine_a = {
-					{
 						function()
 							local original_tabs = require("harpoon").get_mark_config().marks
 							local tabs = shorten_filenames(original_tabs)
@@ -223,11 +190,45 @@ return {
 						separator = "",
 					},
 				},
+			},
+			extensions = {
+				"aerial",
+				"fzf",
+				"fugitive",
+				"lazy",
+				"neo-tree",
+				"quickfix",
+				"toggleterm",
+				"trouble",
+			},
+			inactive_sections = {},
+			tabline = {
+				lualine_a = {
+				},
 				lualine_b = {},
 				-- lualine_c = {}, Tabline
 				-- lualine_x = {}, Tabline
-				lualine_y = {},
+				lualine_y = {
+					{
+						require("lazy.status").updates,
+						cond = require("lazy.status").has_updates,
+					},
+					{
+						function()
+							local venv = require("swenv.api").get_current_venv()
+							if venv then
+								return string.format("🐍 %s", venv.name)
+							else
+								return ""
+							end
+						end,
+					},
+				},
 				lualine_z = {
+					{
+						vim.loop.cwd,
+						type = "vim_fun",
+					},
 					{
 						function()
 							return " " .. os.date("%R")
@@ -235,90 +236,90 @@ return {
 					},
 				},
 			},
-			-- winbar = {
-			-- 	lualine_a = {
-			-- 		{
-			-- 			"filetype",
-			-- 			colored = false,
-			-- 			icon_only = true,
-			-- 			icon = { align = "right" },
-			-- 			separator = "",
-			-- 		},
-			-- 		{
-			-- 			"filename",
-			-- 			file_status = true,
-			-- 			path = 1,
-			-- 			shortng_target = 40,
-			-- 			symbols = {
-			-- 				modified = "", -- Text to show when the file is modified.
-			-- 				readonly = "", -- Text to show when the file is non-modifiable or readonly.
-			-- 				unnamed = "[No Name]", -- Text to show for unnamed buffers.
-			-- 				newfile = "[New]", -- Text to show for newly created file before first write
-			-- 			},
-			-- 		},
-			-- 	},
-			-- 	lualine_b = {
-			-- 		{
-			-- 			"diagnostics",
-			-- 			symbols = {
-			-- 				error = "",
-			-- 				warn = "",
-			-- 				info = "",
-			-- 				hint = "",
-			-- 			},
-			-- 			separator = "|",
-			-- 		},
-			-- 		{
-			-- 			"diff",
-			-- 			symbols = {
-			-- 				added = "",
-			-- 				modified = "",
-			-- 				removed = "",
-			-- 			},
-			-- 		},
-			-- 	},
-			-- 	lualine_c = {
-			-- 		{
-			-- 			function()
-			-- 				return require("nvim-navic").get_location()
-			-- 			end,
-			-- 			cond = function()
-			-- 				return package.loaded["nvim-navic"]
-			-- 					and require("nvim-navic").is_available()
-			-- 			end,
-			-- 		},
-			-- 	},
-			-- 	lualine_x = {},
-			-- 	lualine_y = {},
-			-- 	lualine_z = {},
-			-- },
-			-- inactive_winbar = {
-			-- 	lualine_a = {
-			-- 		{
-			-- 			"filetype",
-			-- 			colored = false,
-			-- 			icon_only = true,
-			-- 			icon = { align = "right" },
-			-- 		},
-			-- 		{
-			-- 			"filename",
-			-- 			file_status = true,
-			-- 			path = 1,
-			-- 			shortng_target = 40,
-			-- 			symbols = {
-			-- 				modified = "", -- Text to show when the file is modified.
-			-- 				readonly = "", -- Text to show when the file is non-modifiable or readonly.
-			-- 				unnamed = "[No Name]", -- Text to show for unnamed buffers.
-			-- 				newfile = "[New]", -- Text to show for newly created file before first write
-			-- 			},
-			-- 		},
-			-- 	},
-			-- 	lualine_b = {},
-			-- 	lualine_c = {},
-			-- 	lualine_x = {},
-			-- 	lualine_y = {},
-			-- 	lualine_z = {},
-			-- },
+			winbar = {
+				lualine_a = {
+					{
+						"filetype",
+						colored = false,
+						icon_only = true,
+						icon = { align = "right" },
+						separator = "",
+					},
+					{
+						"filename",
+						file_status = true,
+						path = 1,
+						shortng_target = 40,
+						symbols = {
+							modified = "", -- Text to show when the file is modified.
+							readonly = "", -- Text to show when the file is non-modifiable or readonly.
+							unnamed = "[No Name]", -- Text to show for unnamed buffers.
+							newfile = "[New]", -- Text to show for newly created file before first write
+						},
+					},
+				},
+				lualine_b = {
+					{
+						"diagnostics",
+						symbols = {
+							error = "",
+							warn = "",
+							info = "",
+							hint = "",
+						},
+						separator = "|",
+					},
+					{
+						"diff",
+						symbols = {
+							added = "",
+							modified = "",
+							removed = "",
+						},
+					},
+				},
+				lualine_c = {
+					{
+						function()
+							return require("nvim-navic").get_location()
+						end,
+						cond = function()
+							return package.loaded["nvim-navic"]
+								and require("nvim-navic").is_available()
+						end,
+					},
+				},
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = {},
+			},
+			inactive_winbar = {
+				lualine_a = {
+					{
+						"filetype",
+						colored = false,
+						icon_only = true,
+						icon = { align = "right" },
+					},
+					{
+						"filename",
+						file_status = true,
+						path = 1,
+						shortng_target = 40,
+						symbols = {
+							modified = "", -- Text to show when the file is modified.
+							readonly = "", -- Text to show when the file is non-modifiable or readonly.
+							unnamed = "[No Name]", -- Text to show for unnamed buffers.
+							newfile = "[New]", -- Text to show for newly created file before first write
+						},
+					},
+				},
+				lualine_b = {},
+				lualine_c = {},
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = {},
+			},
 		},
 		config = function(_, opts)
 			require("lualine").setup(opts)
