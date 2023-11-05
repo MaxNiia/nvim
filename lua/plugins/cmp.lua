@@ -3,7 +3,10 @@ return {
 		"tzachar/fuzzy.nvim",
 		lazy = true,
 		dependencies = {
-			"nvim-telescope/telescope-fzf-native.nvim",
+			{
+				"MaxNiia/telescope-fzf-native.nvim",
+				build = "make",
+			},
 		},
 	},
 	{
