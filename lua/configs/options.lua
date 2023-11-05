@@ -161,4 +161,4 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 	end,
 })
 
-vim.api.nvim_set_hl(0, "LspInlayHint", { link = "Comment" })
+-- vim.api.nvim_set_hl(0, "LspInlayHint", { link = "Comment" })

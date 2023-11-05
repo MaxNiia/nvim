@@ -257,7 +257,7 @@ return {
 						},
 						d = {
 							vim.lsp.buf.definition,
-						"Go to definition",
+							"Go to definition",
 						},
 						i = {
 							vim.lsp.buf.implementation,
@@ -351,11 +351,11 @@ return {
 
 			-- temp fix for lspconfig rename
 			-- https://github.com/neovim/nvim-lspconfig/pull/2439
-			local mappings = require("mason-lspconfig.mappings.server")
-			if not mappings.lspconfig_to_package.lua_ls then
-				mappings.lspconfig_to_package.lua_ls = "lua-language-server"
-				mappings.package_to_lspconfig["lua-language-server"] = "lua_ls"
-			end
+			-- local mappings = require("mason-lspconfig.mappings.server")
+			-- if not mappings.lspconfig_to_package.lua_ls then
+			-- 	mappings.lspconfig_to_package.lua_ls = "lua-language-server"
+			-- 	mappings.package_to_lspconfig["lua-language-server"] = "lua_ls"
+			-- end
 
 			local mlsp = require("mason-lspconfig")
 			local available = mlsp.get_available_servers()
@@ -434,9 +434,9 @@ return {
 					end, { "i", "s" }),
 				}),
 				sources = {
-					{ name = "fuzzzy_buffer" },
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
+					{ name = "fuzzzy_buffer" },
 					{ name = "buffer" },
 				},
 			})
