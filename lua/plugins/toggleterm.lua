@@ -6,14 +6,16 @@ return {
 			init = function()
 				-- Optional settings go here!
 				vim.g.unception_delete_replaced_buffer = false
-				vim.g.unception_open_buffer_in_new_tab = false
-				vim.g.unception_enable_flavor_text = false
+				vim.g.unception_open_buffer_in_new_tab = true
+				vim.g.unception_enable_flavor_text = true
 
 				vim.api.nvim_create_autocmd("User", {
 					pattern = "UnceptionEditRequestReceived",
 					callback = function()
 						-- Toggle the terminal off.
-						require("toggleterm").toggle()
+						if vim.bo.filetype == "toggleterm" then
+							require("toggleterm").toggle_all(true)
+						end
 					end,
 				})
 			end,
@@ -33,7 +35,7 @@ return {
 			open_mapping = [[<f12>]],
 			hide_number = true,
 			autochdir = true,
-			shade_terminals = true,
+			shade_terminals = false,
 			start_in_insert = true,
 			terminal_mappings = true,
 			persist_size = true,
@@ -64,7 +66,7 @@ return {
 			wk.register({
 				t = {
 					name = "Terminal",
-				l = {
+					l = {
 						"<cmd>ToggleTermSendCurrentLine<CR>",
 						"Send line",
 					},

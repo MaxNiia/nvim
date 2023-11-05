@@ -308,6 +308,22 @@ return {
 
 			require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
 			require("mason-lspconfig").setup_handlers({ setup })
+
+			local util = require("lspconfig.util")
+			lspconfig.pylsp.setup({
+				root_dir = function(fname)
+					local root_files = {
+						"pyproject.toml",
+						"setup.py",
+						"setup.cfg",
+						"requirements.txt",
+						"Pipfile",
+					}
+					return util.root_pattern(unpack(root_files))(fname)
+						or util.find_git_ancestor(fname)
+						or vim.fn.expand("%:p:h")
+				end,
+			})
 		end,
 	},
 }
