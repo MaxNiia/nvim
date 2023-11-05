@@ -28,25 +28,6 @@ return {
                 vim.diagnostic.setloclist,
                 desc = "Set diagnostic list",
             },
-            {
-                "<leader>d",
-                function()
-                    vim.lsp.buf.format({
-                        async = true,
-                    })
-                end,
-                desc = "Format",
-            },
-            {
-                "<leader>a",
-                vim.lsp.buf.code_action,
-                desc = "Apply fix",
-            },
-            {
-                "<leader>rn",
-                vim.lsp.buf.rename,
-                desc = "Rename",
-            },
         },
         opts = {
             -- options for vim.diagnostic.config()
@@ -83,115 +64,12 @@ return {
 
             vim.diagnostic.config(opts.diagnostics)
 
-            -- Keybinds
-            local wk = require("which-key")
-            local navic = require("nvim-navic")
-            local on_attach = function(client, bufnr)
-                if client.server_capabilities.documentSymbolProvider then
-                    navic.attach(client, bufnr)
-                end
-
-                -- Enable completion triggered by <c-x><c-o>
-                vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-                if client.server_capabilities.inlayHintProvider then
-                    wk.register({
-                        t = {
-                            function()
-                                vim.lsp.buf.inlay_hint(bufnr, nil)
-                            end,
-                            "Toggle inlay hints",
-                        },
-                    }, { prefix = "<leader>w", buffer = bufnr })
-
-                    vim.lsp.buf.inlay_hint(bufnr, true)
-                end
-                -- Mappings
-                wk.register({
-                    g = {
-                        name = "Go to",
-                        D = {
-                            vim.lsp.buf.declaration,
-                            "Go to declaration",
-                        },
-                        d = {
-                            vim.lsp.buf.definition,
-                            "Go to definition",
-                        },
-                        i = {
-                            vim.lsp.buf.implementation,
-                            "Go to implementation",
-                        },
-                        r = {
-                            require("telescope.builtin").lsp_references,
-                            "Go to references",
-                        },
-                    },
-                    -- K = {
-                    -- 	vim.lsp.buf.hover,
-                    -- 	"Hover",
-                    -- },
-                    K = {
-                        function()
-                            local winid = require("ufo").peekFoldedLinesUnderCursor()
-                            if not winid then
-                                -- choose one of coc.nvim and nvim lsp
-                                require("pretty_hover").hover()
-                            end
-                        end,
-                        "Hover",
-                    },
-                    ["<c-q>"] = {
-                        function()
-                            require("pretty_hover").close()
-                        end,
-                        "Close Hover",
-                    },
-                    ["<C-k>"] = {
-                        vim.lsp.buf.signature_help,
-                        "Signature",
-                    },
-                    ["<leader>"] = {
-                        w = {
-                            name = "LSP",
-                            a = {
-                                vim.lsp.buf.add_workspace_folder,
-                                "Add workspace folder",
-                            },
-                            r = {
-                                vim.lsp.buf.remove_workspace_folder,
-                                "Remove workspace folder",
-                            },
-                            l = {
-                                function()
-                                    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                                end,
-                                "List workspace folder",
-                            },
-                        },
-                    },
-                }, { buffer = bufnr })
-
-                if client.name == "clangd" then
-                    wk.register({
-                        o = {
-                            "<cmd>ClangdSwitchSourceHeader<CR>",
-                            "Switch Header/Source",
-                        },
-                    }, {
-                        prefix = "<leader>",
-                        buffer = bufnr,
-                    })
-                end
-                -- Normal Mode
-            end
-
             local servers = opts.servers
             local capabilities = require("cmp_nvim_lsp").default_capabilities(
                 vim.lsp.protocol.make_client_capabilities()
             )
 
-            -- Specify otherwise clangd seems to use utf-8
+            -- Specify otherwise clangd seems to use utf-8.
             capabilities.offsetEncoding = { "utf-16" }
             capabilities.textDocument.foldingRange = {
                 dynamicRegistration = false,
@@ -201,7 +79,6 @@ return {
             local function setup(server)
                 local server_opts = vim.tbl_deep_extend("force", {
                     capabilities = vim.deepcopy(capabilities),
-                    on_attach = on_attach,
                 }, servers[server] or {})
 
                 if opts.setup[server] then
@@ -234,6 +111,37 @@ return {
 
             require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
             require("mason-lspconfig").setup_handlers({ setup })
+
+            -- LspAttach
+            vim.api.nvim_create_autocmd("LspAttach", {
+                group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+                callback = function(args)
+                    local bufnr = args.buf
+                    local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+                    local navic = require("nvim-navic")
+
+                    if client.server_capabilities.documentSymbolProvider then
+                        navic.attach(client, bufnr)
+                    end
+
+                    -- Enable completion triggered by <c-x><c-o>
+                    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+                    -- Mappings
+                    require("plugins.lsp.keymaps").default(bufnr)
+                    if client.server_capabilities.inlayHintProvider then
+                        local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
+                        require("plugins.lsp.keymaps").inlay_hints(bufnr)
+                        inlay_hint(bufnr, true)
+                    end
+
+                    if client.name == "clangd" then
+                        require("plugins.lsp.keymaps").clangd(bufnr)
+                    end
+                    -- Normal Mode
+                end,
+            })
 
             local function mason_post_install(pkg)
                 if pkg.name ~= "python-lsp-server" then
