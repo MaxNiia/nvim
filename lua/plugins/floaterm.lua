@@ -1,4 +1,5 @@
 return {
+	--[[
 	{
 		"voldikss/vim-floaterm",
 		dependencies = {
@@ -61,4 +62,5 @@ return {
 			set.floaterm_height = 40
 		end,
 	},
+	]]
 }
