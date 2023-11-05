@@ -1,3 +1,4 @@
+-- Provides the context of the scope.
 return {
     {
         "haringsrob/nvim_context_vt",

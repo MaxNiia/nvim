@@ -81,14 +81,6 @@ return {
         end,
     },
     {
-        "nvim-neorg/neorg",
-        ft = "norg",
-    },
-    {
-        "dstein64/vim-startuptime",
-        cmd = "StartupTime",
-    },
-    {
         "nvim-lua/plenary.nvim",
         lazy = true,
     },
@@ -108,7 +100,7 @@ return {
             },
         },
         opts = {
-            timeout = 2500,
+            timeout = 2000,
             max_height = function()
                 return math.floor(vim.o.lines * 0.25)
             end,

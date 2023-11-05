@@ -2,7 +2,7 @@ return {
     {
         "epwalsh/obsidian.nvim",
         lazy = true,
-        event = { "BufReadPre " .. vim.fn.expand("~") .. "obsidian/**.md" },
+        event = { "BufReadPre " .. vim.fn.expand("~") .. "/obsidian/**.md" },
         dependencies = {
             "nvim-lua/plenary.nvim",
             "hrsh7th/nvim-cmp",
