@@ -7,6 +7,10 @@ return {
 				build = "make",
 			},
 			{
+				"nvim-telescope/telescope-file-browser.nvim",
+				dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+			},
+			{
 				"olimorris/persisted.nvim",
 				opts = {
 					use_git_branch = true,
@@ -21,13 +25,16 @@ return {
 					require("persisted").setup(opts)
 				end,
 			},
-			"nvim-telescope/telescope-file-browser.nvim",
 			"nvim-telescope/telescope-dap.nvim",
 			"mfussenegger/nvim-dap",
 		},
 		lazy = true,
 		opts = {
 			extensions = {
+				file_browser = {
+					hijack_netrw = true,
+					display_stat = false,
+				},
 				aerial = {
 					show_nesting = {
 						["_"] = false,
@@ -79,6 +86,11 @@ return {
 			},
 		},
 		config = function(_, opts)
+			require("telescope").setup(opts)
+
+			require("telescope.actions")
+			require("trouble.providers.telescope")
+
 			require("telescope").load_extension("aerial")
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("file_browser")
@@ -88,13 +100,12 @@ return {
 			require("telescope").load_extension("noice")
 			require("telescope").load_extension("dap")
 
-			require("telescope.actions")
-			require("trouble.providers.telescope")
-
-			require("telescope").setup(opts)
-
 			local wk = require("which-key")
 			wk.register({
+				e = {
+					"<cmd>Telescope file_browser<CR>",
+					"Browser",
+				},
 				f = {
 					name = "+Find",
 					t = {
@@ -180,20 +191,20 @@ return {
 						"<cmd>Telescope aerial<CR>",
 						"Aerial",
 					},
-				},
-				s = {
-					name = "Sessions",
-					s = {
-						"<cmd>SessionLoad<cr>",
-						"Restore directory session",
-					},
-					l = {
-						"<cmd>SessionLoadLast<cr>",
-						"Restore last session",
-					},
-					d = {
-						"<cmd>SessionStop<cr>",
-						"Don't save",
+					w = {
+						name = "Sessions",
+						s = {
+							"<cmd>SessionLoad<cr>",
+							"Restore directory session",
+						},
+						l = {
+							"<cmd>SessionLoadLast<cr>",
+							"Restore last session",
+						},
+						d = {
+							"<cmd>SessionStop<cr>",
+							"Don't save",
+						},
 					},
 				},
 			}, {

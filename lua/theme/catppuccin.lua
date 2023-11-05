@@ -20,7 +20,7 @@ require("catppuccin").setup({
 		mason = true,
 		markdown = true,
 		mini = true,
-		neotree = true,
+		--neotree = true,
 		telescope = true,
 		treesitter = true,
 		treesitter_context = true,
@@ -49,15 +49,16 @@ colors.none = "NONE"
 
 vim.cmd("colorscheme catppuccin")
 
-require("window-picker").setup({
-	-- the foreground (text) color of the picker
-	fg_color = mocha.pink,
-	-- if you have include_current_win == true, then current_win_hl_color will
-	-- be highlighted using this background color
-	current_win_hl_color = mocha.base,
-	-- all the windows except the current window will be highlighted using this
-	-- color
-	other_win_hl_color = mocha.crust,
-})
+
+-- require("window-picker").setup({
+-- 	-- the foreground (text) color of the picker
+-- 	fg_color = mocha.pink,
+-- 	-- if you have include_current_win == true, then current_win_hl_color will
+-- 	-- be highlighted using this background color
+-- 	current_win_hl_color = mocha.base,
+-- 	-- all the windows except the current window will be highlighted using this
+-- 	-- color
+-- 	other_win_hl_color = mocha.crust,
+-- })
 
 require("lualine")
