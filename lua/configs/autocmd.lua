@@ -96,5 +96,3 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
         vim.cmd("tabdo wincmd =")
     end,
 })
-
--- vim.api.nvim_set_hl(0, "LspInlayHint", { link = "Comment" })
