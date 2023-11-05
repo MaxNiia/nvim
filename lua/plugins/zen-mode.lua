@@ -2,7 +2,7 @@ return {
 	{
 		"folke/zen-mode.nvim",
 		keys = {
-			{ "<leader>Z", "<cmd>ZenMode<cr>", desc = "ZenMode" },
+			{ "<leader>z", "<cmd>ZenMode<cr>", desc = "ZenMode" },
 		},
 		event = "BufEnter",
 		opts = {

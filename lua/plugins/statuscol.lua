@@ -12,7 +12,7 @@ return {
 
 			require("statuscol").setup({
 				relculright = true,
-				thousands = false,
+				thousands = ".",
 				ft_ignore = {
 					"qf",
 				},
@@ -20,6 +20,7 @@ return {
 					"terminal",
 					"qf",
 				},
+
 				segments = {
 					{
 						text = {

@@ -28,18 +28,6 @@ return {
 				mode = "n",
 				desc = "Clear highlighting",
 			},
-			-- misc
-			{
-				"<leader>z",
-				function()
-					if vim.o.relativenumber then
-						vim.o.relativenumber = 0
-					else
-						vim.o.relativenumber = 1
-					end
-				end,
-				desc = "Toggle relative line numbers",
-			},
 		},
 		lazy = true,
 		opts = {

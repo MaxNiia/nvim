@@ -50,6 +50,26 @@ return {
 			{ desc = "relativenumber" },
 		},
 		{
+			"gs",
+			"<cmd>GitSigns toggle_signs",
+			{ desc = "Toggle signs" },
+		},
+		{
+			"gs",
+			"<cmd>GitSigns toggle_numhl",
+			{ desc = "Toggle Num HL" },
+		},
+		{
+			"gs",
+			"<cmd>GitSigns toggle_linehl",
+			{ desc = "Toggle Line HL" },
+		},
+		{
+			"gs",
+			"<cmd>GitSigns toggle_word_diff",
+			{ desc = "Toggle Word Diff" },
+		},
+		{
 			"v",
 			function()
 				if vim.o.virtualedit == "all" then
