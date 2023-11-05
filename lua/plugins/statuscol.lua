@@ -11,13 +11,16 @@ return {
 			local builtin = require("statuscol.builtin")
 
 			require("statuscol").setup({
+
 				relculright = true,
 				thousands = false,
 				ft_ignore = {
 					"neo-tree",
+					"qf",
 				},
 				bt_ignore = {
 					"terminal",
+					"qf",
 				},
 				segments = {
 					{

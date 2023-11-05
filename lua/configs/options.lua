@@ -74,6 +74,11 @@ vim.cmd([[
     autocmd FileType neo-tree setlocal scl=no
 ]])
 
+vim.cmd([[
+    autocmd FileType qf setlocal nonu
+    autocmd FileType qf setlocal nornu
+]])
+
 vim.api.nvim_create_autocmd("BufWinEnter", {
     pattern = {"\\[dap-repl]\\", "DAP *"},
     callback = function(_)
