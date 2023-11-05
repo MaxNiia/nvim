@@ -43,7 +43,7 @@ return {
 			},
 		},
 		opts = {
-			tabline = true,
+			tabline = false,
 			tabline_prefix = "| ",
 			tabline_suffix = " ",
 		},

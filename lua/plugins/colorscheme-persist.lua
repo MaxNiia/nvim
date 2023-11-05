@@ -60,6 +60,9 @@ return {
 
 			-- Set colorscheme
 			vim.cmd.colorscheme(colorscheme)
+
+			require("catppuccin")
+			require("nightfox")
 		end,
 	},
 }

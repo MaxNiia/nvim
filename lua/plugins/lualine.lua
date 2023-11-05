@@ -1,3 +1,29 @@
+local function get_color(group, attr)
+	return vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID(group)), attr)
+end
+
+local function shorten_filenames(filenames)
+	local shortened = {}
+
+	local counts = {}
+	for _, file in ipairs(filenames) do
+		local name = vim.fn.fnamemodify(file.filename, ":t")
+		counts[name] = (counts[name] or 0) + 1
+	end
+
+	for _, file in ipairs(filenames) do
+		local name = vim.fn.fnamemodify(file.filename, ":t")
+
+		if counts[name] == 1 then
+			table.insert(shortened, { filename = vim.fn.fnamemodify(name, ":t") })
+		else
+			table.insert(shortened, { filename = file.filename })
+		end
+	end
+
+	return shortened
+end
+
 return {
 	{
 		"nvim-lualine/lualine.nvim",
@@ -31,6 +57,9 @@ return {
 						"neo-tree",
 						"dashboard",
 						"lazy",
+						"toggleterm",
+						"terminal",
+						"aerial",
 					},
 				},
 				ignore_focus = {},
@@ -123,6 +152,7 @@ return {
 			extensions = {
 				"aerial",
 				"fzf",
+				"fugitive",
 				"lazy",
 				"neo-tree",
 				"quickfix",
@@ -130,18 +160,81 @@ return {
 				"trouble",
 			},
 			inactive_sections = {},
-			tabline = {},
-			winbar = {
-				lualine_a = {},
+			tabline = {
+				lualine_a = { "buffers" },
 				lualine_b = {
 					{
-						"filetype",
-						colored = true,
-						icon_only = true,
-						icon = { align = "right" },
+						function()
+							local original_tabs = require("harpoon").get_mark_config().marks
+							local tabs = shorten_filenames(original_tabs)
+							local tabline = ""
+							local current_tab_index = -10
+
+							for i, tab in ipairs(original_tabs) do
+								if
+									string.match(vim.fn.bufname(), tab.filename)
+									or vim.fn.bufname() == tab.filename
+								then
+									current_tab_index = i
+								end
+							end
+
+							for i, tab in ipairs(original_tabs) do
+								local is_current = current_tab_index == i
+								local label = tabs[i].filename
+								local separator = "%*"
+								if current_tab_index == i + 1 then
+									separator = separator .. "%#HarpoonInactive#" .. " " .. "%*"
+									separator = separator
+										.. "%#HarpoonLeftSeparator#"
+										.. ""
+										.. "%*"
+								elseif current_tab_index == i then
+									separator = separator .. "%#HarpoonActive#" .. " " .. "%*"
+									separator = separator
+										.. "%#HarpoonRightSeparator#"
+										.. ""
+										.. "%*"
+								else
+									separator = separator .. "%#HarpoonInactive#" .. " " .. "%*"
+								end
+
+								if is_current then
+									if current_tab_index == 1 then
+										tabline = tabline .. "%#HarpoonInactive#" .. "" .. "%*"
+									end
+									tabline = tabline .. "%*" .. "%#HarpoonActive#"
+								else
+									tabline = tabline .. "%*" .. "%#HarpoonInactive#"
+								end
+
+								tabline = tabline .. " " .. label
+								if i < #tabs then
+									tabline = tabline .. "%*" .. separator .. "%T"
+								else
+									tabline = tabline .. " " .. "%*"
+								end
+							end
+							return tabline
+						end,
+						padding = 0,
+						separator = "",
 					},
 				},
-				lualine_c = {
+				lualine_c = {},
+				lualine_x = {},
+				lualine_y = {},
+				lualine_z = { "tabs" },
+			},
+			winbar = {
+				lualine_a = {
+					{
+						"filetype",
+						colored = false,
+						icon_only = true,
+						icon = { align = "right" },
+						separator = "",
+					},
 					{
 						"filename",
 						file_status = true,
@@ -155,7 +248,7 @@ return {
 						},
 					},
 				},
-				lualine_x = {
+				lualine_b = {
 					{
 						"diagnostics",
 						symbols = {
@@ -165,8 +258,6 @@ return {
 							hint = "",
 						},
 					},
-				},
-				lualine_y = {
 					{
 						"diff",
 						symbols = {
@@ -176,6 +267,9 @@ return {
 						},
 					},
 				},
+				lualine_c = {},
+				lualine_x = {},
+				lualine_y = {},
 				lualine_z = {},
 			},
 			inactive_winbar = {

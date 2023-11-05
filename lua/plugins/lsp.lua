@@ -37,7 +37,6 @@ return {
 			"lvimuser/lsp-inlayhints.nvim",
 		},
 		keys = {
-
 			{
 				"<leader>k",
 				vim.diagnostic.open_float,
