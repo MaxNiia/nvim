@@ -55,7 +55,6 @@ return {
 
             local function lint_fnc()
                 lint.try_lint()
-                lint.try_lint({ "editorconfig-checker" })
             end
 
             vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
@@ -136,7 +135,6 @@ return {
                 "buildifier",
                 "buf",
                 "eslint_d",
-                "editorconfig-checker",
                 "flake8",
                 "hadolint",
                 "jsonlint",
