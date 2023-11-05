@@ -54,13 +54,13 @@ return {
 			end
 
 			wk.register({
-				m = {
+				c = {
 					"+ChatGPT",
-					a = {
+					c = {
 						createCommand("append_completion"),
 						"Completion",
 					},
-					s = {
+					a = {
 						createCommand("suggest_alteration"),
 						"Alteration",
 					},
@@ -72,7 +72,7 @@ return {
 			}, { prefix = "<leader>", mode = "v" })
 
 			wk.register({
-				m = {
+				c = {
 					"+ChatGPT",
 					c = {
 						createCommand("suggest_chat"),
