@@ -47,9 +47,9 @@ return {
 				extended_mode = true,
 				max_file_lines = 10000,
 			},
-			-- indent = {
-			-- 	enable = true,
-			-- },
+			indent = {
+				enable = true,
+			},
 			ensured_install = {
 				"bash",
 				"c",
