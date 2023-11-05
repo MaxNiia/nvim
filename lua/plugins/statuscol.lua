@@ -18,15 +18,15 @@ return {
 				thousands = ",",
 				ft_ignore = {
 					"qf",
-					"neotree",
-					"oil",
+					-- "neotree",
+					-- "oil",
 					"trouble",
 				},
 				bt_ignore = {
 					"terminal",
 					"qf",
-					"neotree",
-					"oil",
+					-- "neotree",
+					-- "oil",
 					"trouble",
 				},
 

@@ -38,6 +38,12 @@ return {
 		},
 		lazy = true,
 		event = "BufEnter",
+		init = function()
+			vim.api.nvim_set_hl(0, "HarpoonActive", { link = "lualine_a_normal" })
+			vim.api.nvim_set_hl(0, "HarpoonInactive", { link = "lualine_a_inactive" })
+			vim.api.nvim_set_hl(0, "HarpoonRightSeparator", { link = "lualine_a_normal" })
+			vim.api.nvim_set_hl(0, "HarpoonLeftSeparator", { link = "lualine_a_inactive" })
+		end,
 		opts = {
 			options = {
 				icons_enabled = true,
@@ -313,13 +319,5 @@ return {
 				lualine_z = {},
 			},
 		},
-		config = function(_, opts)
-			require("lualine").setup(opts)
-
-			vim.api.nvim_set_hl(0, "HarpoonActive", { link = "lualine_a_normal" })
-			vim.api.nvim_set_hl(0, "HarpoonInactive", { link = "lualine_a_inactive" })
-			vim.api.nvim_set_hl(0, "HarpoonRightSeparator", { link = "lualine_a_normal" })
-			vim.api.nvim_set_hl(0, "HarpoonLeftSeparator", { link = "lualine_a_inactive" })
-		end,
 	},
 }

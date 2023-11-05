@@ -59,12 +59,13 @@ return {
 				["<leader>"] = {
 					name = "Switch Window",
 				},
+				E = { name = "Files" },
 				T = { name = "Tabs" },
 				W = { name = "Sessions" },
 				r = { name = "Refactor" },
 				b = { name = "Debug" },
-				h = { name = "Hunk" },
-				H = { name = "Harpoon" },
+				g = { name = "Git" },
+				h = { name = "Harpoon" },
 			}, { prefix = "<leader>", mode = "n" })
 
 			wk.register({

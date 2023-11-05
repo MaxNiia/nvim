@@ -50,22 +50,6 @@ return {
 					null_ls.register(null_ls.builtins.diagnostics.eslint_d)
 					null_ls.register(null_ls.builtins.formatting.eslint_d)
 				end,
-				gitrebase = function(_, _)
-					null_ls.register(null_ls.builtins.code_actions.gitrebase)
-				end,
-				gitsigns = function(_, _)
-					null_ls.register(null_ls.builtins.code_actions.gitsigns.with({
-						-- filter out blame actions
-						config = {
-							filter_actions = function(title)
-								return title:lower():match("blame") == nil
-							end,
-						},
-					}))
-				end,
-				gitlint = function(_, _)
-					null_ls.register(null_ls.builtins.diagnostics.gitlint)
-				end,
 				luasnip = function(_, _)
 					null_ls.register(null_ls.builtins.completion.luasnip)
 				end,
@@ -112,7 +96,21 @@ return {
 
 			require("mason-null-ls").setup(opts)
 
-			null_ls.setup()
+			null_ls.setup({
+				sources = {
+					null_ls.builtins.code_actions.gitsigns.with({
+
+						config = {
+							filter_actions = function(title)
+								return title:lower():match("blame") == nil
+							end,
+						},
+					}),
+
+					null_ls.builtins.code_actions.gitrebase,
+					null_ls.builtins.diagnostics.gitlint,
+				},
+			})
 		end,
 	},
 }

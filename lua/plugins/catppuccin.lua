@@ -22,7 +22,7 @@ return {
 				mason = true,
 				markdown = true,
 				mini = true,
-				neotree = true,
+				-- neotree = true,
 				telescope = true,
 				treesitter = true,
 				treesitter_context = true,

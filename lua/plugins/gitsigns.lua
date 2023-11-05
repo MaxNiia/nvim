@@ -71,9 +71,9 @@ return {
 						function()
 							gs.diffthis("~")
 						end,
-						"DIff Home?",
+						"Diff Home",
 					},
-				}, { mode = "n", prefix = "<leader>h", buffer = bufnr })
+				}, { mode = "n", prefix = "<leader>g", buffer = bufnr })
 
 				wk.register({
 					s = {
@@ -88,7 +88,7 @@ return {
 						end,
 						"Reset Hunk",
 					},
-				}, { mode = "v", prefix = "<leader>h", buffer = bufnr })
+				}, { mode = "v", prefix = "<leader>g", buffer = bufnr })
 
 				-- Text object
 				wk.register({
