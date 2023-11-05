@@ -85,7 +85,7 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
-    autocmd FileType lua setlocal textwidth=120
+    autocmd FileType lua setlocal textwidth=100
     autocmd FileType lua setlocal colorcolumn=+1
 ]])
 
