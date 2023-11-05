@@ -228,12 +228,35 @@ return {
 			local wk = require("which-key")
 			local navic = require("nvim-navic")
 			local on_attach = function(client, bufnr)
-				vim.lsp.buf.inlay_hint(bufnr, true)
+				local function client_named(server, names)
+					local name_found = false
+					for _, name in ipairs(names) do
+						name_found = name_found or server.name == name
+					end
+					return name_found
+				end
+
+				local useInlayHints = client_named(
+					client,
+					{ "clangd", "lua_ls", "tsserver", "pylsp", "rust_analyzer" }
+				)
 
 				navic.attach(client, bufnr)
 				-- Enable completion triggered by <c-x><c-o>
 				vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
+				if useInlayHints then
+					wk.register({
+						t = {
+							function()
+								vim.lsp.buf.inlay_hint(0, nil)
+							end,
+							"Toggle inlay hints",
+						},
+					}, { prefix = "<leader>w", buffer = bufnr })
+
+					vim.lsp.buf.inlay_hint(0, true)
+				end
 				-- Mappings
 				wk.register({
 					g = {
@@ -259,13 +282,13 @@ return {
 						vim.lsp.buf.hover,
 						"Hover",
 					},
-					-- ["<C-k>"] = {
-					-- 	vim.lsp.buf.signature_help,
-					-- 	"Signature",
-					-- },
+					["<C-k>"] = {
+						vim.lsp.buf.signature_help,
+						"Signature",
+					},
 					["<leader>"] = {
 						w = {
-							name = "Workspace",
+							name = "LSP",
 							a = {
 								vim.lsp.buf.add_workspace_folder,
 								"Add workspace folder",
@@ -283,6 +306,7 @@ return {
 						},
 					},
 				}, { buffer = bufnr })
+
 				if client.name == "clangd" then
 					wk.register({
 						o = {
