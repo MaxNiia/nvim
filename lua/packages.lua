@@ -5,6 +5,8 @@ paq(packageList)
 
 require("nvim-web-devicons").setup()
 require("packages.gitsigns")
+require("packages.mason")
+require("packages.null")
 require("packages.lspconfig")
 require("packages.trouble")
 require("packages.telescope")
