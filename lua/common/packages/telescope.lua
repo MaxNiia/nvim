@@ -16,7 +16,7 @@ require("telescope").setup({
 			fuzzy = true,
 			override_gneric_sorter = true,
 			override_file_sorter = true,
-			case_mode = "cmart_case",
+			case_mode = "smart_case",
 		},
 	},
 })

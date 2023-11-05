@@ -2,8 +2,10 @@
 
 Repository for keeping different versions of nvim configurations.
 
-- Epiroc
-- User
+- `common`: Always used.
+- Profiles: Switch on.
+- - User
+- - Epiroc
 
 ## Usage
 

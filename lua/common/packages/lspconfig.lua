@@ -93,6 +93,19 @@ local on_attach = function(client, bufnr)
 		},
 	},{ buffer = bufnr,
 	})
+
+	if client == clangd then
+		wk.register({
+			r = {
+				"<cmd>ClangdSwitchSourceHeader<CR>",
+				"Switch Header/Source"
+			},
+		}, { 
+			prefix = "<leader>",
+			buffer = bufnr,
+		})
+
+	end
 	-- Normal Mode
 end
 
@@ -108,10 +121,13 @@ require("lspconfig")["pyright"].setup{
 require("lspconfig")["clangd"].setup{
 	on_attach = on_attach,
 	flags = lsp_flags,
-	cmde = {
+	cmd = {
 		"clangd",
-		"--background-index",
-		"--suggest-missing-includes",
+		"--background-index=false",
+		"--clang-tidy=false",
+		"--completion-style=detailed",
+		"--all-scopes-completion=true",
+--		"--log=verbose",
 	},
 }
 

@@ -5,6 +5,11 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.opt.termguicolors = true
 
-require("user.keybindings")
-require("user.packages")
-require("user.options")
+
+require("common.init")
+
+if vim.env.NVIM_EPIROC then
+	require("epiroc.init")
+else
+	require("user.init")
+end

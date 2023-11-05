@@ -9,18 +9,17 @@ require("bufferline").setup({
 		diagnostics_indicator = function(
 			count, 
 			level, 
-			diagnostic_dict, 
+			diagnostics_dict, 
 			context
 		)
-			if context_buffer:current() then
+			if context.buffer:current() then
 				return ''
 			end
 
 			local s = " "
 			for e, n in pairs(diagnostics_dict) do
 				local sym = e == "error" and " " 
-					or (e == "warning" and  " ")
-					or ""
+					or (e == "warning" and  " " or "")
 				s = s .. n .. sym
 			end
 			return s
@@ -56,7 +55,7 @@ wk.register({
 		"Open a buffer",
 	},
 	c = {
-		"<cmd>BufferLinePickclose<CR>",
+		"<cmd>BufferLinePickClose<CR>",
 		"Close a buffer",
 	},
 }, {
