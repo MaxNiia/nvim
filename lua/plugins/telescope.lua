@@ -47,7 +47,7 @@ return {
 				color_devicons = true,
 				winblend = 0,
 				wrap_results = false,
-				path_display = { "truncate" },
+				path_display = { truncate = 20 },
 				selection_caret = "  ",
 				entry_prefix = "  ",
 				initial_mode = "insert",
