@@ -49,9 +49,10 @@ return function(bufnr)
         ["<leader>"] = {
             d = {
                 function()
-                    vim.lsp.buf.format({
-                        async = true,
-                    })
+                    require("conform").format({ async = true, lsp_fallback = true })
+                    -- vim.lsp.buf.format({
+                    --     async = true,
+                    -- })
                 end,
                 "Format",
             },

@@ -19,17 +19,6 @@ return {
             "kevinhwang91/nvim-ufo",
             "hrsh7th/cmp-nvim-lsp",
             "AckslD/swenv.nvim",
-            {
-                "lukas-reineke/lsp-format.nvim",
-                keys = {
-                    "<leader>wf",
-                    "<cmd>FormatToggle<cr>",
-                    desc = "Toggle format on save",
-                    mode = "n",
-                },
-                opts = {},
-                config = true,
-            },
         },
         keys = {
             {
@@ -146,10 +135,6 @@ return {
 
                     if client.server_capabilities.documentSymbolProvider then
                         require("nvim-navic").attach(client, bufnr)
-                    end
-
-                    if client.server_capabilities.documentFormattingProvider then
-                        require("lsp-format").on_attach(client, bufnr)
                     end
 
                     -- Enable completion triggered by <c-x><c-o>

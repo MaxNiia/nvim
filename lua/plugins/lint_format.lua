@@ -1,13 +1,13 @@
 return {
     {
-        'mfussenegger/nvim-lint',
+        "mfussenegger/nvim-lint",
         dependencies = { "williamboman/mason.nvim" },
         event = "BufReadPre",
         config = function()
             local lint = require("lint")
             lint.linters_by_ft = {
                 -- NOTE: YAML
-                yaml = { "yamllint", },
+                yaml = { "yamllint" },
 
                 -- NOTE: JS/TS
                 css = { "stylelint" },
@@ -17,7 +17,7 @@ return {
                 typescriptreact = { "stylelint", "eslint_d" },
 
                 -- NOTE: shellcheck
-                bash = { "shellcheck", },
+                bash = { "shellcheck" },
                 zsh = { "shellcheck" },
                 sh = { "shellcheck" },
 
@@ -28,9 +28,10 @@ return {
                     "pylint",
                 },
                 markdown = { "markdownlint" },
-                lua = {
-                    "luacheck",
-                },
+                -- NOTE: Seems wack. It doesn't find the current file.
+                -- lua = {
+                --     "luacheck",
+                -- },
                 json = {
                     "jsonlint",
                 },
@@ -38,10 +39,9 @@ return {
                     "cmakelint",
                 },
                 protobuf = { "buf_lint" },
-                bazel = { "buildifier", },
+                bazel = { "buildifier" },
 
-                dockerfile = { "hadolint", },
-
+                dockerfile = { "hadolint" },
             }
             local function debounce(ms, fn)
                 local timer = vim.loop.new_timer()
@@ -64,6 +64,60 @@ return {
                 callback = debounce(100, lint_fnc),
             })
         end,
+    },
+    {
+        "stevearc/conform.nvim",
+        init = function()
+            vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+            vim.api.nvim_create_user_command("FormatDisable", function(args)
+                if args.bang then
+                    -- FormatDisable! will disable formatting just for this buffer
+                    vim.b.disable_autoformat = true
+                else
+                    vim.g.disable_autoformat = true
+                end
+            end, {
+                desc = "Disable autoformat-on-save",
+                bang = true,
+            })
+            vim.api.nvim_create_user_command("FormatEnable", function()
+                vim.b.disable_autoformat = false
+                vim.g.disable_autoformat = false
+            end, {
+                desc = "Re-enable autoformat-on-save",
+            })
+        end,
+        opts = {
+            format_on_save = nil,
+            format_after_save = function(bufnr)
+                -- Disable with a global or buffer-local variable
+                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                    return
+                end
+                return { timeout_ms = 500, lsp_fallback = true, async = true }
+            end,
+            formatters_by_ft = {
+                lua = { "stylua" },
+                bash = { "beautysh", "shfmt" },
+                python = { "isort", "black", "autoflake", "autopep8" },
+                css = { "stylelint" },
+                javascript = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
+                javascriptreact = {
+                    "stylelint",
+                    { "prettierd", "prettier" },
+                    { "eslint_d", "eslint" },
+                },
+                typescript = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
+                typescriptreact = {
+                    "stylelint",
+                    { "prettierd", "prettier" },
+                    { "eslint_d", "eslint" },
+                },
+                json = { "fixjson" },
+                yaml = { "yamlfmt" },
+                markdown = { "markdownlint" },
+            },
+        },
     },
     {
         "williamboman/mason.nvim",
@@ -94,6 +148,19 @@ return {
                 "pylint",
                 "shellcheck",
                 "yamllint",
+
+                -- NOTE: FORMAT
+                "yamlfmt",
+                "fixjson",
+                "stylua",
+                "beautysh",
+                "isort",
+                "black",
+                "autoflake",
+                "autopep8",
+                "prettierd",
+                "prettier",
+                "shfmt",
             },
             pip = {
                 upgrade_pip = true,
