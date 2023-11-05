@@ -26,7 +26,7 @@ return {
 			},
 			{
 				"nvim-telescope/telescope-file-browser.nvim",
-				dependencies = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+				dependencies = { "nvim-lua/plenary.nvim" },
 			},
 			{
 				"olimorris/persisted.nvim",
@@ -157,7 +157,7 @@ return {
 				prompt_title = "",
 				results_title = "",
 				preview_title = "",
-				layout_strategy = "flex",
+				layout_strategy = "vertical",
 				buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
 				mappings = {
 					n = { ["q"] = require("telescope.actions").close },
@@ -180,7 +180,6 @@ return {
 					horizontal = {
 						preview_cutoff = 120,
 						preview_width = 0.55,
-						results_width = 0.8,
 						height = 24,
 						-- width = 240,
 					},

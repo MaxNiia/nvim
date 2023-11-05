@@ -427,7 +427,7 @@ wk.register({
 				},
 			},
 			e = {
-				"<cmd>Telescope file_browser<CR>",
+				"<cmd>Telescope file_browser<cr>",
 				"Browser",
 			},
 			s = {
