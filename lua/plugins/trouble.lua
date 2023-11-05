@@ -8,6 +8,5 @@ return {
 			icons = true,
 			use_diagnostic_signs = true,
 		},
-		config = true,
 	},
 }

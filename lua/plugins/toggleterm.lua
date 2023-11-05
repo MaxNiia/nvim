@@ -50,7 +50,6 @@ return {
 				height = 40,
 				winblend = 3,
 			},
-			config = true,
 			winbar = {
 				enabled = false,
 				name_formatter = function(term) --  term: Terminal

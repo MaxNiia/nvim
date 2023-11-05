@@ -59,6 +59,5 @@ return {
 			use_treesitter = true,
 			filetype_exclude = require("utils.exlude_files"),
 		},
-		config = true,
 	},
 }

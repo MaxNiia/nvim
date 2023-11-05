@@ -7,6 +7,5 @@ return {
 				registers = true,
 			}
 		},
-		config = true,
 	},
 }

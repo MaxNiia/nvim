@@ -12,6 +12,5 @@ return {
 				"nameless",
 			},
 		},
-		config = true,
 	},
 }

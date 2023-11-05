@@ -4,7 +4,6 @@ return {
 		dependencies = {
 			{
 				"nvim-treesitter/nvim-treesitter-context",
-				config = true,
 			},
 			{
 				"nvim-treesitter/nvim-treesitter-textobjects",

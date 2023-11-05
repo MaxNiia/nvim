@@ -44,7 +44,6 @@ return {
 			region_check_events = "InsertEnter",
 			delete_check_events = "TextChanged,InsertLeave",
 		},
-		config = true,
 	},
 	{
 		"hrsh7th/nvim-cmp",

@@ -30,7 +30,6 @@ return {
 			auto_cmd = true,
 			override_editorconfig = false,
 		},
-		config = true,
 	},
 	{
 		"windwp/nvim-spectre",
@@ -61,12 +60,10 @@ return {
 	{
 		"nvim-neorg/neorg",
 		ft = "norg",
-		config = true,
 	},
 	{
 		"dstein64/vim-startuptime",
 		cmd = "StartupTime",
-		config = true,
 	},
 	{
 		"nvim-lua/plenary.nvim",
@@ -75,7 +72,6 @@ return {
 	{
 		"nvim-tree/nvim-web-devicons",
 		lazy = true,
-		config = true,
 	},
 	{
 		"rcarriga/nvim-notify",
@@ -106,7 +102,6 @@ return {
 		"folke/todo-comments.nvim",
 		lazy = true,
 		event = "BufEnter",
-		config = true,
 	},
 	{
 		"DanilaMihailov/beacon.nvim",
@@ -117,6 +112,5 @@ return {
 		"kylechui/nvim-surround",
 		lazy = true,
 		event = "BufEnter",
-		config = true,
 	},
 }
