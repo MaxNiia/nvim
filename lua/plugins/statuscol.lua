@@ -8,7 +8,7 @@ return {
 		lazy = true,
 		event = "BufEnter",
 		init = function()
-			vim.o.fillchars = "foldopen:,foldclose:,foldsep:│"
+			vim.o.fillchars = "foldopen:,foldclose:,foldsep:┃"
 		end,
 		config = function(_, _)
 			local builtin = require("statuscol.builtin")
