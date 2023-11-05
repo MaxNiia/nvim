@@ -7,7 +7,6 @@ if has("nvim")
 endif
 
 autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
-
 ]])
 
 local uname = vim.loop.os_uname()

@@ -32,14 +32,6 @@ return {
 
 				segments = {
 					{
-						args = {
-							fold = {
-								-- 'fillchars' option values:
-								close = "", -- foldclose
-								open = "", -- foldopen
-								sep = "│'", -- foldsep
-							},
-						},
 						text = {
 							builtin.foldfunc,
 							auto = true,
@@ -51,8 +43,8 @@ return {
 							name = {
 								"Diagnostic",
 							},
-							maxwidth = 1,
-							colwidth = 2,
+							maxwidth = 2,
+							colwidth = 1,
 							auto = false,
 						},
 						click = "v:lua.ScSa",
@@ -68,8 +60,8 @@ return {
 							name = {
 								".*",
 							},
-							maxwidth = 1,
-							colwidth = 2,
+							maxwidth = 2,
+							colwidth = 1,
 							auto = false,
 						},
 						click = "v:lua.ScSa",
