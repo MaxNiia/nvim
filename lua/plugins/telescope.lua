@@ -330,17 +330,18 @@ return {
 				dependencies = { "nvim-lua/plenary.nvim" },
 			},
 			{
+				-- TODO: Look at actually using.
 				"olimorris/persisted.nvim",
 				keys = {
 					{
-						"<leader>Ws",
+						"<leader>Wl",
 						"<cmd>SessionLoad<cr>",
-						desc = "Restore directory session",
+						desc = "Load session",
 					},
 					{
-						"<leader>Wl",
+						"<leader>WL",
 						"<cmd>SessionLoadLast<cr>",
-						desc = "Restore last session",
+						desc = "Load last session",
 					},
 					{
 						"<leader>Wd",

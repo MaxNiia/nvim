@@ -31,6 +31,8 @@ return {
 		config = function(_, _)
 			local backend_url = require("configs.ai_backend")
 
+			-- TODO: Look at noice integrations. Maigc crashes when writing more than one field of 
+			-- test using noice.
 			require("nvim-magic").setup({
 				backends = {
 					default = require("nvim-magic-openai").new({

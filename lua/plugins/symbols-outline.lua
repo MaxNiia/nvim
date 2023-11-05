@@ -6,7 +6,7 @@ return {
 			{
 				"<leader>S",
 				"<cmd>SymbolsOutline<cr>",
-				desc = "Symbolds Outline",
+				desc = "Symbols Outline",
 			},
 		},
 		opts = {
