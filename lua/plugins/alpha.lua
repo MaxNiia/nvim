@@ -85,7 +85,6 @@ return {
     {
         "goolord/alpha-nvim",
         dependencies = {
-            "nvim-telescope/telescope.nvim",
             "ahmedkhalf/project.nvim",
             "nvim-tree/nvim-web-devicons",
         },

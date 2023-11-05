@@ -33,34 +33,38 @@ return {
             "n",
         },
     },
-    { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Resume" },
+    { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Resume", mode = { "v", "n" } },
     {
         "<leader>ft",
         "<cmd>Telescope<cr>",
         desc = "Telescope",
+        mode = { "v", "n" },
     },
     {
         "<leader>ff",
         call_telescope("files"),
         desc = "Files (root)",
+        mode = { "v", "n" },
     },
     {
         "<leader>fG",
         call_telescope("git_files"),
         desc = "Files (git)",
+        mode = { "v", "n" },
     },
     {
         "<leader>fF",
         call_telescope("files", { cwd = false }),
         desc = "Files (cwd)",
+        mode = { "v", "n" },
     },
     {
         "<leader>fs",
         function()
             require("telescope").extensions.live_grep_args.live_grep_args()
         end,
-        call_telescope("live_grep"),
         desc = "Search (root dir)",
+        mode = { "v", "n" },
     },
     {
         "<leader>fS",
@@ -68,6 +72,7 @@ return {
             require("telescope").extensions.live_grep_args.live_grep_args({ cwd = false })
         end,
         desc = "Search (cwd)",
+        mode = { "v", "n" },
     },
     {
         "<leader>fb",
@@ -75,35 +80,41 @@ return {
             require("telescope.builtin").buffers({ sort_mru = true })
         end,
         desc = "Buffers",
+        mode = { "v", "n" },
     },
     {
         "<leader>fo",
         "<cmd>Telescope oldfiles<CR>",
         desc = "Old files (root)",
+        mode = { "v", "n" },
     },
     {
         "<leader>fO",
         call_telescope("oldfiles", { cwd = vim.loop.cwd() }),
         desc = "Old files (cwd)",
+        mode = { "v", "n" },
     },
     {
         "<leader>fq",
         "<cmd>Telescope spell_suggest<CR>",
         desc = "Dictionary",
+        mode = { "v", "n" },
     },
     {
         "<leader>fp",
         "<cmd>Telescope projects<CR>",
         desc = "Project",
+        mode = { "v", "n" },
     },
-    { "<leader>fn", "<cmd>Telescope noice<CR>", desc = "Noice" },
-    { "<leader>fN", "<cmd>Telescope notify<CR>", desc = "Notify" },
+    { "<leader>fn", "<cmd>Telescope noice<CR>", desc = "Noice", mode = { "v", "n" } },
+    { "<leader>fN", "<cmd>Telescope notify<CR>", desc = "Notify", mode = { "v", "n" } },
     {
         "<leader>fm1",
         call_telescope("man_pages", {
             sections = { "1" },
         }),
         desc = "Executables/Shell Commands",
+        mode = { "v", "n" },
     },
     {
         "<leader>fm2",
@@ -111,6 +122,7 @@ return {
             sections = { "2" },
         }),
         desc = "System calls",
+        mode = { "v", "n" },
     },
     {
         "<leader>fm3",
@@ -118,6 +130,7 @@ return {
             sections = { "3" },
         }),
         desc = "Library calls",
+        mode = { "v", "n" },
     },
     {
         "<leader>fm4",
@@ -125,6 +138,7 @@ return {
             sections = { "4" },
         }),
         desc = "Special files",
+        mode = { "v", "n" },
     },
     {
         "<leader>fm5",
@@ -132,6 +146,7 @@ return {
             sections = { "5" },
         }),
         desc = "File formats and conventions",
+        mode = { "v", "n" },
     },
     {
         "<leader>fm6",
@@ -139,6 +154,7 @@ return {
             sections = { "6" },
         }),
         desc = "Games",
+        mode = { "v", "n" },
     },
     {
         "<leader>fm7",
@@ -146,6 +162,7 @@ return {
             sections = { "7" },
         }),
         desc = "Misc",
+        mode = { "v", "n" },
     },
     {
         "<leader>fm8",
@@ -153,6 +170,7 @@ return {
             sections = { "8" },
         }),
         desc = "System admin",
+        mode = { "v", "n" },
     },
     {
         "<leader>fm9",
@@ -160,24 +178,33 @@ return {
             sections = { "9" },
         }),
         desc = "Kernel routines (non standard)",
+        mode = { "v", "n" },
     },
     {
         "<leader>fk",
         "<cmd>Telescope keymaps<cr>",
         desc = "Key Maps",
+        mode = { "v", "n" },
     },
 
     -- GIT
-    { "<leader>fgs", "<cmd>Telescope git_status<CR>", desc = "Status" },
+    {
+        "<leader>fgs",
+        "<cmd>Telescope git_status<CR>",
+        desc = "Status",
+        mode = { "v", "n" },
+    },
     {
         "<leader>fgb",
         "<cmd>Telescope git_branches<CR>",
         desc = "Branches",
+        mode = { "v", "n" },
     },
     {
         "<leader>fgc",
         "<cmd>Telescope git_commits<CR>",
         desc = "Commits",
+        mode = { "v", "n" },
     },
 
     -- DAP
@@ -185,21 +212,25 @@ return {
         "<leader>fdc",
         "<cmd>Telescope dap commands<CR>",
         desc = "Commands",
+        mode = { "v", "n" },
     },
     {
         "<leader>fdb",
         "<cmd>Telescope dap list_breakpoints<CR>",
         desc = "Breakpoints",
+        mode = { "v", "n" },
     },
     {
         "<leader>fdv",
         "<cmd>Telescope dap variables<CR>",
         desc = "Variables",
+        mode = { "v", "n" },
     },
     {
         "<leader>fdx",
         "<cmd>Telescope dap configurations<CR>",
         desc = "Configurations",
+        mode = { "v", "n" },
     },
 
     -- LSP
@@ -215,6 +246,7 @@ return {
             })
         end,
         desc = "References",
+        mode = { "v", "n" },
     },
     {
         "<leader>fli",
@@ -225,6 +257,7 @@ return {
             })
         end,
         desc = "Incoming",
+        mode = { "v", "n" },
     },
     {
         "<leader>flo",
@@ -235,6 +268,7 @@ return {
             })
         end,
         desc = "Outgoing",
+        mode = { "v", "n" },
     },
     {
         "<leader>fld",
@@ -245,6 +279,7 @@ return {
             })
         end,
         desc = "Definitions",
+        mode = { "v", "n" },
     },
     {
         "<leader>flt",
@@ -255,6 +290,7 @@ return {
             })
         end,
         desc = "Type Definitions",
+        mode = { "v", "n" },
     },
     {
         "<leader>flj",
@@ -265,6 +301,7 @@ return {
             })
         end,
         desc = "Implementations",
+        mode = { "v", "n" },
     },
     {
         "<leader>fls",
@@ -286,6 +323,7 @@ return {
             },
         }),
         desc = "Goto Symbol",
+        mode = { "v", "n" },
     },
     {
         "<leader>flS",
@@ -307,6 +345,7 @@ return {
             },
         }),
         desc = "Goto Workspace Symbol",
+        mode = { "v", "n" },
     },
 
     -- Harpoon
@@ -314,6 +353,7 @@ return {
         "<leader>fh",
         "<cmd>Telescope harpoon marks<CR>",
         desc = "Harpoon",
+        mode = { "v", "n" },
     },
 
     -- File Browser
@@ -321,11 +361,13 @@ return {
         "<leader>fe",
         "<cmd>Telescope file_browser<CR>",
         desc = "Browser (root)",
+        mode = { "v", "n" },
     },
     {
         "<leader>fE",
         "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>",
         desc = "Browser (cwd)",
+        mode = { "v", "n" },
     },
     -- LEADER
     {
@@ -333,13 +375,14 @@ return {
         function()
             require("telescope").extensions.monorepo.monorepo()
         end,
-        mode = "n",
         desc = "Monorepo",
+        mode = { "v", "n" },
     },
     {
         "<leader>,",
         "<cmd>Telescope buffers show_all_buffers=true<cr>",
         desc = "Switch buffers",
+        mode = { "v", "n" },
     },
     {
         "<leader>/",
@@ -348,6 +391,7 @@ return {
         end,
         call_telescope("live_grep"),
         desc = "Search (root dir)",
+        mode = { "v", "n" },
     },
     {
         "<leader>?",
@@ -355,10 +399,12 @@ return {
             require("telescope").extensions.live_grep_args.live_grep_args({ cwd = false })
         end,
         desc = "Search (cwd)",
+        mode = { "v", "n" },
     },
     {
         "<leader>:",
         "<cmd>Telescope command_history<cr>",
         desc = "Command History",
+        mode = { "v", "n" },
     },
 }

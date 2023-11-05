@@ -11,6 +11,7 @@ end
 return {
     {
         "rcarriga/nvim-dap-ui",
+        lazy = true,
         dependencies = {
             "mortepau/codicons.nvim",
             "mfussenegger/nvim-dap",

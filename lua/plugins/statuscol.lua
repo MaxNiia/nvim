@@ -2,7 +2,6 @@ return {
     {
         "luukvbaal/statuscol.nvim",
         dependencies = {
-            "mfussenegger/nvim-dap",
             "lewis6991/gitsigns.nvim",
         },
         lazy = true,

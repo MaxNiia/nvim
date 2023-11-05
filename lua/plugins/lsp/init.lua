@@ -10,9 +10,7 @@ return {
             "williamboman/mason-lspconfig.nvim",
             "onsails/lspkind.nvim",
             "SmiteshP/nvim-navic",
-            "mfussenegger/nvim-dap",
             "kevinhwang91/nvim-ufo",
-            "hrsh7th/nvim-cmp",
             "hrsh7th/cmp-nvim-lsp",
             "AckslD/swenv.nvim",
         },
@@ -54,7 +52,9 @@ return {
                     return function() end
                 end
             end
-            require("neodev").setup()
+            require("neodev").setup({
+                library = { plugins = { "nvim-dap-ui" }, types = true },
+            })
             local lspconfig = require("lspconfig")
 
             -- diagnostics

@@ -25,7 +25,6 @@ return {
         "nvim-lualine/lualine.nvim",
         dependencies = {
             "nvim-tree/nvim-web-devicons",
-            "neovim/nvim-lspconfig",
             "nvim-neo-tree/neo-tree.nvim",
             "SmiteshP/nvim-navic",
             "AckslD/swenv.nvim",
@@ -125,9 +124,6 @@ return {
                                 and require("noice").api.status.search.has()
                         end,
                         color = { fg = "#fab387" },
-                    },
-                    {
-                        require("dap").status,
                     },
                     {
                         "progress",

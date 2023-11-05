@@ -11,6 +11,7 @@ return {
     },
     {
         "zbirenbaum/copilot-cmp",
+        lazy = true,
         config = function()
             require("copilot_cmp").setup()
         end,
@@ -22,6 +23,7 @@ return {
     },
     {
         "paopaol/cmp-doxygen",
+        lazy = true,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-treesitter/nvim-treesitter-textobjects",
@@ -29,6 +31,7 @@ return {
     },
     {
         "hrsh7th/nvim-cmp",
+        event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",

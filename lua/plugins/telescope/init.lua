@@ -16,7 +16,6 @@ return {
             "nvim-telescope/telescope-project.nvim",
             "nvim-telescope/telescope-dap.nvim",
             "nvim-telescope/telescope-live-grep-args.nvim",
-            "mfussenegger/nvim-dap",
             "ThePrimeagen/harpoon",
         },
         lazy = true,
