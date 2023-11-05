@@ -10,8 +10,8 @@ return {
 			ensure_installed = {
 				"beutysh",
 				"buf",
-				"cmake_lint",
 				"cmake_format",
+				"cmake_lint",
 				"commitlint",
 				"cpell",
 				"eslint_d",
@@ -24,6 +24,7 @@ return {
 				"luasnip",
 				"markdownlint",
 				"mypy",
+				"pydocstyle",
 				"stylua",
 				"zsh",
 			},
@@ -50,22 +51,12 @@ return {
 					null_ls.register(null_ls.builtins.diagnostics.eslint_d)
 					null_ls.register(null_ls.builtins.formatting.eslint_d)
 				end,
-				luasnip = function(_, _)
-					null_ls.register(null_ls.builtins.completion.luasnip)
-				end,
 				buf = function(_, _)
 					null_ls.register(null_ls.builtins.diagnostics.buf)
 					null_ls.register(null_ls.builtins.formatting.buf)
 				end,
-				cmake_lint = function(_, _)
-					null_ls.register(null_ls.builtins.diagnostics.cmake_lint)
-				end,
 				commitlint = function(_, _)
 					null_ls.register(null_ls.builtins.diagnostics.commitlint)
-				end,
-				cspell = function(_, _)
-					null_ls.register(null_ls.builtins.diagnostics.cspell)
-					null_ls.register(null_ls.builtins.code_actions.cspel)
 				end,
 				hadolint = function(_, _)
 					null_ls.register(null_ls.builtins.diagnostics.hadolint)
@@ -92,12 +83,16 @@ return {
 				black = function(_, _)
 					null_ls.register(null_ls.builtins.formatting.black)
 				end,
+				pydocstyle = function(_, _)
+					null_ls.register(null_ls.builtins.diagnostics.pydocstyle)
+				end,
 			}
 
 			require("mason-null-ls").setup(opts)
 
 			null_ls.setup({
 				sources = {
+					-- GIT
 					null_ls.builtins.code_actions.gitsigns.with({
 
 						config = {
@@ -109,6 +104,31 @@ return {
 
 					null_ls.builtins.code_actions.gitrebase,
 					null_ls.builtins.diagnostics.gitlint,
+
+					-- CSPELL
+					null_ls.builtins.code_actions.cspell,
+					null_ls.builtins.diagnostics.cspell,
+
+					-- Refactoring
+					null_ls.builtins.code_actions.refactoring,
+
+					-- Typescript
+					null_ls.builtins.code_actions.ts_node_action,
+
+					-- Luasnip
+					null_ls.builtins.completion.luasnip,
+
+					-- CMAKE
+					null_ls.builtins.diagnostics.cmake_lint,
+
+					-- Editor config
+					null_ls.builtins.diagnostics.editorconfig_checker,
+
+					-- Dotenv
+					null_ls.builtins.diagnostics.dotenv_linter,
+
+					-- ZSH
+					null_ls.builtins.diagnostics.zsh,
 				},
 			})
 		end,
