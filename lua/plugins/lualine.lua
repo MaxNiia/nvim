@@ -160,15 +160,14 @@ return {
                     {
                         vim.loop.cwd,
                         type = "vim_fun",
-                        separator = "/",
                         padding = {
-                            left = 0,
+                            left = 1,
                             right = 0,
                         },
                     },
                     {
                         padding = {
-                            left = 0,
+                            left = 1,
                             right = 0,
                         },
                         "filename",
