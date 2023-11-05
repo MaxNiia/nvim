@@ -102,18 +102,18 @@ return {
 			},
 			printf_statements = {
 				cpp = {
-					'RFC_printf("%s")',
+					'RFC_printf("%s");',
 				},
 				c = {
-					'RFC_printf("%s")',
+					'RFC_printf("%s");',
 				},
 			},
 			print_var_statements = {
 				cpp = {
-					'RFC_printf("Path: %s -> %s")',
+					'RFC_printf("Path: %s -> %TYPE", %s);',
 				},
 				c = {
-					'RFC_printf("Path: %s -> %s")',
+					'RFC_printf("Path: %s -> %TYPE");',
 				},
 			},
 		},

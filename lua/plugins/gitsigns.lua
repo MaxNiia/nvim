@@ -23,7 +23,7 @@ return {
 
 				-- Navigation
 				wk.register({
-					h = function()
+					h = {function()
 						if vim.wo.diff then
 							return "]h"
 						end
@@ -31,10 +31,10 @@ return {
 							gs.next_hunk()
 						end)
 						return "<Ignore>"
-					end,
+					end,"Next Hunk"},
 				}, { mode = "n", prefix = "]", expr = true })
 				wk.register({
-					h = function()
+					h = {function()
 						if vim.wo.diff then
 							return "[h"
 						end
@@ -42,7 +42,8 @@ return {
 							gs.prev_hunk()
 						end)
 						return "<Ignore>"
-					end,
+					end,"Prev Hunk"},
+
 				}, { mode = "n", prefix = "[", expr = true })
 
 				-- Actions
@@ -67,7 +68,7 @@ return {
 						end,
 						"DIff Home?",
 					},
-				}, { mode = "n", prefix = "<leader>", buffer = bufnr })
+				}, { mode = "n", prefix = "<leader>h", buffer = bufnr })
 
 				wk.register({
 					s = {
@@ -82,7 +83,7 @@ return {
 						end,
 						"Reset Hunk",
 					},
-				}, { mode = "v", prefix = "<leader>", buffer = bufnr })
+				}, { mode = "v", prefix = "<leader>h", buffer = bufnr })
 
 				-- Text object
 				wk.register({
