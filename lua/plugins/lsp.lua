@@ -67,7 +67,8 @@ return {
 					},
 				},
 				marksman = {},
-				omnisharp = {
+				omnisharp_mono = {
+					cmd = { "mono", vim.fn.expand("~/.config/nvim/servers/omnisharp/OmniSharp.exe") },
 					enable_import_completion = true,
 					enable_roslyn_analyzers = true,
 					organize_imports_on_format = true,

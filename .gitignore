@@ -2,3 +2,4 @@ lazy-lock.json
 user.lua
 ai_backend.lua
 .luarc.json
+servers/*

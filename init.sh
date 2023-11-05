@@ -135,6 +135,13 @@ for arg in "$@"; do
         sudo apt update
         sudo apt install mono-devel
         sudo apt install mono-complete
+
+        # Installing omnisharp
+        mkdir servers/omnisharp -p
+        cd servers/omnisharp || exit
+        wget https://github.com/OmniSharp/omnisharp-roslyn/releases/download/v1.39.6/omnisharp-mono.tar.gz
+        tar xzvf omnisharp-mono.tar.gz
+        rm omnisharp-mono.tar.gz
     fi
 done
 
