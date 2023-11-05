@@ -187,10 +187,6 @@ return {
 
             opts.extensions = vim.tbl_deep_extend("force", opts.extensions or {}, {
                 project = {
-                    base_dirs = {
-                        { "~/dev/", max_depth = 2 },
-                        { "~/workspace/dev/", max_depth = 2 },
-                    },
                     on_project_selected = function(prompt_bufnr)
                         local project_actions = require("telescope._extensions.project.actions")
                         -- Change dir to the selected project
