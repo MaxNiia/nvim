@@ -1,6 +1,5 @@
 M = {}
-
-local file_path = vim.fn.expand("~/.local/share/nvim/niia.txt")
+local file_path = vim.fn.stdpath("cache") .. "/niia.txt"
 
 local options = {
     { name = "mini_files", default = true },

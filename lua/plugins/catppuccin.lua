@@ -22,11 +22,11 @@ return {
                 mason = true,
                 markdown = true,
                 mini = true,
-                -- neotree = true,
+                neotree = true,
                 telescope = true,
                 treesitter = true,
                 treesitter_context = true,
-                ts_rainbow2 = true,
+                rainbow_delimiters = true,
                 native_lsp = {
                     enabled = true,
                 },
