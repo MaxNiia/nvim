@@ -1,7 +1,9 @@
 --[[
 This module configures the nvim-magic plugin for Neovim.
 
-It sets up the OpenAI backend with a custom API endpoint, disables the default keymap, and registers custom keybindings for various nvim-magic actions.
+It sets up the OpenAI backend with a custom API endpoint,
+disables the default keymap, and registers custom keybindings
+for various nvim-magic actions.
 
 Dependencies:
     - ricardicus/nvim-magic
@@ -44,19 +46,26 @@ return {
 
 			local wk = require("which-key")
 
+			local function createCommand(method)
+				return string.format(
+					"<Cmd>lua require('nvim-magic.flows').%s(require('nvim-magic').backends.default)<CR>",
+					method
+				)
+			end
+
 			wk.register({
 				m = {
 					"+ChatGPT",
 					a = {
-						"<Cmd>lua require('nvim-magic.flows').append_completion(require('nvim-magic').backends.default)<CR>",
+						createCommand("append_completion"),
 						"Completion",
 					},
 					s = {
-						"<Cmd>lua require('nvim-magic.flows').suggest_alteration(require('nvim-magic').backends.default)<CR>",
-						"Completion",
+						createCommand("suggest_alteration"),
+						"Alteration",
 					},
 					d = {
-						"<Cmd>lua require('nvim-magic.flows').suggest_docstring(require('nvim-magic').backends.default)<CR>",
+						createCommand("suggest_docstring"),
 						"Docstring",
 					},
 				},
@@ -66,11 +75,11 @@ return {
 				m = {
 					"+ChatGPT",
 					c = {
-						"<Cmd>lua require('nvim-magic.flows').suggest_chat(require('nvim-magic').backends.default)<CR>",
+						createCommand("suggest_chat"),
 						"Chat",
 					},
 					r = {
-						"<Cmd>lua require('nvim-magic.flows').suggest_chat_reset(require('nvim-magic').backends.default)<CR>",
+						createCommand("suggest_chat_reset"),
 						"Reset",
 					},
 				},
