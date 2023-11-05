@@ -1,6 +1,14 @@
+M = {}
+
 local file_path = vim.fn.expand("~/.local/share/nvim/niia.txt")
 
-local function save()
+local options = {
+    { name = "mini_files", default = true},
+    { name = "neotree", default = false},
+    { name = "toggleterm", default = true},
+}
+
+M.save_config = function()
     local f = assert(io.open(file_path, "w"))
     local function bool_to_int(b)
         if b then
@@ -8,13 +16,14 @@ local function save()
         end
         return 0
     end
-    f:write("neotree:", bool_to_int(_G.neotree))
-    f:write("\n")
-    f:write("mini.files:", bool_to_int(_G.mini_files))
+    for _, option in pairs(options) do
+        f:write(option.name, ":", bool_to_int(_G[option.name]), "\n")
+    end
+
     f:close()
 end
 
-local function load()
+M.load_config = function()
     local function int_to_bool(i)
         if i == 1 then
             return true
@@ -25,10 +34,16 @@ local function load()
 
     local f = io.open(file_path, "r")
     if f == nil then
-        _G.mini_files = true
-        _G.neotree = false
-        save()
-        return
+        for _, option in pairs(options) do
+            _G[option.name]= option.default
+        end
+        M.save_config()
+        f = io.open(file_path, "r")
+
+        if f == nil then
+            vim.notify("File: " .. file_path .. " can't be accessed.", vim.log.levels.ERROR)
+            return
+        end
     end
 
     local lines = f:read(2 ^ 10)
@@ -43,17 +58,14 @@ local function load()
                     value = int_to_bool(tonumber(s))
                 end
             end
-            if name == "mini.files" then
-                _G.mini_files = value
-            elseif name == "neotree" then
-                _G.neotree = value
+            for _, option in pairs(options) do
+                if name == option.name then
+                    _G[option.name] = value
+                end
             end
         end
     end
     f:close()
 end
 
-return {
-    save = save,
-    load = load,
-}
+return M

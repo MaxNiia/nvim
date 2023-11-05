@@ -7,6 +7,7 @@ end
 return {
     {
         "akinsho/toggleterm.nvim",
+        enabled = _G.toggleterm,
         dependencies = {
             "samjwill/nvim-unception",
             init = function()

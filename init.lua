@@ -9,7 +9,7 @@ endif
 autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 ]])
 
-require("utils.config").load()
+require("utils.config").load_config()
 
 local uname = vim.loop.os_uname()
 
@@ -20,6 +20,7 @@ _G.IS_WINDOWS = OS:find("Windows") and true or false
 _G.IS_WSL = IS_LINUX and uname.release:find("Microsoft") and true or false
 
 require("configs.options")
+require("configs.autocmd")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -28,7 +29,6 @@ if not vim.loop.fs_stat(lazypath) then
         "clone",
         "--filter=blob:none",
         "https://github.com/folke/lazy.nvim.git",
-
         lazypath,
     })
 end

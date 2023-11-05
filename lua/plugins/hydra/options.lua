@@ -1,14 +1,14 @@
 local hint = [[
-  ^ ^        Options
+  ^^         Options
   ^
-  _v_ %{ve} virtual edit
-  _i_ %{list} invisible characters
+  _v_ %{ve}^^^ virtual edit
+  _i_ %{list}^ invisible characters
   _s_ %{spell} toggle spelling
-  _w_ %{wrap} word wrap
-  _n_ %{nu} number
-  _r_ %{rnu} relative number
+  _w_ %{wrap}^ word wrap
+  _n_ %{nu}^^^ number
+  _r_ %{rnu}^^ relative number
   ^
-       ^^^^                _<Esc>_
+  ^^^^                _<Esc>_
 ]]
 
 return {

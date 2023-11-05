@@ -10,7 +10,7 @@ return {
 
             hydra(require("plugins.hydra.venn"))
             hydra(require("plugins.hydra.options"))
-            hydra(require("plugins.hydra.file_trees"))
+            hydra(require("plugins.hydra.config"))
         end,
     },
 }
