@@ -10,14 +10,12 @@ return {
 				"olimorris/persisted.nvim",
 				opts = {
 					use_git_branch = true,
-					telescope = {
-						before_source = function()
-							vim.api.nvim_input("<ESC>:%bd<CR>")
-						end,
-						after_source = function(session)
-							print("Loaded session " .. session.name)
-						end,
-					},
+					PersistedTelescopeLoadPre = function()
+						vim.api.nvim_input("<ESC>:%bd<CR>")
+					end,
+					PersistedTelescopeLoadPost = function(session)
+						print("Loaded session " .. session.name)
+					end,
 				},
 				config = function(_, opts)
 					require("persisted").setup(opts)
