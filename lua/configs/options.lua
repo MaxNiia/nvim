@@ -1,3 +1,4 @@
+vim.opt.compatible = false
 vim.opt.ai = true
 vim.opt.autowriteall = true
 vim.opt.hidden = true
@@ -33,8 +34,27 @@ vim.opt.signcolumn = "yes:1"
 vim.opt.foldcolumn = "auto:1"
 vim.opt.swapfile = false
 vim.opt.cursorline = true
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 1
+vim.opt.sidescroll = 1
+vim.opt.sidescrolloff = 2
 vim.opt.mousemodel = "extend"
+vim.opt.ttimeout = true
+vim.opt.ttimeoutlen = 100
+vim.opt.wildmenu = true
+vim.opt.autoread = true
+vim.opt.history = 1000
+vim.opt.tabpagemax = 50
+vim.opt.timeout = true
+vim.opt.timeoutlen = 100
+
+vim.cmd([[
+    set display+=truncate
+    set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+    set formatoptions+=j
+    setglobal tags-=./tags tags-=./tags; tags^=./tags;
+    set complete-=i
+    set nrformats-=octal
+]])
 
 -- Window
 vim.wo.spell = true
