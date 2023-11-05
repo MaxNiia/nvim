@@ -4,8 +4,6 @@ require("catppuccin").setup({
 	flavour = "mocha",
 	compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
 	transparent_background = false,
-	term_colors = true,
-	no_italic = true,
 	integrations = {
 		aerial = true,
 		beacon = true,
@@ -34,7 +32,7 @@ require("catppuccin").setup({
 		which_key = true,
 	},
 	highlight_overrides = {
-		all = function(color)
+		all = function(_)
 			return {
 				--LineNr = { bg = color.crust, fg = color.subtext0 },
 			}
@@ -51,9 +49,9 @@ require("catppuccin").setup({
 })
 
 local colors = require("catppuccin.palettes").get_palette()
-local latte = require("catppuccin.palettes").get_palette("latte")
-local frappe = require("catppuccin.palettes").get_palette("frappe")
-local macchiato = require("catppuccin.palettes").get_palette("macchiato")
+-- local latte = require("catppuccin.palettes").get_palette("latte")
+-- local frappe = require("catppuccin.palettes").get_palette("frappe")
+-- local macchiato = require("catppuccin.palettes").get_palette("macchiato")
 local mocha = require("catppuccin.palettes").get_palette("mocha")
 colors.none = "NONE"
 
@@ -69,27 +67,5 @@ require("window-picker").setup({
 	-- color
 	other_win_hl_color = mocha.crust,
 })
---[[
-require("bufferline").setup({
-	highlights = require("catppuccin.groups.integrations.bufferline").get(),
-	options = {
-		diagnostics = "nvim_lsp",
-		always_show_bufferline = false,
-		diagnostics_indicator = function(_, _, diag)
-			local icons = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-			local ret = (diag.error and icons.Error .. diag.error .. " " or "")
-				.. (diag.warning and icons.Warn .. diag.warning or "")
-			return vim.trim(ret)
-		end,
-		offsets = {
-			{
-				filetype = "neo-tree",
-				text = "Neo-tree",
-				highlight = "Directory",
-				text_align = "left",
-			},
-		},
-	},
-})
-]]
+
 require("lualine")
