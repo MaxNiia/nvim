@@ -22,6 +22,8 @@ return {
 				end,
 			},
 			"nvim-telescope/telescope-file-browser.nvim",
+			"nvim-telescope/telescope-dap.nvim",
+			"mfussenegger/nvim-dap",
 		},
 		opts = {
 			extensions = {
@@ -50,6 +52,7 @@ return {
 			require("telescope").load_extension("notify")
 			require("telescope").load_extension("persisted")
 			require("telescope").load_extension("noice")
+			require("telescope").load_extension("dap")
 
 			require("telescope.actions")
 			require("trouble.providers.telescope")
@@ -59,7 +62,7 @@ return {
 			local wk = require("which-key")
 			wk.register({
 				f = {
-					name = "Find",
+					name = "+Find",
 					t = {
 						"<cmd>Telescope<CR>",
 						"Telescope",
@@ -69,8 +72,27 @@ return {
 						"Files",
 					},
 					b = {
-						"<cmd>Telescope file_browser<CR>",
-						"Browser",
+						"+Debug",
+						c = {
+							"<cmd>Telescope dap commands<CR>",
+							"Commands",
+						},
+						b = {
+							"<cmd>Telescope dap list_breakpoints<CR>",
+							"Breakpoints",
+						},
+						v = {
+							"<cmd>Telescope dap variables<CR>",
+							"Variables",
+						},
+						f = {
+							"<cmd>Telescope dap frames<CR>",
+							"Frames",
+						},
+						x = {
+							"<cmd>Telescope dap configurations<CR>",
+							"Configurations",
+						},
 					},
 					o = {
 						"<cmd>Telescope oldfiles<CR>",

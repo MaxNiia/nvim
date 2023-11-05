@@ -6,6 +6,7 @@ return {
 		dependencies = {
 			"ofirgall/goto-breakpoints.nvim",
 			"theHamsta/nvim-dap-virtual-text",
+			"rcarriga/cmp-dap",
 			dependencies = {
 				"nvim-treesitter/nvim-treesitter",
 			},
@@ -30,6 +31,18 @@ return {
 			vim.fn.sign_define("DapLogPoint", { text = "", texthl = "Directory" })
 			vim.fn.sign_define("DapStopped", { text = "ﰲ", texthl = "TSConstant" })
 			vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "Error" })
+
+			require("cmp").setup({
+				enabled = function()
+					return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
+				end,
+			})
+
+			require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+				sources = {
+					{ name = "dap" },
+				},
+			})
 
 			local breakpoint = require("goto-breakpoints")
 
