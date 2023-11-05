@@ -41,10 +41,15 @@ return {
 			},
 			defaults = {
 				prompt_prefix = "   ",
-				borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
 				border = {},
 				set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 				color_devicons = true,
+				borderchars = {
+					{ "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+					prompt = { "─", "│", " ", "│", "┌", "┬", "│", "│" },
+					results = { "─", "│", "─", "│", "├", "┤", "┴", "└" },
+					preview = { "─", "│", "─", " ", "─", "┐", "┘", "─" },
+				},
 				winblend = 0,
 				wrap_results = false,
 				path_display = { truncate = 20 },
@@ -53,7 +58,9 @@ return {
 				initial_mode = "insert",
 				selection_strategy = "reset",
 				sorting_strategy = "ascending",
-				prompt_title = false,
+				prompt_title = "",
+				results_title = "",
+				preview_title = "",
 				layout_stratergy = "horizontal",
 				layout_config = {
 					horizontal = {
