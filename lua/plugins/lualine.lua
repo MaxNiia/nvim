@@ -83,17 +83,7 @@ return {
                 lualine_b = {
                     "branch",
                 },
-                lualine_c = {
-                    {
-                        function()
-                            return require("nvim-navic").get_location()
-                        end,
-                        cond = function()
-                            return package.loaded["nvim-navic"]
-                                and require("nvim-navic").is_available()
-                        end,
-                    },
-                },
+                lualine_c = {},
                 lualine_x = {
                     {
                         function()
@@ -211,8 +201,21 @@ return {
             inactive_sections = {},
             tabline = {
                 lualine_a = {},
-                lualine_b = {},
-                -- lualine_c = {}, Tabline
+                -- lualine_b = {} -- Tabline
+                lualine_c = {
+                    {
+                        "navic",
+                        color_correction = "dynamic",
+                        navic_opts = {
+                            highlight = true,
+                            click = true,
+                        },
+                        padding = {
+                            left = 1,
+                            right = 0,
+                        },
+                    },
+                },
                 -- lualine_x = {}, Tabline
                 lualine_y = {
                     {

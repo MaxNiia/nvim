@@ -1,6 +1,4 @@
 local ui = require("plugins.telescope.ui")
-local project_actions = require("telescope._extensions.project.actions")
-local action_state = require("telescope.actions.state")
 
 return {
     {
@@ -15,6 +13,7 @@ return {
                 "nvim-telescope/telescope-file-browser.nvim",
                 dependencies = { "nvim-lua/plenary.nvim" },
             },
+            "nvim-telescope/telescope-project.nvim",
             "nvim-telescope/telescope-dap.nvim",
             "nvim-telescope/telescope-live-grep-args.nvim",
             "mfussenegger/nvim-dap",
@@ -110,22 +109,6 @@ return {
                 live_grep_args = {
                     auto_quoting = true,
                 },
-                project = {
-                    base_dirs = {
-                        { "~/dev/", max_depth = 2 },
-                        { "~/workspace/dev/", max_depth = 2 },
-                    },
-                    on_project_selected = function(prompt_bufnr)
-                        -- Change dir to the selected project
-                        project_actions.change_working_directory(prompt_bufnr, false)
-
-                        -- Change monorepo directory to the selected project
-                        local selected_entry = action_state.get_selected_entry(prompt_bufnr)
-                        require("monorepo").change_monorepo(selected_entry.value)
-
-                        require("telescope.builtin").find_files()
-                    end,
-                },
             },
             defaults = {
                 vimgrep_arguments = {
@@ -201,6 +184,27 @@ return {
             end
 
             local trouble = require("trouble.providers.telescope")
+            local action_state = require("telescope.actions.state")
+
+            opts.extensions = vim.tbl_deep_extend("force", opts.extensions or {}, {
+                project = {
+                    base_dirs = {
+                        { "~/dev/",           max_depth = 2 },
+                        { "~/workspace/dev/", max_depth = 2 },
+                    },
+                    on_project_selected = function(prompt_bufnr)
+                        local project_actions = require("telescope._extensions.project.actions")
+                        -- Change dir to the selected project
+                        project_actions.change_working_directory(prompt_bufnr, false)
+
+                        -- Change monorepo directory to the selected project
+                        local selected_entry = action_state.get_selected_entry(prompt_bufnr)
+                        require("monorepo").change_monorepo(selected_entry.value)
+
+                        require("telescope.builtin").find_files()
+                    end,
+                },
+            })
 
             opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
                 mappings = {
@@ -215,18 +219,16 @@ return {
                 },
             })
 
-            local telescope = require("telescope").setup(opts)
+            require("telescope").setup(opts)
 
             require("telescope.actions")
             require("telescope").load_extension("harpoon")
             require("telescope").load_extension("fzf")
             require("telescope").load_extension("file_browser")
-            require("telescope").load_extension("projects")
             require("telescope").load_extension("project")
             require("telescope").load_extension("notify")
             require("telescope").load_extension("noice")
             require("telescope").load_extension("dap")
-            require("telescope").load_extension("refactoring")
             require("telescope").load_extension("live_grep_args")
 
             local lga = require("telescope-live-grep-args.shortcuts")

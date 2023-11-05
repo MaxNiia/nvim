@@ -5,7 +5,6 @@ return {
             lsp = {
                 preference = { "clangd", "pyright" },
             },
-            separator = "  ",
             highlight = true,
             click = true,
         },

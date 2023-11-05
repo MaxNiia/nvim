@@ -4,7 +4,6 @@ return {
         name = "catppuccin",
         opts = {
             compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
-            transparent_background = true,
             integrations = {
                 aerial = true,
                 beacon = true,
@@ -30,6 +29,10 @@ return {
                 treesitter = true,
                 treesitter_context = true,
                 rainbow_delimiters = true,
+                navic = {
+                    enabled = true,
+                    custom_bg = "NONE", -- "lualine" will set background to mantle
+                },
                 native_lsp = {
                     enabled = true,
                     virtual_text = {

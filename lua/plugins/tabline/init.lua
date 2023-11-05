@@ -63,7 +63,7 @@ return {
 
             require("lualine").setup({
                 tabline = {
-                    lualine_c = { require("tabline").tabline_buffers },
+                    lualine_b = { require("tabline").tabline_buffers },
                     lualine_x = { require("tabline").tabline_tabs },
                 },
             })
