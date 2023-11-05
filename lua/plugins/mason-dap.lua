@@ -1,3 +1,5 @@
+local dap = require("dap")
+
 return {
 	{
 		"jay-babu/mason-nvim-dap.nvim",
@@ -13,13 +15,7 @@ return {
 				"cppdbg",
 			},
 			automatic_setup = true,
-		},
-		config = function(_, opts)
-			local dap = require("dap")
-			local mason_dap = require("mason-nvim-dap")
-
-			mason_dap.setup(opts)
-			mason_dap.setup_handlers({
+			handlers = {
 				function(source_name)
 					require("mason-nvim-dap.automatic_setup")(source_name)
 				end,
@@ -94,7 +90,10 @@ return {
 						},
 					}
 				end,
-			})
+			}
+		},
+		config = function(_, opts)
+			require("mason-nvim-dap").setup(opts)
 		end,
 	},
 }

@@ -31,15 +31,14 @@ return {
 		},
 		config = function(_, opts)
 			local null_ls = require("null-ls")
-			local mason_null = require("mason-null-ls")
-			mason_null.setup(opts)
-			mason_null.setup_handlers({
+
+			opts.handlers = {
 				function(source_name, methods)
 					require("mason-null-ls.automatic_setup")(source_name, methods)
 				end,
-                cmake_format = function(_, _)
-                    null_ls.register(null_ls.builtins.formatting.cmake_format)
-                end,
+				cmake_format = function(_, _)
+					null_ls.register(null_ls.builtins.formatting.cmake_format)
+				end,
 				stylua = function(_, _)
 					null_ls.register(null_ls.builtins.formatting.stylua)
 				end,
@@ -100,10 +99,12 @@ return {
 				zsh = function(_, _)
 					null_ls.register(null_ls.builtins.diagnostics.zsh)
 				end,
-                beutysh = function(_, _)
-                     null_ls.register(null_ls.builtins.formatting.beautysh)
-                end,
-			})
+				beutysh = function(_, _)
+					null_ls.register(null_ls.builtins.formatting.beautysh)
+				end,
+			}
+
+			require("mason-null-ls").setup(opts)
 
 			null_ls.setup()
 		end,
