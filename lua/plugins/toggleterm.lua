@@ -30,12 +30,42 @@ return {
 		keys = {
 			{ "<leader>tl", "<cmd>ToggleTermSendCurrentLine<CR>", desc = "Send line" },
 			{ "<leader>ta", "<cmd>ToggleTermToggleAll<CR>", desc = "Toggle all terminals" },
-			{ "<leader>th", toggleTerminal("horizontal"), desc = "Toggle horizontal", expr = true },
-			{ "<leader>tv", toggleTerminal("vertical"), desc = "Toggle vertical", expr = true },
-			{ "<leader>tf", toggleTerminal("float"), desc = "Toggle float", expr = true },
-			{ "<f5>", toggleTerminal("horizontal"), desc = "Toggle horizontal", expr = true },
-			{ "<f6>", toggleTerminal("vertical"), desc = "Toggle vertical", expr = true },
-			{ "<f7>", toggleTerminal("float"), desc = "Toggle float", expr = true },
+			{
+				"<leader>th",
+				toggleTerminal("horizontal"),
+				desc = "Toggle horizontal",
+				expr = true,
+			},
+			{
+				"<leader>tv",
+				toggleTerminal("vertical"),
+				desc = "Toggle vertical",
+				expr = true,
+			},
+			{
+				"<leader>tf",
+				toggleTerminal("float"),
+				desc = "Toggle float",
+				expr = true,
+			},
+			{
+				"<f5>",
+				toggleTerminal("horizontal"),
+				desc = "Toggle horizontal",
+				expr = true,
+			},
+			{
+				"<f6>",
+				toggleTerminal("vertical"),
+				desc = "Toggle vertical",
+				expr = true,
+			},
+			{
+				"<f7>",
+				toggleTerminal("float"),
+				desc = "Toggle float",
+				expr = true,
+			},
 			{ "<f8>", "<cmd>ToggleTermToggleAll<CR>", desc = "Toggle all terminals" },
 		},
 		opts = {

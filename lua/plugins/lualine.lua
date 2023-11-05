@@ -206,8 +206,7 @@ return {
 			},
 			inactive_sections = {},
 			tabline = {
-				lualine_a = {
-				},
+				lualine_a = {},
 				lualine_b = {},
 				-- lualine_c = {}, Tabline
 				-- lualine_x = {}, Tabline
@@ -281,8 +280,7 @@ return {
 						},
 					},
 				},
-				lualine_c = {
-				},
+				lualine_c = {},
 				lualine_x = {},
 				lualine_y = {},
 				lualine_z = {},
