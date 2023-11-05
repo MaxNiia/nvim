@@ -78,6 +78,11 @@ fi
 if [ ! -d "~/venvs" ]; then
     echo "Creating venvs folder"
     mkdir ~/venvs
+    python3 -m venv ~/venvs/Debug
+    source ~/venvs/Debug/bin/activate
+    echo "Installing requirements"
+    python -m pip install -r requirements.txt
+    deactivate
 fi
 
 # Clear output

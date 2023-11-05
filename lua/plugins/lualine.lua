@@ -41,6 +41,7 @@ return {
 								return ""
 							end
 						end,
+						seperator = " | "
 					},
 					{
 						function()
@@ -68,10 +69,26 @@ return {
 							return package.loaded["noice"] and require("noice").api.status.mode.has()
 						end,
 					},
+					{
+						require "dap".status,
+					},
 				},
 				lualine_y = {
-					{ "progress", separator = " ",                  padding = { left = 1, right = 0 } },
-					{ "location", padding = { left = 0, right = 1 } },
+					{
+						"progress",
+						separator = " ",
+						padding = {
+							left = 1,
+							right = 0
+						}
+					},
+					{
+						"location",
+						padding = {
+							left = 0,
+							right = 1
+						}
+					},
 				},
 				lualine_z = {
 					{
