@@ -34,6 +34,10 @@ local packageList = {
    -- Telescope
    "nvim-telescope/telescope.nvim",
 
+   "nvim-telescope/telescope-file-browser.nvim",
+
+   "nvim-telescope/telescope-project.nvim",
+
    -- FZF-native
    {
       "nvim-telescope/telescope-fzf-native.nvim",
