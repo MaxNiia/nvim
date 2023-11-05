@@ -25,6 +25,10 @@ return {
 		"NMAC427/guess-indent.nvim",
 		lazy = true,
 		event = "BufEnter",
+		opts = {
+			auto_cmd = true,
+			override_editorconfig = false,
+		},
 		config = true,
 	},
 	{
