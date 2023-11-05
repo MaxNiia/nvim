@@ -118,8 +118,11 @@ wk.register({
 	{
 		--normal
 		mode = "n",
-
 		["<leader>"] = {
+			-- Groups
+			r = {
+				name = "+Rename",
+			},
 			-- ai
 			c = {
 				name = "+ChatGPT",
@@ -517,6 +520,15 @@ wk.register({
 				'"+p',
 				"Paste from system clipboard",
 			},
+			["<tab>"] = {
+				"<cmd>tabnext<CR>",
+				"Next tab",
+			},
+			["<s-tab>"] = {
+				"<cmd>tabprevious<CR>",
+				"Previous tab",
+			},
+
 		}, -- leader
 		-- dap
 		["]b"] = {
@@ -527,6 +539,14 @@ wk.register({
 			breakpoint.prev,
 			"Go to prev breakpoint",
 		},
+			["<tab>"] = {
+				"<cmd>bnext<CR>",
+				"Next buffer",
+			},
+			["<s-tab>"] = {
+				"<cmd>bprevious<CR>",
+				"Previous buffer",
+			},
 	}, -- normal
 	{
 		-- operator
@@ -606,6 +626,7 @@ wk.register({
 		mode = "x",
 	}, -- visual
 }, {})
+
 vim.keymap.set("n", "<c-d>", "<c-d>zz")
 vim.keymap.set("n", "<c-u>", "<c-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
