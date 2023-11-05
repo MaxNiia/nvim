@@ -37,6 +37,7 @@ require("catppuccin").setup({
 		dashboard = true,
 		gitsigns = true,
 		fidget = true,
+		illuminate = true,
 		indent_blankline = {
 			enabled = true,
 			colored_indent_levels = true,
@@ -48,6 +49,7 @@ require("catppuccin").setup({
 		telescope = true,
 		treesitter = true,
 		treesitter_context = true,
+		ts_rainbow2 = true,
 		native_lsp = {
 			enabled = true,
 		},
