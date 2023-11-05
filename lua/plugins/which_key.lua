@@ -28,20 +28,22 @@ return {
 				mode = "n",
 				desc = "Clear highlighting",
 			},
-			-- {
-			-- 	"k",
-			-- 	function()
-			-- 		return vim.v.count > 0 and "k" or "gk"
-			-- 	end,
-			-- 	mode = "n",
-			-- },
-			-- {
-			-- 	"j",
-			-- 	function()
-			-- 		return vim.v.count > 0 and "j" or "gj"
-			-- 	end,
-			-- 	mode = "n",
-			-- },
+			{
+				"k",
+				function()
+					return vim.v.count > 0 and "k" or "gk"
+				end,
+				mode = "n",
+				expr = true,
+			},
+			{
+				"j",
+				function()
+					return vim.v.count > 0 and "j" or "gj"
+				end,
+				mode = "n",
+				expr = true,
+			},
 		},
 		lazy = true,
 		opts = {
