@@ -33,7 +33,6 @@ vim.opt.signcolumn = "yes:1"
 vim.opt.foldcolumn = "auto:1"
 vim.opt.swapfile = false
 vim.opt.cursorline = true
-vim.opt.clipboard = "unnamed"
 vim.opt.scrolloff = 5
 vim.opt.mousemodel = "extend"
 
