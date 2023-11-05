@@ -91,6 +91,11 @@ vim.cmd([[
     autocmd TermOpen * setlocal nospell
 ]])
 
+vim.cmd([[
+    autocmd FileType help wincmd L
+    autocmd FileType fugitive wincmd L
+]])
+
 function ToggleTroubleAuto()
     local buftype = "quickfix"
     if vim.fn.getloclist(0, { filewinid = 1 }).filewinid ~= 0 then
