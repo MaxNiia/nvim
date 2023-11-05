@@ -132,7 +132,11 @@ return {
 					-- },
 					K = {
 						function()
-							require("pretty_hover").hover()
+							local winid = require('ufo').peekFoldedLinesUnderCursor()
+							if not winid then
+								-- choose one of coc.nvim and nvim lsp
+								require("pretty_hover").hover()
+							end
 						end,
 						"Hover",
 					},
