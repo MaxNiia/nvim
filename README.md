@@ -13,6 +13,10 @@ To auto install packages managers run `init.sh`.
 
 Plugins will auto install and kept updated by lazy.
 
+## Theme
+After running `init.sh` an ignored file is created in the `lua` directory. This
+file dictates what theme nvim should use.
+
 ## WSL
 If using wsl the windows clipboard has to be installed in order to yank
 into and put from windows. The following command from the neovim FAQ
