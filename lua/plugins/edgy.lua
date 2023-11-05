@@ -11,14 +11,14 @@ return {
 		event = "VeryLazy",
 		keys = {
 			{
-				"<leader>ue",
+				"<leader>UT",
 				function()
 					require("edgy").toggle()
 				end,
 				desc = "Edgy toggle Window",
 			},
 			{
-				"<leader>uE",
+				"<leader>US",
 				function()
 					require("edgy").select()
 				end,
@@ -63,19 +63,19 @@ return {
 				"dapui_watches",
 				"dapui_scopes",
 			},
-			right = {
-				{
-					ft = "gitrebase",
-					size = {
-						width = 100,
-					},
-				},
-				{
-					ft = "gitcommit",
-					size = {
-						width = 72,
-					},
-				},
+			-- right = {
+			-- 	{
+			-- 		ft = "gitrebase",
+			-- 		size = {
+			-- 			width = 100,
+			-- 		},
+			-- 	},
+			-- 	{
+			-- 		ft = "gitcommit",
+			-- 		size = {
+			-- 			width = 72,
+			-- 		},
+			-- 	},
 				-- PERF: Toggleterm performs terribly with edgy.
 				-- {
 				-- 	ft = "toggleterm",
@@ -88,7 +88,7 @@ return {
 				-- 		return vim.api.nvim_win_get_config(win).relative == ""
 				-- 	end,
 				-- },
-			},
+			-- },
 		},
 	},
 }
