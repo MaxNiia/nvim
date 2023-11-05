@@ -1,8 +1,8 @@
 return { {
-	"j-hui/fidget.nvim",
-	opts = {
-		window = {
-			blend = 20,
-		},
-	},
+	-- "j-hui/fidget.nvim",
+	-- opts = {
+	-- 	window = {
+	-- 		blend = 20,
+	-- 	},
+	-- },
 } }

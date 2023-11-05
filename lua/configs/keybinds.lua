@@ -13,6 +13,83 @@ end
 local dap = require("dap")
 local breakpoint = require("goto-breakpoints")
 
+local root_patterns = { ".git", "lua" }
+-- returns the root directory based on:
+-- * lsp workspace folders
+-- * lsp root_dir
+-- * root pattern of filename of the current buffer
+-- * root pattern of cwd
+---@return string
+local function get_root()
+	---@type string?
+	local path = vim.api.nvim_buf_get_name(0)
+	path = path ~= "" and vim.loop.fs_realpath(path) or nil
+	---@type string[]
+	local roots = {}
+	if path then
+		for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+			local workspace = client.config.workspace_folders
+			local paths = workspace and vim.tbl_map(function(ws)
+				return vim.uri_to_fname(ws.uri)
+			end, workspace) or client.config.root_dir and { client.config.root_dir } or {}
+			for _, p in ipairs(paths) do
+				local r = vim.loop.fs_realpath(p)
+				if path:find(r, 1, true) then
+					roots[#roots + 1] = r
+				end
+			end
+		end
+	end
+	table.sort(roots, function(a, b)
+		return #a > #b
+	end)
+	---@type string?
+	local root = roots[1]
+	if not root then
+		path = path and vim.fs.dirname(path) or vim.loop.cwd()
+		---@type string?
+		root = vim.fs.find(root_patterns, { path = path, upward = true })[1]
+		root = root and vim.fs.dirname(root) or vim.loop.cwd()
+	end
+	---@cast root string
+	return root
+end
+
+-- this will return a function that calls telescope.
+-- cwd will default to lazyvim.util.get_root
+-- for `files`, git_files or find_files will be chosen depending on .git
+local function telescope(builtin, opts)
+	local params = { builtin = builtin, opts = opts }
+	return function()
+		builtin = params.builtin
+		opts = params.opts
+		opts = vim.tbl_deep_extend("force", { cwd = get_root() }, opts or {})
+		if builtin == "files" then
+			if vim.loop.fs_stat((opts.cwd or vim.loop.cwd()) .. "/.git") then
+				opts.show_untracked = true
+				builtin = "git_files"
+			else
+				builtin = "find_files"
+			end
+		end
+		if opts.cwd and opts.cwd ~= vim.loop.cwd() then
+			opts.attach_mappings = function(_, map)
+				map("i", "<a-c>", function()
+					local action_state = require("telescope.actions.state")
+					local line = action_state.get_current_line()
+					telescope(
+						params.builtin,
+						vim.tbl_deep_extend("force", {}, params.opts or {}, { cwd = false, default_text = line })
+					)()
+				end)
+				return true
+			end
+		end
+
+		require("telescope.builtin")[builtin](opts)
+	end
+end
+
 wk.register({
 	{
 		-- normal, visual, select, operator
@@ -149,34 +226,48 @@ wk.register({
 				"Pick venv",
 			},
 			-- telescope
-			e = {
-				"<cmd>Telescope file_browser<CR>",
-				"Browser",
-			},
-			s = {
-				"<cmd>Telescope grep_string<CR>",
-				"Grep string",
-			},
 			f = {
 				name = "+Find",
+				-- c = {
+				-- 	telescope("colorscheme", { enable_preview = true }),
+				-- 	"Colorscheme",
+				-- },
+				c = {
+					function ()
+						require("colorscheme-persist").picker()
+					end,
+					"Colorscheme"
+				},
+				r = {
+					"<cmd>Telescope resume<CR>",
+					"Resume",
+				},
 				t = {
 					"<cmd>Telescope<CR>",
 					"Telescope",
 				},
 				j = {
-					"<cmd>Telescope grep_string<CR>",
-					"Grep string",
+					telescope("grep_string"),
+					"Grep string (root)",
+				},
+				J = {
+					telescope("grep_string", { cwd = false }),
+					"Grep string (cwd)",
 				},
 				f = {
-					"<cmd>Telescope find_files<CR>",
-					"Files",
+					telescope("files"),
+					"Files (root dir)",
+				},
+				F = {
+					telescope("files", { cwd = false }),
+					"Files (cwd)",
 				},
 				b = {
 					"<cmd>Telescope buffers<CR>",
 					"Buffers",
 				},
 				d = {
-					"+Debug",
+					name = "+Debug",
 					c = {
 						"<cmd>Telescope dap commands<CR>",
 						"Commands",
@@ -202,9 +293,17 @@ wk.register({
 					"<cmd>Telescope oldfiles<CR>",
 					"Old files",
 				},
+				O = {
+					telescope("oldfiles", { cwd = vim.loop.cwd() }),
+					"Old files (cwd)",
+				},
 				s = {
-					"<cmd>Telescope live_grep<CR>",
-					"Search",
+					telescope("live_grep"),
+					"Search (root dir)",
+				},
+				S = {
+					telescope("live_grep", { cwd = false }),
+					"Search (cwd)",
 				},
 				q = {
 					"<cmd>Telescope spell_suggest<CR>",
@@ -261,6 +360,99 @@ wk.register({
 						"Don't save",
 					},
 				},
+				k = {
+					"<cmd>Telescope keymaps<cr>",
+					"Key Maps",
+				},
+				l = {
+					name = "+LSP",
+					r = {
+						"<cmd>Telescope lsp_references<cr>",
+						"References",
+					},
+					i = {
+						"<cmd>Telescope lsp_incoming_calls<cr>",
+						"Incoming",
+					},
+					o = {
+						"<cmd>Telescope lsp_outgoing_calls<cr>",
+						"Incoming",
+					},
+					d = {
+						"<cmd>Telescope lsp_definitions<cr>",
+						"Definitions",
+					},
+					t = {
+						"<cmd>Telescope lsp_type_definitions<cr>",
+						"Type Definitions",
+					},
+					j = {
+						"<cmd>Telescope lsp_implementations<cr>",
+						"Implementations",
+					},
+					s = {
+						telescope("lsp_document_symbols", {
+							symbols = {
+								"Class",
+								"Function",
+								"Method",
+								"Constructor",
+								"Interface",
+								"Module",
+								"Struct",
+								"Trait",
+								"Field",
+								"Property",
+							},
+						}),
+						"Goto Symbol",
+					},
+					S = {
+						telescope("lsp_dynamic_workspace_symbols", {
+							symbols = {
+								"Class",
+								"Function",
+								"Method",
+								"Constructor",
+								"Interface",
+								"Module",
+								"Struct",
+								"Trait",
+								"Field",
+								"Property",
+							},
+						}),
+						"Goto Symbol (Workspace)",
+					},
+				},
+			},
+			e = {
+				"<cmd>Telescope file_browser<CR>",
+				"Browser",
+			},
+			s = {
+				telescope("grep_string"),
+				"Grep string (root)",
+			},
+			S = {
+				telescope("grep_string", { cwd = false }),
+				"Grep string (cwd)",
+			},
+			[","] = {
+				"<cmd>Telescope buffers show_all_buffers=true<cr>",
+				"Switch buffers",
+			},
+			["/"] = {
+				telescope("live_grep"),
+				"Search (root)",
+			},
+			["?"] = {
+				telescope("live_grep", { cwd = false }),
+				"Search (cwd)",
+			},
+			[":"] = {
+				"<cmd>Telescope command_history<cr>",
+				"Command History",
 			},
 			-- toggleterm
 			t = {
@@ -309,7 +501,7 @@ wk.register({
 			},
 			z = {
 				function()
-					if vim.o.relativenumber  then
+					if vim.o.relativenumber then
 						vim.o.relativenumber = 0
 					else
 						vim.o.relativenumber = 1
@@ -318,11 +510,11 @@ wk.register({
 				"Toggle relative line numbers",
 			},
 			y = {
-				"\"+y",
+				'"+y',
 				"Yank to system clipboard",
 			},
 			p = {
-				"\"+p",
+				'"+p',
 				"Paste from system clipboard",
 			},
 		}, -- leader
@@ -382,20 +574,29 @@ wk.register({
 				j = {
 
 					"<cmd>Telescope grep_string<CR>",
-					"Grep string",
+					"Grep string (root)",
+				},
+				J = {
+
+					telescope("grep_string"),
+					"Grep string (cwd)",
 				},
 			},
 			s = {
-				"<cmd>Telescope grep_string<CR>",
-				"Grep string",
+				telescope("grep_string"),
+				"Grep string (root)",
+			},
+			S = {
+				telescope("grep_string", { cwd = false }),
+				"Grep string (cwd)",
 			},
 			-- Misc
 			y = {
-				"\"+y",
+				'"+y',
 				"Yank to system clipboard",
 			},
 			p = {
-				"\"+p",
+				'"+p',
 				"Paste from system clipboard",
 			},
 		}, -- leader

@@ -68,10 +68,13 @@ return {
 				},
 				marksman = {},
 				omnisharp_mono = {
-					cmd = { "mono", vim.fn.expand("~/.config/nvim/servers/omnisharp/OmniSharp.exe") },
-					enable_import_completion = true,
-					enable_roslyn_analyzers = true,
-					organize_imports_on_format = true,
+					--[[
+					custom_user_config = 'custom',
+					cmd = {
+					"powershell.exe",
+					"dotnet c:\\Users\\Max\\.vscode\\extensions\\ms-dotnettools.csharp-1.25.7-win32-x64\\.omnisharp\\1.39.6-net6.0\\OmniSharp.dll",
+					}
+					]]
 				},
 				pylsp = {},
 				rust_analyzer = {
@@ -102,6 +105,7 @@ return {
 		config = function(_, opts)
 			require("neodev").setup()
 			local lspconfig = require("lspconfig")
+			
 			-- diagnostics
 			local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 
