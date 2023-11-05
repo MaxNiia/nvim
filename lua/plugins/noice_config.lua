@@ -8,9 +8,6 @@ return {
 		lazy = true,
 		event = "BufEnter",
 		opts = {
-			-- cmdline = {
-			-- 	view = "cmdline", --cmdline_popup
-			-- },
 			lsp = {
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,

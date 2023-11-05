@@ -52,14 +52,22 @@ return {
 			-- end
 		end,
 		opts = {
-			open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "edgy" },
+			open_files_do_not_replace_types = {
+				"oil",
+				"terminal",
+				"Trouble",
+				"qf",
+				"outline",
+				"edgy",
+			},
 			source_selector = {
-				winbar = true,
+				winbar = false,
 			},
 			sources = {
 				"filesystem",
 				"buffers",
 				"git_status",
+				"document_symbols",
 			},
 			event_handlers = {
 				{

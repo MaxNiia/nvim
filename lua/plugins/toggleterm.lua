@@ -50,13 +50,13 @@ return {
 			on_create = function(terminal)
 				terminal.name = terminal.count
 			end,
-			open_mapping = [[<f12>]],
+			open_mapping = "<f12>",
 			hide_number = true,
 			autochdir = true,
 			shade_terminals = false,
 			start_in_insert = true,
 			terminal_mappings = true,
-			persist_size = true,
+			-- persist_size = true,
 			persist_mode = true,
 			direction = "vertical", --| "horizontal" | "tab" | "float",
 			close_on_exit = false,
@@ -75,16 +75,5 @@ return {
 				end,
 			},
 		},
-		config = function(_, opts)
-			require("toggleterm").setup(opts)
-			--vim.cmd(
-			--[[
-				nnoremap <silent><f5> <Cmd>exe v:count1 . "ToggleTerm direction=float"<CR>
-				nnoremap <silent><f6> <Cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>
-				nnoremap <silent><f7> <Cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>
-				nnoremap <silent><f8> <Cmd> ToggleTermToggleAll <CR>
-			]]
-			--)
-		end,
 	},
 }
