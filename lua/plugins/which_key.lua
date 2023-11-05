@@ -61,7 +61,6 @@ return {
 				},
 				r = { name = "Refactor" },
 				b = { name = "Debug" },
-				W = { name = "Workspace" },
 				h = {
 					name = "Harpoon",
 				},

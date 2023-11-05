@@ -101,23 +101,6 @@ return {
 				desc = "Key Maps",
 			},
 
-			-- Session
-			{
-				"<leader>fws",
-				"<cmd>SessionLoad<cr>",
-				desc = "Restore directory session",
-			},
-			{
-				"<leader>fwl",
-				"<cmd>SessionLoadLast<cr>",
-				desc = "Restore last session",
-			},
-			{
-				"<leader>fwd",
-				"<cmd>SessionStop<cr>",
-				desc = "Don't save",
-			},
-
 			-- GIT
 			{ "<leader>fgs", "<cmd>Telescope git_status<CR>", desc = "Status" },
 			{
@@ -147,189 +130,6 @@ return {
 				"<cmd>Telescope dap variables<CR>",
 				desc = "Variables",
 			},
-			{ "<leader>fdf", "<cmd>Telescope dap frames<CR>", desc = "Frames" },
-			{
-				"<leader>fdx",
-				"<cmd>Telescope dap configurations<CR>",
-				desc = "Configurations",
-			},
-
-			-- LSP
-			{
-				"<leader>flr",
-				"<cmd>Telescope lsp_references<cr>",
-				desc = "References",
-			},
-			{
-				"<leader>fli",
-				"<cmd>Telescope lsp_incoming_calls<cr>",
-				desc = "Incoming",
-			},
-			{
-				"<leader>flo",
-				"<cmd>Telescope lsp_outgoing_calls<cr>",
-				desc = "Outgoing",
-			},
-			{
-				"<leader>fld",
-				"<cmd>Telescope lsp_definitions<cr>",
-				desc = "Definitions",
-			},
-			{
-				"<leader>flt",
-				"<cmd>Telescope lsp_type_definitions<cr>",
-				desc = "Type Definitions",
-			},
-			{
-				"<leader>flj",
-				"<cmd>Telescope lsp_implementations<cr>",
-				desc = "Implementations",
-			},
-			{
-				"<leader>fls",
-				call_telescope("lsp_document_symbols", {
-					symbols = {
-						"Class",
-						"Function",
-						"Method",
-						"Constructor",
-						"Interface",
-						"Module",
-						"Struct",
-						"Trait",
-						"Field",
-						"Property",
-					},
-				}),
-			},
-			{
-				"<leader>fJ",
-				call_telescope("grep_string"),
-				desc = "Grep string (cwd)",
-				mode = {
-					"v",
-					"n",
-				},
-			},
-			{ "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Resume" },
-			{
-				"<leader>ft",
-				"<cmd>Telescope<cr>",
-				desc = "Telescope",
-			},
-			{
-				"<leader>ff",
-				call_telescope("files"),
-				desc = "Files (root)",
-			},
-			{
-				"<leader>fF",
-				call_telescope("files", { cwd = false }),
-				desc = "Files (cwd)",
-			},
-			{
-				"<leader>fs",
-				call_telescope("live_grep"),
-				desc = "Search (root dir)",
-			},
-			{
-				"<leader>fS",
-				call_telescope("live_grep", { cwd = false }),
-				desc = "Search (cwd)",
-			},
-			{
-				"<leader>fb",
-				"<cmd>Telescope buffers<CR>",
-				desc = "Buffers",
-			},
-			{
-				"<leader>fo",
-				"<cmd>Telescope oldfiles<CR>",
-				desc = "Old files (root)",
-			},
-			{
-				"<leader>fO",
-				call_telescope("oldfiles", { cwd = vim.loop.cwd() }),
-				desc = "Old files (cwd)",
-			},
-			{
-				"<leader>fq",
-				"<cmd>Telescope spell_suggest<CR>",
-				desc = "Dictionary",
-			},
-			{
-				"<leader>fp",
-				"<cmd>Telescope projects<CR>",
-				desc = "Project",
-			},
-			{ "<leader>fn", "<cmd>Telescope noice<CR>", desc = "Noice" },
-			{ "<leader>fN", "<cmd>Telescope notify<CR>", desc = "Notify" },
-			{
-				"<leader>fm",
-				"<cmd>Telescope manpages<CR>",
-				desc = "Manpages",
-			},
-			{ "<leader>fa", "<cmd>Telescope aerial<CR>", desc = "Aerial" },
-			{
-				"<leader>fk",
-				"<cmd>Telescope keymaps<cr>",
-				desc = "Key Maps",
-			},
-
-			-- Session
-			{
-				"<leader>fws",
-				"<cmd>SessionLoad<cr>",
-				desc = "Restore directory session",
-			},
-			{
-				"<leader>fwl",
-				"<cmd>SessionLoadLast<cr>",
-				desc = "Restore last session",
-			},
-			{
-				"<leader>fwd",
-				"<cmd>SessionStop<cr>",
-				desc = "Don't save",
-			},
-
-			-- GIT
-			{ "<leader>fgs", "<cmd>Telescope git_status<CR>", desc = "Status" },
-			{
-				"<leader>fgb",
-				"<cmd>Telescope git_branches<CR>",
-				desc = "Branches",
-			},
-			{
-				"<leader>fgc",
-				"<cmd>Telescope git_commits<CR>",
-				desc = "Commits",
-			},
-
-			-- Harpoon
-			{
-				"<leader>fh",
-				"<cmd>Telescope harpoon marks<CR>",
-				desc = "Harpoon",
-			},
-
-			-- DAP
-			{
-				"<leader>fdc",
-				"<cmd>Telescope dap commands<CR>",
-				desc = "Commands",
-			},
-			{
-				"<leader>fdb",
-				"<cmd>Telescope dap list_breakpoints<CR>",
-				desc = "Breakpoints",
-			},
-			{
-				"<leader>fdv",
-				"<cmd>Telescope dap variables<CR>",
-				desc = "Variables",
-			},
-			{ "<leader>fdf", "<cmd>Telescope dap frames<CR>", desc = "Frames" },
 			{
 				"<leader>fdx",
 				"<cmd>Telescope dap configurations<CR>",
@@ -404,6 +204,25 @@ return {
 				desc = "Goto Symbol (WS)",
 			},
 
+			-- Harpoon
+			{
+				"<leader>fh",
+				"<cmd>Telescope harpoon marks<CR>",
+				desc = "Harpoon",
+			},
+
+			-- File Browser
+			{
+				"<leader>fe",
+				"<cmd>Telescope file_browser<CR>",
+				desc = "Browser (root)",
+			},
+			{
+				"<leader>fE",
+				"<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>",
+				desc = "Browser (cwd)",
+			},
+
 			-- LEADER
 			{
 				"<leader>s",
@@ -422,16 +241,6 @@ return {
 					"v",
 					"n",
 				},
-			},
-			{
-				"<leader>e",
-				"<cmd>Telescope file_browser<CR>",
-				desc = "Browser (root)",
-			},
-			{
-				"<leader>E",
-				"<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>",
-				desc = "Browser (cwd)",
 			},
 			{
 				"<leader>,",
@@ -465,6 +274,23 @@ return {
 			},
 			{
 				"olimorris/persisted.nvim",
+				keys = {
+					{
+						"<leader>Ws",
+						"<cmd>SessionLoad<cr>",
+						desc = "Restore directory session",
+					},
+					{
+						"<leader>Wl",
+						"<cmd>SessionLoadLast<cr>",
+						desc = "Restore last session",
+					},
+					{
+						"<leader>Wd",
+						"<cmd>SessionStop<cr>",
+						desc = "Don't save",
+					},
+				},
 				opts = {
 					use_git_branch = true,
 					PersistedTelescopeLoadPre = function()
@@ -548,7 +374,7 @@ return {
 			},
 			extensions = {
 				file_browser = {
-					hijack_netrw = true,
+					hijack_netrw = false,
 					display_stat = false,
 					initial_mode = "normal",
 				},

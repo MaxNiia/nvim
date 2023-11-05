@@ -203,7 +203,7 @@ return {
 						"Signature",
 					},
 					["<leader>"] = {
-						W = {
+						w = {
 							name = "Workspace",
 							a = {
 								vim.lsp.buf.add_workspace_folder,
