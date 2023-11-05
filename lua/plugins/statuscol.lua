@@ -11,7 +11,6 @@ return {
 			local builtin = require("statuscol.builtin")
 
 			require("statuscol").setup({
-
 				relculright = true,
 				thousands = false,
 				ft_ignore = {
@@ -33,11 +32,11 @@ return {
 						sign = {
 							name = {
 								"Diagnostic",
-								maxwidth = 2,
-								auto = true,
 							},
-							click = "v:lua.ScSa",
+							maxwidth = 2,
+							auto = true,
 						},
+						click = "v:lua.ScSa",
 					},
 					{
 						text = {
@@ -49,13 +48,13 @@ return {
 						sign = {
 							name = {
 								".*",
-								maxwidth = 2,
-								colwidth = 1,
-								auto = true,
 							},
-							click = "v:lua.ScSa",
-						}
-					}
+							maxwidth = 2,
+							colwidth = 1,
+							auto = true,
+						},
+						click = "v:lua.ScSa",
+					},
 				},
 				clickhandlers = {
 					-- builtin click handlers
