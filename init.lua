@@ -22,6 +22,7 @@ _G.IS_WSL = IS_LINUX and uname.release:find("Microsoft") and true or false
 
 require("configs.options")
 require("configs.autocmd")
+require("configs.commands")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
