@@ -57,5 +57,11 @@ cmd([[
 ]])
 
 cmd([[
+    autocmd FileType python set textwidth=120
+    autocmd FileType python set colorcolumn=+1
+]])
+
+cmd([[
     autocmd FileType NvimTree set numberwidth=2
+    autocmd FIleType NvimTree set scl=no
 ]])
