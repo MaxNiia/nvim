@@ -7,21 +7,21 @@ return {
 		lazy = true,
 		keys = {
 			{
-				"<leader>ha",
+				"<leader>Ha",
 				function()
 					require("harpoon.mark").add_file()
 				end,
 				desc = "Add file",
 			},
 			{
-				"<leader>hq",
+				"<leader>Hq",
 				function()
 					require("harpoon.ui").toggle_quick_menu()
 				end,
 				desc = "View marks",
 			},
 			{
-				"<leader>hf",
+				"<leader>Hf",
 				function()
 					require("harpoon.ui").nav_file(vim.v.count)
 				end,

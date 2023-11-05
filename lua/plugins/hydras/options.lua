@@ -8,6 +8,11 @@ local hint = [[
   _c_ %{cul} cursor line
   _n_ %{nu} number
   _r_ %{rnu} relative number
+  _t_ Toggle inlay hints
+  _R_ Reset inlay hints
+  _S_ toggle signs
+  _l_ toggle line hl
+  _D_ toggle deleted
   ^
        ^^^^                _<Esc>_
 ]]
@@ -24,16 +29,12 @@ return {
 		},
 	},
 	mode = { "n", "x" },
-	body = "<leader>o",
+	body = "<leader>O",
 	heads = {
 		{
 			"n",
 			function()
-				if vim.o.number == true then
-					vim.o.number = false
-				else
-					vim.o.number = true
-				end
+				vim.o.number = not vim.o.number
 			end,
 			{ desc = "number" },
 		},
@@ -50,24 +51,25 @@ return {
 			{ desc = "relativenumber" },
 		},
 		{
-			"gs",
-			"<cmd>GitSigns toggle_signs",
+			"S",
+			function()
+				require("gitsigns").toggle_signs()
+			end,
 			{ desc = "Toggle signs" },
 		},
 		{
-			"gs",
-			"<cmd>GitSigns toggle_numhl",
-			{ desc = "Toggle Num HL" },
-		},
-		{
-			"gs",
-			"<cmd>GitSigns toggle_linehl",
+			"l",
+			function()
+				require("gitsigns").toggle_linehl()
+			end,
 			{ desc = "Toggle Line HL" },
 		},
 		{
-			"gs",
-			"<cmd>GitSigns toggle_word_diff",
-			{ desc = "Toggle Word Diff" },
+			"D",
+			function()
+				require("gitsigns").toggle_deleted()
+			end,
+			{ desc = "Toggle deleted" },
 		},
 		{
 			"v",
@@ -83,22 +85,14 @@ return {
 		{
 			"i",
 			function()
-				if vim.o.list == true then
-					vim.o.list = false
-				else
-					vim.o.list = true
-				end
+				vim.o.list = not vim.o.list
 			end,
 			{ desc = "show invisible" },
 		},
 		{
 			"s",
 			function()
-				if vim.o.spell == true then
-					vim.o.spell = false
-				else
-					vim.o.spell = true
-				end
+				vim.o.spell = not vim.o.spell
 			end,
 			{ exit = true, desc = "spell" },
 		},
@@ -130,11 +124,21 @@ return {
 		{
 			"c",
 			function()
-				if vim.o.cursorline == true then
-					vim.o.cursorline = false
-				else
-					vim.o.cursorline = true
-				end
+				vim.o.cursorline = not vim.o.cursorline
+			end,
+			{ desc = "cursor line" },
+		},
+		{
+			"R",
+			function()
+				require("lsp-inlayhints").reset()
+			end,
+			{ desc = "Reset inlayhints" },
+		},
+		{
+			"t",
+			function()
+				require("lsp-inlayhints").toggle()
 			end,
 			{ desc = "cursor line" },
 		},

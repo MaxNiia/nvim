@@ -28,6 +28,20 @@ return {
 				mode = "n",
 				desc = "Clear highlighting",
 			},
+			-- {
+			-- 	"k",
+			-- 	function()
+			-- 		return vim.v.count > 0 and "k" or "gk"
+			-- 	end,
+			-- 	mode = "n",
+			-- },
+			-- {
+			-- 	"j",
+			-- 	function()
+			-- 		return vim.v.count > 0 and "j" or "gj"
+			-- 	end,
+			-- 	mode = "n",
+			-- },
 		},
 		lazy = true,
 		opts = {
@@ -46,9 +60,8 @@ return {
 				T = { name = "Tabs" },
 				r = { name = "Refactor" },
 				b = { name = "Debug" },
-				h = {
-					name = "Harpoon",
-				},
+				h = { name = "Hunk" },
+				H = { name = "Harpoon" },
 			}, { prefix = "<leader>", mode = "n" })
 
 			wk.register({
