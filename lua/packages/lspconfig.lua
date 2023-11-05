@@ -117,13 +117,20 @@ local lsp_flags = {
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 capabilities.offsetEncoding = "utf-8"
 
-require("lspconfig")["pylsp"].setup({
-    settings = {
-        pylsp = {
-            plugins = {
-            }
-        }
-    }
+require("lspconfig")["pyright"].setup({
+capabilities = capabilities,
+   on_attach = on_attach,
+   flags = lsp_flags,
+   settings = {
+      python = {
+         analysis = {
+            autoImportCompletions = true,
+            ausoSearchPaths = true,
+            diagnosticMode = "workspace",
+            useLibraryCodeForTypes = true,
+         },
+      },
+   },
 })
 
 require("lspconfig")["clangd"].setup({
@@ -133,10 +140,11 @@ require("lspconfig")["clangd"].setup({
     cmd = {
         "clangd",
         "--background-index=true",
-        "--clang-tidy=true",
+        "--clang-tidy",
         "--completion-style=detailed",
         "--all-scopes-completion=true",
-        "--query-driver='/usr/bin/clang, /usr/bin/clang++'", -- gcc
+        "--query-driver='/usr/bin/clang, /usr/bin/clang++'",
+        "--header-insertion=iwyu"
     },
 })
 

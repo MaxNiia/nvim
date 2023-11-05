@@ -5,7 +5,7 @@ require("mason-lspconfig").setup({
         "cmake",
         "sumneko_lua",
         "rust_analyzer",
-        "pylsp",
+        "pyright",
     },
 })
 

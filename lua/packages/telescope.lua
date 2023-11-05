@@ -19,13 +19,13 @@ require("telescope").setup({
     },
     defaults = {
         wrap_results = false,
-        path_display = { "truncate" },
+        path_display = {truncate = 20},
     },
 })
 
 require("telescope").load_extension("fzf")
 require("telescope").load_extension("file_browser")
-require("telescope").load_extension("project")
+require("telescope").load_extension("projects")
 require("telescope").load_extension("notify")
 require("telescope").load_extension("noice")
 
@@ -58,7 +58,7 @@ wk.register({
             "Dictionary",
         },
         p = {
-            "<cmd>Telescope project<CR>",
+            "<cmd>Telescope projects<CR>",
             "Project",
         },
         n = {
