@@ -1,12 +1,4 @@
 local wk = require("which-key")
-wk.register({
-   t = {
-      "<cmd>FloatermToggle<CR>",
-      "Terminal",
-   },
-}, {
-   prefix = "<leader>",
-})
 
 wk.register({
    ["<f7>"] = {
@@ -51,15 +43,5 @@ wk.register({
       "Toggle Terminal",
    },
 }, {
-   mode = "t",
-})
-
-wk.register({
-   ["<esc>"] = {
-      "<cmd>FloatermToggle<CR>",
-      "Terminal",
-   },
-}, {
-   prefix = "<leader>",
    mode = "t",
 })
