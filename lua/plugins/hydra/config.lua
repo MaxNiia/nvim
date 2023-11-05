@@ -5,6 +5,7 @@ local hint = [[
   _m_ %{mini_files}^ mini.files
   _t_ %{toggleterm}^ Toggleterm
   _o_ %{oled}^^^^^^^ OLED Catppuccin
+  _c_ %{copilot}^^^^ Copilot
   ^
        ^^^^                _<Esc>_
 ]]
@@ -44,6 +45,7 @@ return {
                 mini_files = show_state_builder("mini_files"),
                 toggleterm = show_state_builder("toggleterm"),
                 oled = show_state_builder("oled"),
+                copilot = show_state_builder("copilot"),
             },
         },
     },
@@ -54,6 +56,7 @@ return {
         head_toggle_builder("mini_files", "m"),
         head_toggle_builder("toggleterm", "t"),
         head_toggle_builder("oled", "o"),
+        head_toggle_builder("copilot", "c"),
         { "<Esc>", nil, { exit = true } },
     },
 }

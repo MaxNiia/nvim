@@ -37,6 +37,11 @@ return {
             filetypes = {
                 "html",
                 "js",
+                "py",
+                "cmake",
+                "cpp",
+                "c++",
+                "c",
                 "cjs",
                 "mjs",
                 "ts",

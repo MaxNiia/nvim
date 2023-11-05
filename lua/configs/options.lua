@@ -51,6 +51,8 @@ vim.opt.timeoutlen = 100
 vim.opt.ttimeout = true
 vim.opt.ttimeoutlen = 100
 vim.opt.wildmenu = true
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 
 -- Window
 vim.wo.spell = true

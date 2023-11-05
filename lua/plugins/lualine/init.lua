@@ -198,6 +198,9 @@ return {
                     },
                     {
                         require("plugins.lualine.copilot").get_status,
+                        cond = function()
+                            return _G.copilot
+                        end,
                     },
                 },
                 lualine_z = {

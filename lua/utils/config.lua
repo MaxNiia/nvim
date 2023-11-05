@@ -6,6 +6,7 @@ local options = {
     { name = "neotree", default = false },
     { name = "toggleterm", default = true },
     { name = "oled", default = false },
+    { name = "copilot", default = false },
 }
 
 local separator = ":"

@@ -37,6 +37,7 @@ return {
                 markdown = true,
                 mini = true,
                 neotree = true,
+                flash = true,
                 telescope = {
                     enabled = true,
                     style = "nvchad",
