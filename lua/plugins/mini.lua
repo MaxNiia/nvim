@@ -19,8 +19,14 @@ return {
 		"echasnovski/mini.comment",
 		version = false,
 		event = "BufEnter",
-		config = function()
-			require("mini.comment").setup()
+		opts = {
+			options = {
+				custom_commentstring = nil,
+				ignore_blank_line = true,
+			},
+		},
+		config = function(_, opts)
+			require("mini.comment").setup(opts)
 		end,
 	},
 	{

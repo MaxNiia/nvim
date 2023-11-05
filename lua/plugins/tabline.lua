@@ -15,12 +15,12 @@ return {
 		end,
 		keys = {
 			{
-				"<tab>",
+				"gb",
 				"<cmd>TablineBufferNext<CR>",
 				desc = "Next buffer",
 			},
 			{
-				"<s-tab>",
+				"gB",
 				"<cmd>TablineBufferPrevious<CR>",
 				desc = "Previous buffer",
 			},

@@ -23,27 +23,32 @@ return {
 
 				-- Navigation
 				wk.register({
-					h = {function()
-						if vim.wo.diff then
-							return "]h"
-						end
-						vim.schedule(function()
-							gs.next_hunk()
-						end)
-						return "<Ignore>"
-					end,"Next Hunk"},
+					h = {
+						function()
+							if vim.wo.diff then
+								return "]h"
+							end
+							vim.schedule(function()
+								gs.next_hunk()
+							end)
+							return "<Ignore>"
+						end,
+						"Next Hunk",
+					},
 				}, { mode = "n", prefix = "]", expr = true })
 				wk.register({
-					h = {function()
-						if vim.wo.diff then
-							return "[h"
-						end
-						vim.schedule(function()
-							gs.prev_hunk()
-						end)
-						return "<Ignore>"
-					end,"Prev Hunk"},
-
+					h = {
+						function()
+							if vim.wo.diff then
+								return "[h"
+							end
+							vim.schedule(function()
+								gs.prev_hunk()
+							end)
+							return "<Ignore>"
+						end,
+						"Prev Hunk",
+					},
 				}, { mode = "n", prefix = "[", expr = true })
 
 				-- Actions
