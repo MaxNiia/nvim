@@ -4,7 +4,7 @@ return {
         name = "catppuccin",
         opts = {
             compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
-            transparent_background = false,
+            transparent_background = true,
             integrations = {
                 aerial = true,
                 beacon = true,

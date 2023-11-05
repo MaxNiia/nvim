@@ -9,6 +9,7 @@ endif
 autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 ]])
 
+require("utils.config").set_default_config()
 require("utils.config").load_config()
 
 local uname = vim.loop.os_uname()

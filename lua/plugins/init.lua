@@ -46,6 +46,18 @@ return {
         },
     },
     {
+        "tzachar/highlight-undo.nvim",
+        event = "BufEnter",
+        opts = {
+            hlgroup = "HighlightUndo",
+            duration = 300,
+            keymaps = {
+                { "n", "u", "undo", {} },
+                { "n", "<c-r>", "redo", {} },
+            },
+        },
+    },
+    {
         "NMAC427/guess-indent.nvim",
         lazy = true,
         event = "BufEnter",
@@ -100,12 +112,13 @@ return {
             },
         },
         opts = {
+            background_colour = "#00000000",
             timeout = 2000,
             max_height = function()
-                return math.floor(vim.o.lines * 0.25)
+                return math.floor(vim.o.lines * 0.1)
             end,
             max_width = function()
-                return math.floor(vim.o.columns * 0.5)
+                return math.floor(vim.o.columns * 0.25)
             end,
         },
         init = function()

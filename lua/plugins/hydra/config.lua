@@ -1,23 +1,36 @@
 local hint = [[
-  ^ ^        File Trees
+  ^ ^        Config
   ^
-  _n_ %{neotree}^^^ Neotree
-  _m_ %{mini_files} mini.files
-  _t_ %{toggleterm} Toggleterm
+  _n_ %{neotree}^^^^ Neotree
+  _m_ %{mini_files}^ mini.files
+  _t_ %{toggleterm}^ Toggleterm
   ^
        ^^^^                _<Esc>_
 ]]
 
-local function show_state(name)
-    if _G[name] then
-        return "[X]"
-    else
-        return "[ ]"
+local function show_state_builder(name)
+    return function()
+        if _G[name] then
+            return "[X]"
+        else
+            return "[ ]"
+        end
     end
 end
 
+local function head_toggle_builder(name, key)
+    return {
+        key,
+        function()
+            _G[name] = not _G[name]
+            require("utils.config").save_config()
+        end,
+        { desc = name },
+    }
+end
+
 return {
-    name = "File Trees",
+    name = "Config",
     hint = hint,
     config = {
         color = "amaranth",
@@ -26,45 +39,18 @@ return {
             border = "rounded",
             position = "middle",
             funcs = {
-                neotree = function()
-                    return show_state("neotree")
-                end,
-                mini_files = function()
-                    return show_state("mini_files")
-                end,
-                toggleterm = function()
-                    return show_state("toggleterm")
-                end,
+                neotree = show_state_builder("neotree"),
+                mini_files = show_state_builder("mini_files"),
+                toggleterm = show_state_builder("toggleterm"),
             },
         },
     },
     mode = { "n", "x" },
     body = "<leader>F",
     heads = {
-        {
-            "n",
-            function()
-                _G.neotree = not _G.neotree
-                require("utils.config").save_config()
-            end,
-            { desc = "Neotree" },
-        },
-        {
-            "m",
-            function()
-                _G.mini_files = not _G.mini_files
-                require("utils.config").save_config()
-            end,
-            { desc = "mini.files" },
-        },
-        {
-            "t",
-            function()
-                _G.toggleterm = not _G.toggleterm
-                require("utils.config").save_config()
-            end,
-            { desc = "toggleterm" },
-        },
+        head_toggle_builder("neotree", "n"),
+        head_toggle_builder("mini_files", "m"),
+        head_toggle_builder("toggleterm", "t"),
         { "<Esc>", nil, { exit = true } },
     },
 }

@@ -100,7 +100,7 @@ fi
 
 if [ ! -e "${HOME}/.nvimstty" ] ; then
     echo "Disabling XON/XOFF flow control"
-    touch "${HOME}/.nvimstty"
+    touch "${HOME}/.nvimstty &> /dev/null 2>&1"
     echo "stty -ixon" >> "${HOME}/.nvimstty"
     if [ "${SHELL}" = "/usr/bin/zsh" ] ; then
         echo "source \"${HOME}/.nvimstty\"" >> "${HOME}/.zshrc"

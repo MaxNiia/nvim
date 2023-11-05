@@ -27,7 +27,7 @@ M.save_config = function()
     f:close()
 end
 
-local function set_default_config()
+M.set_default_config = function()
     for _, option in pairs(options) do
         _G[option.name] = option.default
     end
@@ -55,7 +55,7 @@ local function read_config_file()
 
         -- Assume that the file couldn't be read because it doesn't exist.
         -- So set default values and try to write the file.
-        set_default_config()
+        M.set_default_config()
         M.save_config()
     end
 end
