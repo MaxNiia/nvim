@@ -81,10 +81,10 @@ vim.cmd([[
 ]])
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
-    pattern = {"\\[dap-repl]\\", "DAP *"},
-    callback = function(_)
-        vim.wo.spell=false
-    end,
+	pattern = { "\\[dap-repl]\\", "DAP *" },
+	callback = function(_)
+		vim.wo.spell = false
+	end,
 })
 
 vim.cmd([[
@@ -97,22 +97,13 @@ vim.cmd([[
 ]])
 
 function ToggleTroubleAuto()
-    local buftype = "quickfix"
-    if vim.fn.getloclist(0, { filewinid = 1 }).filewinid ~= 0 then
-        buftype = "loclist"
-    end
-
-    local ok, trouble = pcall(require, "trouble")
-    if ok then
-        vim.api.nvim_win_close(0, true)
-        trouble.toggle(buftype)
-    else
-        local set = vim.opt_local
-        set.colorcolumn = ""
-        set.number = false
-        set.relativenumber = false
-        set.signcolumn = "no"
-    end
+	local ok, trouble = pcall(require, "trouble")
+	if ok then
+		vim.defer_fn(function()
+			vim.cmd("cclose")
+			trouble.open("quickfix")
+		end, 0)
+	end
 end
 
 vim.cmd([[
