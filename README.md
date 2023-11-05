@@ -4,8 +4,8 @@ Personal neovim config.
 
 ## Requirements
 
-- Neovim 0.9.0 or later.
-- A Nerdfont.
+- [Neovim](https://github.com/neovim/neovim) 0.9.0 or later.
+- A [Nerdfont](https://www.nerdfonts.com/) patched font.
 
 ## Usage
 
