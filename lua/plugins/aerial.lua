@@ -54,6 +54,8 @@ return {
 			use_treesitter = true,
 			filetype_exclude = {
 				"help",
+				"vimdoc",
+				"cmake",
 				"startify",
 				"aerial",
 				"alpha",

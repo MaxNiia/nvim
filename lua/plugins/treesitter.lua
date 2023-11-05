@@ -16,7 +16,7 @@ return {
 			require("nvim-treesitter.configs").setup({
 				highlight = {
 					enable = true,
-
+					use_languagetree = true,
 					-- Uses vim regex highlighting
 					additional_vim_regex_highlighting = false,
 				},
@@ -25,6 +25,9 @@ return {
 					-- disable = { list of languages },
 					extended_mode = true,
 					max_file_lines = 10000,
+				},
+				indent = {
+					enable = true,
 				},
 				ensured_install = {
 					"vim",
