@@ -66,7 +66,9 @@ return {
     },
     {
         "<leader>fb",
-        "<cmd>Telescope buffers<CR>",
+        function()
+            require("telescope").builtin.buffers({ sort_mru = true })
+        end,
         desc = "Buffers",
     },
     {
@@ -263,8 +265,8 @@ return {
         "<leader>fls",
         call_telescope("lsp_document_symbols", {
             fname_width = 40,
-            symbol_width = 40,
-            show_line = false,
+            symbol_width = 30,
+            symbol_type_width = 10,
             symbols = {
                 "Class",
                 "Function",
