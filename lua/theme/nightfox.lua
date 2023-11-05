@@ -32,6 +32,7 @@ require("window-picker").setup({
 
 require("lualine")
 
+--[[
 require("bufferline").setup({
 	options = {
 		diagnostics = "nvim_lsp",
@@ -52,3 +53,4 @@ require("bufferline").setup({
 		},
 	},
 })
+]]

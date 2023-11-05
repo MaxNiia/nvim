@@ -46,6 +46,7 @@ return {
 		lazy = true,
 		config = true,
 	},
+	--[[
 	{
 		"akinsho/bufferline.nvim",
 		event = "VeryLazy",
@@ -68,6 +69,7 @@ return {
 			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
 		},
 	},
+	]]
 	{
 		"rcarriga/nvim-notify",
 		keys = {

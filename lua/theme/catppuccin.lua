@@ -80,7 +80,7 @@ require("window-picker").setup({
 	other_win_hl_color = mocha.base,
 	autoselect_one = true,
 })
-
+--[[
 require("bufferline").setup({
 	highlights = require("catppuccin.groups.integrations.bufferline").get(),
 	options = {
@@ -102,5 +102,6 @@ require("bufferline").setup({
 		},
 	},
 })
+]]
 
 require("lualine")
