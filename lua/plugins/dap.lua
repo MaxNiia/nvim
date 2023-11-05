@@ -6,21 +6,18 @@ return {
 			"ofirgall/goto-breakpoints.nvim",
 			"theHamsta/nvim-dap-virtual-text",
 			"rcarriga/cmp-dap",
-			dependencies = {
-				"nvim-treesitter/nvim-treesitter",
-			},
-			opts = {
-				enabled = true,
-				enabled_commands = true,
-				highlight_changed_variables = true,
-				highlight_new_as_changed = true,
-				all_references = false,
-				show_stop_reason = true,
-				commented = false,
-				virt_text_pos = "inline",
-				only_first_definition = true,
-			},
-			setup = true,
+			"nvim-treesitter/nvim-treesitter",
+		},
+		opts = {
+			enabled = true,
+			enabled_commands = true,
+			highlight_changed_variables = true,
+			highlight_new_as_changed = true,
+			all_references = false,
+			show_stop_reason = true,
+			commented = false,
+			virt_text_pos = "inline",
+			only_first_definition = true,
 		},
 		config = function(_, opts)
 			require("nvim-dap-virtual-text").setup(opts)

@@ -14,6 +14,7 @@ return {
 			"SmiteshP/nvim-navic",
 			"mfussenegger/nvim-dap",
 			"hrsh7th/nvim-cmp",
+			"kevinhwang91/nvim-ufo",
 		},
 		keys = {
 			{
@@ -186,6 +187,10 @@ return {
 
 			-- Specify otherwise clangd seems to use utf-8
 			capabilities.offsetEncoding = { "utf-16" }
+			capabilities.textDocument.foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			}
 
 			local function setup(server)
 				local server_opts = vim.tbl_deep_extend("force", {
