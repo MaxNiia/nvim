@@ -249,13 +249,13 @@ return {
 					wk.register({
 						t = {
 							function()
-								vim.lsp.buf.inlay_hint(0, nil)
+								vim.lsp.buf.inlay_hint(bufnr, nil)
 							end,
 							"Toggle inlay hints",
 						},
 					}, { prefix = "<leader>w", buffer = bufnr })
 
-					vim.lsp.buf.inlay_hint(0, true)
+					vim.lsp.buf.inlay_hint(bufnr, true)
 				end
 				-- Mappings
 				wk.register({
