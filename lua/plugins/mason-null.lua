@@ -15,7 +15,6 @@ return {
                 "commitlint",
                 "cpell",
                 "eslint_d",
-                -- "flake8",
                 "gitlint",
                 "gitrebase",
                 "gitsigns",
@@ -23,9 +22,6 @@ return {
                 "jsonlint",
                 "luasnip",
                 "markdownlint",
-                -- "mypy",
-                -- "pydocstyle",
-                -- "stylua",
                 "zsh",
             },
             automatic_setup = true,
@@ -40,12 +36,6 @@ return {
                 cmake_format = function(_, _)
                     null_ls.register(null_ls.builtins.formatting.cmake_format)
                 end,
-                -- stylua = function(_, _)
-                --     null_ls.register(null_ls.builtins.formatting.stylua)
-                -- end,
-                -- flake8 = function(_, _)
-                -- 	null_ls.register(null_ls.builtins.diagnostics.flake8)
-                -- end,
                 eslint_d = function(_, _)
                     null_ls.register(null_ls.builtins.code_actions.eslint_d)
                     null_ls.register(null_ls.builtins.diagnostics.eslint_d)
@@ -68,9 +58,6 @@ return {
                     null_ls.register(null_ls.builtins.diagnostics.markdownlint)
                     null_ls.register(null_ls.builtins.formatting.markdownlint)
                 end,
-                -- mypy = function(_, _)
-                -- 	null_ls.register(null_ls.builtins.diagnostics.mypy)
-                -- end,
                 zsh = function(_, _)
                     null_ls.register(null_ls.builtins.diagnostics.zsh)
                 end,
@@ -83,9 +70,6 @@ return {
                 black = function(_, _)
                     null_ls.register(null_ls.builtins.formatting.black)
                 end,
-                -- pydocstyle = function(_, _)
-                -- 	null_ls.register(null_ls.builtins.diagnostics.pydocstyle)
-                -- end,
             }
 
             require("mason-null-ls").setup(opts)
@@ -104,11 +88,6 @@ return {
 
                     null_ls.builtins.code_actions.gitrebase,
                     null_ls.builtins.diagnostics.gitlint,
-
-                    -- CSPELL
-                    -- TODO: Too noisy, fix code actions.
-                    -- null_ls.builtins.code_actions.cspell,
-                    -- null_ls.builtins.diagnostics.cspell,
 
                     -- Refactoring
                     null_ls.builtins.code_actions.refactoring,
