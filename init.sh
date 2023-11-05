@@ -1,5 +1,32 @@
 #!/bin/bash
 
+# This script installs various programming tools and sets up the environment.
+# It checks for the existence of each tool and installs it if not found.
+# Additionally, it creates and configures necessary files and directories.
+#
+# Tools installed:
+# - rustup (Rust toolchain installer)
+# - ripgrep (rg, a line-oriented search tool)
+# - fd-find (fdfind, a simple, fast and user-friendly alternative to 'find')
+# - fzf (a general-purpose command-line fuzzy finder)
+# - nvm (Node Version Manager)
+# - cspell (a spell checker for code)
+# - lua (Lua programming language)
+# - dotnet-sdk-7.0 (C# SDK, optional, installed if "c#" is passed as an argument)
+#
+# Files and directories created and configured:
+# - lua/configs/user.lua (configuration file for user settings)
+# - lua/configs/ai_backend.lua (configuration file for AI backend)
+# - ~/.nvimstty (disables XON/XOFF flow control)
+# - ~/venvs (creates a virtual environment for Python debugging)
+#
+# Errors:
+# - If a file cannot be written to, the script will exit with an error message.
+# - If a suitable shell is not found for disabling XON/XOFF flow control, an error message is displayed with instructions.
+#
+# Usage:
+#   ./install.sh [c#]
+#   - Pass "c#" as an argument to install the C# SDK.
 
 # Install rust up 
 if ! command -v rustup &> /dev/null
@@ -43,25 +70,32 @@ then
     npm install -g cspell
 fi
 
+# Define a function to handle common parts
+handle_file() {
+    local file="$1"
+    local content="$2"
 
-file="lua/configs/user.lua"
-
-if [ -e "lua/user.lua" ] ; then
-    mv "lua/user.lua" "$file"
-fi
-
-if [ ! -e "$file" ] ; then
-    touch "$file"
-
-    if [ ! -w "$file" ] ; then
-        echo cannot write to "$file"
-        exit 1
+    if [ -e "lua/${file##*/}" ] ; then
+        mv "lua/${file##*/}" "$file"
     fi
 
-    echo "require('catppuccin')" >> "$file"
-    echo "-- require('nightfox')" >> "$file"
-fi
+    if [ ! -e "$file" ] ; then
+        touch "$file"
 
+        if [ ! -w "$file" ] ; then
+            echo cannot write to "$file"
+            exit 1
+        fi
+
+        echo -e "$content" >> "$file"
+    fi
+}
+
+# Call the function for user.lua
+handle_file "lua/configs/user.lua" "require('catppuccin')\n-- require('nightfox')"
+
+# Call the function for ai_backend.lua
+handle_file "lua/configs/ai_backend.lua" "return 'https://api.openai.com/v1/engines/cushman-codex/completions'"
 
 if ! command -v lua &> /dev/null
 then
