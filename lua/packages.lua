@@ -1,6 +1,6 @@
 local packageList = require("packageList")
 
-local paq = require("paq") 
+local paq = require("paq")
 paq(packageList)
 
 require("nvim-web-devicons").setup()

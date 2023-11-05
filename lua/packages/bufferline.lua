@@ -7,10 +7,10 @@ require("bufferline").setup({
 
 		diagnostics = "nvim_lsp",
 		diagnostics_indicator = function(
-			count, 
-			level, 
-			diagnostics_dict, 
-			context
+		        count,
+		        level,
+		        diagnostics_dict,
+		        context
 		)
 			if context.buffer:current() then
 				return ''
@@ -18,8 +18,8 @@ require("bufferline").setup({
 
 			local s = " "
 			for e, n in pairs(diagnostics_dict) do
-				local sym = e == "error" and " " 
-					or (e == "warning" and  " " or "")
+				local sym = e == "error" and " "
+				    or (e == "warning" and " " or "")
 				s = s .. n .. sym
 			end
 			return s
@@ -41,7 +41,7 @@ require("bufferline").setup({
 			{
 				enabled = true,
 				delay = 150,
-				reveal = {"close"}
+				reveal = { "close" }
 			},
 		},
 	},
@@ -61,4 +61,3 @@ wk.register({
 }, {
 	prefix = "<leader>"
 })
-

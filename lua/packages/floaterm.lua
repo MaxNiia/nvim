@@ -9,11 +9,11 @@ wk.register({
 })
 
 wk.register({
-   ["<esc>"] = {
+	["<esc>"] = {
 		"<cmd>FloatermToggle<CR>",
 		"Terminal",
 	},
 }, {
 	prefix = "<leader>",
-   mode = "t",
+	mode = "t",
 })

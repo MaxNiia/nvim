@@ -20,4 +20,3 @@ require("treesitter-context").setup({
 	max_lines = 0,
 	trim_scope = "outer",
 })
-

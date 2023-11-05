@@ -3,28 +3,28 @@ require("aerial").setup({
 		local wk = require("which-key")
 		wk.register({
 			["["] = {
-				"<cmd>AerialPrev<CR>", 
+				"<cmd>AerialPrev<CR>",
 				"Previous Aerial"
 			},
 			["]"] = {
 				"<cmd>AerialNext<CR>",
 				"Next Aerial"
 			}
-		}, 
-		{
-			buffer = bufnr,
-		})
+		},
+			{
+				buffer = bufnr,
+			})
 	end,
 })
 
 local wk = require("which-key")
 wk.register(
-{
-	A = {
-		"<cmd>AerialToggle!<CR>",
-		"Toggle Aerial",
-	}
-}, 
-{ 
-	prefix = "<leader>" 
-})
+	{
+		A = {
+			"<cmd>AerialToggle!<CR>",
+			"Toggle Aerial",
+		}
+	},
+	{
+		prefix = "<leader>"
+	})

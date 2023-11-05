@@ -11,7 +11,7 @@ require("catppuccin").setup({
 	integrations = {
 		aerial = true,
 		beacon = true,
-	--	bufferline = true,
+		--	bufferline = true,
 		cmp = true,
 		gitsigns = true,
 		-- feline = true,
@@ -34,4 +34,3 @@ require("catppuccin").setup({
 })
 
 vim.api.nvim_command "colorscheme catppuccin"
-
