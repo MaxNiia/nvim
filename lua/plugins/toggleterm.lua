@@ -1,3 +1,9 @@
+local function toggleTerminal(direction)
+	return function()
+		return"<cmd>" .. tostring(vim.v.count) .. "ToggleTerm direction=" .. direction .. "<cr>"
+	end
+end
+
 return {
 	{
 		"akinsho/toggleterm.nvim",
@@ -20,12 +26,24 @@ return {
 				})
 			end,
 		},
+		event = "BufEnter",
+		keys = {
+			{ "<leader>tl", "<cmd>ToggleTermSendCurrentLine<CR>", desc = "Send line" },
+			{ "<leader>ta", "<cmd>ToggleTermToggleAll<CR>", desc = "Toggle all terminals" },
+			{ "<leader>th", toggleTerminal("horizontal"), desc = "Toggle horizontal", expr = true },
+			{ "<leader>tv", toggleTerminal("vertical"), desc = "Toggle vertical", expr = true },
+			{ "<leader>tf", toggleTerminal("float"), desc = "Toggle float", expr = true },
+			{ "<f5>", toggleTerminal("horizontal"), desc = "Toggle horizontal", expr = true },
+			{ "<f6>", toggleTerminal("vertical"), desc = "Toggle vertical", expr = true },
+			{ "<f7>", toggleTerminal("float"), desc = "Toggle float", expr = true },
+			{ "<f8>", "<cmd>ToggleTermToggleAll<CR>", desc = "Toggle all terminals" },
+		},
 		opts = {
 			size = function(term)
 				if term.direction == "horizontal" then
-					return 15
+					return 10
 				elseif term.direction == "vertical" then
-					return math.max(vim.o.columns * 0.25, 80)
+					return math.min(vim.o.columns * 0.25, 100)
 				end
 				return 20
 			end,
@@ -46,7 +64,7 @@ return {
 			auto_scroll = true,
 			float_opts = {
 				border = "curved",
-				width = 120,
+				width = 100,
 				height = 40,
 				winblend = 3,
 			},
@@ -59,12 +77,14 @@ return {
 		},
 		config = function(_, opts)
 			require("toggleterm").setup(opts)
-			vim.cmd([[
+			--vim.cmd(
+			--[[
 				nnoremap <silent><f5> <Cmd>exe v:count1 . "ToggleTerm direction=float"<CR>
 				nnoremap <silent><f6> <Cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>
 				nnoremap <silent><f7> <Cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>
 				nnoremap <silent><f8> <Cmd> ToggleTermToggleAll <CR>
-			]])
+			]]
+			--)
 		end,
 	},
 }

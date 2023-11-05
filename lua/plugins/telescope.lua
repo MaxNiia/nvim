@@ -16,9 +16,211 @@ local small_cursor = {
 	},
 }
 
+local root_patterns = { ".git", "lua" }
+-- returns the root directory based on:
+-- * lsp workspace folders
+-- * lsp root_dir
+-- * root pattern of filename of the current buffer
+-- * root pattern of cwd
+---@return string
+local function get_root()
+	---@type string?
+	local path = vim.api.nvim_buf_get_name(0)
+	path = path ~= "" and vim.loop.fs_realpath(path) or nil
+	---@type string[]
+	local roots = {}
+	if path then
+		for _, client in pairs(vim.lsp.get_active_clients({ bufnr = 0 })) do
+			local workspace = client.config.workspace_folders
+			local paths = workspace and vim.tbl_map(function(ws)
+				return vim.uri_to_fname(ws.uri)
+			end, workspace) or client.config.root_dir and { client.config.root_dir } or {}
+			for _, p in ipairs(paths) do
+				local r = vim.loop.fs_realpath(p)
+				if path:find(r, 1, true) then
+					roots[#roots + 1] = r
+				end
+			end
+		end
+	end
+	table.sort(roots, function(a, b)
+		return #a > #b
+	end)
+	---@type string?
+	local root = roots[1]
+	if not root then
+		path = path and vim.fs.dirname(path) or vim.loop.cwd()
+		---@type string?
+		root = vim.fs.find(root_patterns, { path = path, upward = true })[1]
+		root = root and vim.fs.dirname(root) or vim.loop.cwd()
+	end
+	---@cast root string
+	return root
+end
+
+-- this will return a function that calls telescope.
+-- cwd will default to lazyvim.util.get_root
+-- for `files`, git_files or find_files will be chosen depending on .git
+local function telescope(builtin, opts)
+	local params = { builtin = builtin, opts = opts }
+	return function()
+		builtin = params.builtin
+		opts = params.opts
+		opts = vim.tbl_deep_extend("force", { cwd = get_root() }, opts or {})
+		if builtin == "files" then
+			builtin = "find_files"
+			if vim.loop.fs_stat((opts.cwd or vim.loop.cwd()) .. "/.git") then
+				opts.show_untracked = true
+				builtin = "git_files"
+			else
+				builtin = "find_files"
+			end
+		end
+		if opts.cwd and opts.cwd ~= vim.loop.cwd() then
+			opts.attach_mappings = function(_, map)
+				map("i", "<a-c>", function()
+					local action_state = require("telescope.actions.state")
+					local line = action_state.get_current_line()
+					telescope(
+						params.builtin,
+						vim.tbl_deep_extend("force", {}, params.opts or {}, { cwd = false, default_text = line })
+					)()
+				end)
+				return true
+			end
+		end
+
+		require("telescope.builtin")[builtin](opts)
+	end
+end
+
 return {
 	{
 		"nvim-telescope/telescope.nvim",
+		keys = {
+			-- LEADER f
+			{
+				"<leader>fj",
+				"<cmd>Telescope grep_string<cr>",
+				desc = "Grep string (root)",
+				mode = {
+					"v",
+					"n",
+				},
+			},
+			{
+				"<leader>fJ",
+				telescope("grep_string"),
+				desc = "Grep string (cwd)",
+				mode = {
+					"v",
+					"n",
+				},
+			},
+			{ "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Resume" },
+			{ "<leader>ft", "<cmd>Telescope<cr>", desc = "Telescope" },
+			{ "<leader>ff", telescope("files"), desc = "Files (root)" },
+			{ "<leader>fF", telescope("files", { cwd = false }), desc = "Files (cwd)" },
+			{ "<leader>fs", telescope("live_grep"), desc = "Search (root dir)" },
+			{ "<leader>fS", telescope("live_grep", { cwd = false }), desc = "Search (cwd)" },
+			{ "<leader>fb", "<cmd>Telescope buffers<CR>", desc = "Buffers" },
+			{ "<leader>fo", "<cmd>Telescope oldfiles<CR>", desc = "Old files (root)" },
+			{ "<leader>fO", telescope("oldfiles", { cwd = vim.loop.cwd() }), desc = "Old files (cwd)" },
+			{ "<leader>fq", "<cmd>Telescope spell_suggest<CR>", desc = "Dictionary" },
+			{ "<leader>fp", "<cmd>Telescope projects<CR>", desc = "Project" },
+			{ "<leader>fn", "<cmd>Telescope noice<CR>", desc = "Noice" },
+			{ "<leader>fN", "<cmd>Telescope notify<CR>", desc = "Notify" },
+			{ "<leader>fm", "<cmd>Telescope manpages<CR>", desc = "Manpages" },
+			{ "<leader>fa", "<cmd>Telescope aerial<CR>", desc = "Aerial" },
+			{ "<leader>fk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
+
+			-- Session
+			{ "<leader>fws", "<cmd>SessionLoad<cr>", desc = "Restore directory session" },
+			{ "<leader>fwl", "<cmd>SessionLoadLast<cr>", desc = "Restore last session" },
+			{ "<leader>fwd", "<cmd>SessionStop<cr>", desc = "Don't save" },
+
+			-- GIT
+			{ "<leader>fgs", "<cmd>Telescope git_status<CR>", desc = "Status" },
+			{ "<leader>fgb", "<cmd>Telescope git_branches<CR>", desc = "Branches" },
+			{ "<leader>fgc", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
+
+			-- DAP
+			{ "<leader>fdc", "<cmd>Telescope dap commands<CR>", desc = "Commands" },
+			{ "<leader>fdb", "<cmd>Telescope dap list_breakpoints<CR>", desc = "Breakpoints" },
+			{ "<leader>fdv", "<cmd>Telescope dap variables<CR>", desc = "Variables" },
+			{ "<leader>fdf", "<cmd>Telescope dap frames<CR>", desc = "Frames" },
+			{ "<leader>fdx", "<cmd>Telescope dap configurations<CR>", desc = "Configurations" },
+
+			-- LSP
+			{ "<leader>flr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
+			{ "<leader>fli", "<cmd>Telescope lsp_incoming_calls<cr>", desc = "Incoming" },
+			{ "<leader>flo", "<cmd>Telescope lsp_outgoing_calls<cr>", desc = "Outgoing" },
+			{ "<leader>fld", "<cmd>Telescope lsp_definitions<cr>", desc = "Definitions" },
+			{ "<leader>flt", "<cmd>Telescope lsp_type_definitions<cr>", desc = "Type Definitions" },
+			{ "<leader>flj", "<cmd>Telescope lsp_implementations<cr>", desc = "Implementations" },
+			{
+				"<leader>fls",
+				telescope("lsp_document_symbols", {
+					symbols = {
+						"Class",
+						"Function",
+						"Method",
+						"Constructor",
+						"Interface",
+						"Module",
+						"Struct",
+						"Trait",
+						"Field",
+						"Property",
+					},
+				}),
+				desc = "Goto Symbol",
+			},
+			{
+				"<leader>flS",
+				telescope("lsp_dynamic_workspace_symbols", {
+					symbols = {
+						"Class",
+						"Function",
+						"Method",
+						"Constructor",
+						"Interface",
+						"Module",
+						"Struct",
+						"Trait",
+						"Field",
+						"Property",
+					},
+				}),
+				desc = "Goto Symbol (WS)",
+			},
+
+			-- LEADER
+			{
+				"<leader>s",
+				"<cmd>Telescope grep_string<cr>",
+				desc = "Grep string (root)",
+				mode = {
+					"v",
+					"n",
+				},
+			},
+			{
+				"<leader>S",
+				telescope("grep_string"),
+				desc = "Grep string (cwd)",
+				mode = {
+					"v",
+					"n",
+				},
+			},
+			{ "<leader>e", "<cmd>Telescope file_browser<CR>", desc = "Browser (root)" },
+			{ "<leader>E", "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "Browser (cwd)" },
+			{ "<leader>,", "<cmd>Telescope buffers show_all_buffers=true<cr>", desc = "Switch buffers" },
+			{ "<leader>/", telescope("live_grep"), desc = "Search (root)" },
+			{ "<leader>?", telescope("live_grep", { cwd = false }), desc = "Search (cwd)" },
+			{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+		},
 		dependencies = {
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
@@ -138,7 +340,7 @@ return {
 					"--no-heading",
 					"--with-filename",
 				},
-				prompt_prefix = "  ",
+				prompt_prefix = "   ",
 				border = true,
 				set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
 				color_devicons = true,
@@ -227,6 +429,7 @@ return {
 					},
 				},
 			})
+
 		end,
 	},
 }

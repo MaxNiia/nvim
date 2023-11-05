@@ -2,7 +2,6 @@ return {
 	{
 		"mfussenegger/nvim-dap",
 		lazy = true,
-		event = "BufEnter",
 		dependencies = {
 			"ofirgall/goto-breakpoints.nvim",
 			"theHamsta/nvim-dap-virtual-text",
@@ -18,6 +17,7 @@ return {
 				all_references = false,
 				show_stop_reason = true,
 				commented = false,
+				virt_text_pos = "inline",
 				only_first_definition = true,
 			},
 			setup = true,
@@ -41,6 +41,74 @@ return {
 				sources = {
 					{ name = "dap" },
 				},
+			})
+
+			local wk = require("which-key")
+			local dap = require("dap")
+			local breakpoint = require("goto-breakpoints")
+			wk.register({
+				{
+					["<leader>"] = {
+						b = {
+							name = "Debug",
+							B = {
+								function()
+									vim.ui.input({ prompt = "Breakpoint condition: " }, function(condition)
+										dap.set_breakpoint(condition)
+									end)
+								end,
+								"DAP set conditional breakpoint",
+							},
+							c = {
+								dap.continue,
+								"Continue",
+							},
+							s = {
+								dap.step_over,
+								"Step Over",
+							},
+							i = {
+								dap.step_into,
+								"Step Into",
+							},
+								o = {
+									dap.step_out,
+								"Step Out",
+							},
+							b = {
+								dap.toggle_breakpoint,
+								"Breakpoint",
+							},
+							R = {
+								dap.repl.open,
+								"Open repl",
+							},
+							l = {
+								dap.run_last,
+								"Run last session",
+							},
+							r = {
+								dap.restart,
+								"Restart session",
+							},
+							q = {
+								dap.terminate,
+								"Terminate session",
+							},
+						},
+					}, -- leader
+					-- dap
+					["]b"] = {
+						breakpoint.next,
+						"Go to next breakpoint",
+					},
+					["[b"] = {
+						breakpoint.prev,
+						"Go to prev breakpoint",
+					},
+				}, -- normal
+			}, {
+				mode = "n",
 			})
 		end,
 	},

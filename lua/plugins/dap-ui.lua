@@ -16,8 +16,8 @@ return {
 			"mfussenegger/nvim-dap",
 		},
 		keys = {
-			{ "<leader>bt", toggle, desc = "Toggle UI" },
-			{ "<leader>bh", hover, desc = "Hover" },
+			{ "<leader>bt", toggle, mode = "n", desc = "Toggle UI" },
+			{ "<leader>bh", hover, mode = "n", desc = "Hover" },
 			{ "<leader>be", eval, mode = { "n", "x" }, desc = "Evaluate expression" },
 		},
 		config = function(_, opts)

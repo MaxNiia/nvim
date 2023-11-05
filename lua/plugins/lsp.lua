@@ -2,8 +2,8 @@ return {
 	{
 		"lvimuser/lsp-inlayhints.nvim",
 		branch = "anticonceal",
-		opts = {
-		},
+		opts = {},
+		lazy = true,
 		config = function(_, opts)
 			require("lsp-inlayhints").setup(opts)
 			vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
@@ -35,6 +35,38 @@ return {
 			"mfussenegger/nvim-dap",
 			"hrsh7th/nvim-cmp",
 			"lvimuser/lsp-inlayhints.nvim",
+		},
+		keys = {
+
+			{
+				"<leader>k",
+				vim.diagnostic.open_float,
+				desc = "Open float",
+			},
+			{
+				"<leader>j",
+				vim.diagnostic.setloclist,
+				desc = "Set diagnostic list",
+			},
+			{
+				"<leader>d",
+				function()
+					vim.lsp.buf.format({
+						async = true,
+					})
+				end,
+				desc = "Format",
+			},
+			{
+				"<leader>a",
+				vim.lsp.buf.code_action,
+				desc = "Apply fix",
+			},
+			{
+				"<leader>rn",
+				vim.lsp.buf.rename,
+				desc = "Rename",
+			},
 		},
 		opts = {
 			-- options for vim.diagnostic.config()
@@ -86,6 +118,9 @@ return {
 							-- Do not send telemetry data containing a randomized but unique identifier
 							telemetry = {
 								enable = false,
+							},
+							workspace = {
+								checkThirdParty = false,
 							},
 						},
 					},

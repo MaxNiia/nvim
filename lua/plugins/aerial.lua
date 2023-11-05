@@ -13,7 +13,7 @@ local attach = function(bufnr)
 		{
 			["<leader>"] = {
 				A = {
-					name = "+Aerial",
+					name = "Aerial",
 					k = {
 						"<cmd>AerialPrev<CR>",
 						"Previous Aerial",
