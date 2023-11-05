@@ -15,6 +15,7 @@ return {
 				vim.g.unception_open_buffer_in_new_tab = true
 				vim.g.unception_enable_flavor_text = true
 
+				--[[
 				vim.api.nvim_create_autocmd("User", {
 					pattern = "UnceptionEditRequestReceived",
 					callback = function()
@@ -24,6 +25,7 @@ return {
 						end
 					end,
 				})
+				]]
 			end,
 		},
 		event = "BufEnter",

@@ -62,6 +62,11 @@ return {
 				r = { name = "Refactor" },
 				b = { name = "Debug" },
 				W = { name = "Workspace" },
+				h = {
+					name = "Hydra",
+					d = "Diagram",
+					o = "Options",
+				},
 			}, { prefix = "<leader>", mode = "n" })
 
 			wk.register({
