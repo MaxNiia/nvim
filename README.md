@@ -1,8 +1,6 @@
 # NVIM Configuration
 
-Repository for keeping different versions of nvim configurations.
-
-Profiles: set with environment variables.
+Personal neovim config.
 
 ## Requirements
 
@@ -14,15 +12,15 @@ Profiles: set with environment variables.
 Initialize git repository in `.config` or initialize somewhere else and require
 `init.lua`.
 
-To auto install packages managers run `init.sh`.
+To auto install package managers run `init.sh`.
 
 Plugins will auto install and kept updated by lazy.
 
 ## Theme
 
-After running `init.sh` an ignored file is created in the `lua` directory. This
-file dictates what theme nvim should use, as well as housing any personal
-settings.
+After running `init.sh` an ignored file is created in the `lua/configs`
+directory. This file dictates what theme nvim should use, as well as housing any
+personal settings.
 
 ## WSL
 
