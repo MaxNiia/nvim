@@ -1,13 +1,5 @@
 return {
 	{
-		"echasnovski/mini.animate",
-		version = false,
-		event = "BufEnter",
-		config = function()
-			require("mini.animate").setup()
-		end,
-	},
-	{
 		"echasnovski/mini.ai",
 		version = false,
 		event = "BufEnter",
