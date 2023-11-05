@@ -46,6 +46,8 @@ return {
 					HarpoonLeftSeparator = { bg = c.mauve, fg = c.surface2 },
 					HarpoonActive = { bg = c.mauve, fg = c.crust, bold = true },
 					HarpoonRightSeparator = { bg = c.surface2, fg = c.mauve },
+					InclineNormal = { bg = c.mauve, fg = c.crust, bold = true },
+					InclineNormalNC = { bg = c.base, fg = c.mauve, bold = true },
 				}
 			end,
 		},
@@ -56,6 +58,7 @@ return {
 			colors.none = "NONE"
 
 			-- require("modicator")
+			require("incline")
 			require("lualine")
 			require("tabline")
 			require("lsp-inlayhints")

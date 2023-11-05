@@ -226,90 +226,90 @@ return {
 					},
 				},
 			},
-			winbar = {
-				lualine_a = {
-					{
-						"filetype",
-						colored = false,
-						icon_only = true,
-						icon = { align = "right" },
-						separator = "",
-					},
-					{
-						"filename",
-						file_status = true,
-						path = 1,
-						shortng_target = 40,
-						symbols = {
-							modified = "", -- Text to show when the file is modified.
-							readonly = "", -- Text to show when the file is non-modifiable or readonly.
-							unnamed = "[No Name]", -- Text to show for unnamed buffers.
-							newfile = "[New]", -- Text to show for newly created file before first write
-						},
-					},
-				},
-				lualine_b = {
-					{
-						"diagnostics",
-						symbols = {
-							error = "",
-							warn = "",
-							info = "",
-							hint = "",
-						},
-						separator = "|",
-					},
-					{
-						"diff",
-						symbols = {
-							added = "",
-							modified = "",
-							removed = "",
-						},
-					},
-				},
-				lualine_c = {
-					{
-						function()
-							return require("nvim-navic").get_location()
-						end,
-						cond = function()
-							return package.loaded["nvim-navic"]
-								and require("nvim-navic").is_available()
-						end,
-					},
-				},
-				lualine_x = {},
-				lualine_y = {},
-				lualine_z = {},
-			},
-			inactive_winbar = {
-				lualine_a = {
-					{
-						"filetype",
-						colored = false,
-						icon_only = true,
-						icon = { align = "right" },
-					},
-					{
-						"filename",
-						file_status = true,
-						path = 1,
-						shortng_target = 40,
-						symbols = {
-							modified = "", -- Text to show when the file is modified.
-							readonly = "", -- Text to show when the file is non-modifiable or readonly.
-							unnamed = "[No Name]", -- Text to show for unnamed buffers.
-							newfile = "[New]", -- Text to show for newly created file before first write
-						},
-					},
-				},
-				lualine_b = {},
-				lualine_c = {},
-				lualine_x = {},
-				lualine_y = {},
-				lualine_z = {},
-			},
+			-- winbar = {
+			-- 	lualine_a = {
+			-- 		{
+			-- 			"filetype",
+			-- 			colored = false,
+			-- 			icon_only = true,
+			-- 			icon = { align = "right" },
+			-- 			separator = "",
+			-- 		},
+			-- 		{
+			-- 			"filename",
+			-- 			file_status = true,
+			-- 			path = 1,
+			-- 			shortng_target = 40,
+			-- 			symbols = {
+			-- 				modified = "", -- Text to show when the file is modified.
+			-- 				readonly = "", -- Text to show when the file is non-modifiable or readonly.
+			-- 				unnamed = "[No Name]", -- Text to show for unnamed buffers.
+			-- 				newfile = "[New]", -- Text to show for newly created file before first write
+			-- 			},
+			-- 		},
+			-- 	},
+			-- 	lualine_b = {
+			-- 		{
+			-- 			"diagnostics",
+			-- 			symbols = {
+			-- 				error = "",
+			-- 				warn = "",
+			-- 				info = "",
+			-- 				hint = "",
+			-- 			},
+			-- 			separator = "|",
+			-- 		},
+			-- 		{
+			-- 			"diff",
+			-- 			symbols = {
+			-- 				added = "",
+			-- 				modified = "",
+			-- 				removed = "",
+			-- 			},
+			-- 		},
+			-- 	},
+			-- 	lualine_c = {
+			-- 		{
+			-- 			function()
+			-- 				return require("nvim-navic").get_location()
+			-- 			end,
+			-- 			cond = function()
+			-- 				return package.loaded["nvim-navic"]
+			-- 					and require("nvim-navic").is_available()
+			-- 			end,
+			-- 		},
+			-- 	},
+			-- 	lualine_x = {},
+			-- 	lualine_y = {},
+			-- 	lualine_z = {},
+			-- },
+			-- inactive_winbar = {
+			-- 	lualine_a = {
+			-- 		{
+			-- 			"filetype",
+			-- 			colored = false,
+			-- 			icon_only = true,
+			-- 			icon = { align = "right" },
+			-- 		},
+			-- 		{
+			-- 			"filename",
+			-- 			file_status = true,
+			-- 			path = 1,
+			-- 			shortng_target = 40,
+			-- 			symbols = {
+			-- 				modified = "", -- Text to show when the file is modified.
+			-- 				readonly = "", -- Text to show when the file is non-modifiable or readonly.
+			-- 				unnamed = "[No Name]", -- Text to show for unnamed buffers.
+			-- 				newfile = "[New]", -- Text to show for newly created file before first write
+			-- 			},
+			-- 		},
+			-- 	},
+			-- 	lualine_b = {},
+			-- 	lualine_c = {},
+			-- 	lualine_x = {},
+			-- 	lualine_y = {},
+			-- 	lualine_z = {},
+			-- },
 		},
 		config = function(_, opts)
 			require("lualine").setup(opts)
