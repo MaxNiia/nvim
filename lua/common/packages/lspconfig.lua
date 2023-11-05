@@ -90,6 +90,10 @@ local on_attach = function(client, bufnr)
 				end,
 				"Format",
 			},
+			a = {
+				vim.lsp.buf.code_action,
+				"Apply fix",
+			},
 		},
 	},{ buffer = bufnr,
 	})
@@ -131,12 +135,12 @@ require("lspconfig")["clangd"].setup{
 	on_attach = on_attach,
 	flags = lsp_flags,
 	cmd = {
-		"/home/max/clangd_15.0.3/bin/clangd",
+		"clangd",
 		"--background-index=true",
 		"--clang-tidy=true",
 		"--completion-style=detailed",
 		"--all-scopes-completion=true",
-      "--query-driver='/usr/bin/gcc, /usr/bin/g++'", -- gcc
+      "--query-driver='/usr/bin/clang, /usr/bin/clang++'", -- gcc
 	},
 }
 

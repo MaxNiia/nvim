@@ -20,7 +20,7 @@ require("aerial").setup({
 local wk = require("which-key")
 wk.register(
 {
-	a = {
+	A = {
 		"<cmd>AerialToggle!<CR>",
 		"Toggle Aerial",
 	}
