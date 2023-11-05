@@ -1,0 +1,1 @@
+require("epiroc.packages.floaterm")
