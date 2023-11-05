@@ -1,12 +1,15 @@
 local hint = [[
   ^^         Options
   ^
-  _v_ %{ve}^^^ virtual edit
-  _i_ %{list}^ invisible characters
-  _s_ %{spell} toggle spelling
-  _w_ %{wrap}^ word wrap
-  _n_ %{nu}^^^ number
-  _r_ %{rnu}^^ relative number
+  _v_ %{ve}^^^^ virtual edit
+  _i_ %{list}^^ invisible characters
+  _s_ %{spell}^ toggle spelling
+  _w_ %{wrap}^^ word wrap
+  _n_ %{nu}^^^^ number
+  _r_ %{rnu}^^^ relative number
+  _S_ ^^^^^^^^^ toggle signs
+  _l_ ^^^^^^^^^ toggle line hl
+  _D_ ^^^^^^^^^ toggle deleted
   ^
   ^^^^                _<Esc>_
 ]]
@@ -55,6 +58,7 @@ return {
             "l",
             function()
                 require("gitsigns").toggle_linehl()
+                require("gitsigns").toggle_numhl()
             end,
             { desc = "Toggle Line HL" },
         },
