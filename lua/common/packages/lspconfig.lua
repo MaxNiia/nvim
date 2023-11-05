@@ -1,7 +1,7 @@
 -- Mappings.
 local wk = require("which-key")
 wk.register({
-	D = {
+	j = {
 		vim.diagnostic.open_float,
 		"Open float",
 	},
@@ -82,7 +82,7 @@ local on_attach = function(client, bufnr)
 				vim.lsp.buf.rename,
 				"Rename",
 			},
-			F = {
+			d = {
 				function()
 					vim.lsp.buf.format{
 						async = true
@@ -134,7 +134,6 @@ require("lspconfig")["clangd"].setup{
 		"/home/max/clangd_15.0.3/bin/clangd",
 		"--background-index=true",
 		"--clang-tidy=true",
-      "--clang-format=true",
 		"--completion-style=detailed",
 		"--all-scopes-completion=true",
       "--query-driver='/usr/bin/gcc, /usr/bin/g++'", -- gcc
