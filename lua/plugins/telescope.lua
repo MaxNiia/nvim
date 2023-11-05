@@ -69,12 +69,9 @@ local function callTelescope(builtin, opts)
 		opts = vim.tbl_deep_extend("force", { cwd = get_root() }, opts or {})
 		if builtin == "files" then
 			builtin = "find_files"
-			if vim.loop.fs_stat((opts.cwd or vim.loop.cwd()) .. "/.git") then
-				opts.show_untracked = true
-				builtin = "git_files"
-			else
-				builtin = "find_files"
-			end
+		end
+		if builtin == "git_files" then
+			opts.show_untracked = true
 		end
 		if opts.cwd and opts.cwd ~= vim.loop.cwd() then
 			opts.attach_mappings = function(_, map)
@@ -120,6 +117,7 @@ return {
 			{ "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Resume" },
 			{ "<leader>ft", "<cmd>Telescope<cr>", desc = "Telescope" },
 			{ "<leader>ff", callTelescope("files"), desc = "Files (root)" },
+			{ "<leader>fG", callTelescope("git_files"), desc = "Files (git)" },
 			{ "<leader>fF", callTelescope("files", { cwd = false }), desc = "Files (cwd)" },
 			{ "<leader>fs", callTelescope("live_grep"), desc = "Search (root dir)" },
 			{ "<leader>fS", callTelescope("live_grep", { cwd = false }), desc = "Search (cwd)" },
