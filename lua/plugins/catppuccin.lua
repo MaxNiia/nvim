@@ -67,8 +67,6 @@ return {
                         background = true,
                     },
                 },
-                noice = true,
-                notify = true,
                 which_key = true,
             },
             custom_highlights = function(c)

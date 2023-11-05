@@ -106,8 +106,6 @@ return {
         desc = "Project",
         mode = { "v", "n" },
     },
-    { "<leader>fn", "<cmd>Telescope noice<CR>", desc = "Noice", mode = { "v", "n" } },
-    { "<leader>fN", "<cmd>Telescope notify<CR>", desc = "Notify", mode = { "v", "n" } },
     {
         "<leader>fm1",
         call_telescope("man_pages", {

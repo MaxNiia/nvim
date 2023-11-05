@@ -29,7 +29,6 @@ return {
             "SmiteshP/nvim-navic",
             "AckslD/swenv.nvim",
             "catppuccin/nvim",
-            "folke/noice.nvim",
         },
         lazy = true,
         event = "BufEnter",
@@ -75,9 +74,38 @@ return {
             sections = {
                 lualine_a = { "mode" },
                 lualine_b = {
-                    "branch",
+                    {
+                        function()
+                            local venv = require("swenv.api").get_current_venv()
+                            if venv then
+                                return string.format("🐍 %s", venv.name)
+                            else
+                                return ""
+                            end
+                        end,
+                    },
+                    {
+                        vim.loop.cwd,
+                        type = "vim_fun",
+                        padding = {
+                            left = 1,
+                            right = 1,
+                        },
+                    },
+                    {
+                        "branch",
+                    },
                 },
-                lualine_c = {},
+                lualine_c = {
+                    {
+                        "navic",
+                        color_correction = "dynamic",
+                        navic_opts = {
+                            highlight = true,
+                            click = true,
+                        },
+                    },
+                },
                 lualine_x = {
                     {
                         function()
@@ -87,31 +115,12 @@ return {
                 },
                 lualine_y = {
                     {
-                        function()
-                            return require("noice").api.status.message.get()
-                        end,
-                        cond = function()
-                            return package.loaded["noice"]
-                                and require("noice").api.status.message.has()
-                        end,
+                        "searchcount",
+                        maxcount = 999,
+                        timeout = 500,
                     },
                     {
-                        function()
-                            return require("noice").api.status.search.get()
-                        end,
-                        cond = function()
-                            return package.loaded["noice"]
-                                and require("noice").api.status.search.has()
-                        end,
-                    },
-                    {
-                        function()
-                            return require("noice").api.status.command.get()
-                        end,
-                        cond = function()
-                            return package.loaded["noice"]
-                                and require("noice").api.status.command.has()
-                        end,
+                        "cmd",
                     },
                     {
                         "progress",
@@ -139,66 +148,6 @@ return {
                 "trouble",
             },
             inactive_sections = {},
-            tabline = {
-                lualine_a = {
-                    {
-                        vim.loop.cwd,
-                        type = "vim_fun",
-                        padding = {
-                            left = 1,
-                            right = 1,
-                        },
-                    },
-                    {
-                        padding = {
-                            left = 1,
-                            right = 1,
-                        },
-                        "filename",
-                    },
-                },
-                lualine_b = {},
-                lualine_c = {
-                    {
-                        "navic",
-                        color_correction = "dynamic",
-                        navic_opts = {
-                            highlight = true,
-                            click = true,
-                        },
-                    },
-                },
-                lualine_x = {},
-                lualine_y = {
-                    {
-                        require("lazy.status").updates,
-                        cond = require("lazy.status").has_updates,
-                    },
-                    {
-                        function()
-                            local venv = require("swenv.api").get_current_venv()
-                            if venv then
-                                return string.format("🐍 %s", venv.name)
-                            else
-                                return ""
-                            end
-                        end,
-                    },
-                    {
-                        require("plugins.lualine.copilot").get_status,
-                        cond = function()
-                            return _G.copilot
-                        end,
-                    },
-                },
-                lualine_z = {
-                    {
-                        "tabs",
-                        mode = 2,
-                        use_mode_colors = true,
-                    },
-                },
-            },
             winbar = {
                 lualine_a = {
                     {

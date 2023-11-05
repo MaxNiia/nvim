@@ -98,9 +98,7 @@ return {
                 wrap = true,
                 mode = "search",
                 exclude = {
-                    "notify",
                     "cmp_menu",
-                    "noice",
                     "flash_prompt",
                     function(win)
                         return not vim.api.nvim_win_get_config(win).focusable

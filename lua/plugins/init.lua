@@ -125,22 +125,6 @@ return {
         lazy = true,
     },
     {
-        "rcarriga/nvim-notify",
-        keys = {
-            {
-                "<leader>u",
-                function()
-                    require("notify").dismiss({ silent = true, pending = true })
-                end,
-                desc = "Delete all Notifications",
-            },
-        },
-        -- init = function()
-        --     -- when noice is not enabled, install notify on VeryLazy
-        --     vim.notify = require("notify")
-        -- end,
-    },
-    {
         "folke/todo-comments.nvim",
         dependencies = { "nvim-lua/plenary.nvim" },
         lazy = true,
