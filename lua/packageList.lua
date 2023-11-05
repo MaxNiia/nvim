@@ -51,12 +51,14 @@ local packageList = {
    "nvim-tree/nvim-tree.lua",
 
    -- Treesitter
-   "nvim-treesitter/nvim-treesitter-context",
-   "p00f/nvim-ts-rainbow",
    {
       "nvim-treesitter/nvim-treesitter",
-      run = ":TSUpdate",
+      run = function()
+	      vim.cmd "TSUpdate"
+      end,
    },
+   "nvim-treesitter/nvim-treesitter-context",
+   "p00f/nvim-ts-rainbow",
 
    -- Beacon
    "DanilaMihailov/beacon.nvim",
