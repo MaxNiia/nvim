@@ -1,52 +1,4 @@
-local lsp_layout = {
-	horizontal = {
-		preview_cutoff = 150,
-		preview_width = 80,
-		height = 0.9,
-		width = 180,
-	},
-}
-
-local small_cursor = {
-	cursor = {
-		preview_cutoff = 0,
-		height = 10,
-		width = 30,
-		preview_width = 1,
-	},
-}
-
-local center = {
-	width = 120,
-	height = 20,
-	mirror = false,
-	preview_cutoff = 0,
-}
-
-local cursor = {
-	height = 40,
-	width = 100,
-	preview_cutoff = 0,
-}
-
-local horizontal = {
-	preview_cutoff = 120,
-	preview_width = 0.55,
-	height = 24,
-	-- width = 240,
-}
-
-local vertical = {
-	height = 0.8,
-	width = 120,
-	preview_cutoff = 30,
-	preview_height = 0.7,
-	mirror = false,
-}
-
-local flex = {
-	flip_columns = 240,
-}
+local M = {}
 
 local root_patterns = { ".git", "lua" }
 -- returns the root directory based on:
@@ -55,7 +7,7 @@ local root_patterns = { ".git", "lua" }
 -- * root pattern of filename of the current buffer
 -- * root pattern of cwd
 ---@return string
-local function get_root()
+M.get_root = function()
 	---@type string?
 	local path = vim.api.nvim_buf_get_name(0)
 	path = path ~= "" and vim.loop.fs_realpath(path) or nil
@@ -96,7 +48,7 @@ end
 -- this will return a function that calls telescope.
 -- cwd will default to lazyvim.util.get_root
 -- for `files`, git_files or find_files will be chosen depending on .git
-local function call_telescope(builtin, opts)
+M.call_telescope = function(builtin, opts)
 	local params = { builtin = builtin, opts = opts }
 	return function()
 		builtin = params.builtin
@@ -131,18 +83,4 @@ local function call_telescope(builtin, opts)
 	end
 end
 
-return {
-	layouts = {
-		lsp = lsp_layout,
-		small_cursor = small_cursor,
-		center = center,
-		cursor = cursor,
-		horizontal = horizontal,
-		vertical = vertical,
-		flex = flex,
-	},
-	get_root = get_root,
-	call_telescope = call_telescope,
-	--	{ "─", "│", "─", "│", "┌", "┐", "┘", "└" }, Standard
-	borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
-}
+return M

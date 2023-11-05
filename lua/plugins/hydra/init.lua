@@ -8,8 +8,8 @@ return {
 		config = function(_, _)
 			local hydra = require("hydra")
 
-			hydra(require("plugins.hydras.venn"))
-			hydra(require("plugins.hydras.options"))
+			hydra(require("plugins.hydra.venn"))
+			hydra(require("plugins.hydra.options"))
 		end,
 	},
 }

@@ -1,4 +1,4 @@
-local utils = require("utils.tabline")
+local utils = require("plugins.tabline.utils")
 
 return {
 	{

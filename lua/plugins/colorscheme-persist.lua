@@ -1,4 +1,4 @@
-local utils = require("utils.telescope")
+local ui = require("plugins.telescope.ui")
 
 return {
 	{
@@ -44,7 +44,7 @@ return {
 			picker_opts = {
 				initial_mode = "insert",
 				layout_strategy = "cursor",
-				layout_config = utils.layouts.small_cursor,
+				layout_config = ui.layouts.small_cursor,
 				preview_cutoff = 0,
 				enable_preview = true,
 			},
