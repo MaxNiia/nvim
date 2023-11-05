@@ -9,11 +9,9 @@ return {
 				desc = "Toggle lsp_lines",
 			},
 		},
-		init = function()
-			vim.diagnostic.config({
-				virtual_text = true,
-				virtual_lines = { only_current_line = true },
-			})
+		main = "lsp_lines",
+		config = function(_, opts)
+			require("lsp_lines").setup(opts)
 		end,
 	},
 }
