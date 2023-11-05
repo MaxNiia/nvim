@@ -15,6 +15,16 @@ return {
 					["cmp.entry.get_documentation"] = true,
 				},
 			},
+			hover = {
+				silent = false,
+					},
+			presets = {
+				bottom_search = false,
+				command_palette = false,
+				long_message_to_split = true,
+				inc_rename = true,
+				lsp_doc_border = true,
+			}
 		},
 	},
 }
