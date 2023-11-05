@@ -5,7 +5,13 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-            "folke/neodev.nvim",
+            {
+                "folke/neodev.nvim",
+                opts = {
+                    library = { plugins = { "nvim-dap-ui" }, types = true },
+                },
+                config = true,
+            },
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "onsails/lspkind.nvim",
@@ -13,6 +19,17 @@ return {
             "kevinhwang91/nvim-ufo",
             "hrsh7th/cmp-nvim-lsp",
             "AckslD/swenv.nvim",
+            {
+                "lukas-reineke/lsp-format.nvim",
+                keys = {
+                    "<leader>wf",
+                    "<cmd>FormatToggle<cr>",
+                    desc = "Toggle format on save",
+                    mode = "n",
+                },
+                opts = {},
+                config = true,
+            },
         },
         keys = {
             {
@@ -52,9 +69,7 @@ return {
                     return function() end
                 end
             end
-            require("neodev").setup({
-                library = { plugins = { "nvim-dap-ui" }, types = true },
-            })
+
             local lspconfig = require("lspconfig")
 
             -- diagnostics
@@ -125,10 +140,12 @@ return {
                     local bufnr = args.buf
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-                    local navic = require("nvim-navic")
-
                     if client.server_capabilities.documentSymbolProvider then
-                        navic.attach(client, bufnr)
+                        require("nvim-navic").attach(client, bufnr)
+                    end
+
+                    if client.server_capabilities.documentFormattingProvider then
+                        require("lsp-format").on_attach(client, bufnr)
                     end
 
                     -- Enable completion triggered by <c-x><c-o>
