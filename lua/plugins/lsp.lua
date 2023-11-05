@@ -69,6 +69,7 @@ return {
 				marksman = {},
 				tsserver = {},
 				cssls = {},
+				cssmodules_ls = {},
 				rust_analyzer = {
 					settings = {
 						["rust-analyzer"] = {
