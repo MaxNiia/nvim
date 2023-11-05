@@ -161,8 +161,7 @@ return {
 			},
 			inactive_sections = {},
 			tabline = {
-				lualine_a = { "buffers" },
-				lualine_b = {
+				lualine_a = {
 					{
 						function()
 							local original_tabs = require("harpoon").get_mark_config().marks
@@ -200,9 +199,9 @@ return {
 								end
 
 								if is_current then
-									if current_tab_index == 1 then
-										tabline = tabline .. "%#HarpoonInactive#" .. "" .. "%*"
-									end
+									-- if current_tab_index == 1 then
+									-- 	tabline = tabline .. "%#HarpoonInactive#" .. "" .. "%*"
+									-- end
 									tabline = tabline .. "%*" .. "%#HarpoonActive#"
 								else
 									tabline = tabline .. "%*" .. "%#HarpoonInactive#"
@@ -221,10 +220,11 @@ return {
 						separator = "",
 					},
 				},
-				lualine_c = {},
-				lualine_x = {},
+				lualine_b = {},
+				-- lualine_c = {}, Tabline
+				-- lualine_x = {}, Tabline
 				lualine_y = {},
-				lualine_z = { "tabs" },
+				lualine_z = {},
 			},
 			winbar = {
 				lualine_a = {

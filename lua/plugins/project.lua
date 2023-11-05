@@ -2,7 +2,7 @@ return {
 	{
 		"ahmedkhalf/project.nvim",
 		lazy = true,
-		event = "VeryLazy",
+		event = "VimEnter",
 		opts = {
 			manual_mode = false,
 			silent_chdir = false,

@@ -20,6 +20,7 @@ return {
 			require("nightfox").setup(opts)
 
 			require("lualine")
+			require("tabline")
 			require("lsp-inlayhints")
 			require("telescope")
 		end,

@@ -40,10 +40,6 @@ return {
 				end,
 				desc = "Toggle relative line numbers",
 			},
-			{ "<leader><tab>", "<cmd>tabnext<CR>", desc = "Next tab" },
-			{ "<leader><s-tab>", "<cmd>tabprevious<CR>", desc = "Previous tab" },
-			{ "<tab>", "<cmd>bnext<CR>", "Next buffer" },
-			{ "<s-tab>", "<cmd>bprevious<CR>", "Previous buffer" },
 		},
 		lazy = true,
 		opts = {
@@ -59,6 +55,7 @@ return {
 				["<leader>"] = {
 					name = "Switch Window",
 				},
+				T = { name = "Tabs" },
 				r = { name = "Refactor" },
 				b = { name = "Debug" },
 				h = {

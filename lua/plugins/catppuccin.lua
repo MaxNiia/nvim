@@ -39,10 +39,10 @@ return {
 				return {
 					-- Comment = { fg = c.rosewater }, For BQN.
 					-- LineNr = { fg = c.pink },
-					HarpoonInactive = { bg = c.surface1, fg = c.blue },
-					HarpoonLeftSeparator = { bg = c.blue, fg = c.surface1 },
-					HarpoonActive = { bg = c.blue, fg = c.crust },
-					HarpoonRightSeparator = { bg = c.surface1, fg = c.blue },
+					HarpoonInactive = { bg = c.surface2, fg = c.mauve, bold = true },
+					HarpoonLeftSeparator = { bg = c.mauve, fg = c.surface2 },
+					HarpoonActive = { bg = c.mauve, fg = c.crust, bold = true },
+					HarpoonRightSeparator = { bg = c.surface2, fg = c.mauve },
 				}
 			end,
 		},
@@ -53,6 +53,7 @@ return {
 			colors.none = "NONE"
 
 			require("lualine")
+			require("tabline")
 			require("lsp-inlayhints")
 			require("telescope")
 		end,
