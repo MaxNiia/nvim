@@ -70,6 +70,6 @@ cmd([[
 ]])
 
 cmd([[
-    autocmd FileType NvimTree set numberwidth=2
-    autocmd FileType NvimTree set scl=no
+    autocmd FileType neo-tree set numberwidth=2
+    autocmd FileType neo-tree set scl=no
 ]])

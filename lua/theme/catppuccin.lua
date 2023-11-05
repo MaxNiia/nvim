@@ -44,7 +44,7 @@ require("catppuccin").setup({
 		leap = true,
 		mason = true,
 		markdown = true,
-		nvimtree = true,
+		neotree = true,
 		telescope = true,
 		treesitter = true,
 		treesitter_context = true,

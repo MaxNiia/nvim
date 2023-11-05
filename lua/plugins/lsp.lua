@@ -6,6 +6,7 @@ return {
 			"mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"onsails/lspkind.nvim",
+			"SmiteshP/nvim-navic",
 			{
 				"hrsh7th/nvim-cmp",
 				dependencies = {
@@ -113,9 +114,6 @@ return {
 					},
 				},
 			},
-			-- you can do any additional lsp server setup here
-			-- return true if you don't want this server to be setup with lspconfig
-			---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
 			setup = {
 				-- example to setup with typescript.nvim
 				-- tsserver = function(_, opts)
@@ -126,15 +124,16 @@ return {
 				-- ["*"] = function(server, opts) end,
 			},
 		},
-		---@param opts PluginLspOpts
-		config = function(plugin, opts)
+		config = function(_, opts)
 			local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 			for type, icon in pairs(signs) do
 				local hl = "DiagnosticSign" .. type
 				vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 			end
 			local wk = require("which-key")
+			local navic = require("nvim-navic")
 			local on_attach = function(client, bufnr)
+				navic.attach(client, bufnr)
 				-- Enable completion triggered by <c-x><c-o>
 				vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
