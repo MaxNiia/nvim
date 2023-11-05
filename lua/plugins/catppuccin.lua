@@ -61,6 +61,7 @@ return {
 			require("incline")
 			require("lualine")
 			require("tabline")
+			require("lsp-inlayhints")
 			require("telescope")
 		end,
 	},

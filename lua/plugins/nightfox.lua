@@ -21,6 +21,7 @@ return {
 
 			require("lualine")
 			require("tabline")
+			require("lsp-inlayhints")
 			require("telescope")
 		end,
 	},
