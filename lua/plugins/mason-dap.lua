@@ -29,7 +29,7 @@ return {
 						command = os.getenv("HOME") .. "/venvs/Debug/bin/python",
 						args = {
 							"-m",
-							"debugpy.adapter"
+							"debugpy.adapter",
 						},
 					}
 					dap.configurations.python = {
