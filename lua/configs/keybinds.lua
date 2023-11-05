@@ -65,12 +65,15 @@ local function telescope(builtin, opts)
 		opts = params.opts
 		opts = vim.tbl_deep_extend("force", { cwd = get_root() }, opts or {})
 		if builtin == "files" then
+			builtin = "find_files"
+			--[[
 			if vim.loop.fs_stat((opts.cwd or vim.loop.cwd()) .. "/.git") then
 				opts.show_untracked = true
 				builtin = "git_files"
 			else
 				builtin = "find_files"
 			end
+			]]
 		end
 		if opts.cwd and opts.cwd ~= vim.loop.cwd() then
 			opts.attach_mappings = function(_, map)
@@ -231,15 +234,11 @@ wk.register({
 			-- telescope
 			f = {
 				name = "+Find",
-				-- c = {
-				-- 	telescope("colorscheme", { enable_preview = true }),
-				-- 	"Colorscheme",
-				-- },
 				c = {
-					function ()
+					function()
 						require("colorscheme-persist").picker()
 					end,
-					"Colorscheme"
+					"Colorscheme",
 				},
 				r = {
 					"<cmd>Telescope resume<CR>",
@@ -430,8 +429,12 @@ wk.register({
 				},
 			},
 			e = {
-				"<cmd>Telescope file_browser<cr>",
-				"Browser",
+				"<cmd>Telescope file_browser<CR>",
+				"Browser (root)",
+			},
+			E = {
+				"<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>",
+				"Browser (cwd)",
 			},
 			s = {
 				telescope("grep_string"),
@@ -528,7 +531,6 @@ wk.register({
 				"<cmd>tabprevious<CR>",
 				"Previous tab",
 			},
-
 		}, -- leader
 		-- dap
 		["]b"] = {
@@ -539,14 +541,14 @@ wk.register({
 			breakpoint.prev,
 			"Go to prev breakpoint",
 		},
-			["<tab>"] = {
-				"<cmd>bnext<CR>",
-				"Next buffer",
-			},
-			["<s-tab>"] = {
-				"<cmd>bprevious<CR>",
-				"Previous buffer",
-			},
+		["<tab>"] = {
+			"<cmd>bnext<CR>",
+			"Next buffer",
+		},
+		["<s-tab>"] = {
+			"<cmd>bprevious<CR>",
+			"Previous buffer",
+		},
 	}, -- normal
 	{
 		-- operator

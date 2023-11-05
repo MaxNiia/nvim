@@ -38,6 +38,12 @@ return {
 					PersistedTelescopeLoadPost = function(session)
 						print("Loaded session " .. session.name)
 					end,
+					picker_opts = {
+						initial_mode = "normal",
+						layout_strategy = "cursor",
+						layout_config = small_cursor,
+						enable_preview = true,
+					},
 				},
 				config = function(_, opts)
 					require("persisted").setup(opts)
@@ -53,6 +59,7 @@ return {
 					initial_mode = "normal",
 					layout_strategy = "cursor",
 					layout_config = small_cursor,
+					enable_preview = true,
 				},
 				live_grep = {},
 				grep_strings = {

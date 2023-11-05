@@ -2,7 +2,7 @@
 vim.g.mapleader = " "
 
 vim.cmd([[
-if has('nvim')
+if has("nvim")
   let $GIT_EDITOR = 'nvim --cmd "let g:unception_block_while_host_edits=1"'
 endif
 
