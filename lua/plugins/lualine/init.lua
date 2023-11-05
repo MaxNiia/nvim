@@ -104,7 +104,7 @@ return {
                             return package.loaded["noice"]
                                 and require("noice").api.status.command.has()
                         end,
-                        color = { fg = "#ff9e64" },
+                        color = { fg = "#fab387" },
                     },
                     {
                         function()
@@ -114,7 +114,7 @@ return {
                             return package.loaded["noice"]
                                 and require("noice").api.status.mode.has()
                         end,
-                        color = { fg = "#ff9e64" },
+                        color = { fg = "#fab387" },
                     },
                     {
                         function()
@@ -124,7 +124,7 @@ return {
                             return package.loaded["noice"]
                                 and require("noice").api.status.search.has()
                         end,
-                        color = { fg = "#ff9e64" },
+                        color = { fg = "#fab387" },
                     },
                     {
                         require("dap").status,

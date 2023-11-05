@@ -130,30 +130,6 @@ return {
                 desc = "Delete all Notifications",
             },
         },
-        opts = function()
-            if _G.oled then
-                return {
-                    background_colour = "#00000000",
-                    timeout = 2000,
-                    max_height = function()
-                        return math.floor(vim.o.lines * 0.1)
-                    end,
-                    max_width = function()
-                        return math.floor(vim.o.columns * 0.25)
-                    end,
-                }
-            else
-                return {
-                    timeout = 2000,
-                    max_height = function()
-                        return math.floor(vim.o.lines * 0.1)
-                    end,
-                    max_width = function()
-                        return math.floor(vim.o.columns * 0.25)
-                    end,
-                }
-            end
-        end,
         -- init = function()
         --     -- when noice is not enabled, install notify on VeryLazy
         --     vim.notify = require("notify")
