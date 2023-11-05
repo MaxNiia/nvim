@@ -247,6 +247,7 @@ return {
 				},
 				window = {
 					completion = cmp.config.window.bordered(),
+					docuementation = cmp.config.window.bordered(),
 				},
 				formatting = {
 					format = function(entry, vim_item)

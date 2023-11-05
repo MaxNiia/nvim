@@ -48,6 +48,13 @@ return {
 					require("luasnip").lsp_expand(args.body)
 				end,
 			},
+			 matching = {
+                disallow_fuzzy_matching = true,
+                disallow_fullfuzzy_matching = true,
+                disallow_partial_fuzzy_matching = true,
+                disallow_partial_matching = true,
+                disallow_prefix_unmatching = false,
+            },
 			sources = {
 				{ name = 'luasnip' }, },
 		},
