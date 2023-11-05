@@ -1,6 +1,5 @@
 return function(bufnr)
-    local wk = require("plugins.which_key")
-
+    local wk = require("which-key")
     wk.register({
         o = {
             "<cmd>ClangdSwitchSourceHeader<CR>",
