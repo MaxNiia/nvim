@@ -62,7 +62,7 @@ return {
 				callback = function(args)
 					local buf_id = args.data.buf_id
 					-- Tweak left-hand side of mapping to your liking
-					vim.keymap.set("n", "g.", toggle_dotfiles, { buffer = buf_id })
+					vim.keymap.set("n", "g.", toggle_dotfiles, { buffer = buf_id, name = "Show hidden files"})
 				end,
 			})
 		end,
@@ -97,6 +97,11 @@ return {
 		opts = {
 			windows = {
 				preview = true,
+			},
+			content = {
+				filter = function(fs_entry)
+					return not vim.startswith(fs_entry.name, ".")
+				end,
 			},
 		},
 	},
