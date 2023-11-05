@@ -1,8 +1,22 @@
+local oled_override = function(bool)
+    if bool then
+        return {
+            base = "#000000",
+            mantle = "#000000",
+            crust = "#000000",
+        }
+    else
+        return {}
+    end
+end
 return {
     {
         "catppuccin/nvim",
         name = "catppuccin",
         opts = {
+            color_overrides = {
+                mocha = oled_override(_G.oled),
+            },
             compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
             integrations = {
                 aerial = true,

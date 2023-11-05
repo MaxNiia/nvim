@@ -5,6 +5,7 @@ local options = {
     { name = "mini_files", default = true },
     { name = "neotree", default = false },
     { name = "toggleterm", default = true },
+    { name = "oled", default = false },
 }
 
 local separator = ":"
