@@ -394,6 +394,9 @@ return {
 						},
 					},
 				},
+				buffers = {
+					initial_mode = "normal";
+				},
 				spell_suggest = {
 					initial_mode = "normal",
 					layout_strategy = "cursor",
