@@ -23,8 +23,8 @@ local packageList = {
 
 	-- FZF-native
 	{
-		"nvim-telescop/telescop-fzf-native.nvim",
-		run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
+		"nvim-telescope/telescope-fzf-native.nvim",
+		run = "make"
 	};
 
 	-- Aerial
