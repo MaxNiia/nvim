@@ -56,6 +56,28 @@ local packageList = {
 	-- Floaterm
 	"voldikss/vim-floaterm";
 
+
+   "onsails/lspkind-nvim";
+
+   -- Autocompletion plugin
+   "hrsh7th/nvim-cmp"; 
+   -- LSP source for nvim-cmp
+   "hrsh7th/cmp-nvim-lsp"; 
+   -- Snippets source for nvim-cmp
+   "saadparwaiz1/cmp_luasnip"; 
+   -- Snippets pluginhrsh7th/nvim-cmp"
+   "L3MON4D3/LuaSnip";
+
+   -- Leap
+   "tpope/vim-repeat";
+   "ggandor/leap.nvim";
+
+   -- Feline
+   "feline-nvim/feline.nvim";
+
+   -- Debug
+   "mfussenegger/nvim-dap";
+
 	-- theme
 	{
 		"catppuccin/nvim", 
@@ -63,7 +85,7 @@ local packageList = {
 	};
 
 	-- Bufferline always after catppuccin
-	"akinsho/bufferline.nvim";
+	--"akinsho/bufferline.nvim";
 }
 
 return packageList

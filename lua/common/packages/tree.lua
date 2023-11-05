@@ -1,8 +1,19 @@
 require("nvim-tree").setup({
    view = {
-	adaptive_size = true,
-	relativenumber = true,
-	number = true,
+      adaptive_size = true,
+      relativenumber = true,
+      number = true,
+      mappings = {
+         list = {
+            {
+               key = "<C-x>",
+               action = "vsplit",
+            },
+         },
+      },
+   },
+   renderer = {
+      symlink_destination = false,
    },
 })
 

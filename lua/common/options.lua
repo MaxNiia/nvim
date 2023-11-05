@@ -7,9 +7,12 @@ set.belloff = "all"
 set.clipboard = "unnamedplus"
 set.cmdheight = 0
 set.colorcolumn = "+1"
+set.cul = true
+set.culopt = "both"
 set.expandtab = false
 set.ignorecase = true
 set.incsearch = true
+set.laststatus = 3
 set.number = true
 set.numberwidth = 4
 set.pumblend = 50
@@ -27,8 +30,7 @@ set.termguicolors = true
 set.textwidth = 80
 set.signcolumn = "yes"
 set.swapfile = false
-set.cul = true
-set.culopt = "both"
+-- set.winbar = ""
 
 local cmd = vim.cmd
 cmd [[
