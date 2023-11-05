@@ -55,6 +55,7 @@ return {
 			enable = false,
 			options = {
 				modified_icon = " ",
+				show_filename_only = true,
 			},
 		},
 		config = function(_, opts)

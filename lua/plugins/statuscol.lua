@@ -12,7 +12,7 @@ return {
 
 			require("statuscol").setup({
 				relculright = true,
-				thousands = ".",
+				thousands = ",",
 				ft_ignore = {
 					"qf",
 				},

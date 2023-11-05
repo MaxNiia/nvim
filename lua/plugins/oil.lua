@@ -26,12 +26,12 @@ return {
 				function()
 					require("oil").open(vim.loop.cwd())
 				end,
-				desc = "Explorer",
+				desc = "Explorer (CWD)",
 			},
 			{
 				"<leader>E",
 				function()
-					require("oil").open_float(vim.loop.cwd())
+					require("oil").open()
 				end,
 				desc = "Explorer (float)",
 			},

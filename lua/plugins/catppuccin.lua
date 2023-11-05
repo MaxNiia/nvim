@@ -52,7 +52,7 @@ return {
 			local colors = require("catppuccin.palettes").get_palette()
 			colors.none = "NONE"
 
-			require("modicator")
+			-- require("modicator")
 			require("lualine")
 			require("tabline")
 			require("lsp-inlayhints")
