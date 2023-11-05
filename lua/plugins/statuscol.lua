@@ -25,6 +25,7 @@ return {
 					{
 						text = {
 							builtin.foldfunc,
+							auto = true,
 						},
 						click = "v:lua.ScFa",
 					},
@@ -49,9 +50,9 @@ return {
 							name = {
 								".*",
 							},
-							maxwidth = 2,
+							maxwidth = 1,
 							colwidth = 1,
-							auto = true,
+							auto = false,
 						},
 						click = "v:lua.ScSa",
 					},
