@@ -4,7 +4,6 @@ set.ai = true
 set.autowriteall = true
 set.backspace = "indent,eol,start"
 set.belloff = "all"
-set.clipboard = "unnamedplus"
 set.cmdheight = 0
 set.colorcolumn = "+1"
 set.cul = true
