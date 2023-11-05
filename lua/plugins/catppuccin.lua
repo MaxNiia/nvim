@@ -2,7 +2,6 @@ return {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		event = "BufEnter",
 		opts = {
 			compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
 			transparent_background = false,
@@ -54,10 +53,6 @@ return {
 
 			local colors = require("catppuccin.palettes").get_palette()
 			colors.none = "NONE"
-
-			require("lualine")
-			require("tabline")
-			require("telescope")
 		end,
 	},
 }

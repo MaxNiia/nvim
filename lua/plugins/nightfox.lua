@@ -2,7 +2,6 @@ return {
 	{
 		"EdenEast/nightfox.nvim",
 		name = "nightfox",
-		event = "BufEnter",
 		opts = {
 			options = {
 				colorblind = {
@@ -18,10 +17,6 @@ return {
 		},
 		config = function(_, opts)
 			require("nightfox").setup(opts)
-
-			require("lualine")
-			require("tabline")
-			require("telescope")
 		end,
 	},
 }

@@ -228,24 +228,14 @@ return {
 			local wk = require("which-key")
 			local navic = require("nvim-navic")
 			local on_attach = function(client, bufnr)
-				local function client_named(server, names)
-					local name_found = false
-					for _, name in ipairs(names) do
-						name_found = name_found or server.name == name
-					end
-					return name_found
+				if client.server_capabilities.documentSymbolProvider then
+					navic.attach(client, bufnr)
 				end
 
-				local useInlayHints = client_named(
-					client,
-					{ "clangd", "lua_ls", "tsserver", "pylsp", "rust_analyzer" }
-				)
-
-				navic.attach(client, bufnr)
 				-- Enable completion triggered by <c-x><c-o>
 				vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-				if useInlayHints then
+				if client.server_capabilities.inlayHintProvider then
 					wk.register({
 						t = {
 							function()
@@ -267,7 +257,7 @@ return {
 						},
 						d = {
 							vim.lsp.buf.definition,
-							"Go to definition",
+						"Go to definition",
 						},
 						i = {
 							vim.lsp.buf.implementation,

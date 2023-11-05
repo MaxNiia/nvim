@@ -33,8 +33,11 @@ return {
 			"nvim-neo-tree/neo-tree.nvim",
 			"SmiteshP/nvim-navic",
 			"AckslD/swenv.nvim",
+			"catppuccin/nvim",
+			"EdenEast/nightfox.nvim",
 		},
 		lazy = true,
+		event = "BufEnter",
 		opts = {
 			options = {
 				icons_enabled = true,
