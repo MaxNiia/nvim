@@ -7,6 +7,8 @@ return {
                 "stylua",
                 "shellcheck",
                 "shfmt",
+                "clangd",
+                "lua_ls",
             },
         },
         config = function(_, opts)

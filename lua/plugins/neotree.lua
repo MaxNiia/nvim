@@ -2,11 +2,14 @@ return {
     {
         "nvim-neo-tree/neo-tree.nvim",
         -- TODO: Move to neotree v3
-        branch = "v2.x",
+        branch = "v3.x",
         enabled = function()
             return _G.neotree
         end,
         dependencies = {
+            "MunifTanjim/nui.nvim",
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
             {
                 "s1n7ax/nvim-window-picker",
                 lazy = true,
@@ -49,12 +52,12 @@ return {
             vim.cmd([[Neotree close]])
         end,
         init = function()
-            -- if vim.fn.argc() == 1 then
-            --     local stat = vim.loop.fs_stat(vim.fn.argv(0))
-            --     if stat and stat.type == "directory" then
-            --         require("neo-tree")
-            --     end
-            -- end
+            if vim.fn.argc() == 1 and _G.neotree then
+                local stat = vim.loop.fs_stat(vim.fn.argv(0))
+                if stat and stat.type == "directory" then
+                    require("neo-tree")
+                end
+            end
         end,
         opts = {
             open_files_do_not_replace_types = {
@@ -66,7 +69,7 @@ return {
                 "edgy",
             },
             source_selector = {
-                winbar = false,
+                winbar = true,
             },
             sources = {
                 "filesystem",
@@ -85,8 +88,34 @@ return {
                 },
             },
             filesystem = {
+                components = {
+                    harpoon_index = function(config, node, state)
+                        local Marked = require("harpoon.mark")
+                        local path = node:get_id()
+                        local succuss, index = pcall(Marked.get_index_of, path)
+                        if succuss and index and index > 0 then
+                            return {
+                                text = string.format(" ⥤ %d", index), -- <-- Add your favorite harpoon like arrow here
+                                highlight = config.highlight or "NeoTreeDirectoryIcon",
+                            }
+                        else
+                            return {}
+                        end
+                    end,
+                },
+                renderers = {
+                    file = {
+                        { "icon" },
+                        { "name", use_git_status_colors = true },
+                        { "harpoon_index" }, --> This is what actually adds the component in where you want it
+                        { "diagnostics" },
+                        { "git_status", highlight = "NeoTreeDimText" },
+                    },
+                },
                 bind_to_cwd = true,
-                follow_current_file = true,
+                follow_current_file = {
+                    enabled = true,
+                },
                 hijack_netrw_behavior = "disabled",
             },
             window = {
