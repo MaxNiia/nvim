@@ -22,20 +22,20 @@ return {
                 sh = { "shellcheck" },
 
                 python = {
-                    "flake8",
-                    "mypy",
-                    "pydocstyle",
-                    "pylint",
+                    -- "flake8",
+                    -- "mypy",
+                    -- "pydocstyle",
+                    -- "pylint",
                 },
                 markdown = { "markdownlint" },
                 lua = {
-                    "luacheck",
+                    -- "luacheck",
                 },
                 json = {
                     "jsonlint",
                 },
                 cmake = {
-                    "cmakelint",
+                    -- "cmakelint",
                 },
                 protobuf = { "buf_lint" },
                 bazel = { "buildifier" },
