@@ -31,13 +31,12 @@ require("catppuccin").setup({
 		notify = true,
 		which_key = true,
 	},
-	--[[
 	custom_highlights = function(c)
 		return {
 			-- Comment = { fg = c.rosewater }, For BQN.
+			LineNr = { fg = c.rosewater},
 		}
 	end,
-	]]
 })
 
 local colors = require("catppuccin.palettes").get_palette()
