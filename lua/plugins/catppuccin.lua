@@ -78,6 +78,7 @@ return {
                     -- HarpoonActive = { bg = c.blue, fg = c.mantle, bold = true },
                     -- HarpoonLeftSeparator = { bg = c.mantle, fg = c.blue },
                     HighlightUndo = { bg = c.overlay0 },
+                    CopilotSuggestion = { fg = c.surface1 },
                 }
             end,
         },

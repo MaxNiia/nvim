@@ -55,12 +55,6 @@ return {
                     },
                 },
             },
-            routes = {
-                {
-                    view = "notify",
-                    filter = { event = "msg_showmode" },
-                },
-            },
             presets = {
                 bottom_search = false,
                 command_palette = false,

@@ -154,10 +154,10 @@ return {
                 }
             end
         end,
-        init = function()
-            -- when noice is not enabled, install notify on VeryLazy
-            vim.notify = require("notify")
-        end,
+        -- init = function()
+        --     -- when noice is not enabled, install notify on VeryLazy
+        --     vim.notify = require("notify")
+        -- end,
     },
     {
         "folke/todo-comments.nvim",

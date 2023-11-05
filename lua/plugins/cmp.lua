@@ -10,6 +10,12 @@ return {
         },
     },
     {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+            require("copilot_cmp").setup()
+        end,
+    },
+    {
         "hrsh7th/cmp-buffer",
         lazy = true,
         dependencies = { "hrsh7th/nvim-cmp", "tzachar/fuzzy.nvim" },
@@ -75,12 +81,19 @@ return {
                     disallow_prefix_unmatching = false,
                 },
                 sorting = {
+
+                    priority_weight = 2,
                     comparators = {
-                        cmp.config.compare.sort_text, -- this needs to be 1st
+                        require("copilot_cmp.comparators").prioritize,
+                        -- Below is the default comparitor list and order for nvim-cmp
                         cmp.config.compare.offset,
+                        -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
                         cmp.config.compare.exact,
                         cmp.config.compare.score,
+                        cmp.config.compare.recently_used,
+                        cmp.config.compare.locality,
                         cmp.config.compare.kind,
+                        cmp.config.compare.sort_text,
                         cmp.config.compare.length,
                         cmp.config.compare.order,
                     },
@@ -97,7 +110,39 @@ return {
                                 return vim_item
                             end
                         end
-                        return lspkind.cmp_format({ with_text = false })(entry, vim_item)
+                        return lspkind.cmp_format({
+                            mode = "symbol", -- show only symbol annotations
+                            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                            ellipsis_char = "...",
+                            symbol_map = {
+                                Text = "󰉿",
+                                Method = "󰆧",
+                                Function = "󰊕",
+                                Constructor = "",
+                                Field = "󰜢",
+                                Variable = "󰀫",
+                                Class = "󰠱",
+                                Interface = "",
+                                Module = "",
+                                Property = "󰜢",
+                                Unit = "󰑭",
+                                Value = "󰎠",
+                                Enum = "",
+                                Keyword = "󰌋",
+                                Snippet = "",
+                                Color = "󰏘",
+                                File = "󰈙",
+                                Reference = "󰈇",
+                                Folder = "󰉋",
+                                EnumMember = "",
+                                Constant = "󰏿",
+                                Struct = "󰙅",
+                                Event = "",
+                                Operator = "󰆕",
+                                TypeParameter = "",
+                                Copilot = "",
+                            },
+                        })(entry, vim_item)
                     end,
                 },
                 mapping = cmp.mapping.preset.insert({
@@ -108,11 +153,29 @@ return {
                         behavior = cmp.ConfirmBehavior.Replace,
                         select = true,
                     }),
+                    ["<c-n>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        elseif luasnip.expand_or_locally_jumpable() then
+                            luasnip.expand_or_jump()
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
                     ["<tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_next_item()
                         elseif luasnip.expand_or_locally_jumpable() then
                             luasnip.expand_or_jump()
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+                    ["<c-p>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item()
+                        elseif luasnip.locally_jumpable(-1) then
+                            luasnip.jump(-1)
                         else
                             fallback()
                         end
@@ -128,14 +191,14 @@ return {
                     end, { "i", "s" }),
                 }),
                 sources = cmp.config.sources({
-                    { name = "nvim_lsp" },
-                    { name = "nvim_lsp_signature_help" },
-                    -- { name = "copilot" },
-                    { name = "doxygen" },
-                    { name = "treesitter" },
-                    { name = "luasnip" },
-                    { name = "doxygen" },
-                    { name = "fuzzy_buffer" },
+                    -- Copilot Source
+                    { name = "copilot", group_index = 2 },
+                    { name = "nvim_lsp", group_index = 2 },
+                    { name = "nvim_lsp_signature_help", group_index = 3 },
+                    { name = "doxygen", group_index = 3 },
+                    { name = "treesitter", group_index = 3 },
+                    { name = "luasnip", group_index = 3 },
+                    { name = "fuzzy_buffer", group_index = 3 },
                 }, {
                     {
                         name = "buffer",

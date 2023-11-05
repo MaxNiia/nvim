@@ -14,5 +14,3 @@ return {
     tsserver = require("plugins.lsp.servers.tsserver"),
     yamlls = {},
 }
-
--- pylsp = require("plugins.lsp.servers.pylsp"),

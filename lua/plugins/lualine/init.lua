@@ -200,6 +200,9 @@ return {
                             end
                         end,
                     },
+                    {
+                        require("plugins.lualine.copilot").get_status,
+                    },
                 },
                 lualine_z = {
                     {
