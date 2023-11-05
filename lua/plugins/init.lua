@@ -132,7 +132,7 @@ return {
 			},
 			move_cursor = "begin",
 		},
-		condig = function(_, opts)
+		config = function(_, opts)
 			require("nvim-surround").setup(opts)
 		end,
 	},

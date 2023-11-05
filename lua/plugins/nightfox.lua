@@ -1,10 +1,8 @@
 return {
 	{
 		"EdenEast/nightfox.nvim",
-		dependencies = {
-			"nvim-lualine/lualine.nvim",
-		},
 		name = "nightfox",
+		event = "BufEnter",
 		opts = {
 			options = {
 				colorblind = {
@@ -20,11 +18,6 @@ return {
 		},
 		config = function(_, opts)
 			require("nightfox").setup(opts)
-
-			--require("lualine")
-
-			-- setup must be called before loading
-			-- vim.cmd.colorscheme("nightfox")
 		end,
 	},
 }

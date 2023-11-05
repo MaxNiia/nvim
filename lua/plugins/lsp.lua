@@ -1,9 +1,32 @@
 return {
 	{
+		"lvimuser/lsp-inlayhints.nvim",
+		branch = "anticonceal",
+		opts = {
+		},
+		config = function(_, opts)
+			require("lsp-inlayhints").setup(opts)
+			vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = "LspAttach_inlayhints",
+				callback = function(args)
+					if not (args.data and args.data.client_id) then
+						return
+					end
+
+					local bufnr = args.buf
+					local client = vim.lsp.get_client_by_id(args.data.client_id)
+					require("lsp-inlayhints").on_attach(client, bufnr)
+				end,
+			})
+		end,
+	},
+	{
 		"neovim/nvim-lspconfig",
 		lazy = true,
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
+			"propet/colorscheme-persist.nvim",
 			"folke/neodev.nvim",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
@@ -11,28 +34,7 @@ return {
 			"SmiteshP/nvim-navic",
 			"mfussenegger/nvim-dap",
 			"hrsh7th/nvim-cmp",
-			{
-				"lvimuser/lsp-inlayhints.nvim",
-				branch = "anticonceal";
-				opts = {
-				},
-				config = function(_, opts)
-					require("lsp-inlayhints").setup(opts)
-					vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
-					vim.api.nvim_create_autocmd("LspAttach", {
-					  group = "LspAttach_inlayhints",
-					  callback = function(args)
-						if not (args.data and args.data.client_id) then
-						  return
-						end
-
-						local bufnr = args.buf
-						local client = vim.lsp.get_client_by_id(args.data.client_id)
-						require("lsp-inlayhints").on_attach(client, bufnr)
-					  end,
-					})
-				end,
-			}
+			"lvimuser/lsp-inlayhints.nvim",
 		},
 		opts = {
 			-- options for vim.diagnostic.config()
@@ -118,7 +120,7 @@ return {
 		config = function(_, opts)
 			require("neodev").setup()
 			local lspconfig = require("lspconfig")
-			
+
 			-- diagnostics
 			local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 

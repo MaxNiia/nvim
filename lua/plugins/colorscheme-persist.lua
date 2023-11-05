@@ -1,11 +1,16 @@
 return {
     {
         "propet/colorscheme-persist.nvim",
+        dependencies = {
+		    "catppuccin/nvim",
+		    "EdenEast/nightfox.nvim",
+        },
+        event = "BufEnter",
         opts = {
             -- Absolute path to file where colorscheme should be saved
             file_path = os.getenv("HOME") .. "/.nvim.colorscheme-persist.lua",
             -- In case there's no saved colorscheme yet
-            fallback = "catppuccin-mocha",
+            fallback = "default",-- "catppuccin-mocha",
             -- List of ugly colorschemes to avoid in the selection window
             disable = {
                 "darkblue",
@@ -26,7 +31,6 @@ return {
                 "torte",
                 "zellner",
             },
-            event = "VimEnter",
             -- Options for the telescope picker
             picker_opts = {
                 initial_mode = "insert",
@@ -56,6 +60,7 @@ return {
 			vim.cmd.colorscheme(colorscheme)
 
             require("lualine")
+            require("lsp-inlayhints")
         end,
     },
 }

@@ -1,10 +1,8 @@
 return {
 	{
 		"catppuccin/nvim",
-		dependencies = {
-			"nvim-lualine/lualine.nvim",
-		},
 		name = "catppuccin",
+		event = "BufEnter",
 		opts = {
 			compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
 			transparent_background = false,
@@ -39,7 +37,7 @@ return {
 			custom_highlights = function(c)
 				return {
 					-- Comment = { fg = c.rosewater }, For BQN.
-					LineNr = { fg = c.rosewater },
+					-- LineNr = { fg = c.pink },
 				}
 			end,
 		},
@@ -48,8 +46,6 @@ return {
 
 			local colors = require("catppuccin.palettes").get_palette()
 			colors.none = "NONE"
-
-			require("lualine")
 		end,
 	},
 }
