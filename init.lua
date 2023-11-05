@@ -9,7 +9,7 @@ endif
 autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 ]])
 
-require("options")
+require("configs.options")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -25,5 +25,5 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {})
-require("user")
-require("keybinds")
+require("configs.user")
+require("configs.keybinds")

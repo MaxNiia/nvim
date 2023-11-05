@@ -42,18 +42,20 @@ then
     npm install -g cspell
 fi
 
-file="lua/user.lua"
+file="$CWD/lua/configs/user.lua"
 
 if [ ! -e "$file" ] ; then
     touch "$file"
+
+    if [ ! -w "$file" ] ; then
+        echo cannot write to "$file"
+        exit 1
+    fi
+
     echo "require('catppuccin')" >> "$file"
     echo "-- require('nightfox')" >> "$file"
 fi
 
-if [ ! -w "$file" ] ; then
-    echo cannot write to $file
-    exit 1
-fi
 
 if ! command -v lua &> /dev/null
 then
@@ -66,20 +68,20 @@ if [ ! -e "${HOME}/.nvimstty" ] ; then
     touch "${HOME}/.nvimstty"
     echo "stty -ixon" >> "${HOME}/.nvimstty"
     if [ "${SHELL}" = "/usr/bin/zsh" ] ; then
-        echo 'source "${HOME}/.nvimstty"' >> "${HOME}/.zshrc"
+        echo "source \"${HOME}/.nvimstty\"" >> "${HOME}/.zshrc"
     elif [ "${SHELL}" = "/usr/bin/bash" ] ; then
-        echo 'source "${HOME}/.nvimstty"' >> "${HOME}/.bashrc"
+        echo "source \"${HOME}/.nvimstty\"" >> "${HOME}/.bashrc"
     else 
         echo "Error, can't find suitable shell. Run the following line but change {shellrc} to applicable shell file"
-        echo 'echo source "\${HOME}/.nvimstty" >> "\${HOME}/.{shellrc}"'
+        echo "echo source \"\${HOME}/.nvimstty\" >> \"\${HOME}/.{shellrc}\""
     fi
 fi
 
-if [ ! -d "~/venvs" ]; then
+if [ ! -d "$HOME/venvs" ]; then
     echo "Creating venvs folder"
     mkdir ~/venvs
     python3 -m venv ~/venvs/Debug
-    source ~/venvs/Debug/bin/activate
+    source "$HOME/venvs/Debug/bin/activate"
     echo "Installing requirements"
     python -m pip install -r requirements.txt
     deactivate

@@ -2,8 +2,24 @@ return {
 	{
 		"folke/neodev.nvim",
 		lazy = true,
-		event = "BufEnter",
-		config = true,
+		event = { "BufReadPre", "BufNewFile" },
+		opts = {
+			library = {
+				runtime = true,
+				types = true,
+				plugins = true,
+			},
+			setup_jsonls = true,
+			lspconfig = true,
+			pathStrict = true,
+			override = function(_, library)
+				library.enabled = true
+				library.plugins = true
+			end,
+		},
+		config = function(_, opts)
+			require("neodev").setup(opts)
+		end,
 	},
 	{
 		"NMAC427/guess-indent.nvim",
@@ -14,7 +30,13 @@ return {
 	{
 		"windwp/nvim-spectre",
 		keys = {
-			{ "<leader>rf", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+			{
+				"<leader>rf",
+				function()
+					require("spectre").open()
+				end,
+				desc = "Replace in files (Spectre)",
+			},
 		},
 	},
 	{
@@ -50,30 +72,6 @@ return {
 		lazy = true,
 		config = true,
 	},
-	--[[
-	{
-		"akinsho/bufferline.nvim",
-		event = "VeryLazy",
-		keys = {
-			{ "<c-p>", "<Cmd>BufferLinePick<CR>", desc = "Pick buffer" },
-			{ "<a-p>", "<Cmd>BufferLinePickClose<CR>", desc = "Close buffer" },
-			{ "<a-0>", "<Cmd>BufferLineGoToBuffer -1<CR>", desc = "Last buffer" },
-			{ "<a-1>", "<Cmd>BufferLineGoToBuffer 1<CR>", desc = "1 buffer" },
-			{ "<a-2>", "<Cmd>BufferLineGoToBuffer 2<CR>", desc = "2 buffer" },
-			{ "<a-3>", "<Cmd>BufferLineGoToBuffer 3<CR>", desc = "3 buffer" },
-			{ "<a-4>", "<Cmd>BufferLineGoToBuffer 4<CR>", desc = "4 buffer" },
-			{ "<a-5>", "<Cmd>BufferLineGoToBuffer 5<CR>", desc = "5 buffer" },
-			{ "<a-6>", "<Cmd>BufferLineGoToBuffer 6<CR>", desc = "6 buffer" },
-			{ "<a-7>", "<Cmd>BufferLineGoToBuffer 7<CR>", desc = "7 buffer" },
-			{ "<a-8>", "<Cmd>BufferLineGoToBuffer 8<CR>", desc = "8 buffer" },
-			{ "<a-9>", "<Cmd>BufferLineGoToBuffer 9<CR>", desc = "9 buffer" },
-			{ "<a-,>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev buffer" },
-			{ "<a-.>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next buffer" },
-			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
-			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
-		},
-	},
-	]]
 	{
 		"rcarriga/nvim-notify",
 		keys = {

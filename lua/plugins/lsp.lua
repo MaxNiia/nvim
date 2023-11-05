@@ -86,6 +86,8 @@ return {
 			setup = {},
 		},
 		config = function(_, opts)
+			require("neodev").setup()
+			local lspconfig = require("lspconfig")
 			-- diagnostics
 			local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 
@@ -202,7 +204,7 @@ return {
 						return
 					end
 				end
-				require("lspconfig")[server].setup(server_opts)
+				lspconfig[server].setup(server_opts)
 			end
 
 			-- temp fix for lspconfig rename
@@ -216,7 +218,7 @@ return {
 			local mlsp = require("mason-lspconfig")
 			local available = mlsp.get_available_servers()
 
-			local ensure_installed = {} ---@type string[]
+			local ensure_installed = {}
 			for server, server_opts in pairs(servers) do
 				if server_opts then
 					server_opts = server_opts == true and {} or server_opts

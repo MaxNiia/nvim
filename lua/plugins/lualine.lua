@@ -16,8 +16,22 @@ return {
 				component_separators = { left = "", right = "" },
 				section_separators = { left = "", right = "" },
 				disabled_filetypes = {
-					statusline = { "dashboard", "lazy" },
-					winbar = { "neo-tree", "dashboard", "lazy" },
+					statusline = {
+						"dashboard",
+						"lazy",
+					},
+					winbar = {
+						"dapui_scopes",
+						"dapui_breakpoints",
+						"dapui_stacks",
+						"dapui_console",
+						"dapui_watches",
+						"dapui_scopes",
+						"dap-repl",
+						"neo-tree",
+						"dashboard",
+						"lazy",
+					},
 				},
 				ignore_focus = {},
 				always_divide_middle = true,
@@ -41,7 +55,7 @@ return {
 								return ""
 							end
 						end,
-						seperator = " | "
+						seperator = " | ",
 					},
 					{
 						function()
@@ -70,7 +84,7 @@ return {
 						end,
 					},
 					{
-						require "dap".status,
+						require("dap").status,
 					},
 				},
 				lualine_y = {
@@ -79,15 +93,15 @@ return {
 						separator = " ",
 						padding = {
 							left = 1,
-							right = 0
-						}
+							right = 0,
+						},
 					},
 					{
 						"location",
 						padding = {
 							left = 0,
-							right = 1
-						}
+							right = 1,
+						},
 					},
 				},
 				lualine_z = {
@@ -137,7 +151,6 @@ return {
 							newfile = "[New]", -- Text to show for newly created file before first write
 						},
 					},
-
 				},
 				lualine_x = {
 					{
@@ -149,7 +162,6 @@ return {
 							hint = "",
 						},
 					},
-
 				},
 				lualine_y = {
 					{
@@ -160,7 +172,6 @@ return {
 							removed = "",
 						},
 					},
-
 				},
 				lualine_z = {},
 			},
