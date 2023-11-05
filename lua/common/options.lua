@@ -25,6 +25,7 @@ set.splitbelow = true
 set.splitright = true
 set.termguicolors = true
 set.textwidth = 80
+set.signcolumn = "yes"
 
 local cmd = vim.cmd
 cmd [[

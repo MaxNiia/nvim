@@ -63,5 +63,10 @@ local packageList = {
 	"akinsho/bufferline.nvim";
 }
 
+--TODO look at adding trouble
+--TODO look at lspsaga
+--TODO look at adding autocompletions https://github.com/neovim/nvim-lspconfig/wiki/Autocompletion
+--
+
 return packageList
 
