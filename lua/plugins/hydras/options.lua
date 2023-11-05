@@ -3,16 +3,11 @@ local hint = [[
   ^
   _v_ %{ve} virtual edit
   _i_ %{list} invisible characters
-  _s_ %{spell} spell
-  _w_ %{wrap} wrap
+  _s_ %{spell} toggle spelling
+  _w_ %{wrap} word wrap
   _c_ %{cul} cursor line
   _n_ %{nu} number
   _r_ %{rnu} relative number
-  _t_ Toggle inlay hints
-  _R_ Reset inlay hints
-  _S_ toggle signs
-  _l_ toggle line hl
-  _D_ toggle deleted
   ^
        ^^^^                _<Esc>_
 ]]
@@ -120,27 +115,6 @@ return {
 				end
 			end,
 			{ desc = "wrap" },
-		},
-		{
-			"c",
-			function()
-				vim.o.cursorline = not vim.o.cursorline
-			end,
-			{ desc = "cursor line" },
-		},
-		{
-			"R",
-			function()
-				require("lsp-inlayhints").reset()
-			end,
-			{ desc = "Reset inlayhints" },
-		},
-		{
-			"t",
-			function()
-				require("lsp-inlayhints").toggle()
-			end,
-			{ desc = "cursor line" },
 		},
 		{ "<Esc>", nil, { exit = true } },
 	},

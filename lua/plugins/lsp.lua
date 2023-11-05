@@ -1,27 +1,5 @@
 return {
 	{
-		"lvimuser/lsp-inlayhints.nvim",
-		branch = "anticonceal",
-		opts = {},
-		lazy = true,
-		config = function(_, opts)
-			require("lsp-inlayhints").setup(opts)
-			vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
-			vim.api.nvim_create_autocmd("LspAttach", {
-				group = "LspAttach_inlayhints",
-				callback = function(args)
-					if not (args.data and args.data.client_id) then
-						return
-					end
-
-					local bufnr = args.buf
-					local client = vim.lsp.get_client_by_id(args.data.client_id)
-					require("lsp-inlayhints").on_attach(client, bufnr)
-				end,
-			})
-		end,
-	},
-	{
 		"neovim/nvim-lspconfig",
 		lazy = true,
 		event = { "BufReadPre", "BufNewFile" },
@@ -34,7 +12,6 @@ return {
 			"SmiteshP/nvim-navic",
 			"mfussenegger/nvim-dap",
 			"hrsh7th/nvim-cmp",
-			"lvimuser/lsp-inlayhints.nvim",
 		},
 		keys = {
 			{
@@ -82,6 +59,7 @@ return {
 				timeout_ms = nil,
 			},
 			servers = {
+				bashls = {},
 				clangd = {
 					filetypes = {
 						"c",
@@ -101,12 +79,26 @@ return {
 					},
 				},
 				cmake = {},
-				cssls = {},
+				cssls = {
+					css = {
+						validate = true,
+					},
+					less = {
+						validate = true,
+					},
+					scss = {
+						validate = true,
+					},
+				},
 				cssmodules_ls = {},
+				dockerls = {},
 				jsonls = {},
 				lua_ls = {
 					settings = {
 						Lua = {
+							hint = {
+								enable = true,
+							},
 							runtime = {
 								version = "LuaJIT",
 							},
@@ -146,7 +138,48 @@ return {
 						},
 					},
 				},
-				tsserver = {},
+				tsserver = {
+					settings = {
+						typescript = {
+							inlayHints = {
+								includeInlayParameterNameHints = "all",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = true,
+								includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
+							},
+						},
+						javascript = {
+							inlayHints = {
+								includeInlayParameterNameHints = "all",
+								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+								includeInlayFunctionParameterTypeHints = true,
+								includeInlayVariableTypeHints = true,
+								includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+								includeInlayPropertyDeclarationTypeHints = true,
+								includeInlayFunctionLikeReturnTypeHints = true,
+								includeInlayEnumMemberValueHints = true,
+							},
+						},
+					},
+				},
+				azure_pipeline_ls = {
+					settings = {
+						yaml = {
+							schemas = {
+								["https://raw.githubusercontent.com/microsoft/azure-pipelines-vscode/master/service-schema.json"] = {
+									"/azure-pipeline*.y*l",
+									"/*.azure*",
+									"Azure-Pipelines/**/*.y*l",
+									"Pipelines/*.y*l",
+								},
+							},
+						},
+					},
+				},
 				yamlls = {},
 			},
 			setup = {},
@@ -172,6 +205,17 @@ return {
 			local wk = require("which-key")
 			local navic = require("nvim-navic")
 			local on_attach = function(client, bufnr)
+				vim.api.nvim_create_autocmd({ "InsertEnter" }, {
+					callback = function()
+						vim.lsp.buf.inlay_hint(bufnr, true)
+					end,
+				})
+				vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+					callback = function()
+						vim.lsp.buf.inlay_hint(bufnr, false)
+					end,
+				})
+
 				navic.attach(client, bufnr)
 				-- Enable completion triggered by <c-x><c-o>
 				vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")

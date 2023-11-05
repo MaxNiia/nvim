@@ -48,6 +48,7 @@ return {
 					HarpoonRightSeparator = { bg = c.surface2, fg = c.mauve },
 					InclineNormal = { bg = c.mauve, fg = c.crust, bold = true },
 					InclineNormalNC = { bg = c.base, fg = c.mauve, bold = true },
+					LspInlayHint = { fg = c.surface2 },
 				}
 			end,
 		},
@@ -61,7 +62,6 @@ return {
 			require("incline")
 			require("lualine")
 			require("tabline")
-			require("lsp-inlayhints")
 			require("telescope")
 		end,
 	},
