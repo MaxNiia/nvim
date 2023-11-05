@@ -50,33 +50,43 @@ return {
                 },
                 lsp_references = {
                     layout_config = ui.layouts.lsp,
+                    layout_strategy = "vertical",
                 },
                 lsp_incoming_calls = {
                     layout_config = ui.layouts.lsp,
+                    layout_strategy = "vertical",
                 },
                 lsp_outgoing_calls = {
                     layout_config = ui.layouts.lsp,
+                    layout_strategy = "vertical",
                 },
                 lsp_definitions = {
                     layout_config = ui.layouts.lsp,
+                    layout_strategy = "vertical",
                 },
                 lsp_type_definitions = {
                     layout_config = ui.layouts.lsp,
+                    layout_strategy = "vertical",
                 },
                 lsp_implementations = {
                     layout_config = ui.layouts.lsp,
+                    layout_strategy = "vertical",
                 },
                 lsp_document_symbols = {
                     layout_config = ui.layouts.lsp,
+                    layout_strategy = "vertical",
                 },
                 lsp_workspace_symbols = {
                     layout_config = ui.layouts.lsp,
+                    layout_strategy = "vertical",
                 },
                 lsp_dynamic_workspace_symbols = {
                     layout_config = ui.layouts.lsp,
+                    layout_strategy = "vertical",
                 },
                 diagnostics = {
                     layout_config = ui.layouts.lsp,
+                    layout_strategy = "vertical",
                 },
             },
             extensions = {

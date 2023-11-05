@@ -16,14 +16,14 @@ return function(bufnr)
                 "Go to implementation",
             },
             r = {
-                require("telescope.builtin").lsp_references,
+                function()
+                    require("telescope.builtin").lsp_references({
+                        fname_width = require("utils.sizes").fname_width,
+                    })
+                end,
                 "Go to references",
             },
         },
-        -- K = {
-        -- 	vim.lsp.buf.hover,
-        -- 	"Hover",
-        -- },
         K = {
             function()
                 local winid = require("ufo").peekFoldedLinesUnderCursor()

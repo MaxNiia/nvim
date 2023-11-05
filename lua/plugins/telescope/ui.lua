@@ -2,12 +2,19 @@ local M = {
     layouts = {},
 }
 
-M.layouts.lsp_layout = {
+M.layouts.lsp = {
     horizontal = {
         preview_cutoff = 150,
         preview_width = 80,
         height = 0.9,
         width = 180,
+    },
+    vertical = {
+        height = 0.8,
+        width = 160,
+        preview_cutoff = 30,
+        preview_height = 0.7,
+        mirror = false,
     },
 }
 

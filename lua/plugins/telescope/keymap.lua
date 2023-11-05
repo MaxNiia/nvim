@@ -198,37 +198,63 @@ return {
     -- LSP
     {
         "<leader>flr",
-        "<cmd>Telescope lsp_references<cr>",
+        function()
+            require("telescope.builtin").lsp_references({
+                fname_width = require("utils.sizes").fname_width,
+            })
+        end,
         desc = "References",
     },
     {
         "<leader>fli",
-        "<cmd>Telescope lsp_incoming_calls<cr>",
+        function()
+            require("telescope.builtin").lsp_incoming_calls({
+                fname_width = require("utils.sizes").fname_width,
+            })
+        end,
         desc = "Incoming",
     },
     {
         "<leader>flo",
-        "<cmd>Telescope lsp_outgoing_calls<cr>",
+        function()
+            require("telescope.builtin").lsp_outgoing_calls({
+                fname_width = require("utils.sizes").fname_width,
+            })
+        end,
         desc = "Outgoing",
     },
     {
         "<leader>fld",
-        "<cmd>Telescope lsp_definitions<cr>",
+        function()
+            require("telescope.builtin").lsp_definitions({
+                fname_width = require("utils.sizes").fname_width,
+            })
+        end,
         desc = "Definitions",
     },
     {
         "<leader>flt",
-        "<cmd>Telescope lsp_type_definitions<cr>",
+        function()
+            require("telescope.builtin").lsp_type_definitions({
+                fname_width = require("utils.sizes").fname_width,
+            })
+        end,
         desc = "Type Definitions",
     },
     {
         "<leader>flj",
-        "<cmd>Telescope lsp_implementations<cr>",
+        function()
+            require("telescope.builtin").lsp_implementations({
+                fname_width = require("utils.sizes").fname_width,
+            })
+        end,
         desc = "Implementations",
     },
     {
         "<leader>fls",
         call_telescope("lsp_document_symbols", {
+            fname_width = 40,
+            symbol_width = 40,
             symbols = {
                 "Class",
                 "Function",
@@ -247,6 +273,8 @@ return {
     {
         "<leader>flS",
         call_telescope("lsp_dynamic_workspace_symbols", {
+            fname_width = 40,
+            symbol_width = 40,
             symbols = {
                 "Class",
                 "Function",
@@ -260,7 +288,7 @@ return {
                 "Property",
             },
         }),
-        desc = "Goto Symbol (WS)",
+        desc = "Goto Workspace Symbol"
     },
 
     -- Harpoon
