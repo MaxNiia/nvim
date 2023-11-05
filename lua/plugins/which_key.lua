@@ -76,6 +76,7 @@ return {
 					w = { name = "Sessions" },
 					l = { name = "LSP" },
 					t = { name = "Terminal" },
+					m = { name = "Man" },
 				},
 				x = { name = "Trouble" },
 			}, { prefix = "<leader>", mode = { "n", "v" } })

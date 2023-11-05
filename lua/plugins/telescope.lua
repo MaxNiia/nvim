@@ -90,9 +90,67 @@ return {
 			{ "<leader>fn", "<cmd>Telescope noice<CR>", desc = "Noice" },
 			{ "<leader>fN", "<cmd>Telescope notify<CR>", desc = "Notify" },
 			{
-				"<leader>fm",
-				"<cmd>Telescope man_pages<CR>",
-				desc = "Man pages",
+				"<leader>fm1",
+				call_telescope("man_pages", {
+					sections = { "1" },
+				}),
+				desc = "Executables/Shell Commands",
+			},
+			{
+				"<leader>fm2",
+				call_telescope("man_pages", {
+					sections = { "2" },
+				}),
+				desc = "System calls",
+			},
+			{
+				"<leader>fm3",
+				call_telescope("man_pages", {
+					sections = { "3" },
+				}),
+				desc = "Library calls",
+			},
+			{
+				"<leader>fm4",
+				call_telescope("man_pages", {
+					sections = { "4" },
+				}),
+				desc = "Special files",
+			},
+			{
+				"<leader>fm5",
+				call_telescope("man_pages", {
+					sections = { "5" },
+				}),
+				desc = "File formats and conventions",
+			},
+			{
+				"<leader>fm6",
+				call_telescope("man_pages", {
+					sections = { "6" },
+				}),
+				desc = "Games",
+			},
+			{
+				"<leader>fm7",
+				call_telescope("man_pages", {
+					sections = { "7" },
+				}),
+				desc = "Misc",
+			},
+			{
+				"<leader>fm8",
+				call_telescope("man_pages", {
+					sections = { "8" },
+				}),
+				desc = "System admin",
+			},
+			{
+				"<leader>fm9",
+				call_telescope("man_pages", {
+					sections = { "9" },
+				}),
+				desc = "Kernel routines (non standard)",
 			},
 			{
 				"<leader>fk",
