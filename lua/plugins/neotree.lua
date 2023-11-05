@@ -52,6 +52,7 @@ return {
 			-- end
 		end,
 		opts = {
+			open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "edgy" },
 			source_selector = {
 				winbar = true,
 			},

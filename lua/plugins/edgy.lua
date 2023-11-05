@@ -1,0 +1,77 @@
+return {}
+-- return {
+-- 	{
+-- 		"folke/edgy.nvim",
+-- 		dependencies = {
+-- 			"echasnovski/mini.animate",
+-- 		},
+-- 		event = "VeryLazy",
+-- 		keys = {
+-- 			{
+-- 				"<leader>ue",
+-- 				function()
+-- 					require("edgy").toggle()
+-- 				end,
+-- 				desc = "Edgy toggle Window",
+-- 			},
+-- 			{
+-- 				"<leader>uE",
+-- 				function()
+-- 					require("edgy").select()
+-- 				end,
+-- 				desc = "Edgy Select Window",
+-- 			},
+-- 		},
+-- 		opts = {
+-- 			bottom = {
+-- 				"Trouble",
+-- 				{
+-- 					ft = "qf",
+-- 					title = "QuickFix",
+-- 				},
+-- 				{
+-- 					ft = "help",
+-- 					size = { height = 20 },
+-- 					-- only show help buffers
+-- 					filter = function(buf)
+-- 						return vim.bo[buf].buftype == "help"
+-- 					end,
+-- 				},
+-- 				{ ft = "spectre_panel", size = { height = 0.4 } },
+-- 				{
+-- 					ft = "oil",
+-- 					pinned = true,
+-- 					size = { height = 30 },
+-- 					title = "File System",
+-- 				},
+-- 			},
+-- 			left = {
+-- 				{
+-- 					ft = "Outline",
+-- 					pinned = true,
+-- 					open = "SymbolsOutline",
+-- 				},
+-- 			},
+-- 			right = {
+-- 				{
+-- 					ft = "gitcommit",
+-- 					title = "Commit Message",
+-- 					size = {
+-- 						width = 72,
+-- 					},
+-- 				},
+-- 				{
+-- 					ft = "toggleterm",
+-- 					size = {
+-- 						width = function()
+-- 							return math.min(vim.o.columns * 0.25, 100)
+-- 						end,
+-- 					},
+-- 					filter = function(_, win)
+-- 						return vim.api.nvim_win_get_config(win).relative == ""
+-- 					end,
+-- 				},
+-- 			},
+-- 		},
+-- 	},
+-- }

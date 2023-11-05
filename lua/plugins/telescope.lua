@@ -94,7 +94,6 @@ return {
 				"<cmd>Telescope man_pages<CR>",
 				desc = "Man pages",
 			},
-			{ "<leader>fa", "<cmd>Telescope aerial<CR>", desc = "Aerial" },
 			{
 				"<leader>fk",
 				"<cmd>Telescope keymaps<cr>",
@@ -378,11 +377,6 @@ return {
 					display_stat = false,
 					initial_mode = "normal",
 				},
-				aerial = {
-					show_nesting = {
-						["_"] = false,
-					},
-				},
 				fzf = {
 					fuzzy = true,
 					override_gneric_sorter = true,
@@ -448,7 +442,6 @@ return {
 			local trouble = require("trouble.providers.telescope")
 
 			require("telescope").load_extension("harpoon")
-			require("telescope").load_extension("aerial")
 			require("telescope").load_extension("fzf")
 			require("telescope").load_extension("file_browser")
 			require("telescope").load_extension("projects")

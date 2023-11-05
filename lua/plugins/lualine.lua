@@ -45,8 +45,11 @@ return {
 					statusline = {
 						"dashboard",
 						"lazy",
+						"Mason",
 					},
 					winbar = {
+						"Outline",
+						"Trouble",
 						"dapui_scopes",
 						"dapui_breakpoints",
 						"dapui_stacks",

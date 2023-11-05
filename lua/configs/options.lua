@@ -30,6 +30,7 @@ vim.opt.softtabstop = 4
 vim.opt.spelloptions = "camel"
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.splitkeep = "screen"
 vim.opt.termguicolors = true
 vim.opt.textwidth = 80
 vim.opt.signcolumn = "yes:1"

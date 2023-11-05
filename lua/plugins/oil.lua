@@ -5,7 +5,15 @@ return {
 			"nvim-tree/nvim-web-devicons",
 			"ahmedkhalf/project.nvim",
 		},
-
+		init = function()
+			if vim.fn.argc() == 1 then
+				local arg = vim.fn.argv(0)
+				local stat = vim.loop.fs_stat(arg)
+				if stat and stat.type == "directory" then
+					vim.cmd.chdir(arg)
+				end
+			end
+		end,
 		event = "VimEnter",
 		keys = {
 			{ "g?", desc = "Show Help" },

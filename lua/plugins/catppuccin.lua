@@ -32,6 +32,9 @@ return {
 					enabled = true,
 				},
 				noice = true,
+				navic = {
+					enabled = true,
+				},
 				notify = true,
 				which_key = true,
 			},
