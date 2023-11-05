@@ -160,7 +160,7 @@ return {
                         "python-lsp-black",
                         "pylsp-mypy",
                         "pyls-isort",
-                        "pylsp-rope",
+                        -- "pylsp-rope",
                     },
                     cwd = venv,
                     env = { VIRTUAL_ENV = venv },

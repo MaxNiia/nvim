@@ -13,6 +13,7 @@ return {
                 },
                 autopep8 = {
                     enabled = true,
+                    line_length = 120,
                 },
                 flake8 = {
                     enabled = true,
@@ -24,17 +25,21 @@ return {
                 },
                 pydocstyle = {
                     enabled = true,
+                    line_length = 120,
                 },
                 pylint = {
                     enabled = true,
+                    line_length = 120,
                 },
                 rope_autoimport = {
                     enabled = true,
                     memory = true,
+                    line_length = 120,
                 },
                 rope_completion = {
                     enabled = true,
                     eager = true,
+                    line_length = 120,
                 },
             },
         },
