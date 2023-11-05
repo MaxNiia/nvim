@@ -1,30 +1,27 @@
 require("aerial").setup({
-	on_attach = function(bufnr)
-		local wk = require("which-key")
-		wk.register({
-			["["] = {
-				"<cmd>AerialPrev<CR>",
-				"Previous Aerial"
-			},
-			["]"] = {
-				"<cmd>AerialNext<CR>",
-				"Next Aerial"
-			}
-		},
-			{
-				buffer = bufnr,
-			})
-	end,
+   on_attach = function(bufnr)
+      local wk = require("which-key")
+      wk.register({
+         ["["] = {
+            "<cmd>AerialPrev<CR>",
+            "Previous Aerial",
+         },
+         ["]"] = {
+            "<cmd>AerialNext<CR>",
+            "Next Aerial",
+         },
+      }, {
+         buffer = bufnr,
+      })
+   end,
 })
 
 local wk = require("which-key")
-wk.register(
-	{
-		A = {
-			"<cmd>AerialToggle!<CR>",
-			"Toggle Aerial",
-		}
-	},
-	{
-		prefix = "<leader>"
-	})
+wk.register({
+   A = {
+      "<cmd>AerialToggle!<CR>",
+      "Toggle Aerial",
+   },
+}, {
+   prefix = "<leader>",
+})
