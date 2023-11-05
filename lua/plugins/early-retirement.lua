@@ -3,7 +3,7 @@ return {
 		"chrisgrieser/nvim-early-retierment",
 		opts = {
 			retirementAgeMins = 15,
-			ignoredFiletypes = {},
+			ignoredFiletypes = require("utils/exclude_files"),
 			notificationOnAutoClose = true,
 		},
 		config = true,
