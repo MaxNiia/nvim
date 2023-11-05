@@ -1,6 +1,6 @@
-if IS_WINDOWS and not IS_WSL then
-    return {}
-end
+-- if IS_WINDOWS and not IS_WSL then
+--     return {}
+-- end
 
 local function homeFilePath()
 	local home = ""

@@ -26,11 +26,11 @@
 # Usage:
 #   ./install.sh
 
-# Install rust up 
+# Install rust up
 if ! command -v rustup &> /dev/null
 then
     echo "Rustup could not be found, installing"
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh 
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
 # Install ripgrep
@@ -106,7 +106,7 @@ if [ ! -e "${HOME}/.nvimstty" ] ; then
         echo "source \"${HOME}/.nvimstty\"" >> "${HOME}/.zshrc"
     elif [ "${SHELL}" = "/usr/bin/bash" ] ; then
         echo "source \"${HOME}/.nvimstty\"" >> "${HOME}/.bashrc"
-    else 
+    else
         echo "Error, can't find suitable shell. Run the following line but change {shellrc} to applicable shell file"
         echo "echo source \"\${HOME}/.nvimstty\" >> \"\${HOME}/.{shellrc}\""
     fi
