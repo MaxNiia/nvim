@@ -10,8 +10,8 @@ return {
             },
         },
         main = "lsp_lines",
-        config = function(_, opts)
-            require("lsp_lines").setup(opts)
+        config = function(_, _)
+            require("lsp_lines").setup()
         end,
     },
 }

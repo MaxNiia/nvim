@@ -198,6 +198,39 @@ return {
             require("telescope").load_extension("dap")
             require("telescope").load_extension("refactoring")
             require("telescope").load_extension("live_grep_args")
+
+            local lga = require("telescope-live-grep-args.shortcuts")
+            local wk = require("which-key")
+            wk.register({
+                s = {
+
+                    function()
+                        lga.grep_word_under_cursor()
+                    end,
+                    "Grep string (root)",
+                },
+                S = {
+                    function()
+                        lga.grep_word_under_cursor({ cwd = false })
+                    end,
+                    "Grep string (cwd)",
+                },
+            }, { mode = "n", prefix = "<leader>" })
+            wk.register({
+
+                s = {
+                    function()
+                        lga.grep_visual_selection()
+                    end,
+                    "Grep string (root)",
+                },
+                S = {
+                    function()
+                        lga.grep_visual_selection({ cwd = false })
+                    end,
+                    "Grep string (cwd)",
+                },
+            }, { mode = "v", prefix = "<leader>" })
         end,
     },
 }

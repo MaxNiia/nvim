@@ -1,6 +1,5 @@
 local utils = require("plugins.telescope.utils")
 local call_telescope = utils.call_telescope
-local lga = require("telescope-live-grep-args.shortcuts")
 
 return {
     -- LEADER r
@@ -90,7 +89,7 @@ return {
         "<cmd>Telescope projects<CR>",
         desc = "Project",
     },
-    { "<leader>fn", "<cmd>Telescope noice<CR>",  desc = "Noice" },
+    { "<leader>fn", "<cmd>Telescope noice<CR>", desc = "Noice" },
     { "<leader>fN", "<cmd>Telescope notify<CR>", desc = "Notify" },
     {
         "<leader>fm1",
@@ -290,46 +289,6 @@ return {
         end,
         mode = "n",
         desc = "Monorepo",
-    },
-    {
-        "<leader>s",
-        function()
-            lga.grep_word_under_cursor()
-        end,
-        desc = "Grep string (root)",
-        mode = {
-            "n",
-        },
-    },
-    {
-        "<leader>S",
-        function()
-            lga.grep_word_under_cursor({ cwd = false })
-        end,
-        desc = "Grep string (cwd)",
-        mode = {
-            "n",
-        },
-    },
-    {
-        "<leader>s",
-        function()
-            lga.grep_visual_selection()
-        end,
-        desc = "Grep string (root)",
-        mode = {
-            "v",
-        },
-    },
-    {
-        "<leader>S",
-        function()
-            lga.grep_visual_selection({ cwd = false })
-        end,
-        desc = "Grep string (cwd)",
-        mode = {
-            "v",
-        },
     },
     {
         "<leader>,",
