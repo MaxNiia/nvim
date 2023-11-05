@@ -87,6 +87,10 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
     end,
 })
 
+vim.cmd([[
+    autocmd TermOpen * setlocal nospell
+]])
+
 function ToggleTroubleAuto()
     local buftype = "quickfix"
     if vim.fn.getloclist(0, { filewinid = 1 }).filewinid ~= 0 then
