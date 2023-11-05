@@ -55,6 +55,9 @@ return {
                 disallow_partial_matching = true,
                 disallow_prefix_unmatching = false,
             },
+			experimental = {
+				ghost_text = true,
+			},
 			sources = {
 				{ name = 'luasnip' }, },
 		},
