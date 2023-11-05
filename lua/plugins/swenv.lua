@@ -15,17 +15,6 @@ return {
         },
         config = function(_, opts)
             require("swenv").setup(opts)
-            local wk = require("which-key")
-            wk.register({
-                v = {
-                    function()
-                        require("swenv.api").pick_venv()
-                    end,
-                    "Pick venv",
-                },
-            }, {
-                prefix = "<leader>",
-            })
         end,
     },
 }

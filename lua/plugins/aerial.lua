@@ -9,31 +9,33 @@ local attach = function(bufnr)
 			"<cmd>AerialNext<CR>",
 			"Next Aerial",
 		},
-	}, {
-		buffer = bufnr
-	})
-	wk.register({
-		A = {
-			name = "+Aerial",
-			k = {
-				"<cmd>AerialPrev<CR>",
-				"Previous Aerial",
-			},
-			j = {
-				"<cmd>AerialNext<CR>",
-				"Next Aerial",
-			},
-			A = {
-				"<cmd>AerialToggle!<CR>",
-				"Toggle Aerial",
+
+		{
+			["<leader>"] = {
+				A = {
+					name = "+Aerial",
+					k = {
+						"<cmd>AerialPrev<CR>",
+						"Previous Aerial",
+					},
+					j = {
+						"<cmd>AerialNext<CR>",
+						"Next Aerial",
+					},
+					A = {
+						"<cmd>AerialToggle!<CR>",
+						"Toggle Aerial",
+					},
+				},
 			},
 		},
 	}, {
-		prefix = "<leader>",
+		buffer = bufnr,
+	})
+	wk.register({}, {
 		buffer = bufnr,
 	})
 end
-
 
 return {
 	{
@@ -55,7 +57,7 @@ return {
 			context_char = "▏",
 			show_current_context = true,
 			use_treesitter = true,
-			filetype_exclude = require("utils.exlude_files")
+			filetype_exclude = require("utils.exlude_files"),
 		},
 		config = true,
 	},

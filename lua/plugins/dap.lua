@@ -24,7 +24,6 @@ return {
 		},
 		config = function(_, opts)
 			require("nvim-dap-virtual-text").setup(opts)
-			local dap = require("dap")
 
 			vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Error" })
 			vim.fn.sign_define("DapBreakpointCondition", { text = "לּ", texthl = "Error" })
@@ -43,71 +42,6 @@ return {
 					{ name = "dap" },
 				},
 			})
-
-			local breakpoint = require("goto-breakpoints")
-
-			local wk = require("which-key")
-			wk.register({
-				b = {
-					"+Debug",
-					B = {
-						function()
-							vim.ui.input({ prompt = "Breakpoint condition: " }, function(condition)
-								dap.set_breakpoint(condition)
-							end)
-						end,
-						"DAP set conditional breakpoint",
-					},
-					c = {
-						dap.continue,
-						"Continue",
-					},
-					s = {
-						dap.step_over,
-						"Step Over",
-					},
-					i = {
-						dap.step_into,
-						"Step Into",
-					},
-					o = {
-						dap.step_out,
-						"Step Out",
-					},
-					b = {
-						dap.toggle_breakpoint,
-						"Breakpoint",
-					},
-					R = {
-						dap.repl.open,
-						"Open repl",
-					},
-					l = {
-						dap.run_last,
-						"Run last session",
-					},
-					r = {
-						dap.restart,
-						"Restart session",
-					},
-					q = {
-						dap.terminate,
-						"Terminate session",
-					},
-				},
-			}, {
-				prefix = "<leader>",
-			})
-			wk.register({
-				["]b"] = {
-					breakpoint.next,
-					"Go to next breakpoint",
-				},
-				["[b"] = {
-					breakpoint.prev,
-					"Go to prev breakpoint",
-				},
-			}, {})
 		end,
 	},
 }

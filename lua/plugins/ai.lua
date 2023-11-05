@@ -44,46 +44,6 @@ return {
 				use_default_keymap = false,
 			})
 
-			local wk = require("which-key")
-
-			local function createCommand(method)
-				return string.format(
-					"<Cmd>lua require('nvim-magic.flows').%s(require('nvim-magic').backends.default)<CR>",
-					method
-				)
-			end
-
-			wk.register({
-				c = {
-					"+ChatGPT",
-					c = {
-						createCommand("append_completion"),
-						"Completion",
-					},
-					a = {
-						createCommand("suggest_alteration"),
-						"Alteration",
-					},
-					d = {
-						createCommand("suggest_docstring"),
-						"Docstring",
-					},
-				},
-			}, { prefix = "<leader>", mode = "v" })
-
-			wk.register({
-				c = {
-					"+ChatGPT",
-					c = {
-						createCommand("suggest_chat"),
-						"Chat",
-					},
-					r = {
-						createCommand("suggest_chat_reset"),
-						"Reset",
-					},
-				},
-			}, { prefix = "<leader>", mode = "n" })
 		end,
 	},
 }

@@ -137,7 +137,6 @@ return {
 						},
 						r = {
 							require("telescope.builtin").lsp_references,
-							{},
 							"Go to references",
 						},
 					},
@@ -182,18 +181,6 @@ return {
 				end
 				-- Normal Mode
 			end
-			wk.register({
-				k = {
-					vim.diagnostic.open_float,
-					"Open float",
-				},
-				j = {
-					vim.diagnostic.setloclist,
-					"Set loc list",
-				},
-			}, {
-				prefix = "<leader>",
-			})
 
 			local servers = opts.servers
 			local capabilities =

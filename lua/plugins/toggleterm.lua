@@ -60,21 +60,6 @@ return {
 		},
 		config = function(_, opts)
 			require("toggleterm").setup(opts)
-
-			local wk = require("which-key")
-
-			wk.register({
-				t = {
-					name = "Terminal",
-					l = {
-						"<cmd>ToggleTermSendCurrentLine<CR>",
-						"Send line",
-					},
-				},
-			}, {
-				prefix = "<leader>",
-			})
-
 			vim.cmd([[
 				nnoremap <silent><f5> <Cmd>exe v:count1 . "ToggleTerm direction=float"<CR>
 				nnoremap <silent><f6> <Cmd>exe v:count1 . "ToggleTerm direction=vertical"<CR>
