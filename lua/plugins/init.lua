@@ -37,7 +37,6 @@ return {
 		config = true,
 	},
 	{
-
 		"nvim-lua/plenary.nvim",
 		lazy = true,
 	},
@@ -101,11 +100,7 @@ return {
 		event = "BufEnter",
 		config = true,
 	},
-	{
-		"tpope/vim-repeat",
-		lazy = true,
-		event = "BufEnter",
-	},
+	--[[
 	{
 		"ggandor/flit.nvim",
 		dependencies = {
@@ -124,6 +119,7 @@ return {
 			require("leap").add_default_mappings()
 		end,
 	},
+	]]
 	{
 		"DanilaMihailov/beacon.nvim",
 		lazy = true,
@@ -132,5 +128,38 @@ return {
 	{
 		"miversen33/netman.nvim",
 		lazy = true,
+	},
+	{
+		"kylechui/nvim-surround",
+		lazy = true,
+		event = "BufEnter",
+		opts = {
+			surrounds = {
+				["("] = {
+					add = { "(", ")" },
+				},
+				[")"] = {
+					add = { "(", ")" },
+				},
+				["{"] = {
+					add = { "{", "}" },
+				},
+				["}"] = {
+					add = { "{", "}" },
+				},
+				["["] = {
+					add = { "[", "]" },
+				},
+				["]"] = {
+					add = { "[", "]" },
+				},
+				["<"] = {
+					add = { "<", ">" },
+				},
+				[">"] = {
+					add = { "<", ">" },
+				},
+			},
+		},
 	},
 }
