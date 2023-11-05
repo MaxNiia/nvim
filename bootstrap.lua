@@ -2,7 +2,7 @@
 -- `nvim --headless -u NONE -c 'lua require("bootstrap").bootstrap_paq()'`
 -- in a shell.
 
-local packages = require("common.packageList")
+local packages = require("packageList")
 
 local function clone_paq()
 	local path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
