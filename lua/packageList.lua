@@ -95,9 +95,6 @@ local packageList = {
       "catppuccin/nvim",
       as = "catppuccin",
    },
-
-   -- Bufferline always after catppuccin
-   --"akinsho/bufferline.nvim";
 }
 
 return packageList
