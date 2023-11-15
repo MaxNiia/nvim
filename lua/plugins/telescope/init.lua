@@ -100,6 +100,9 @@ return {
                     override_file_sorter = true,
                     case_mode = "smart_case",
                 },
+                project = {
+                    initial_mode = "normal",
+                },
                 monorepo = {
                     initial_mode = "normal",
                     layout_config = ui.layouts.small_cursor,
@@ -120,7 +123,7 @@ return {
                     "--with-filename",
                     "--smart-case",
                 },
-                prompt_prefix = "   ",
+                prompt_prefix = "  ",
                 border = true,
                 set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
                 color_devicons = true,
@@ -186,9 +189,9 @@ return {
 
             opts.extensions = vim.tbl_deep_extend("force", opts.extensions or {}, {
                 project = {
-                    initial_mode = "normal",
                     hidden_files = false,
                     sync_with_nvim_tree = false,
+                    initial_mode = "normal",
                     on_project_selected = function(prompt_bufnr)
                         local project_actions = require("telescope._extensions.project.actions")
                         -- Change dir to the selected project
