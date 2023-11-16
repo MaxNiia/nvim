@@ -35,13 +35,9 @@ return {
             },
         },
         opts = {
-            auto_close = true,
-            position = "bottom",
+            auto_close = false,
             icons = true,
             use_diagnostic_signs = true,
         },
-        config = function(_, opts)
-            require("trouble").setup(opts)
-        end,
     },
 }
