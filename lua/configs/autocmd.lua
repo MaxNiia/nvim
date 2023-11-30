@@ -1,9 +1,4 @@
 vim.cmd([[
-    autocmd BufRead,BufNewFile *.bqn setf bqn
-    autocmd BufRead,BufNewFile * if getline(1) =~ '^#!.*bqn$' | setf bqn | endif
-]])
-
-vim.cmd([[
     autocmd FileType gitcommit setlocal textwidth=72
     autocmd FileType gitcommit setlocal colorcolumn=+1
 ]])

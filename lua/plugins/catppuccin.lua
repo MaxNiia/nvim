@@ -71,8 +71,7 @@ return {
             },
             custom_highlights = function(c)
                 return {
-                    -- Comment = { fg = c.rosewater }, For BQN.
-                    -- LineNr = { fg = c.pink },
+                    -- Comment = { fg = c.rosewater },
                     HighlightUndo = { bg = c.overlay0 },
                     CopilotSuggestion = { fg = c.surface1 },
                 }

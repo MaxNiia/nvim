@@ -9,7 +9,7 @@ end
 return {
     {
 
-        "<leader>bc",
+        "<leader>bdc",
         "<cmd>DapContinue<cr>",
         desc = "Continue",
         mode = { "n" },
