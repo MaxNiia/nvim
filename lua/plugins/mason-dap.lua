@@ -1,5 +1,3 @@
-local dap = require("dap")
-
 return {
     {
         "jay-babu/mason-nvim-dap.nvim",
@@ -14,64 +12,12 @@ return {
             },
             automatic_setup = true,
             handlers = {
-                function(source_name)
-                    require("mason-nvim-dap.automatic_setup")(source_name)
+                function(config)
+                    require("mason-nvim-dap").default_setup(config)
                 end,
-                cppdbg = function(source_name)
-                    require("mason-nvim-dap.automatic_setup")(source_name)
-                    dap.configurations.cpp = {
-                        {
-                            name = "Launch file",
-                            type = "cppdbg",
-                            request = "launch",
-                            program = function()
-                                return vim.fn.input(
-                                    "Path to executable: ",
-                                    vim.fn.getcwd() .. "/",
-                                    "file"
-                                )
-                            end,
-                            cwd = "${workspaceFolder}",
-                            stopAtEntry = true,
-                            setupCommands = {
-                                {
-                                    text = "-enable-pretty-printing",
-                                    description = "enable pretty printing",
-                                    ignoreFailures = false,
-                                },
-                            },
-                        },
-                        {
-                            name = "Attach to gdbserver",
-                            type = "cppdbg",
-                            request = "launch",
-                            MIMode = "gdb",
-                            miDebuggerServerAddress = function()
-                                return "localhost:" .. vim.fn.input("Enter the gdb server port: ")
-                            end,
-                            miDebuggerPath = "/usr/bin/gdb",
-                            cwd = "${workspaceFolder}",
-                            program = function()
-                                return vim.fn.input(
-                                    "Path to executable: ",
-                                    vim.fn.getcwd() .. "/",
-                                    "file"
-                                )
-                            end,
-                            setupCommands = {
-                                {
-                                    text = "-enable-pretty-printing",
-                                    description = "enable pretty printing",
-                                    ignoreFailures = false,
-                                },
-                            },
-                        },
-                    }
-                    dap.configurations.c = dap.configurations.cpp
-                    dap.configurations.rust = dap.configurations.cpp
-                end,
-                python = function(_)
-                    dap.adapters.python = {
+                cpp = function(source_name) end,
+                python = function(config)
+                    config.adapters.python = {
                         type = "executable",
                         command = os.getenv("HOME") .. "/venvs/Debug/bin/python",
                         args = {
@@ -79,7 +25,7 @@ return {
                             "debugpy.adapter",
                         },
                     }
-                    dap.configurations.python = {
+                    config.configurations.python = {
                         {
                             type = "python",
                             request = "launch",
@@ -95,6 +41,7 @@ return {
                             end,
                         },
                     }
+                    require("mason-nvim-dap").default_setup(config)
                 end,
             },
         },

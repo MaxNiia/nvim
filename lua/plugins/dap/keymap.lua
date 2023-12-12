@@ -9,7 +9,7 @@ end
 return {
     {
 
-        "<leader>bdc",
+        "<leader>bc",
         "<cmd>DapContinue<cr>",
         desc = "Continue",
         mode = { "n" },
@@ -45,6 +45,7 @@ return {
     },
     {
         "<leader>bl",
+        "<cmd>DapStepOut<cr>",
         desc = "Run last session",
         mode = { "n" },
     },
@@ -58,6 +59,14 @@ return {
         "<leader>bq",
         "<cmd>DapTerminate<cr>",
         desc = "Terminate session",
+        mode = { "n" },
+    },
+    {
+        "<leader>bL",
+        function()
+            require("dap.ext.vscode").load_launchjs(nil, { cppdbg = { "c", "cpp" } })
+        end,
+        desc = "Load launch.json",
         mode = { "n" },
     },
 }
