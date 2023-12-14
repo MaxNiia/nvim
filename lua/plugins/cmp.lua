@@ -35,7 +35,6 @@ return {
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
-            -- "hrsh7th/cmp-copilot", Not truly supported
             "L3MON4D3/LuaSnip",
             "tzachar/fuzzy.nvim",
             "saadparwaiz1/cmp_luasnip",
@@ -194,12 +193,12 @@ return {
                 }),
                 sources = cmp.config.sources({
                     -- Copilot Source
+                    { name = "luasnip", group_index = 1 },
+                    { name = "doxygen", group_index = 1 },
                     { name = "copilot", group_index = 2 },
                     { name = "nvim_lsp", group_index = 2 },
                     { name = "nvim_lsp_signature_help", group_index = 3 },
-                    { name = "doxygen", group_index = 3 },
                     { name = "treesitter", group_index = 3 },
-                    { name = "luasnip", group_index = 3 },
                     { name = "fuzzy_buffer", group_index = 3 },
                 }, {
                     {
