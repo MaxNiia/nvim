@@ -42,7 +42,7 @@ return {
                     },
                 },
                 buffers = {
-                    initial_mode = "normal",
+                    initial_mode = _G.buffer_mode and "insert" or "normal",
                 },
                 spell_suggest = {
                     initial_mode = "normal",

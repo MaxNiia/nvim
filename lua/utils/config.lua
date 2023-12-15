@@ -9,6 +9,7 @@ local options = {
     { name = "copilot", default = false },
     { name = "popup", default = true },
     { name = "harpoon", default = true },
+    { name = "buffer_mode", default = false },
 }
 
 local separator = ":"

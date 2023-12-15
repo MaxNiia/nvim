@@ -8,6 +8,7 @@ local hint = [[
   _c_ %{copilot}^^^^ Copilot
   _p_ %{popup}^^^^^^ Popup
   _h_ %{harpoon}^^^^ Harpoon
+  _b_ %{buffer_mode} Buffer Mode
   ^
        ^^^^                _<Esc>_
 ]]
@@ -50,6 +51,7 @@ return {
                 copilot = show_state_builder("copilot"),
                 popup = show_state_builder("popup"),
                 harpoon = show_state_builder("harpoon"),
+                buffer_mode = show_state_builder("buffer_mode"),
             },
         },
     },
@@ -63,6 +65,7 @@ return {
         head_toggle_builder("copilot", "c"),
         head_toggle_builder("popup", "p"),
         head_toggle_builder("harpoon", "h"),
+        head_toggle_builder("buffer_mode", "b"),
         { "<Esc>", nil, { exit = true } },
     },
 }
