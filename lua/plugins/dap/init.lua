@@ -18,6 +18,7 @@ return {
             "theHamsta/nvim-dap-virtual-text",
             "rcarriga/cmp-dap",
             "nvim-treesitter/nvim-treesitter",
+            "nvim-telescope/telescope.nvim",
             "rcarriga/nvim-dap-ui",
             "jay-babu/mason-nvim-dap.nvim",
         },
@@ -40,6 +41,7 @@ return {
             vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "Error" })
         end,
         config = function(_, opts)
+            require("telescope").load_extension("dap")
             require("nvim-dap-virtual-text").setup(opts)
             local map = vim.keymap.set
             map("n", "]b", require("goto-breakpoints").next, {})

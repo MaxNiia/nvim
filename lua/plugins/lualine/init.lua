@@ -1,24 +1,24 @@
-local function shorten_filenames(filenames)
-    local shortened = {}
+-- local function shorten_filenames(filenames)
+--     local shortened = {}
 
-    local counts = {}
-    for _, file in ipairs(filenames) do
-        local name = vim.fn.fnamemodify(file.filename, ":t")
-        counts[name] = (counts[name] or 0) + 1
-    end
+--     local counts = {}
+--     for _, file in ipairs(filenames) do
+--         local name = vim.fn.fnamemodify(file.filename, ":t")
+--         counts[name] = (counts[name] or 0) + 1
+--     end
 
-    for _, file in ipairs(filenames) do
-        local name = vim.fn.fnamemodify(file.filename, ":t")
+--     for _, file in ipairs(filenames) do
+--         local name = vim.fn.fnamemodify(file.filename, ":t")
 
-        if counts[name] == 1 then
-            table.insert(shortened, { filename = vim.fn.fnamemodify(name, ":t") })
-        else
-            table.insert(shortened, { filename = file.filename })
-        end
-    end
+--         if counts[name] == 1 then
+--             table.insert(shortened, { filename = vim.fn.fnamemodify(name, ":t") })
+--         else
+--             table.insert(shortened, { filename = file.filename })
+--         end
+--     end
 
-    return shortened
-end
+--     return shortened
+-- end
 
 return {
     {

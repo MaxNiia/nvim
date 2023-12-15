@@ -3,6 +3,9 @@ local ui = require("plugins.telescope.ui")
 return {
     {
         "nvim-telescope/telescope.nvim",
+        cmd = {
+            "Telescope",
+        },
         keys = require("plugins.telescope.keymap"),
         dependencies = {
             {
@@ -14,7 +17,6 @@ return {
                 dependencies = { "nvim-lua/plenary.nvim" },
             },
             "nvim-telescope/telescope-project.nvim",
-            "nvim-telescope/telescope-dap.nvim",
             "nvim-telescope/telescope-live-grep-args.nvim",
         },
         lazy = true,
@@ -239,7 +241,6 @@ return {
             require("telescope").load_extension("fzf")
             require("telescope").load_extension("file_browser")
             require("telescope").load_extension("project")
-            require("telescope").load_extension("dap")
             require("telescope").load_extension("live_grep_args")
             if _G.harpoon then
                 require("telescope").load_extension("harpoon")

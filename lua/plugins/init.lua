@@ -24,6 +24,8 @@ return {
     },
     {
         "bennypowers/nvim-regexplainer",
+        lazy = true,
+        events = { "BufEnter" },
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "MunifTanjim/nui.nvim",
