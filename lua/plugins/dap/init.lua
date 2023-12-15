@@ -21,6 +21,7 @@ return {
             "nvim-telescope/telescope.nvim",
             "rcarriga/nvim-dap-ui",
             "jay-babu/mason-nvim-dap.nvim",
+            "nvim-telescope/telescope-dap.nvim",
         },
         opts = {
             enabled = true,
