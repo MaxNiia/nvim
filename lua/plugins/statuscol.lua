@@ -59,10 +59,24 @@ return {
                         },
                         click = "v:lua.ScLa",
                     },
+                    -- {
+                    --     sign = {
+                    --         namespace = {
+                    --             "gitsigns",
+                    --         },
+                    --         maxwidth = 2,
+                    --         colwidth = 1,
+                    --         auto = false,
+                    --     },
+                    --     click = "v:lua.ScSa",
+                    -- },
                     {
                         sign = {
                             namespace = {
-                                "gitsigns",
+                                "Diagnostic.*",
+                            },
+                            name = {
+                                "Diagnostic.*",
                             },
                             maxwidth = 2,
                             colwidth = 1,
