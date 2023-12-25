@@ -37,7 +37,7 @@ return {
             diagnostics = {
                 underline = true,
                 update_in_insert = false,
-                virtual_text = false, -- Replaces by lsp_lines { spacing = 4, prefix = "●" },
+                virtual_text = true, -- Replaces by lsp_lines { spacing = 4, prefix = "●" },
                 severity_sort = true,
                 virtual_lines = true,
             },
@@ -143,9 +143,8 @@ return {
                     -- Mappings
                     require("plugins.lsp.keymaps").default(bufnr)
                     if client.server_capabilities.inlayHintProvider then
-                        local inlay_hint = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint
                         require("plugins.lsp.keymaps").inlay_hints(bufnr)
-                        inlay_hint(bufnr, true)
+                        vim.lsp.inlay_hint.enable(bufnr, true)
                     end
 
                     if client.name == "clangd" then

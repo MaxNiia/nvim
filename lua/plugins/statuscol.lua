@@ -1,6 +1,7 @@
 return {
     {
         "luukvbaal/statuscol.nvim",
+        branch = "0.10",
         dependencies = {
             "lewis6991/gitsigns.nvim",
         },
@@ -44,11 +45,12 @@ return {
                     {
                         sign = {
                             name = {
+                                "Diagnostic",
                                 "neotest",
                                 "Dap",
                             },
-                            maxwidth = 1,
-                            colwidth = 2,
+                            maxwidth = 2,
+                            colwidth = 1,
                             auto = true,
                         },
                         click = "v:lua.ScSa",
@@ -59,51 +61,18 @@ return {
                         },
                         click = "v:lua.ScLa",
                     },
-                    -- {
-                    --     sign = {
-                    --         namespace = {
-                    --             "gitsigns",
-                    --         },
-                    --         maxwidth = 2,
-                    --         colwidth = 1,
-                    --         auto = false,
-                    --     },
-                    --     click = "v:lua.ScSa",
-                    -- },
                     {
                         sign = {
-                            namespace = {
-                                "Diagnostic.*",
-                            },
-                            name = {
-                                "Diagnostic.*",
-                            },
+                            name = { ".*" },
+                            namespace = { ".*" },
                             maxwidth = 2,
                             colwidth = 1,
-                            auto = false,
+                            wrap = true,
+                            auto = true,
                         },
                         click = "v:lua.ScSa",
                     },
-                },
-                clickhandlers = {
-                    -- builtin click handlers
-                    Lnum = builtin.lnum_click,
-                    FoldClose = builtin.foldclose_click,
-                    FoldOpen = builtin.foldopen_click,
-                    FoldOther = builtin.foldother_click,
-                    DapBreakpointRejected = builtin.toggle_breakpoint,
-                    DapBreakpoint = builtin.toggle_breakpoint,
-                    DapBreakpointCondition = builtin.toggle_breakpoint,
-                    DiagnosticSignError = builtin.diagnostic_click,
-                    DiagnosticSignHint = builtin.diagnostic_click,
-                    DiagnosticSignInfo = builtin.diagnostic_click,
-                    DiagnosticSignWarn = builtin.diagnostic_click,
-                    GitSignsTopdelete = builtin.gitsigns_click,
-                    GitSignsUntracked = builtin.gitsigns_click,
-                    GitSignsAdd = builtin.gitsigns_click,
-                    GitSignsChange = builtin.gitsigns_click,
-                    GitSignsChangedelete = builtin.gitsigns_click,
-                    GitSignsDelete = builtin.gitsigns_click,
+                    { text = { "│" }, condition = { builtin.not_empty } },
                 },
             })
         end,
