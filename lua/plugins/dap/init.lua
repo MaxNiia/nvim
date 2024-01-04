@@ -1,12 +1,18 @@
 local function eval()
     return require("dapui").eval()
 end
+
 local function toggle()
     return require("dapui").toggle()
 end
+
 local function hover()
     return require("dap.ui.widgets").hover()
 end
+
+local api = vim.api
+local keymap_restore = {}
+
 return {
     {
         "mfussenegger/nvim-dap",
@@ -51,7 +57,7 @@ return {
 
             require("cmp").setup({
                 enabled = function()
-                    return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+                    return vim.api.nvim_get_option_value("buftype", { buf = 0 }) ~= "prompt"
                         or require("cmp_dap").is_dap_buffer()
                 end,
             })
@@ -61,9 +67,8 @@ return {
                     { name = "dap" },
                 },
             })
+
             local dap = require("dap")
-            local api = vim.api
-            local keymap_restore = {}
             dap.listeners.after["event_initialized"]["me"] = function()
                 for _, buf in pairs(api.nvim_list_bufs()) do
                     local keymaps = api.nvim_buf_get_keymap(buf, "n")
