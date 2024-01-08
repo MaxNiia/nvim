@@ -61,7 +61,6 @@ return {
         end,
         opts = {
             open_files_do_not_replace_types = {
-                "oil",
                 "terminal",
                 "Trouble",
                 "qf",
@@ -120,7 +119,7 @@ return {
                 follow_current_file = {
                     enabled = true,
                 },
-                hijack_netrw_behavior = "disabled",
+                hijack_netrw_behavior = "enabled",
             },
             window = {
                 mappings = {

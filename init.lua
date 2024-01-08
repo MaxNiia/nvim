@@ -37,8 +37,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {})
 
-if _G.neotree then
-    require("oil")
-end
-
 vim.cmd.colorscheme("catppuccin")
