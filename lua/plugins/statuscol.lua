@@ -1,9 +1,22 @@
 return {
     {
+        "chentoast/marks.nvim",
+        lazy = true,
+        opts = {
+            default_mappings = true,
+            builtin_marks = {},
+            cyclic = true,
+            force_write_shada = true,
+            refresh_interval = 150,
+            sign_priority = { lower = 10, upper = 15, builtin = 8, bookmark = 20 },
+        },
+    },
+    {
         "luukvbaal/statuscol.nvim",
         branch = "0.10",
         dependencies = {
             "lewis6991/gitsigns.nvim",
+            "chentoast/marks.nvim",
         },
         lazy = true,
         event = "BufEnter",
@@ -45,10 +58,11 @@ return {
                     {
                         sign = {
                             name = {
-                                "Diagnostic",
+                                "Mark",
                                 "neotest",
                                 "Dap",
                             },
+                            namespace = { "diagnostic*" },
                             maxwidth = 2,
                             colwidth = 1,
                             auto = true,
@@ -63,8 +77,7 @@ return {
                     },
                     {
                         sign = {
-                            name = { ".*" },
-                            namespace = { ".*" },
+                            namespace = { "gitsigns" },
                             maxwidth = 2,
                             colwidth = 1,
                             wrap = true,
