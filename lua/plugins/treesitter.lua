@@ -58,6 +58,8 @@ return {
                 "rust",
                 "vim",
                 "vimdoc",
+                "json",
+                "yaml",
             },
             auto_install = true,
             incremental_selection = {

@@ -98,6 +98,7 @@ return {
             formatters_by_ft = {
                 lua = { "stylua" },
                 bash = { "beautysh", "shfmt" },
+                bazel = { "buildifier" },
                 python = { "isort", "black", "autoflake", "autopep8" },
                 css = { "stylelint" },
                 javascript = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
