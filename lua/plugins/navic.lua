@@ -7,6 +7,7 @@ return {
             },
             highlight = true,
             click = true,
+            icons = require("utils.icons").kinds,
         },
     },
 }

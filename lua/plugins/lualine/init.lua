@@ -1,24 +1,4 @@
--- local function shorten_filenames(filenames)
---     local shortened = {}
-
---     local counts = {}
---     for _, file in ipairs(filenames) do
---         local name = vim.fn.fnamemodify(file.filename, ":t")
---         counts[name] = (counts[name] or 0) + 1
---     end
-
---     for _, file in ipairs(filenames) do
---         local name = vim.fn.fnamemodify(file.filename, ":t")
-
---         if counts[name] == 1 then
---             table.insert(shortened, { filename = vim.fn.fnamemodify(name, ":t") })
---         else
---             table.insert(shortened, { filename = file.filename })
---         end
---     end
-
---     return shortened
--- end
+local icons = require("utils.icons")
 
 return {
     {
@@ -179,32 +159,28 @@ return {
                         file_status = true,
                         path = 1,
                         shortng_target = 40,
-                        symbols = {
-                            modified = "", -- Text to show when the file is modified.
-                            readonly = "", -- Text to show when the file is non-modifiable or readonly.
-                            unnamed = "[No Name]", -- Text to show for unnamed buffers.
-                            newfile = "[New]", -- Text to show for newly created file before first write
-                        },
+                        symbols = icons.files,
                     },
                 },
                 lualine_b = {
                     {
                         "diagnostics",
-                        symbols = {
-                            error = "",
-                            warn = "",
-                            info = "",
-                            hint = "",
-                        },
+                        symbols = icons.diagnostics,
                         separator = "|",
                     },
                     {
                         "diff",
-                        symbols = {
-                            added = "",
-                            modified = "",
-                            removed = "",
-                        },
+                        symbols = icons.git,
+                        source = function()
+                            local gitsigns = vim.b.gitsigns_status_dict
+                            if gitsigns then
+                                return {
+                                    added = gitsigns.added,
+                                    modified = gitsigns.changed,
+                                    removed = gitsigns.removed,
+                                }
+                            end
+                        end,
                     },
                 },
                 lualine_c = {},
@@ -225,12 +201,7 @@ return {
                         file_status = true,
                         path = 1,
                         shortng_target = 40,
-                        symbols = {
-                            modified = "", -- Text to show when the file is modified.
-                            readonly = "", -- Text to show when the file is non-modifiable or readonly.
-                            unnamed = "[No Name]", -- Text to show for unnamed buffers.
-                            newfile = "[New]", -- Text to show for newly created file before first write
-                        },
+                        symbols = icons.files,
                     },
                 },
                 lualine_b = {},

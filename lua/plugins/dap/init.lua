@@ -40,14 +40,22 @@ return {
             virt_text_pos = "inline",
             only_first_definition = true,
         },
-        init = function()
-            vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "Error" })
-            vim.fn.sign_define("DapBreakpointCondition", { text = "לּ", texthl = "Error" })
-            vim.fn.sign_define("DapLogPoint", { text = "", texthl = "Directory" })
-            vim.fn.sign_define("DapStopped", { text = "ﰲ", texthl = "TSConstant" })
-            vim.fn.sign_define("DapBreakpointRejected", { text = "", texthl = "Error" })
-        end,
         config = function(_, opts)
+            local icons = require("utils.icons")
+            vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
+
+            for name, sign in pairs(icons.dap) do
+                sign = type(sign) == "table" and sign or { sign }
+                vim.fn.sign_define(
+                    "Dap" .. name,
+                    {
+                        text = sign[1],
+                        texthl = sign[2] or "DiagnosticInfo",
+                        linehl = sign[3],
+                        numhl = sign[3],
+                    }
+                )
+            end
             require("telescope").load_extension("dap")
             require("nvim-dap-virtual-text").setup(opts)
             local map = vim.keymap.set
