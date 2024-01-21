@@ -87,6 +87,7 @@ return {
                     comparators = {
                         -- Below is the default comparator list and order for nvim-cmp
                         require("copilot_cmp.comparators").prioritize,
+                        require("clangd_extensions.cmp_scores"),
                         cmp.config.compare.offset,
                         cmp.config.compare.exact,
                         -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
