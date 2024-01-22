@@ -11,5 +11,5 @@ return {
     pyright = require("plugins.lsp.servers.pyright"),
     rust_analyzer = require("plugins.lsp.servers.rust_analyzer"),
     tsserver = require("plugins.lsp.servers.tsserver"),
-    yamlls = {},
+    -- yamlls = require("plugins.lsp.servers.yamlls"),
 }
