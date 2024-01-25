@@ -71,13 +71,6 @@ return {
                         end,
                         "Blame line",
                     },
-                    d = { gs.diffthis, "Diff this" },
-                    D = {
-                        function()
-                            gs.diffthis("~")
-                        end,
-                        "Diff Home",
-                    },
                 }, { mode = "n", prefix = "<leader>" .. group_key, buffer = bufnr })
 
                 wk.register({

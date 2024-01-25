@@ -1,13 +1,30 @@
 return {
     misc = {
         dots = "󰇘",
+        done = "✓",
+        slash = "╱",
+        minus = "",
+        plus = "",
+        clock = "󰥔",
+        python = "",
+    },
+    separator = {
+        full = {
+            left = "",
+            right = "",
+        },
+        line = {
+            left = "",
+            right = ""
+        },
+        bar = "┃",
     },
     dap = {
         Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
-        Breakpoint = " ",
+        Breakpoint = " ", "DiagnosticError",
         BreakpointCondition = " ",
         BreakpointRejected = { " ", "DiagnosticError" },
-        LogPoint = ".>",
+        LogPoint = "󰑃",
     },
     files = {
         modified = "",
@@ -22,9 +39,9 @@ return {
         Info = " ",
     },
     git = {
-        added = " ",
-        modified = " ",
-        removed = " ",
+        added = "",
+        modified = "",
+        removed = "",
     },
     folder = {
         closed = "",
@@ -34,6 +51,12 @@ return {
         closed = "",
         open = "",
         separator = "┃",
+    },
+    chevron = {
+        right = "",
+        left = "",
+        down = "",
+        up = "",
     },
     kinds = {
         Array = " ",
@@ -66,7 +89,7 @@ return {
         Package = " ",
         Property = " ",
         Reference = " ",
-        Snippet = " ",
+        Snippet = " ",
         String = " ",
         Struct = "󰆼 ",
         TabNine = "󰏚 ",

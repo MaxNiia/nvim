@@ -17,8 +17,14 @@ return {
             options = {
                 icons_enabled = true,
                 theme = "auto",
-                component_separators = { left = "", right = "" },
-                section_separators = { left = "", right = "" },
+                component_separators = {
+                    left = icons.separator.line.left,
+                    right = icons.separator.line.right,
+                },
+                section_separators = {
+                    left = icons.separator.full.left,
+                    right = icons.separator.full.right,
+                },
                 disabled_filetypes = {
                     statusline = {
                         "dashboard",
@@ -59,7 +65,7 @@ return {
                         function()
                             local venv = require("swenv.api").get_current_venv()
                             if venv then
-                                return string.format("🐍 %s", venv.name)
+                                return string.format( icons.misc.python .. "%s", venv.name)
                             else
                                 return ""
                             end
@@ -117,7 +123,7 @@ return {
                 lualine_z = {
                     {
                         function()
-                            return " " .. os.date("%R")
+                            return icons.misc.clock .. os.date("%R")
                         end,
                     },
                 },
@@ -166,7 +172,7 @@ return {
                     {
                         "diagnostics",
                         symbols = icons.diagnostics,
-                        separator = "|",
+                        separator = icons.separator.bar,
                     },
                     {
                         "diff",

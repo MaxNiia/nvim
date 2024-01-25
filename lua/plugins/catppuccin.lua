@@ -74,6 +74,7 @@ return {
                     -- Comment = { fg = c.rosewater },
                     HighlightUndo = { bg = c.overlay0 },
                     CopilotSuggestion = { fg = c.surface1 },
+                    DiffviewFilePanelPath = { fg = c.sapphire },
                 }
             end,
         },

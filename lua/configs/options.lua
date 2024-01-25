@@ -54,12 +54,26 @@ vim.opt.wildmenu = true
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 
+local icons = require("utils.icons")
+vim.opt.fillchars:append({
+    diff = icons.misc.slash,
+    foldopen = icons.fold.open,
+    foldclose = icons.fold.closed,
+    foldsep = icons.fold.separator,
+})
+vim.opt.listchars:append({
+    tab = icons.chevron.right .. " ",
+    trail = icons.misc.minus,
+    extends = icons.chevron.right,
+    precedes = icons.chevron.left,
+    nbsp = icons.misc.plus,
+})
+
 -- Window
 vim.wo.spell = true
 
 vim.cmd([[
     set display+=truncate
-    set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
     set formatoptions+=j
     setglobal tags-=./tags tags-=./tags; tags^=./tags;
     set complete-=i
