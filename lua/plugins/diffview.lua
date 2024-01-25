@@ -6,7 +6,7 @@ end
 
 return {
     {
-        "MaxNiia/diffview.nvim",
+        "sindrets/diffview.nvim",
         keys = {
             {
                 "<leader>" .. group_key .. "o",
