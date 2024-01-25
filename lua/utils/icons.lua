@@ -26,6 +26,15 @@ return {
         modified = " ",
         removed = " ",
     },
+    folder = {
+        closed = "",
+        open = "",
+    },
+    fold = {
+        closed = "",
+        open = "",
+        separator = "┃",
+    },
     kinds = {
         Array = " ",
         Boolean = "󰨙 ",
