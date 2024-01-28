@@ -114,6 +114,47 @@ return {
                     map_split(buf_id, "gv", "belowright vertical")
                 end,
             })
+
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "MiniFilesActionRename",
+                callback = function(event)
+                    local from = event.data.from
+                    local to = event.data.to
+                    local ret = {} ---@type lsp.Client[]
+                    if vim.lsp.get_clients then
+                        ret = vim.lsp.get_clients(opts)
+                    else
+                        ---@diagnostic disable-next-line: deprecated
+                        ret = vim.lsp.get_active_clients(opts)
+                        if opts and opts.method then
+                            ---@param client lsp.Client
+                            ret = vim.tbl_filter(function(client)
+                                return client.supports_method(opts.method, { bufnr = opts.bufnr })
+                            end, ret)
+                        end
+                    end
+                    local clients = opts and opts.filter and vim.tbl_filter(opts.filter, ret) or ret
+                    for _, client in ipairs(clients) do
+                        if client.supports_method("workspace/willRenameFiles") then
+                            ---@diagnostic disable-next-line: invisible
+                            local resp = client.request_sync("workspace/willRenameFiles", {
+                                files = {
+                                    {
+                                        oldUri = vim.uri_from_fname(from),
+                                        newUri = vim.uri_from_fname(to),
+                                    },
+                                },
+                            }, 1000, 0)
+                            if resp and resp.result ~= nil then
+                                vim.lsp.util.apply_workspace_edit(
+                                    resp.result,
+                                    client.offset_encoding
+                                )
+                            end
+                        end
+                    end
+                end,
+            })
         end,
         version = false,
         event = "BufEnter",
