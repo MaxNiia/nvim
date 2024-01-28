@@ -28,6 +28,7 @@ return {
                     layout_config = ui.layouts.small_cursor,
                     enable_preview = true,
                 },
+                find_files = {},
                 live_grep = {},
                 grep_strings = {
                     initial_mode = "normal",
@@ -124,6 +125,7 @@ return {
                     "--no-heading",
                     "--with-filename",
                     "--smart-case",
+                    "--trim",
                 },
                 prompt_prefix = "  ",
                 border = true,
