@@ -134,9 +134,14 @@ return {
         event = "BufEnter",
     },
     {
-        "norcalli/nvim-colorizer.lua",
+        "NvChad/nvim-colorizer.lua",
         lazy = true,
         event = "BufEnter",
+        opts = {
+            user_default_options = {
+                RRGGBBAA = true,
+            },
+        },
     },
     {
         "Fildo7525/pretty_hover",
