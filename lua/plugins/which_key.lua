@@ -77,7 +77,6 @@ return {
 
             wk.register({
                 b = { name = "Debug" },
-                c = { name = "ChatGPT" },
                 t = { name = "Terminal" },
                 g = { name = "Git" },
                 f = {
