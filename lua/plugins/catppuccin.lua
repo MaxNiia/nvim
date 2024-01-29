@@ -20,7 +20,6 @@ return {
             },
             compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
             integrations = {
-                aerial = true,
                 beacon = true,
                 cmp = true,
                 dashboard = true,

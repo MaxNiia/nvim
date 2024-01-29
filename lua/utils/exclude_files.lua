@@ -4,7 +4,6 @@ return {
     "qf",
     "trouble",
     "toggleterm",
-    "aerial",
     "alpha",
     "dashboard",
     "help",
