@@ -2,6 +2,7 @@ return {
     {
         "folke/neodev.nvim",
         lazy = true,
+        ft = "lua",
         event = { "BufReadPre", "BufNewFile" },
         opts = {
             library = {
@@ -146,6 +147,5 @@ return {
     {
         "Fildo7525/pretty_hover",
         event = "LspAttach",
-        opts = {},
     },
 }
