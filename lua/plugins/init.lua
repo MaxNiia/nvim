@@ -24,36 +24,6 @@ return {
         end,
     },
     {
-        "bennypowers/nvim-regexplainer",
-        lazy = true,
-        events = { "BufEnter" },
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "MunifTanjim/nui.nvim",
-        },
-        opts = {
-            filetypes = {
-                "html",
-                "js",
-                "py",
-                "cmake",
-                "cpp",
-                "c++",
-                "c",
-                "cjs",
-                "mjs",
-                "ts",
-                "jsx",
-                "tsx",
-                "cjsx",
-                "mjsx",
-                "bash",
-                "yaml",
-                "json",
-            },
-        },
-    },
-    {
         "tzachar/highlight-undo.nvim",
         event = { "BufEnter" },
         dependencies = {
