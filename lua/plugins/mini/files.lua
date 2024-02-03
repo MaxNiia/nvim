@@ -1,5 +1,5 @@
--- Dotfile filter
-local filter = false
+-- Filter
+local filter_state = false
 
 local filter_none = function(_)
     return true
@@ -9,14 +9,83 @@ local filter_dotfile = function(fs_entry)
     return not vim.startswith(fs_entry.name, ".")
 end
 
-local combined_filter = function(fs_entry)
-    return filter_dotfile(fs_entry)
+local filter_gitignore = function(fs_entry)
+    return not vim.startswith(fs_entry.name, ".")
 end
 
-local toggle_dotfiles = function()
-    filter = not filter
-    local new_filter = filter and filter_none or combined_filter
+local combined_filter = function(fs_entry)
+    return filter_dotfile(fs_entry) or filter_gitignore(fs_entry)
+end
+
+local toggle_filter = function()
+    filter_state = not filter_state
+    local new_filter = filter_state and filter_none or combined_filter
     MiniFiles.refresh({ content = { filter = new_filter } })
+end
+
+-- SORT
+local sort_state = false
+
+local sort_none = function(files)
+    return files
+end
+
+local sort_gitignore = function(entries)
+    -- technically can filter entries here too, and checking gitignore for _every entry individually_
+    -- like I would have to in `content.filter` above is too slow. Here we can give it _all_ the entries
+    -- at once, which is much more performant.
+    local all_paths = table.concat(
+        vim.tbl_map(function(entry)
+            return entry.path
+        end, entries),
+        "\n"
+    )
+    local output_lines = {}
+    local job_id = vim.fn.jobstart({ "git", "check-ignore", "--stdin" }, {
+        stdout_buffered = true,
+        on_stdout = function(_, data)
+            output_lines = data
+        end,
+    })
+
+    -- command failed to run
+    if job_id < 1 then
+        return entries
+    end
+
+    -- send paths via STDIN
+    vim.fn.chansend(job_id, all_paths)
+    vim.fn.chanclose(job_id, "stdin")
+    vim.fn.jobwait({ job_id })
+    return require("mini.files").default_sort(vim.tbl_filter(function(entry)
+        return not vim.tbl_contains(output_lines, entry.path)
+    end, entries))
+end
+
+local sort_combined = function(entries)
+    return sort_gitignore(entries)
+end
+
+local toggle_sort = function()
+    sort_state = not sort_state
+    local new_sort = sort_state and sort_none or sort_combined
+    MiniFiles.refresh({ content = { sort = new_sort } })
+end
+
+local map_split = function(buf_id, lhs, direction)
+    local rhs = function()
+        -- Make new window and set it as target
+        local new_target_window
+        vim.api.nvim_win_call(MiniFiles.get_target_window() or 0, function()
+            vim.cmd(direction .. " split")
+            new_target_window = vim.api.nvim_get_current_win()
+        end)
+
+        MiniFiles.set_target_window(new_target_window)
+    end
+    -- Adding `desc` will result into `show_help` entries
+    local desc = "Split " .. direction
+    vim.keymap.set("n", lhs, rhs, { buffer = buf_id, desc = desc })
 end
 
 return {
@@ -28,33 +97,6 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
     init = function()
-        -- Filter toggle.
-        vim.api.nvim_create_autocmd("User", {
-            pattern = "MiniFilesBufferCreate",
-            callback = function(args)
-                local buf_id = args.data.buf_id
-                vim.keymap.set("n", "g.", toggle_dotfiles, { buffer = buf_id })
-            end,
-        })
-
-        -- Split window
-        local map_split = function(buf_id, lhs, direction)
-            local rhs = function()
-                -- Make new window and set it as target
-                local new_target_window
-                vim.api.nvim_win_call(MiniFiles.get_target_window() or 0, function()
-                    vim.cmd(direction .. " split")
-                    new_target_window = vim.api.nvim_get_current_win()
-                end)
-
-                MiniFiles.set_target_window(new_target_window)
-            end
-
-            -- Adding `desc` will result into `show_help` entries
-            local desc = "Split " .. direction
-            vim.keymap.set("n", lhs, rhs, { buffer = buf_id, desc = desc })
-        end
-
         vim.api.nvim_create_autocmd("User", {
             pattern = "MiniFilesBufferCreate",
             callback = function(args)
@@ -62,6 +104,8 @@ return {
                 -- Tweak keys to your liking
                 map_split(buf_id, "gs", "belowright horizontal")
                 map_split(buf_id, "gv", "belowright vertical")
+                vim.keymap.set("n", "g.", toggle_filter, { buffer = buf_id, desc = "Toggle filter" })
+                vim.keymap.set("n", "g,", toggle_sort, { buffer = buf_id, desc = "Toggle sort" })
             end,
         })
 
@@ -129,6 +173,7 @@ return {
         },
         content = {
             filter = combined_filter,
+            sort = sort_combined,
         },
     },
     config = function(_, opts)
