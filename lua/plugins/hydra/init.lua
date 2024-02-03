@@ -1,6 +1,6 @@
 return {
     {
-        "anuvyklack/hydra.nvim",
+        "nvimtools/hydra.nvim",
         dependencies = {
             "jbyuki/venn.nvim",
         },

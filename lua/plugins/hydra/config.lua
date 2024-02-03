@@ -1,16 +1,16 @@
 local hint = [[
-  ^ ^        Config
+  ^^     Config
   ^
-  _n_ %{neotree}^^^^ Neotree
-  _m_ %{mini_files}^ mini.files
-  _t_ %{toggleterm}^ Toggleterm
-  _o_ %{oled}^^^^^^^ OLED Catppuccin
-  _c_ %{copilot}^^^^ Copilot
-  _p_ %{popup}^^^^^^ Popup
-  _h_ %{harpoon}^^^^ Harpoon
-  _b_ %{buffer_mode} Buffer Mode
+  _n_ %{neotree}^^^^^ Neotree
+  _m_ %{mini_files}^^ mini.files
+  _t_ %{toggleterm}^^ Toggleterm
+  _o_ %{oled}^^^^^^^^ OLED Catppuccin
+  _c_ %{copilot}^^^^^ Copilot
+  _p_ %{popup}^^^^^^^ Popup
+  _h_ %{harpoon}^^^^^ Harpoon
+  _b_ %{buffer_mode}^ Buffer Mode
   ^
-       ^^^^                _<Esc>_
+  ^^^^                _<Esc>_
 ]]
 
 local function show_state_builder(name)
