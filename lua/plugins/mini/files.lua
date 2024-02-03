@@ -1,5 +1,5 @@
 -- Dotfile filter
-local filter = true
+local filter = false
 
 local filter_none = function(_)
     return true
