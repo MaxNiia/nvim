@@ -26,8 +26,8 @@ end
 -- SORT
 local sort_state = false
 
-local sort_none = function(files)
-    return files
+local sort_none = function(entires)
+    return require("mini.files").default_sort(entires)
 end
 
 local sort_gitignore = function(entries)
