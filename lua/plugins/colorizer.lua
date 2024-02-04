@@ -1,6 +1,6 @@
 return {
     {
-        "norcalli/nvim-colorizer.lua",
+        "NvChad/nvim-colorizer.lua",
         lazy = true,
         cmd = {
             "ColorizerAttachToBuffer",
@@ -10,10 +10,21 @@ return {
         },
         main = "colorizer",
         opts = {
-            "css",
-            "javascript",
-            "html",
-            "lua",
+            filetypes = {
+                "*",
+                -- "css",
+                -- "javascript",
+                -- "html",
+                -- "lua",
+                cpp = { names = false },
+                c = { names = false },
+                cmp_docs = { always_update = true },
+            },
+            user_default_options = {
+                RRGGBBAA = true,
+                mode = "background",
+                always_update = false,
+            },
         },
     },
 }
