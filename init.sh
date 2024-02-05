@@ -70,6 +70,9 @@ handle_file() {
     fi
 }
 
+# Call the function for ai_backend.lua
+handle_file "lua/configs/ai_backend.lua" "return 'https://api.openai.com/v1/engines/cushman-codex/completions'"
+
 if ! command -v lua &> /dev/null
 then
     echo "Lua not installed, installing"
