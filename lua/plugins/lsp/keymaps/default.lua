@@ -31,16 +31,10 @@ return function(bufnr)
             function()
                 local winid = require("ufo").peekFoldedLinesUnderCursor()
                 if not winid then
-                    require("pretty_hover").hover()
+                    require("hover").hover()
                 end
             end,
             "Hover",
-        },
-        ["<c-q>"] = {
-            function()
-                require("pretty_hover").close()
-            end,
-            "Close Hover",
         },
         ["<c-s>"] = {
             vim.lsp.buf.signature_help,
