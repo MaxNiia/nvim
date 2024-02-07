@@ -3,17 +3,11 @@ return {
         "echasnovski/mini.ai",
         version = false,
         event = "BufEnter",
-        config = function(_, opts)
-            require("mini.ai").setup(opts)
-        end,
     },
     {
         "echasnovski/mini.bracketed",
         version = false,
         event = "BufEnter",
-        config = function(_, opts)
-            require("mini.bracketed").setup(opts)
-        end,
     },
     {
         "echasnovski/mini.comment",
@@ -25,33 +19,29 @@ return {
                 ignore_blank_line = true,
             },
         },
-        config = function(_, opts)
-            require("mini.comment").setup(opts)
-        end,
     },
     {
         "echasnovski/mini.surround",
         version = false,
         event = "BufEnter",
-        config = function(_, opts)
-            require("mini.surround").setup(opts)
-        end,
+        opts = {
+             custom_surroundings = {
+                ['('] = { input = { '%b()', '^.().*().$' }, output = { left = '(', right = ')' } },
+                ['['] = { input = { '%b[]', '^.().*().$' }, output = { left = '[', right = ']' } },
+                ['{'] = { input = { '%b{}', '^.().*().$' }, output = { left = '{', right = '}' } },
+                ['<'] = { input = { '%b<>', '^.().*().$' }, output = { left = '<', right = '>' } },
+              },
+        }
     },
     {
         "echasnovski/mini.cursorword",
         version = false,
         event = "BufEnter",
-        config = function(_, opts)
-            require("mini.cursorword").setup(opts)
-        end,
     },
     {
         "echasnovski/mini.pairs",
         version = false,
         event = "BufEnter",
-        config = function(_, opts)
-            require("mini.pairs").setup(opts)
-        end,
     },
     require("plugins.mini.files")
 }
