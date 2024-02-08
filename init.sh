@@ -49,7 +49,6 @@ then
     npm install -g cspell
 fi
 
-# Define a function to handle common parts
 handle_file() {
     local file="$1"
     local content="$2"
@@ -59,6 +58,11 @@ handle_file() {
     fi
 
     if [ ! -e "$file" ] ; then
+        # Check if the directory exists else create it
+        if [ ! -d "$(dirname "$file")" ] ; then
+            mkdir -p "$(dirname "$file")"
+        fi
+
         touch "$file"
 
         if [ ! -w "$file" ] ; then
