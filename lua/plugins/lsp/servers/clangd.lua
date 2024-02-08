@@ -22,9 +22,12 @@ return {
     },
     cmd = {
         "clangd",
+        "-j=4",
         "--background-index=true",
         "--clang-tidy",
         "--completion-style=detailed",
+        "--background-index-priority=low",
+        "--malloc-trim",
         "--all-scopes-completion=true",
         "--query-driver=" .. getQueryDriver(),
         "--header-insertion=iwyu",
