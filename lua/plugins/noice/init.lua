@@ -1,4 +1,20 @@
+local icons = require("utils.icons").diagnostics
+
 return {
+    {
+        "rcarriga/nvim-notify",
+        lazy = true,
+        event = "VeryLazy",
+        opts = {
+            icons = {
+                ERROR = icons.Error,
+                WARN = icons.Warn,
+                INFO = icons.Info,
+            },
+            render = "wrapped-compact",
+            timeout = 3000,
+        },
+    },
     {
         "folke/noice.nvim",
         event = "VeryLazy",
@@ -10,7 +26,6 @@ return {
             local _opts = {
                 presets = {
                     command_palette = false,
-                    long_message_to_split = false,
                     inc_rename = false,
                     long_message_to_split = true,
                 },
@@ -31,9 +46,9 @@ return {
                 },
             }
             if _G.popup then
-                _opts = vim.tbl_deep_extend("force", _opts, require("plugins.noice.popup"))
+                _opts = vim.tbl_deep_extend("force", require("plugins.noice.popup"), _opts or {}) or {}
             else
-                _opts = vim.tbl_deep_extend("force", _opts, require("plugins.noice.bottom"))
+                _opts = vim.tbl_deep_extend("force", require("plugins.noice.bottom"), _opts or {}) or {}
             end
             return _opts
         end,
