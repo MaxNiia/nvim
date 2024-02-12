@@ -83,6 +83,14 @@ return {
         mode = { "v", "n" },
     },
     {
+        "<leader>fB",
+        function()
+            require("telescope.builtin").live_grep({ grep_open_files = true })
+        end,
+        desc = "Buffers",
+        mode = { "v", "n" },
+    },
+    {
         "<leader>fo",
         "<cmd>Telescope oldfiles<CR>",
         desc = "Old files (root)",
