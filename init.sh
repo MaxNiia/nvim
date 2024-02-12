@@ -11,7 +11,7 @@ fi
 if ! command -v rg &> /dev/null
 then
     echo "rg could not be found, installing"
-    cargo install ripgrep
+    sudo apt-install ripgrep -y
 fi
 
 # Install flake8
@@ -99,6 +99,22 @@ if [ ! -e "${HOME}/.nvimstty" ] ; then
         echo "Error, can't find suitable shell. Run the following line but change {shellrc} to applicable shell file"
         echo "echo source \"\${HOME}/.nvimstty\" >> \"\${HOME}/.{shellrc}\""
     fi
+fi
+
+currentPath="$HOME/.cache"
+if [ ! -d "$currentPath" ]; then
+    echo ".cache"
+    mkdir "$currentPath"
+fi
+
+currentPath="$HOME/.cache/nvim"
+if [ ! -d "$currentPath" ]; then
+    mkdir "$currentPath"
+fi
+
+currentPath="$HOME/.cache/nvim/niia.txt"
+if [ ! -f "$currentPath" ]; then
+    touch "$currentPath"
 fi
 
 if [ ! -d "$HOME/venvs" ]; then
