@@ -14,13 +14,15 @@ local filter_gitignore = function(fs_entry)
 end
 
 local combined_filter = function(fs_entry)
+    if filter_state then
+        return filter_none(fs_entry)
+    end
     return filter_dotfile(fs_entry) or filter_gitignore(fs_entry)
 end
 
 local toggle_filter = function()
     filter_state = not filter_state
-    local new_filter = filter_state and filter_none or combined_filter
-    MiniFiles.refresh({ content = { filter = new_filter } })
+    MiniFiles.refresh({ content = { filter = combined_filter } })
 end
 
 -- SORT
@@ -62,14 +64,16 @@ local sort_gitignore = function(entries)
     end, entries))
 end
 
-local sort_combined = function(entries)
+local combined_sort = function(entries)
+    if sort_state then
+        return sort_none(entries)
+    end
     return sort_gitignore(entries)
 end
 
 local toggle_sort = function()
     sort_state = not sort_state
-    local new_sort = sort_state and sort_none or sort_combined
-    MiniFiles.refresh({ content = { sort = new_sort } })
+    MiniFiles.refresh({ content = { sort = combined_sort } })
 end
 
 local map_split = function(buf_id, lhs, direction)
@@ -104,7 +108,12 @@ return {
                 -- Tweak keys to your liking
                 map_split(buf_id, "gs", "belowright horizontal")
                 map_split(buf_id, "gv", "belowright vertical")
-                vim.keymap.set("n", "g.", toggle_filter, { buffer = buf_id, desc = "Toggle filter" })
+                vim.keymap.set(
+                    "n",
+                    "g.",
+                    toggle_filter,
+                    { buffer = buf_id, desc = "Toggle filter" }
+                )
                 vim.keymap.set("n", "g,", toggle_sort, { buffer = buf_id, desc = "Toggle sort" })
             end,
         })
@@ -173,7 +182,7 @@ return {
         },
         content = {
             filter = combined_filter,
-            sort = sort_combined,
+            sort = combined_sort,
         },
     },
     config = function(_, opts)
