@@ -60,7 +60,6 @@ return {
                     name = "Switch Window",
                 },
                 E = { name = "Files" },
-                T = { name = "Tabs" },
                 b = { name = "Debug" },
                 h = { name = "Harpoon" },
             }, { prefix = "<leader>", mode = "n" })
@@ -75,10 +74,20 @@ return {
                 }, { prefix = "<leader>", mode = "n" })
             end
 
+            if _G.toggleterm then
+                wk.register({
+                    t = { name = "Terminal" },
+                    T = { name = "Test" },
+                }, { prefix = "<leader>", mode = "n" })
+            else
+                wk.register({
+                    t = { name = "Test" },
+                }, { prefix = "<leader>", mode = "n" })
+            end
+
             wk.register({
                 b = { name = "Debug" },
                 c = { name = "ChatGPT" },
-                t = { name = "Terminal" },
                 r = { name = "Rename" },
                 f = {
                     name = "Find",
