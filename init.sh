@@ -103,7 +103,6 @@ fi
 
 currentPath="$HOME/.cache"
 if [ ! -d "$currentPath" ]; then
-    echo ".cache"
     mkdir "$currentPath"
 fi
 
