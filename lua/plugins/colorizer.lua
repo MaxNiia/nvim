@@ -12,10 +12,6 @@ return {
         opts = {
             filetypes = {
                 "*",
-                -- "css",
-                -- "javascript",
-                -- "html",
-                -- "lua",
                 cpp = { names = false },
                 c = { names = false },
                 cmp_docs = { always_update = true },
@@ -26,5 +22,19 @@ return {
                 always_update = false,
             },
         },
+        config = function(_, opts)
+            local exclude_files = require("utils.exclude_files")
+
+            for _, file in ipairs(exclude_files) do
+                string.format("!%s", file)
+                opts = vim.tbl_deep_extend("force", {
+                    filetypes = {
+                        file,
+                    },
+                }, opts or {})
+            end
+
+            require("colorizer").setup(opts)
+        end,
     },
 }
