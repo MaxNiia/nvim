@@ -185,7 +185,5 @@ return {
             sort = combined_sort,
         },
     },
-    config = function(_, opts)
-        require("mini.files").setup(opts)
-    end,
+    config = true,
 }
