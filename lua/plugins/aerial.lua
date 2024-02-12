@@ -15,11 +15,11 @@ return {
         opts = {
             backends = { "treesitter", "lsp", "markdown", "man" },
             layout = {
-                max_width = { 40, 0.2 },
+                max_width = { 800, 1 },
                 width = nil,
                 default_direction = "prefer_right",
                 placement = "edge",
-                resize_to_content = true,
+                resize_to_content = false,
             },
             attach_mode = "global",
             on_attach = function(bufnr)

@@ -1,11 +1,3 @@
-local call_dap = function(func)
-    return require("dap")[func]
-end
-
-local call_breakpoints = function(func)
-    return require("goto-breakpoints")[func]
-end
-
 return {
     {
 
@@ -29,6 +21,7 @@ return {
     {
         "<leader>bo",
         "<cmd>DapStepOut<cr>",
+        desc = "Step out",
         mode = { "n" },
     },
     {

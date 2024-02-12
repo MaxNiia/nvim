@@ -66,6 +66,7 @@ return {
                 "qf",
                 "outline",
                 "edgy",
+                "Toggleterm",
             },
             source_selector = {
                 winbar = true,
