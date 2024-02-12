@@ -21,6 +21,7 @@ return {
             compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
             integrations = {
                 aerial = true,
+                alpha = true,
                 beacon = true,
                 cmp = true,
                 dashboard = true,
@@ -28,6 +29,9 @@ return {
                 fidget = true,
                 harpoon = _G.harpoon,
                 illuminate = true,
+                semantic_tokens = true,
+                dap = true,
+                dap_ui = true,
                 indent_blankline = {
                     enabled = true,
                     colored_indent_levels = true,
@@ -37,7 +41,11 @@ return {
                 markdown = true,
                 mini = true,
                 neotree = true,
+                window_picker = true,
+                ts_rainbow = true,
                 flash = true,
+                ufo = true,
+                lsp_trouble = true,
                 telescope = {
                     enabled = true,
                     style = "nvchad",
@@ -45,6 +53,7 @@ return {
                 treesitter = true,
                 treesitter_context = true,
                 rainbow_delimiters = true,
+                notify = true,
                 navic = {
                     enabled = true,
                     custom_bg = "NONE", -- "lualine" will set background to mantle
