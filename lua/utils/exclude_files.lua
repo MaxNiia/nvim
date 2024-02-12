@@ -1,5 +1,10 @@
 return {
     "Trouble",
+    "gitcommit",
+    "qf",
+    "trouble",
+    "toggleterm",
+    "aerial",
     "alpha",
     "dashboard",
     "gitcommit",

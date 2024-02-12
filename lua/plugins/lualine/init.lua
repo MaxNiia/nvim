@@ -46,6 +46,7 @@ return {
                         "terminal",
                         "toggleterm",
                         "lazy",
+                        "aerial",
                     },
                 },
                 ignore_focus = {},
@@ -128,6 +129,7 @@ return {
                 },
             },
             extensions = {
+                "aerial",
                 "fzf",
                 "fugitive",
                 "lazy",
