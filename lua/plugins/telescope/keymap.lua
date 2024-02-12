@@ -33,6 +33,9 @@ return {
             "n",
         },
     },
+    { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Undo history", mode = { "v", "n" } },
+    { "<leader>fN", "<cmd>Telescope noice<cr>", desc = "Noice", mode = { "v", "n" } },
+    { "<leader>fn", "<cmd>Telescope notify<cr>", desc = "Noice", mode = { "v", "n" } },
     { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Resume", mode = { "v", "n" } },
     {
         "<leader>ft",

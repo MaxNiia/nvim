@@ -18,6 +18,7 @@ return {
             },
             "nvim-telescope/telescope-project.nvim",
             "nvim-telescope/telescope-live-grep-args.nvim",
+            "debugloop/telescope-undo.nvim",
         },
         lazy = true,
         opts = {
@@ -240,10 +241,12 @@ return {
 
             require("telescope.actions")
             require("telescope").load_extension("aerial")
-            require("telescope").load_extension("fzf")
             require("telescope").load_extension("file_browser")
-            require("telescope").load_extension("project")
+            require("telescope").load_extension("fzf")
             require("telescope").load_extension("live_grep_args")
+            require("telescope").load_extension("noice")
+            require("telescope").load_extension("notify")
+            require("telescope").load_extension("project")
             if _G.harpoon then
                 require("telescope").load_extension("harpoon")
             end
@@ -264,9 +267,11 @@ return {
                     end,
                     "Grep string (cwd)",
                 },
+                g = {
+                    name = "Git",
+                },
             }, { mode = "n", prefix = "<leader>" })
             wk.register({
-
                 s = {
                     function()
                         lga.grep_visual_selection()
@@ -278,6 +283,9 @@ return {
                         lga.grep_visual_selection({ cwd = false })
                     end,
                     "Grep string (cwd)",
+                },
+                g = {
+                    "Git",
                 },
             }, { mode = "v", prefix = "<leader>" })
         end,

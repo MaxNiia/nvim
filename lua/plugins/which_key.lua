@@ -67,11 +67,11 @@ return {
 
             if _G.neotree then
                 wk.register({
-                    g = { name = "Git" },
+                    H = { name = "Git" },
                 }, { prefix = "<leader>", mode = "n" })
             else
                 wk.register({
-                    H = { name = "Git" },
+                    g = { name = "Git" },
                 }, { prefix = "<leader>", mode = "n" })
             end
 
@@ -79,7 +79,7 @@ return {
                 b = { name = "Debug" },
                 c = { name = "ChatGPT" },
                 t = { name = "Terminal" },
-                g = { name = "Git" },
+                r = { name = "Rename" },
                 f = {
                     name = "Find",
                     d = { name = "Debug" },
