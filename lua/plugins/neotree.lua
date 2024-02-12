@@ -1,7 +1,6 @@
 return {
     {
         "nvim-neo-tree/neo-tree.nvim",
-        -- TODO: Move to neotree v3
         branch = "v3.x",
         enabled = function()
             return _G.neotree
@@ -75,7 +74,6 @@ return {
                 "filesystem",
                 "buffers",
                 "git_status",
-                "document_symbols",
             },
             event_handlers = {
                 {

@@ -5,7 +5,7 @@ return {
         slash = "╱",
         minus = "",
         plus = "",
-        clock = "󰥔",
+        clock = "󰥔  ",
         python = "",
     },
     separator = {
@@ -15,13 +15,14 @@ return {
         },
         line = {
             left = "",
-            right = ""
+            right = "",
         },
         bar = "┃",
     },
     dap = {
         Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
-        Breakpoint = " ", "DiagnosticError",
+        Breakpoint = " ",
+        "DiagnosticError",
         BreakpointCondition = " ",
         BreakpointRejected = { " ", "DiagnosticError" },
         LogPoint = "󰑃",
