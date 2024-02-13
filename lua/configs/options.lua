@@ -79,3 +79,12 @@ vim.cmd([[
     set complete-=i
     set nrformats-=octal
 ]])
+
+-- tpipeline
+
+vim.g.tpipeline_split = 1
+vim.g.tpipeline_clearstl = 1
+vim.g.tpipeline_preservebg = 0
+vim.g.tpipeline_fillcentre = 0
+vim.g.tpipeline_restore = 0
+vim.g.tpipeline_autoembed = 0
