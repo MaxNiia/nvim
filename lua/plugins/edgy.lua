@@ -15,6 +15,7 @@ return {
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "filesystem"
                 end,
+                pinned = _G.neotree,
                 size = { height = 0.5 },
             },
             {
@@ -23,7 +24,7 @@ return {
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "git_status"
                 end,
-                pinned = true,
+                pinned = _G.neotree,
                 open = "Neotree position=right git_status",
             },
             {
@@ -32,8 +33,12 @@ return {
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "buffers"
                 end,
-                pinned = true,
+                pinned = _G.neotree,
                 open = "Neotree position=top buffers",
+            },
+            {
+                ft = "gitcommit",
+                size = { width = 80 },
             },
         },
         -- any other neo-tree windows
