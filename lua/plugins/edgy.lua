@@ -2,6 +2,9 @@ local icons = require("utils.icons").fold
 
 return {
     "folke/edgy.nvim",
+    dependencies = {
+        "stevearc/aerial.nvim",
+    },
     event = "VeryLazy",
     opts = {
         left = {
