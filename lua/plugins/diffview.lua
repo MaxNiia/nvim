@@ -80,24 +80,28 @@ return {
                 )
                     vim.cmd("UfoDetach")
                     vim.cmd("UfoDisable")
+                    vim.cmd("ColorizerDetachFromBuffer")
                 end,
                 view_closed = function(
                     _ --[[view]]
                 )
                     vim.cmd("UfoAttach")
                     vim.cmd("UfoEnable")
+                    vim.cmd("ColorizerReloadAllBuffers")
                 end,
                 view_enter = function(
                     _ --[[view]]
                 )
                     vim.cmd("UfoDetach")
                     vim.cmd("UfoDisable")
+                    vim.cmd("ColorizerDetachFromBuffer")
                 end,
                 view_leave = function(
                     _ --[[view]]
                 )
                     vim.cmd("UfoAttach")
                     vim.cmd("UfoEnable")
+                    vim.cmd("ColorizerReloadAllBuffers")
                 end,
             },
         },
