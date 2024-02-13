@@ -65,7 +65,7 @@ return {
                         function()
                             local venv = require("swenv.api").get_current_venv()
                             if venv then
-                                return string.format( icons.misc.python .. "%s", venv.name)
+                                return string.format(icons.misc.python .. "%s", venv.name)
                             else
                                 return ""
                             end
@@ -83,16 +83,7 @@ return {
                         "branch",
                     },
                 },
-                lualine_c = {
-                    {
-                        "navic",
-                        color_correction = "dynamic",
-                        navic_opts = {
-                            highlight = true,
-                            click = true,
-                        },
-                    },
-                },
+                lualine_c = {},
                 lualine_x = {},
                 lualine_y = {
                     {
@@ -189,7 +180,16 @@ return {
                         end,
                     },
                 },
-                lualine_c = {},
+                lualine_c = {
+                    {
+                        "navic",
+                        color_correction = "dynamic",
+                        navic_opts = {
+                            highlight = true,
+                            click = true,
+                        },
+                    },
+                },
                 lualine_x = {},
                 lualine_y = {},
                 lualine_z = {},
