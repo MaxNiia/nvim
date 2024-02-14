@@ -58,6 +58,17 @@ return {
                     winbar = 1000,
                 },
             },
+            extensions = {
+                "aerial",
+                "fzf",
+                "fugitive",
+                "lazy",
+                "neo-tree",
+                "quickfix",
+                "toggleterm",
+                "trouble",
+            },
+            -- Statusline
             sections = {
                 lualine_a = { "mode" },
                 lualine_b = {
@@ -72,15 +83,8 @@ return {
                         end,
                     },
                     {
-                        vim.loop.cwd,
-                        type = "vim_fun",
-                        padding = {
-                            left = 1,
-                            right = 1,
-                        },
-                    },
-                    {
-                        "branch",
+                        "b:gitsigns_head",
+                        icon = "",
                     },
                 },
                 lualine_c = {},
@@ -119,17 +123,8 @@ return {
                     },
                 },
             },
-            extensions = {
-                "aerial",
-                "fzf",
-                "fugitive",
-                "lazy",
-                "neo-tree",
-                "quickfix",
-                "toggleterm",
-                "trouble",
-            },
             inactive_sections = {},
+            -- Winbar
             winbar = {
                 lualine_a = {
                     {
@@ -180,16 +175,7 @@ return {
                         end,
                     },
                 },
-                lualine_c = {
-                    {
-                        "navic",
-                        color_correction = "dynamic",
-                        navic_opts = {
-                            highlight = true,
-                            click = true,
-                        },
-                    },
-                },
+                lualine_c = {},
                 lualine_x = {},
                 lualine_y = {},
                 lualine_z = {},
@@ -215,6 +201,48 @@ return {
                 lualine_x = {},
                 lualine_y = {},
                 lualine_z = {},
+            },
+            -- Tabline
+            tabline = {
+                lualine_a = {
+                    {
+                        vim.loop.cwd,
+                        type = "vim_fun",
+                        padding = {
+                            left = 1,
+                            right = 1,
+                        },
+                    },
+                },
+                lualine_b = {
+                    {
+                        "g:gitsigns_head",
+                        icon = "",
+                    },
+                },
+                lualine_c = {
+                    {
+                        "navic",
+                        color_correction = "dynamic",
+                        navic_opts = {
+                            highlight = true,
+                            click = true,
+                        },
+                    },
+                },
+                lualine_x = {},
+                lualine_y = {},
+                lualine_z = {
+                    {
+                        "tabs",
+                        mode = 2,
+                        path = 1,
+                        use_mode_colors = true,
+                        symbols = {
+                            modified = icons.misc.modified,
+                        },
+                    },
+                },
             },
         },
     },
