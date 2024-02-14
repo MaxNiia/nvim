@@ -4,7 +4,7 @@ return function(bufnr)
     wk.register({
         t = {
             function()
-                vim.lsp.inlay_hint.enable(bufnr, nil)
+                vim.lsp.inlay_hint.enable(bufnr, not vim.lsp.inlay_hint.is_enabled(bufnr))
             end,
             "Toggle inlay hints",
         },
