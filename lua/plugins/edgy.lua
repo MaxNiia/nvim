@@ -42,7 +42,8 @@ return {
                 command = "G log",
                 size = { width = 80 },
                 filter = function()
-                    return #vim.cmd.buffers() > 1
+                    -- Return false if number of buffers is less than 2
+                    return #vim.fn.getbufinfo({ buflisted = 1 }) > 1
                 end,
             },
             {
