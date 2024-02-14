@@ -40,6 +40,11 @@ return {
                 ft = "gitcommit",
                 size = { width = 80 },
             },
+            {
+                ft = "git",
+                command = "G log",
+                size = { width = 80 },
+            },
         },
         -- any other neo-tree windows
         "neo-tree",
@@ -48,6 +53,11 @@ return {
                 ft = "aerial",
                 pinned = true,
                 open = "AerialOpen",
+                size = { width = 60 },
+            },
+            {
+                ft = "fugitive",
+                open = "G",
                 size = { width = 60 },
             },
             {

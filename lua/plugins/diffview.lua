@@ -19,21 +19,17 @@ return {
                 desc = "View file history",
             },
             {
-                "<leader>" .. group_key .. "c",
-                "<cmd>DiffviewClose<cr>",
-                desc = "Close diffview",
-            },
-            {
                 "<leader>" .. group_key .. "d",
                 "<cmd>DiffviewOpen<cr>",
                 desc = "Open diffview",
             },
             {
-                "<leader>" .. group_key .. "c",
+                "<leader>" .. group_key .. "D",
                 "<cmd>DiffviewClose<cr>",
                 desc = "Close diffview",
             },
         },
+        event = "BufEnter",
         opts = {
             diff_binaries = false,
             enhanced_diff_hl = true,
