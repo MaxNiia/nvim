@@ -36,9 +36,14 @@ return {
                 pinned = _G.neotree,
                 open = "Neotree position=top buffers",
             },
+            -- NOTE: Doesn't work when opening from command line.
             {
                 ft = "gitcommit",
+                command = "G log",
                 size = { width = 80 },
+                filter = function()
+                    return #vim.cmd.buffers() > 1
+                end,
             },
             {
                 ft = "git",
@@ -46,8 +51,6 @@ return {
                 size = { width = 80 },
             },
         },
-        -- any other neo-tree windows
-        "neo-tree",
         right = {
             {
                 ft = "aerial",
