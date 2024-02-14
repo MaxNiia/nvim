@@ -16,7 +16,7 @@ return {
             },
             {
                 "<leader>" .. group_key .. "l",
-                "<cmd>G log",
+                "<cmd>G log --max-count=500<cr>",
                 desc = "Git log",
             },
         },
