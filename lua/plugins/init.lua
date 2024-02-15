@@ -1,3 +1,5 @@
+local icons = require("utils.icons").todo
+
 return {
     {
         "folke/neodev.nvim",
@@ -97,7 +99,26 @@ return {
         dependencies = { "nvim-lua/plenary.nvim" },
         lazy = true,
         event = "BufEnter",
-        config = true,
+        opts = {
+            signs = true,
+            keywords = {
+                FIX = {
+                    icon = " ",
+                    color = "error",
+                    alt = { "FIXME", "BUG", "FIXIT", "ISSUE" },
+                },
+                TODO = { icon = icons.todo .. " ", color = "info" },
+                HACK = { icon = icons.hack .. " ", color = "warning" },
+                WARN = { icon = icons.warn .. " ", color = "warning", alt = { "WARNING", "XXX" } },
+                PERF = { icon = icons.perf .. " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+                NOTE = { icon = icons.note .. " ", color = "hint", alt = { "INFO" } },
+                TEST = {
+                    icon = icons.test .. " ",
+                    color = "test",
+                    alt = { "TESTING", "PASSED", "FAILED" },
+                },
+            },
+        },
     },
     {
         "DanilaMihailov/beacon.nvim",

@@ -39,6 +39,14 @@ return {
         Hint = " ",
         Info = " ",
     },
+    todo = {
+        todo = "",
+        hack = "",
+        warn = "",
+        perf = "",
+        note = "",
+        test = "⏲",
+    },
     git = {
         added = "",
         modified = "",

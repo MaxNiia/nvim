@@ -58,6 +58,7 @@ return {
                                 "Mark",
                                 "neotest",
                                 "Dap",
+                                "todo*",
                             },
                             namespace = { "diagnostic*" },
                             maxwidth = 2,
