@@ -15,7 +15,7 @@ return {
     builder = function(params)
         return {
             cmd = { "ninja" },
-            args = { "-C", params.build_dir, },
+            args = { "-C", params.build_dir },
             components = { { "on_output_quickfix", open = true }, "default" },
         }
     end,

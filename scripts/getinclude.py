@@ -5,12 +5,12 @@
 # Distributed under an MIT license. See LICENSE for details
 #
 #------------------------------------------------------------------------------
- 
+
 import os
 import sys
 import subprocess
 import re
- 
+
 def main():
     cxx = 'g++'
     if 2 == len(sys.argv):

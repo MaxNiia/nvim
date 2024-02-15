@@ -46,15 +46,12 @@ return {
 
             for name, sign in pairs(icons.dap) do
                 sign = type(sign) == "table" and sign or { sign }
-                vim.fn.sign_define(
-                    "Dap" .. name,
-                    {
-                        text = sign[1],
-                        texthl = sign[2] or "DiagnosticInfo",
-                        linehl = sign[3],
-                        numhl = sign[3],
-                    }
-                )
+                vim.fn.sign_define("Dap" .. name, {
+                    text = sign[1],
+                    texthl = sign[2] or "DiagnosticInfo",
+                    linehl = sign[3],
+                    numhl = sign[3],
+                })
             end
             require("telescope").load_extension("dap")
             require("nvim-dap-virtual-text").setup(opts)

@@ -46,9 +46,11 @@ return {
                 },
             }
             if _G.popup then
-                _opts = vim.tbl_deep_extend("force", require("plugins.noice.popup"), _opts or {}) or {}
+                _opts = vim.tbl_deep_extend("force", require("plugins.noice.popup"), _opts or {})
+                    or {}
             else
-                _opts = vim.tbl_deep_extend("force", require("plugins.noice.bottom"), _opts or {}) or {}
+                _opts = vim.tbl_deep_extend("force", require("plugins.noice.bottom"), _opts or {})
+                    or {}
             end
             return _opts
         end,
