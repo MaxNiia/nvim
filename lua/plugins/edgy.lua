@@ -36,7 +36,6 @@ return {
                 pinned = _G.neotree,
                 open = "Neotree position=top buffers",
             },
-            -- NOTE: Doesn't work when opening from command line.
             {
                 ft = "gitcommit",
                 command = "G log",
@@ -72,6 +71,9 @@ return {
                     return vim.bo[buf].buftype == "help"
                 end,
             },
+            -- {
+            --     ft = "noice",
+            -- },
         },
         bottom = {
             "Trouble",

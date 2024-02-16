@@ -43,6 +43,16 @@ return {
                         },
                         opts = { skip = true },
                     },
+                    -- {
+                    --     filter = {
+                    --         cmdline = "git",
+                    --     },
+                    --     opts = {
+                    --         skip = false,
+                    --         stop = true,
+                    --     },
+                    --     view = "vsplit"
+                    -- },
                 },
             }
             if _G.popup then
