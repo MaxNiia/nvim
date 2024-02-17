@@ -1,6 +1,7 @@
 return {
     {
         "folke/persistence.nvim",
+        enabled = not _G.IS_VSCODE,
         event = "BufEnter", -- this will only start session saving when an actual file was opened
         opts = {
             dir = vim.fn.expand(vim.fn.stdpath("state") .. "/sessions/"), -- directory where session files are saved

@@ -1,6 +1,7 @@
 return {
     {
         "mrjones2014/smart-splits.nvim",
+        enabled = not _G.IS_VSCODE,
         dependencies = {
             "kwkarlwang/bufresize.nvim",
         },

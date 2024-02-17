@@ -1,6 +1,7 @@
 return {
     {
         "iamcco/markdown-preview.nvim",
+        enabled = _G.IS_VSCODE,
         ft = "markdown",
         build = function()
             vim.fn["mkdp#util#install"]()

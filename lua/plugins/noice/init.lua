@@ -3,6 +3,7 @@ local icons = require("utils.icons").diagnostics
 return {
     {
         "rcarriga/nvim-notify",
+        enabled = not _G.IS_VSCODE,
         lazy = true,
         event = "VeryLazy",
         opts = {
@@ -43,16 +44,6 @@ return {
                         },
                         opts = { skip = true },
                     },
-                    -- {
-                    --     filter = {
-                    --         cmdline = "git",
-                    --     },
-                    --     opts = {
-                    --         skip = false,
-                    --         stop = true,
-                    --     },
-                    --     view = "vsplit"
-                    -- },
                 },
             }
             if _G.popup then

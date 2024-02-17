@@ -7,6 +7,7 @@ end
 return {
     {
         "sindrets/diffview.nvim",
+        enabled = _G.IS_VSCODE,
         keys = {
             {
                 "<leader>" .. group_key .. "o",

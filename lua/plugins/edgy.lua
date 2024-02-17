@@ -6,6 +6,7 @@ return {
         "stevearc/aerial.nvim",
     },
     event = "VeryLazy",
+    enabled = not _G.IS_VSCODE,
     opts = {
         left = {
             -- Neo-tree filesystem always takes half the screen height
@@ -50,6 +51,11 @@ return {
                 command = "G log",
                 size = { width = 80 },
             },
+            {
+                ft = "OverseerList",
+                command = "OverseerOpen",
+                size = { width = 80 },
+            },
         },
         right = {
             {
@@ -71,9 +77,6 @@ return {
                     return vim.bo[buf].buftype == "help"
                 end,
             },
-            -- {
-            --     ft = "noice",
-            -- },
         },
         bottom = {
             "Trouble",

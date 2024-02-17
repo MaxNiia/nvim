@@ -1,6 +1,7 @@
 return {
     {
         "folke/trouble.nvim",
+    enabled = not _G.IS_VSCODE,
         event = "BufEnter",
         keys = {
             {

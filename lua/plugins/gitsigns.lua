@@ -2,6 +2,7 @@ return {
     {
         "lewis6991/gitsigns.nvim",
         lazy = true,
+        enabled = not _G.IS_VSCODE,
         event = "BufEnter",
         opts = {
             signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`

@@ -1,6 +1,7 @@
 return {
     {
         "kevinhwang91/nvim-ufo",
+    enabled = not _G.IS_VSCODE,
         event = "BufEnter",
         dependencies = {
             "kevinhwang91/promise-async",

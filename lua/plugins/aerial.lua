@@ -1,6 +1,7 @@
 return {
     {
         "stevearc/aerial.nvim",
+        enabled = not _G.IS_VSCODE,
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
             "nvim-treesitter/nvim-treesitter",

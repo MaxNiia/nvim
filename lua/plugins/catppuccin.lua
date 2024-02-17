@@ -13,6 +13,7 @@ end
 return {
     {
         "catppuccin/nvim",
+        enabled = not _G.IS_VSCODE,
         name = "catppuccin",
         opts = {
             color_overrides = {

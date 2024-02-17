@@ -3,6 +3,7 @@ return {
         "mfussenegger/nvim-lint",
         dependencies = { "williamboman/mason.nvim" },
         event = "BufReadPre",
+        enabled = not _G.IS_VSCODE,
         config = function()
             local lint = require("lint")
             lint.linters_by_ft = {

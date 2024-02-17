@@ -7,6 +7,7 @@ return {
     {
         "tpope/vim-fugitive",
         lazy = false,
+        enabled = not _G.IS_VSCODE,
         event = "BufEnter",
         keys = {
             {

@@ -84,6 +84,7 @@ end
 return {
     {
         "goolord/alpha-nvim",
+        enabled = not _G.IS_VSCODE,
         dependencies = {
             "nvim-tree/nvim-web-devicons",
             "folke/persistence.nvim",

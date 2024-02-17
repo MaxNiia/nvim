@@ -1,6 +1,7 @@
 return {
     {
         "AckslD/swenv.nvim",
+        enabled = not _G.IS_VSCODE,
         dependencies = {
             "MunifTanjim/nui.nvim",
         },

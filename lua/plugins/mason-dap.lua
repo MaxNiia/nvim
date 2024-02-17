@@ -1,6 +1,7 @@
 return {
     {
         "jay-babu/mason-nvim-dap.nvim",
+        enabled = not _G.IS_VSCODE,
         dependencies = {
             "williamboman/mason.nvim",
         },

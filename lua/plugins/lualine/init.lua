@@ -13,6 +13,7 @@ return {
         },
         lazy = true,
         event = "BufEnter",
+        enabled = not _G.IS_VSCODE,
         opts = {
             options = {
                 icons_enabled = true,

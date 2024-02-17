@@ -2,6 +2,7 @@ return {
     {
         "NvChad/nvim-colorizer.lua",
         lazy = true,
+        enabled = not _G.IS_VSCODE,
         cmd = {
             "ColorizerAttachToBuffer",
             "ColorizerDetachFromBuffer",

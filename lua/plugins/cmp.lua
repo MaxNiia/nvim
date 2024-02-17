@@ -30,6 +30,7 @@ return {
         },
     },
     {
+        enabled = not _G.IS_VSCODE,
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
