@@ -92,7 +92,7 @@ if [ ! -e "${HOME}/.nvimstty" ] ; then
     touch "${HOME}/.nvimstty &> /dev/null 2>&1"
     echo "stty -ixon" >> "${HOME}/.nvimstty"
     if [ "${SHELL}" = "/usr/bin/zsh" ] ; then
-        echo "source \"${HOME}/.nvimstty\"" >> "${HOME}/.zshrc"
+        echo "source \"${HOME}/.nvimstty\" &> /dev/null" >> "${HOME}/.zshrc"
     elif [ "${SHELL}" = "/usr/bin/bash" ] ; then
         echo "source \"${HOME}/.nvimstty\"" >> "${HOME}/.bashrc"
     else
