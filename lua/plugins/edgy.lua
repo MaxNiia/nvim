@@ -38,6 +38,10 @@ return {
                 open = "Neotree position=top buffers",
             },
             {
+                ft = "DiffviewFiles",
+                size = { width = 80 },
+            },
+            {
                 ft = "gitcommit",
                 command = "G log",
                 size = { width = 80 },
