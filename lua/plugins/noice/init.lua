@@ -49,7 +49,7 @@ return {
                     format = {
                         git = {
                             pattern = {
-                                "^:%s*Gi?t?%s+",
+                                "^:%s*(Git!?|G!)%s+",
                             },
                             icon = "",
                             lang = "git",

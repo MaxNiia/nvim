@@ -22,22 +22,22 @@ return {
             },
             {
                 "<leader>" .. group_key .. "bp",
-                "<cmd>G! push",
+                "<cmd>G! push<cr>",
                 desc = "Git push",
             },
             {
                 "<leader>" .. group_key .. "bP",
-                "<cmd>G! push --force-with-lea",
+                "<cmd>G! push --force-with-lease<cr>",
                 desc = "Git push force",
             },
             {
                 "<leader>" .. group_key .. "bf",
-                "<cmd>G! fetch",
+                "<cmd>G! fetch<cr>",
                 desc = "Git fetch",
             },
             {
                 "<leader>" .. group_key .. "bF",
-                "<cmd>G! pull",
+                "<cmd>G! pull<cr>",
                 desc = "Git pull",
             },
         },
