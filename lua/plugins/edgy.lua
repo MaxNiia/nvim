@@ -8,6 +8,10 @@ return {
     event = "VeryLazy",
     enabled = not _G.IS_VSCODE,
     opts = {
+        animate = {
+            enabled = true,
+            cps = 600,
+        },
         left = {
             -- Neo-tree filesystem always takes half the screen height
             {
