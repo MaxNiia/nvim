@@ -45,6 +45,17 @@ return {
                         opts = { skip = true },
                     },
                 },
+                cmdline = {
+                    format = {
+                        git = {
+                            pattern = {
+                                "^:%s*Gi?t?%s+",
+                            },
+                            icon = "",
+                            lang = "git",
+                        },
+                    },
+                },
             }
             if _G.popup then
                 _opts = vim.tbl_deep_extend("force", require("plugins.noice.popup"), _opts or {})
