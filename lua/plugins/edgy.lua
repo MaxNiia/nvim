@@ -56,7 +56,6 @@ return {
             },
             {
                 ft = "git",
-                command = "G log",
                 size = { width = 80 },
             },
             {

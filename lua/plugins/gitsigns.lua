@@ -66,12 +66,6 @@ return {
                     u = { gs.undo_stage_hunk, "Undo stage Hunk" },
                     R = { gs.reset_buffer, "Reset Buffer" },
                     p = { gs.preview_hunk, "Preview Hunk" },
-                    b = {
-                        function()
-                            gs.blame_line({ full = true })
-                        end,
-                        "Blame line",
-                    },
                 }, { mode = "n", prefix = "<leader>" .. group_key, buffer = bufnr })
 
                 wk.register({

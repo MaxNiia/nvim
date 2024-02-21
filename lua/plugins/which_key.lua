@@ -66,11 +66,17 @@ return {
 
             if _G.neotree then
                 wk.register({
-                    H = { name = "Git" },
+                    H = {
+                        name = "Git",
+                        b = { name = "Branch" },
+                    },
                 }, { prefix = "<leader>", mode = "n" })
             else
                 wk.register({
-                    g = { name = "Git" },
+                    g = {
+                        name = "Git",
+                        b = { name = "Branch" },
+                    },
                 }, { prefix = "<leader>", mode = "n" })
             end
 
