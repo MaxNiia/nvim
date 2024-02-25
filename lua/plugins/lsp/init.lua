@@ -3,7 +3,8 @@ return {
         "neovim/nvim-lspconfig",
         lazy = true,
         enabled = not _G.IS_VSCODE,
-        event = { "BufReadPre", "BufNewFile" },
+
+        event = { "BufReadPre", "BufNewFile" }, 
         dependencies = {
             "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
             {

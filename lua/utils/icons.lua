@@ -33,7 +33,7 @@ return {
         unnamed = "[No Name]",
         newfile = "[New]",
     },
-    diagnostics = {
+   diagnostics = {
         Error = " ",
         Warn = " ",
         Hint = " ",

@@ -88,7 +88,7 @@ return {
         bottom = {
             "Trouble",
             { ft = "qf", title = "QuickFix" },
-            { ft = "spectre_panel", size = { height = 0.4 } },
+            { ft = "spectre_panel", size = { height = 40 } },
         },
         icons = {
             closed = icons.closed .. " ",
