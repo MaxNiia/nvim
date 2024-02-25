@@ -251,44 +251,6 @@ return {
             if _G.harpoon then
                 require("telescope").load_extension("harpoon")
             end
-
-            local lga = require("telescope-live-grep-args.shortcuts")
-            local wk = require("which-key")
-            wk.register({
-                s = {
-
-                    function()
-                        lga.grep_word_under_cursor()
-                    end,
-                    "Grep string (root)",
-                },
-                S = {
-                    function()
-                        lga.grep_word_under_cursor({ cwd = false })
-                    end,
-                    "Grep string (cwd)",
-                },
-                g = {
-                    name = "Git",
-                },
-            }, { mode = "n", prefix = "<leader>" })
-            wk.register({
-                s = {
-                    function()
-                        lga.grep_visual_selection()
-                    end,
-                    "Grep string (root)",
-                },
-                S = {
-                    function()
-                        lga.grep_visual_selection({ cwd = false })
-                    end,
-                    "Grep string (cwd)",
-                },
-                g = {
-                    "Git",
-                },
-            }, { mode = "v", prefix = "<leader>" })
         end,
     },
 }

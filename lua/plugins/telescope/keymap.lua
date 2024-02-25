@@ -4,6 +4,25 @@ local call_telescope = utils.call_telescope
 return {
     -- LEADER r
     {
+        "<leader>s",
+
+        function()
+            local lga = require("telescope-live-grep-args.shortcuts")
+            lga.grep_word_under_cursor()
+        end,
+        desc = "Grep string (root)",
+        mode = { "n", "v" },
+    },
+    {
+        "<leader>S",
+        function()
+            local lga = require("telescope-live-grep-args.shortcuts")
+            lga.grep_word_under_cursor({ cwd = false })
+        end,
+        desc = "Grep string (cwd)",
+        mode = { "n", "v" },
+    },
+    {
         "<leader>rr",
         "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
         desc = "Refactor Telescope",
