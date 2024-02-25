@@ -12,31 +12,21 @@ return {
         keys = {
             {
                 "<leader>" .. group_key .. "c",
-                "<cmd>G! commit<cr>",
+                "<cmd>G commit<cr>",
                 desc = "Git commit",
             },
             {
                 "<leader>" .. group_key .. "l",
-                "<cmd>G! log --max-count=500<cr>",
+                "<cmd>G! log --max-count=50<cr>",
                 desc = "Git log",
             },
             {
                 "<leader>" .. group_key .. "bp",
-                "<cmd>G! push<cr>",
-                desc = "Git push",
-            },
-            {
-                "<leader>" .. group_key .. "bP",
                 "<cmd>G! push --force-with-lease<cr>",
                 desc = "Git push force",
             },
             {
                 "<leader>" .. group_key .. "bf",
-                "<cmd>G! fetch<cr>",
-                desc = "Git fetch",
-            },
-            {
-                "<leader>" .. group_key .. "bF",
                 "<cmd>G! pull<cr>",
                 desc = "Git pull",
             },
