@@ -128,53 +128,53 @@ return {
             -- Winbar
             winbar = {
                 lualine_a = {
-                    {
-                        "fileformat",
-                        separator = "",
-                        padding = {
-                            left = 1,
-                            right = 0,
-                        },
-                    },
-                    {
-                        "filetype",
-                        colored = false,
-                        icon_only = true,
-                        icon = { align = "right" },
-                        separator = "",
-                        padding = {
-                            left = 1,
-                            right = 0,
-                        },
-                    },
-                    {
-                        "filename",
-                        file_status = true,
-                        path = 1,
-                        shortng_target = 40,
-                        symbols = icons.files,
-                    },
+                --     {
+                --         "fileformat",
+                --         separator = "",
+                --         padding = {
+                --             left = 1,
+                --             right = 0,
+                --         },
+                --     },
+                --     {
+                --         "filetype",
+                --         colored = false,
+                --         icon_only = true,
+                --         icon = { align = "right" },
+                --         separator = "",
+                --         padding = {
+                --             left = 1,
+                --             right = 0,
+                --         },
+                --     },
+                --     {
+                --         "filename",
+                --         file_status = true,
+                --         path = 1,
+                --         shortng_target = 40,
+                --         symbols = icons.files,
+                --     },
                 },
                 lualine_b = {
-                    {
-                        "diagnostics",
-                        symbols = icons.diagnostics,
-                        separator = icons.separator.bar,
-                    },
-                    {
-                        "diff",
-                        symbols = icons.git,
-                        source = function()
-                            local gitsigns = vim.b.gitsigns_status_dict
-                            if gitsigns then
-                                return {
-                                    added = gitsigns.added,
-                                    modified = gitsigns.changed,
-                                    removed = gitsigns.removed,
-                                }
-                            end
-                        end,
-                    },
+                --     {
+                --         "diagnostics",
+                --         symbols = icons.diagnostics,
+                --         separator = icons.separator.bar,
+                --     },
+                --     {
+                --         "diff",
+                --         symbols = icons.git,
+                --         source = function()
+                --             local gitsigns = vim.b.gitsigns_status_dict
+                --             if gitsigns then
+                --                 return {
+                --                     added = gitsigns.added,
+                --                     modified = gitsigns.changed,
+                --                     removed = gitsigns.removed,
+                --                 }
+                --             end
+                --         end,
+                --     },
                 },
                 lualine_c = {},
                 lualine_x = {},
@@ -183,19 +183,19 @@ return {
             },
             inactive_winbar = {
                 lualine_a = {
-                    {
-                        "filetype",
-                        colored = false,
-                        icon_only = true,
-                        icon = { align = "right" },
-                    },
-                    {
-                        "filename",
-                        file_status = true,
-                        path = 1,
-                        shortng_target = 40,
-                        symbols = icons.files,
-                    },
+                    -- {
+                    --     "filetype",
+                    --     colored = false,
+                    --     icon_only = true,
+                    --     icon = { align = "right" },
+                    -- },
+                    -- {
+                    --     "filename",
+                    --     file_status = true,
+                    --     path = 1,
+                    --     shortng_target = 40,
+                    --     symbols = icons.files,
+                    -- },
                 },
                 lualine_b = {},
                 lualine_c = {},
