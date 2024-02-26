@@ -5,6 +5,16 @@ return {
         event = "VeryLazy",
 
         opts = {
+            ignore = {
+                buftypes = "special",
+                filetypes = {
+                    "gitcommit",
+                    "git",
+                },
+                floating_wins = true,
+                unlisted_buffers = true,
+                wintypes = "special",
+            },
             window = {
                 placement = {
                     vertical = "top",
@@ -27,7 +37,10 @@ return {
                             if tonumber(signs[name]) and signs[name] > 0 then
                                 if first then
                                     first = false
-                                table.insert(labels, { icons.fold.separator .. " ", guifg = ft_color })
+                                    table.insert(
+                                        labels,
+                                        { icons.fold.separator .. " ", guifg = ft_color }
+                                    )
                                 end
                                 table.insert(
                                     labels,
@@ -56,7 +69,10 @@ return {
                         )
                         if n > 0 then
                             if first then
-                                table.insert(labels, { icons.fold.separator .. " ", guifg = ft_color })
+                                table.insert(
+                                    labels,
+                                    { icons.fold.separator .. " ", guifg = ft_color }
+                                )
                                 first = false
                             end
                             table.insert(
@@ -69,12 +85,12 @@ return {
                 end
 
                 return {
-                    { icons.separator.full.right, guibg = "#000000", guifg = ft_color  },
+                    { icons.separator.full.right, guibg = "#000000", guifg = ft_color },
                     ft_icon and { ft_icon .. " ", guifg = "#000000", guibg = ft_color } or {},
                     { " " .. filename .. " ", gui = modified, guibg = "#1e1e2e" },
                     { get_diagnostic_label(), guibg = "#1e1e2e" },
                     { get_git_diff(), guibg = "#1e1e2e" },
-                    { icons.separator.full.left, guifg = "#1e1e2e",guibg = "#000000"  },
+                    { icons.separator.full.left, guifg = "#1e1e2e", guibg = "#000000" },
                 }
             end,
         },
