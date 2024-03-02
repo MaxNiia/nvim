@@ -19,6 +19,7 @@ return {
             },
             user_default_options = {
                 RRGGBBAA = true,
+                AARRGGBB = true,
                 mode = "background",
                 always_update = false,
             },
