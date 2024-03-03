@@ -68,8 +68,8 @@ return {
             -- options for vim.diagnostic.config()
             diagnostics = {
                 underline = true,
-                update_in_insert = false,
-                virtual_text = true, -- Replaces by lsp_lines { spacing = 4, prefix = "●" },
+                update_in_insert = true,
+                virtual_text = false, -- Replaces by lsp_lines { spacing = 4, prefix = "●" },
                 severity_sort = true,
                 virtual_lines = true,
             },

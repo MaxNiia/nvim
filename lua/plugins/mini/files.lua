@@ -184,6 +184,12 @@ return {
             filter = combined_filter,
             sort = combined_sort,
         },
+        -- mappings = {
+        --     go_in = "",
+        --     go_in_plus = "L",
+        --     go_out = "",
+        --     go_out_plus = "H",
+        -- }
     },
     config = true,
 }

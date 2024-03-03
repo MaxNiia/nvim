@@ -6,7 +6,7 @@ return {
             "kwkarlwang/bufresize.nvim",
         },
         lazy = true,
-        event = "BufEnter",
+        event = "VimEnter",
         opts = {
             ignored_filetypes = {
                 "nofile",

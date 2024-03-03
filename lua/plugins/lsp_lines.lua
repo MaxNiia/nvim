@@ -1,6 +1,7 @@
 return {
     {
         url = "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        event = "VeryLazy",
         keys = {
             {
                 "<Leader>wT",
@@ -10,5 +11,6 @@ return {
             },
         },
         main = "lsp_lines",
+        config = true
     },
 }
