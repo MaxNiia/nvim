@@ -9,6 +9,7 @@ local hint = [[
   _p_ %{popup}^^^^^^^ Popup
   _h_ %{harpoon}^^^^^ Harpoon
   _b_ %{buffer_mode}^ Buffer Mode
+  _l_ %{lsp_lines}^^^ LSP lines
   ^
   ^^^^                _<Esc>_
 ]]
@@ -54,6 +55,7 @@ return {
                 popup = show_state_builder("popup"),
                 harpoon = show_state_builder("harpoon"),
                 buffer_mode = show_state_builder("buffer_mode"),
+                lsp_lines = show_state_builder("lsp_lines"),
             },
         },
     },
@@ -68,6 +70,7 @@ return {
         head_toggle_builder("popup", "p"),
         head_toggle_builder("harpoon", "h"),
         head_toggle_builder("buffer_mode", "b"),
+        head_toggle_builder("lsp_lines", "l"),
         { "<Esc>", nil, { exit = true } },
     },
 }

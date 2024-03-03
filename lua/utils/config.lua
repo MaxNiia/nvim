@@ -10,6 +10,7 @@ local options = {
     { name = "popup", default = true },
     { name = "harpoon", default = true },
     { name = "buffer_mode", default = false },
+    { name = "lsp_lines", default = tru },
 }
 
 local separator = ":"

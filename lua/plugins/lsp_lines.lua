@@ -5,7 +5,11 @@ return {
         keys = {
             {
                 "<Leader>wT",
-                require("lsp_lines").toggle,
+                function()
+                    local on = require("lsp_lines").toggle()
+
+                    vim.diagnostic.config(require("plugins.lsp.diagnostics")(on))
+                end,
                 mode = "n",
                 desc = "Toggle lsp_lines",
             },
