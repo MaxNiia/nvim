@@ -69,9 +69,15 @@ return {
         mode = { "v", "n" },
     },
     {
-        "<leader>fG",
+        "<leader>fgf",
         call_telescope("git_files"),
-        desc = "Files (git)",
+        desc = "Files (git, root)",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fgF",
+        call_telescope("git_files", {cwd = false}),
+        desc = "Files (git, cwd)",
         mode = { "v", "n" },
     },
     {

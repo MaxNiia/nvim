@@ -78,6 +78,8 @@ vim.cmd([[
     setglobal tags-=./tags tags-=./tags; tags^=./tags;
     set complete-=i
     set nrformats-=octal
+    inoremap jk <Esc>
+    inoremap kj <Esc>
 ]])
 
 -- tpipeline
