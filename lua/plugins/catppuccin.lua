@@ -85,6 +85,9 @@ return {
                     HighlightUndo = { bg = c.overlay0 },
                     CopilotSuggestion = { fg = c.surface1 },
                     DiffviewFilePanelPath = { fg = c.sapphire },
+                    InclineText = { fg = c.text, bg = c.surface0, style = { "bold" } },
+                    InclineReverse = { fg = c.surface0, bg = c.base, style = { "bold" } },
+                    InclineModified = { fg = c.blue, bg = c.surface0, style = { "bold", "italic" } },
                 }
             end,
         },

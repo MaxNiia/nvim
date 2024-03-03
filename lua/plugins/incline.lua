@@ -24,24 +24,16 @@ return {
             render = function(props)
                 local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
                 local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
-                local modified = vim.bo[props.buf].modified and "bold,italic" or "bold"
+                local modified = vim.bo[props.buf].modified
                 local icons = require("utils.icons")
 
                 local function get_git_diff()
                     local signs = vim.b[props.buf].gitsigns_status_dict
                     local git_icons = icons.git
                     local labels = {}
-                    local first = true
                     if signs then
                         for name, icon in pairs(git_icons) do
                             if tonumber(signs[name]) and signs[name] > 0 then
-                                if first then
-                                    first = false
-                                    table.insert(
-                                        labels,
-                                        { icons.fold.separator .. " ", guifg = ft_color }
-                                    )
-                                end
                                 table.insert(
                                     labels,
                                     { icon .. " " .. signs[name] .. " ", group = "Diff" .. name }
@@ -60,7 +52,6 @@ return {
                         hint = icons_diagnostics.Hint,
                     }
                     local labels = {}
-                    local first = true
 
                     for severity, icon in pairs(severity_icons) do
                         local n = #vim.diagnostic.get(
@@ -68,13 +59,6 @@ return {
                             { severity = vim.diagnostic.severity[string.upper(severity)] }
                         )
                         if n > 0 then
-                            if first then
-                                table.insert(
-                                    labels,
-                                    { icons.fold.separator .. " ", guifg = ft_color }
-                                )
-                                first = false
-                            end
                             table.insert(
                                 labels,
                                 { icon .. n .. " ", group = "DiagnosticSign" .. severity }
@@ -85,12 +69,12 @@ return {
                 end
 
                 return {
-                    { icons.separator.full.right, guibg = "#000000", guifg = ft_color },
-                    ft_icon and { ft_icon .. " ", guifg = "#000000", guibg = ft_color } or {},
-                    { " " .. filename .. " ", gui = modified, guibg = "#1e1e2e" },
-                    { get_diagnostic_label(), guibg = "#1e1e2e" },
-                    { get_git_diff(), guibg = "#1e1e2e" },
-                    { icons.separator.full.left, guifg = "#1e1e2e", guibg = "#000000" },
+                    { icons.separator.full.right, guibg = "bg", guifg = ft_color },
+                    ft_icon and { ft_icon .. " ", guifg = "bg", guibg = ft_color } or {},
+                    { " " .. filename .. " ", group = modified and "InclineModified" or "InclineText"},
+                    { get_diagnostic_label(), group = "InclineText"},
+                    { get_git_diff(), group = "InclineText"},
+                    { icons.separator.full.left, group = "InclineReverse"},
                 }
             end,
         },
