@@ -395,7 +395,7 @@ return {
             if _G.harpoon then
                 require("telescope").extensions.harpoon()
             else
-                require("telescope").builtin.mark()
+                require("telescope.builtin").marks()
             end
         end,
         desc = _G.harpoon and "Harpoon" or "Marks",
