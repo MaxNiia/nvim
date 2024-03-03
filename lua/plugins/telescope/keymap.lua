@@ -236,6 +236,12 @@ return {
     },
     {
         "<leader>fgc",
+        "<cmd>Telescope git_bcommits<CR>",
+        desc = "File Commits",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fgC",
         "<cmd>Telescope git_commits<CR>",
         desc = "Commits",
         mode = { "v", "n" },
@@ -389,7 +395,7 @@ return {
             if _G.harpoon then
                 require("telescope").extensions.harpoon()
             else
-                require("telescope").builtin.marks()
+                require("telescope").builtin.mark()
             end
         end,
         desc = _G.harpoon and "Harpoon" or "Marks",

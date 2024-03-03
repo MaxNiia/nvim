@@ -73,6 +73,9 @@ return {
                 }, { prefix = "<leader>", mode = "n" })
             else
                 wk.register({
+                    f = {
+                        g = { name = "Git" },
+                    },
                     g = {
                         name = "Git",
                         b = { name = "Branch" },
