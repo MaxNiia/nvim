@@ -20,9 +20,14 @@ return {
                     vertical = "top",
                     horizontal = "center",
                 },
+                signcolumn = "yes",
+                padding = 0,
+            },
+            hide = {
+                cursorline = "focused_win",
             },
             render = function(props)
-                local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+                local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":p:.")
                 local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
                 local modified = vim.bo[props.buf].modified
                 local icons = require("utils.icons")
@@ -71,10 +76,13 @@ return {
                 return {
                     { icons.separator.full.right, guibg = "bg", guifg = ft_color },
                     ft_icon and { ft_icon .. " ", guifg = "bg", guibg = ft_color } or {},
-                    { " " .. filename .. " ", group = modified and "InclineModified" or "InclineText"},
-                    { get_diagnostic_label(), group = "InclineText"},
-                    { get_git_diff(), group = "InclineText"},
-                    { icons.separator.full.left, group = "InclineReverse"},
+                    {
+                        " " .. filename .. " ",
+                        group = modified and "InclineModified" or "InclineText",
+                    },
+                    { get_diagnostic_label(), group = "InclineText" },
+                    { get_git_diff(), group = "InclineText" },
+                    { icons.separator.full.left, group = "InclineReverse" },
                 }
             end,
         },
