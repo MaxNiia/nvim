@@ -20,7 +20,6 @@ return {
                     vertical = "top",
                     horizontal = "center",
                 },
-                signcolumn = "yes",
                 padding = 0,
             },
             hide = {
