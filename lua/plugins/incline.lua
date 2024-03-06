@@ -1,7 +1,6 @@
 return {
     {
         "b0o/incline.nvim",
-        -- Optional: Lazy load Incline
         event = "VeryLazy",
 
         opts = {
@@ -18,7 +17,7 @@ return {
             window = {
                 placement = {
                     vertical = "top",
-                    horizontal = "center",
+                    horizontal = "left",
                 },
                 padding = 0,
             },
