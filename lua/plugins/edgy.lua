@@ -47,7 +47,6 @@ return {
             },
             {
                 ft = "gitcommit",
-                command = "G log",
                 size = { width = 80 },
                 filter = function()
                     -- Return false if number of buffers is less than 2
@@ -56,7 +55,7 @@ return {
             },
             {
                 ft = "git",
-                size = { width = 80 },
+                size = { wldth = 80 },
             },
             {
                 ft = "OverseerList",
@@ -67,7 +66,6 @@ return {
         right = {
             {
                 ft = "aerial",
-                pinned = true,
                 open = "AerialOpen",
                 size = { width = 60 },
             },
@@ -84,11 +82,11 @@ return {
                     return vim.bo[buf].buftype == "help"
                 end,
             },
+            { ft = "spectre_panel",  size = { width = 100, height = 50} },
         },
         bottom = {
             "Trouble",
             { ft = "qf", title = "QuickFix" },
-            { ft = "spectre_panel", size = { height = 40 } },
         },
         icons = {
             closed = icons.closed .. " ",

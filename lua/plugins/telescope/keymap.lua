@@ -22,35 +22,11 @@ return {
         desc = "Grep string (cwd)",
         mode = { "n", "v" },
     },
-    {
-        "<leader>rr",
-        "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>",
-        desc = "Refactor Telescope",
-        mode = "v",
-    },
     -- LEADER f
     {
         "<leader>fc",
         "<cmd>Telescope colorscheme<cr>",
         desc = "Colorscheme",
-    },
-    {
-        "<leader>fj",
-        "<cmd>Telescope grep_string<cr>",
-        desc = "Grep string (root)",
-        mode = {
-            "v",
-            "n",
-        },
-    },
-    {
-        "<leader>fJ",
-        call_telescope("grep_string"),
-        desc = "Grep string (cwd)",
-        mode = {
-            "v",
-            "n",
-        },
     },
     { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Undo history", mode = { "v", "n" } },
     { "<leader>fN", "<cmd>Telescope noice<cr>", desc = "Noice", mode = { "v", "n" } },
@@ -143,7 +119,7 @@ return {
         mode = { "v", "n" },
     },
     {
-        "<leader>fm1",
+        "<leader>fM1",
         call_telescope("man_pages", {
             sections = { "1" },
         }),
@@ -151,7 +127,7 @@ return {
         mode = { "v", "n" },
     },
     {
-        "<leader>fm2",
+        "<leader>fM2",
         call_telescope("man_pages", {
             sections = { "2" },
         }),
@@ -159,7 +135,7 @@ return {
         mode = { "v", "n" },
     },
     {
-        "<leader>fm3",
+        "<leader>fM3",
         call_telescope("man_pages", {
             sections = { "3" },
         }),
@@ -167,7 +143,7 @@ return {
         mode = { "v", "n" },
     },
     {
-        "<leader>fm4",
+        "<leader>fM4",
         call_telescope("man_pages", {
             sections = { "4" },
         }),
@@ -175,7 +151,7 @@ return {
         mode = { "v", "n" },
     },
     {
-        "<leader>fm5",
+        "<leader>fM5",
         call_telescope("man_pages", {
             sections = { "5" },
         }),
@@ -183,7 +159,7 @@ return {
         mode = { "v", "n" },
     },
     {
-        "<leader>fm6",
+        "<leader>fM6",
         call_telescope("man_pages", {
             sections = { "6" },
         }),
@@ -191,7 +167,7 @@ return {
         mode = { "v", "n" },
     },
     {
-        "<leader>fm7",
+        "<leader>fM7",
         call_telescope("man_pages", {
             sections = { "7" },
         }),
@@ -199,7 +175,7 @@ return {
         mode = { "v", "n" },
     },
     {
-        "<leader>fm8",
+        "<leader>fM8",
         call_telescope("man_pages", {
             sections = { "8" },
         }),
@@ -207,7 +183,7 @@ return {
         mode = { "v", "n" },
     },
     {
-        "<leader>fm9",
+        "<leader>fM9",
         call_telescope("man_pages", {
             sections = { "9" },
         }),
@@ -401,52 +377,7 @@ return {
         desc = _G.harpoon and "Harpoon" or "Marks",
         mode = { "v", "n" },
     },
-
-    -- File Browser
-    {
-        "<leader>fe",
-        "<cmd>Telescope file_browser<CR>",
-        desc = "Browser (root)",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>fE",
-        "<cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>",
-        desc = "Browser (cwd)",
-        mode = { "v", "n" },
-    },
     -- LEADER
-    {
-        "<leader>fM",
-        function()
-            require("telescope").extensions.monorepo.monorepo()
-        end,
-        desc = "Monorepo",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>,",
-        "<cmd>Telescope buffers show_all_buffers=true<cr>",
-        desc = "Switch buffers",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>/",
-        function()
-            require("telescope").extensions.live_grep_args.live_grep_args()
-        end,
-        call_telescope("live_grep"),
-        desc = "Search (root dir)",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>?",
-        function()
-            require("telescope").extensions.live_grep_args.live_grep_args({ cwd = false })
-        end,
-        desc = "Search (cwd)",
-        mode = { "v", "n" },
-    },
     {
         "<leader>:",
         "<cmd>Telescope command_history<cr>",

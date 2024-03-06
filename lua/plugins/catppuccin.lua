@@ -87,7 +87,7 @@ return {
                     DiffviewFilePanelPath = { fg = c.sapphire },
                     InclineText = { fg = c.text, bg = c.surface0, style = { "bold" } },
                     InclineReverse = { fg = c.surface0, bg = c.base, style = { "bold" } },
-                    InclineModified = { fg = c.blue, bg = c.surface0, style = { "bold", "italic" } },
+                    InclineModified = { fg = c.red, bg = c.surface0, style = { "bold", "italic" } },
                     MarkSignHL = { fg = c.yellow, style = { "bold" } },
                 }
             end,

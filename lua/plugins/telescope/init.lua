@@ -17,7 +17,12 @@ return {
                 "nvim-telescope/telescope-file-browser.nvim",
                 dependencies = { "nvim-lua/plenary.nvim" },
             },
+            {
             "nvim-telescope/telescope-project.nvim",
+                opts = {
+                    patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "setup.py","pyproject.toml","setup.cfg"},
+                },
+            },
             "nvim-telescope/telescope-live-grep-args.nvim",
             "debugloop/telescope-undo.nvim",
         },
@@ -26,14 +31,14 @@ return {
             pickers = {
                 colorscheme = {
                     initial_mode = "normal",
-                    layout_strategy = "cursor",
+                  layout_strategy = "cursor",
                     layout_config = ui.layouts.small_cursor,
                     enable_preview = true,
                 },
-                find_files = {},
+                find_files = { },
                 live_grep = {},
                 grep_strings = {
-                    initial_mode = "normal",
+                    initial_mode = "insert",
                     layout_strategy = "horizontal",
                     layout_config = {
                         horizontal = {
@@ -53,42 +58,52 @@ return {
                     layout_config = ui.layouts.small_cursor,
                 },
                 lsp_references = {
+                    initial_mode = "normal",
                     layout_config = ui.layouts.lsp,
                     layout_strategy = "vertical",
                 },
                 lsp_incoming_calls = {
+                    initial_mode = "normal",
                     layout_config = ui.layouts.lsp,
                     layout_strategy = "vertical",
                 },
                 lsp_outgoing_calls = {
+                    initial_mode = "normal",
                     layout_config = ui.layouts.lsp,
                     layout_strategy = "vertical",
                 },
                 lsp_definitions = {
+                    initial_mode = "normal",
                     layout_config = ui.layouts.lsp,
                     layout_strategy = "vertical",
                 },
                 lsp_type_definitions = {
+                    initial_mode = "normal",
                     layout_config = ui.layouts.lsp,
                     layout_strategy = "vertical",
                 },
                 lsp_implementations = {
+                    initial_mode = "normal",
                     layout_config = ui.layouts.lsp,
                     layout_strategy = "vertical",
                 },
                 lsp_document_symbols = {
+                    initial_mode = "normal",
                     layout_config = ui.layouts.lsp,
                     layout_strategy = "vertical",
                 },
                 lsp_workspace_symbols = {
+                    initial_mode = "normal",
                     layout_config = ui.layouts.lsp,
                     layout_strategy = "vertical",
                 },
                 lsp_dynamic_workspace_symbols = {
+                    initial_mode = "normal",
                     layout_config = ui.layouts.lsp,
                     layout_strategy = "vertical",
                 },
                 diagnostics = {
+                    initial_mode = "normal",
                     layout_config = ui.layouts.lsp,
                     layout_strategy = "vertical",
                 },
@@ -98,19 +113,22 @@ return {
                     hijack_netrw = false,
                     display_stat = false,
                     initial_mode = "normal",
+                    layout_config = ui.layouts.vertical,
                 },
                 fzf = {
                     fuzzy = true,
                     override_gneric_sorter = true,
                     override_file_sorter = true,
                     case_mode = "smart_case",
+                    layout_config = ui.layouts.vertical,
                 },
                 project = {
                     initial_mode = "normal",
+                    layout_config = ui.layouts.vertical,
                 },
                 monorepo = {
                     initial_mode = "normal",
-                    layout_config = ui.layouts.small_cursor,
+                    layout_config = ui.layouts.vertical,
                 },
                 live_grep_args = {
                     auto_quoting = true,
