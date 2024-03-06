@@ -19,7 +19,7 @@ return {
                     vertical = "top",
                     horizontal = "left",
                 },
-                padding = 0,
+                padding = { left = 0, right = 1 },
             },
             hide = {
                 cursorline = "focused_win",
@@ -72,8 +72,7 @@ return {
                 end
 
                 return {
-                    { icons.separator.full.right, guibg = "bg", guifg = ft_color },
-                    ft_icon and { ft_icon .. " ", guifg = "bg", guibg = ft_color } or {},
+                    ft_icon and { " " .. ft_icon .. " ", guifg = "bg", guibg = ft_color } or {},
                     {
                         " " .. filename .. " ",
                         group = modified and "InclineModified" or "InclineText",
