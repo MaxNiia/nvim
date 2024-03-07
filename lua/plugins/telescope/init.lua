@@ -17,12 +17,7 @@ return {
                 "nvim-telescope/telescope-file-browser.nvim",
                 dependencies = { "nvim-lua/plenary.nvim" },
             },
-            {
             "nvim-telescope/telescope-project.nvim",
-                opts = {
-                    patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "setup.py","pyproject.toml","setup.cfg"},
-                },
-            },
             "nvim-telescope/telescope-live-grep-args.nvim",
             "debugloop/telescope-undo.nvim",
         },
@@ -31,11 +26,11 @@ return {
             pickers = {
                 colorscheme = {
                     initial_mode = "normal",
-                  layout_strategy = "cursor",
+                    layout_strategy = "cursor",
                     layout_config = ui.layouts.small_cursor,
                     enable_preview = true,
                 },
-                find_files = { },
+                find_files = {},
                 live_grep = {},
                 grep_strings = {
                     initial_mode = "insert",
@@ -266,6 +261,7 @@ return {
             require("telescope").load_extension("noice")
             require("telescope").load_extension("notify")
             require("telescope").load_extension("project")
+            require("telescope").load_extension("monorepo")
             if _G.harpoon then
                 require("telescope").load_extension("harpoon")
             end

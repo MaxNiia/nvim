@@ -52,7 +52,7 @@ return {
     },
     {
         "<leader>fgF",
-        call_telescope("git_files", {cwd = false}),
+        call_telescope("git_files", { cwd = false }),
         desc = "Files (git, cwd)",
         mode = { "v", "n" },
     },
@@ -116,6 +116,14 @@ return {
         "<leader>fp",
         ":lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
         desc = "Project",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fm",
+        function()
+            require("telescope").extensions.monorepo.monorepo()
+        end,
+        desc = "Monorepo",
         mode = { "v", "n" },
     },
     {
