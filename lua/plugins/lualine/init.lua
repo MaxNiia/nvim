@@ -87,6 +87,14 @@ return {
                         "b:gitsigns_head",
                         icon = "",
                     },
+                    {
+
+                        function()
+                            local session = require("persistence").get_current()
+                            local _, _, name = session:find("##([%w%d]*%.vim$)")
+                            return "Session: " .. name
+                        end,
+                    },
                 },
                 lualine_c = {},
                 lualine_x = {},

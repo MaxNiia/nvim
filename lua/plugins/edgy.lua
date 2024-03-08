@@ -46,6 +46,14 @@ return {
                 size = { width = 80 },
             },
             {
+                ft = "gitrebase",
+                size = { width = 80 },
+                filter = function()
+                    -- Return false if number of buffers is less than 2
+                    return #vim.fn.getbufinfo({ buflisted = 1 }) > 1
+                end,
+            },
+            {
                 ft = "gitcommit",
                 size = { width = 80 },
                 filter = function()
@@ -82,7 +90,7 @@ return {
                     return vim.bo[buf].buftype == "help"
                 end,
             },
-            { ft = "spectre_panel",  size = { width = 100, height = 50} },
+            { ft = "spectre_panel", size = { width = 100, height = 50 } },
         },
         bottom = {
             "Trouble",
