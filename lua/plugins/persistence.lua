@@ -30,7 +30,7 @@ return {
 
                 if
                     fn.getbufvar(buf, "&modifiable") == 1
-                    and utils.not_in(fn.getbufvar(buf, "&filetype"), {})
+                    and utils.not_in(fn.getbufvar(buf, "&filetype"), { "alpha", "TelescopePrompt" })
                 then
                     return true -- met condition(s), can save
                 end
@@ -53,7 +53,7 @@ return {
             local group = vim.api.nvim_create_augroup("autosave", {})
 
             vim.api.nvim_create_autocmd("User", {
-                pattern = "AutoSaveWritePre",
+                pattern = "AutoSaveWritePost",
                 group = group,
                 callback = function(_)
                     require("persistence").save()

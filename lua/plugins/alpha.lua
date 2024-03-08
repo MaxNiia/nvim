@@ -87,7 +87,6 @@ return {
         enabled = not _G.IS_VSCODE,
         dependencies = {
             "nvim-tree/nvim-web-devicons",
-            "folke/persistence.nvim",
         },
         event = "VimEnter",
         opts = function()
@@ -104,7 +103,7 @@ return {
                 ),
                 dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
                 dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
-                dashboard.button("g", " " .. " Find text", ":Telescope live_grep <CR>"),
+                dashboard.button("s", " " .. " Find text", ":Telescope live_grep <CR>"),
                 dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
                 dashboard.button("l", "z " .. " Lazy", ":Lazy<CR>"),
                 dashboard.button("q", " " .. " Quit", ":qa<CR>"),

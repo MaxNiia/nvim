@@ -217,10 +217,6 @@ return {
                         project_actions.change_working_directory(prompt_bufnr)
                         print(vim.fn.getcwd())
 
-                        -- Change monorepo directory to the selected project
-                        local selected_entry = action_state.get_selected_entry()
-                        require("monorepo").change_monorepo(selected_entry.value)
-
                         -- Set session
                         require("persistence").stop()
                         require("persistence").start()
@@ -234,6 +230,10 @@ return {
                             vim.cmd.wshada()
                         end
                         pcall(vim.cmd.rshada, { bang = true })
+
+                        -- Change monorepo directory to the selected project
+                        local selected_entry = action_state.get_selected_entry(prompt_bufnr)
+                        require("monorepo").change_monorepo(selected_entry.value)
                     end,
                 },
             })

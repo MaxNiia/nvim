@@ -1,6 +1,6 @@
 local M = {}
 
-local root_patterns = { ".git", "lua" }
+local root_patterns = { ".git", "lua", "setup.cfg", "pyproject.toml" }
 -- returns the root directory based on:
 -- * lsp workspace folders
 -- * lsp root_dir
@@ -46,7 +46,7 @@ M.get_root = function()
 end
 
 -- this will return a function that calls telescope.
--- cwd will default to lazyvim.util.get_root
+-- cwd will default to get_root
 -- for `files`, git_files or find_files will be chosen depending on .git
 M.call_telescope = function(builtin, opts)
     local params = { builtin = builtin, opts = opts }
