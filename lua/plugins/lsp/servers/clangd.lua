@@ -22,7 +22,7 @@ return {
     },
     cmd = {
         "clangd",
-        -- "-j=4",
+        "-j=" .. tostring(math.floor(tonumber(vim.fn.system("nproc")) * 0.75)),
         "--background-index=true",
         "--clang-tidy",
         "--completion-style=detailed",
