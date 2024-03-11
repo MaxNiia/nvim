@@ -1,7 +1,7 @@
 return {
     {
         "folke/trouble.nvim",
-    enabled = not _G.IS_VSCODE,
+        enabled = not _G.IS_VSCODE,
         event = "BufEnter",
         keys = {
             {
@@ -33,6 +33,34 @@ return {
                 "<leader>xr",
                 "<cmd>TroubleToggle lsp_references<cr>",
                 desc = "References",
+            },
+            {
+                "]a",
+                function()
+                    require("trouble").next({ skip_groups = true, jump = true })
+                end,
+                desc = "Next trouble",
+            },
+            {
+                "]A",
+                function()
+                    require("trouble").first({ skip_groups = true, jump = true })
+                end,
+                desc = "First trouble",
+            },
+            {
+                "[a",
+                function()
+                    require("trouble").previous({ skip_groups = true, jump = true })
+                end,
+                desc = "Previous trouble",
+            },
+            {
+                "[A",
+                function()
+                    require("trouble").last({ skip_groups = true, jump = true })
+                end,
+                desc = "Last trouble",
             },
         },
         opts = {
