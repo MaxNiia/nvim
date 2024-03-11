@@ -15,6 +15,6 @@ return {
             },
         },
         main = "lsp_lines",
-        config = true
+        config = true,
     },
 }

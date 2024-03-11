@@ -16,6 +16,10 @@ return {
         enabled = not _G.IS_VSCODE,
         name = "catppuccin",
         opts = {
+            background = { -- :h background
+                light = "latte",
+                dark = "mocha",
+            },
             color_overrides = {
                 mocha = oled_override(_G.oled),
             },
@@ -40,8 +44,11 @@ return {
                 leap = true,
                 mason = true,
                 markdown = true,
-                mini = true,
                 neotree = true,
+                mini = {
+                    enabled = true,
+                    indentscope_color = "",
+                },
                 window_picker = true,
                 ts_rainbow = true,
                 flash = true,
