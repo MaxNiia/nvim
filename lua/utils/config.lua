@@ -1,4 +1,5 @@
 M = {}
+
 local file_path = vim.fn.stdpath("cache") .. "/niia.txt"
 
 local options = {
@@ -10,7 +11,7 @@ local options = {
     { name = "popup", default = true },
     { name = "harpoon", default = true },
     { name = "buffer_mode", default = false },
-    { name = "lsp_lines", default = tru },
+    { name = "lsp_lines", default = true },
 }
 
 local separator = ":"
