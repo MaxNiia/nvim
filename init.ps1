@@ -108,17 +108,17 @@ if (-not (Test-Path "${HOME}/.nvimstty")) {
 }
 
 # Creating required directories and files
-$currentPath = "$env:LOCALAPPDATA\Temp\.cache"
+$currentPath = "$env:LOCALAPPDATA\Temp\"
 if (-not (Test-Path $currentPath)) {
     New-Item $currentPath -ItemType Directory
 }
 
-$currentPath = "$env:LOCALAPPDATA\Temp\.cache\nvim"
+$currentPath = "$env:LOCALAPPDATA\Temp\nvim"
 if (-not (Test-Path $currentPath)) {
     New-Item $currentPath -ItemType Directory
 }
 
-$currentPath = "$env:LOCALAPPDATA\Temp\.cache\nvim\niia.txt"
+$currentPath = "$env:LOCALAPPDATA\Temp\nvim\niia.txt"
 if (-not (Test-Path $currentPath)) {
     New-Item $currentPath -ItemType File
 }
