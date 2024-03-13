@@ -16,6 +16,7 @@ return {
         enabled = not vim.g.vscode,
         name = "catppuccin",
         opts = {
+            term_colors = true,
             background = { -- :h background
                 light = "latte",
                 dark = "mocha",

@@ -218,6 +218,7 @@ return {
                         print(vim.fn.getcwd())
 
                         -- Set session
+                        require("persistence").save()
                         require("persistence").stop()
                         require("persistence").start()
                         require("persistence").load()

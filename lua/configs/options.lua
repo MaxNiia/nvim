@@ -74,6 +74,7 @@ vim.wo.spell = true
 
 vim.cmd([[
     set display+=truncate
+    set shada+=<50,
     set formatoptions+=j
     setglobal tags-=./tags tags-=./tags; tags^=./tags;
     set complete-=i
