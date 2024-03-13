@@ -1,7 +1,7 @@
 return {
     {
         "folke/zen-mode.nvim",
-        enabled = not _G.IS_VSCODE,
+        enabled = not vim.g.vscode,
         keys = {
             { "<leader>z", "<cmd>ZenMode<cr>", desc = "ZenMode" },
         },

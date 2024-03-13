@@ -1,7 +1,7 @@
 return {
     {
         "stevearc/stickybuf.nvim",
-        enabled = not _G.IS_VSCODE,
+        enabled = not vim.g.vscode,
         config = function(_, _)
             require("stickybuf").setup({
                 get_auto_pin = function(bufnr)

@@ -17,7 +17,7 @@ return {
     {
         "mfussenegger/nvim-dap",
         lazy = true,
-        enabled = not _G.IS_VSCODE,
+        enabled = not vim.g.vscode,
         keys = require("plugins.dap.keymap"),
         dependencies = {
             "rcarriga/nvim-dap-ui",

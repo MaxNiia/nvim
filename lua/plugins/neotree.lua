@@ -3,7 +3,7 @@ return {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         enabled = function()
-            return _G.neotree and not _G.IS_VSCODE
+            return _G.neotree and not vim.g.vscode
         end,
         dependencies = {
             "MunifTanjim/nui.nvim",

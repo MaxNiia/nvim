@@ -1,7 +1,7 @@
 return {
     {
         "SmiteshP/nvim-navic",
-        enabled = not _G.IS_VSCODE,
+        enabled = not vim.g.vscode,
         opts = {
             lsp = {
                 preference = { "clangd", "pyright" },

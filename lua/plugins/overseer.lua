@@ -1,7 +1,7 @@
 return {
     {
         "stevearc/overseer.nvim",
-        enabled = not _G.IS_VSCODE,
+        enabled = not vim.g.vscode,
         dependencies = {
             "stevearc/dressing.nvim",
             "nvim-telescope/telescope.nvim",

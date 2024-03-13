@@ -13,7 +13,7 @@ end
 return {
     {
         "catppuccin/nvim",
-        enabled = not _G.IS_VSCODE,
+        enabled = not vim.g.vscode,
         name = "catppuccin",
         opts = {
             background = { -- :h background

@@ -8,7 +8,7 @@ end
 return {
     {
         "ricardicus/nvim-magic",
-        enabled = not _G.IS_VSCODE,
+        enabled = not vim.g.vscode,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "MunifTanjim/nui.nvim",

@@ -60,7 +60,7 @@ return {
                 end,
             })
         end,
-        enabled = not _G.IS_VSCODE,
+        enabled = not vim.g.vscode,
         event = "BufReadPre", -- this will only start session saving when an actual file was opened
         opts = {
             dir = vim.fn.expand(vim.fn.stdpath("state") .. "/sessions/"), -- directory where session files are saved

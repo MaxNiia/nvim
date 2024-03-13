@@ -5,7 +5,7 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         enabled = function()
-            return not _G.mini_files and not _G.IS_VSCODE
+            return not _G.mini_files and not vim.g.vscode
         end,
         init = function()
             if vim.fn.argc() == 1 then

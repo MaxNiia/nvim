@@ -13,7 +13,7 @@ return {
         },
         lazy = true,
         event = "BufEnter",
-        enabled = not _G.IS_VSCODE,
+        enabled = not vim.g.vscode,
         opts = {
             options = {
                 icons_enabled = true,

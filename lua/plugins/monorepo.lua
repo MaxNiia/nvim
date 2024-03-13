@@ -1,7 +1,7 @@
 return {
     {
         "imNel/monorepo.nvim",
-        enabled = not _G.IS_VSCODE,
+        enabled = not vim.g.vscode,
         dependencies = {
             "nvim-telescope/telescope.nvim",
             "nvim-lua/plenary.nvim",

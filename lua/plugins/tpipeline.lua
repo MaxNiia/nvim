@@ -1,5 +1,5 @@
 return { {
     "vimpostor/vim-tpipeline",
-    enabled = not _G.IS_VSCODE,
+    enabled = not vim.g.vscode,
     lazy = false,
 } }

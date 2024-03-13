@@ -3,7 +3,7 @@ local icons = require("utils.icons").diagnostics
 return {
     {
         "rcarriga/nvim-notify",
-        enabled = not _G.IS_VSCODE,
+        enabled = not vim.g.vscode,
         lazy = true,
         event = "VeryLazy",
         opts = {

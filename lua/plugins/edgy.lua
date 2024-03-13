@@ -6,7 +6,7 @@ return {
         "stevearc/aerial.nvim",
     },
     event = "VeryLazy",
-    enabled = not _G.IS_VSCODE,
+    enabled = not vim.g.vscode,
     opts = {
         animate = {
             enabled = true,

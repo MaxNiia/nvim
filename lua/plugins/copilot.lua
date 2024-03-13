@@ -1,7 +1,7 @@
 return {
     {
         "zbirenbaum/copilot.lua",
-        enabled = _G.copilot and not _G.IS_VSCODE,
+        enabled = _G.copilot and not vim.g.vscode,
         cmd = "Copilot",
         event = "InsertEnter",
         config = function()

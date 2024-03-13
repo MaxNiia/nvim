@@ -2,7 +2,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         lazy = true,
-        enabled = not _G.IS_VSCODE,
+        enabled = not vim.g.vscode,
 
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {

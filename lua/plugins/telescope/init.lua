@@ -7,7 +7,7 @@ return {
             "Telescope",
         },
         keys = require("plugins.telescope.keymap"),
-        enabled = not _G.IS_VSCODE,
+        enabled = not vim.g.vscode,
         dependencies = {
             {
                 "nvim-telescope/telescope-fzf-native.nvim",

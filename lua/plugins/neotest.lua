@@ -2,7 +2,7 @@ local char = _G.toggleterm and "T" or "t"
 return {
     {
         "nvim-neotest/neotest",
-        enabled = not _G.IS_VSCODE,
+        enabled = not vim.g.vscode,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",
