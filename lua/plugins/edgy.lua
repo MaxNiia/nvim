@@ -1,5 +1,10 @@
 local icons = require("utils.icons").fold
 
+local only_buffer = function()
+    -- Return false if number of buffers is less than 2
+    return #vim.fn.getbufinfo({ buflisted = 1 }) > 1
+end
+
 return {
     "folke/edgy.nvim",
     dependencies = {
@@ -48,18 +53,12 @@ return {
             {
                 ft = "gitrebase",
                 size = { width = 80 },
-                filter = function()
-                    -- Return false if number of buffers is less than 2
-                    return #vim.fn.getbufinfo({ buflisted = 1 }) > 1
-                end,
+                filter = only_buffer,
             },
             {
                 ft = "gitcommit",
                 size = { width = 80 },
-                filter = function()
-                    -- Return false if number of buffers is less than 2
-                    return #vim.fn.getbufinfo({ buflisted = 1 }) > 1
-                end,
+                filter = only_buffer,
             },
             {
                 ft = "git",
