@@ -63,7 +63,7 @@ return {
             },
             {
                 ft = "git",
-                size = { wldth = 80 },
+                size = { width = 80 },
             },
             {
                 ft = "OverseerList",
