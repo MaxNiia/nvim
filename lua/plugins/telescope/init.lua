@@ -213,15 +213,20 @@ return {
                     initial_mode = "normal",
                     on_project_selected = function(prompt_bufnr)
                         local project_actions = require("telescope._extensions.project.actions")
+                        --
+                        -- Set session
+                        local resession = require("resession")
+                        resession.save_tab(
+                            vim.fn.getcwd(),
+                            { dir = "dirsession", notify = false, attach = false }
+                        )
                         -- Change dir to the selected project
                         project_actions.change_working_directory(prompt_bufnr)
                         print(vim.fn.getcwd())
-
-                        -- Set session
-                        require("persistence").save()
-                        require("persistence").stop()
-                        require("persistence").start()
-                        require("persistence").load()
+                        require("resession").load(
+                            vim.fn.getcwd(),
+                            { dir = "dirsession", notify = false }
+                        )
 
                         -- Set shada
                         local shada = require("utils.shada").get_current_shada()

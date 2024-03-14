@@ -90,9 +90,7 @@ return {
                     {
 
                         function()
-                            local session = require("persistence").get_current()
-                            local _, _, name = session:find("##([%w%d]*%.vim$)")
-                            return "Session: " .. name
+                            return "Session: " .. require("resession").get_current()
                         end,
                     },
                 },
