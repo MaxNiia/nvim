@@ -88,10 +88,16 @@ return {
     },
     {
         "<leader>fB",
+        "<cmd>Telescope scope buffers<cr>",
+        desc = "All buffers",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fG",
         function()
             require("telescope.builtin").live_grep({ grep_open_files = true })
         end,
-        desc = "Buffers",
+        desc = "Grep in buffers",
         mode = { "v", "n" },
     },
     {

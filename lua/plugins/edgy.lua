@@ -90,7 +90,13 @@ return {
                 end,
             },
             { ft = "spectre_panel", size = { width = 100, height = 50 } },
-            { bt = "terminal", size = { width = 100 } },
+            -- NOTE: Terminal has no filetype apparently.
+            -- {
+            --     filter = function(buf)
+            --         return vim.bo[buf].buftype == "terminal"
+            --     end,
+            --     size = { width = 100 },
+            -- },
         },
         bottom = {
             "Trouble",

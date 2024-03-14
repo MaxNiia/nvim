@@ -223,10 +223,10 @@ return {
                         -- Change dir to the selected project
                         project_actions.change_working_directory(prompt_bufnr)
                         print(vim.fn.getcwd())
-                        require("resession").load(
-                            vim.fn.getcwd(),
-                            { dir = "dirsession", notify = false }
-                        )
+                        -- require("resession").load(
+                        --     vim.fn.getcwd(),
+                        --     { dir = "dirsession", notify = false }
+                        -- )
 
                         -- Set shada
                         local shada = require("utils.shada").get_current_shada()
@@ -260,6 +260,7 @@ return {
             require("telescope").setup(opts)
 
             require("telescope.actions")
+            require("telescope").load_extension("scope")
             require("telescope").load_extension("aerial")
             require("telescope").load_extension("file_browser")
             require("telescope").load_extension("fzf")

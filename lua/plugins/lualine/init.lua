@@ -243,7 +243,7 @@ return {
                     {
                         "tabs",
                         mode = 2,
-                        path = 1,
+                        path = 0,
                         use_mode_colors = true,
                         show_modified_status = true,
                         symbols = {

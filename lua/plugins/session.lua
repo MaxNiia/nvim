@@ -2,11 +2,13 @@ return {
     {
         "okuuva/auto-save.nvim",
         enabled = true,
-        keymap = {
-            "<leader>Wa",
-            ":ASToggle<CR>",
-            desc = "Toggle autosave",
-            mode = "n",
+        keys = {
+            {
+                "<leader>Wa",
+                "<cmd>ASToggle<CR>",
+                desc = "Toggle autosave",
+                mode = "n",
+            },
         },
         opts = {
             execution_message = {
@@ -48,7 +50,14 @@ return {
         },
         {
             "stevearc/resession.nvim",
-            keymap = {
+            dependencies = {
+                {
+                    "tiagovla/scope.nvim",
+                    lazy = false,
+                    config = true,
+                },
+            },
+            keys = {
                 {
                     "<leader>Ws",
                     function()
@@ -85,18 +94,19 @@ return {
             },
             init = function()
                 local resession = require("resession")
-                vim.api.nvim_create_autocmd("VimEnter", {
-                    callback = function()
-                        -- Only load the session if nvim was started with no args
-                        if vim.fn.argc(-1) == 0 then
-                            -- Save these to a different directory, so our manual sessions don't get polluted
-                            resession.load(
-                                vim.fn.getcwd(),
-                                { dir = "dirsession", silence_errors = true }
-                            )
-                        end
-                    end,
-                })
+                -- Nope
+                -- vim.api.nvim_create_autocmd("VimEnter", {
+                --     callback = function()
+                --         -- Only load the session if nvim was started with no args
+                --         if vim.fn.argc(-1) == 0 then
+                --             -- Save these to a different directory, so our manual sessions don't get polluted
+                --             resession.load(
+                --                 vim.fn.getcwd(),
+                --                 { dir = "dirsession", silence_errors = true }
+                --             )
+                --         end
+                --     end,
+                -- })
                 vim.api.nvim_create_autocmd("VimLeavePre", {
                     callback = function()
                         resession.save_all()
@@ -118,17 +128,38 @@ return {
                     "winfixheight",
                     "winfixwidth",
                 },
+                autosave = {
+                    enabled = true,
+                    interval = 60,
+                    notify = true,
+                },
                 tab_buf_filter = function(tabpage, bufnr)
                     local dir = vim.fn.getcwd(-1, vim.api.nvim_tabpage_get_number(tabpage))
                     -- ensure dir has trailing /
                     dir = dir:sub(-1) ~= "/" and dir .. "/" or dir
                     return vim.startswith(vim.api.nvim_buf_get_name(bufnr), dir)
                 end,
-                autosave = {
-                    enabled = true,
-                    interval = 60,
-                    notify = true,
-                },
+                buf_filter = function(bufnr)
+                    local b
+                    uuftype = vim.bo[bufnr].buftype
+                    if buftype == "help" then
+                        return true
+                    end
+                    if buftype ~= "" and buftype ~= "acwrite" then
+                        return false
+                    end
+                    if vim.api.nvim_buf_get_name(bufnr) == "" then
+                        return false
+                    end
+
+                    -- this is required, since the default filter skips nobuflisted buffers
+                    return true
+                end,
+                extensions = {
+                    scope = {
+                        enable_in_tab = true,
+                    },
+                }, -- add scope.nvim extension
             },
         },
     },

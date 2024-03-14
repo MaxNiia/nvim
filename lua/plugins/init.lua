@@ -1,6 +1,31 @@
 local icons = require("utils.icons").todo
 return {
     {
+        "tiagovla/scope.nvim",
+        opts = {
+            hooks = {
+                pre_tab_close = function()
+                    require("resession").save_tab(
+                        vim.fn.getcwd(),
+                        { dir = "dirsession", notify = true, attach = false }
+                    )
+                end,
+                pre_tab_enter = function()
+                    require("resession").save_tab(
+                        vim.fn.getcwd(),
+                        { dir = "dirsession", notify = true, attach = false }
+                    )
+                end,
+                -- post_tab_enter = function()
+                --     require("resession").load(
+                --         vim.fn.getcwd(),
+                --         { dir = "dirsession", notify = true }
+                --     )
+                -- end
+            },
+        },
+    },
+    {
         "folke/neodev.nvim",
         lazy = true,
         ft = "lua",
