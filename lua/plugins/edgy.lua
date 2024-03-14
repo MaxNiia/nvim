@@ -90,7 +90,7 @@ return {
                 end,
             },
             { ft = "spectre_panel", size = { width = 100, height = 50 } },
-            { ft = "terminal", size = { width = 100 } },
+            { bt = "terminal", size = { width = 100 } },
         },
         bottom = {
             "Trouble",
