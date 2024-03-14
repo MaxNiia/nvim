@@ -63,15 +63,6 @@ return {
                 "yaml",
             },
             auto_install = true,
-            incremental_selection = {
-                enable = true,
-                keymaps = {
-                    init_selection = "gtt",
-                    node_incremental = "gtn",
-                    scope_incremental = "gts",
-                    node_decremental = "gtm",
-                },
-            },
         },
         config = function(_, opts)
             require("nvim-treesitter").setup()
