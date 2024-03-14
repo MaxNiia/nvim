@@ -16,12 +16,9 @@ return {
                         { dir = "dirsession", notify = true, attach = false }
                     )
                 end,
-                -- post_tab_enter = function()
-                --     require("resession").load(
-                --         vim.fn.getcwd(),
-                --         { dir = "dirsession", notify = true }
-                --     )
-                -- end
+                post_tab_enter = function()
+                    require("incline").refresh()
+                end,
             },
         },
     },
