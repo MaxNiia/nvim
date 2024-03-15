@@ -83,11 +83,12 @@ vim.cmd([[
     inoremap kj <Esc>
 ]])
 
--- tpipeline
-
-vim.g.tpipeline_split = 1
-vim.g.tpipeline_clearstl = 1
-vim.g.tpipeline_preservebg = 0
-vim.g.tpipeline_fillcentre = 0
-vim.g.tpipeline_restore = 0
-vim.g.tpipeline_autoembed = 0
+if not vim.g.vscode and (not _G.IS_WINDOWS or _G.IS_WSL) then
+    -- tpipeline
+    vim.g.tpipeline_split = 1
+    vim.g.tpipeline_clearstl = 1
+    vim.g.tpipeline_preservebg = 0
+    vim.g.tpipeline_fillcentre = 0
+    vim.g.tpipeline_restore = 0
+    vim.g.tpipeline_autoembed = 0
+end
