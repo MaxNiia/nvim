@@ -8,12 +8,14 @@ return {
         lazy = true,
         event = "BufEnter",
         keys = {
-            "<leader>V",
-            function()
-                require("swenv.api").pick_venv()
-            end,
-            desc = "Pick venv",
-            mode = "n",
+            {
+                "<leader>V",
+                function()
+                    require("swenv.api").pick_venv()
+                end,
+                desc = "Pick venv",
+                mode = "n",
+            },
         },
         opts = {
             get_venvs = function(venvs_path)

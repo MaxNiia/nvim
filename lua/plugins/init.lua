@@ -4,18 +4,6 @@ return {
         "tiagovla/scope.nvim",
         opts = {
             hooks = {
-                pre_tab_close = function()
-                    require("resession").save_tab(
-                        vim.fn.getcwd(),
-                        { dir = "dirsession", notify = true, attach = false }
-                    )
-                end,
-                pre_tab_enter = function()
-                    require("resession").save_tab(
-                        vim.fn.getcwd(),
-                        { dir = "dirsession", notify = true, attach = false }
-                    )
-                end,
                 post_tab_enter = function()
                     require("incline").refresh()
                 end,

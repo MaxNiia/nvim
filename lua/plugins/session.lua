@@ -51,20 +51,14 @@ return {
         {
             "stevearc/resession.nvim",
             dependencies = {
-                {
-                    "tiagovla/scope.nvim",
-                    lazy = false,
-                    config = true,
-                },
+                "tiagovla/scope.nvim",
+                "catppuccin/nvim",
             },
             keys = {
                 {
                     "<leader>Ws",
                     function()
-                        require("resession").save_tab(
-                            vim.fn.getcwd(),
-                            { dir = "dirsession", notify = true }
-                        )
+                        require("resession").save_tab(vim.fn.getcwd(), { notify = true })
                     end,
                     mode = "n",
                     desc = "Save session",
@@ -72,10 +66,33 @@ return {
                 {
                     "<leader>Wl",
                     function()
-                        require("resession").load(
-                            vim.fn.getcwd(),
-                            { dir = "dirsession", notify = true }
-                        )
+                        local resession = require("resession")
+
+                        local project_path = vim.fn.getcwd()
+                        local pattern = "/"
+                        if vim.fn.has("win32") == 1 then
+                            pattern = "[\\:]"
+                        end
+                        local project_name = project_path:gsub(pattern, "_")
+                        local new_session = true
+                        for _, session in pairs(resession.list()) do
+                            if session == project_name then
+                                new_session = false
+                                break
+                            end
+                        end
+                        if new_session then
+                            resession.save_tab(project_path, { attach = false, notify = true })
+                        else
+                            resession.load(project_path, { attach = false, notify = true })
+                        end
+                        local shada = require("utils.shada").get_current_shada()
+                        vim.o.shadafile = shada
+                        local f = io.open(shada, "r")
+                        if f == nil then
+                            vim.cmd.wshada()
+                        end
+                        pcall(vim.cmd.rshada, { bang = true })
                     end,
                     mode = "n",
                     desc = "Load session",
@@ -83,10 +100,7 @@ return {
                 {
                     "<leader>Wd",
                     function()
-                        require("resession").delete(
-                            vim.fn.getcwd(),
-                            { dir = "dirsession", notify = true }
-                        )
+                        require("resession").delete(vim.fn.getcwd(), { notify = true })
                     end,
                     mode = "n",
                     desc = "Delete session",
@@ -94,19 +108,6 @@ return {
             },
             init = function()
                 local resession = require("resession")
-                -- Nope
-                -- vim.api.nvim_create_autocmd("VimEnter", {
-                --     callback = function()
-                --         -- Only load the session if nvim was started with no args
-                --         if vim.fn.argc(-1) == 0 then
-                --             -- Save these to a different directory, so our manual sessions don't get polluted
-                --             resession.load(
-                --                 vim.fn.getcwd(),
-                --                 { dir = "dirsession", silence_errors = true }
-                --             )
-                --         end
-                --     end,
-                -- })
                 vim.api.nvim_create_autocmd("VimLeavePre", {
                     callback = function()
                         resession.save_all()
@@ -127,6 +128,7 @@ return {
                     "scrollbind",
                     "winfixheight",
                     "winfixwidth",
+                    "winhighlight",
                 },
                 autosave = {
                     enabled = true,
@@ -140,8 +142,7 @@ return {
                     return vim.startswith(vim.api.nvim_buf_get_name(bufnr), dir)
                 end,
                 buf_filter = function(bufnr)
-                    local b
-                    uuftype = vim.bo[bufnr].buftype
+                    local buftype = vim.bo[bufnr].buftype
                     if buftype == "help" then
                         return true
                     end
@@ -159,7 +160,7 @@ return {
                     scope = {
                         enable_in_tab = true,
                     },
-                }, -- add scope.nvim extension
+                },
             },
         },
     },

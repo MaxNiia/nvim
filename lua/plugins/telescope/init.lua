@@ -20,6 +20,7 @@ return {
             "nvim-telescope/telescope-project.nvim",
             "nvim-telescope/telescope-live-grep-args.nvim",
             "debugloop/telescope-undo.nvim",
+            "tiagovla/scope.nvim",
         },
         lazy = true,
         opts = {
@@ -210,23 +211,36 @@ return {
                 project = {
                     hidden_files = false,
                     sync_with_nvim_tree = false,
+                    cd_scope = { "tab", "window" },
                     initial_mode = "normal",
                     on_project_selected = function(prompt_bufnr)
                         local project_actions = require("telescope._extensions.project.actions")
-                        --
+                        project_actions.change_working_directory(prompt_bufnr)
+
                         -- Set session
                         local resession = require("resession")
-                        resession.save_tab(
-                            vim.fn.getcwd(),
-                            { dir = "dirsession", notify = false, attach = false }
-                        )
-                        -- Change dir to the selected project
-                        project_actions.change_working_directory(prompt_bufnr)
-                        print(vim.fn.getcwd())
-                        -- require("resession").load(
-                        --     vim.fn.getcwd(),
-                        --     { dir = "dirsession", notify = false }
-                        -- )
+
+                        local project_path = action_state.get_selected_entry(prompt_bufnr).value
+                        local pattern = "/"
+                        if vim.fn.has("win32") == 1 then
+                            pattern = "[\\:]"
+                        end
+                        local project_name = project_path:gsub(pattern, "_")
+                        -- Change monorepo directory to the selected project
+                        -- require("monorepo").change_monorepo(project_path)
+
+                        local new_session = true
+                        for _, session in pairs(resession.list()) do
+                            if session == project_name then
+                                new_session = false
+                                break
+                            end
+                        end
+                        if new_session then
+                            resession.save_tab(project_path, { attach = false, notify = true })
+                        else
+                            resession.load(project_path, { attach = false, notify = true })
+                        end
 
                         -- Set shada
                         local shada = require("utils.shada").get_current_shada()
@@ -236,10 +250,6 @@ return {
                             vim.cmd.wshada()
                         end
                         pcall(vim.cmd.rshada, { bang = true })
-
-                        -- Change monorepo directory to the selected project
-                        local selected_entry = action_state.get_selected_entry(prompt_bufnr)
-                        require("monorepo").change_monorepo(selected_entry.value)
                     end,
                 },
             })

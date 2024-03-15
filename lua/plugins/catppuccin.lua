@@ -15,14 +15,33 @@ return {
         "catppuccin/nvim",
         enabled = not vim.g.vscode,
         name = "catppuccin",
+        lazy = false,
         opts = {
             term_colors = true,
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = false,
+            },
             background = { -- :h background
                 light = "latte",
                 dark = "mocha",
             },
             color_overrides = {
                 mocha = oled_override(_G.oled),
+            },
+            styles = {
+                comments = { "bold" },
+                properties = { "italic" },
+                functions = { "italic", "bold" },
+                keywords = { "italic" },
+                operators = { "bold" },
+                conditionals = { "bold" },
+                loops = { "bold" },
+                booleans = { "bold", "italic" },
+                numbers = {},
+                types = { "italic" },
+                strings = {},
+                variables = {},
             },
             compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
             integrations = {
@@ -94,7 +113,7 @@ return {
                     CopilotSuggestion = { fg = c.surface1 },
                     DiffviewFilePanelPath = { fg = c.sapphire },
                     InclineText = { fg = c.text, bg = c.surface0, style = { "bold" } },
-                    InclineReverse = { fg = c.surface0, bg = c.base, style = { "bold" } },
+                    InclineReverse = { fg = c.surface0, style = { "bold" } },
                     InclineModified = { fg = c.red, bg = c.surface0, style = { "bold", "italic" } },
                     MarkSignHL = { fg = c.yellow, style = { "bold" } },
                 }

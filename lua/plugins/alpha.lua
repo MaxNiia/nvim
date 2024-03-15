@@ -87,6 +87,10 @@ return {
         enabled = not vim.g.vscode,
         dependencies = {
             "nvim-tree/nvim-web-devicons",
+            "stevearc/resession.nvim",
+            "catppuccin/nvim",
+            "nvim-telescope/telescope.nvim",
+            "nvim-treesitter/nvim-treesitter",
         },
         event = "VimEnter",
         opts = function()
@@ -96,11 +100,7 @@ return {
             dashboard.section.header.val = vim.split(logo, "\n")
             dashboard.section.buttons.val = {
                 dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
-                dashboard.button(
-                    "p",
-                    " " .. " Project",
-                    ":lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>"
-                ),
+                dashboard.button("p", " " .. " Project", ":Telescope project project <CR>"),
                 dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
                 dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
                 dashboard.button("s", " " .. " Find text", ":Telescope live_grep <CR>"),
