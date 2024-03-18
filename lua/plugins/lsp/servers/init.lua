@@ -1,6 +1,7 @@
 return {
     azure_pipelines_ls = require("plugins.lsp.servers.azure_pipelines_ls"),
     bashls = {},
+    basedpyright = require("plugins.lsp.servers.basedPyright"),
     clangd = require("plugins.lsp.servers.clangd"),
     cssls = require("plugins.lsp.servers.cssls"),
     cssmodules_ls = {},
