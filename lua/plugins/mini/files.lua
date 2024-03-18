@@ -105,15 +105,10 @@ return {
             -- Works only if cursor is on the valid file system entry
             local cur_entry_path = MiniFiles.get_fs_entry().path
             local cur_directory = vim.fs.dirname(cur_entry_path)
-            vim.fn.chdir(cur_directory)
+            if cur_directory ~= nil then
+                vim.fn.chdir(cur_directory)
+            end
         end
-
-        vim.api.nvim_create_autocmd("User", {
-            pattern = "MiniFilesBufferCreate",
-            callback = function(args)
-                vim.keymap.set("n", "g~", files_set_cwd, { buffer = args.data.buf_id })
-            end,
-        })
 
         vim.api.nvim_create_autocmd("User", {
             pattern = "MiniFilesBufferCreate",
@@ -122,6 +117,7 @@ return {
                 -- Tweak keys to your liking
                 map_split(buf_id, "gs", "belowright horizontal")
                 map_split(buf_id, "gv", "belowright vertical")
+                vim.keymap.set("n", "gd", files_set_cwd, { buffer = args.data.buf_id })
                 vim.keymap.set(
                     "n",
                     "g.",
@@ -199,9 +195,9 @@ return {
             sort = combined_sort,
         },
         -- mappings = {
-        --     go_in = "",
+        --     go_in = "l",
         --     go_in_plus = "L",
-        --     go_out = "",
+        --     go_out = "h",
         --     go_out_plus = "H",
         -- }
     },

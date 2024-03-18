@@ -236,10 +236,11 @@ return {
                                 break
                             end
                         end
+
                         if new_session then
-                            resession.save_tab(project_path, { attach = false, notify = true })
+                            resession.save_tab(project_path, { attach = true, notify = true })
                         else
-                            resession.load(project_path, { attach = false, notify = true })
+                            resession.load(project_path, { attach = true, notify = true })
                         end
 
                         -- Set shada
