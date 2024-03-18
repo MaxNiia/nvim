@@ -83,20 +83,37 @@ return {
             },
             {
                 ft = "help",
-                size = { height = 0.8, width = 120 },
+                size = { width = 120 },
+                -- only show help buffers
+                filter = function(buf)
+                    return vim.bo[buf].buftype == "help"
+                end,
+            },
+            {
+                ft = "markdown",
+                size = { width = 120 },
                 -- only show help buffers
                 filter = function(buf)
                     return vim.bo[buf].buftype == "help"
                 end,
             },
             { ft = "spectre_panel", size = { width = 100, height = 50 } },
-            -- NOTE: Terminal has no filetype apparently.
-            -- {
-            --     filter = function(buf)
-            --         return vim.bo[buf].buftype == "terminal"
-            --     end,
-            --     size = { width = 100 },
-            -- },
+            {
+                ft = "",
+                size = { width = 100 },
+                -- exclude floating windows
+                filter = function(buf, win)
+                    return vim.bo[buf].buftype == "terminal"
+                end,
+            },
+            {
+                ft = "toggleterm",
+                size = { width = 100 },
+                -- exclude floating windows
+                filter = function(buf, win)
+                    return vim.api.nvim_win_get_config(win).relative == ""
+                end,
+            },
         },
         bottom = {
             "Trouble",
