@@ -1,17 +1,16 @@
-M = {}
-
 local file_path = vim.fn.stdpath("cache") .. "/niia.txt"
 
 local options = {
-    { name = "mini_files", default = true },
-    { name = "neotree", default = false },
-    { name = "toggleterm", default = true },
-    { name = "oled", default = false },
-    { name = "copilot", default = false },
-    { name = "popup", default = true },
-    { name = "harpoon", default = true },
-    { name = "buffer_mode", default = false },
-    { name = "lsp_lines", default = true },
+    mini_files = true,
+    neotree = false,
+    toggleterm = true,
+    oled = false,
+    copilot = false,
+    popup = true,
+    harpoon = true,
+    buffer_mode = false,
+    lsp_lines = true,
+    prompt_end = "",
 }
 
 local separator = ":"
@@ -24,18 +23,30 @@ local function int_to_bool(i)
     return i ~= 0
 end
 
-M.save_config = function()
+local function save_config()
     local f = assert(io.open(file_path, "w"))
-    for _, option in pairs(options) do
-        f:write(option.name, separator, bool_to_int(_G[option.name]), "\n")
+
+    for name, default in pairs(options) do
+        local value = _G[name]
+        local value_type = type(value)
+        if value_type == "string" or value_type == "number" then
+            f:write(name, separator, value, "\n")
+        elseif value_type == "boolean" then
+            f:write(name, separator, bool_to_int(value), "\n")
+        else
+            vim.notify(
+                "Option: " .. name .. ": " .. value_type .. " isn't of a supported type.",
+                vim.log.levels.ERROR
+            )
+        end
     end
 
     f:close()
 end
 
-M.set_default_config = function()
-    for _, option in pairs(options) do
-        _G[option.name] = option.default
+local function set_default_config()
+    for name, default in pairs(options) do
+        _G[name] = default
     end
 end
 
@@ -61,27 +72,50 @@ local function read_config_file()
 
         -- Assume that the file couldn't be read because it doesn't exist.
         -- So set default values and try to write the file.
-        M.set_default_config()
-        M.save_config()
+        set_default_config()
+        save_config()
     end
 end
 
 local function parse_config_line(line)
     local config = { name = "", value = false }
-    -- TODO: Make this more robust. Currently can only handle 'name:int\n' lines and will assume
-    -- they are always a bool.
+
     for str in string.gmatch(line, "([^" .. separator .. "]+)") do
         if config.name == "" then
             config.name = str
         else
-            config.value = int_to_bool(tonumber(str))
+            if options[config.name] == nil then
+                vim.notify(
+                    "Option: " .. config.name .. " isn't a valid option.",
+                    vim.log.levels.ERROR
+                )
+                return { name = "" }
+            end
+            local default = options[config.name]
+
+            local default_type = type(default)
+            if default_type == "string" then
+                config.value = str
+            elseif default_type == "number" then
+                config.value = tonumber(str)
+            elseif default_type == "boolean" then
+                config.value = int_to_bool(tonumber(str))
+            else
+                vim.notify(
+                    "Option: " .. config.name .. " isn't of a supported type.",
+                    vim.log.levels.ERROR
+                )
+                return { name = "" }
+            end
         end
     end
 
     return config
 end
 
-M.load_config = function()
+local function load_config()
+    set_default_config()
+
     local lines = read_config_file()
 
     if not lines then
@@ -96,4 +130,4 @@ M.load_config = function()
     end
 end
 
-return M
+return { load_config = load_config, save_config = save_config }

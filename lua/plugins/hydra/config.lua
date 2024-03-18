@@ -10,29 +10,48 @@ local hint = [[
   _h_ %{harpoon}^^^^^ Harpoon
   _b_ %{buffer_mode}^ Buffer Mode
   _l_ %{lsp_lines}^^^ LSP lines
+  _P_ Prompt = %{prompt_end}
   ^
   ^^^^                _<Esc>_
 ]]
 
 local function show_state_builder(name)
     return function()
-        if _G[name] then
-            return "[X]"
-        else
-            return "[ ]"
-        end
+        return _G[name] and "[X]" or "[ ]"
     end
 end
 
-local function head_toggle_builder(name, key)
+local function show_string_builder(name)
+    return function()
+        return _G[name]
+    end
+end
+
+local function head_builder(name, key, func)
     return {
         key,
         function()
-            _G[name] = not _G[name]
+            func()
             require("utils.config").save_config()
         end,
         { desc = name },
     }
+end
+
+local function head_string_builder(name, key, input_string)
+    return head_builder(name, key, function()
+        vim.ui.input({ default = _G[name], prompt = input_string }, function(input)
+            if input ~= nil then
+                _G[name] = input
+            end
+        end)
+    end)
+end
+
+local function head_toggle_builder(name, key)
+    return head_builder(name, key, function()
+        _G[name] = not _G[name]
+    end)
 end
 
 return {
@@ -56,6 +75,7 @@ return {
                 harpoon = show_state_builder("harpoon"),
                 buffer_mode = show_state_builder("buffer_mode"),
                 lsp_lines = show_state_builder("lsp_lines"),
+                prompt_end = show_string_builder("prompt_end"),
             },
         },
     },
@@ -71,6 +91,7 @@ return {
         head_toggle_builder("harpoon", "h"),
         head_toggle_builder("buffer_mode", "b"),
         head_toggle_builder("lsp_lines", "l"),
+        head_string_builder("prompt_end", "P", "Enter your terminal prompt: "),
         { "<Esc>", nil, { exit = true } },
     },
 }
