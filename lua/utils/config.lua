@@ -26,7 +26,7 @@ end
 local function save_config()
     local f = assert(io.open(file_path, "w"))
 
-    for name, default in pairs(options) do
+    for name, _ in pairs(options) do
         local value = _G[name]
         local value_type = type(value)
         if value_type == "string" or value_type == "number" then

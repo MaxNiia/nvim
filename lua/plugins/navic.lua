@@ -4,7 +4,7 @@ return {
         enabled = not vim.g.vscode,
         opts = {
             lsp = {
-                preference = { "clangd", "pyright" },
+                preference = { "clangd", "basedpyright" },
             },
             highlight = true,
             click = true,
