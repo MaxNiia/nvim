@@ -45,7 +45,12 @@ return {
                 disabling = nil, -- ran when disabling auto-save
                 before_asserting_save = nil, -- ran before checking `condition`
                 before_saving = nil, -- ran before doing the actual save
-                after_saving = nil, -- ran after doing the actual save
+                after_saving = function() -- ran after doing the actual save
+                    local current_session = require("resession").get_current()
+                    if current_session ~= nil and current_session ~= "" then
+                        require("resession").save_tab(vim.fn.getcwd(), { notify = true })
+                    end
+                end,
             },
         },
         {
@@ -131,7 +136,7 @@ return {
                     "winhighlight",
                 },
                 autosave = {
-                    enabled = true,
+                    enabled = false,
                     interval = 60,
                     notify = true,
                 },

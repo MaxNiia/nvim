@@ -6,6 +6,10 @@ return {
             hooks = {
                 post_tab_enter = function()
                     require("incline").refresh()
+                    local current_session = require("resession").get_current()
+                    if current_session ~= nil and current_session ~= "" then
+                        vim.cmd.tcd(current_session)
+                    end
                 end,
             },
         },
