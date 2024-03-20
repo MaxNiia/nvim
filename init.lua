@@ -18,7 +18,7 @@ _G.popup = true
 _G.harpoon = true
 _G.buffer_mode = false
 _G.lsp_lines = true
-_G.prompt_end = ""
+_G.prompt_end = "%$ ",
 
 require("utils.config").load_config()
 

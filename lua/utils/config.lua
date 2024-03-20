@@ -10,7 +10,7 @@ local options = {
     harpoon = true,
     buffer_mode = false,
     lsp_lines = true,
-    prompt_end = "",
+    prompt_end = "%$ ",
 }
 
 local separator = ":"
@@ -30,9 +30,9 @@ local function save_config()
         local value = _G[name]
         local value_type = type(value)
         if value_type == "string" or value_type == "number" then
-            f:write(name, separator, value, "\n")
+            f:write(name, separator, value, separator, "\n")
         elseif value_type == "boolean" then
-            f:write(name, separator, bool_to_int(value), "\n")
+            f:write(name, separator, bool_to_int(value), separator, "\n")
         else
             vim.notify(
                 "Option: " .. name .. ": " .. value_type .. " isn't of a supported type.",
@@ -80,7 +80,7 @@ end
 local function parse_config_line(line)
     local config = { name = "", value = false }
 
-    for str in string.gmatch(line, "([^" .. separator .. "]+)") do
+    for str in string.gmatch(line, "([^" .. separator .. "]+)" .. separator) do
         if config.name == "" then
             config.name = str
         else
