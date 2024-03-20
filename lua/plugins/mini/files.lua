@@ -92,32 +92,30 @@ local map_split = function(buf_id, lhs, direction)
     vim.keymap.set("n", lhs, rhs, { buffer = buf_id, desc = desc })
 end
 
+local files_set_cwd = function(_)
+    -- Works only if cursor is on the valid file system entry
+    local cur_entry_path = MiniFiles.get_fs_entry().path
+    local cur_directory = vim.fs.dirname(cur_entry_path)
+    if cur_directory ~= nil then
+        vim.fn.chdir(cur_directory)
+    end
+end
+
 return {
     "echasnovski/mini.files",
-    enabled = function()
-        return (not vim.g.vscode) and OPTIONS.mini_files
-    end,
+    enabled = (not vim.g.vscode) and OPTIONS.mini_files.value,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
     },
     init = function()
-        local files_set_cwd = function(path)
-            -- Works only if cursor is on the valid file system entry
-            local cur_entry_path = MiniFiles.get_fs_entry().path
-            local cur_directory = vim.fs.dirname(cur_entry_path)
-            if cur_directory ~= nil then
-                vim.fn.chdir(cur_directory)
-            end
-        end
-
         vim.api.nvim_create_autocmd("User", {
             pattern = "MiniFilesBufferCreate",
             callback = function(args)
                 local buf_id = args.data.buf_id
                 -- Tweak keys to your liking
-                map_split(buf_id, "gs", "belowright horizontal")
-                map_split(buf_id, "gv", "belowright vertical")
-                vim.keymap.set("n", "gd", files_set_cwd, { buffer = args.data.buf_id })
+                map_split(buf_id, "gs", "Split horizontal")
+                map_split(buf_id, "gv", "Split vertical")
+                vim.keymap.set("n", "gd", files_set_cwd, { buffer = buf_id, desc = "Set cwd" })
                 vim.keymap.set(
                     "n",
                     "g.",

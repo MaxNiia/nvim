@@ -58,11 +58,14 @@ local head_builders = {
     end,
     number = function(name, key, prompt)
         return head_builder(name, key, function()
-            vim.ui.input({ default = tostring(OPTIONS[name].value), prompt = prompt }, function(input)
-                if input ~= nil then
-                    OPTIONS[name].value = tonumber(input) or 0
+            vim.ui.input(
+                { default = tostring(OPTIONS[name].value), prompt = prompt },
+                function(input)
+                    if input ~= nil then
+                        OPTIONS[name].value = tonumber(input) or 0
+                    end
                 end
-            end)
+            )
         end)
     end,
 }
@@ -104,7 +107,7 @@ return function()
     end
 
     table.insert(heads, { "<Esc>", nil, { exit = true } })
-    hint = hint .. [[
+    hint = hint .. "\n" .. [[
   ^
   ^^     _<Esc>_  
     ]]

@@ -64,7 +64,7 @@ return {
                 leap = true,
                 mason = true,
                 markdown = true,
-                neotree = true,
+                neotree = OPTIONS.neotree.value,
                 mini = {
                     enabled = true,
                     indentscope_color = "",

@@ -54,7 +54,7 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
-    autocmd VimLeave * lua require("utils.config").save_config()
+    autocmd VimLeavePre * lua require("utils.config").save_config()
 ]])
 
 vim.cmd([[
