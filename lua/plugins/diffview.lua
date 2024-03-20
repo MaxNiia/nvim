@@ -16,8 +16,13 @@ return {
             },
             {
                 "<leader>" .. group_key .. "f",
+                "<cmd>DiffviewFileHistory %<cr>",
+                desc = "View buffer history",
+            },
+            {
+                "<leader>" .. group_key .. "F",
                 "<cmd>DiffviewFileHistory<cr>",
-                desc = "View file history",
+                desc = "View history",
             },
             {
                 "<leader>" .. group_key .. "d",
