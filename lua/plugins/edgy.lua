@@ -83,7 +83,7 @@ return {
             },
             {
                 ft = "help",
-                size = { width = 120 },
+                size = { width = 80 },
                 -- only show help buffers
                 filter = function(buf)
                     return vim.bo[buf].buftype == "help"
@@ -91,18 +91,24 @@ return {
             },
             {
                 ft = "markdown",
-                size = { width = 120 },
+                size = { width = 100 },
                 -- only show help buffers
                 filter = function(buf)
                     return vim.bo[buf].buftype == "help"
                 end,
             },
-            { ft = "spectre_panel", size = { width = 100, height = 50 } },
             {
+                ft = "spectre_panel",
+                size = { width = 100, height = 50 },
+            },
+        {
                 ft = "",
                 size = { width = 100 },
                 -- exclude floating windows
-                filter = function(buf, win)
+                filter = function(
+                    buf,
+                    _ --[[win]]
+                )
                     return vim.bo[buf].buftype == "terminal"
                 end,
             },
@@ -110,14 +116,25 @@ return {
                 ft = "toggleterm",
                 size = { width = 100 },
                 -- exclude floating windows
-                filter = function(buf, win)
+                filter = function(
+                    _ --[[buf]],
+                    win
+                )
                     return vim.api.nvim_win_get_config(win).relative == ""
                 end,
             },
         },
         bottom = {
-            "Trouble",
-            { ft = "qf", title = "QuickFix" },
+            {
+                ft = "Trouble",
+                title = "Trouble",
+                size = { height = 10 },
+            },
+            {
+                ft = "qf",
+                title = "QuickFix",
+                size = { height = 10 },
+            },
         },
         icons = {
             closed = icons.closed .. " ",
