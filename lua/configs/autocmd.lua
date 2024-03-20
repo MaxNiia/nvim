@@ -54,6 +54,10 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
+    autocmd VimLeave * lua require("utils.config").save_config()
+]])
+
+vim.cmd([[
     autocmd FileType help wincmd L
     autocmd FileType fugitive wincmd L
 ]])

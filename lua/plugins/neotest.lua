@@ -1,4 +1,4 @@
-local char = _G.toggleterm and "T" or "t"
+local char = OPTIONS.toggleterm and "T" or "t"
 return {
     {
         "nvim-neotest/neotest",

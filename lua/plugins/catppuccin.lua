@@ -27,7 +27,7 @@ return {
                 dark = "mocha",
             },
             color_overrides = {
-                mocha = oled_override(_G.oled),
+                mocha = oled_override(OPTIONS.oled.value),
             },
             styles = {
                 comments = { "bold" },
@@ -52,7 +52,7 @@ return {
                 dashboard = true,
                 gitsigns = true,
                 fidget = true,
-                harpoon = _G.harpoon,
+                harpoon = OPTIONS.harpoon.value,
                 illuminate = true,
                 semantic_tokens = true,
                 dap = true,

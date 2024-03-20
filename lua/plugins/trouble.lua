@@ -42,7 +42,7 @@ return {
                 desc = "Next trouble",
             },
             {
-                "]A",
+                "[A",
                 function()
                     require("trouble").first({ skip_groups = true, jump = true })
                 end,
@@ -56,7 +56,7 @@ return {
                 desc = "Previous trouble",
             },
             {
-                "[A",
+                "]A",
                 function()
                     require("trouble").last({ skip_groups = true, jump = true })
                 end,

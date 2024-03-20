@@ -8,6 +8,8 @@ return {
         dependencies = {
             "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
             {
+                event = "VeryLazy",
+                ft = "lua",
                 "folke/neodev.nvim",
                 opts = {
                     library = { plugins = { "nvim-dap-ui" }, types = true },
@@ -66,7 +68,7 @@ return {
         },
         opts = {
             -- options for vim.diagnostic.config()
-            diagnostics = require("plugins.lsp.diagnostics")(_G.lsp_lines),
+            diagnostics = require("plugins.lsp.diagnostics")(OPTIONS.lsp_lines),
             -- Automatically format on save
             autoformat = true,
             format = {

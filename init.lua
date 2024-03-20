@@ -9,16 +9,74 @@ endif
 autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 ]])
 
-_G.mini_files = true
-_G.neotree = false
-_G.toggleterm = true
-_G.oled = false
-_G.copilot = false
-_G.popup = true
-_G.harpoon = true
-_G.buffer_mode = false
-_G.lsp_lines = true
-_G.prompt_end = "%$ ",
+OPTIONS = {
+    mini_files = {
+        value = true,
+        key = "m",
+        description = "mini.files",
+        prompt = nil,
+    },
+    neotree = {
+        value = false,
+        key = "n",
+        description = "Neotree",
+        prompt = nil,
+    },
+    toggleterm = {
+        value = false,
+        key = "t",
+        description = "Toggleterm",
+        prompt = nil,
+    },
+    oled = {
+        value = false,
+        key = "o",
+        description = "OLED Catppuccin",
+        prompt = nil,
+    },
+    copilot = {
+        value = false,
+        key = "c",
+        description = "Copilot",
+        prompt = nil,
+    },
+    popup = {
+        value = true,
+        key = "p",
+        description = "Command line popup",
+        prompt = nil,
+    },
+    harpoon = {
+        value = false,
+        key = "h",
+        description = "Harpoon",
+        prompt = nil,
+    },
+    buffer_mode = {
+        value = false,
+        key = "b",
+        description = "Buffer mode",
+        prompt = nil,
+    },
+    lsp_lines = {
+        value = false,
+        key = "l",
+        description = "lsp_lines",
+        prompt = nil,
+    },
+    prompt_end = {
+        value = "%$ ",
+        key = "P",
+        description = "Terminal prompt",
+        prompt = "Enter your terminal prompt",
+    },
+    font_size = {
+        value = 11.0,
+        key = "f",
+        description = "Font size",
+        prompt = "Enter desired font size",
+    },
+}
 
 require("utils.config").load_config()
 
@@ -32,7 +90,7 @@ _G.IS_WSL = IS_LINUX and uname.release:find("Microsoft") and true or false
 
 if vim.g.neovide then
     require("configs.neovide")
-elseif  vim.g.vscode then
+elseif vim.g.vscode then
     require("configs.vscode")
 end
 

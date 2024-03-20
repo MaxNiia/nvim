@@ -25,7 +25,7 @@ return {
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "filesystem"
                 end,
-                pinned = _G.neotree,
+                pinned = OPTIONS.neotree.value,
                 size = { height = 0.5 },
             },
             {
@@ -34,7 +34,7 @@ return {
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "git_status"
                 end,
-                pinned = _G.neotree,
+                pinned = OPTIONS.neotree.value,
                 open = "Neotree position=right git_status",
             },
             {
@@ -43,21 +43,21 @@ return {
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "buffers"
                 end,
-                pinned = _G.neotree,
+                pinned = OPTIONS.neotree.value,
                 open = "Neotree position=top buffers",
             },
             {
                 ft = "DiffviewFiles",
-                size = { width = 80 },
+                size = { width = 30 },
             },
             {
                 ft = "gitrebase",
-                size = { width = 80 },
+                size = { width = 72 },
                 filter = only_buffer,
             },
             {
                 ft = "gitcommit",
-                size = { width = 80 },
+                size = { width = 72 },
                 filter = only_buffer,
             },
             {

@@ -3,7 +3,7 @@ return {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
         enabled = function()
-            return _G.neotree and not vim.g.vscode
+            return OPTIONS.neotree and not vim.g.vscode
         end,
         dependencies = {
             "MunifTanjim/nui.nvim",
@@ -51,7 +51,7 @@ return {
             vim.cmd([[Neotree close]])
         end,
         init = function()
-            if vim.fn.argc() == 1 and _G.neotree then
+            if vim.fn.argc() == 1 and OPTIONS.neotree then
                 local stat = vim.loop.fs_stat(vim.fn.argv(0))
                 if stat and stat.type == "directory" then
                     require("neo-tree")
@@ -89,7 +89,7 @@ return {
             filesystem = {
                 components = {
                     harpoon_index = function(config, node, state)
-                        if _G.harpoon then
+                        if OPTIONS.harpoon then
                             return
                         end
 

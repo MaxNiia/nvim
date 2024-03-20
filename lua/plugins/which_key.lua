@@ -60,11 +60,12 @@ return {
                     name = "Switch Window",
                 },
                 E = { name = "Files" },
+                F = { name = "Config" },
                 b = { name = "Debug" },
                 h = { name = "Harpoon" },
             }, { prefix = "<leader>", mode = "n" })
 
-            if _G.neotree then
+            if OPTIONS.neotree.value then
                 wk.register({
                     H = {
                         name = "Git",
@@ -83,7 +84,7 @@ return {
                 }, { prefix = "<leader>", mode = "n" })
             end
 
-            if _G.toggleterm then
+            if OPTIONS.toggleterm.value then
                 wk.register({
                     t = { name = "Terminal" },
                     T = { name = "Test" },

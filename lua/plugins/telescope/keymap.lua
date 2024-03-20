@@ -382,13 +382,13 @@ return {
     {
         "<leader>fh",
         function()
-            if _G.harpoon then
+            if OPTIONS.harpoon.value then
                 require("telescope").extensions.harpoon()
             else
                 require("telescope.builtin").marks()
             end
         end,
-        desc = _G.harpoon and "Harpoon" or "Marks",
+        desc = OPTIONS.harpoon.value and "Harpoon" or "Marks",
         mode = { "v", "n" },
     },
     -- LEADER

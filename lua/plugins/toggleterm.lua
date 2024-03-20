@@ -27,7 +27,7 @@ return {
     },
     {
         "akinsho/toggleterm.nvim",
-        enabled = _G.toggleterm and not vim.g.vscode,
+        enabled = OPTIONS.toggleterm.value and not vim.g.vscode,
         dependencies = {
             "samjwill/nvim-unception",
         },

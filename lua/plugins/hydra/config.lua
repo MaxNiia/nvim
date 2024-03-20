@@ -1,31 +1,34 @@
-local hint = [[
-  ^^     Config
-  ^
-  _n_ %{neotree}^^^^^ Neotree
-  _m_ %{mini_files}^^ mini.files
-  _t_ %{toggleterm}^^ Toggleterm
-  _o_ %{oled}^^^^^^^^ OLED Catppuccin
-  _c_ %{copilot}^^^^^ Copilot
-  _p_ %{popup}^^^^^^^ Popup
-  _h_ %{harpoon}^^^^^ Harpoon
-  _b_ %{buffer_mode}^ Buffer Mode
-  _l_ %{lsp_lines}^^^ LSP lines
-  _P_ Prompt = %{prompt_end}
-  ^
-  ^^^^                _<Esc>_
-]]
+local get_offset = function(name)
+    local max_length = 0
+    local current_length = 0
+    for option, config in pairs(OPTIONS) do
+        local length
+        if type(config.value) == "boolean" then
+            length = 3
+        else
+            length = tostring(config.value):len()
+        end
 
-local function show_state_builder(name)
-    return function()
-        return _G[name] and "[X]" or "[ ]"
+        if option == name then
+            current_length = length
+        end
+
+        max_length = max_length < length and length or max_length
     end
+
+    return max_length - current_length + 2
 end
 
-local function show_string_builder(name)
-    return function()
-        return _G[name]
-    end
+local hint_builder = function(name, key, description)
+    local spacing = string.rep(" ", get_offset(name))
+    return "  _" .. key .. "_ %{" .. name .. "}" .. spacing .. description .. "  "
 end
+
+local hint_builders = {
+    boolean = hint_builder,
+    string = hint_builder,
+    number = hint_builder,
+}
 
 local function head_builder(name, key, func)
     return {
@@ -38,60 +41,89 @@ local function head_builder(name, key, func)
     }
 end
 
-local function head_string_builder(name, key, input_string)
-    return head_builder(name, key, function()
-        vim.ui.input({ default = _G[name], prompt = input_string }, function(input)
-            if input ~= nil then
-                _G[name] = input
-            end
+local head_builders = {
+    boolean = function(name, key, _)
+        return head_builder(name, key, function()
+            OPTIONS[name].value = not OPTIONS[name].value
         end)
-    end)
-end
+    end,
+    string = function(name, key, prompt)
+        return head_builder(name, key, function()
+            vim.ui.input({ default = OPTIONS[name].value, prompt = prompt }, function(input)
+                if input ~= nil then
+                    OPTIONS[name].value = input
+                end
+            end)
+        end)
+    end,
+    number = function(name, key, prompt)
+        return head_builder(name, key, function()
+            vim.ui.input({ default = tostring(OPTIONS[name].value), prompt = prompt }, function(input)
+                if input ~= nil then
+                    OPTIONS[name].value = tonumber(input) or 0
+                end
+            end)
+        end)
+    end,
+}
 
-local function head_toggle_builder(name, key)
-    return head_builder(name, key, function()
-        _G[name] = not _G[name]
-    end)
-end
+local value_builders = {
+    boolean = function(name)
+        return function()
+            return OPTIONS[name].value and "[X]" or "[ ]"
+        end
+    end,
 
-return {
-    name = "Config",
-    hint = hint,
-    config = {
-        color = "amaranth",
-        invoke_on_body = true,
-        hint = {
-            float_opts = {
-                border = "rounded",
-            },
-            position = "middle",
-            funcs = {
-                neotree = show_state_builder("neotree"),
-                mini_files = show_state_builder("mini_files"),
-                toggleterm = show_state_builder("toggleterm"),
-                oled = show_state_builder("oled"),
-                copilot = show_state_builder("copilot"),
-                popup = show_state_builder("popup"),
-                harpoon = show_state_builder("harpoon"),
-                buffer_mode = show_state_builder("buffer_mode"),
-                lsp_lines = show_state_builder("lsp_lines"),
-                prompt_end = show_string_builder("prompt_end"),
+    string = function(name)
+        return function()
+            return OPTIONS[name].value
+        end
+    end,
+
+    number = function(name)
+        return function()
+            return tostring(OPTIONS[name].value)
+        end
+    end,
+}
+
+return function()
+    local heads = {}
+    local hint = [[
+  ^^     Config  
+  ^
+    ]]
+    local values = {}
+
+    for option, config in pairs(OPTIONS) do
+        local value_type = type(config.value)
+
+        hint = hint .. "\n" .. hint_builders[value_type](option, config.key, config.description)
+        table.insert(heads, head_builders[value_type](option, config.key, config.prompt))
+        values[option] = value_builders[value_type](option)
+    end
+
+    table.insert(heads, { "<Esc>", nil, { exit = true } })
+    hint = hint .. [[
+  ^
+  ^^     _<Esc>_  
+    ]]
+    return {
+        name = "Config",
+        hint = hint,
+        config = {
+            color = "amaranth",
+            invoke_on_body = true,
+            hint = {
+                float_opts = {
+                    border = "rounded",
+                },
+                position = "middle",
+                funcs = values,
             },
         },
-    },
-    mode = { "n", "x" },
-    body = "<leader>F",
-    heads = {
-        head_toggle_builder("neotree", "n"),
-        head_toggle_builder("mini_files", "m"),
-        head_toggle_builder("toggleterm", "t"),
-        head_toggle_builder("oled", "o"),
-        head_toggle_builder("copilot", "c"),
-        head_toggle_builder("popup", "p"),
-        head_toggle_builder("harpoon", "h"),
-        head_toggle_builder("buffer_mode", "b"),
-        head_toggle_builder("lsp_lines", "l"),
-        head_string_builder("prompt_end", "P", "Enter your terminal prompt: "),
-        { "<Esc>", nil, { exit = true } },
-    },
-}
+        mode = { "n", "x" },
+        body = "<leader>F",
+        heads = heads,
+    }
+end

@@ -1,5 +1,5 @@
 local group_key = "g"
-if _G.neotree then
+if OPTIONS.neotree.value then
     group_key = "H"
 end
 

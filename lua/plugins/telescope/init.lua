@@ -46,7 +46,7 @@ return {
                     },
                 },
                 buffers = {
-                    initial_mode = _G.buffer_mode and "insert" or "normal",
+                    initial_mode = OPTIONS.buffer_mode.value and "insert" or "normal",
                 },
                 spell_suggest = {
                     initial_mode = "normal",
@@ -280,7 +280,7 @@ return {
             require("telescope").load_extension("notify")
             require("telescope").load_extension("project")
             require("telescope").load_extension("monorepo")
-            if _G.harpoon then
+            if OPTIONS.harpoon.value then
                 require("telescope").load_extension("harpoon")
             end
         end,
