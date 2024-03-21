@@ -6,30 +6,32 @@ end
 
 return {
     {
-        "samjwill/nvim-unception",
-        event = "BufEnter",
+        "MaxNiia/nvim-unception",
+        lazy = false,
         init = function()
             -- Optional settings go here!
             vim.g.unception_delete_replaced_buffer = false
-            vim.g.unception_open_buffer_in_new_tab = true
+            vim.g.unception_open_buffer_in_new_tab = false
             vim.g.unception_enable_flavor_text = true
 
-            vim.api.nvim_create_autocmd("User", {
-                pattern = "UnceptionEditRequestReceived",
-                callback = function()
-                    -- Toggle the terminal off.
-                    if vim.bo.filetype == "toggleterm" then
-                        require("toggleterm").toggle_all(true)
-                    end
-                end,
-            })
+            if OPTIONS.toggleterm.value then
+                vim.api.nvim_create_autocmd("User", {
+                    pattern = "UnceptionEditRequestReceived",
+                    callback = function()
+                        -- Toggle the terminal off.
+                        if vim.bo.filetype == "toggleterm" then
+                            require("toggleterm").toggle_all(true)
+                        end
+                    end,
+                })
+            end
         end,
     },
     {
         "akinsho/toggleterm.nvim",
         enabled = OPTIONS.toggleterm.value and not vim.g.vscode,
         dependencies = {
-            "samjwill/nvim-unception",
+            "MaxNiia/nvim-unception",
         },
         event = "BufEnter",
         keys = {
