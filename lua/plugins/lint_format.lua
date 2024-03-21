@@ -128,7 +128,7 @@ return {
                 -- NOTE: LSP
                 "clangd",
                 "lua-language-server",
-                "pyright",
+                "basedpyright",
                 "cmakelang",
 
                 -- NOTE: LINT
