@@ -58,7 +58,7 @@ return {
                     },
                 },
             }
-            if OPTIONS.popup then
+            if OPTIONS.popup.value then
                 _opts = vim.tbl_deep_extend("force", require("plugins.noice.popup"), _opts or {})
                     or {}
             else
