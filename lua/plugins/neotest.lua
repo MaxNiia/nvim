@@ -8,6 +8,7 @@ return {
             "nvim-treesitter/nvim-treesitter",
             "alfaix/neotest-gtest",
             "antoinemadec/FixCursorHold.nvim",
+            "nvim-neotest/nvim-nio",
         },
         lazy = true,
         event = "VeryLazy",
