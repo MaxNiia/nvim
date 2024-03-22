@@ -67,7 +67,7 @@ return {
         },
         opts = {
             -- options for vim.diagnostic.config()
-            diagnostics = require("plugins.lsp.diagnostics")(OPTIONS.lsp_lines),
+            diagnostics = require("plugins.lsp.diagnostics")(OPTIONS.lsp_lines.value),
             -- Automatically format on save
             autoformat = true,
             format = {

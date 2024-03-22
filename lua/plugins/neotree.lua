@@ -49,7 +49,7 @@ return {
             vim.cmd([[Neotree close]])
         end,
         init = function()
-            if vim.fn.argc() == 1 and OPTIONS.neotree then
+            if vim.fn.argc() == 1 and OPTIONS.neotree.value then
                 local stat = vim.uv.fs_stat(vim.fn.argv(0))
                 if stat and stat.type == "directory" then
                     require("neo-tree")
@@ -87,7 +87,7 @@ return {
             filesystem = {
                 components = {
                     harpoon_index = function(config, node, state)
-                        if OPTIONS.harpoon then
+                        if OPTIONS.harpoon.value then
                             return
                         end
 

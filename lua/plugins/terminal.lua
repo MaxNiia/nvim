@@ -11,8 +11,7 @@ end
 return {
     {
         "chomosuke/term-edit.nvim",
-        lazy = OPTIONS.toggleterm.value,
-        ft = OPTIONS.toggleterm.value and "toggleterm" or "",
+        lazy = false,
         version = "1.*",
         opts = {
             prompt_end = prompt_end(),
