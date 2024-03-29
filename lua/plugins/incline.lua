@@ -15,6 +15,7 @@ return {
                 wintypes = "special",
             },
             window = {
+                zindex = 25,
                 placement = {
                     vertical = "top",
                     horizontal = "left",
