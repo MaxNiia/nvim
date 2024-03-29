@@ -2,6 +2,7 @@ return {
     {
         "okuuva/auto-save.nvim",
         enabled = true,
+        event = "BufEnter",
         keys = {
             {
                 "<leader>Wa",
