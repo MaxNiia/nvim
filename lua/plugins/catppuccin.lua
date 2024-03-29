@@ -17,12 +17,18 @@ return {
         name = "catppuccin",
         lazy = false,
         opts = {
+            transparent_background = false,
             term_colors = true,
+            dim_inactive = {
+                enabled = false,
+                shade = "dark",
+                percentage = 0.10,
+            },
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
             },
-            background = { -- :h background
+            background = {
                 light = "latte",
                 dark = "mocha",
             },
@@ -103,14 +109,15 @@ return {
             },
             custom_highlights = function(c)
                 return {
-                    -- Comment = { fg = c.rosewater },
                     HighlightUndo = { bg = c.overlay0 },
                     CopilotSuggestion = { fg = c.surface1 },
                     DiffviewFilePanelPath = { fg = c.sapphire },
                     InclineText = { fg = c.text, bg = c.surface0, style = { "bold" } },
-                    InclineReverse = { fg = c.surface0, style = { "bold" } },
+                    InclineTextInactive = { fg = c.overlay0, bg = c.surface0 },
+                    InclineReverse = { fg = c.surface0, bg = "bg", style = { "bold" } },
                     InclineModified = { fg = c.red, bg = c.surface0, style = { "bold", "italic" } },
                     MarkSignHL = { fg = c.yellow, style = { "bold" } },
+                    NoicePopupmenuBorder = {fg = "bg"},
                 }
             end,
         },

@@ -18,9 +18,17 @@ return {
                 zindex = 25,
                 placement = {
                     vertical = "top",
-                    horizontal = "left",
+                    horizontal = "center",
                 },
-                padding = { left = 0, right = 1 },
+                padding = { left = 0, right = 0 },
+                winhighlight = {
+                    active = {
+                        Normal = "InclineText",
+                    },
+                    inactive = {
+                        Normal = "InclineTextInactive",
+                    },
+                },
             },
             hide = {
                 cursorline = "focused_win",
@@ -73,14 +81,27 @@ return {
                 end
 
                 return {
-                    ft_icon and { " " .. ft_icon .. " ", guifg = "bg", guibg = ft_color } or {},
+                    ft_icon and {
+                        icons.separator.full.right,
+                        guibg = "bg",
+                        guifg = vim.g.neovide and "bg" or ft_color,
+                    } or {},
+                    ft_icon and {
+                        ft_icon .. " ",
+                        guibg = ft_color,
+                        guifg = vim.g.neovide and ft_color or "bg",
+                    } or {},
+
                     {
                         " " .. filename .. " ",
-                        group = modified and "InclineModified" or "InclineText",
+                        group = modified and "InclineModified" or "Normal",
                     },
-                    { get_diagnostic_label(), group = "InclineText" },
-                    { get_git_diff(), group = "InclineText" },
-                    { icons.separator.full.left, group = "InclineReverse" },
+                    { get_diagnostic_label(), group = "Normal" },
+                    { get_git_diff(), group = "Normal" },
+                    vim.g.neovide and {} or {
+                        icons.separator.full.left,
+                        group = "InclineReverse",
+                    },
                 }
             end,
         },

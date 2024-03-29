@@ -31,6 +31,10 @@ return {
                     inc_rename = false,
                     long_message_to_split = true,
                 },
+                popupmenu = {
+                    enabled = true,
+                    backend = "nui",
+                },
                 override = {
                     ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
                     ["vim.lsp.util.stylize_markdown"] = true,
@@ -54,6 +58,26 @@ return {
                             },
                             icon = "",
                             lang = "git",
+                        },
+                    },
+                },
+                views = {
+                    popup = {
+                        border = {
+                            style = "none",
+                            padding = { 1, 1 },
+                        },
+                        win_options = {
+                            winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+                        },
+                    },
+                    popupmenu = {
+                        border = {
+                            style = "none",
+                            padding = { 1, 1 },
+                        },
+                        win_options = {
+                            winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
                         },
                     },
                 },

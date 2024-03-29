@@ -6,7 +6,7 @@ return {
         cmdline_popup = {
             border = {
                 style = "none",
-                padding = { 2, 3 },
+                padding = { 1, 1 },
             },
             filter_options = {},
             win_options = {
