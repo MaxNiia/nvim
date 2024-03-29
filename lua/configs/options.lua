@@ -4,8 +4,8 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Options
 vim.opt.ai = true
-vim.opt.autoread = true
 vim.opt.autoindent = true
+vim.opt.autoread = true
 vim.opt.autowriteall = true
 vim.opt.backspace = "indent,eol,start"
 vim.opt.belloff = "all"
@@ -17,6 +17,8 @@ vim.opt.culopt = "both"
 vim.opt.cursorline = true
 vim.opt.expandtab = true
 vim.opt.foldcolumn = "auto:1"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 vim.opt.hidden = true
 vim.opt.history = 1000
 vim.opt.ignorecase = true
@@ -30,6 +32,7 @@ vim.opt.rnu = true
 vim.opt.ruler = false
 vim.opt.scrolloff = 1
 vim.opt.shiftwidth = 4
+vim.opt.showtabline = false
 vim.opt.sidescroll = 1
 vim.opt.sidescrolloff = 2
 vim.opt.signcolumn = "yes:1"
@@ -51,8 +54,6 @@ vim.opt.timeoutlen = 300
 vim.opt.ttimeout = true
 vim.opt.ttimeoutlen = 5
 vim.opt.wildmenu = true
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 
 local icons = require("utils.icons")
 vim.opt.fillchars:append({
