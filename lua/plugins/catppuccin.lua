@@ -17,7 +17,7 @@ return {
         name = "catppuccin",
         lazy = false,
         opts = {
-            transparent_background = false,
+            transparent_background = vim.g.neovide,
             term_colors = true,
             dim_inactive = {
                 enabled = false,
@@ -114,10 +114,9 @@ return {
                     DiffviewFilePanelPath = { fg = c.sapphire },
                     InclineText = { fg = c.text, bg = c.surface0, style = { "bold" } },
                     InclineTextInactive = { fg = c.overlay0, bg = c.surface0 },
-                    InclineReverse = { fg = c.surface0, bg = "bg", style = { "bold" } },
+                    InclineReverse = { fg = c.surface0, bg = c.none, style = { "bold" } },
                     InclineModified = { fg = c.red, bg = c.surface0, style = { "bold", "italic" } },
                     MarkSignHL = { fg = c.yellow, style = { "bold" } },
-                    NoicePopupmenuBorder = {fg = "bg"},
                 }
             end,
         },
