@@ -19,7 +19,7 @@ return {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "onsails/lspkind.nvim",
-            "kevinhwang91/nv-fo",
+            "kevinhwang91/nvim-ufo",
             "hrsh7th/cmp-nvim-lsp",
             "AckslD/swenv.nvim",
             {
