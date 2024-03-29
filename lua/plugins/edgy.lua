@@ -7,9 +7,6 @@ end
 
 return {
     "folke/edgy.nvim",
-    dependencies = {
-        "stevearc/aerial.nvim",
-    },
     event = "VeryLazy",
     enabled = not vim.g.vscode,
     opts = {
@@ -72,11 +69,6 @@ return {
         },
         right = {
             {
-                ft = "aerial",
-                open = "AerialOpen",
-                size = { width = 60 },
-            },
-            {
                 ft = "fugitive",
                 open = "G",
                 size = { width = 60 },
@@ -125,11 +117,6 @@ return {
             },
         },
         bottom = {
-            {
-                ft = "Trouble",
-                title = "Trouble",
-                size = { height = 10 },
-            },
             {
                 ft = "qf",
                 title = "QuickFix",

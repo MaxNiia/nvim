@@ -19,8 +19,7 @@ return {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "onsails/lspkind.nvim",
-            "SmiteshP/nvim-navic",
-            "kevinhwang91/nvim-ufo",
+            "kevinhwang91/nv-fo",
             "hrsh7th/cmp-nvim-lsp",
             "AckslD/swenv.nvim",
             {
@@ -156,10 +155,6 @@ return {
 
                     if client == nil then
                         return
-                    end
-
-                    if client.server_capabilities.documentSymbolProvider then
-                        require("nvim-navic").attach(client, bufnr)
                     end
 
                     -- Enable completion triggered by <c-x><c-o>

@@ -45,7 +45,6 @@ return {
             },
             compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
             integrations = {
-                aerial = true,
                 alpha = true,
                 beacon = true,
                 cmp = true,
@@ -82,10 +81,6 @@ return {
                 treesitter_context = true,
                 rainbow_delimiters = true,
                 notify = true,
-                navic = {
-                    enabled = true,
-                    custom_bg = "NONE", -- "lualine" will set background to mantle
-                },
                 native_lsp = {
                     enabled = true,
                     virtual_text = {

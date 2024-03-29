@@ -17,9 +17,10 @@ return {
                 "nvim-telescope/telescope-file-browser.nvim",
                 dependencies = { "nvim-lua/plenary.nvim" },
             },
-            "nvim-telescope/telescope-project.nvim",
-            "nvim-telescope/telescope-live-grep-args.nvim",
             "debugloop/telescope-undo.nvim",
+            "folke/trouble.nvim",
+            "nvim-telescope/telescope-live-grep-args.nvim",
+            "nvim-telescope/telescope-project.nvim",
             "tiagovla/scope.nvim",
         },
         lazy = true,
@@ -204,7 +205,7 @@ return {
                 })
             end
 
-            local trouble = require("trouble.providers.telescope")
+            local trouble = require("trouble.sources.telescope")
             local action_state = require("telescope.actions.state")
 
             opts.extensions = vim.tbl_deep_extend("force", opts.extensions or {}, {
@@ -258,11 +259,11 @@ return {
             opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
                 mappings = {
                     i = {
-                        ["<c-T>"] = trouble.open_with_trouble,
+                        ["<c-T>"] = trouble.open,
                         ["<c-s>"] = flash,
                     },
                     n = {
-                        ["<c-T>"] = trouble.open_with_trouble,
+                        ["<c-T>"] = trouble.open,
                         ["m"] = flash,
                     },
                 },
@@ -272,7 +273,6 @@ return {
 
             require("telescope.actions")
             require("telescope").load_extension("scope")
-            require("telescope").load_extension("aerial")
             require("telescope").load_extension("file_browser")
             require("telescope").load_extension("fzf")
             require("telescope").load_extension("live_grep_args")

@@ -199,5 +199,4 @@ return {
         --     go_out_plus = "H",
         -- }
     },
-    config = true,
 }

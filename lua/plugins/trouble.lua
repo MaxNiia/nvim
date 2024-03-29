@@ -2,37 +2,38 @@ return {
     {
         "folke/trouble.nvim",
         enabled = not vim.g.vscode,
+        branch = "dev",
         event = "BufEnter",
         keys = {
             {
                 "<leader>xx",
-                "<cmd>TroubleToggle<cr>",
-                desc = "Trouble",
+                "<cmd>Trouble diagnostics toggle<cr>",
+                desc = "Diagnostics (Trouble)",
             },
             {
-                "<leader>xw",
-                "<cmd>TroubleToggle workspace_diagnostics<cr>",
-                desc = "Workspace",
+                "<leader>xX",
+                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+                desc = "Buffer Diagnostics (Trouble)",
             },
             {
-                "<leader>xd",
-                "<cmd>TroubleToggle document_diagnostics<cr>",
-                desc = "Document",
+                "<leader>cs",
+                "<cmd>Trouble symbols toggle focus=false<cr>",
+                desc = "Symbols (Trouble)",
             },
             {
-                "<leader>xq",
-                "<cmd>TroubleToggle quickfix<cr>",
-                desc = "Quickfix",
+                "<leader>cl",
+                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+                desc = "LSP Definitions / references / ... (Trouble)",
             },
             {
-                "<leader>xl",
-                "<cmd>TroubleToggle loclist<cr>",
-                desc = "Loc list",
+                "<leader>xL",
+                "<cmd>Trouble loclist toggle<cr>",
+                desc = "Location List (Trouble)",
             },
             {
-                "<leader>xr",
-                "<cmd>TroubleToggle lsp_references<cr>",
-                desc = "References",
+                "<leader>xQ",
+                "<cmd>Trouble qflist toggle<cr>",
+                desc = "Quickfix List (Trouble)",
             },
             {
                 "]a",
@@ -64,9 +65,6 @@ return {
             },
         },
         opts = {
-            auto_close = false,
-            icons = true,
-            use_diagnostic_signs = true,
         },
     },
 }
