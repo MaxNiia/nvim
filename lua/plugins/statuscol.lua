@@ -48,8 +48,9 @@ return {
                     {
                         text = {
                             builtin.foldfunc,
-                            auto = true,
+                            " "
                         },
+                        hl = "FoldColumn",
                         click = "v:lua.ScFa",
                     },
                     {
@@ -61,17 +62,12 @@ return {
                                 "todo*",
                             },
                             namespace = { "diagnostic*" },
-                            maxwidth = 2,
+                            maxwidth = 5,
                             colwidth = 1,
                             auto = true,
+                            foldclosed = true,
                         },
                         click = "v:lua.ScSa",
-                    },
-                    {
-                        text = {
-                            builtin.lnumfunc,
-                        },
-                        click = "v:lua.ScLa",
                     },
                     {
                         sign = {
@@ -83,7 +79,13 @@ return {
                         },
                         click = "v:lua.ScSa",
                     },
-                    { text = { "│" }, condition = { builtin.not_empty } },
+                    {
+                        text = {
+                            builtin.lnumfunc,
+                            "|"
+                        },
+                        click = "v:lua.ScLa",
+                    },
                 },
             })
         end,
