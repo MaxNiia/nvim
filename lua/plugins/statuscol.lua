@@ -48,7 +48,7 @@ return {
                     {
                         text = {
                             builtin.foldfunc,
-                            " "
+                            " ",
                         },
                         hl = "FoldColumn",
                         click = "v:lua.ScFa",
@@ -82,7 +82,7 @@ return {
                     {
                         text = {
                             builtin.lnumfunc,
-                            "|"
+                            "│",
                         },
                         click = "v:lua.ScLa",
                     },
