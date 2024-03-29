@@ -11,17 +11,17 @@ return {
                 desc = "Diagnostics (Trouble)",
             },
             {
-                "<leader>xX",
+                "<leader>xd",
                 "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
                 desc = "Buffer Diagnostics (Trouble)",
             },
             {
-                "<leader>cs",
+                "<leader>xs",
                 "<cmd>Trouble symbols toggle focus=false win.position=left<cr>",
                 desc = "Symbols (Trouble)",
             },
             {
-                "<leader>cl",
+                "<leader>xl",
                 "<cmd>Trouble lsp toggle focus=false win.position=left<cr>",
                 desc = "LSP Definitions / references / ... (Trouble)",
             },
@@ -31,7 +31,7 @@ return {
                 desc = "Location List (Trouble)",
             },
             {
-                "<leader>xQ",
+                "<leader>xq",
                 "<cmd>Trouble qflist toggle<cr>",
                 desc = "Quickfix List (Trouble)",
             },
