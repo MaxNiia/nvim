@@ -8,7 +8,7 @@ end
 return {
     {
         "ricardicus/nvim-magic",
-        enabled = not vim.g.vscode,
+        enabled = OPTIONS.chatgpt.value and not vim.g.vscode,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "MunifTanjim/nui.nvim",
