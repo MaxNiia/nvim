@@ -149,7 +149,7 @@ return {
                 set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
                 color_devicons = true,
                 borderchars = ui.borderchars,
-                winblend = vim.g.neovide and 100 or 0,
+                winblend = vim.g.neovide and 0 or 0,
                 wrap_results = false,
                 path_display = { truncate = 1 },
                 selection_caret = "",

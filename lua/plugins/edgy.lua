@@ -5,6 +5,18 @@ local only_buffer = function()
     return #vim.fn.getbufinfo({ buflisted = 1 }) > 1
 end
 
+local get_trouble_filter = function(filter_mode, pos)
+    return function(_, win)
+        return vim.w[win].trouble
+            and vim.w[win].trouble.position == pos
+            and vim.w[win].trouble.mode == filter_mode
+            and vim.w[win].trouble.type == "split"
+            and vim.w[win].trouble.relative == "editor"
+            and not vim.w[win].trouble_preview
+
+    end
+end
+
 return {
     "folke/edgy.nvim",
     event = "VeryLazy",
@@ -45,26 +57,60 @@ return {
             },
             {
                 ft = "DiffviewFiles",
-                size = { width = 30 },
-            },
-            {
-                ft = "gitrebase",
-                size = { width = 72 },
-                filter = only_buffer,
-            },
-            {
-                ft = "gitcommit",
-                size = { width = 72 },
-                filter = only_buffer,
-            },
-            {
-                ft = "git",
-                size = { width = 80 },
+                size = { width = 50 },
             },
             {
                 ft = "OverseerList",
                 command = "OverseerOpen",
                 size = { width = 80 },
+            },
+            {
+                ft = "trouble",
+                title = "LSP",
+                size = { width = 50 },
+                filter = get_trouble_filter("lsp", "right"),
+            },
+            {
+                ft = "trouble",
+                title = "LSP Declarations",
+                size = { width = 50 },
+                filter = get_trouble_filter("lsp_declarations", "right"),
+            },
+            {
+                ft = "trouble",
+                title = "LSP Definitions",
+                size = { width = 50 },
+                filter = get_trouble_filter("lsp_definitions", "right"),
+            },
+            {
+                ft = "trouble",
+                title = "LSP Symbols",
+                size = { width = 50 },
+                filter = get_trouble_filter("lsp_document_symbols", "right"),
+            },
+            {
+                ft = "trouble",
+                title = "LSP Implementations",
+                size = { width = 50 },
+                filter = get_trouble_filter("lsp_implementations", "right"),
+            },
+            {
+                ft = "trouble",
+                title = "LSP References",
+                size = { width = 50 },
+                filter = get_trouble_filter("lsp_references", "right"),
+            },
+            {
+                ft = "trouble",
+                title = "LSP Type Definitions",
+                size = { width = 50 },
+                filter = get_trouble_filter("lsp_type_definitions", "right"),
+            },
+            {
+                ft = "trouble",
+                title = "Symbols",
+                size = { width = 50 },
+                filter = get_trouble_filter("symbols", "right"),
             },
         },
         right = {
@@ -75,7 +121,7 @@ return {
             },
             {
                 ft = "help",
-                size = { width = 80 },
+                size = { width = 100 },
                 -- only show help buffers
                 filter = function(buf)
                     return vim.bo[buf].buftype == "help"
@@ -93,7 +139,7 @@ return {
                 ft = "spectre_panel",
                 size = { width = 100, height = 50 },
             },
-        {
+            {
                 ft = "",
                 size = { width = 100 },
                 -- exclude floating windows
@@ -115,11 +161,55 @@ return {
                     return vim.api.nvim_win_get_config(win).relative == ""
                 end,
             },
+            {
+                ft = "gitrebase",
+                size = { width = 80 },
+                filter = only_buffer,
+            },
+            {
+                ft = "gitcommit",
+                size = { width = 80 },
+                filter = only_buffer,
+            },
+            {
+                ft = "git",
+                size = { width = 87 },
+            },
         },
         bottom = {
             {
+                ft = "trouble",
+                title = "Diagnostics",
+                size = { height = 10 },
+                filter = get_trouble_filter("diagnostics", "bottom"),
+            },
+            {
+                ft = "trouble",
+                title = "Quickfix list",
+                size = { height = 10 },
+                filter = get_trouble_filter("qflist", "bottom"),
+            },
+            {
+                ft = "trouble",
+                title = "Location List",
+                size = { height = 10 },
+                filter = get_trouble_filter("loclist", "bottom"),
+            },
+            {
+                ft = "trouble",
+                title = "Quickfix",
+                size = { height = 10 },
+                filter = get_trouble_filter("quickfix", "bottom"),
+            },
+            {
+                ft = "trouble",
+                title = "Telescope",
+                size = { height = 10 },
+                filter = get_trouble_filter("telescope", "bottom"),
+            },
+            {
                 ft = "qf",
-                title = "QuickFix",
+                title = "Quickfix",
                 size = { height = 10 },
             },
         },

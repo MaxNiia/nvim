@@ -30,7 +30,7 @@ OPTIONS = {
     },
     chatgpt = {
         value = false,
-        key = "c",
+        key = "C",
         description = "ChatGPT",
         prompt = nil,
 
