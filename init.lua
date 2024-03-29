@@ -1,5 +1,7 @@
 -- Before Lazy
 vim.g.mapleader = " "
+vim.g.maplocalleader = ' '
+vim.g.have_nerd_font = true
 
 vim.cmd([[
 if has("nvim")
@@ -87,7 +89,7 @@ OPTIONS = {
 
 require("utils.config").load_config()
 
-local uname = vim.loop.os_uname()
+local uname = vim.uv.os_uname()
 
 _G.OS = uname.sysname
 _G.IS_MAC = OS == "Darwin"
@@ -106,7 +108,7 @@ require("configs.autocmd")
 require("configs.commands")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({
         "git",
         "clone",

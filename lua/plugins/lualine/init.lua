@@ -82,7 +82,7 @@ return {
                     lualine_a = { "mode" },
                     lualine_b = {
                         {
-                            vim.loop.cwd,
+                            vim.uv.cwd,
                             type = "vim_fun",
                             padding = {
                                 left = 1,

@@ -19,7 +19,7 @@ end
 
 return {
     "folke/edgy.nvim",
-    event = "VeryLazy",
+    event = "VimEnter",
     enabled = not vim.g.vscode,
     opts = {
         animate = {

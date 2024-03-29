@@ -32,7 +32,7 @@ return {
             {
                 "<leader>g",
                 function()
-                    require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+                    require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
                 end,
                 desc = "Explorer NeoTree (cwd)",
             },
@@ -50,7 +50,7 @@ return {
         end,
         init = function()
             if vim.fn.argc() == 1 and OPTIONS.neotree then
-                local stat = vim.loop.fs_stat(vim.fn.argv(0))
+                local stat = vim.uv.fs_stat(vim.fn.argv(0))
                 if stat and stat.type == "directory" then
                     require("neo-tree")
                 end

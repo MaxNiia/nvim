@@ -10,7 +10,7 @@ return {
         init = function()
             if vim.fn.argc() == 1 then
                 local arg = vim.fn.argv(0)
-                local stat = vim.loop.fs_stat(arg)
+                local stat = vim.uv.fs_stat(arg)
                 if stat and stat.type == "directory" then
                     vim.cmd.chdir(arg)
                 end
@@ -34,7 +34,7 @@ return {
             {
                 "<leader>e",
                 function()
-                    require("oil").open(vim.loop.cwd())
+                    require("oil").open(vim.uv.cwd())
                 end,
                 desc = "Explorer (CWD)",
             },

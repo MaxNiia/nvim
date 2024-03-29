@@ -108,7 +108,7 @@ return {
     },
     {
         "<leader>fO",
-        call_telescope("oldfiles", { cwd = vim.loop.cwd() }),
+        call_telescope("oldfiles", { cwd = vim.uv.cwd() }),
         desc = "Old files (cwd)",
         mode = { "v", "n" },
     },
