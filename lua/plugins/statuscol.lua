@@ -23,6 +23,7 @@ return {
         config = function(_, _)
             local builtin = require("statuscol.builtin")
 
+
             require("statuscol").setup({
                 relculright = true,
                 thousands = "'",
@@ -48,7 +49,6 @@ return {
                     {
                         text = {
                             builtin.foldfunc,
-                            " ",
                         },
                         hl = "FoldColumn",
                         click = "v:lua.ScFa",
@@ -74,7 +74,7 @@ return {
                             namespace = { "gitsigns" },
                             maxwidth = 2,
                             colwidth = 1,
-                            wrap = true,
+                            rap = true,
                             auto = true,
                         },
                         click = "v:lua.ScSa",

@@ -78,6 +78,7 @@ return {
                 ts_rainbow = true,
                 flash = true,
                 ufo = true,
+                noice = true,
                 lsp_trouble = true,
                 telescope = {
                     enabled = true,

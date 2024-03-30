@@ -21,8 +21,7 @@ return {
     },
     dap = {
         Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
-        Breakpoint = " ",
-        "DiagnosticError",
+        Breakpoint = {" ", "DiagnosticError" },
         BreakpointCondition = " ",
         BreakpointRejected = { " ", "DiagnosticError" },
         LogPoint = "󰑃",
@@ -57,15 +56,15 @@ return {
         open = "",
     },
     fold = {
-        closed = "",
-        open = "",
-        separator = "┃",
+        closed = "",
+        open = "",
+        separator = "│",
     },
     chevron = {
-        right = "",
-        left = "",
-        down = "",
-        up = "",
+        right = "",
+        left = "",
+        down = "",
+        up = "",
     },
     kinds = {
         Array = " ",
