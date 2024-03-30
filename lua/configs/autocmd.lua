@@ -1,45 +1,37 @@
 vim.cmd([[
     autocmd FileType gitcommit setlocal textwidth=72
     autocmd FileType gitcommit setlocal colorcolumn=+1
-]])
 
-vim.cmd([[
     autocmd FileType c setlocal textwidth=80
     autocmd FileType c setlocal colorcolumn=+1
-]])
 
-vim.cmd([[
     autocmd FileType cpp setlocal textwidth=80
     autocmd FileType cpp setlocal colorcolumn=+1
-]])
 
-vim.cmd([[
     autocmd FileType python setlocal textwidth=120
     autocmd FileType python setlocal colorcolumn=+1
-]])
 
-vim.cmd([[
     autocmd FileType lua setlocal textwidth=100
     autocmd FileType lua setlocal colorcolumn=+1
-]])
 
-vim.cmd([[
     autocmd FileType neo-tree setlocal numberwidth=2
     autocmd FileType neo-tree setlocal scl=no
-]])
 
-vim.cmd([[
     autocmd FileType qf setlocal nonu
     autocmd FileType qf setlocal nornu
-]])
 
-vim.cmd([[
     autocmd User TelescopePreviewerLoaded setlocal wrap
-]])
+    autocmd User TelescopePreviewerLoaded setlocal wrap
 
-vim.cmd([[
     autocmd CmdwinEnter * nnoremap <CR> <CR>
+
     autocmd BufReadPost quickfix nnoremap <CR> <CR>
+
+    autocmd TermOpen * setlocal nospell
+    autocmd TermOpen * setlocal nornu
+    autocmd TermOpen * setlocal nonu
+
+    autocmd VimLeavePre * lua require("utils.config").save_config()
 ]])
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
@@ -48,19 +40,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
         vim.wo.spell = false
     end,
 })
-
-vim.cmd([[
-    autocmd TermOpen * setlocal nospell
-]])
-
-vim.cmd([[
-    autocmd VimLeavePre * lua require("utils.config").save_config()
-]])
-
-vim.cmd([[
-    autocmd FileType help wincmd L
-    autocmd FileType fugitive wincmd L
-]])
 
 function ToggleTroubleAuto()
     local ok, trouble = pcall(require, "trouble")

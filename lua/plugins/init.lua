@@ -165,6 +165,10 @@ return {
             user_default_options = {
                 RRGGBBAA = true,
             },
+            filetypes = {
+                "*",
+                "!minifiles",
+            },
         },
     },
     {

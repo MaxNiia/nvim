@@ -27,7 +27,7 @@ return {
             return {
                 options = {
                     icons_enabled = true,
-                    theme = "auto",
+                    theme = "catppuccin",
                     component_separators = {
                         left = icons.separator.line.left,
                         right = icons.separator.line.right,
