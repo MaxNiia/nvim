@@ -118,6 +118,7 @@ return {
                     InclineReverse = { fg = c.surface0, bg = c.none, style = { "bold" } },
                     InclineModified = { fg = c.red, bg = c.surface0, style = { "bold", "italic" } },
                     MarkSignHL = { fg = c.yellow, style = { "bold" } },
+                    NoiceCursor = { bg = c.text, fg = c.base, blend = 0},
                 }
             end,
         },
