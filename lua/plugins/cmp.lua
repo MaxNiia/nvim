@@ -63,6 +63,11 @@ return {
             -- nvim-cmp setup
             local cmp = require("cmp")
             cmp.setup({
+                view = {
+                    entries = {
+                        follow_cursor = true,
+                    },
+                },
                 snippet = {
                     expand = function(args)
                         luasnip.lsp_expand(args.body)
