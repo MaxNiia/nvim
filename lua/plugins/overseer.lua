@@ -5,9 +5,9 @@ return {
         dependencies = {
             "stevearc/dressing.nvim",
             "nvim-telescope/telescope.nvim",
-            -- "rcarriga/nvim-notify" NOTE: Needs to be better configured?
+            "rcarriga/nvim-notify",
         },
-        lazy = true,
+        lazy = "BufEnter",
         cmd = {
             "OverseerRun",
             "OverseerInfo",
@@ -23,7 +23,7 @@ return {
             "OverseerDeleteBundle",
         },
         opts = {
-            templates = { "builtin", "niia" },
+            templates = { "builtin" },
         },
     },
 }

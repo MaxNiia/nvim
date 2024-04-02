@@ -1,7 +1,7 @@
 return {
     {
         "okuuva/auto-save.nvim",
-        enabled = true,
+        enabled = not vim.g.vscode,
         event = "BufEnter",
         keys = {
             {

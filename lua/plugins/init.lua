@@ -77,7 +77,7 @@ return {
         "windwp/nvim-spectre",
         keys = {
             {
-                "<leader>rf",
+                "<leader>rr",
                 function()
                     require("spectre").open()
                 end,
