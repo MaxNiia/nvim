@@ -38,6 +38,3 @@ vim.g.neovide_cursor_vfx_opacity = 200.0
 vim.g.neovide_cursor_vfx_particle_lifetime = 1.2
 vim.g.neovide_cursor_vfx_particle_density = 7.0
 vim.g.neovide_cursor_vfx_particle_speed = 10.0
-
-vim.opt.winblend = 100
-vim.opt.pumblend = 100

@@ -28,7 +28,6 @@ vim.opt.laststatus = 3
 vim.opt.mousemodel = "extend"
 vim.opt.number = true
 vim.opt.numberwidth = 2
-vim.opt.pumblend = 0
 vim.opt.rnu = true
 vim.opt.ruler = false
 vim.opt.scrolloff = 10
@@ -56,6 +55,13 @@ vim.opt.ttimeout = true
 vim.opt.ttimeoutlen = 5
 vim.opt.undofile = true
 vim.opt.wildmenu = true
+
+if not vim.g.neovide then
+    vim.opt.pumblend = 0
+else
+    vim.opt.winblend = 100
+    vim.opt.pumblend = 100
+end
 
 local icons = require("utils.icons")
 vim.opt.fillchars:append({

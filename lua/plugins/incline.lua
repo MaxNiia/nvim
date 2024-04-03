@@ -81,14 +81,13 @@ return {
                 end
 
                 return {
-                    ft_icon and {
+                    ((not vim.g.neovide) and ft_icon) and {
                         icons.separator.full.right,
-                        guifg = not vim.g.neovide and ft_color,
+                        guifg = ft_color,
                     } or {},
                     ft_icon and {
                         ft_icon .. " ",
-                        guibg = ft_color,
-                        guifg = vim.g.neovide and ft_color,
+                        guifg = ft_color,
                     } or {},
 
                     {

@@ -16,9 +16,8 @@ return {
     },
     {
         "folke/neodev.nvim",
-        lazy = true,
+        event = "VeryLazy",
         ft = "lua",
-        event = { "BufReadPre", "BufNewFile" },
         opts = {
             library = {
                 enabled = true,
@@ -34,9 +33,6 @@ return {
                 library.plugins = true
             end,
         },
-        config = function(_, opts)
-            require("neodev").setup(opts)
-        end,
     },
     {
         "tzachar/highlight-undo.nvim",

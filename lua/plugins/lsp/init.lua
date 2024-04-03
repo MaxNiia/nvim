@@ -7,15 +7,6 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-            {
-                event = "VeryLazy",
-                ft = "lua",
-                "folke/neodev.nvim",
-                opts = {
-                    library = { plugins = { "nvim-dap-ui" }, types = true },
-                },
-                config = true,
-            },
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "onsails/lspkind.nvim",

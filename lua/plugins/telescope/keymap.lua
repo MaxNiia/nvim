@@ -78,18 +78,18 @@ return {
         desc = "Search (cwd)",
         mode = { "v", "n" },
     },
-    -- {
-    --     "<leader>fb",
-    --     function()
-    --         require("telescope.builtin").buffers({ sort_mru = true })
-    --     end,
-    --     desc = "Buffers",
-    --     mode = { "v", "n" },
-    -- },
     {
         "<leader>fb",
+        function()
+            require("telescope.builtin").buffers({ sort_mru = true })
+        end,
+        desc = "Tab buffers",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fB",
         "<cmd>Telescope scope buffers<cr>",
-        desc = "Buffers",
+        desc = "All buffers",
         mode = { "v", "n" },
     },
     {

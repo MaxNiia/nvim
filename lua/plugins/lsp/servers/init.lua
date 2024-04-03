@@ -11,5 +11,6 @@ return {
     marksman = {},
     rust_analyzer = require("plugins.lsp.servers.rust_analyzer"),
     tsserver = require("plugins.lsp.servers.tsserver"),
+    ruff_lsp = require("plugins.lsp.servers.ruff"),
     -- yamlls = require("plugins.lsp.servers.yamlls"),
 }

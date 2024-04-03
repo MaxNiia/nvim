@@ -100,7 +100,7 @@ return {
                 lua = { "stylua" },
                 bash = { "beautysh", "shfmt" },
                 bazel = { "buildifier" },
-                python = { "isort", "black", "autoflake", "autopep8" },
+                python = { "ruff" },
                 css = { "stylelint" },
                 javascript = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
                 javascriptreact = {
@@ -129,6 +129,7 @@ return {
                 "clangd",
                 "lua-language-server",
                 "basedpyright",
+                "ruff-lsp",
                 "cmakelang",
 
                 -- NOTE: LINT
@@ -138,14 +139,11 @@ return {
                 "buildifier",
                 "buf",
                 "eslint_d",
-                "flake8",
+                "ruff",
                 "hadolint",
                 "jsonlint",
                 "luacheck",
                 "markdownlint",
-                "mypy",
-                "pydocstyle",
-                "pylint",
                 "shellcheck",
                 "yamllint",
 
@@ -154,8 +152,6 @@ return {
                 "fixjson",
                 "stylua",
                 "beautysh",
-                "isort",
-                "black",
                 "autoflake",
                 "autopep8",
                 "prettierd",

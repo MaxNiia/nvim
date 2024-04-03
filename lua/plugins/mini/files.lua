@@ -97,7 +97,7 @@ local files_set_cwd = function(_)
     local cur_entry_path = MiniFiles.get_fs_entry().path
     local cur_directory = vim.fs.dirname(cur_entry_path)
     if cur_directory ~= nil then
-        vim.fn.chdir(cur_directory)
+        vim.cmd.tcd(cur_directory)
     end
 end
 
