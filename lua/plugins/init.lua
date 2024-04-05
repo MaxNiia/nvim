@@ -1,9 +1,39 @@
 local icons = require("utils.icons").todo
 return {
     {
+        "MaxNiia/nvim-unception",
+        lazy = false,
+        init = function()
+            -- Optional settings go here!
+            vim.g.unception_delete_replaced_buffer = false
+            vim.g.unception_open_buffer_in_new_tab = false
+            vim.g.unception_enable_flavor_text = true
+
+            if OPTIONS.toggleterm.value then
+                vim.api.nvim_create_autocmd("User", {
+                    pattern = "UnceptionEditRequestReceived",
+                    callback = function()
+                        -- Toggle the terminal off.
+                        if vim.bo.filetype == "toggleterm" then
+                            require("toggleterm").toggle_all(true)
+                        end
+                    end,
+                })
+            end
+        end,
+    },
+    {
         "tiagovla/scope.nvim",
+        dependencies = {
+            "akinsho/toggleterm.nvim",
+        },
         opts = {
             hooks = {
+                pre_tab_leave = function()
+                    if OPTIONS.toggleterm.value then
+                        require("toggleterm").toggle_all(true)
+                    end
+                end,
                 post_tab_enter = function()
                     require("incline").refresh()
                     local current_session = require("resession").get_current()
@@ -166,56 +196,5 @@ return {
                 "!minifiles",
             },
         },
-    },
-    {
-        "lewis6991/hover.nvim",
-        opts = {
-            init = function()
-                -- Require providers
-                require("hover.providers.lsp")
-                -- require('hover.providers.gh')
-                -- require('hover.providers.gh_user')
-                -- require('hover.providers.jira')
-                -- require('hover.providers.man')
-                -- require('hover.providers.dictionary')
-            end,
-            preview_opts = {
-                border = "single",
-            },
-            -- Whether the contents of a currently open hover window should be moved
-            -- to a :h preview-window when pressing the hover keymap.
-            preview_window = false,
-            title = true,
-            mouse_providers = {
-                "LSP",
-            },
-            mouse_delay = 1000,
-        },
-        lazy = false,
-        config = function(_, opts)
-            require("hover").setup(opts)
-            -- Mouse support
-            vim.keymap.set(
-                "n",
-                "<MouseMove>",
-                require("hover").hover_mouse,
-                { desc = "hover.nvim (mouse)" }
-            )
-            vim.o.mousemoveevent = true
-
-            -- vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
-            vim.keymap.set(
-                "n",
-                "gK",
-                require("hover").hover_select,
-                { desc = "hover.nvim (select)" }
-            )
-            vim.keymap.set("n", "<C-p>", function()
-                require("hover").hover_switch("previous")
-            end, { desc = "hover.nvim (previous source)" })
-            vim.keymap.set("n", "<C-n>", function()
-                require("hover").hover_switch("next")
-            end, { desc = "hover.nvim (next source)" })
-        end,
     },
 }
