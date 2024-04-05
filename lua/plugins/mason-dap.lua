@@ -9,7 +9,7 @@ return {
         opts = {
             ensure_installed = {
                 "python",
-                "cppdbg",
+                "cpptools",
             },
             automatic_setup = true,
             handlers = {

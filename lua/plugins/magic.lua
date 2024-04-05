@@ -14,17 +14,17 @@ return {
             "MunifTanjim/nui.nvim",
         },
         keys = {
-            { "<leader>cs", createAICommand("append_completion"), mode = "v", desc = "Completion" },
+            { "<leader>Cs", createAICommand("append_completion"), mode = "v", desc = "Completion" },
             {
-                "<leader>ca",
+                "<leader>Ca",
                 createAICommand("suggest_alteration"),
                 mode = "v",
                 desc = "Alteration",
             },
-            { "<leader>cd", createAICommand("suggest_docstring"), mode = "v", desc = "Docstring" },
-            { "<leader>cc", createAICommand("suggest_chat"), mode = { "v", "n" }, desc = "Chat" },
+            { "<leader>Cd", createAICommand("suggest_docstring"), mode = "v", desc = "Docstring" },
+            { "<leader>Cc", createAICommand("suggest_chat"), mode = { "v", "n" }, desc = "Chat" },
             {
-                "<leader>cr",
+                "<leader>Cr",
                 createAICommand("suggest_chat_reset"),
                 mode = { "v", "n" },
                 desc = "Reset",

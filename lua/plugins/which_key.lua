@@ -4,12 +4,12 @@ return {
         keys = {
             { "H", "^", mode = { "n", "v", "o" }, desc = "End of line" },
             { "L", "$", mode = { "n", "v", "o" }, desc = "Start of line" },
-            { "<c-d>", "<c-d>zz", mode = "n" },
-            { "<c-u>", "<c-u>zz", mode = "n" },
+            { "<c-d>", "<c-d>", mode = "n" },
+            { "<c-u>", "<c-u>", mode = "n" },
             { "n", "nzzzv", mode = "n" },
             { "N", "Nzzzv", mode = "n" },
             { "<esc>", "<c-\\><c-n>", mode = "t" },
-            { "<leader>P", '"_dp', mode = {"v", "x"}, desc = "Paste and keep" },
+            { "<leader>P", '"_dp', mode = { "v", "x" }, desc = "Paste and keep" },
             {
                 "<leader>y",
                 '"+y',
@@ -84,23 +84,14 @@ return {
                 }, { prefix = "<leader>", mode = "n" })
             end
 
-            if OPTIONS.toggleterm.value then
-                wk.register({
-                    t = { name = "Terminal" },
-                    T = { name = "Test" },
-                }, { prefix = "<leader>", mode = "n" })
-            else
-                wk.register({
-                    t = { name = "Test" },
-                }, { prefix = "<leader>", mode = "n" })
-            end
-
             wk.register({
+                t = { name = "Test" },
                 b = { name = "Debug" },
-                c = { name = "ChatGPT" },
-                r = { name = "Rename" },
+                C = { name = "ChatGPT" },
+                c = { name = "CMake" },
+                r = { name = "Refactor" },
                 f = {
-                    name = "Find",
+                    name = "Telescope",
                     d = { name = "Debug" },
                     l = { name = "LSP" },
                     t = { name = "Terminal" },
