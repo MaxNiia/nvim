@@ -117,9 +117,9 @@ return {
             "mfussenegger/nvim-dap",
         },
         keys = {
-            { "<leader>bt", toggle, mode = "n", desc = "Toggle UI" },
-            { "<leader>bh", hover, mode = "n", desc = "Hover" },
-            { "<leader>be", eval, mode = { "n", "x" }, desc = "Evaluate expression" },
+            { "<leader>Dt", toggle, mode = "n", desc = "Toggle UI" },
+            { "<leader>Dh", hover, mode = "n", desc = "Hover" },
+            { "<leader>De", eval, mode = { "n", "x" }, desc = "Evaluate expression" },
         },
         config = function(_, opts)
             local dap, dapui = require("dap"), require("dapui")

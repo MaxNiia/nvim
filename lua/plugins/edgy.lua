@@ -190,7 +190,7 @@ return {
                 size = { width = 100 },
                 -- exclude floating windows
                 filter = function(
-                    _ --[[buf]],
+                    _, --[[buf]]
                     win
                 )
                     return vim.api.nvim_win_get_config(win).relative == ""
@@ -198,11 +198,15 @@ return {
             },
             {
                 ft = "dap_console",
-                size = { width = 80},
+                size = { width = 80 },
+            },
+            {
+                ft = "dapui_console",
+                size = { width = 80 },
             },
             {
                 ft = "dap-repl",
-                size = { height = 30},
+                size = { height = 30 },
             },
         },
         bottom = {
