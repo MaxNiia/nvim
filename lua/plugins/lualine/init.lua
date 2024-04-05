@@ -117,6 +117,9 @@ return {
                                     return ""
                                 end
                             end,
+                            cond = function()
+                                return vim.bo.filetype == "python"
+                            end,
                         },
                         {
                             function()
