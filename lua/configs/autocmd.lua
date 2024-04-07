@@ -20,6 +20,10 @@ vim.cmd([[
     autocmd FileType qf setlocal nonu
     autocmd FileType qf setlocal nornu
 
+    autocmd FileType markdown setlocal conceallevel=2
+    autocmd FileType markdown setlocal textwdith=120
+    autocmd FileType markdown setlocal colorcolumn=+1
+
     autocmd User TelescopePreviewerLoaded setlocal wrap
     autocmd User TelescopePreviewerLoaded setlocal wrap
 

@@ -85,6 +85,12 @@ OPTIONS = {
         description = "Font size",
         prompt = "Enter desired font size",
     },
+    wiki = {
+        value = "~",
+        key = "w",
+        description = "Wiki path",
+        prompt = "Enter desired path to wiki files",
+    }
 }
 
 require("utils.config").load_config()

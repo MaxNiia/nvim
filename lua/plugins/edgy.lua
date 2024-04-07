@@ -136,6 +136,14 @@ return {
                 end,
             },
             {
+                ft = "text",
+                size = { width = 100 },
+                -- only show help buffers
+                filter = function(buf)
+                    return vim.bo[buf].buftype == "help"
+                end,
+            },
+            {
                 ft = "spectre_panel",
                 size = { width = 100, height = 50 },
             },

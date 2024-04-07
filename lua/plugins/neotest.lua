@@ -1,4 +1,3 @@
-local char = OPTIONS.toggleterm.value and "T" or "t"
 return {
     {
         "nvim-neotest/neotest",
@@ -14,7 +13,7 @@ return {
         event = "VeryLazy",
         keys = {
             {
-                "<leader>" .. char .. "r",
+                "<leader>tr",
                 function()
                     require("neotest").run.run(vim.fn.expand("%"))
                 end,
@@ -22,7 +21,7 @@ return {
                 desc = "Run current file tests",
             },
             {
-                "<leader>" .. char .. "R",
+                "<leader>tR",
                 function()
                     require("neotest").run.run()
                 end,
@@ -30,7 +29,7 @@ return {
                 desc = "Run nearest test",
             },
             {
-                "<leader>" .. char .. "d",
+                "<leader>td",
                 function()
                     require("neotest").run.run({ vim.fn.expand("%"), strategy = "dap" })
                 end,
@@ -38,7 +37,7 @@ return {
                 desc = "Debug current file tests",
             },
             {
-                "<leader>" .. char .. "D",
+                "<leader>tD",
                 function()
                     require("neotest").run.run({ strategy = "dap" })
                 end,
@@ -46,7 +45,7 @@ return {
                 desc = "Debug nearest test",
             },
             {
-                "<leader>" .. char .. "s",
+                "<leader>ts",
                 function()
                     require("neotest").run.stop()
                 end,
@@ -54,7 +53,7 @@ return {
                 desc = "Stop test",
             },
             {
-                "<leader>" .. char .. "a",
+                "<leader>ta",
                 function()
                     require("neotest").run.attach()
                 end,
