@@ -90,7 +90,7 @@ return {
                             },
                         },
                         {
-                            "g:gitsigns_head" .. ":" .. "b:gitsigns_head",
+                            "g:gitsigns_head",
                             icon = "",
                         },
                         {
