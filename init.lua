@@ -1,6 +1,6 @@
 -- Before Lazy
 vim.g.mapleader = " "
-vim.g.maplocalleader = ' '
+vim.g.maplocalleader = " "
 vim.g.have_nerd_font = true
 
 vim.cmd([[
@@ -35,7 +35,6 @@ OPTIONS = {
         key = "C",
         description = "ChatGPT",
         prompt = nil,
-
     },
     oled = {
         value = false,
@@ -90,7 +89,7 @@ OPTIONS = {
         key = "w",
         description = "Wiki path",
         prompt = "Enter desired path to wiki files",
-    }
+    },
 }
 
 require("utils.config").load_config()

@@ -19,7 +19,6 @@ return {
 
                 -- NOTE: shellcheck
                 bash = { "shellcheck" },
-                zsh = { "shellcheck" },
                 sh = { "shellcheck" },
 
                 python = {
@@ -42,6 +41,7 @@ return {
                 bazel = { "buildifier" },
 
                 dockerfile = { "hadolint" },
+                zsh = { "zsh", "shellcheck" },
             }
             local function debounce(ms, fn)
                 local timer = vim.uv.new_timer()
@@ -56,6 +56,8 @@ return {
 
             local function lint_fnc()
                 lint.try_lint()
+
+                lint.try_lint("cspell")
             end
 
             vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
@@ -66,9 +68,11 @@ return {
     },
     {
         "stevearc/conform.nvim",
+        enabled = not vim.g.vscode,
         init = function()
-            vim.g.disable_autoformat = true
+            vim.g.disable_autoformat = false
             vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
             vim.api.nvim_create_user_command("FormatDisable", function(args)
                 if args.bang then
                     -- FormatDisable! will disable formatting just for this buffer
@@ -97,10 +101,12 @@ return {
                 return { timeout_ms = 500, lsp_fallback = true, async = true }
             end,
             formatters_by_ft = {
+                ["*"] = { "codespell" },
+                ["_"] = { "trim_whitespace" },
                 lua = { "stylua" },
                 bash = { "beautysh", "shfmt" },
                 bazel = { "buildifier" },
-                python = { "ruff" },
+                python = { "ruff_format" },
                 css = { "stylelint" },
                 javascript = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
                 javascriptreact = {
@@ -123,40 +129,43 @@ return {
     {
         "williamboman/mason.nvim",
         cmd = "Mason",
+        enabled = not vim.g.vscode,
         opts = {
             ensure_installed = {
                 -- NOTE: LSP
-                "clangd",
-                "lua-language-server",
                 "basedpyright",
+                "clangd",
+                "cmake-language-server",
+                "lua-language-server",
                 "ruff-lsp",
-                "cmakelang",
+                "marksman",
+                "bzl",
 
                 -- NOTE: LINT
-                "cspell",
-                "stylelint",
-                "cmakelint",
-                "buildifier",
                 "buf",
+                "buildifier",
+                "cmakelint",
                 "eslint_d",
-                "ruff",
                 "hadolint",
                 "jsonlint",
                 "luacheck",
                 "markdownlint",
+                "ruff",
                 "shellcheck",
+                "stylelint",
                 "yamllint",
 
                 -- NOTE: FORMAT
-                "yamlfmt",
-                "fixjson",
-                "stylua",
-                "beautysh",
                 "autoflake",
                 "autopep8",
-                "prettierd",
+                "beautysh",
+                "codespell",
+                "fixjson",
                 "prettier",
+                "prettierd",
                 "shfmt",
+                "stylua",
+                "yamlfmt",
             },
             pip = {
                 upgrade_pip = true,
