@@ -35,16 +35,16 @@ return {
                 find_files = {},
                 live_grep = {},
                 grep_strings = {
-                    initial_mode = "insert",
-                    layout_strategy = "horizontal",
-                    layout_config = {
-                        horizontal = {
-                            preview_cutoff = 150,
-                            preview_width = 80,
-                            height = 0.9,
-                            width = 180,
-                        },
-                    },
+                    --     initial_mode = "insert",
+                    --     layout_strategy = "horizontal",
+                    --     layout_config = {
+                    --         horizontal = {
+                    --             preview_cutoff = 150,
+                    --             preview_width = 100,
+                    --             height = 0.9,
+                    --             width = 180,
+                    --         },
+                    --     },
                 },
                 buffers = {
                     initial_mode = OPTIONS.buffer_mode.value and "insert" or "normal",

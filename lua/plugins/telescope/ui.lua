@@ -5,7 +5,7 @@ local M = {
 M.layouts.lsp = {
     horizontal = {
         preview_cutoff = 150,
-        preview_width = 80,
+        preview_width = 100,
         height = 0.9,
         width = 180,
     },
@@ -23,7 +23,7 @@ M.layouts.small_cursor = {
         preview_cutoff = 0,
         height = 10,
         width = 30,
-        preview_width = 1,
+        preview_width = 0,
     },
 }
 
