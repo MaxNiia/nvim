@@ -22,7 +22,7 @@ return {
                 )
                     local current_session = require("resession").get_current()
                     if current_session ~= nil and current_session ~= "" then
-                        require("resession").save_tab(vim.fn.getcwd(), { notify = true })
+                        require("resession").save(vim.fn.getcwd(), { notify = true })
                     end
                 end,
             })
@@ -76,7 +76,7 @@ return {
             {
                 "<leader>Ws",
                 function()
-                    require("resession").save_tab(vim.fn.getcwd(), { notify = true })
+                    require("resession").save(vim.fn.getcwd(), { notify = true })
                 end,
                 mode = "n",
                 desc = "Save session",
@@ -100,7 +100,7 @@ return {
                         end
                     end
                     if new_session then
-                        resession.save_tab(project_path, { attach = false, notify = true })
+                        resession.save(project_path, { attach = false, notify = true })
                     else
                         resession.load(project_path, { attach = false, notify = true })
                     end
