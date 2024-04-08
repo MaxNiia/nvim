@@ -41,10 +41,10 @@ return {
             -- resizing splits
             -- these keymaps will also accept a range,
             -- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
-            vim.keymap.set("n", "<a-h>", require("smart-splits").resize_left)
-            vim.keymap.set("n", "<a-j>", require("smart-splits").resize_down)
-            vim.keymap.set("n", "<a-k>", require("smart-splits").resize_up)
-            vim.keymap.set("n", "<a-l>", require("smart-splits").resize_right)
+            vim.keymap.set("n", "<A-h>", require("smart-splits").resize_left)
+            vim.keymap.set("n", "<A-j>", require("smart-splits").resize_down)
+            vim.keymap.set("n", "<A-k>", require("smart-splits").resize_up)
+            vim.keymap.set("n", "<A-l>", require("smart-splits").resize_right)
 
             -- swapping buffers between windows
             vim.keymap.set("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
