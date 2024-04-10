@@ -23,7 +23,6 @@ return {
         config = function(_, _)
             local builtin = require("statuscol.builtin")
 
-
             require("statuscol").setup({
                 relculright = true,
                 thousands = "'",
@@ -74,7 +73,7 @@ return {
                             namespace = { "gitsigns" },
                             maxwidth = 2,
                             colwidth = 1,
-                            rap = true,
+                            wrap = true,
                             auto = true,
                         },
                         click = "v:lua.ScSa",
