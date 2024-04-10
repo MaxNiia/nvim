@@ -56,8 +56,6 @@ return {
 
             local function lint_fnc()
                 lint.try_lint()
-
-                lint.try_lint("cspell")
             end
 
             vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
