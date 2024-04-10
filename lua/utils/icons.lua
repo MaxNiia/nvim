@@ -21,7 +21,7 @@ return {
     },
     dap = {
         Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
-        Breakpoint = {" ", "DiagnosticError" },
+        Breakpoint = { " ", "DiagnosticError" },
         BreakpointCondition = " ",
         BreakpointRejected = { " ", "DiagnosticError" },
         LogPoint = "󰑃",
@@ -65,6 +65,11 @@ return {
         left = "",
         down = "",
         up = "",
+    },
+    progress = {
+        pending = "󰑓",
+        done = "",
+        offline = "",
     },
     kinds = {
         Array = " ",

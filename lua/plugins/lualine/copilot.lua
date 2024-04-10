@@ -1,18 +1,22 @@
 local M = { init = false }
 
 local status = ""
+local copilot_icon = require("utils.icons").kinds.Copilot
+local offline_icon = require("utils.icons").progress.offline
+local done_icon = require("utils.icons").progress.done
+local pending_icon = require("utils.icons").progress.pending
 local setup = function()
     local api = require("copilot.api")
     api.register_status_notification_handler(function(data)
         -- customize your message however you want
         if data.status == "Normal" then
-            status = "Ready"
+            status = done_icon
         elseif data.status == "InProgress" then
-            status = "Pending"
+            status = pending_icon
         else
-            status = data.status or "Offline" -- might never actually be nil but just in case
+            status = offline_icon
         end
-        status = "Copilot: " .. status
+        status = copilot_icon .. " " .. status
     end)
 end
 
