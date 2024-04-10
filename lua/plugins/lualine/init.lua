@@ -135,6 +135,11 @@ return {
                                 return vim.bo.filetype == "python"
                             end,
                         },
+                        {
+                            function()
+                                return require("plugins.lualine.copilot").get_status()
+                            end,
+                        },
                     },
                     lualine_c = {},
                     lualine_x = {},
