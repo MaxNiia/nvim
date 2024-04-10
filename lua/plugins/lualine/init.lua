@@ -77,6 +77,25 @@ return {
                     "toggleterm",
                     "trouble",
                 },
+                tabline = {
+                    lualine_a = {
+                        {
+                            "tabs",
+                            mode = 2,
+                            path = 0,
+                            use_mode_colors = true,
+                            show_modified_status = true,
+                            symbols = {
+                                modified = icons.misc.modified,
+                            },
+                        },
+                    },
+                    lualine_b = {},
+                    lualine_c = {
+                        { symbols.get, cond = symbols.has },
+                    },
+                    lualine_z = {},
+                },
                 -- Statusline
                 sections = {
                     lualine_a = { "mode" },
@@ -90,7 +109,7 @@ return {
                             },
                         },
                         {
-                            "g:gitsigns_head",
+                            "b:gitsigns_head",
                             icon = "",
                         },
                         {
@@ -103,11 +122,6 @@ return {
                                     )
                             end,
                         },
-                    },
-                    lualine_c = {
-                        { symbols.get, cond = symbols.has },
-                    },
-                    lualine_x = {
                         {
                             function()
                                 local venv = require("swenv.api").get_current_venv()
@@ -121,12 +135,9 @@ return {
                                 return vim.bo.filetype == "python"
                             end,
                         },
-                        {
-                            function()
-                                return icons.misc.clock .. os.date("%R")
-                            end,
-                        },
                     },
+                    lualine_c = {},
+                    lualine_x = {},
                     lualine_y = {
                         {
                             function()
@@ -155,14 +166,9 @@ return {
                     },
                     lualine_z = {
                         {
-                            "tabs",
-                            mode = 2,
-                            path = 0,
-                            use_mode_colors = true,
-                            show_modified_status = true,
-                            symbols = {
-                                modified = icons.misc.modified,
-                            },
+                            function()
+                                return icons.misc.clock .. os.date()
+                            end,
                         },
                     },
                 },
