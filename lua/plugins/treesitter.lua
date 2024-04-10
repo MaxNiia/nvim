@@ -71,8 +71,9 @@ return {
 
             require("treesitter-context").setup({
                 enable = true,
-                max_lines = 0,
+                max_lines = 30,
                 trim_scope = "outer",
+                separator = "_",
             })
         end,
     },
