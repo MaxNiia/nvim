@@ -13,7 +13,6 @@ local get_trouble_filter = function(filter_mode, pos)
             and vim.w[win].trouble.type == "split"
             and vim.w[win].trouble.relative == "editor"
             and not vim.w[win].trouble_preview
-
     end
 end
 
@@ -63,6 +62,10 @@ return {
                 ft = "OverseerList",
                 command = "OverseerOpen",
                 size = { width = 80 },
+            },
+            {
+                ft = "copilot-chat",
+                size = { width = 120 },
             },
             {
                 ft = "trouble",
