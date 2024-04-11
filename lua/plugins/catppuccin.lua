@@ -13,7 +13,7 @@ end
 return {
     {
         "catppuccin/nvim",
-        enabled = not vim.g.vscode,
+        cond = not vim.g.vscode,
         name = "catppuccin",
         lazy = false,
         opts = {
@@ -29,11 +29,11 @@ return {
                 additional_vim_regex_highlighting = false,
             },
             background = {
-                light = "latte",
+                light = "frappe",
                 dark = "mocha",
             },
             color_overrides = {
-                mocha = oled_override(OPTIONS.oled.value),
+                mocha = oled_override(OPTIONS.oled.value and vim.g.neovide),
             },
             styles = {
                 comments = { "bold" },
@@ -118,7 +118,7 @@ return {
                     InclineReverse = { fg = c.surface0, bg = c.none, style = { "bold" } },
                     InclineModified = { fg = c.red, bg = c.surface0, style = { "bold", "italic" } },
                     MarkSignHL = { fg = c.yellow, style = { "bold" } },
-                    NoiceCursor = { bg = c.text, fg = c.base, blend = 0},
+                    NoiceCursor = { bg = c.text, fg = c.base, blend = 0 },
                 }
             end,
         },

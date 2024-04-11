@@ -74,8 +74,6 @@ handle_file() {
     fi
 }
 
-# Call the function for ai_backend.lua
-handle_file "lua/configs/ai_backend.lua" "return 'https://api.openai.com/v1/engines/cushman-codex/completions'"
 handle_file "lua/luasnippets/c/hidden.lua" "return {}"
 handle_file "lua/luasnippets/cpp/hidden.lua" "return {}"
 handle_file "lua/luasnippets/cmake/hidden.lua" "return {}"

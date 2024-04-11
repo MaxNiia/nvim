@@ -1,7 +1,7 @@
 return {
     {
         "kazhala/close-buffers.nvim",
-        enabled = not vim.g.vscode,
+        cond = not vim.g.vscode,
         dependencies = {
             "folke/which-key.nvim",
         },

@@ -30,8 +30,8 @@ return {
         },
     },
     {
-        enabled = not vim.g.vscode,
         "hrsh7th/nvim-cmp",
+        cond = not vim.g.vscode,
         event = "InsertEnter",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
@@ -75,7 +75,7 @@ return {
                 },
                 window = {
                     completion = cmp.config.window.bordered(),
-                    docuementation = cmp.config.window.bordered(),
+                    documentation = cmp.config.window.bordered(),
                 },
                 experimental = {
                     ghost_text = true,

@@ -13,7 +13,7 @@ return {
         },
         lazy = true,
         event = "BufEnter",
-        enabled = not vim.g.vscode,
+        cond = not vim.g.vscode,
         opts = function()
             local trouble = require("trouble")
             local symbols = trouble.statusline({

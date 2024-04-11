@@ -64,11 +64,7 @@ local function parse_config_line(line)
             name = str
         else
             if OPTIONS[name] == nil then
-                vim.notify(
-                    "Option: " .. name .. " isn't a valid option.",
-                    vim.log.levels.ERROR
-                )
-                return { name = "" }
+                return
             end
             local value = OPTIONS[name].value
 
@@ -79,12 +75,6 @@ local function parse_config_line(line)
                 OPTIONS[name].value = tonumber(str) or 0.0
             elseif value_type == "boolean" then
                 OPTIONS[name].value = int_to_bool(tonumber(str))
-            else
-                vim.notify(
-                    "Option: " .. name .. " isn't of a supported type.",
-                    vim.log.levels.ERROR
-                )
-                return { name = "" }
             end
         end
     end

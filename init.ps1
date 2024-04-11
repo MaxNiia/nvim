@@ -80,8 +80,6 @@ Function Handle-File {
     }
 }
 
-# Call the function for ai_backend.lua and others
-Handle-File "lua/configs/ai_backend.lua" "return 'https://api.openai.com/v1/engines/cushman-codex/completions'"
 Handle-File "lua/luasnippets/c/hidden.lua" "return {}"
 Handle-File "lua/luasnippets/cpp/hidden.lua" "return {}"
 Handle-File "lua/luasnippets/cmake/hidden.lua" "return {}"

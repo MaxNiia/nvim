@@ -1,7 +1,7 @@
 return {
     {
         "folke/trouble.nvim",
-        enabled = not vim.g.vscode,
+        cond = not vim.g.vscode,
         branch = "dev",
         event = "BufEnter",
         keys = {

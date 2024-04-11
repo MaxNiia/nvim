@@ -1,7 +1,7 @@
 return {
     {
         "nvim-neotest/neotest",
-        enabled = not vim.g.vscode,
+        cond = not vim.g.vscode,
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-treesitter/nvim-treesitter",

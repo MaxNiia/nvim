@@ -3,7 +3,7 @@ local toggleTerminal = require("plugins.toggleterm.utils").toggleTerminal
 return {
     {
         "akinsho/toggleterm.nvim",
-        enabled = OPTIONS.toggleterm.value and not vim.g.vscode,
+        cond = OPTIONS.toggleterm.value and not vim.g.vscode,
         dependencies = {
             "MaxNiia/nvim-unception",
         },

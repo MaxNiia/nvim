@@ -4,7 +4,7 @@ return {
         dependencies = {
             "nvim-tree/nvim-web-devicons",
         },
-        enabled = function()
+        cond = function()
             return not OPTIONS.mini_files.value and not vim.g.vscode
         end,
         init = function()

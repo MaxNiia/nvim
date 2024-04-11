@@ -20,7 +20,7 @@ end
 return {
     "folke/edgy.nvim",
     event = "VimEnter",
-    enabled = not vim.g.vscode,
+    cond = not vim.g.vscode,
     opts = {
         animate = {
             enabled = true,

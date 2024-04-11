@@ -1,7 +1,7 @@
 return {
     {
         "jay-babu/mason-nvim-dap.nvim",
-        enabled = not vim.g.vscode,
+        cond = not vim.g.vscode,
         dependencies = {
             "williamboman/mason.nvim",
         },
@@ -9,14 +9,13 @@ return {
         opts = {
             ensure_installed = {
                 "python",
-                "cpptools",
+                "cpptool",
             },
             automatic_setup = true,
             handlers = {
                 function(config)
                     require("mason-nvim-dap").default_setup(config)
                 end,
-                cpp = function(source_name) end,
                 python = function(config)
                     config.adapters.python = {
                         type = "executable",

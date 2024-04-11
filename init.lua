@@ -30,12 +30,6 @@ OPTIONS = {
         description = "Toggleterm",
         prompt = nil,
     },
-    chatgpt = {
-        value = false,
-        key = "C",
-        description = "ChatGPT",
-        prompt = nil,
-    },
     oled = {
         value = false,
         key = "o",

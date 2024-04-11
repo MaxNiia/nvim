@@ -1,7 +1,7 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        enabled = not vim.g.vscode,
+        cond = not vim.g.vscode,
         dependencies = {
             {
                 "nvim-treesitter/nvim-treesitter-context",

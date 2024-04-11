@@ -103,7 +103,7 @@ end
 
 return {
     "echasnovski/mini.files",
-    enabled = (not vim.g.vscode) and OPTIONS.mini_files.value,
+    cond = (not vim.g.vscode) and OPTIONS.mini_files.value,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
     },

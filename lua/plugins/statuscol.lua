@@ -12,7 +12,7 @@ return {
     },
     {
         "luukvbaal/statuscol.nvim",
-        enabled = not vim.g.vscode,
+        cond = not vim.g.vscode,
         branch = "0.10",
         dependencies = {
             "lewis6991/gitsigns.nvim",

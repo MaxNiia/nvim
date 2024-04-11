@@ -4,7 +4,7 @@ return {
         dependencies = {
             "MunifTanjim/nui.nvim",
         },
-        enabled = not vim.g.vscode,
+        cond = not vim.g.vscode,
         lazy = true,
         event = "BufEnter",
         keys = {
