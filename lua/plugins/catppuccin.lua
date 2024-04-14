@@ -119,6 +119,7 @@ return {
                     InclineModified = { fg = c.red, bg = c.surface0, style = { "bold", "italic" } },
                     MarkSignHL = { fg = c.yellow, style = { "bold" } },
                     NoiceCursor = { bg = c.text, fg = c.base, blend = 0 },
+                    WinSep = { bg = c.surface0, fg = c.mauve },
                 }
             end,
         },

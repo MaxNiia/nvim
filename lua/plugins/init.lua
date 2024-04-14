@@ -45,6 +45,18 @@ return {
         },
     },
     {
+        "nvim-zh/colorful-winsep.nvim",
+        dependencies = {
+            "catppuccin/nvim",
+        },
+        event = { "WinNew" },
+        opts = {
+            hi = {
+                fg = vim.api.nvim_get_hl(0, { name = "WinSep" })["foreground"],
+            },
+        },
+    },
+    {
         "folke/neodev.nvim",
         event = "VeryLazy",
         ft = "lua",
