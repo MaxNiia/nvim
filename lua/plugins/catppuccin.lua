@@ -33,7 +33,7 @@ return {
                 dark = "mocha",
             },
             color_overrides = {
-                mocha = oled_override(OPTIONS.oled.value and vim.g.neovide),
+                mocha = oled_override(OPTIONS.oled.value),
             },
             styles = {
                 comments = { "bold" },
