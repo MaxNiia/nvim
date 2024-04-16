@@ -129,6 +129,16 @@ return {
                 ft = "git",
                 size = { width = 87 },
             },
+            {
+                ft = "dapui_breakpoints",
+                size = { width = 60 },
+            },
+            {
+                ft = "dapui_stacks",
+            },
+            {
+                ft = "dapui_watches",
+            },
         },
         right = {
             {
@@ -186,6 +196,14 @@ return {
                     return vim.api.nvim_win_get_config(win).relative == ""
                 end,
             },
+            {
+                ft = "dap_console",
+                size = { width = 80},
+            },
+            {
+                ft = "dap-repl",
+                size = { height = 30},
+            },
         },
         bottom = {
             {
@@ -222,6 +240,10 @@ return {
                 ft = "qf",
                 title = "Quickfix",
                 size = { height = 10 },
+            },
+            {
+                ft = "dapui_scopes",
+                size = { height = 30 },
             },
         },
         icons = {

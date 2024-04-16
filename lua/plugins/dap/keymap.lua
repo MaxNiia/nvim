@@ -1,61 +1,112 @@
 return {
     {
-
-        "<leader>bc",
-        "<cmd>DapContinue<cr>",
+        "<f5>",
+        function()
+            require("dap").continue()
+        end,
         desc = "Continue",
         mode = { "n" },
     },
     {
-        "<leader>bs",
-        "<cmd>DapStepOver<cr>",
-        desc = "Step Over",
+        "<f10>",
+        function()
+            require("dap").step_over()
+        end,
+        desc = "Step over",
         mode = { "n" },
     },
     {
-        "<leader>bi",
-        "<cmd>DapStepInto<cr>",
-        desc = "Step Into",
+        "<f11>",
+        function()
+            require("dap").step_into()
+        end,
+        desc = "Step into",
         mode = { "n" },
     },
     {
-        "<leader>bo",
-        "<cmd>DapStepOut<cr>",
+        "<f12>",
+        function()
+            require("dap").step_out()
+        end,
         desc = "Step out",
         mode = { "n" },
     },
     {
-        "<leader>bb",
-        "<cmd>DapToggleBreakpoint<cr>",
+        "<leader>b",
+        function()
+            require("dap").toggle_breakpoint()
+        end,
         desc = "Breakpoint",
         mode = { "n" },
     },
     {
-        "<leader>bR",
-        "<cmd>DapToggleRepl<cr>",
+        "<leader>B",
+        function()
+            require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point Message: "))
+        end,
+        desc = "Logpoint",
+        mode = { "n" },
+    },
+    {
+        "<leader>Dr",
+        function()
+            require("dap").repl.open()
+        end,
         desc = "Open repl",
-        mode = { "n" },
+        mode = "n",
     },
     {
-        "<leader>bl",
-        "<cmd>DapStepOut<cr>",
-        desc = "Run last session",
-        mode = { "n" },
+        "<leader>Dl",
+        function()
+            require("dap").run_last()
+        end,
+        desc = "Run last",
+        mode = "n",
     },
     {
-        "<leader>br",
-        "<cmd>DapRestartFrame<cr>",
-        desc = "Restart session",
-        mode = { "n" },
+        "<leader>Dh",
+        function()
+            require("dap.ui.widgets").hover()
+        end,
+        desc = "Hover",
+        mode = { "n", "v" },
     },
     {
-        "<leader>bq",
-        "<cmd>DapTerminate<cr>",
-        desc = "Terminate session",
-        mode = { "n" },
+        "<leader>Dp",
+        function()
+            require("dap.ui.widgets").preview()
+        end,
+        desc = "Preview",
+        mode = { "n", "v" },
     },
     {
-        "<leader>bL",
+        "<leader>Df",
+        function()
+            local widgets = require("dap.ui.widgets")
+            widgets.centered_float(widgets.frames)
+        end,
+        desc = "Frames",
+        mode = "n",
+    },
+    {
+        "<leader>Ds",
+        function()
+            local widgets = require("dap.ui.widgets")
+            widgets.centered_float(widgets.scopes)
+        end,
+        desc = "Scopes",
+        mode = "n",
+    },
+    {
+        "<leader>Dt",
+        function()
+            require("dapui").toggle()
+        end,
+        desc = "Toggle UI",
+        mode = "n",
+    },
+    {
+        "<leader>DL",
         function()
             require("dap.ext.vscode").load_launchjs(nil, { cppdbg = { "c", "cpp" } })
         end,

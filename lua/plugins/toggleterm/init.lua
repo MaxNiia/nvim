@@ -10,12 +10,6 @@ return {
         event = "BufEnter",
         keys = {
             {
-                "<f5>",
-                toggleTerminal("horizontal"),
-                desc = "Toggle horizontal",
-                expr = true,
-            },
-            {
                 "<f6>",
                 toggleTerminal("vertical"),
                 desc = "Toggle vertical",
@@ -27,7 +21,6 @@ return {
                 desc = "Toggle float",
                 expr = true,
             },
-            { "<f12>", "<cmd>ToggleTermToggleAll<CR>", desc = "Toggle all terminals" },
         },
         opts = {
             size = function(term)

@@ -86,7 +86,7 @@ return {
 
             wk.register({
                 t = { name = "Test" },
-                b = { name = "Debug" },
+                D = { name = "Debug" },
                 c = { name = "CMake" },
                 r = { name = "Refactor" },
                 i = { name = "Chat" },
