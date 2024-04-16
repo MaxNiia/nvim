@@ -68,7 +68,7 @@ return {
         "stevearc/conform.nvim",
         cond = not vim.g.vscode,
         init = function()
-            vim.g.disable_autoformat = false
+            vim.g.disable_autoformat = true
             vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
             vim.api.nvim_create_user_command("FormatDisable", function(args)
