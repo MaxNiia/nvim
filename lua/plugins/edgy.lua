@@ -115,6 +115,20 @@ return {
                 size = { width = 50 },
                 filter = get_trouble_filter("symbols", "right"),
             },
+            {
+                ft = "gitrebase",
+                size = { width = 80 },
+                filter = only_buffer,
+            },
+            {
+                ft = "gitcommit",
+                size = { width = 80 },
+                filter = only_buffer,
+            },
+            {
+                ft = "git",
+                size = { width = 87 },
+            },
         },
         right = {
             {
@@ -171,20 +185,6 @@ return {
                 )
                     return vim.api.nvim_win_get_config(win).relative == ""
                 end,
-            },
-            {
-                ft = "gitrebase",
-                size = { width = 80 },
-                filter = only_buffer,
-            },
-            {
-                ft = "gitcommit",
-                size = { width = 80 },
-                filter = only_buffer,
-            },
-            {
-                ft = "git",
-                size = { width = 87 },
             },
         },
         bottom = {
