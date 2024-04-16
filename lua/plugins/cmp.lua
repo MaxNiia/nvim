@@ -181,14 +181,14 @@ return {
                     { name = "treesitter", group_index = 3 },
                     { name = "fuzzy_buffer", group_index = 3 },
                 }, {
-                    {
-                        name = "buffer",
-                        option = {
-                            get_bufnrs = function()
-                                return vim.api.nvim_list_bufs()
-                            end,
-                        },
-                    },
+                    -- {
+                    --     name = "buffer",
+                    --     option = {
+                    --         get_bufnrs = function()
+                    --             return vim.api.nvim_list_bufs()
+                    --         end,
+                    --     },
+                    -- },
                 }),
             })
 
