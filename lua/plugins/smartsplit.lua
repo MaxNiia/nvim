@@ -45,6 +45,10 @@ return {
             vim.keymap.set("n", "<A-j>", require("smart-splits").resize_down)
             vim.keymap.set("n", "<A-k>", require("smart-splits").resize_up)
             vim.keymap.set("n", "<A-l>", require("smart-splits").resize_right)
+            vim.keymap.set("n", "<C-w><C-h>", require("smart-splits").resize_left)
+            vim.keymap.set("n", "<C-w><C-j>", require("smart-splits").resize_down)
+            vim.keymap.set("n", "<C-w><C-k>", require("smart-splits").resize_up)
+            vim.keymap.set("n", "<C-w><C-l>", require("smart-splits").resize_right)
 
             -- swapping buffers between windows
             vim.keymap.set("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
