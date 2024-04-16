@@ -87,7 +87,8 @@ return {
                     } or {},
                     ft_icon and {
                         ft_icon .. " ",
-                        guifg = ft_color,
+                        guifg = vim.g.neovide and ft_color or "bg",
+                        guibg = vim.g.neovide and "bg" or ft_color,
                     } or {},
 
                     {
