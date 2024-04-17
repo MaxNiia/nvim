@@ -68,7 +68,7 @@ return {
         "stevearc/conform.nvim",
         cond = not vim.g.vscode,
         init = function()
-            vim.g.disable_autoformat = true
+            vim.g.disable_autoformat = false
             vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
             vim.api.nvim_create_user_command("FormatDisable", function(args)
@@ -121,6 +121,7 @@ return {
                 json = { "fixjson" },
                 yaml = { "yamlfmt" },
                 markdown = { "markdownlint" },
+                cpp = { "clang-format" },
             },
         },
     },
@@ -155,6 +156,7 @@ return {
 
                 -- NOTE: FORMAT
                 "autoflake",
+                "clang-format",
                 "autopep8",
                 "beautysh",
                 "codespell",
