@@ -1,6 +1,5 @@
 .luarc.json
 ai_backend.lua
-lazy-lock.json
 project_templates.lua
 node_modules/*
 package.json
