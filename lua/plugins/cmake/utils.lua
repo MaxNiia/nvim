@@ -56,20 +56,7 @@ local function load_current_cmake_targets_to_dap(callback)
     end
 end
 
-local function file_exists(name)
-    local f = io.open(name, "r")
-    if f ~= nil then
-        io.close(f)
-        return true
-    else
-        return false
-    end
-end
-
 return {
-    is_cmake_project = function()
-        return file_exists(vim.uv.cwd() .. "/CMakeLists.txt")
-    end,
     configure = function()
         require("trouble").close()
         require("cmake-tools").generate({}, function() end)

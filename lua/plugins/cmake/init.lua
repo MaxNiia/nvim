@@ -1,7 +1,7 @@
 return {
     {
+        -- NOTE: This plugin does not like being lazy loaded.
         "Civitasv/cmake-tools.nvim",
-        event = "VeryLazy",
         keys = {
             {
                 "<leader>cp",
@@ -39,16 +39,25 @@ return {
                 desc = "Debug (stop)",
             },
         },
-        ft = { "cpp", "c", "cmake" },
         opts = {
             cmake_soft_link_compile_commands = false,
             cmake_compile_commands_from_lsp = true,
             cmake_build_options = { "-j32" },
             cmake_executor = {
-                name = "quickfix",
+                name = "toggleterm",
+                opts = {
+                    close_on_exit = false,
+                    direction = "horizontal",
+                    auto_scroll = true,
+                },
             },
             cmake_runner = {
-                name = "terminal",
+                name = "toggleterm",
+                opts = {
+                    close_on_exit = false,
+                    direction = "horizontal",
+                    auto_scroll = true,
+                },
             },
             cmake_dap_configuration = {
                 name = "cpp",
@@ -76,5 +85,8 @@ return {
                 refresh_rate_ms = 100,
             },
         },
+        config = function(_, opts)
+            require("cmake-tools").setup(opts)
+        end,
     },
 }
