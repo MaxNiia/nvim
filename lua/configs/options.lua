@@ -88,8 +88,6 @@ vim.cmd([[
     setglobal tags-=./tags tags-=./tags; tags^=./tags;
     set complete-=i
     set nrformats-=octal
-    inoremap jk <Esc>
-    inoremap kj <Esc>
 ]])
 
 if not vim.g.vscode and (not _G.IS_WINDOWS or _G.IS_WSL) then

@@ -68,7 +68,7 @@ end
 
 return {
     is_cmake_project = function()
-        return file_exists(vim.uv.cwd() .. "CMakeLists.txt")
+        return file_exists(vim.uv.cwd() .. "/CMakeLists.txt")
     end,
     configure = function()
         require("trouble").close()
