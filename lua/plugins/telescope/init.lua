@@ -225,6 +225,10 @@ return {
 
                         -- Set session
                         local resession = require("resession")
+                        local current_session = resession.get_current()
+                        if current_session then
+                            resession.save(current_session, { attach = false, notify = true })
+                        end
 
                         local project_path = action_state.get_selected_entry(prompt_bufnr).value
                         local pattern = "/"
@@ -233,7 +237,7 @@ return {
                         end
                         local project_name = project_path:gsub(pattern, "_")
                         -- Change monorepo directory to the selected project
-                        -- require("monorepo").change_monorepo(project_path)
+                        require("monorepo").change_monorepo(project_path)
 
                         local new_session = true
                         for _, session in pairs(resession.list()) do
