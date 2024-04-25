@@ -121,6 +121,7 @@ return {
                 },
                 project = {
                     initial_mode = "normal",
+                    display_type = "full",
                     layout_config = ui.layouts.vertical,
                 },
                 monorepo = {
@@ -221,7 +222,6 @@ return {
                     initial_mode = "normal",
                     on_project_selected = function(prompt_bufnr)
                         local project_actions = require("telescope._extensions.project.actions")
-                        project_actions.change_working_directory(prompt_bufnr)
 
                         -- Set session
                         local resession = require("resession")
@@ -230,14 +230,16 @@ return {
                             resession.save(current_session, { attach = false, notify = true })
                         end
 
+                        vim.lsp.stop_client(vim.lsp.get_clients())
+
+                        project_actions.change_working_directory(prompt_bufnr)
+
                         local project_path = action_state.get_selected_entry(prompt_bufnr).value
                         local pattern = "/"
                         if vim.fn.has("win32") == 1 then
                             pattern = "[\\:]"
                         end
                         local project_name = project_path:gsub(pattern, "_")
-                        -- Change monorepo directory to the selected project
-                        require("monorepo").change_monorepo(project_path)
 
                         local new_session = true
                         for _, session in pairs(resession.list()) do
