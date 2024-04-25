@@ -30,40 +30,53 @@ local hint_builders = {
     number = hint_builder,
 }
 
-local function head_builder(name, key, func)
+local function head_builder(name, key, do_exit, func)
     return {
         key,
         function()
             func()
-            require("utils.config").save_config()
         end,
-        { desc = name },
+        {
+            exit = do_exit,
+            desc = name,
+            exit_before = do_exit,
+        },
     }
+end
+
+local on_set = function(name)
+    require("utils.config").save_config()
+    if OPTIONS[name].callback then
+        OPTIONS[name].callback()
+    end
 end
 
 local head_builders = {
     boolean = function(name, key, _)
-        return head_builder(name, key, function()
+        return head_builder(name, key, false, function()
             OPTIONS[name].value = not OPTIONS[name].value
+            on_set(name)
         end)
     end,
     string = function(name, key, prompt)
-        return head_builder(name, key, function()
+        return head_builder(name, key, true, function()
             vim.ui.input({ default = OPTIONS[name].value, prompt = prompt }, function(input)
                 if input ~= nil then
                     OPTIONS[name].value = input
                 end
+                on_set(name)
             end)
         end)
     end,
     number = function(name, key, prompt)
-        return head_builder(name, key, function()
+        return head_builder(name, key, true, function()
             vim.ui.input(
                 { default = tostring(OPTIONS[name].value), prompt = prompt },
                 function(input)
                     if input ~= nil then
                         OPTIONS[name].value = tonumber(input) or 0
                     end
+                    on_set(name)
                 end
             )
         end)
@@ -93,7 +106,7 @@ local value_builders = {
 return function()
     local heads = {}
     local hint = [[
-  ^^     Config  
+  ^^     Config
   ^
     ]]
     local values = {}
@@ -109,7 +122,7 @@ return function()
     table.insert(heads, { "<Esc>", nil, { exit = true } })
     hint = hint .. "\n" .. [[
   ^
-  ^^     _<Esc>_  
+  ^^     _<Esc>_
     ]]
     return {
         name = "Config",

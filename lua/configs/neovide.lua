@@ -1,7 +1,7 @@
 vim.o.guifont = "FiraCode Nerd Font:h"
     .. tostring(OPTIONS.font_size.value > 0 and OPTIONS.font_size.value or 11)
+vim.g.neovide_scale_factor = OPTIONS.scale_size.value
 vim.opt.linespace = 0
-vim.g.neovide_scale_factor = 1.0
 vim.g.neovide_padding_top = 0
 vim.g.neovide_padding_bottom = 0
 vim.g.neovide_padding_right = 0

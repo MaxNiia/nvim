@@ -17,72 +17,96 @@ OPTIONS = {
         key = "m",
         description = "mini.files",
         prompt = nil,
+        callback = nil,
     },
     neotree = {
         value = false,
         key = "n",
         description = "Neotree",
         prompt = nil,
+        callback = nil,
     },
     toggleterm = {
         value = false,
         key = "t",
         description = "Toggleterm",
         prompt = nil,
+        callback = nil,
     },
     oled = {
         value = false,
         key = "o",
         description = "OLED Catppuccin",
         prompt = nil,
+        callback = nil,
     },
     copilot = {
         value = false,
         key = "c",
         description = "Copilot",
         prompt = nil,
+        callback = nil,
     },
     popup = {
         value = true,
         key = "p",
         description = "Command line popup",
         prompt = nil,
+        callback = nil,
     },
     harpoon = {
         value = false,
         key = "h",
         description = "Harpoon",
         prompt = nil,
+        callback = nil,
     },
     buffer_mode = {
         value = false,
         key = "b",
         description = "Buffer mode",
         prompt = nil,
+        callback = nil,
     },
     lsp_lines = {
         value = false,
         key = "l",
         description = "lsp_lines",
         prompt = nil,
+        callback = nil,
     },
     prompt_end = {
         value = "%$ ",
         key = "P",
         description = "Terminal prompt",
         prompt = "Enter your terminal prompt",
+        callback = nil,
     },
     font_size = {
         value = 11.0,
         key = "f",
         description = "Font size",
         prompt = "Enter desired font size",
+        callback = function()
+            vim.o.guifont = "FiraCode Nerd Font:h"
+                .. tostring(OPTIONS.font_size.value > 0 and OPTIONS.font_size.value or 11)
+        end,
+    },
+    scale_size = {
+        value = 1.0,
+        key = "s",
+        description = "Scale size",
+        prompt = "Neovide scale",
+        callback = function()
+            vim.g.neovide_scale_factor = OPTIONS.scale_size.value
+        end,
     },
     wiki = {
         value = "~",
         key = "w",
         description = "Wiki path",
         prompt = "Enter desired path to wiki files",
+        callback = nil,
     },
 }
 
