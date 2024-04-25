@@ -18,9 +18,7 @@ return {
             -- to a :h preview-window when pressing the hover keymap.
             preview_window = false,
             title = true,
-            mouse_providers = {
-                "LSP",
-            },
+            mouse_providers = nil,
             mouse_delay = 1000,
         },
         lazy = false,
@@ -33,7 +31,7 @@ return {
                 require("hover").hover_mouse,
                 { desc = "hover.nvim (mouse)" }
             )
-            vim.o.mousemoveevent = true
+            -- vim.o.mousemoveevent = true
 
             -- vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
             vim.keymap.set(

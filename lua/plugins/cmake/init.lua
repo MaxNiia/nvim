@@ -68,8 +68,8 @@ return {
                 console = "integratedTerminal",
             },
             cmake_notifications = {
-                runner = { enabled = true },
-                executor = { enabled = true },
+                runner = { enabled = false },
+                executor = { enabled = false },
                 spinner = {
                     "⠋",
                     "⠙",

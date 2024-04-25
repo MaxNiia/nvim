@@ -33,7 +33,6 @@ return {
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "filesystem"
                 end,
-                pinned = OPTIONS.neotree.value,
                 size = { height = 0.5 },
             },
             {
@@ -42,7 +41,6 @@ return {
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "git_status"
                 end,
-                pinned = OPTIONS.neotree.value,
                 open = "Neotree position=right git_status",
             },
             {
@@ -51,7 +49,6 @@ return {
                 filter = function(buf)
                     return vim.b[buf].neo_tree_source == "buffers"
                 end,
-                pinned = OPTIONS.neotree.value,
                 open = "Neotree position=top buffers",
             },
             {
@@ -131,13 +128,18 @@ return {
             },
             {
                 ft = "dapui_breakpoints",
-                size = { width = 60 },
+                size = { width = 60, height = 30 },
             },
             {
                 ft = "dapui_stacks",
+                size = { hegiht = 30 },
             },
             {
                 ft = "dapui_watches",
+                size = { height = 10 },
+            },
+            {
+                ft = "dapui_console",
             },
         },
         right = {
@@ -196,18 +198,6 @@ return {
                     return vim.api.nvim_win_get_config(win).relative == ""
                 end,
             },
-            {
-                ft = "dap_console",
-                size = { width = 80 },
-            },
-            {
-                ft = "dapui_console",
-                size = { width = 80 },
-            },
-            {
-                ft = "dap-repl",
-                size = { height = 30 },
-            },
         },
         bottom = {
             {
@@ -248,6 +238,14 @@ return {
             {
                 ft = "dapui_scopes",
                 size = { height = 30 },
+            },
+            {
+                ft = "dap_console",
+                size = { widrh = 60 },
+            },
+            {
+                ft = "dap-repl",
+                size = { widrh = 60 },
             },
         },
         icons = {

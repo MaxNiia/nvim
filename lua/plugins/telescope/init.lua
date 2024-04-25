@@ -151,7 +151,12 @@ return {
                 borderchars = ui.borderchars,
                 winblend = vim.g.neovide and 100 or 0,
                 wrap_results = false,
-                path_display = { truncate = 1 },
+                path_display = {
+                    truncate = 1,
+                    filename_first = {
+                        reverse_directories = false,
+                    },
+                },
                 selection_caret = "",
                 entry_prefix = " ",
                 initial_mode = "insert",
