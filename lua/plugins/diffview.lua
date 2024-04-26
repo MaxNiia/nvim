@@ -69,7 +69,7 @@ return {
             signs = {
                 fold_closed = icons.fold.closed,
                 fold_open = icons.fold.open,
-                done = icons.misc.done,
+                done = icons.progress.done,
             },
             view = {
                 merge_tool = {

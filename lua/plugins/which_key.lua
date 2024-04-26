@@ -23,7 +23,7 @@ return {
                 desc = "Paste from system",
             },
             {
-                "<leader>C",
+                "<leader>H",
                 "<cmd>nohl<CR>",
                 mode = "n",
                 desc = "Clear highlighting",
@@ -90,6 +90,8 @@ return {
                 c = { name = "CMake" },
                 r = { name = "Refactor" },
                 i = { name = "Chat" },
+                w = { name = "Wiki" },
+                W = { name = "Sessions" },
                 f = {
                     name = "Telescope",
                     d = { name = "Debug" },

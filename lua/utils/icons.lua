@@ -1,7 +1,6 @@
 return {
     misc = {
         dots = "󰇘",
-        done = "✓",
         slash = "╱",
         minus = "",
         plus = "",
