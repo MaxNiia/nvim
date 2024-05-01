@@ -1,7 +1,7 @@
 return {
     {
         "jay-babu/mason-nvim-dap.nvim",
-        cond = not vim.g.vscode,
+        cond = not vim.g.vscode and not _G.IS_WINDOWS,
         dependencies = {
             "williamboman/mason.nvim",
         },
