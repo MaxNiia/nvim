@@ -51,14 +51,8 @@ return {
                     auto_scroll = true,
                 },
             },
-            cmake_runner = {
-                name = "toggleterm",
-                opts = {
-                    close_on_exit = false,
-                    direction = "horizontal",
-                    auto_scroll = true,
-                },
-            },
+            cmake_runner = OPTIONS.toggleterm.value and require("plugins.cmake.toggleterm")
+                or require("plugins.cmake.quickfix"),
             cmake_dap_configuration = {
                 name = "cpp",
                 type = "cppdbg",
