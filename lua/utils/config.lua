@@ -21,6 +21,14 @@ local function save_config()
             f:write(name, separator, value, separator, "\n")
         elseif value_type == "boolean" then
             f:write(name, separator, bool_to_int(value), separator, "\n")
+        elseif value_type == "table" then
+            for config_name, v_table in pairs(value) do
+                f:write(name, separator, config_name, separator)
+                for index, v in pairs(v_table) do
+                    f:write(index, separator, v, separator)
+                end
+                f:write("\n")
+            end
         else
             vim.notify(
                 "Option: " .. name .. ": " .. value_type .. " isn't of a supported type.",
@@ -59,6 +67,9 @@ end
 
 local function parse_config_line(line)
     local name = ""
+    local index = ""
+    local config_name = ""
+    local table_value = nil
 
     for str in string.gmatch(line, "([^" .. separator .. "]+)" .. separator) do
         if name == "" then
@@ -67,17 +78,34 @@ local function parse_config_line(line)
             if OPTIONS[name] == nil then
                 return
             end
-            local value = OPTIONS[name].value
 
+            local value = OPTIONS[name].value
             local value_type = type(value)
+
             if value_type == "string" then
                 OPTIONS[name].value = str
             elseif value_type == "number" then
                 OPTIONS[name].value = tonumber(str) or 0.0
             elseif value_type == "boolean" then
                 OPTIONS[name].value = int_to_bool(tonumber(str))
+            elseif value_type == "table" then
+                if config_name == "" then
+                    config_name = str
+                elseif index == "" then
+                    index = str
+                else
+                    if table_value == nil then
+                        table_value = {}
+                    end
+                    table_value[index] = str
+                    index = ""
+                end
             end
         end
+    end
+
+    if config_name ~= "" and table_value ~= nil then
+        OPTIONS[name].value[config_name] = table_value
     end
 end
 

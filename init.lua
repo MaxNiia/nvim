@@ -14,77 +14,173 @@ autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 OPTIONS = {
     mini_files = {
         value = true,
-        key = "m",
-        description = "mini.files",
+        key = "mf",
+        description = "Enable mini.files",
         prompt = nil,
         callback = nil,
     },
+    virtual_edit = {
+        value = "none",
+        key = "ve",
+        description = "Virtual edit mode",
+        prompt = {
+            "block",
+            "insert",
+            "all",
+            "onemore",
+            "none",
+        },
+        callback = function()
+            vim.o.virtualedit = OPTIONS.virtual_edit.value
+        end,
+    },
+    invisible = {
+        value = false,
+        key = "ic",
+        description = "Toggle invisible characters",
+        prompt = nil,
+        callback = function()
+            vim.o.list = OPTIONS.invisible.value
+        end,
+    },
+    word_wrap = {
+        value = true,
+        key = "ww",
+        description = "Toggle word wrap",
+        prompt = nil,
+        callback = function()
+            if OPTIONS.word_wrap.value == true then
+                vim.o.wrap = true
+                -- Dealing with word wrap:
+                -- If cursor is inside very long line in the file than wraps
+                -- around several rows on the screen, then 'j' key moves you to
+                -- the next line in the file, but not to the next row on the
+                -- screen under your previous position as in other editors. These
+                -- bindings fixes this.
+                vim.keymap.set("n", "k", function()
+                    return vim.v.count > 0 and "k" or "gk"
+                end, { expr = true, desc = "k or gk" })
+                vim.keymap.set("n", "j", function()
+                    return vim.v.count > 0 and "j" or "gj"
+                end, { expr = true, desc = "j or gj" })
+            else
+                vim.o.wrap = false
+                vim.keymap.del("n", "k")
+                vim.keymap.del("n", "j")
+            end
+        end,
+    },
+    number = {
+        value = true,
+        key = "ln",
+        description = "Toggle line numbers",
+        prompt = nil,
+        callback = function()
+            vim.o.number = OPTIONS.number.value
+        end,
+    },
+    relative_number = {
+        value = true,
+        key = "rn",
+        description = "Toggle relative line numbers",
+        prompt = nil,
+        callback = function()
+            vim.o.relativenumber = OPTIONS.relatie_number.value
+        end,
+    },
     neotree = {
         value = false,
-        key = "n",
-        description = "Neotree",
+        key = "nt",
+        description = "Enable Neotree",
         prompt = nil,
         callback = nil,
     },
     toggleterm = {
         value = false,
-        key = "t",
-        description = "Toggleterm",
+        key = "tt",
+        description = "Enable toggleterm",
         prompt = nil,
         callback = nil,
     },
     oled = {
         value = false,
-        key = "o",
-        description = "OLED Catppuccin",
+        key = "bb",
+        description = "Black background",
         prompt = nil,
         callback = nil,
     },
     copilot = {
         value = false,
-        key = "c",
-        description = "Copilot",
+        key = "cc",
+        description = "Enable copilot",
         prompt = nil,
         callback = nil,
     },
     popup = {
         value = true,
-        key = "p",
-        description = "Command line popup",
+        key = "cp",
+        description = "Enable command line popup",
         prompt = nil,
         callback = nil,
     },
     harpoon = {
         value = false,
         key = "h",
-        description = "Harpoon",
+        description = "Enable Harpoon",
         prompt = nil,
         callback = nil,
     },
     buffer_mode = {
         value = false,
-        key = "b",
-        description = "Buffer mode",
+        key = "tb",
+        description = "Normal mode in buffers",
         prompt = nil,
         callback = nil,
     },
     lsp_lines = {
         value = false,
-        key = "l",
-        description = "lsp_lines",
+        key = "ll",
+        description = "Diagnostics on separate line",
         prompt = nil,
         callback = nil,
     },
     prompt_end = {
         value = "%$ ",
-        key = "P",
+        key = "tp",
         description = "Terminal prompt",
         prompt = "Enter your terminal prompt",
         callback = nil,
     },
+    git_signs = {
+        value = false,
+        key = "gs",
+        description = "Toggle git signs",
+        prompt = nil,
+        callback = function()
+            require("gitsigns").toggle_signs(OPTIONS.git_signs.value)
+        end,
+    },
+    git_deleted = {
+        value = false,
+        key = "gd",
+        description = "Toggle git deleted highlights",
+        prompt = nil,
+        callback = function()
+            require("gitsigns").toggle_deleted(OPTIONS.git_deleted.value)
+        end,
+    },
+    git_line_hl = {
+        value = false,
+        key = "gl",
+        description = "Toggle git line highlights",
+        prompt = nil,
+        callback = function()
+            require("gitsigns").toggle_linehl(OPTIONS.git_line_hl.value)
+        end,
+    },
     font_size = {
         value = 11.0,
-        key = "f",
+        key = "fs",
         description = "Font size",
         prompt = "Enter desired font size",
         callback = function()
@@ -92,10 +188,19 @@ OPTIONS = {
                 .. tostring(OPTIONS.font_size.value > 0 and OPTIONS.font_size.value or 11)
         end,
     },
+    spell = {
+        value = true,
+        key = "sc",
+        description = "Toggle spell checker",
+        prompt = nil,
+        callback = function()
+            vim.o.spell = OPTIONS.spell.value
+        end,
+    },
     scale_size = {
         value = 1.0,
-        key = "s",
-        description = "Scale size",
+        key = "ns",
+        description = "Change neovide scale",
         prompt = "Neovide scale",
         callback = function()
             vim.g.neovide_scale_factor = OPTIONS.scale_size.value
@@ -103,9 +208,23 @@ OPTIONS = {
     },
     wiki = {
         value = "~",
-        key = "w",
+        key = "wp",
         description = "Wiki path",
         prompt = "Enter desired path to wiki files",
+        callback = nil,
+    },
+    wikis = {
+        value = {
+            work = {
+                key = "w",
+            },
+            personal = {
+                key = "p",
+            },
+        },
+        key = "wf",
+        description = "Wiki folder",
+        prompt = { add = { folder = { "key" } }, remove = "folder" },
         callback = nil,
     },
 }

@@ -4,7 +4,7 @@ return {
         event = "VeryLazy",
         keys = {
             {
-                "<Leader>wT",
+                "<Leader>LT",
                 function()
                     local on = require("lsp_lines").toggle()
 

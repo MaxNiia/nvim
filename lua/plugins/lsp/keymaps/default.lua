@@ -61,7 +61,7 @@ return function(bufnr)
                     "Rename",
                 },
             },
-            w = {
+            L = {
                 name = "LSP",
                 a = {
                     vim.lsp.buf.add_workspace_folder,
