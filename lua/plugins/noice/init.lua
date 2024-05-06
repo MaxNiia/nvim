@@ -20,7 +20,6 @@ return {
         "folke/noice.nvim",
         event = "BufEnter",
         dependencies = {
-            "hrsh7th/nvim-cmp",
             "MunifTanjim/nui.nvim",
             "rcarriga/nvim-notify",
         },
