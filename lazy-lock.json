@@ -89,6 +89,7 @@
   "nvim-web-devicons": { "branch": "master", "commit": "475fbcfcb6ee7c35aa33a6b6207ebd4032791d87" },
   "overseer.nvim": { "branch": "master", "commit": "89942ad366c8a9bb93f82411de17dc7c644b4e3b" },
   "plenary.nvim": { "branch": "master", "commit": "08e301982b9a057110ede7a735dd1b5285eb341f" },
+  "profile.nvim": { "branch": "master", "commit": "0ee32b7aba31d84b0ca76aaff2ffcb11f8f5449f" },
   "promise-async": { "branch": "main", "commit": "93540c168c5ed2b030ec3e6c40ab8bbb85e36355" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "7ef0766b5cd2f5cdf4fcb08886f0a2ebf65981fa" },
   "resession.nvim": { "branch": "master", "commit": "4463a78e1783c99466d5f5fb79516d06a5d6f3f8" },
@@ -111,6 +112,7 @@
   "venn.nvim": { "branch": "main", "commit": "b09c2f36ddf70b498281845109bedcf08a7e0de0" },
   "vim-fugitive": { "branch": "master", "commit": "ce882460cf3db12e99f8bf579cbf99e331f6dd4f" },
   "vim-illuminate": { "branch": "master", "commit": "e522e0dd742a83506db0a72e1ced68c9c130f185" },
+  "vim-tpipeline": { "branch": "master", "commit": "5dd3832bd6e239feccb11cadca583cdcf9d5bda1" },
   "which-key.nvim": { "branch": "main", "commit": "4433e5ec9a507e5097571ed55c02ea9658fb268a" },
   "zen-mode.nvim": { "branch": "main", "commit": "78557d972b4bfbb7488e17b5703d25164ae64e6a" }
 }
