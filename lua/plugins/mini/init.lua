@@ -92,7 +92,9 @@ return {
             },
             windows = {
                 preview = true,
-                width_preview = 50,
+                width_preview = 80,
+                width_focus = 50,
+                width_nofocus = 20,
             },
             content = {
                 filter = file_functions.filter,

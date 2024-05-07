@@ -2,6 +2,8 @@ vim.cmd([[
     autocmd FileType gitcommit setlocal textwidth=72
     autocmd FileType gitcommit setlocal colorcolumn=+1
 
+    autocmd FileType minifiles setlocal conceallevel=2
+
     autocmd FileType c setlocal textwidth=80
     autocmd FileType c setlocal colorcolumn=+1
 
