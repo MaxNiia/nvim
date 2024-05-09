@@ -22,7 +22,7 @@ return {
             },
             {
                 "<leader>Gp",
-                "<cmd>G! push",
+                "<cmd>G! push<cr>",
                 desc = "Git push",
             },
             {
