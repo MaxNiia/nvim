@@ -22,7 +22,7 @@ return {
     cond = not vim.g.vscode,
     opts = {
         animate = {
-            enabled = true,
+            enabled = false,
             cps = 600,
         },
         left = {

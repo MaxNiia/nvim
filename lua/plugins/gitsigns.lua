@@ -54,11 +54,18 @@ return {
 
                 -- Actions
                 wk.register({
+                    q = { gs.setqflist, "List buffer hunks" },
+                    Q = {
+                        function()
+                            gs.setqflist("all")
+                        end,
+                        "List all hunks",
+                    },
                     s = { gs.stage_hunk, "Stage Hunk" },
+                    R = { gs.reset_buffer, "Reset Buffer" },
                     r = { gs.reset_hunk, "Reset Hunk" },
                     S = { gs.stage_buffer, "Stage Buffer" },
                     u = { gs.undo_stage_hunk, "Undo stage Hunk" },
-                    R = { gs.reset_buffer, "Reset Buffer" },
                     p = { gs.preview_hunk, "Preview Hunk" },
                 }, { mode = "n", prefix = "<leader>g", buffer = bufnr })
 

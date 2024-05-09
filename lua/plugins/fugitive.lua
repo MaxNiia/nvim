@@ -6,32 +6,27 @@ return {
         event = "BufEnter",
         keys = {
             {
-                "<leader>Gc",
+                "<leader>gc",
                 "<cmd>G commit<cr>",
                 desc = "Git commit",
             },
             {
-                "<leader>Gl",
+                "<leader>gl",
                 "<cmd>G! log --max-count=50<cr>",
                 desc = "Git log",
             },
             {
-                "<leader>Gs",
+                "<leader>gg",
                 "<cmd>G! status<cr>",
                 desc = "Git status",
             },
             {
-                "<leader>Gp",
-                "<cmd>G! push<cr>",
-                desc = "Git push",
-            },
-            {
-                "<leader>GP",
+                "<leader>gp",
                 "<cmd>G! push --force-with-lease<cr>",
                 desc = "Git push force",
             },
             {
-                "<leader>Gf",
+                "<leader>gf",
                 "<cmd>G! pull<cr>",
                 desc = "Git pull",
             },
