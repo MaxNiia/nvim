@@ -68,8 +68,7 @@ return {
             if OPTIONS.neotree.value then
                 wk.register({
                     H = {
-                        name = "Git",
-                        b = { name = "Branch" },
+                        name = "Hunks",
                     },
                 }, { prefix = "<leader>", mode = "n" })
             else
@@ -78,8 +77,10 @@ return {
                         g = { name = "Git" },
                     },
                     g = {
+                        name = "Hunks",
+                    },
+                    G = {
                         name = "Git",
-                        b = { name = "Branch" },
                     },
                 }, { prefix = "<leader>", mode = "n" })
             end

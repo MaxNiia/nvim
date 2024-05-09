@@ -1,8 +1,3 @@
-local group_key = "g"
-if OPTIONS.neotree.value then
-    group_key = "H"
-end
-
 return {
     {
         "tpope/vim-fugitive",
@@ -11,22 +6,32 @@ return {
         event = "BufEnter",
         keys = {
             {
-                "<leader>" .. group_key .. "c",
+                "<leader>Gc",
                 "<cmd>G commit<cr>",
                 desc = "Git commit",
             },
             {
-                "<leader>" .. group_key .. "l",
+                "<leader>Gl",
                 "<cmd>G! log --max-count=50<cr>",
                 desc = "Git log",
             },
             {
-                "<leader>" .. group_key .. "bp",
+                "<leader>Gs",
+                "<cmd>G! status<cr>",
+                desc = "Git status",
+            },
+            {
+                "<leader>Gp",
+                "<cmd>G! push",
+                desc = "Git push",
+            },
+            {
+                "<leader>GP",
                 "<cmd>G! push --force-with-lease<cr>",
                 desc = "Git push force",
             },
             {
-                "<leader>" .. group_key .. "bf",
+                "<leader>Gf",
                 "<cmd>G! pull<cr>",
                 desc = "Git pull",
             },
