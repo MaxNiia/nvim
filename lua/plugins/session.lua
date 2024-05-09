@@ -140,13 +140,13 @@ return {
             end,
             buf_filter = function(bufnr)
                 local buftype = vim.bo[bufnr].buftype
-                if buftype == "help" then
-                    return true
-                end
-                if buftype ~= "" and buftype ~= "acwrite" then
-                    return false
-                end
-                if vim.api.nvim_buf_get_name(bufnr) == "" then
+                if
+                    (buftype == "help")
+                    or (buftype == "nofile")
+                    or (buftype == "prompt")
+                    or (buftype ~= "" and buftype ~= "acwrite")
+                    or (vim.api.nvim_buf_get_name(bufnr) == "")
+                then
                     return false
                 end
 
