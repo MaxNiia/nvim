@@ -227,6 +227,13 @@ OPTIONS = {
         prompt = { add = { folder = { "key" } }, remove = "folder" },
         callback = nil,
     },
+    early_retirement = {
+        value = false,
+        key = "er",
+        description = "Enable auto closing unused buffers",
+        prompt = nil,
+        callback = nil,
+    },
 }
 
 require("utils.config").load_config()

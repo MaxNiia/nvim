@@ -1,9 +1,35 @@
 return {
     {
+        "chrisgrieser/nvim-early-retirement",
+        cond = OPTIONS.early_retirement.value,
+        event = "VeryLazy",
+        opts = {
+            ignoredFiletypes = require("utils.exclude_files"),
+            retirementAgeMins = 20,
+            notificationOnAutoClose = true,
+        },
+    },
+    {
         "kazhala/close-buffers.nvim",
         cond = not vim.g.vscode,
-        dependencies = {
-            "folke/which-key.nvim",
+        keys = {
+
+            {
+                "<leader>q",
+                function()
+                    require("close_buffers").delete({ type = "this" })
+                end,
+                mode = "n",
+                desc = "Delete current buffer",
+            },
+            {
+                "<leader>Q",
+                function()
+                    require("close_buffers").delete({ type = "other" })
+                end,
+                mode = "n",
+                desc = "Delete other buffers",
+            },
         },
         event = "BufEnter",
         opts = {
@@ -13,24 +39,5 @@ return {
                 "nameless",
             },
         },
-        config = function(_, opts)
-            require("close_buffers").setup(opts)
-
-            local wk = require("which-key")
-            wk.register({
-                q = {
-                    function()
-                        require("close_buffers").delete({ type = "this" })
-                    end,
-                    "Delete current buffer",
-                },
-                Q = {
-                    function()
-                        require("close_buffers").delete({ type = "other" })
-                    end,
-                    "Delete other buffers",
-                },
-            }, { mode = "n", prefix = "<leader>" })
-        end,
     },
 }
