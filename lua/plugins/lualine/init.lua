@@ -99,8 +99,12 @@ return {
                     lualine_a = { "mode" },
                     lualine_b = {
                         {
-                            vim.uv.cwd,
-                            type = "vim_fun",
+                            function()
+                                local cwd = vim.uv.cwd()
+                                local home = vim.fn.expand("~")
+                                cwd, _ = cwd:gsub(home, "~")
+                                return cwd
+                            end,
                             padding = {
                                 left = 1,
                                 right = 1,

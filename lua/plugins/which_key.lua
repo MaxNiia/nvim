@@ -59,7 +59,6 @@ return {
                 ["<leader>"] = { name = "Switch Window" },
                 E = { name = "Files" },
                 G = { name = "Git" },
-                F = { name = "Config" },
                 b = { name = "Debug" },
                 h = { name = "Harpoon" },
             }, { prefix = "<leader>", mode = "n" })
