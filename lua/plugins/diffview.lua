@@ -1,36 +1,31 @@
 local icons = require("utils.icons")
-local group_key = "g"
-if OPTIONS.neotree.value then
-    group_key = "H"
-end
-
 return {
     {
         "sindrets/diffview.nvim",
         cond = vim.g.vscode,
         keys = {
             {
-                "<leader>" .. group_key .. "o",
+                "<leader>go",
                 "<cmd>DiffviewOpen origin/HEAD...HEAD --imply-local<cr>",
                 desc = "Diff to origin",
             },
             {
-                "<leader>" .. group_key .. "f",
+                "<leader>gf",
                 "<cmd>DiffviewFileHistory %<cr>",
                 desc = "View buffer history",
             },
             {
-                "<leader>" .. group_key .. "F",
+                "<leader>gF",
                 "<cmd>DiffviewFileHistory<cr>",
                 desc = "View history",
             },
             {
-                "<leader>" .. group_key .. "d",
+                "<leader>gd",
                 "<cmd>DiffviewOpen<cr>",
                 desc = "Open diffview",
             },
             {
-                "<leader>" .. group_key .. "D",
+                "<leader>gD",
                 "<cmd>DiffviewClose<cr>",
                 desc = "Close diffview",
             },

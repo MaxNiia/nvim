@@ -16,9 +16,6 @@ vim.cmd([[
     autocmd FileType lua setlocal textwidth=100
     autocmd FileType lua setlocal colorcolumn=+1
 
-    autocmd FileType neo-tree setlocal numberwidth=2
-    autocmd FileType neo-tree setlocal scl=no
-
     autocmd FileType qf setlocal nonu
     autocmd FileType qf setlocal nornu
 

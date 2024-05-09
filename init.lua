@@ -88,13 +88,6 @@ OPTIONS = {
             vim.o.relativenumber = OPTIONS.relatie_number.value
         end,
     },
-    neotree = {
-        value = false,
-        key = "nt",
-        description = "Enable Neotree",
-        prompt = nil,
-        callback = nil,
-    },
     toggleterm = {
         value = false,
         key = "tt",

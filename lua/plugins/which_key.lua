@@ -56,50 +56,33 @@ return {
             wk.setup(opts)
 
             wk.register({
-                ["<leader>"] = {
-                    name = "Switch Window",
-                },
+                ["<leader>"] = { name = "Switch Window" },
                 E = { name = "Files" },
+                G = { name = "Git" },
                 F = { name = "Config" },
                 b = { name = "Debug" },
                 h = { name = "Harpoon" },
             }, { prefix = "<leader>", mode = "n" })
 
-            if OPTIONS.neotree.value then
-                wk.register({
-                    H = {
-                        name = "Hunks",
-                    },
-                }, { prefix = "<leader>", mode = "n" })
-            else
-                wk.register({
-                    f = {
-                        g = { name = "Git" },
-                    },
-                    g = {
-                        name = "Hunks",
-                    },
-                    G = {
-                        name = "Git",
-                    },
-                }, { prefix = "<leader>", mode = "n" })
-            end
+            wk.register({}, { prefix = "<leader>", mode = "n" })
 
             wk.register({
-                t = { name = "Test" },
                 D = { name = "Debug" },
-                c = { name = "CMake" },
-                r = { name = "Refactor" },
-                i = { name = "Chat" },
-                w = { name = "Wiki" },
                 W = { name = "Sessions" },
+                c = { name = "CMake" },
+                g = { name = "Hunks" },
                 f = {
                     name = "Telescope",
                     d = { name = "Debug" },
+                    g = { name = "Git" },
                     l = { name = "LSP" },
-                    t = { name = "Terminal" },
                     m = { name = "Man" },
+                    t = { name = "Terminal" },
                 },
+                i = { name = "Chat" },
+                r = { name = "Refactor" },
+                t = { name = "Test" },
+                w = { name = "Wiki" },
                 x = { name = "Trouble" },
             }, { prefix = "<leader>", mode = { "n", "v" } })
         end,

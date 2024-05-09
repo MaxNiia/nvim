@@ -52,21 +52,15 @@ return {
                     },
                 }, { mode = "n", prefix = "[", expr = true })
 
-                local group_key = "g"
-                if OPTIONS.neotree.value then
-                    group_key = "H"
-                end
-
                 -- Actions
                 wk.register({
                     s = { gs.stage_hunk, "Stage Hunk" },
                     r = { gs.reset_hunk, "Reset Hunk" },
-
                     S = { gs.stage_buffer, "Stage Buffer" },
                     u = { gs.undo_stage_hunk, "Undo stage Hunk" },
                     R = { gs.reset_buffer, "Reset Buffer" },
                     p = { gs.preview_hunk, "Preview Hunk" },
-                }, { mode = "n", prefix = "<leader>" .. group_key, buffer = bufnr })
+                }, { mode = "n", prefix = "<leader>g", buffer = bufnr })
 
                 wk.register({
                     s = {
@@ -81,7 +75,7 @@ return {
                         end,
                         "Reset Hunk",
                     },
-                }, { mode = "v", prefix = "<leader>" .. group_key, buffer = bufnr })
+                }, { mode = "v", prefix = "<leader>g", buffer = bufnr })
 
                 -- Text object
                 wk.register({

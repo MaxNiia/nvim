@@ -12,9 +12,7 @@ return {
                 "nofile",
                 "quickfix",
                 "prompt",
-                "neo-tree",
             },
-            ignored_buftypes = { "neo-tree" },
             resize_mode = {
                 silent = true,
                 hooks = {

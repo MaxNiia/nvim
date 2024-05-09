@@ -12,7 +12,6 @@ return {
     "lazy",
     "minifiles",
     "neogitstatus",
-    "neotree",
     "oil",
     "qf",
     "toggleterm",
