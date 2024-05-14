@@ -21,7 +21,7 @@ return {
                 desc = "Git status",
             },
             {
-                "<leader>gp",
+                "<leader>gP",
                 "<cmd>G! push --force-with-lease<cr>",
                 desc = "Git push force",
             },
