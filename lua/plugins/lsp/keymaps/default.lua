@@ -77,6 +77,18 @@ return function(bufnr)
                     end,
                     "List workspace folder",
                 },
+                d = {
+                    function()
+                        vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = 0 }))
+                    end,
+                    "Toggle diagnostics for current buffer",
+                },
+                D = {
+                    function()
+                        vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = nil }))
+                    end,
+                    "Toggle diagnostics buffers",
+                },
             },
         },
     }, { buffer = bufnr })
