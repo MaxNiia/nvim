@@ -140,12 +140,33 @@ return {
             end,
             buf_filter = function(bufnr)
                 local buftype = vim.bo[bufnr].buftype
+                local ignored_buftypes = {
+                    "help",
+                    "nofile",
+                    "prompt",
+                }
+                local filetype = vim.bo[bufnr].filetype
+                local ignored_filetypes = {
+                    "dapui_breakpoints",
+                    "dapui_stacks",
+                    "dapui_watches",
+                    "dapui_console",
+                    "dapui_scopes",
+                    "dap-repl",
+                }
+                for _, ignored in ipairs(ignored_buftypes) do
+                    if buftype == ignored then
+                        return false
+                    end
+                end
+                for _, ignored in ipairs(ignored_filetypes) do
+                    if filetype == ignored then
+                        return false
+                    end
+                end
                 if
-                    (buftype == "help")
-                    or (buftype == "nofile")
-                    or (buftype == "prompt")
+                    (vim.api.nvim_buf_get_name(bufnr) == "")
                     or (buftype ~= "" and buftype ~= "acwrite")
-                    or (vim.api.nvim_buf_get_name(bufnr) == "")
                 then
                     return false
                 end
