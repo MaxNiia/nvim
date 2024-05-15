@@ -65,6 +65,23 @@ return {
             },
         },
         opts = {
+            modes = {
+                diagnostics = {
+                    sort = { "severity", "filename", "pos", "message" },
+                },
+                telescope = {
+                    sort = { "pos", "filename", "severity", "message" },
+                },
+                quickfix = {
+                    sort = { "pos", "filename", "severity", "message" },
+                },
+                loclist = {
+                    sort = { "pos", "filename", "severity", "message" },
+                },
+                todo = {
+                    sort = { "pos", "filename", "severity", "message" },
+                },
+            },
         },
     },
 }
