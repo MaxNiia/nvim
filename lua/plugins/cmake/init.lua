@@ -51,6 +51,7 @@ return {
                     auto_scroll = true,
                 },
             },
+            cmake_regenerate_on_save = false,
             cmake_runner = OPTIONS.toggleterm.value and require("plugins.cmake.toggleterm")
                 or require("plugins.cmake.quickfix"),
             cmake_dap_configuration = {
