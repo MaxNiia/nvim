@@ -71,7 +71,7 @@ return {
                 c = { name = "CMake" },
                 g = { name = "Hunks" },
                 f = {
-                    name = "Telescope",
+                    name = "Find",
                     d = { name = "Debug" },
                     g = { name = "Git" },
                     l = { name = "LSP" },

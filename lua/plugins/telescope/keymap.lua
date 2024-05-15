@@ -1,145 +1,10 @@
 local utils = require("plugins.telescope.utils")
 local call_telescope = utils.call_telescope
 
-return {
-    -- LEADER s
-    {
-        "<leader>s",
-
-        function()
-            local lga = require("telescope-live-grep-args.shortcuts")
-            lga.grep_visual_selection()
-        end,
-        desc = "Grep string (root)",
-        mode = { "v" },
-    },
-    {
-        "<leader>S",
-        function()
-            local lga = require("telescope-live-grep-args.shortcuts")
-            lga.grep_visual_selection({ cwd = false })
-        end,
-        desc = "Grep string (cwd)",
-        mode = { "v" },
-    },
-    {
-        "<leader>s",
-
-        function()
-            local lga = require("telescope-live-grep-args.shortcuts")
-            lga.grep_word_under_cursor()
-        end,
-        desc = "Grep string (root)",
-        mode = { "n" },
-    },
-    {
-        "<leader>S",
-        function()
-            local lga = require("telescope-live-grep-args.shortcuts")
-            lga.grep_word_under_cursor({ cwd = false })
-        end,
-        desc = "Grep string (cwd)",
-        mode = { "n" },
-    },
-    -- LEADER f
-    {
-        "<leader>fc",
-        "<cmd>Telescope colorscheme<cr>",
-        desc = "Colorscheme",
-    },
-    { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Undo history", mode = { "v", "n" } },
-    { "<leader>fN", "<cmd>Telescope noice<cr>", desc = "Noice", mode = { "v", "n" } },
-    { "<leader>fn", "<cmd>Telescope notify<cr>", desc = "Noice", mode = { "v", "n" } },
-    { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Resume", mode = { "v", "n" } },
-    {
-        "<leader>ft",
-        "<cmd>Telescope<cr>",
-        desc = "Telescope",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>ff",
-        call_telescope("files"),
-        desc = "Files (root)",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>fgf",
-        call_telescope("git_files"),
-        desc = "Files (git, root)",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>fgF",
-        call_telescope("git_files", { cwd = false }),
-        desc = "Files (git, cwd)",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>fF",
-        call_telescope("files", { cwd = false }),
-        desc = "Files (cwd)",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>fs",
-        function()
-            require("telescope").extensions.live_grep_args.live_grep_args()
-        end,
-        desc = "Search (root dir)",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>fS",
-        function()
-            require("telescope").extensions.live_grep_args.live_grep_args({ cwd = false })
-        end,
-        desc = "Search (cwd)",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>fb",
-        function()
-            require("telescope.builtin").buffers({ sort_mru = true })
-        end,
-        desc = "Tab buffers",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>fB",
-        "<cmd>Telescope scope buffers<cr>",
-        desc = "All buffers",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>fB",
-        function()
-            require("telescope.builtin").live_grep({ grep_open_files = true })
-        end,
-        desc = "Grep in buffers",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>fo",
-        "<cmd>Telescope oldfiles<CR>",
-        desc = "Old files (root)",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>fO",
-        call_telescope("oldfiles", { cwd = vim.uv.cwd() }),
-        desc = "Old files (cwd)",
-        mode = { "v", "n" },
-    },
-    {
-        "<leader>fq",
-        "<cmd>Telescope spell_suggest<CR>",
-        desc = "Dictionary",
-        mode = { "v", "n" },
-    },
+local keymaps = {
     {
         "<leader>fp",
-        ":lua require'telescope'.extensions.project.project{display_type = 'full'}<CR>",
+        ":lua require'telescope'.extensions.project.project{display_type = 'full'}<cr>",
         desc = "Project",
         mode = { "v", "n" },
     },
@@ -223,6 +88,138 @@ return {
         desc = "Kernel routines (non standard)",
         mode = { "v", "n" },
     },
+    { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Undo history", mode = { "v", "n" } },
+    { "<leader>fN", "<cmd>Telescope noice<cr>", desc = "Noice", mode = { "v", "n" } },
+    { "<leader>fn", "<cmd>Telescope notify<cr>", desc = "Noice", mode = { "v", "n" } },
+}
+
+local optional_keymaps = {
+    -- LEADER s
+    {
+        "<leader>s",
+
+        function()
+            local lga = require("telescope-live-grep-args.shortcuts")
+            lga.grep_visual_selection()
+        end,
+        desc = "Grep string (root)",
+        mode = { "v" },
+    },
+    {
+        "<leader>S",
+        function()
+            local lga = require("telescope-live-grep-args.shortcuts")
+            lga.grep_visual_selection({ cwd = false })
+        end,
+        desc = "Grep string (cwd)",
+        mode = { "v" },
+    },
+    {
+        "<leader>s",
+
+        function()
+            local lga = require("telescope-live-grep-args.shortcuts")
+            lga.grep_word_under_cursor()
+        end,
+        desc = "Grep string (root)",
+        mode = { "n" },
+    },
+    {
+        "<leader>S",
+        function()
+            local lga = require("telescope-live-grep-args.shortcuts")
+            lga.grep_word_under_cursor({ cwd = false })
+        end,
+        desc = "Grep string (cwd)",
+        mode = { "n" },
+    },
+    -- LEADER f
+    {
+        "<leader>fc",
+        "<cmd>Telescope colorscheme<cr>",
+        desc = "Colorscheme",
+    },
+    { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Resume", mode = { "v", "n" } },
+    {
+        "<leader>ft",
+        "<cmd>Telescope<cr>",
+        desc = "Telescope",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>ff",
+        call_telescope("files"),
+        desc = "Files (root)",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fgf",
+        call_telescope("git_files"),
+        desc = "Files (git, root)",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fgF",
+        call_telescope("git_files", { cwd = false }),
+        desc = "Files (git, cwd)",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fF",
+        call_telescope("files", { cwd = false }),
+        desc = "Files (cwd)",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fs",
+        function()
+            require("telescope").extensions.live_grep_args.live_grep_args()
+        end,
+        desc = "Search (root dir)",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fS",
+        function()
+            require("telescope").extensions.live_grep_args.live_grep_args({ cwd = false })
+        end,
+        desc = "Search (cwd)",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fb",
+        function()
+            require("telescope.builtin").buffers({ sort_mru = true })
+        end,
+        desc = "Tab buffers",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fB",
+        function()
+            require("telescope.builtin").live_grep({ grep_open_files = true })
+        end,
+        desc = "Grep in buffers",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fo",
+        "<cmd>Telescope oldfiles<cr>",
+        desc = "Old files (root)",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fO",
+        call_telescope("oldfiles", { cwd = vim.uv.cwd() }),
+        desc = "Old files (cwd)",
+        mode = { "v", "n" },
+    },
+    {
+        "<leader>fq",
+        "<cmd>Telescope spell_suggest<cr>",
+        desc = "Dictionary",
+        mode = { "v", "n" },
+    },
     {
         "<leader>fk",
         "<cmd>Telescope keymaps<cr>",
@@ -233,25 +230,25 @@ return {
     -- GIT
     {
         "<leader>fgs",
-        "<cmd>Telescope git_status<CR>",
+        "<cmd>Telescope git_status<cr>",
         desc = "Status",
         mode = { "v", "n" },
     },
     {
         "<leader>fgb",
-        "<cmd>Telescope git_branches<CR>",
+        "<cmd>Telescope git_branches<cr>",
         desc = "Branches",
         mode = { "v", "n" },
     },
     {
         "<leader>fgc",
-        "<cmd>Telescope git_bcommits<CR>",
+        "<cmd>Telescope git_bcommits<cr>",
         desc = "File Commits",
         mode = { "v", "n" },
     },
     {
         "<leader>fgC",
-        "<cmd>Telescope git_commits<CR>",
+        "<cmd>Telescope git_commits<cr>",
         desc = "Commits",
         mode = { "v", "n" },
     },
@@ -259,25 +256,25 @@ return {
     -- DAP
     {
         "<leader>fdc",
-        "<cmd>Telescope dap commands<CR>",
+        "<cmd>Telescope dap commands<cr>",
         desc = "Commands",
         mode = { "v", "n" },
     },
     {
         "<leader>fdb",
-        "<cmd>Telescope dap list_breakpoints<CR>",
+        "<cmd>Telescope dap list_breakpoints<cr>",
         desc = "Breakpoints",
         mode = { "v", "n" },
     },
     {
         "<leader>fdv",
-        "<cmd>Telescope dap variables<CR>",
+        "<cmd>Telescope dap variables<cr>",
         desc = "Variables",
         mode = { "v", "n" },
     },
     {
         "<leader>fdx",
-        "<cmd>Telescope dap configurations<CR>",
+        "<cmd>Telescope dap configurations<cr>",
         desc = "Configurations",
         mode = { "v", "n" },
     },
@@ -418,3 +415,9 @@ return {
         mode = { "v", "n" },
     },
 }
+
+if not OPTIONS.fzf.value then
+    keymaps = vim.tbl_extend("force", keymaps, optional_keymaps)
+end
+
+return keymaps

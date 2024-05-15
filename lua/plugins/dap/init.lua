@@ -25,10 +25,11 @@ return {
             "theHamsta/nvim-dap-virtual-text",
             "rcarriga/cmp-dap",
             "nvim-treesitter/nvim-treesitter",
-            "nvim-telescope/telescope.nvim",
             "rcarriga/nvim-dap-ui",
             "jay-babu/mason-nvim-dap.nvim",
+
             "nvim-telescope/telescope-dap.nvim",
+            "nvim-telescope/telescope.nvim",
         },
         opts = {
             enabled = true,
@@ -54,7 +55,12 @@ return {
                     numhl = sign[3],
                 })
             end
-            require("telescope").load_extension("dap")
+
+            if OPTIONS.fzf.value then
+            else
+                require("telescope").load_extension("dap")
+            end
+
             require("nvim-dap-virtual-text").setup(opts)
             local map = vim.keymap.set
             map("n", "]b", require("goto-breakpoints").next, {})

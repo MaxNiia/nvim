@@ -14,6 +14,22 @@ then
     sudo apt-install ripgrep -y
 fi
 
+# Install bat
+if ! command -v bat &> /dev/null
+then
+    echo "bat could not be found, installing"
+    sudo apt install bat -y
+    mkdir -p ~/.local/bin
+    ln -s /usr/bin/batcat ~/.local/bin/bat
+    mkdir -p "$(bat --config-dir)/themes"
+    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
+    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
+    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
+    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
+    bat cache --build
+    echo "--theme 'Catppuccin Mocha'" > "$HOME/.config/bat/config"
+fi
+
 # Install flake8
 if ! command -v rg &> /dev/null
 then

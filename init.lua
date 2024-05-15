@@ -227,6 +227,13 @@ OPTIONS = {
         prompt = nil,
         callback = nil,
     },
+    fzf = {
+        value = false,
+        key = "fz",
+        description = "Enable fzf",
+        prompt = nil,
+        callback = nil,
+    },
 }
 
 require("utils.config").load_config()

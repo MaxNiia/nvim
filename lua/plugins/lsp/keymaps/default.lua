@@ -17,12 +17,15 @@ return function(bufnr)
             },
             r = {
                 function()
-                    require("telescope.builtin").lsp_references({
-                        fname_width = require("utils.sizes").fname_width,
-                        include_declaration = false,
-                        include_current_line = true,
-                        jump_type = "never",
-                    })
+                    if OPTIONS.fzf.value then
+                    else
+                        require("telescope.builtin").lsp_references({
+                            fname_width = require("utils.sizes").fname_width,
+                            include_declaration = false,
+                            include_current_line = true,
+                            jump_type = "never",
+                        })
+                    end
                 end,
                 "Go to references",
             },

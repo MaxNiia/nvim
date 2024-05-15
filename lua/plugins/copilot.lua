@@ -70,8 +70,11 @@ return {
             {
                 "<leader>ih",
                 function()
-                    local actions = require("CopilotChat.actions")
-                    require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+                    if OPTIONS.fzf.value then
+                    else
+                        local actions = require("CopilotChat.actions")
+                        require("CopilotChat.integrations.telescope").pick(actions.help_actions())
+                    end
                 end,
                 desc = "Help actions",
             },
@@ -79,8 +82,11 @@ return {
             {
                 "<leader>ip",
                 function()
-                    local actions = require("CopilotChat.actions")
-                    require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+                    if OPTIONS.fzf.value then
+                    else
+                        local actions = require("CopilotChat.actions")
+                        require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+                    end
                 end,
                 desc = "Prompt actions",
                 mode = { "v", "n" },

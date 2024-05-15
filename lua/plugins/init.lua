@@ -146,13 +146,21 @@ return {
             input = {
                 insert_only = false,
             },
-            select = {
-                telescope = {
-                    initial_mode = "normal",
-                    layout_stategy = "cursor",
-                },
-            },
         },
+        config = function(_, opts)
+            if OPTIONS.fzf.value then
+            else
+                opts = vim.tbl_extend("force", opts, {
+                    select = {
+                        telescope = {
+                            initial_mode = "normal",
+                            layout_stategy = "cursor",
+                        },
+                    },
+                })
+            end
+            require("dressing").setup(opts)
+        end,
         init = function()
             vim.ui.select = function(...)
                 require("lazy").load({ plugins = { "dressing.nvim" } })

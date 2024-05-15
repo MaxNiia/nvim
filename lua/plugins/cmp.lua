@@ -1,15 +1,5 @@
 return {
     {
-        "tzachar/fuzzy.nvim",
-        lazy = true,
-        dependencies = {
-            {
-                "nvim-telescope/telescope-fzf-native.nvim",
-                build = "make",
-            },
-        },
-    },
-    {
         "zbirenbaum/copilot-cmp",
         lazy = true,
         config = function()
@@ -19,7 +9,9 @@ return {
     {
         "hrsh7th/cmp-buffer",
         lazy = true,
-        dependencies = { "hrsh7th/nvim-cmp", "tzachar/fuzzy.nvim" },
+        dependencies = {
+            "hrsh7th/nvim-cmp",
+        },
     },
     {
         "paopaol/cmp-doxygen",
@@ -37,7 +29,6 @@ return {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
             "L3MON4D3/LuaSnip",
-            "tzachar/fuzzy.nvim",
             "saadparwaiz1/cmp_luasnip",
             "hrsh7th/cmp-nvim-lsp-document-symbol",
             "hrsh7th/cmp-nvim-lsp-signature-help",
