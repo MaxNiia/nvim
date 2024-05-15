@@ -2,7 +2,26 @@ local utils = require("plugins.telescope.utils")
 local call_telescope = utils.call_telescope
 
 return {
-    -- LEADER r
+    -- LEADER s
+    {
+        "<leader>s",
+
+        function()
+            local lga = require("telescope-live-grep-args.shortcuts")
+            lga.grep_visual_selection()
+        end,
+        desc = "Grep string (root)",
+        mode = { "v" },
+    },
+    {
+        "<leader>S",
+        function()
+            local lga = require("telescope-live-grep-args.shortcuts")
+            lga.grep_visual_selection({ cwd = false })
+        end,
+        desc = "Grep string (cwd)",
+        mode = { "v" },
+    },
     {
         "<leader>s",
 
@@ -11,7 +30,7 @@ return {
             lga.grep_word_under_cursor()
         end,
         desc = "Grep string (root)",
-        mode = { "n", "v" },
+        mode = { "n" },
     },
     {
         "<leader>S",
@@ -20,7 +39,7 @@ return {
             lga.grep_word_under_cursor({ cwd = false })
         end,
         desc = "Grep string (cwd)",
-        mode = { "n", "v" },
+        mode = { "n" },
     },
     -- LEADER f
     {
