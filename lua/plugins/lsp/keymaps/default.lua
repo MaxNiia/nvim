@@ -18,6 +18,7 @@ return function(bufnr)
             r = {
                 function()
                     if OPTIONS.fzf.value then
+                        require("fzf-lua").lsp_references()
                     else
                         require("telescope.builtin").lsp_references({
                             fname_width = require("utils.sizes").fname_width,

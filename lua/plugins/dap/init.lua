@@ -56,8 +56,7 @@ return {
                 })
             end
 
-            if OPTIONS.fzf.value then
-            else
+            if not OPTIONS.fzf.value then
                 require("telescope").load_extension("dap")
             end
 
