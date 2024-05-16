@@ -4,7 +4,7 @@ Personal neovim config.
 
 ## Requirements
 
-- [Neovim](https://github.com/neovim/neovim) 0.10.0 (nightly) or later.
+- [Neovim](https://github.com/neovim/neovim) 0.10.0.
 - A [Nerdfont](https://www.nerdfonts.com/) patched font.
 - Everything in the init script files. Either run the init.sh on linux or the
 init.ps1 file on windows. Or just install the packages there.
