@@ -82,7 +82,7 @@ return {
             },
             {
                 "<leader>fb",
-                "<cmd>FzfLua buffer<cr>",
+                "<cmd>FzfLua buffers<cr>",
                 desc = "buffers",
                 mode = { "v", "n" },
             },
