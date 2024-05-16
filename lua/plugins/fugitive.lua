@@ -26,7 +26,7 @@ return {
                 desc = "Git push force",
             },
             {
-                "<leader>gf",
+                "<leader>gF",
                 "<cmd>G! pull<cr>",
                 desc = "Git pull",
             },
