@@ -84,6 +84,31 @@ return {
                     },
                 }, { mode = "v", prefix = "<leader>g", buffer = bufnr })
 
+                wk.register({
+                    h = {
+                        gs.stage_hunk("Stage Hunk"),
+                    },
+                    H = {
+                        gs.reset_hunk,
+                        "Reset Hunk",
+                    },
+                }, { mode = "n", prefix = "g", buffer = bufnr })
+
+                wk.register({
+                    h = {
+                        function()
+                            gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+                        end,
+                        "Stage Hunk",
+                    },
+                    H = {
+                        function()
+                            gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+                        end,
+                        "Reset Hunk",
+                    },
+                }, { mode = "v", prefix = "g", buffer = bufnr })
+
                 -- Text object
                 wk.register({
                     h = {
