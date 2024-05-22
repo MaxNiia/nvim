@@ -41,6 +41,7 @@ return {
         },
         opts = {
             cmake_soft_link_compile_commands = false,
+            cmake_virtual_text_support = false,
             cmake_compile_commands_from_lsp = true,
             cmake_build_options = { "-j32" },
             cmake_executor = {
