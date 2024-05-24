@@ -38,7 +38,7 @@ return {
                     -- "cmakelint",
                 },
                 protobuf = { "buf_lint" },
-                bazel = { "buildifier" },
+                bzl = { "buildifier" },
 
                 dockerfile = { "hadolint" },
                 zsh = { "zsh", "shellcheck" },
@@ -103,7 +103,7 @@ return {
                 ["_"] = { "trim_whitespace" },
                 lua = { "stylua" },
                 bash = { "beautysh", "shfmt" },
-                bazel = { "buildifier" },
+                bzl = { "buildifier" },
                 python = { "ruff_format" },
                 css = { "stylelint" },
                 javascript = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
