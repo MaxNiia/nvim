@@ -56,11 +56,12 @@ vim.opt.ttimeoutlen = 5
 vim.opt.undofile = true
 vim.opt.wildmenu = true
 
-if not vim.g.neovide then
-    vim.opt.pumblend = 0
-else
+if OPTIONS.transparent.value then
     vim.opt.winblend = 100
     vim.opt.pumblend = 100
+else
+    vim.opt.winblend = 0
+    vim.opt.pumblend = 0
 end
 
 local icons = require("utils.icons")

@@ -234,6 +234,13 @@ OPTIONS = {
         prompt = nil,
         callback = nil,
     },
+    transparent = {
+        value = false,
+        key = "tr",
+        description = "Enable transparent background",
+        prompt = nil,
+        callback = nil,
+    },
 }
 
 require("utils.config").load_config()

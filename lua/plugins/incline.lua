@@ -81,14 +81,14 @@ return {
                 end
 
                 return {
-                    ((not vim.g.neovide) and ft_icon) and {
+                    ((not OPTIONS.transparent.value) and ft_icon) and {
                         icons.separator.full.right,
                         guifg = ft_color,
                     } or {},
                     ft_icon and {
                         ft_icon .. " ",
-                        guifg = vim.g.neovide and ft_color or "bg",
-                        guibg = vim.g.neovide and "bg" or ft_color,
+                        guifg = OPTIONS.transparent.value and ft_color or "bg",
+                        guibg = OPTIONS.transparent.value and "bg" or ft_color,
                     } or {},
 
                     {
@@ -97,7 +97,7 @@ return {
                     },
                     { get_diagnostic_label(), group = "Normal" },
                     { get_git_diff(), group = "Normal" },
-                    vim.g.neovide and {} or {
+                    OPTIONS.transparent.value and {} or {
                         icons.separator.full.left,
                         group = "InclineReverse",
                     },

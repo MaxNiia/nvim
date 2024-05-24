@@ -17,7 +17,7 @@ return {
         name = "catppuccin",
         lazy = false,
         opts = {
-            transparent_background = vim.g.neovide,
+            transparent_background = OPTIONS.transparent.value,
             term_colors = true,
             dim_inactive = {
                 enabled = false,
