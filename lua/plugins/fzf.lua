@@ -11,12 +11,12 @@ return {
                 desc = "Grep string (root)",
                 mode = { "v" },
             },
-            {
-                "<leader>S",
-                "<cmd>FzfLua grep_visual cwd=false<cr>",
-                desc = "Grep string (cwd)",
-                mode = { "v" },
-            },
+            -- {
+            --     "<leader>S",
+            --     "<cmd>FzfLua grep_visual cwd=false<cr>",
+            --     desc = "Grep string (cwd)",
+            --     mode = { "v" },
+            -- },
             {
                 "<leader>s",
 
@@ -24,12 +24,12 @@ return {
                 desc = "Grep string (root)",
                 mode = { "n" },
             },
-            {
-                "<leader>S",
-                "<cmd>FzfLua grep_cword cwd=false<cr>",
-                desc = "Grep string (cwd)",
-                mode = { "n" },
-            },
+            -- {
+            --     "<leader>S",
+            --     "<cmd>FzfLua grep_cword cwd=false<cr>",
+            --     desc = "Grep string (cwd)",
+            --     mode = { "n" },
+            -- },
             -- LEADER f
             {
                 "<leader>fc",
@@ -50,34 +50,34 @@ return {
                 desc = "Files (root)",
                 mode = { "v", "n" },
             },
-            {
-                "<leader>fF",
-                "<cmd>FzfLua files cwd=false<cr>",
-                desc = "Files (cwd)",
-                mode = { "v", "n" },
-            },
+            -- {
+            --     "<leader>fF",
+            --     "<cmd>FzfLua files cwd=false<cr>",
+            --     desc = "Files (cwd)",
+            --     mode = { "v", "n" },
+            -- },
             {
                 "<leader>fgf",
                 "<cmd>FzfLua git_files<cr>",
                 desc = "Files (git, root)",
                 mode = { "v", "n" },
             },
-            {
-                "<leader>fgF",
-                "<cmd>FzfLua git_files cwd=false<cr>",
-                desc = "Files (git, cwd)",
-                mode = { "v", "n" },
-            },
+            -- {
+            --     "<leader>fgF",
+            --     "<cmd>FzfLua git_files cwd=false<cr>",
+            --     desc = "Files (git, cwd)",
+            --     mode = { "v", "n" },
+            -- },
             {
                 "<leader>fs",
-                "<cmd>FzfLua live_grep_native<cr>",
+                "<cmd>FzfLua live_grep<cr>",
                 desc = "Search (root dir)",
                 mode = { "v", "n" },
             },
             {
                 "<leader>fS",
-                "<cmd>FzfLua live_grep_native cwd=false<cr>",
-                desc = "Search (cwd)",
+                "<cmd>FzfLua live_grep_native<cr>",
+                desc = "Search (faster)",
                 mode = { "v", "n" },
             },
             {
@@ -98,12 +98,12 @@ return {
                 desc = "Old files (root)",
                 mode = { "v", "n" },
             },
-            {
-                "<leader>fO",
-                "<cmd>FzfLua oldfiles cwd=false<cr>",
-                desc = "Old files (cwd)",
-                mode = { "v", "n" },
-            },
+            -- {
+            --     "<leader>fO",
+            --     "<cmd>FzfLua oldfiles cwd=false<cr>",
+            --     desc = "Old files (cwd)",
+            --     mode = { "v", "n" },
+            -- },
             {
                 "<leader>fq",
                 "<cmd>FzfLua spell_suggest<cr>",
@@ -250,6 +250,20 @@ return {
                         [['<C-\><C-N>"'.nr2char(getchar()).'pi']],
                         { expr = true, buffer = true }
                     )
+                end,
+            },
+            files = {
+                prompt = "Files> ",
+            },
+            grep = {
+                rg_glob = true,
+                -- first returned string is the new search query
+                -- second returned string are (optional) additional rg flags
+                -- @return string, string?
+                rg_glob_fn = function(query, opts)
+                    local regex, flags = query:match("^(.-)%s%-%-(.*)$")
+                    -- If no separator is detected will return the original query
+                    return (regex or query), flags
                 end,
             },
         },
