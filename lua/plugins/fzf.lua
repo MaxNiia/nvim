@@ -242,6 +242,16 @@ return {
             defaults = {
                 formatter = "path.filename_first",
             },
+            winopts = {
+                on_create = function()
+                    vim.keymap.set(
+                        "t",
+                        "<C-r>",
+                        [['<C-\><C-N>"'.nr2char(getchar()).'pi']],
+                        { expr = true, buffer = true }
+                    )
+                end,
+            },
         },
         config = true,
     },
