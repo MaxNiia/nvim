@@ -33,7 +33,7 @@ return {
             -- LEADER f
             {
                 "<leader>fc",
-                "<cmd>FzfLua colorscheme<cr>",
+                "<cmd>FzfLua colorschemes<cr>",
                 desc = "Colorscheme",
                 mode = { "n" },
             },
