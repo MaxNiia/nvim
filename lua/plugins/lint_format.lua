@@ -7,6 +7,7 @@ return {
         config = function()
             local lint = require("lint")
             lint.linters_by_ft = {
+                ["*"] = { "codespell" },
                 -- NOTE: YAML
                 yaml = { "yamllint" },
 
@@ -99,7 +100,6 @@ return {
                 return { timeout_ms = 500, lsp_fallback = true, async = true }
             end,
             formatters_by_ft = {
-                ["*"] = { "codespell" },
                 ["_"] = { "trim_whitespace" },
                 lua = { "stylua" },
                 bash = { "beautysh", "shfmt" },
