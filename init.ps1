@@ -80,10 +80,6 @@ Function Handle-File {
     }
 }
 
-Handle-File "lua/luasnippets/c/hidden.lua" "return {}"
-Handle-File "lua/luasnippets/cpp/hidden.lua" "return {}"
-Handle-File "lua/luasnippets/cmake/hidden.lua" "return {}"
-
 # Install Lua
 if (-not (Get-Command lua -ErrorAction SilentlyContinue)) {
     Write-Host "Lua not installed, installing"

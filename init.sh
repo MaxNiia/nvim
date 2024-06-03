@@ -90,10 +90,6 @@ handle_file() {
     fi
 }
 
-handle_file "lua/luasnippets/c/hidden.lua" "return {}"
-handle_file "lua/luasnippets/cpp/hidden.lua" "return {}"
-handle_file "lua/luasnippets/cmake/hidden.lua" "return {}"
-
 if ! command -v lua &> /dev/null
 then
     echo "Lua not installed, installing"

@@ -28,8 +28,6 @@ return {
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-buffer",
-            "L3MON4D3/LuaSnip",
-            "saadparwaiz1/cmp_luasnip",
             "hrsh7th/cmp-nvim-lsp-document-symbol",
             "hrsh7th/cmp-nvim-lsp-signature-help",
             "hrsh7th/cmp-path",
@@ -45,12 +43,10 @@ return {
             },
         },
         config = function(_, _)
-            -- luasnip setup
-            local luasnip = require("luasnip")
-
             -- Lspkind
             local lspkind = require("lspkind")
 
+            require("snippets").register_cmp_source()
             -- nvim-cmp setup
             local cmp = require("cmp")
             cmp.setup({
@@ -59,11 +55,6 @@ return {
                         follow_cursor = true,
                         selection_order = "top_down",
                     },
-                },
-                snippet = {
-                    expand = function(args)
-                        luasnip.lsp_expand(args.body)
-                    end,
                 },
                 window = {
                     completion = cmp.config.window.bordered(),
@@ -130,8 +121,6 @@ return {
                     ["<c-n>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_next_item()
-                        elseif luasnip.expand_or_locally_jumpable() then
-                            luasnip.expand_or_jump()
                         else
                             fallback()
                         end
@@ -139,8 +128,6 @@ return {
                     ["<tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_next_item()
-                        elseif luasnip.expand_or_locally_jumpable() then
-                            luasnip.expand_or_jump()
                         else
                             fallback()
                         end
@@ -148,8 +135,6 @@ return {
                     ["<c-p>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_prev_item()
-                        elseif luasnip.locally_jumpable(-1) then
-                            luasnip.jump(-1)
                         else
                             fallback()
                         end
@@ -157,17 +142,14 @@ return {
                     ["<S-Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_prev_item()
-                        elseif luasnip.locally_jumpable(-1) then
-                            luasnip.jump(-1)
                         else
                             fallback()
                         end
                     end, { "i", "s" }),
                 }),
                 sources = cmp.config.sources({
-                    -- Copilot Source
                     { name = "lazydev", group_index = 0 },
-                    { name = "luasnip", group_index = 1 },
+                    { name = "snp", group_index = 1 },
                     { name = "doxygen", group_index = 1 },
                     { name = "nvim_lsp", group_index = 2 },
                     { name = "nvim_lsp_signature_help", group_index = 2 },
