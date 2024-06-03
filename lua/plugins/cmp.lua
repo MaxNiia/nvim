@@ -57,6 +57,7 @@ return {
                 view = {
                     entries = {
                         follow_cursor = true,
+                        selection_order = "top_down",
                     },
                 },
                 snippet = {
@@ -77,6 +78,7 @@ return {
                     disallow_partial_fuzzy_matching = true,
                     disallow_partial_matching = true,
                     disallow_prefix_unmatching = false,
+                    disallow_symbol_nonprefix_matching = false,
                 },
                 sorting = {
 
@@ -164,13 +166,14 @@ return {
                 }),
                 sources = cmp.config.sources({
                     -- Copilot Source
+                    { name = "lazydev", group_index = 0 },
                     { name = "luasnip", group_index = 1 },
                     { name = "doxygen", group_index = 1 },
-                    { name = "copilot", group_index = 2 },
                     { name = "nvim_lsp", group_index = 2 },
-                    { name = "nvim_lsp_signature_help", group_index = 3 },
+                    { name = "nvim_lsp_signature_help", group_index = 2 },
                     { name = "treesitter", group_index = 3 },
                     { name = "fuzzy_buffer", group_index = 3 },
+                    { name = "copilot", group_index = 4 },
                 }, {
                     -- {
                     --     name = "buffer",

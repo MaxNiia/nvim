@@ -66,24 +66,15 @@ return {
         },
     },
     {
-        "folke/neodev.nvim",
+        "folke/lazydev.nvim",
         ft = "lua",
         opts = {
             library = {
-                enabled = true,
-                runtime = true,
-                types = true,
-                plugins = true,
+                "luvit-meta/library",
             },
-            setup_jsonls = true,
-            lspconfig = true,
-            pathStrict = true,
-            override = function(_, library)
-                library.enabled = true
-                library.plugins = true
-            end,
         },
     },
+    { "Bilal2453/luvit-meta", lazy = true },
     {
         "tzachar/highlight-undo.nvim",
         event = { "BufEnter" },
