@@ -262,4 +262,7 @@ return {
         },
         event = "VeryLazy",
     },
+    {
+        "tpope/vim-abolish",
+    },
 }
