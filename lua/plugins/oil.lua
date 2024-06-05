@@ -34,16 +34,16 @@ return {
             {
                 "<leader>e",
                 function()
-                    require("oil").open(vim.uv.cwd())
+                    require("oil").open()
                 end,
-                desc = "Explorer (CWD)",
+                desc = "Explorer",
             },
             {
                 "<leader>E",
                 function()
-                    require("oil").open()
+                    require("oil").open(vim.uv.cwd())
                 end,
-                desc = "Explorer (float)",
+                desc = "Explorer (CWD)",
             },
         },
         opts = {
