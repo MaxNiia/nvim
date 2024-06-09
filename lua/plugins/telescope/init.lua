@@ -234,7 +234,7 @@ return {
 
                         project_actions.change_working_directory(prompt_bufnr)
 
-                        local project_path = action_state.get_selected_entry(prompt_bufnr).value
+                        local project_path = action_state.get_selected_entry().value
                         local pattern = "/"
                         if vim.fn.has("win32") == 1 then
                             pattern = "[\\:]"

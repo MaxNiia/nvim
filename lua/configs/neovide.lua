@@ -1,3 +1,4 @@
+---@diagnostic disable: inject-field
 vim.o.guifont = "FiraCode Nerd Font:h"
     .. tostring(OPTIONS.font_size.value > 0 and OPTIONS.font_size.value or 11)
 vim.g.neovide_scale_factor = OPTIONS.scale_size.value

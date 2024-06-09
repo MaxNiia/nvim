@@ -5,7 +5,6 @@ return {
         "nvim-lualine/lualine.nvim",
         dependencies = {
             "AckslD/swenv.nvim",
-            "catppuccin/nvim",
             "folke/noice.nvim",
             "folke/trouble.nvim",
             "nvim-tree/nvim-web-devicons",
@@ -26,7 +25,7 @@ return {
             return {
                 options = {
                     icons_enabled = true,
-                    theme = "catppuccin",
+                    theme = "auto",
                     component_separators = {
                         left = icons.separator.line.left,
                         right = icons.separator.line.right,

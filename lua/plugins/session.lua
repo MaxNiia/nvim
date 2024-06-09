@@ -49,7 +49,6 @@ return {
         "stevearc/resession.nvim",
         dependencies = {
             "tiagovla/scope.nvim",
-            "catppuccin/nvim",
         },
         keys = {
             {

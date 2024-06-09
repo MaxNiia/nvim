@@ -88,7 +88,6 @@ return {
         dependencies = {
             "nvim-tree/nvim-web-devicons",
             "stevearc/resession.nvim",
-            "catppuccin/nvim",
             "nvim-treesitter/nvim-treesitter",
         },
         event = "VimEnter",
