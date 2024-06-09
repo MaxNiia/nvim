@@ -95,7 +95,7 @@ return {
 
             -- Specify otherwise clangd seems to use utf-8.
             capabilities.offsetEncoding = { "utf-16" }
-            capabilities.sematicTokensProvider = nil
+            capabilities.semanticTokensProvider = nil
             capabilities.textDocument.foldingRange = {
                 dynamicRegistration = false,
                 lineFoldingOnly = true,

@@ -7,7 +7,7 @@ return {
         config = function()
             local lint = require("lint")
             lint.linters_by_ft = {
-                ["*"] = { "codespell" },
+                ["*"] = {},
                 -- NOTE: YAML
                 yaml = { "yamllint" },
 
@@ -159,7 +159,6 @@ return {
                 "clang-format",
                 "autopep8",
                 "beautysh",
-                "codespell",
                 "fixjson",
                 "prettier",
                 "prettierd",

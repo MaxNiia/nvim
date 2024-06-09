@@ -1,4 +1,5 @@
 return {
+    typos_lsp = {},
     azure_pipelines_ls = require("plugins.lsp.servers.azure_pipelines_ls"),
     bashls = {},
     bzl = require("plugins.lsp.servers.bzl"),
