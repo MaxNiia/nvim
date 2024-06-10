@@ -12,7 +12,26 @@ return {
             "kevinhwang91/nvim-ufo",
             "hrsh7th/cmp-nvim-lsp",
             "AckslD/swenv.nvim",
-            "artemave/workspace-diagnostics.nvim",
+            {
+                "artemave/workspace-diagnostics.nvim",
+                keys = {
+                    {
+                        "<leader>Lw",
+                        function()
+                            local clients = vim.lsp.get_clients()
+                            for _, client in ipairs(clients) do
+                                if client.name ~= "typos_lsp" then
+                                    require("workspace-diagnostics").populate_workspace_diagnostics(
+                                        client,
+                                        0
+                                    )
+                                end
+                            end
+                        end,
+                        desc = "Workspace diagnostics",
+                    },
+                },
+            },
 
             {
                 "p00f/clangd_extensions.nvim",
@@ -145,12 +164,6 @@ return {
                 callback = function(args)
                     local bufnr = args.buf
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
-                    if client.config.filetypes then
-                        require("workspace-diagnostics").populate_workspace_diagnostics(
-                            client,
-                            bufnr
-                        )
-                    end
 
                     if client == nil then
                         return
