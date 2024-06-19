@@ -140,7 +140,7 @@ return {
                 select = {
                     telescope = {
                         initial_mode = "normal",
-                        layout_stategy = "cursor",
+                        layout_strategy = "cursor",
                     },
                 },
             })

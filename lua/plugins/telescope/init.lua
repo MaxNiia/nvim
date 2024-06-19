@@ -22,6 +22,7 @@ return {
             "nvim-telescope/telescope-live-grep-args.nvim",
             "nvim-telescope/telescope-project.nvim",
             "tiagovla/scope.nvim",
+            "andrew-george/telescope-themes",
         },
         lazy = true,
         opts = {
@@ -106,6 +107,12 @@ return {
                 },
             },
             extensions = {
+                themes = {
+                    enable_live_preview = true,
+                    persist = {
+                        enabled = true,
+                    },
+                },
                 file_browser = {
                     hijack_netrw = false,
                     display_stat = false,
@@ -114,7 +121,7 @@ return {
                 },
                 fzf = {
                     fuzzy = true,
-                    override_gneric_sorter = true,
+                    override_generic_sorter = true,
                     override_file_sorter = true,
                     case_mode = "smart_case",
                     layout_config = ui.layouts.vertical,
@@ -290,6 +297,7 @@ return {
             require("telescope").load_extension("noice")
             require("telescope").load_extension("notify")
             require("telescope").load_extension("project")
+            require("telescope").load_extension("themes")
             require("telescope").load_extension("monorepo")
             if OPTIONS.harpoon.value then
                 require("telescope").load_extension("harpoon")

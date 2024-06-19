@@ -31,12 +31,12 @@ return {
             --     mode = { "n" },
             -- },
             -- LEADER f
-            {
-                "<leader>fc",
-                "<cmd>FzfLua colorschemes<cr>",
-                desc = "Colorscheme",
-                mode = { "n" },
-            },
+            -- {
+            --     "<leader>fc",
+            --     "<cmd>FzfLua colorschemes<cr>",
+            --     desc = "Colorscheme",
+            --     mode = { "n" },
+            -- },
             { "<leader>fr", "<cmd>FzfLua resume<cr>", desc = "Resume", mode = { "v", "n" } },
             {
                 "<leader>ft",

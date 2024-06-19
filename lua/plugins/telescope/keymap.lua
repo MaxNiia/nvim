@@ -91,6 +91,11 @@ local keymaps = {
     { "<leader>fu", "<cmd>Telescope undo<cr>", desc = "Undo history", mode = { "v", "n" } },
     { "<leader>fN", "<cmd>Telescope noice<cr>", desc = "Noice", mode = { "v", "n" } },
     { "<leader>fn", "<cmd>Telescope notify<cr>", desc = "Noice", mode = { "v", "n" } },
+    {
+        "<leader>fc",
+        "<cmd>Telescope themes<cr>",
+        desc = "Colorscheme",
+    },
 }
 
 local optional_keymaps = {
@@ -134,11 +139,6 @@ local optional_keymaps = {
         mode = { "n" },
     },
     -- LEADER f
-    {
-        "<leader>fc",
-        "<cmd>Telescope colorscheme<cr>",
-        desc = "Colorscheme",
-    },
     { "<leader>fr", "<cmd>Telescope resume<cr>", desc = "Resume", mode = { "v", "n" } },
     {
         "<leader>ft",

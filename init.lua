@@ -276,3 +276,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {})
+
+-- Load current theme, decided by <leader>fc.
+require("current-theme")
