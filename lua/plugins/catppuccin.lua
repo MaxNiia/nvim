@@ -19,20 +19,24 @@ return {
         name = "catppuccin",
         lazy = false,
         opts = {
+            flavour = "mocha",
+            background = {
+                light = "frappe",
+                dark = "mocha",
+            },
             transparent_background = OPTIONS.transparent.value,
+            no_italic = OPTIONS.italic.value,
+            no_bold = OPTIONS.bold.value,
+            no_underline = OPTIONS.underline.value,
             term_colors = true,
             dim_inactive = {
-                enabled = false,
+                enabled = OPTIONS.dim_inactive.value,
                 shade = "dark",
                 percentage = 0.10,
             },
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
-            },
-            background = {
-                light = "frappe",
-                dark = "mocha",
             },
             color_overrides = {
                 all = oled_override(OPTIONS.oled.value),
@@ -51,7 +55,6 @@ return {
                 strings = {},
                 variables = {},
             },
-            compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
             integrations = {
                 alpha = true,
                 beacon = true,

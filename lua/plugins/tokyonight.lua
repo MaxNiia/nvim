@@ -5,6 +5,8 @@ return {
         priority = 1000,
         cond = not vim.g.vscode,
         opts = {
+            transparent = OPTIONS.transparent.value,
+            dim_inactive = OPTIONS.dim_inactive.value,
             on_colors = function(colors)
                 if OPTIONS.oled.value then
                     colors.bg_dark = "#000000"

@@ -9,17 +9,17 @@ return {
                 -- Compiled file's destination location
                 compile_path = vim.fn.stdpath("cache") .. "/nightfox",
                 compile_file_suffix = "_compiled", -- Compiled file suffix
-                transparent = false, -- Disable setting background
+                transparent = OPTIONS.transparent.value,
                 terminal_colors = true, -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
-                dim_inactive = false, -- Non focused panes set to alternative background
+                dim_inactive = OPTIONS.dim_inactive.value,
                 module_default = true, -- Default enable value for modules
                 colorblind = {
-                    enable = false, -- Enable colorblind support
+                    enable = OPTIONS.colorblind.value,
                     simulate_only = false, -- Only show simulated colorblind colors and not diff shifted
                     severity = {
-                        protan = 0, -- Severity [0,1] for protan (red)
-                        deutan = 0, -- Severity [0,1] for deutan (green)
-                        tritan = 0, -- Severity [0,1] for tritan (blue)
+                        protan = OPTIONS.colorblind_protan.value, -- Severity [0,1] for protan (red)
+                        deutan = OPTIONS.colorblind_deutan.value, -- Severity [0,1] for deutan (green)
+                        tritan = OPTIONS.colorblind_tritan.value, -- Severity [0,1] for tritan (blue)
                     },
                 },
                 styles = { -- Style to be applied to different syntax groups
@@ -54,23 +54,7 @@ return {
                     or {},
             },
             specs = {},
-            groups = {
-                -- all = {
-                --     HighlightUndo = { bg = "bg4" },
-                --     CopilotSuggestion = { fg = "comment" },
-                --     InclineText = { fg = "magenta", bg = "bg0", bold = true },
-                --     InclineTextInactive = { fg = "fg1", bg = "bg0" },
-                --     InclineReverse = { fg = "bg0", bg = "sumiInk1", bold = true },
-                --     InclineModified = {
-                --         fg = "red",
-                --         bg = "bg0",
-                --         bold = true,
-                --         italic = true,
-                --     },
-                --     MarkSignHL = { fg = "yellow", bold = true },
-                --     NoiceCursor = { bg = "fg1", fg = "bg0", blend = 0 },
-                -- },
-            },
+            groups = {},
         },
     },
 }

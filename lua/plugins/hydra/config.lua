@@ -5,7 +5,7 @@ for _, config in pairs(OPTIONS) do
 end
 
 local get_offset = function(name)
-    return max_length - name:len() + 2
+    return max_length - name:len() + 3
 end
 
 local hint_builder = function(name, key, description)
@@ -15,6 +15,8 @@ local hint_builder = function(name, key, description)
         .. key
         .. "_"
         .. key_spacing
+        .. "│"
+        .. " "
         .. description
         .. spacing
         .. "%{"

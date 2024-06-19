@@ -19,6 +19,34 @@ OPTIONS = {
         prompt = nil,
         callback = nil,
     },
+    colorblind = {
+        value = false,
+        key = "cbe",
+        description = "Enable colorblind mode",
+        prompt = nil,
+        callback = nil,
+    },
+    colorblind_protan = {
+        value = 0.0,
+        key = "cbp",
+        description = "Colorblind protan severity",
+        prompt = "Enter desired severity",
+        callback = nil,
+    },
+    colorblind_deutan = {
+        value = 0.0,
+        key = "cbd",
+        description = "Colorblind deutan severity",
+        prompt = "Enter desired severity",
+        callback = nil,
+    },
+    colorblind_tritan = {
+        value = 0.0,
+        key = "cbt",
+        description = "Colorblind tritan severity",
+        prompt = "Enter desired severity",
+        callback = nil,
+    },
     virtual_edit = {
         value = "none",
         key = "ve",
@@ -85,7 +113,7 @@ OPTIONS = {
         description = "Toggle relative line numbers",
         prompt = nil,
         callback = function()
-            vim.o.relativenumber = OPTIONS.relatie_number.value
+            vim.o.relativenumber = OPTIONS.relative_number.value
         end,
     },
     toggleterm = {
@@ -125,7 +153,7 @@ OPTIONS = {
     },
     buffer_mode = {
         value = false,
-        key = "tb",
+        key = "bm",
         description = "Normal mode in buffers",
         prompt = nil,
         callback = nil,
@@ -238,6 +266,34 @@ OPTIONS = {
         value = false,
         key = "tr",
         description = "Enable transparent background",
+        prompt = nil,
+        callback = nil,
+    },
+    bold = {
+        value = true,
+        key = "tb",
+        description = "Enable bold text",
+        prompt = nil,
+        callback = nil,
+    },
+    italic = {
+        value = true,
+        key = "ti",
+        description = "Enable italic text",
+        prompt = nil,
+        callback = nil,
+    },
+    underline = {
+        value = true,
+        key = "tu",
+        description = "Enable underline text",
+        prompt = nil,
+        callback = nil,
+    },
+    dim_inactive = {
+        value = false,
+        key = "di",
+        description = "Dim inactive windows",
         prompt = nil,
         callback = nil,
     },
