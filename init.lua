@@ -297,6 +297,13 @@ OPTIONS = {
         prompt = nil,
         callback = nil,
     },
+    precoqnition = {
+        value = false,
+        key = "pg",
+        description = "Enable precoqnition",
+        prompt = nil,
+        callback = nil,
+    },
 }
 
 require("utils.config").load_config()
