@@ -36,7 +36,7 @@ return {
                 enable = true,
                 use_languagetree = true,
                 -- Uses vim regex highlighting
-                additional_vim_regex_highlighting = true,
+                additional_vim_regex_highlighting = false,
             },
             rainbow = {
                 enable = true,

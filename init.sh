@@ -1,22 +1,19 @@
 #!/bin/bash
 
 # Install rust up
-if ! command -v rustup &> /dev/null
-then
+if ! command -v rustup &>/dev/null; then
     echo "Rustup could not be found, installing"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
 # Install ripgrep
-if ! command -v rg &> /dev/null
-then
+if ! command -v rg &>/dev/null; then
     echo "rg could not be found, installing"
     sudo apt-install ripgrep -y
 fi
 
 # Install bat
-if ! command -v bat &> /dev/null
-then
+if ! command -v bat &>/dev/null; then
     echo "bat could not be found, installing"
     sudo apt install bat -y
     mkdir -p ~/.local/bin
@@ -27,31 +24,27 @@ then
     wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
     wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
     bat cache --build
-    echo "--theme 'Catppuccin Mocha'" > "$HOME/.config/bat/config"
+    echo "--theme 'Catppuccin Mocha'" >"$HOME/.config/bat/config"
 fi
 
 # Install flake8
-if ! command -v rg &> /dev/null
-then
+if ! command -v rg &>/dev/null; then
     echo "flak8 could not be found, installing"
     sudo apt install flake8 -y
 fi
 
 # Install find
-if ! command -v fdfind &> /dev/null
-then
+if ! command -v fdfind &>/dev/null; then
     echo "fdfind could not be found, installing"
     sudo apt install fd-find -y
 fi
 
-if ! command -v fzf &> /dev/null
-then
+if ! command -v fzf &>/dev/null; then
     echo "fzf not installed, installing"
     sudo apt-get install fzf -y
 fi
 
-if [ ! -d "${HOME}/.nvm/.git" ]
-then
+if [ ! -d "${HOME}/.nvm/.git" ]; then
     echo "NVM not installed, installing"
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
     echo "If 'nvm install 16' fails copy NVM config from profile file to bashrc"
@@ -59,8 +52,7 @@ then
     corepack enable
 fi
 
-if ! command -v cspell &> /dev/null
-then
+if ! command -v cspell &>/dev/null; then
     echo "CSPELL is not installed, installing"
     npm install -g cspell
 fi
@@ -69,42 +61,63 @@ handle_file() {
     local file="$1"
     local content="$2"
 
-    if [ -e "lua/${file##*/}" ] ; then
+    if [ -e "lua/${file##*/}" ]; then
         mv "lua/${file##*/}" "$file"
     fi
 
-    if [ ! -e "$file" ] ; then
+    if [ ! -e "$file" ]; then
         # Check if the directory exists else create it
-        if [ ! -d "$(dirname "$file")" ] ; then
+        if [ ! -d "$(dirname "$file")" ]; then
             mkdir -p "$(dirname "$file")"
         fi
 
         touch "$file"
 
-        if [ ! -w "$file" ] ; then
+        if [ ! -w "$file" ]; then
             echo cannot write to "$file"
             exit 1
         fi
 
-        echo -e "$content" >> "$file"
+        echo -e "$content" >>"$file"
     fi
 }
 
-if ! command -v lua &> /dev/null
-then
+if ! command -v lua &>/dev/null; then
     echo "Lua not installed, installing"
-    sudo apt install lua5.3
-    sudo apt install liblua5.3-dev
+    curl -R -O "https://www.lua.org/ftp/lua-5.1.5.tar.gz"
+    ls .
+    tar -zxf lua-5.1.5.tar.gz
+    (
+        cd lua-5.1.5 || exit
+        make linux test
+        sudo make install
+    )
+    rm -rf lua-5.1.5
+    rm lua-5.1.5.tar.gz
 fi
 
-if [ ! -e "${HOME}/.nvimstty" ] ; then
+if ! command -v luarocks &>/dev/null; then
+    echo "Luarocks not installed, installing"
+    wget https://luarocks.github.io/luarocks/releases/luarocks-3.11.1.tar.gz
+    tar -zxf luarocks-3.11.1.tar.gz
+    (
+        cd luarocks-3.11.1 || exit
+        ./configure --with-lua-include=/usr/local/include
+        make
+        sudo make install
+    )
+    rm -rf luarocks-3.11.1
+    rm luarocks-3.11.1.tar.gz
+fi
+
+if [ ! -e "${HOME}/.nvimstty" ]; then
     echo "Disabling XON/XOFF flow control"
     touch "${HOME}/.nvimstty &> /dev/null 2>&1"
-    echo "stty -ixon" >> "${HOME}/.nvimstty"
-    if [ "${SHELL}" = "/usr/bin/zsh" ] ; then
-        echo "source \"${HOME}/.nvimstty\" &> /dev/null" >> "${HOME}/.zshrc"
-    elif [ "${SHELL}" = "/usr/bin/bash" ] ; then
-        echo "source \"${HOME}/.nvimstty\"" >> "${HOME}/.bashrc"
+    echo "stty -ixon" >>"${HOME}/.nvimstty"
+    if [ "${SHELL}" = "/usr/bin/zsh" ]; then
+        echo "source \"${HOME}/.nvimstty\" &> /dev/null" >>"${HOME}/.zshrc"
+    elif [ "${SHELL}" = "/usr/bin/bash" ]; then
+        echo "source \"${HOME}/.nvimstty\"" >>"${HOME}/.bashrc"
     else
         echo "Error, can't find suitable shell. Run the following line but change {shellrc} to applicable shell file"
         echo "echo source \"\${HOME}/.nvimstty\" >> \"\${HOME}/.{shellrc}\""

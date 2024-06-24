@@ -81,7 +81,6 @@ return {
                 i = { name = "Chat" },
                 r = { name = "Refactor" },
                 t = { name = "Test" },
-                w = { name = "Wiki" },
                 x = { name = "Trouble" },
             }, { prefix = "<leader>", mode = { "n", "v" } })
         end,

@@ -149,6 +149,7 @@ return {
                 }),
                 sources = cmp.config.sources({
                     { name = "lazydev", group_index = 0 },
+                    { name = "neorg", group_index = 1 },
                     { name = "snp", group_index = 1 },
                     { name = "doxygen", group_index = 1 },
                     { name = "nvim_lsp", group_index = 2 },

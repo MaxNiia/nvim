@@ -82,7 +82,7 @@ return {
 
                 return {
                     ft_icon and {
-                        " " .. ft_icon .. "  ",
+                        " " .. ft_icon .. " ",
                         guifg = OPTIONS.transparent.value and ft_color or "bg",
                         guibg = OPTIONS.transparent.value and "bg" or ft_color,
                     } or {},

@@ -227,27 +227,6 @@ OPTIONS = {
             vim.g.neovide_scale_factor = OPTIONS.scale_size.value
         end,
     },
-    wiki = {
-        value = "~",
-        key = "wp",
-        description = "Wiki path",
-        prompt = "Enter desired path to wiki files",
-        callback = nil,
-    },
-    wikis = {
-        value = {
-            work = {
-                key = "w",
-            },
-            personal = {
-                key = "p",
-            },
-        },
-        key = "wf",
-        description = "Wiki folder",
-        prompt = { add = { folder = { "key" } }, remove = "folder" },
-        callback = nil,
-    },
     early_retirement = {
         value = false,
         key = "er",
