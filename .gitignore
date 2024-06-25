@@ -8,3 +8,4 @@ templates.lua
 spell/
 hidden.lua
 lua/current-theme.lua
+lua/external

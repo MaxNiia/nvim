@@ -7,9 +7,10 @@ _G.IS_WINDOWS = OS:find("Windows") and true or false
 _G.IS_WSL = IS_LINUX and uname.release:find("Microsoft") and true or false
 
 OPTIONS = require("options")
-CONFIGS = require("configs")
-
 require("options.filehandler").load()
+
+CONFIGS = require("configs")
+require("external")
 
 require("settings")
 
