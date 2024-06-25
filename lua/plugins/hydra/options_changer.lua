@@ -47,7 +47,7 @@ local function head_builder(name, key, do_exit, func)
 end
 
 local on_set = function(name)
-    require("utils.config").save_config()
+    require("options.filehandler").save()
     if OPTIONS[name].callback then
         OPTIONS[name].callback()
     end
@@ -197,7 +197,7 @@ return function()
     local heads = {}
     local hint = [[
  ^
- ^^ Config
+ ^^ Options
  ]]
     local values = {}
     local hints = {}
@@ -229,7 +229,7 @@ return function()
  ^^ _<Esc>_
  ]]
     return {
-        name = "Config",
+        name = "Options",
         hint = hint,
         config = {
             color = "amaranth",

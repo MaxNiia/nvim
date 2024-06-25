@@ -1,5 +1,5 @@
 local icons = require("utils.icons").todo
-return {
+local plugins = {
     {
         "MaxNiia/nvim-unception",
         lazy = false,
@@ -263,3 +263,7 @@ return {
         "tpope/vim-abolish",
     },
 }
+
+plugins = vim.tbl_deep_extend("force", plugins, CONFIGS.plugins.value or {})
+
+return plugins

@@ -11,19 +11,19 @@ local function int_to_bool(i)
     return i ~= 0
 end
 
-local function save_config()
+local function save()
     local f = assert(io.open(file_path, "w"))
 
-    for name, config in pairs(OPTIONS) do
-        local value = config.value
+    for name, option in pairs(OPTIONS) do
+        local value = option.value
         local value_type = type(value)
         if value_type == "string" or value_type == "number" then
             f:write(name, separator, value, separator, "\n")
         elseif value_type == "boolean" then
             f:write(name, separator, bool_to_int(value), separator, "\n")
         elseif value_type == "table" then
-            for config_name, v_table in pairs(value) do
-                f:write(name, separator, config_name, separator)
+            for option_name, v_table in pairs(value) do
+                f:write(name, separator, option_name, separator)
                 for index, v in pairs(v_table) do
                     f:write(index, separator, v, separator)
                 end
@@ -40,7 +40,7 @@ local function save_config()
     f:close()
 end
 
-local function read_config_file()
+local function read_file()
     local times = 0
 
     while true do
@@ -61,14 +61,14 @@ local function read_config_file()
         times = times + 1
 
         -- Assume that the file couldn't be read because it doesn't exist.
-        save_config()
+        save()
     end
 end
 
-local function parse_config_line(line)
+local function parse_option_line(line)
     local name = ""
     local index = ""
-    local config_name = ""
+    local option_name = ""
     local table_value = nil
 
     for str in string.gmatch(line, "([^" .. separator .. "]+)" .. separator) do
@@ -89,8 +89,8 @@ local function parse_config_line(line)
             elseif value_type == "boolean" then
                 OPTIONS[name].value = int_to_bool(tonumber(str))
             elseif value_type == "table" then
-                if config_name == "" then
-                    config_name = str
+                if option_name == "" then
+                    option_name = str
                 elseif index == "" then
                     index = str
                 else
@@ -104,21 +104,21 @@ local function parse_config_line(line)
         end
     end
 
-    if config_name ~= "" and table_value ~= nil then
-        OPTIONS[name].value[config_name] = table_value
+    if option_name ~= "" and table_value ~= nil then
+        OPTIONS[name].value[option_name] = table_value
     end
 end
 
-local function load_config()
-    local lines = read_config_file()
+local function load()
+    local lines = read_file()
 
     if not lines then
         return
     end
 
     for line in string.gmatch(lines, "([^\n]+)") do
-        parse_config_line(line)
+        parse_option_line(line)
     end
 end
 
-return { load_config = load_config, save_config = save_config }
+return { load = load, save = save }

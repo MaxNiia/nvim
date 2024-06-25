@@ -1,23 +1,12 @@
-local year = os.date("%Y")
-local copyright_body = { "Copyright", "Year: " .. year }
-
-local copyright_text = function(comment_string)
-    local output_text = ""
-    for _, v in ipairs(copyright_body) do
-        output_text = output_text .. comment_string .. " " .. v .. "\n"
-    end
-    return output_text
-end
-
 local global_snippets = {
     { trigger = "shebang", body = "#!/bin sh" },
 }
 
 local snippets_by_filetype = {
     lua = {},
-    cmake = { { trigger = "copyright", body = copyright_text("#") } },
-    c = { { trigger = "copyright", body = copyright_text("//") } },
-    cpp = { { trigger = "copyright", body = copyright_text("//") } },
+    cmake = { { trigger = "copyright", body = CONFIGS.copyright_text.value("#") } },
+    c = { { trigger = "copyright", body = CONFIGS.copyright_text.value("//") } },
+    cpp = { { trigger = "copyright", body = CONFIGS.copyright_text.value("//") } },
     python = {
         { trigger = "shebang", body = "#!/usr/bin/env python" },
     },

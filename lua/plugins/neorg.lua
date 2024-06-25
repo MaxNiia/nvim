@@ -1,7 +1,6 @@
 return {
     {
         "nvim-neorg/neorg",
-        -- dependencies = { "nvim-treesitter" },
         opts = {
             load = {
                 ["core.defaults"] = {},

@@ -34,7 +34,7 @@ vim.cmd([[
     autocmd TermOpen * setlocal nornu
     autocmd TermOpen * setlocal nonu
 
-    autocmd VimLeavePre * lua require("utils.config").save_config()
+    autocmd VimLeavePre * lua require("options.filehandler").save()
 ]])
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
@@ -82,3 +82,11 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
         vim.cmd("tabdo wincmd =")
     end,
 })
+
+vim.cmd([[
+    if has("nvim")
+      let $GIT_EDITOR = 'nvim --cmd "let g:unception_block_while_host_edits=1"'
+    endif
+
+    autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
+]])
