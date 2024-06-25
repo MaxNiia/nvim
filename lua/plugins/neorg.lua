@@ -1,6 +1,10 @@
 return {
     {
         "nvim-neorg/neorg",
+        ft = "norg",
+        cmd = {
+            "Neorg",
+        },
         opts = {
             load = {
                 ["core.defaults"] = {},
@@ -10,7 +14,6 @@ return {
                     },
                 },
                 ["core.integrations.nvim-cmp"] = {},
-
                 ["core.journal"] = {
                     config = {
                         journal_folder = "journal",

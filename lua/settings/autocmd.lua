@@ -4,6 +4,8 @@ vim.cmd([[
 
     autocmd FileType minifiles setlocal conceallevel=2
 
+    autocmd FileType norg setlocal conceallevel=3
+
     autocmd FileType c setlocal textwidth=80
     autocmd FileType c setlocal colorcolumn=+1
 

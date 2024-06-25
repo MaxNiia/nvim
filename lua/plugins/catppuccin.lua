@@ -25,9 +25,9 @@ return {
                 dark = "mocha",
             },
             transparent_background = OPTIONS.transparent.value,
-            no_italic = OPTIONS.italic.value,
-            no_bold = OPTIONS.bold.value,
-            no_underline = OPTIONS.underline.value,
+            no_italic = not OPTIONS.italic.value,
+            no_bold = not OPTIONS.bold.value,
+            no_underline = not OPTIONS.underline.value,
             term_colors = true,
             dim_inactive = {
                 enabled = OPTIONS.dim_inactive.value,

@@ -119,7 +119,7 @@ return {
                     { "eslint_d", "eslint" },
                 },
                 json = { "fixjson" },
-                yaml = { "yamlfmt" },
+                -- yaml = { "yamlfmt" },
                 markdown = { "markdownlint" },
                 cpp = { "clang-format" },
             },
@@ -164,7 +164,7 @@ return {
                 "prettierd",
                 "shfmt",
                 "stylua",
-                "yamlfmt",
+                -- "yamlfmt",
             },
             pip = {
                 upgrade_pip = true,

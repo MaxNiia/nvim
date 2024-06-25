@@ -124,6 +124,14 @@ return {
                 size = { width = 60 },
             },
             {
+                ft = "norg",
+                size = { width = 100 },
+                -- only show help buffers
+                filter = function(buf)
+                    return vim.bo[buf].buftype == "help"
+                end,
+            },
+            {
                 ft = "help",
                 size = { width = 100 },
                 -- only show help buffers
