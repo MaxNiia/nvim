@@ -208,13 +208,27 @@ return {
             },
             {
                 "<leader>fls",
-                "<cmd>FzfLua lsp_document_symbols<cr>",
+                function()
+                    require("fzf-lua").lsp_document_symbols({
+                        symbol_style = 3,
+                        winopts = {
+                            preview = { hidden = "nohidden" },
+                        },
+                    })
+                end,
                 desc = "Goto Symbol",
                 mode = { "v", "n" },
             },
             {
                 "<leader>flS",
-                "<cmd>FzfLua lsp_workspace_symbols<cr>",
+                function()
+                    require("fzf-lua").lsp_workspace_symbols({
+                        symbol_style = 3,
+                        winopts = {
+                            preview = { hidden = "nohidden" },
+                        },
+                    })
+                end,
                 desc = "Goto Workspace Symbol",
                 mode = { "v", "n" },
             },
