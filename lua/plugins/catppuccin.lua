@@ -61,7 +61,7 @@ return {
                 cmp = true,
                 colorful_winsep = {
                     enabled = true,
-                    color = "mauve",
+                    color = "pink",
                 },
                 dashboard = true,
                 diffview = true,
