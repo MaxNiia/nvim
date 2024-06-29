@@ -83,13 +83,18 @@ return function(bufnr)
                 },
                 d = {
                     function()
-                        vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = 0 }))
+                        vim.diagnostic.enable(
+                            not vim.diagnostic.is_enabled({ bufnr = 0 }),
+                            { bufnr = 0 }
+                        )
                     end,
                     "Toggle diagnostics for current buffer",
                 },
                 D = {
                     function()
-                        vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = nil }))
+                        vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = nil }), {
+                            bufnr = nil,
+                        })
                     end,
                     "Toggle diagnostics buffers",
                 },
