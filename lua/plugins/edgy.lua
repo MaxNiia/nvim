@@ -36,6 +36,28 @@ return {
                 size = { width = 80 },
             },
             {
+                ft = "dapui_breakpoints",
+                size = { width = 60, height = 30 },
+            },
+            {
+                ft = "dapui_stacks",
+                size = { hegiht = 30 },
+            },
+            {
+                ft = "dapui_watches",
+                size = { height = 10 },
+            },
+            {
+                ft = "dapui_console",
+            },
+        },
+        right = {
+            {
+                ft = "fugitive",
+                open = "G",
+                size = { width = 60 },
+            },
+            {
                 ft = "copilot-chat",
                 size = { width = 120 },
             },
@@ -100,28 +122,6 @@ return {
             {
                 ft = "git",
                 size = { width = 87 },
-            },
-            {
-                ft = "dapui_breakpoints",
-                size = { width = 60, height = 30 },
-            },
-            {
-                ft = "dapui_stacks",
-                size = { hegiht = 30 },
-            },
-            {
-                ft = "dapui_watches",
-                size = { height = 10 },
-            },
-            {
-                ft = "dapui_console",
-            },
-        },
-        right = {
-            {
-                ft = "fugitive",
-                open = "G",
-                size = { width = 60 },
             },
             {
                 ft = "norg",

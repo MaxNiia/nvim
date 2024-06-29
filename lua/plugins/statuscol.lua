@@ -33,6 +33,7 @@ return {
                     "qf",
                     "Trouble",
                     "help",
+                    "git",
                 },
                 bt_ignore = {
                     "Outline",

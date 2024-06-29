@@ -17,7 +17,7 @@ return {
             },
             {
                 "<leader>gg",
-                "<cmd>G! status<cr>",
+                "<cmd>G<cr>",
                 desc = "Git status",
             },
             {
