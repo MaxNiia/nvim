@@ -55,7 +55,7 @@ return {
             {
                 ft = "fugitive",
                 open = "G",
-                size = { width = 60 },
+                size = { width = 80 },
             },
             {
                 ft = "copilot-chat",
@@ -230,6 +230,56 @@ return {
                 ft = "dap-repl",
                 size = { widrh = 60 },
             },
+        },
+        keys = {
+            -- close window
+            ["q"] = function(win)
+                win:close()
+            end,
+            -- hide window
+            ["<c-q>"] = function(win)
+                win:hide()
+            end,
+            -- close sidebar
+            ["Q"] = function(win)
+                win.view.edgebar:close()
+            end,
+            -- next open window
+            ["]w"] = function(win)
+                win:next({ visible = true, focus = true })
+            end,
+            -- previous open window
+            ["[w"] = function(win)
+                win:prev({ visible = true, focus = true })
+            end,
+            -- next loaded window
+            ["]W"] = function(win)
+                win:next({ pinned = false, focus = true })
+            end,
+            -- prev loaded window
+            ["[W"] = function(win)
+                win:prev({ pinned = false, focus = true })
+            end,
+            -- increase width
+            ["<a-l>"] = function(win)
+                win:resize("width", 2)
+            end,
+            -- decrease width
+            ["<a-h>"] = function(win)
+                win:resize("width", -2)
+            end,
+            -- increase height
+            ["<a-k>"] = function(win)
+                win:resize("height", 2)
+            end,
+            -- decrease height
+            ["<a-j>"] = function(win)
+                win:resize("height", -2)
+            end,
+            -- reset all custom sizing
+            ["<c-w>="] = function(win)
+                win.view.edgebar:equalize()
+            end,
         },
         icons = {
             closed = icons.closed .. " ",
