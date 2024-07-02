@@ -78,7 +78,13 @@ return {
         },
         opts = {
             -- options for vim.diagnostic.config()
-            diagnostics = require("plugins.lsp.diagnostics")(OPTIONS.lsp_lines.value),
+            diagnostics = {
+                underline = true,
+                update_in_insert = false,
+                virtual_text = false, -- { spacing = 4, prefix = "●" },
+                severity_sort = true,
+                virtual_lines = true,
+            },
             -- Automatically format on save
             autoformat = true,
             format = {

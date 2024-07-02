@@ -58,7 +58,7 @@ local plugins = {
         event = { "WinNew" },
         opts = {
             hi = {
-                fg = vim.api.nvim_get_hl(0, { name = "WinSep" })["foreground"],
+                fg = vim.api.nvim_get_hl(0, { name = "WinSep" })["fg"],
             },
         },
     },

@@ -254,7 +254,7 @@ return {
                 ["--highlight-line"] = "",
                 ["--multi"] = "",
                 ["--info"] = "inline-right",
-                ["--layout"] = "reverse",
+                ["--layout"] = "default",
                 ["--marker"] = "▏",
                 ["--pointer"] = " ▌",
                 ["--prompt"] = "▌ ",

@@ -145,13 +145,6 @@ return {
         prompt = nil,
         callback = nil,
     },
-    lsp_lines = {
-        value = false,
-        key = "ll",
-        description = "Diagnostics on separate line",
-        prompt = nil,
-        callback = nil,
-    },
     prompt_end = {
         value = "%$ ",
         key = "tp",
