@@ -6,10 +6,12 @@ if ! command -v rustup &>/dev/null; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 fi
 
+rustup update
+
 # Install ripgrep
 if ! command -v rg &>/dev/null; then
     echo "rg could not be found, installing"
-    sudo apt-install ripgrep -y
+    cargo install ripgrep
 fi
 
 # Install bat
@@ -33,15 +35,23 @@ if ! command -v rg &>/dev/null; then
     sudo apt install flake8 -y
 fi
 
+if ! command -v fd; then
+    echo "fd could not be found installing"
+    cargo install fd-find
+end
+
 # Install find
 if ! command -v fdfind &>/dev/null; then
     echo "fdfind could not be found, installing"
     sudo apt install fd-find -y
+cargo install fd-find
 fi
 
 if ! command -v fzf &>/dev/null; then
     echo "fzf not installed, installing"
-    sudo apt-get install fzf -y
+    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    ~/.fzf/install
+    sudo ln -s "$HOME/.fzf/bin/fzf" /usr/bin/fzf
 fi
 
 if [ ! -d "${HOME}/.nvm/.git" ]; then

@@ -249,6 +249,16 @@ return {
             },
         },
         opts = {
+            fzf_opts = {
+                ["--cycle"] = "",
+                ["--highlight-line"] = "",
+                ["--multi"] = "",
+                ["--info"] = "inline-right",
+                ["--layout"] = "reverse",
+                ["--marker"] = "▏",
+                ["--pointer"] = " ▌",
+                ["--prompt"] = "▌ ",
+            },
             {
                 "fzf-native",
                 "telescope",
