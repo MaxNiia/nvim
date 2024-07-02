@@ -31,7 +31,6 @@ return {
             "hrsh7th/cmp-nvim-lsp-document-symbol",
             "hrsh7th/cmp-nvim-lsp-signature-help",
             "hrsh7th/cmp-path",
-            "petertriho/cmp-git",
             "hrsh7th/cmp-cmdline",
             {
 
@@ -171,9 +170,7 @@ return {
 
             -- Set configuration for specific filetype.
             cmp.setup.filetype("gitcommit", {
-                sources = cmp.config.sources({
-                    { name = "git" }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
-                }, {
+                sources = cmp.config.sources({}, {
                     { name = "buffer" },
                 }),
             })
