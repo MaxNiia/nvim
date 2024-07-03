@@ -294,8 +294,10 @@ return {
             require("telescope").load_extension("file_browser")
             require("telescope").load_extension("fzf")
             require("telescope").load_extension("live_grep_args")
-            require("telescope").load_extension("noice")
-            require("telescope").load_extension("notify")
+            if not vim.g.vscode then
+                require("telescope").load_extension("noice")
+                require("telescope").load_extension("notify")
+            end
             require("telescope").load_extension("project")
             require("telescope").load_extension("themes")
             require("telescope").load_extension("monorepo")

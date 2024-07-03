@@ -16,6 +16,11 @@ return {
                 desc = "Git log",
             },
             {
+                "<leader>G",
+                "<cmd>G<cr>",
+                desc = "Git status",
+            },
+            {
                 "<leader>gg",
                 "<cmd>G<cr>",
                 desc = "Git status",
