@@ -2,7 +2,7 @@ return {
     {
         "stevearc/oil.nvim",
         dependencies = {
-            "nvim-tree/nvim-web-devicons",
+            "echasnovski/mini.icons",
         },
         cond = function()
             return not OPTIONS.mini_files.value and not vim.g.vscode

@@ -54,7 +54,7 @@ return {
         "echasnovski/mini.files",
         cond = (not vim.g.vscode) and OPTIONS.mini_files.value,
         dependencies = {
-            "nvim-tree/nvim-web-devicons",
+            "echasnovski/mini.icons",
         },
         version = false,
         event = "BufEnter",

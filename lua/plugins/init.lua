@@ -25,10 +25,39 @@ local plugins = {
     {
         "max397574/better-escape.nvim",
         opts = {
-            mapping = { "jk", "jj" },
+            mappings = {
+                i = {
+                    j = {
+                        -- These can all also be functions
+                        k = "<Esc>",
+                        j = "<Esc>",
+                    },
+                },
+                c = {
+                    j = {
+                        k = "<Esc>",
+                        j = "<Esc>",
+                    },
+                },
+                t = {
+                    j = {
+                        k = "<Esc>",
+                        j = "<Esc>",
+                    },
+                },
+                v = {
+                    j = {
+                        k = "<Esc>",
+                    },
+                },
+                s = {
+                    j = {
+                        k = "<Esc>",
+                    },
+                },
+            },
             timeout = vim.o.timeoutlen,
             clear_empty_lines = false,
-            keys = "<Esc>",
         },
     },
     {
@@ -162,8 +191,20 @@ local plugins = {
         lazy = true,
     },
     {
-        "nvim-tree/nvim-web-devicons",
+        "echasnovski/mini.icons",
+        opts = {},
         lazy = true,
+        specs = {
+            { "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
+        },
+        init = function()
+            package.preload["nvim-web-devicons"] = function()
+                -- needed since it will be false when loading and mini will fail
+                package.loaded["nvim-web-devicons"] = {}
+                require("mini.icons").mock_nvim_web_devicons()
+                return package.loaded["nvim-web-devicons"]
+            end
+        end,
     },
     {
         "folke/todo-comments.nvim",

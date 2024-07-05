@@ -35,7 +35,7 @@ return {
             },
             render = function(props)
                 local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":p:.")
-                local ft_icon, ft_color = require("nvim-web-devicons").get_icon_color(filename)
+                local ft_icon, ft_color = require("mini.icons").get_icon_color(filename)
                 local modified = vim.bo[props.buf].modified
                 local icons = require("utils.icons")
 

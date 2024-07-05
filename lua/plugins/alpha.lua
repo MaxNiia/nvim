@@ -86,7 +86,7 @@ return {
         "goolord/alpha-nvim",
         cond = not vim.g.vscode,
         dependencies = {
-            "nvim-tree/nvim-web-devicons",
+            "echasnovski/mini.icons",
             "stevearc/resession.nvim",
             "nvim-treesitter/nvim-treesitter",
         },
@@ -100,7 +100,8 @@ return {
                 dashboard.button(
                     "f",
                     " " .. " Find file",
-                    ":lua require('telescope').find_files() <CR>"
+                    OPTIONS.fzf.value and ":FzfLua files<cr>"
+                        or ":lua require('telescope').find_files() <CR>"
                 ),
                 dashboard.button(
                     "p",
@@ -111,12 +112,14 @@ return {
                 dashboard.button(
                     "r",
                     " " .. " Recent files",
-                    ":lua require('telescope').oldfiles()<CR>"
+                    OPTIONS.fzf.value and ":FzfLua oldfiles<cr>"
+                        or ":lua require('telescope').oldfiles()<CR>"
                 ),
                 dashboard.button(
                     "s",
                     " " .. " Find text",
-                    ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"
+                    OPTIONS.fzf.value and ":FzfLua files<cr>"
+                        or ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"
                 ),
                 dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
                 dashboard.button("l", "z " .. " Lazy", ":Lazy<CR>"),

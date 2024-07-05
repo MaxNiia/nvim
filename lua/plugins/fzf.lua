@@ -2,6 +2,9 @@ return {
     {
         "ibhagwan/fzf-lua",
         cond = OPTIONS.fzf.value,
+        cmd = {
+            "FzfLua",
+        },
         keys = {
             -- LEADER s
             {

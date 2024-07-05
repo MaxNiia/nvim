@@ -7,7 +7,7 @@ return {
             "AckslD/swenv.nvim",
             "folke/noice.nvim",
             "folke/trouble.nvim",
-            "nvim-tree/nvim-web-devicons",
+            "echasnovski/mini.icons",
         },
         lazy = true,
         event = "BufEnter",
