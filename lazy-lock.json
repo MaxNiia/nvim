@@ -59,6 +59,7 @@
   "mini.icons": { "branch": "main", "commit": "6dd65c0d89f0fe423d8f26e6a8f1c91fbf3bf4e3" },
   "mini.pairs": { "branch": "main", "commit": "927d19cbdd0e752ab1c7eed87072e71d2cd6ff51" },
   "mini.surround": { "branch": "main", "commit": "28e2821bcccf4a1891d0ad2e49a056602ca03929" },
+  "modes.nvim": { "branch": "main", "commit": "326cff3282419b3bcc745061978c1e592cae055d" },
   "monorepo.nvim": { "branch": "main", "commit": "256a302900d6af6e032f1f2bf4f2407bd4569fe8" },
   "neogen": { "branch": "main", "commit": "6de0add4805165317ab7d3d36b5cef48b1b865f3" },
   "neorg": { "branch": "main", "commit": "db75bb60ba5e565051cf7bb18c8b1a519ed58d3a" },

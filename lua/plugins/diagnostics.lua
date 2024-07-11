@@ -3,6 +3,7 @@ return {
         "rachartier/tiny-inline-diagnostic.nvim",
         event = "VeryLazy",
         opts = {
+            multiple_diag_under_cursor = true,
             signs = {
                 left = "",
                 right = "",

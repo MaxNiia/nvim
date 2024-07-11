@@ -1,5 +1,12 @@
 return {
-    typos_lsp = {},
+    typos_lsp = {
+        init_options = { -- Sent to the LSP on init
+            diagnosticSeverity = "Hint",
+        },
+        filetypes = {
+            "*",
+        },
+    },
     azure_pipelines_ls = require("plugins.lsp.servers.azure_pipelines_ls"),
     bashls = {},
     bzl = require("plugins.lsp.servers.bzl"),
