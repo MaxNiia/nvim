@@ -279,7 +279,7 @@ return {
                 ["header"] = { "fg", "Special" },
                 ["info"] = { "fg", "Special" },
                 ["marker"] = { "fg", "WarningMsg" },
-                ["prompt"] = { "fg", "Special" },
+                ["prompt"] = { "fg", "CursorLineNr" },
                 ["pointer"] = { "fg", "Special" },
                 ["spinner"] = { "fg", "Special" },
                 ["query"] = { "fg", "Special" },
