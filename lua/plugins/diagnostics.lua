@@ -13,10 +13,10 @@ return {
                 vertical = " │",
                 vertical_end = " └",
             },
+            virt_texts = { priority = 2048 },
         },
         config = function(_, opts)
             require("tiny-inline-diagnostic").setup(opts)
-
             vim.api.nvim_set_hl(
                 0,
                 "TinyInlineDiagnosticVirtualTextError",

@@ -35,7 +35,7 @@ return {
             },
             render = function(props)
                 local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":p:.")
-                local ft_icon, ft_color = require("mini.icons").get_icon_color(filename)
+                local ft_icon, ft_color, default = require("mini.icons").get("file", filename)
                 local modified = vim.bo[props.buf].modified
                 local icons = require("utils.icons")
 
@@ -48,7 +48,7 @@ return {
                             if tonumber(signs[name]) and signs[name] > 0 then
                                 table.insert(
                                     labels,
-                                    { icon .. " " .. signs[name] .. " ", group = "Diff" .. name }
+                                    { icon .. signs[name] .. " ", group = "Diff" .. name }
                                 )
                             end
                         end
@@ -79,17 +79,15 @@ return {
                     end
                     return labels
                 end
-
                 return {
                     ft_icon and {
-                        " " .. ft_icon .. " ",
-                        guifg = OPTIONS.transparent.value and ft_color or "bg",
-                        guibg = OPTIONS.transparent.value and "bg" or ft_color,
+                        " " .. ft_icon,
+                        group = ft_color,
                     } or {},
 
                     {
                         " " .. filename .. " ",
-                        group = modified and "InclineModified" or "Normal",
+                        group = modified and "InclineModified" or ft_color,
                     },
                     { get_diagnostic_label(), group = "Normal" },
                     { get_git_diff(), group = "Normal" },

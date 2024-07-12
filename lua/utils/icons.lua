@@ -32,10 +32,10 @@ return {
         newfile = "[New]",
     },
     diagnostics = {
-        Error = " ",
-        Warn = " ",
-        Hint = " ",
-        Info = " ",
+        Error = "",
+        Warn = "",
+        Hint = "",
+        Info = "",
     },
     todo = {
         todo = "",

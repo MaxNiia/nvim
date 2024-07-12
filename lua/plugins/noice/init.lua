@@ -27,7 +27,7 @@ return {
             local _opts = {
                 presets = {
                     command_palette = false,
-                    inc_rename = false,
+                    inc_rename = true,
                     long_message_to_split = true,
                 },
                 popupmenu = {
@@ -40,6 +40,17 @@ return {
                     ["cmp.entry.get_documentation"] = true,
                 },
                 routes = {
+                    {
+                        filter = {
+                            event = "msg_show",
+                            any = {
+                                { find = "%d+L, %d+B" },
+                                { find = "; after #%d+" },
+                                { find = "; before #%d+" },
+                            },
+                        },
+                        view = "mini",
+                    },
                     {
                         filter = {
                             event = "msg_show",
@@ -63,20 +74,24 @@ return {
                 views = {
                     popup = {
                         border = {
-                            style = "none",
-                            padding = { 1, 1 },
+                            style = "rounded",
+                            padding = { 0, 0 },
                         },
-                        win_options = {
-                            winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
-                        },
+                        -- win_options = {
+                        --     winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+                        -- },
                     },
                     popupmenu = {
+                        backend = "cmp",
                         border = {
-                            style = "none",
-                            padding = { 1, 1 },
+                            style = "rounded",
+                            padding = { 0, 0 },
                         },
                         win_options = {
-                            winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
+                            winhighlight = {
+                                NormalFloat = "NormalFloat",
+                                FloatBorder = "FloatBorder",
+                            },
                         },
                     },
                 },

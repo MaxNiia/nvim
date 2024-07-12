@@ -4,6 +4,9 @@ return {
             hint = {
                 enable = true,
             },
+            codeLens = {
+                enable = true,
+            },
             runtime = {
                 version = "LuaJIT",
             },

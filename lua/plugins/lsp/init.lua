@@ -81,9 +81,25 @@ return {
             diagnostics = {
                 underline = true,
                 update_in_insert = false,
-                virtual_text = false, -- { spacing = 4, prefix = "●" },
                 severity_sort = true,
-                virtual_lines = true,
+                virtual_text = false,
+                --[[
+                {
+                    spacing = 1,
+                    prefix = function(diagnostic)
+                        local icons = require("utils.icons").diagnostics
+                        for d, icon in pairs(icons) do
+                            if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
+                                return " " .. icon
+                            end
+                        end
+                    end,
+                    suffix = " ",
+                    source = "if_many",
+                    virt_text_pos = "eol",
+                    virt_text_hide = true,
+                },
+                ]]
             },
             -- Automatically format on save
             autoformat = true,
@@ -184,6 +200,15 @@ return {
                         require("plugins.lsp.keymaps").inlay_hints(bufnr)
                         vim.lsp.inlay_hint.enable(true)
                     end
+
+                    -- -- Codelens
+                    -- if client.server_capabilities.codeLensProvider then
+                    --     vim.lsp.codelens.refresh()
+                    --     vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+                    --         buffer = bufnr,
+                    --         callback = vim.lsp.codelens.refresh,
+                    --     })
+                    -- end
 
                     if client.name == "clangd" then
                         require("plugins.lsp.keymaps").clangd(bufnr)

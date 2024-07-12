@@ -14,6 +14,7 @@ return {
                 virt_text = true,
                 virt_text_pos = "eol",
                 delay = 1000,
+                virt_text_priority = 100,
                 ignore_whitespace = true,
             },
             current_line_blame_formatter = "<author>:<author_time:%Y/%m/%d>-<summary>",
@@ -30,13 +31,13 @@ return {
                                 return "]h"
                             end
                             vim.schedule(function()
-                                gs.next_hunk()
+                                gs.nav_hunk("next", { wrap = true })
                             end)
                             return "<Ignore>"
                         end,
                         "Next Hunk",
                     },
-                }, { mode = "n", prefix = "]", expr = true })
+                }, { mode = { "n", "v" }, prefix = "]", expr = true })
                 wk.register({
                     h = {
                         function()
@@ -44,13 +45,41 @@ return {
                                 return "[h"
                             end
                             vim.schedule(function()
-                                gs.prev_hunk()
+                                gs.nav_hunk("prev", { wrap = true })
                             end)
                             return "<Ignore>"
                         end,
                         "Prev Hunk",
                     },
-                }, { mode = "n", prefix = "[", expr = true })
+                }, { mode = { "n", "v" }, prefix = "[", expr = true })
+                wk.register({
+                    H = {
+                        function()
+                            if vim.wo.diff then
+                                return "]H"
+                            end
+                            vim.schedule(function()
+                                gs.nav_hunk("last")
+                            end)
+                            return "<Ignore>"
+                        end,
+                        "Last Hunk",
+                    },
+                }, { mode = { "n", "v" }, prefix = "]", expr = true })
+                wk.register({
+                    H = {
+                        function()
+                            if vim.wo.diff then
+                                return "[H"
+                            end
+                            vim.schedule(function()
+                                gs.nav_hunk("first")
+                            end)
+                            return "<Ignore>"
+                        end,
+                        "First Hunk",
+                    },
+                }, { mode = { "n", "v" }, prefix = "[", expr = true })
 
                 -- Actions
                 wk.register({
