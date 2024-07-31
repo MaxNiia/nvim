@@ -37,17 +37,6 @@ return function(bufnr)
             desc = "Go to references",
         },
         {
-            "K",
-            function()
-                local winid = require("ufo").peekFoldedLinesUnderCursor()
-                if not winid then
-                    require("hover").hover({ bufnr = bufnr, pos = { 0, 0 } })
-                end
-            end,
-            buffer = bufnr,
-            desc = "Hover",
-        },
-        {
             "<c-s>",
             vim.lsp.buf.signature_help,
             buffer = bufnr,
