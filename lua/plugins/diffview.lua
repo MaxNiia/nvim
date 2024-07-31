@@ -2,7 +2,7 @@ local icons = require("utils.icons")
 return {
     {
         "sindrets/diffview.nvim",
-        cond = vim.g.vscode,
+        cond = not vim.g.vscode,
         keys = {
             {
                 "<leader>go",

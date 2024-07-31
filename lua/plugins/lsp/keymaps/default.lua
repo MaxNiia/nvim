@@ -1,104 +1,115 @@
 return function(bufnr)
     local wk = require("which-key")
-    wk.register({
-        g = {
-            name = "Go to",
-            D = {
-                vim.lsp.buf.declaration,
-                "Go to declaration",
-            },
-            d = {
-                vim.lsp.buf.definition,
-                "Go to definition",
-            },
-            i = {
-                vim.lsp.buf.implementation,
-                "Go to implementation",
-            },
-            r = {
-                function()
-                    if OPTIONS.fzf.value then
-                        require("fzf-lua").lsp_references()
-                    else
-                        require("telescope.builtin").lsp_references({
-                            fname_width = require("utils.sizes").fname_width,
-                            include_declaration = false,
-                            include_current_line = true,
-                            jump_type = "never",
-                        })
-                    end
-                end,
-                "Go to references",
-            },
+    wk.add({
+        {
+            "gD",
+            vim.lsp.buf.declaration,
+            buffer = bufnr,
+            desc = "Go to declaration",
         },
-        K = {
+        {
+            "gd",
+            vim.lsp.buf.definition,
+            buffer = bufnr,
+            desc = "Go to definition",
+        },
+        {
+            "gi",
+            vim.lsp.buf.implementation,
+            buffer = bufnr,
+            desc = "Go to implementation",
+        },
+        {
+            "gr",
+            function()
+                if OPTIONS.fzf.value then
+                    require("fzf-lua").lsp_references()
+                else
+                    require("telescope.builtin").lsp_references({
+                        fname_width = require("utils.sizes").fname_width,
+                        include_declaration = false,
+                        include_current_line = true,
+                        jump_type = "never",
+                    })
+                end
+            end,
+            buffer = bufnr,
+            desc = "Go to references",
+        },
+        {
+            "K",
             function()
                 local winid = require("ufo").peekFoldedLinesUnderCursor()
                 if not winid then
-                    require("hover").hover()
+                    require("hover").hover({ bufnr = bufnr, pos = { 0, 0 } })
                 end
             end,
-            "Hover",
+            buffer = bufnr,
+            desc = "Hover",
         },
-        ["<c-s>"] = {
+        {
+            "<c-s>",
             vim.lsp.buf.signature_help,
-            "Signature",
+            buffer = bufnr,
+            desc = "Signature",
         },
-        ["<leader>"] = {
-            d = {
-                function()
-                    require("conform").format({ async = true, lsp_fallback = true })
-                    -- vim.lsp.buf.format({
-                    --     async = true,
-                    -- })
-                end,
-                "Format",
-            },
-            a = {
-                vim.lsp.buf.code_action,
-                "Apply fix",
-            },
-            r = {
-                name = "Refactor",
-                n = {
-                    vim.lsp.buf.rename,
-                    "Rename",
-                },
-            },
-            L = {
-                name = "LSP",
-                a = {
-                    vim.lsp.buf.add_workspace_folder,
-                    "Add workspace folder",
-                },
-                r = {
-                    vim.lsp.buf.remove_workspace_folder,
-                    "Remove workspace folder",
-                },
-                l = {
-                    function()
-                        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-                    end,
-                    "List workspace folder",
-                },
-                d = {
-                    function()
-                        vim.diagnostic.enable(
-                            not vim.diagnostic.is_enabled({ bufnr = 0 }),
-                            { bufnr = 0 }
-                        )
-                    end,
-                    "Toggle diagnostics for current buffer",
-                },
-                D = {
-                    function()
-                        vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = nil }), {
-                            bufnr = nil,
-                        })
-                    end,
-                    "Toggle diagnostics buffers",
-                },
-            },
+        {
+            "<leader>d",
+            function()
+                require("conform").format({ async = true, lsp_fallback = true })
+            end,
+            buffer = bufnr,
+            desc = "Format",
         },
-    }, { buffer = bufnr })
+        {
+            "<leader>a",
+            vim.lsp.buf.code_action,
+            buffer = bufnr,
+            desc = "Apply fix",
+        },
+        {
+            "<leader>rn",
+            vim.lsp.buf.rename,
+            buffer = bufnr,
+            desc = "Rename",
+        },
+        {
+            "<leader>La",
+            vim.lsp.buf.add_workspace_folder,
+            buffer = bufnr,
+            desc = "Add workspace folder",
+        },
+        {
+            "<leader>Lr",
+            vim.lsp.buf.remove_workspace_folder,
+            buffer = bufnr,
+            desc = "Remove workspace folder",
+        },
+        {
+            "<leader>Ll",
+            function()
+                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+            end,
+            buffer = bufnr,
+            desc = "List workspace folder",
+        },
+        {
+            "<leader>Ld",
+            function()
+                vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = 0 }), { bufnr = 0 })
+            end,
+            buffer = bufnr,
+            desc = "Toggle diagnostics for current buffer",
+        },
+        {
+            "<leader>LD",
+            function()
+                vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = nil }), {
+                    bufnr = nil,
+                })
+            end,
+            buffer = bufnr,
+            desc = "Toggle diagnostics buffers",
+        },
+    })
 end

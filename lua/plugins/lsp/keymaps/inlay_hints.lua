@@ -1,12 +1,14 @@
 return function(bufnr)
     local wk = require("which-key")
 
-    wk.register({
-        t = {
+    wk.add({
+        {
+            "<leader>Lt",
             function()
                 vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enable())
             end,
-            "Toggle inlay hints",
+            buffer = bufnr,
+            desc = "Toggle inlay hints",
         },
-    }, { prefix = "<leader>L", buffer = bufnr })
+    })
 end

@@ -44,45 +44,39 @@ return {
                 mode = "n",
                 expr = true,
             },
+            {
+                "<leader>?",
+                function()
+                    require("which-key").show({ global = false })
+                end,
+                desc = "Buffer Local Keymaps (which-key)",
+            },
         },
         lazy = true,
         opts = {
+            preset = "helix",
             plugins = {
                 registers = true,
             },
+            spec = {
+                { "<leader><leader>", group = "Switch Window" },
+                { "<leader>E", group = "Files" },
+                { "<leader>G", group = "Git" },
+                { "<leader>b", group = "Debug" },
+                { "<leader>h", group = "Harpoon" },
+                { "<leader>D", group = "Debug" },
+                { "<leader>W", group = "Sessions" },
+                { "<leader>c", group = "CMake" },
+                { "<leader>f", group = "Find" },
+                { "<leader>g", group = "Git" },
+                { "<leader>L", group = "LSP" },
+                { "<leader>m", group = "Man" },
+                { "<leader>t", group = "Terminal" },
+                { "<leader>i", group = "Chat" },
+                { "<leader>r", group = "Refactor" },
+                { "<leader>t", group = "Test" },
+                { "<leader>x", group = "Trouble" },
+            },
         },
-        config = function(_, opts)
-            local wk = require("which-key")
-            wk.setup(opts)
-
-            wk.register({
-                ["<leader>"] = { name = "Switch Window" },
-                E = { name = "Files" },
-                G = { name = "Git" },
-                b = { name = "Debug" },
-                h = { name = "Harpoon" },
-            }, { prefix = "<leader>", mode = "n" })
-
-            wk.register({}, { prefix = "<leader>", mode = "n" })
-
-            wk.register({
-                D = { name = "Debug" },
-                W = { name = "Sessions" },
-                c = { name = "CMake" },
-                g = { name = "Hunks" },
-                f = {
-                    name = "Find",
-                    d = { name = "Debug" },
-                    g = { name = "Git" },
-                    l = { name = "LSP" },
-                    m = { name = "Man" },
-                    t = { name = "Terminal" },
-                },
-                i = { name = "Chat" },
-                r = { name = "Refactor" },
-                t = { name = "Test" },
-                x = { name = "Trouble" },
-            }, { prefix = "<leader>", mode = { "n", "v" } })
-        end,
     },
 }

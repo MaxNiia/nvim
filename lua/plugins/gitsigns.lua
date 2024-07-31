@@ -24,8 +24,9 @@ return {
                 local wk = require("which-key")
 
                 -- Navigation
-                wk.register({
-                    h = {
+                wk.add({
+                    {
+                        "]h",
                         function()
                             if vim.wo.diff then
                                 return "]h"
@@ -35,11 +36,14 @@ return {
                             end)
                             return "<Ignore>"
                         end,
-                        "Next Hunk",
+                        buffer = bufnr,
+                        mode = { "n", "v" },
+                        expr = true,
+                        replace_keycodes = false,
+                        desc = "Next Hunk",
                     },
-                }, { mode = { "n", "v" }, prefix = "]", expr = true })
-                wk.register({
-                    h = {
+                    {
+                        "[h",
                         function()
                             if vim.wo.diff then
                                 return "[h"
@@ -49,11 +53,14 @@ return {
                             end)
                             return "<Ignore>"
                         end,
-                        "Prev Hunk",
+                        buffer = bufnr,
+                        mode = { "n", "v" },
+                        expr = true,
+                        replace_keycodes = false,
+                        desc = "Prev Hunk",
                     },
-                }, { mode = { "n", "v" }, prefix = "[", expr = true })
-                wk.register({
-                    H = {
+                    {
+                        "]H",
                         function()
                             if vim.wo.diff then
                                 return "]H"
@@ -63,11 +70,14 @@ return {
                             end)
                             return "<Ignore>"
                         end,
-                        "Last Hunk",
+                        buffer = bufnr,
+                        mode = { "n", "v" },
+                        expr = true,
+                        replace_keycodes = false,
+                        desc = "Last Hunk",
                     },
-                }, { mode = { "n", "v" }, prefix = "]", expr = true })
-                wk.register({
-                    H = {
+                    {
+                        "[H",
                         function()
                             if vim.wo.diff then
                                 return "[H"
@@ -77,74 +87,135 @@ return {
                             end)
                             return "<Ignore>"
                         end,
-                        "First Hunk",
+                        buffer = bufnr,
+                        mode = { "n", "v" },
+                        expr = true,
+                        replace_keycodes = false,
+                        desc = "First Hunk",
                     },
-                }, { mode = { "n", "v" }, prefix = "[", expr = true })
-
-                -- Actions
-                wk.register({
-                    q = { gs.setqflist, "List buffer hunks" },
-                    Q = {
+                    {
+                        "<leader>gq",
+                        gs.setqflist,
+                        mode = "n",
+                        buffer = bufnr,
+                        desc = "List buffer hunks",
+                    },
+                    {
+                        "<leader>gQ",
                         function()
                             gs.setqflist("all")
                         end,
-                        "List all hunks",
+                        mode = "n",
+                        buffer = bufnr,
+                        desc = "List all hunks",
                     },
-                    s = { gs.stage_hunk, "Stage Hunk" },
-                    R = { gs.reset_buffer, "Reset Buffer" },
-                    r = { gs.reset_hunk, "Reset Hunk" },
-                    S = { gs.stage_buffer, "Stage Buffer" },
-                    u = { gs.undo_stage_hunk, "Undo stage Hunk" },
-                    p = { gs.preview_hunk, "Preview Hunk" },
-                }, { mode = "n", prefix = "<leader>g", buffer = bufnr })
-
-                wk.register({
-                    s = {
-                        function()
-                            gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-                        end,
-                        "Stage Hunk",
+                    {
+                        "<leader>gs",
+                        gs.stage_hunk,
+                        mode = "n",
+                        buffer = bufnr,
+                        desc = "Stage Hunk",
                     },
-                    r = {
-                        function()
-                            gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-                        end,
-                        "Reset Hunk",
+                    {
+                        "<leader>gR",
+                        gs.reset_buffer,
+                        mode = "n",
+                        buffer = bufnr,
+                        desc = "Reset Buffer",
                     },
-                }, { mode = "v", prefix = "<leader>g", buffer = bufnr })
-
-                wk.register({
-                    h = {
-                        gs.stage_hunk("Stage Hunk"),
-                    },
-                    H = {
+                    {
+                        "<leader>gr",
                         gs.reset_hunk,
-                        "Reset Hunk",
+                        mode = "n",
+                        buffer = bufnr,
+                        desc = "Reset Hunk",
                     },
-                }, { mode = "n", prefix = "g", buffer = bufnr })
-
-                wk.register({
-                    h = {
+                    {
+                        "<leader>gS",
+                        gs.stage_buffer,
+                        mode = "n",
+                        buffer = bufnr,
+                        desc = "Stage Buffer",
+                    },
+                    {
+                        "<leader>gu",
+                        gs.undo_stage_hunk,
+                        mode = "n",
+                        buffer = bufnr,
+                        desc = "Undo stage Hunk",
+                    },
+                    {
+                        "<leader>gp",
+                        gs.preview_hunk,
+                        mode = "n",
+                        buffer = bufnr,
+                        desc = "Preview Hunk",
+                    },
+                    {
+                        "<leader>gs",
                         function()
                             gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
                         end,
-                        "Stage Hunk",
+                        mode = "v",
+                        buffer = bufnr,
+                        desc = "Stage Hunk",
                     },
-                    H = {
+                    {
+                        "<leader>gr",
                         function()
                             gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
                         end,
-                        "Reset Hunk",
+                        mode = "v",
+                        buffer = bufnr,
+                        desc = "Reset Hunk",
                     },
-                }, { mode = "v", prefix = "g", buffer = bufnr })
-
-                -- Text object
-                wk.register({
-                    h = {
+                    {
+                        "gh",
+                        gs.stage_hunk("Stage Hunk"),
+                        mode = "n",
+                        buffer = bufnr,
+                        desc = "Stage Hunk",
+                    },
+                    {
+                        "gH",
+                        gs.reset_hunk,
+                        mode = "n",
+                        buffer = bufnr,
+                        desc = "Reset Hunk",
+                    },
+                    {
+                        "gh",
+                        function()
+                            gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+                        end,
+                        mode = "v",
+                        buffer = bufnr,
+                        desc = "Stage Hunk",
+                    },
+                    {
+                        "gH",
+                        function()
+                            gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+                        end,
+                        mode = "v",
+                        buffer = bufnr,
+                        desc = "Reset Hunk",
+                    },
+                    {
+                        "ih",
                         ":<C-U>Gitsigns select_hunk<CR>",
-                        "Hunk",
+                        mode = { "o", "x" },
+                        buffer = bufnr,
+                        desc = "Hunk",
                     },
-                }, { mode = { "o", "x" }, prefix = "i", buffer = bufnr })
+                    {
+                        "ah",
+                        ":<C-U>Gitsigns select_hunk<CR>",
+                        mode = { "o", "x" },
+                        buffer = bufnr,
+                        desc = "Hunk",
+                    },
+                })
             end,
         },
     },
