@@ -35,7 +35,9 @@ return {
             },
             {
                 "gK",
-                require("hover").hover_select,
+                function()
+                    require("hover").hover_select()
+                end,
                 mode = "n",
                 desc = "hover.nvim (select)",
             },
