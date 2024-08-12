@@ -58,6 +58,10 @@ return {
             plugins = {
                 registers = true,
             },
+            triggers = {
+                { "s", mode = "nv" },
+                { "<auto>", mode = "nxsotv" },
+            },
             spec = {
                 { "<leader><leader>", group = "Switch Window" },
                 { "<leader>E", group = "Files" },
