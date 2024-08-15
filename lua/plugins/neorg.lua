@@ -2,6 +2,7 @@ return {
     {
         "nvim-neorg/neorg",
         ft = "norg",
+        lazy = false,
         cmd = {
             "Neorg",
         },

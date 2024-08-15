@@ -115,7 +115,6 @@ return {
                 "binary",
                 "bufhidden",
                 "buflisted",
-                "cmdheight",
                 "diff",
                 "filetype",
                 "modifiable",
