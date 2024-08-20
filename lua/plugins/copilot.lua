@@ -102,6 +102,8 @@ return {
         },
         opts = {
             debug = false,
+            suggestion = { enabled = false },
+            panel = { enabled = false },
             mappings = {
                 complete = {
                     detail = "Use @<Tab> or /<Tab> for options.",
