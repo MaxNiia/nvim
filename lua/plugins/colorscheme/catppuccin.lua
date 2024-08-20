@@ -78,7 +78,6 @@ return {
                 },
                 leap = true,
                 mason = true,
-                markdown = true,
                 mini = {
                     enabled = true,
                     indentscope_color = "",
