@@ -5,8 +5,7 @@ return {
         dependencies = {
             "kwkarlwang/bufresize.nvim",
         },
-        lazy = true,
-        event = "VimEnter",
+        lazy = false,
         opts = {
             ignored_filetypes = {
                 "nofile",
