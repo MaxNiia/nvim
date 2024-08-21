@@ -9,8 +9,8 @@ return {
             "folke/trouble.nvim",
             "echasnovski/mini.icons",
         },
-        lazy = true,
-        event = "BufEnter",
+        lazy = false,
+        -- event = "BufEnter",
         cond = not vim.g.vscode,
         opts = function()
             local trouble = require("trouble")
