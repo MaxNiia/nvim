@@ -44,14 +44,8 @@ return {
             cmake_virtual_text_support = false,
             cmake_compile_commands_from_lsp = true,
             cmake_build_options = { "-j32" },
-            cmake_executor = {
-                name = "toggleterm",
-                opts = {
-                    close_on_exit = false,
-                    direction = "horizontal",
-                    auto_scroll = true,
-                },
-            },
+            cmake_executor = OPTIONS.toggleterm.value and require("plugins.cmake.toggleterm")
+                or require("plugins.cmake.quickfix"),
             cmake_regenerate_on_save = false,
             cmake_runner = OPTIONS.toggleterm.value and require("plugins.cmake.toggleterm")
                 or require("plugins.cmake.quickfix"),
