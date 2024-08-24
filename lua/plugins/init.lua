@@ -137,22 +137,6 @@ local plugins = {
         },
     },
     {
-        "windwp/nvim-spectre",
-        keys = {
-            {
-                "<leader>rr",
-                function()
-                    require("spectre").open()
-                end,
-                desc = "Replace in files (Spectre)",
-            },
-        },
-        opts = {
-            open_cmd = "vnew",
-            live_update = true,
-        },
-    },
-    {
         "stevearc/dressing.nvim",
         lazy = "VeryLazy",
         dependencies = {

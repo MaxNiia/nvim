@@ -7,6 +7,16 @@ return {
         config = function()
             require("copilot").setup({
                 server_ops_overrides = {},
+                filetypes = {
+                    ["grug-far"] = false,
+                    ["grug-far-history"] = false,
+                    ["grug-far-help"] = false,
+                    gitcommit = false,
+                    gitrebase = false,
+                    hgcommit = false,
+                    svn = false,
+                    cvs = false,
+                },
                 panel = {
                     enabled = false,
                     auto_refresh = false,

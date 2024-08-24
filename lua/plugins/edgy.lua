@@ -160,6 +160,18 @@ return {
                 size = { width = 100, height = 50 },
             },
             {
+                ft = "grug-far",
+                size = { width = 100, height = 50 },
+            },
+            {
+                ft = "grug-far-history",
+                size = { width = 100, height = 50 },
+            },
+            {
+                ft = "grug-far-help",
+                size = { width = 100, height = 50 },
+            },
+            {
                 ft = "",
                 size = { width = 100 },
                 -- exclude floating windows

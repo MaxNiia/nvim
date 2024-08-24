@@ -92,6 +92,10 @@ handle_file() {
     fi
 }
 
+if ! command -v ast-grep &>/dev/null; then
+    npm i @ast-grep/cli -g
+fi
+
 if ! command -v lua &>/dev/null; then
     echo "Lua not installed, installing"
     curl -R -O "https://www.lua.org/ftp/lua-5.1.5.tar.gz"
