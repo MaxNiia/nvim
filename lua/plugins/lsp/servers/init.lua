@@ -1,4 +1,5 @@
 return {
+    ["ast-grep"] = {},
     typos_lsp = {
         init_options = { -- Sent to the LSP on init
             diagnosticSeverity = "Hint",

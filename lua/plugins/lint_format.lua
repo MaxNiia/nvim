@@ -132,6 +132,7 @@ return {
         opts = {
             ensure_installed = {
                 -- NOTE: LSP
+                "ast-grep",
                 "basedpyright",
                 "clangd",
                 "cmake-language-server",
