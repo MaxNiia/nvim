@@ -12,12 +12,13 @@ return {
             current_line_blame = true,
             current_line_blame_opts = {
                 virt_text = true,
-                virt_text_pos = "eol",
-                delay = 1000,
+                virt_text_pos = "right_align",
+                delay = 500,
                 virt_text_priority = 100,
                 ignore_whitespace = true,
             },
             current_line_blame_formatter = "<author>:<author_time:%Y/%m/%d>-<summary>",
+            max_file_length = 5000,
             trouble = true,
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
