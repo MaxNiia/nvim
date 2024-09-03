@@ -15,7 +15,7 @@ return {
 
             options = {
                 multiple_diag_under_cursor = true,
-                multilines = true,
+                multilines = OPTIONS.multi_line_diagnostics.value,
                 virt_texts = { priority = 50 },
             },
         },
