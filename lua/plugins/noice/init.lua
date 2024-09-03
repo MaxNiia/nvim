@@ -72,6 +72,12 @@ return {
                     },
                 },
                 views = {
+                    mini = {
+                        position = {
+                            col = "100%",
+                            row = "80%",
+                        },
+                    },
                     popup = {
                         border = {
                             style = "rounded",
