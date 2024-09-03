@@ -270,4 +270,12 @@ return {
         prompt = { add = { name = { "path" } }, remove = "name" },
         callback = nil,
     },
+
+    multi_line_diagnostics = {
+        value = true,
+        key = "ml",
+        description = "Enable multi line diagnostics",
+        prompt = nil,
+        callback = nil,
+    },
 }
