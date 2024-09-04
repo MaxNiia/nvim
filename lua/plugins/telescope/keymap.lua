@@ -398,13 +398,9 @@ local optional_keymaps = {
     {
         "<leader>fh",
         function()
-            if OPTIONS.harpoon.value then
-                require("telescope").extensions.harpoon()
-            else
-                require("telescope.builtin").marks()
-            end
+            require("telescope.builtin").marks()
         end,
-        desc = OPTIONS.harpoon.value and "Harpoon" or "Marks",
+        desc = "Browse Marks",
         mode = { "v", "n" },
     },
     -- LEADER

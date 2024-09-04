@@ -240,7 +240,7 @@ return {
             {
                 "<leader>fh",
                 "<cmd>FzfLua marks<cr>",
-                desc = OPTIONS.harpoon.value and "Harpoon" or "Marks",
+                desc = "Marks",
                 mode = { "v", "n" },
             },
             -- LEADER

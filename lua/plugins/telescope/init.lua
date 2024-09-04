@@ -301,9 +301,6 @@ return {
             require("telescope").load_extension("project")
             require("telescope").load_extension("themes")
             require("telescope").load_extension("monorepo")
-            if OPTIONS.harpoon.value then
-                require("telescope").load_extension("harpoon")
-            end
         end,
     },
 }

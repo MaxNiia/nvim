@@ -131,13 +131,6 @@ return {
         prompt = nil,
         callback = nil,
     },
-    harpoon = {
-        value = false,
-        key = "h",
-        description = "Enable Harpoon",
-        prompt = nil,
-        callback = nil,
-    },
     buffer_mode = {
         value = false,
         key = "bm",

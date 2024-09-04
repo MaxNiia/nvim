@@ -67,7 +67,6 @@ return {
                 diffview = true,
                 gitsigns = true,
                 fidget = true,
-                harpoon = OPTIONS.harpoon.value,
                 illuminate = true,
                 semantic_tokens = true,
                 dap = true,
