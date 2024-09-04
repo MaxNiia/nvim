@@ -1,4 +1,9 @@
+local prev_mode = false
+
 return {
+    {
+        "folke/twilight.nvim",
+    },
     {
         "folke/zen-mode.nvim",
         cond = not vim.g.vscode,
@@ -8,8 +13,8 @@ return {
         event = "BufEnter",
         opts = {
             window = {
-                backdrop = 0.85,
-                width = 150,
+                backdrop = 0.95,
+                width = 120,
                 height = 1,
             },
             plugins = {
@@ -18,7 +23,7 @@ return {
                 options = {
                     enabled = true,
                 },
-                twilight = { enabled = false }, -- enable to start Twilight when zen mode opens
+                twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
                 wezterm = {
                     enabled = not vim.g.neovide,
                     -- can be either an absolute font size or the number of incremental steps
@@ -29,6 +34,15 @@ return {
                     font = "+4",
                 },
             },
+            on_open = function(
+                _ --[[win]]
+            )
+                prev_mode = vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
+                vim.lsp.inlay_hint.enable(false, { bufnr = 0 })
+            end,
+            on_close = function()
+                vim.lsp.inlay_hint.enable(prev_mode, { bufnr = 0 })
+            end,
         },
     },
 }
