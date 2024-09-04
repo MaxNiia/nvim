@@ -16,6 +16,10 @@ return {
     copyright_text = {
         value = copyright_text,
     },
+    cpp_print_statements = {
+        default = { 'std::cout << "%s(" __LINE__ "):" << std::endl;' },
+        variable = { 'std::cout << "%s: " << %s << std::endl;' },
+    },
     doxygen_comment_strings = {
         start = "/**",
         middle = " * ",
