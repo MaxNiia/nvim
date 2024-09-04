@@ -67,15 +67,51 @@ return {
                     },
                 },
                 extensions = {
+                    "aerial",
                     "fzf",
                     "fugitive",
                     "lazy",
                     "quickfix",
                     "toggleterm",
+                    "symbols-outline",
+                    "mason",
                     "trouble",
                 },
                 tabline = {
                     lualine_a = {
+                        {
+                            "filename",
+                            newfile_status = true,
+                            path = 1,
+                        },
+                    },
+                    lualine_b = {
+                        {
+                            "filetype",
+                        },
+                        {
+                            "diff",
+                        },
+                        {
+                            "diagnostics",
+                        },
+                    },
+                    lualine_c = {
+                        { symbols.get, cond = symbols.has },
+                    },
+                    lualine_x = {},
+                    lualine_y = {
+                        {
+                            "filesize",
+                        },
+                        {
+                            "fileformat",
+                        },
+                        {
+                            "encoding",
+                        },
+                    },
+                    lualine_z = {
                         {
                             "tabs",
                             mode = 2,
@@ -87,11 +123,6 @@ return {
                             },
                         },
                     },
-                    lualine_b = {},
-                    lualine_c = {
-                        { symbols.get, cond = symbols.has },
-                    },
-                    lualine_z = {},
                 },
                 -- Statusline
                 sections = {

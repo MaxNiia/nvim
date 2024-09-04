@@ -19,7 +19,7 @@ return {
     doxygen_comment_strings = {
         start = "/**",
         middle = " * ",
-        stop = "*/",
+        stop = " */",
     },
     plugins = {},
 }

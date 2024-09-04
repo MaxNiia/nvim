@@ -18,7 +18,7 @@ return {
                 zindex = 25,
                 placement = {
                     vertical = "top",
-                    horizontal = "center",
+                    horizontal = "right",
                 },
                 padding = { left = 0, right = 0 },
                 winhighlight = {
@@ -32,9 +32,10 @@ return {
             },
             hide = {
                 cursorline = "focused_win",
+                focused_win = true,
             },
             render = function(props)
-                local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":p:.")
+                local filename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
                 local ft_icon, ft_color, default = require("mini.icons").get("file", filename)
                 local modified = vim.bo[props.buf].modified
                 local icons = require("utils.icons")
