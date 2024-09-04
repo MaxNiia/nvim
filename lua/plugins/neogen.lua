@@ -1,31 +1,76 @@
-local my_doxygen = {
-    { nil, "//! @file", { no_results = true, type = { "file" } } },
-    { nil, "//! @brief $1", { no_results = true, type = { "func", "file", "class" } } },
-    { nil, "", { no_results = true, type = { "file" } } },
+local start = CONFIGS.doxygen_comment_strings.start
+local middle = CONFIGS.doxygen_comment_strings.middle
+local stop = CONFIGS.doxygen_comment_strings.stop
+local my_doxygen = {}
 
-    { "class_name", " //! @class %s", { type = { "class" } } },
-    { "type", "//! @typedef %s", { type = { "type" } } },
-    { nil, "//! @brief $1", { type = { "func", "class", "type" } } },
-    { nil, "//!", { type = { "func", "class", "type" } } },
-    { "tparam", "//! @tparam %s $1" },
-    { "parameters", "//! @param %s $1" },
-    { "return_statement", "//! @return $1" },
+local i = {
+    Tparam = "tparam",
+    Parameter = "parameters",
+    Return = "return_statement",
+    ReturnTypeHint = "return_type_hint",
+    ReturnAnonym = "return_anonym",
+    ClassName = "class_name",
+    Throw = "throw_statement",
+    Yield = "expression_statement",
+    Vararg = "varargs",
+    Type = "type",
+    ClassAttribute = "attributes",
+    HasParameter = "has_parameters",
+    HasReturn = "has_return",
+    HasThrow = "has_throw",
+    HasYield = "has_yield",
+    ArbitraryArgs = "arbitrary_args",
+    Kwargs = "kwargs",
 }
+
+if CONFIGS.doxygen_comment_strings.start ~= "" then
+    my_doxygen = {
+        { nil, start, { no_results = true, type = { "func", "file", "class" } } },
+        { nil, middle .. "@file", { no_results = true, type = { "file" } } },
+        { nil, middle .. "@brief $1", { no_results = true, type = { "func", "file", "class" } } },
+        { nil, stop, { no_results = true, type = { "func", "file", "class" } } },
+        { nil, "", { no_results = true, type = { "file" } } },
+
+        { nil, start, { type = { "func", "class", "type" } } },
+        { i.ClassName, middle .. "@class %s", { type = { "class" } } },
+        { i.Type, middle .. "@typedef %s", { type = { "type" } } },
+        { nil, middle .. "@brief $1", { type = { "func", "class", "type" } } },
+        { nil, middle, { type = { "func", "class", "type" } } },
+        { i.Tparam, middle .. "@tparam %s $1" },
+        { i.Parameter, middle .. "@param %s $1" },
+        { i.Return, middle .. "@return $1" },
+        { nil, stop, { type = { "func", "class", "type" } } },
+    }
+else
+    my_doxygen = {
+        { nil, middle .. "@file", { no_results = true, type = { "file" } } },
+        { nil, middle .. "@brief $1", { no_results = true, type = { "func", "file", "class" } } },
+        { nil, "", { no_results = true, type = { "file" } } },
+
+        { i.ClassName, middle .. "@class %s", { type = { "class" } } },
+        { i.Type, middle .. "@typedef %s", { type = { "type" } } },
+        { nil, middle .. "@brief $1", { type = { "func", "class", "type" } } },
+        { nil, middle, { type = { "func", "class", "type" } } },
+        { i.Tparam, middle .. "@tparam %s $1" },
+        { i.Parameter, middle .. "@param %s $1" },
+        { i.Return, middle .. "@return $1" },
+    }
+end
 
 return {
     {
         "danymat/neogen",
         keys = {
             {
-                "<leader>rd",
+                "<leader>rdf",
                 function()
-                    require("neogen").generate()
+                    require("neogen").generate({})
                 end,
                 mode = "n",
                 desc = "Function annotation",
             },
             {
-                "<leader>rc",
+                "<leader>rdc",
                 function()
                     require("neogen").generate({ type = "class" })
                 end,
@@ -33,7 +78,7 @@ return {
                 desc = "Class annotation",
             },
             {
-                "<leader>rf",
+                "<leader>rdF",
                 function()
                     require("neogen").generate({ type = "file" })
                 end,

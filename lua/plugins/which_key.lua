@@ -76,6 +76,7 @@ return {
                 { "<leader>i", group = "Chat" },
                 { "<leader>m", group = "Man" },
                 { "<leader>r", group = "Refactor" },
+                { "<leader>rd", group = "Document" },
                 { "<leader>t", group = "Terminal" },
                 { "<leader>t", group = "Test" },
                 { "<leader>x", group = "Trouble" },

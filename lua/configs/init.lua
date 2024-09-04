@@ -16,5 +16,10 @@ return {
     copyright_text = {
         value = copyright_text,
     },
+    doxygen_comment_strings = {
+        start = "/**",
+        middle = " * ",
+        stop = "*/",
+    },
     plugins = {},
 }
