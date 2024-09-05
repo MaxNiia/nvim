@@ -38,13 +38,13 @@ fi
 if ! command -v fd; then
     echo "fd could not be found installing"
     cargo install fd-find
-end
+fi
 
 # Install find
 if ! command -v fdfind &>/dev/null; then
     echo "fdfind could not be found, installing"
     sudo apt install fd-find -y
-cargo install fd-find
+    cargo install fd-find
 fi
 
 if ! command -v fzf &>/dev/null; then
@@ -122,6 +122,7 @@ if ! command -v luarocks &>/dev/null; then
     )
     rm -rf luarocks-3.11.1
     rm luarocks-3.11.1.tar.gz
+    ln -s /usr/include/lua5.3 /usr/local/include/lua5.3
 fi
 
 if [ ! -e "${HOME}/.nvimstty" ]; then
