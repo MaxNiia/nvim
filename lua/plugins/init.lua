@@ -14,17 +14,17 @@ local plugins = {
             vim.g.unception_open_buffer_in_new_tab = false
             vim.g.unception_enable_flavor_text = true
 
-            if OPTIONS.toggleterm.value then
-                vim.api.nvim_create_autocmd("User", {
-                    pattern = "UnceptionEditRequestReceived",
-                    callback = function()
-                        -- Toggle the terminal off.
-                        if vim.bo.filetype == "toggleterm" then
-                            require("toggleterm").toggle_all(true)
-                        end
-                    end,
-                })
-            end
+            -- if OPTIONS.toggleterm.value then
+            --     vim.api.nvim_create_autocmd("User", {
+            --         pattern = "UnceptionEditRequestReceived",
+            --         callback = function()
+            --             -- Toggle the terminal off.
+            --             if vim.bo.filetype == "toggleterm" then
+            --                 require("toggleterm").toggle_all(true)
+            --             end
+            --         end,
+            --     })
+            -- end
         end,
     },
     {
@@ -73,9 +73,9 @@ local plugins = {
         opts = {
             hooks = {
                 pre_tab_leave = function()
-                    if OPTIONS.toggleterm.value then
-                        require("toggleterm").toggle_all(true)
-                    end
+                    -- if OPTIONS.toggleterm.value then
+                    --     require("toggleterm").toggle_all(true)
+                    -- end
                 end,
                 post_tab_enter = function()
                     require("incline").refresh()
