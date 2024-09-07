@@ -76,14 +76,10 @@ return {
         },
         opts = {
             printf_statements = {
-                cpp = {
-                    'std::cout << "%s(" __LINE__ "):" << std::endl;',
-                },
+                cpp = CONFIGS.cpp_print_statements.default,
             },
             print_var_statements = {
-                cpp = {
-                    'std::cout << "%s: " << %s << std::endl;',
-                },
+                cpp = CONFIGS.cpp_print_statements.variable,
             },
             extract_var_statements = {
                 cpp = "%s{%s};",
