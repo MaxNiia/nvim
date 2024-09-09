@@ -13,7 +13,6 @@ return {
     {
         "luukvbaal/statuscol.nvim",
         cond = not vim.g.vscode,
-        branch = "0.10",
         dependencies = {
             "lewis6991/gitsigns.nvim",
             "chentoast/marks.nvim",
@@ -57,7 +56,7 @@ return {
                         sign = {
                             name = {
                                 "Mark",
-                                "neotst",
+                                "neotest",
                                 "Dap",
                                 -- "todo*",
                             },
