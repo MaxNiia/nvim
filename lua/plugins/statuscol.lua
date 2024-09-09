@@ -57,34 +57,32 @@ return {
                         sign = {
                             name = {
                                 "Mark",
-                                "neotest",
+                                "neotst",
                                 "Dap",
-                                "todo*",
+                                -- "todo*",
                             },
-                            namespace = { "diagnostic*" },
+                            -- namespace = { "diagnostic*" },
                             maxwidth = 5,
                             colwidth = 1,
                             auto = true,
                             foldclosed = true,
                         },
-                        click = "v:lua.ScSa",
                     },
-                    {
-                        sign = {
-                            namespace = { "gitsigns" },
-                            maxwidth = 2,
-                            colwidth = 1,
-                            wrap = true,
-                            auto = true,
-                        },
-                        click = "v:lua.ScSa",
-                    },
+                    -- {
+                    --     sign = {
+                    --         namespace = { "gitsigns" },
+                    --         maxwidth = 2,
+                    --         colwidth = 1,
+                    --         wrap = true,
+                    --         auto = true,
+                    --     },
+                    --     click = "v:lua.ScSa",
+                    -- },
                     {
                         text = {
                             builtin.lnumfunc,
                             "│",
                         },
-                        click = "v:lua.ScLa",
                     },
                 },
             })

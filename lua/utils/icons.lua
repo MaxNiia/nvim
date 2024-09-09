@@ -55,8 +55,8 @@ return {
         open = "",
     },
     fold = {
-        closed = "",
-        open = "",
+        open = "",
+        closed = "",
         separator = "│",
     },
     chevron = {
