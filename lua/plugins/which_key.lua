@@ -57,6 +57,16 @@ return {
             preset = "helix",
             plugins = {
                 registers = true,
+                marks = true,
+                presets = {
+                    operators = true,
+                    motions = true,
+                    text_objects = true,
+                    windows = true,
+                    nav = true,
+                    z = true,
+                    g = true,
+                },
             },
             triggers = {
                 { "s", mode = "nv" },
