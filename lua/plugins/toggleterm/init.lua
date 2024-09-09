@@ -1,4 +1,5 @@
 local toggleTerminal = require("plugins.toggleterm.utils").toggleTerminal
+local termExec = require("plugins.toggleterm.utils").termExec
 
 return {
     {
@@ -10,15 +11,24 @@ return {
         event = "BufEnter",
         keys = {
             {
+                "<f9>",
+                termExec(),
+                desc = "Terminal execute",
+                mode = { "n", "t" },
+                expr = true,
+            },
+            {
                 "<f6>",
                 toggleTerminal("vertical"),
                 desc = "Toggle vertical",
+                mode = { "n", "t" },
                 expr = true,
             },
             {
                 "<f7>",
                 toggleTerminal("float"),
                 desc = "Toggle float",
+                mode = { "n", "t" },
                 expr = true,
             },
         },

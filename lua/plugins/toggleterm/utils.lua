@@ -7,4 +7,11 @@ M.toggleTerminal = function(direction)
     end
 end
 
+M.termExec = function()
+    return function()
+        local term_number = vim.v.count
+        return ":" .. tostring(term_number) .. 'TermExec cmd=""'
+    end
+end
+
 return M
