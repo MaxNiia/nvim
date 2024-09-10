@@ -21,7 +21,7 @@ return {
     lua_ls = require("plugins.lsp.servers.lua_ls"),
     marksman = {},
     rust_analyzer = require("plugins.lsp.servers.rust_analyzer"),
-    tsserver = require("plugins.lsp.servers.tsserver"),
+    ts_ls = require("plugins.lsp.servers.tsserver"),
     ruff_lsp = require("plugins.lsp.servers.ruff"),
     -- yamlls = require("plugins.lsp.servers.yamlls"),
 }
