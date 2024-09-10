@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Install unzip
+if ! command -v unzip &>/dev/null; then
+    echo "unzip could not be found, installing"
+    sudo apt install unzip -y
+fi
+
 # Install rust up
 if ! command -v rustup &>/dev/null; then
     echo "Rustup could not be found, installing"
@@ -98,6 +104,7 @@ fi
 
 if ! command -v lua &>/dev/null; then
     echo "Lua not installed, installing"
+    sudo apt install -y libreadline-dev
     curl -R -O "https://www.lua.org/ftp/lua-5.1.5.tar.gz"
     ls .
     tar -zxf lua-5.1.5.tar.gz
@@ -122,7 +129,6 @@ if ! command -v luarocks &>/dev/null; then
     )
     rm -rf luarocks-3.11.1
     rm luarocks-3.11.1.tar.gz
-    ln -s /usr/include/lua5.3 /usr/local/include/lua5.3
 fi
 
 if [ ! -e "${HOME}/.nvimstty" ]; then
@@ -152,6 +158,12 @@ fi
 currentPath="$HOME/.cache/nvim/niia.txt"
 if [ ! -f "$currentPath" ]; then
     touch "$currentPath"
+fi
+
+currentPath="lua/current-theme.lua"
+if [ ! -f "$currentPath" ]; then
+    touch "$currentPath"
+    echo 'vim.cmd("colorscheme catppuccin-mocha")' >"$currentPath"
 fi
 
 if [ ! -d "$HOME/venvs" ]; then
