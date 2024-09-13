@@ -5,7 +5,7 @@ return {
             "echasnovski/mini.icons",
         },
         cond = function()
-            return not OPTIONS.mini_files.value and not vim.g.vscode
+            return not OPTIONS.mini_files.value and not OPTIONS.yazi.value and not vim.g.vscode
         end,
         init = function()
             if vim.fn.argc() == 1 then

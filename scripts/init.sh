@@ -131,6 +131,16 @@ if ! command -v luarocks &>/dev/null; then
     rm luarocks-3.11.1.tar.gz
 fi
 
+if ! command -v yazi &>/dev/null; then
+    echo "yazi not installed, installing"
+    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+    cargo install --locked yazi-fm yazi-cli
+    git clone https://github.com/catppuccin/yazi "$HOME/.cat_yazi"
+    mkdir "$HOME/.config/yazi"
+    cp "$HOME/.cat_yazi/themes/mocha.toml" "$HOME/.config/yazi/theme.toml"
+    cp "$HOME/.config/bat/themes/Catppuccin Mocha.toml" "$HOME/.config/yazi/Catppuccin-mocha.tmTheme"
+fi
+
 if [ ! -e "${HOME}/.nvimstty" ]; then
     echo "Disabling XON/XOFF flow control"
     touch "${HOME}/.nvimstty &> /dev/null 2>&1"

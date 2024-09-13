@@ -6,6 +6,13 @@ return {
         prompt = nil,
         callback = nil,
     },
+    yazi = {
+        value = false,
+        key = "yz",
+        description = "Enable yazi file explorer",
+        prompt = nil,
+        callback = nil,
+    },
     colorblind = {
         value = false,
         key = "cbe",
