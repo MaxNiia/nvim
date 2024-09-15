@@ -3,12 +3,6 @@ local icons = require("utils.icons")
 return {
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = {
-            "AckslD/swenv.nvim",
-            "folke/noice.nvim",
-            "folke/trouble.nvim",
-            "echasnovski/mini.icons",
-        },
         lazy = false,
         -- event = "BufEnter",
         cond = not vim.g.vscode,

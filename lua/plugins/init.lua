@@ -67,9 +67,6 @@ local plugins = {
     },
     {
         "tiagovla/scope.nvim",
-        dependencies = {
-            "akinsho/toggleterm.nvim",
-        },
         opts = {
             hooks = {
                 pre_tab_leave = function()
@@ -109,9 +106,6 @@ local plugins = {
     {
         "tzachar/highlight-undo.nvim",
         event = { "BufEnter" },
-        dependencies = {
-            "echasnovski/mini.bracketed",
-        },
         opts = {
             duration = 300,
             undo = {
@@ -144,10 +138,6 @@ local plugins = {
     {
         "stevearc/dressing.nvim",
         lazy = "VeryLazy",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "MunifTanjim/nui.nvim",
-        },
         opts = {
             input = {
                 insert_only = false,
@@ -197,7 +187,6 @@ local plugins = {
     },
     {
         "folke/todo-comments.nvim",
-        dependencies = { "nvim-lua/plenary.nvim" },
         lazy = true,
         event = "BufEnter",
         opts = {

@@ -13,10 +13,6 @@ return {
     {
         "luukvbaal/statuscol.nvim",
         cond = not vim.g.vscode,
-        dependencies = {
-            "lewis6991/gitsigns.nvim",
-            "chentoast/marks.nvim",
-        },
         lazy = true,
         event = "BufEnter",
         config = function(_, _)

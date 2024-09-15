@@ -10,9 +10,6 @@ local function hover()
     return require("dap.ui.widgets").hover()
 end
 
-local api = vim.api
-local keymap_restore = {}
-
 return {
     {
         "mfussenegger/nvim-dap",
@@ -24,12 +21,8 @@ return {
             "ofirgall/goto-breakpoints.nvim",
             "theHamsta/nvim-dap-virtual-text",
             "rcarriga/cmp-dap",
-            "nvim-treesitter/nvim-treesitter",
-            "rcarriga/nvim-dap-ui",
             "jay-babu/mason-nvim-dap.nvim",
-
             "nvim-telescope/telescope-dap.nvim",
-            "nvim-telescope/telescope.nvim",
         },
         opts = {
             enabled = true,
@@ -116,11 +109,6 @@ return {
     },
     {
         "rcarriga/nvim-dap-ui",
-        lazy = true,
-        dependencies = {
-            "mortepau/codicons.nvim",
-            "mfussenegger/nvim-dap",
-        },
         keys = {
             { "<leader>Dt", toggle, mode = "n", desc = "Toggle UI" },
             { "<leader>Dh", hover, mode = "n", desc = "Hover" },

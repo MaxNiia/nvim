@@ -3,8 +3,6 @@ return {
         "nvim-neotest/neotest",
         cond = not vim.g.vscode,
         dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
             "alfaix/neotest-gtest",
             "antoinemadec/FixCursorHold.nvim",
             "nvim-neotest/nvim-nio",

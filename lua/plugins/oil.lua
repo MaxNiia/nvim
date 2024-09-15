@@ -1,9 +1,6 @@
 return {
     {
         "stevearc/oil.nvim",
-        dependencies = {
-            "echasnovski/mini.icons",
-        },
         cond = function()
             return not OPTIONS.mini_files.value and not OPTIONS.yazi.value and not vim.g.vscode
         end,

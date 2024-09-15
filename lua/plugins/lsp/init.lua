@@ -5,13 +5,9 @@ return {
         cond = not vim.g.vscode,
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "onsails/lspkind.nvim",
-            "kevinhwang91/nvim-ufo",
-            "hrsh7th/cmp-nvim-lsp",
-            "AckslD/swenv.nvim",
             {
                 "artemave/workspace-diagnostics.nvim",
                 keys = {

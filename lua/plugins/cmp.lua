@@ -18,21 +18,6 @@ return {
         end,
     },
     {
-        "hrsh7th/cmp-buffer",
-        lazy = true,
-        dependencies = {
-            "hrsh7th/nvim-cmp",
-        },
-    },
-    {
-        "paopaol/cmp-doxygen",
-        lazy = true,
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-treesitter/nvim-treesitter-textobjects",
-        },
-    },
-    {
         "hrsh7th/nvim-cmp",
         cond = not vim.g.vscode,
         event = "InsertEnter",

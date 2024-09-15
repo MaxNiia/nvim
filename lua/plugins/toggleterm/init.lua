@@ -5,9 +5,6 @@ return {
     {
         "akinsho/toggleterm.nvim",
         cond = OPTIONS.toggleterm.value and not vim.g.vscode,
-        dependencies = {
-            "MaxNiia/nvim-unception",
-        },
         event = "BufEnter",
         keys = {
             {

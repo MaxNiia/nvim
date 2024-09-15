@@ -85,11 +85,6 @@ return {
     {
         "goolord/alpha-nvim",
         cond = not vim.g.vscode,
-        dependencies = {
-            "echasnovski/mini.icons",
-            "stevearc/resession.nvim",
-            "nvim-treesitter/nvim-treesitter",
-        },
         event = "VimEnter",
         opts = function()
             local dashboard = require("alpha.themes.dashboard")

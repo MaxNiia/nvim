@@ -19,10 +19,6 @@ return {
     {
         "folke/noice.nvim",
         event = "BufEnter",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-            "rcarriga/nvim-notify",
-        },
         opts = function()
             local _opts = {
                 presets = {

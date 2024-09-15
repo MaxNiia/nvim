@@ -1,9 +1,6 @@
 return {
     {
         "AckslD/swenv.nvim",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-        },
         cond = not vim.g.vscode,
         lazy = true,
         event = "BufEnter",

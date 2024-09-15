@@ -52,10 +52,6 @@ return {
         "CopilotC-Nvim/CopilotChat.nvim",
         branch = "canary",
         cond = OPTIONS.copilot.value and not vim.g.vscode,
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "zbirenbaum/copilot.lua",
-        },
         init = function()
             vim.api.nvim_create_autocmd("BufEnter", {
                 pattern = "copilot-*",

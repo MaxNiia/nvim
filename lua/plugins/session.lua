@@ -47,9 +47,6 @@ return {
     },
     {
         "stevearc/resession.nvim",
-        dependencies = {
-            "tiagovla/scope.nvim",
-        },
         keys = {
             {
                 "<leader>Ws",

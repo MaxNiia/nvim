@@ -68,9 +68,6 @@ return {
     {
         "echasnovski/mini.files",
         cond = (not vim.g.vscode) and OPTIONS.mini_files.value,
-        dependencies = {
-            "echasnovski/mini.icons",
-        },
         version = false,
         event = "BufEnter",
         keys = {

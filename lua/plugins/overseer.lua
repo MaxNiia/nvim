@@ -2,11 +2,6 @@ return {
     {
         "stevearc/overseer.nvim",
         cond = not vim.g.vscode,
-        dependencies = {
-            "stevearc/dressing.nvim",
-            "nvim-telescope/telescope.nvim",
-            "rcarriga/nvim-notify",
-        },
         lazy = "BufEnter",
         cmd = {
             "OverseerRun",

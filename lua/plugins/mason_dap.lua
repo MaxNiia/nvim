@@ -2,9 +2,6 @@ return {
     {
         "jay-babu/mason-nvim-dap.nvim",
         cond = not vim.g.vscode and not _G.IS_WINDOWS,
-        dependencies = {
-            "williamboman/mason.nvim",
-        },
         lazy = true,
         opts = {
             ensure_installed = {

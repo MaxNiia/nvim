@@ -1,7 +1,6 @@
 return {
     {
         "mfussenegger/nvim-lint",
-        dependencies = { "williamboman/mason.nvim" },
         event = "BufReadPre",
         cond = not vim.g.vscode,
         config = function()
