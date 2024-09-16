@@ -38,9 +38,6 @@ return {
             },
         },
         config = function(_, _)
-            -- Lspkind
-            local lspkind = require("lspkind")
-
             require("snippets").register_cmp_source()
             -- nvim-cmp setup
             local cmp = require("cmp")
@@ -87,21 +84,10 @@ return {
                 },
                 formatting = {
                     format = function(entry, vim_item)
-                        if vim.tbl_contains({ "path" }, entry.source.name) then
-                            local icon, hl_group =
-                                require("mini.icons").get_icon(entry:get_completion_item().label)
-                            if icon then
-                                vim_item.kind = icon
-                                vim_item.kind_hl_group = hl_group
-                                return vim_item
-                            end
-                        end
-                        return lspkind.cmp_format({
-                            mode = "symbol", -- show only symbol annotations
-                            maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-                            ellipsis_char = "...",
-                            symbol_map = require("utils.icons").kinds,
-                        })(entry, vim_item)
+                        local icon, hl = MiniIcons.get("lsp", vim_item.kind)
+                        vim_item.kind = icon .. " " .. vim_item.kind
+                        vim_item.kind_hl_group = hl
+                        return vim_item
                     end,
                 },
                 mapping = cmp.mapping.preset.insert({
