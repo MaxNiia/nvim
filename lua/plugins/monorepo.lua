@@ -4,7 +4,7 @@ return {
         cond = not vim.g.vscode,
         keys = {
             {
-                "<leader>m",
+                "<leader>wt",
                 function()
                     require("monorepo").toggle_project()
                 end,
@@ -12,7 +12,7 @@ return {
                 mode = "n",
             },
             {
-                "gp",
+                "<leader>wn",
                 function()
                     require("monorepo").next_project()
                 end,
@@ -20,7 +20,7 @@ return {
                 mode = "n",
             },
             {
-                "gP",
+                "<leader>wp",
                 function()
                     require("monorepo").previous_project()
                 end,

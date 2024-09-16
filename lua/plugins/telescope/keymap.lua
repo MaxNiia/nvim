@@ -17,6 +17,14 @@ local keymaps = {
         mode = { "v", "n" },
     },
     {
+        "<leader>wm",
+        function()
+            require("telescope").extensions.monorepo.monorepo()
+        end,
+        desc = "Monorepo",
+        mode = { "v", "n" },
+    },
+    {
         "<leader>fM1",
         call_telescope("man_pages", {
             sections = { "1" },

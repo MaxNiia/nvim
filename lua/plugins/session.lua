@@ -39,7 +39,6 @@ return {
                 defer_save = { "InsertLeave", "TextChanged" }, -- vim events that trigger a deferred save (saves after `debounce_delay`)
                 cancel_defered_save = { "InsertEnter" }, -- vim events that cancel a pending deferred save
             },
-            condition = require("utils.filter").saveable,
             write_all_buffers = false, -- write all buffers when the current one meets `condition`
             debounce_delay = 10000, -- saves the file at most every `debounce_delay` milliseconds
             debug = false,
