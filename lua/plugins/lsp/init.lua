@@ -185,6 +185,9 @@ return {
                     if client == nil then
                         return
                     end
+                    if client.name == "ast_grep" then
+                        return
+                    end
 
                     -- Enable completion triggered by <c-x><c-o>
                     vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
