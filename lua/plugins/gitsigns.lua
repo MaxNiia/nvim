@@ -147,7 +147,7 @@ return {
                     },
                     {
                         "<leader>gp",
-                        gs.preview_hunk,
+                        gs.preview_hunk_inline,
                         mode = "n",
                         buffer = bufnr,
                         desc = "Preview Hunk",
