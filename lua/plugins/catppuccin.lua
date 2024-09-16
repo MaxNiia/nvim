@@ -1,15 +1,3 @@
-local oled_override = function(bool)
-    if bool then
-        return {
-            base = "#000000",
-            mantle = "#000000",
-            crust = "#000000",
-        }
-    else
-        return {}
-    end
-end
-
 return {
     {
 
@@ -24,22 +12,19 @@ return {
                 light = "frappe",
                 dark = "mocha",
             },
-            transparent_background = OPTIONS.transparent.value,
-            no_italic = not OPTIONS.italic.value,
-            no_bold = not OPTIONS.bold.value,
-            no_underline = not OPTIONS.underline.value,
+            transparent_background = false,
+            no_italic = false,
+            no_bold = false,
+            no_underline = false,
             term_colors = false,
             dim_inactive = {
-                enabled = OPTIONS.dim_inactive.value,
+                enabled = false,
                 shade = "dark",
                 percentage = 0.10,
             },
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
-            },
-            color_overrides = {
-                all = oled_override(OPTIONS.oled.value),
             },
             styles = {
                 comments = { "bold" },
@@ -84,8 +69,6 @@ return {
                 window_picker = true,
                 ts_rainbow = true,
                 flash = true,
-                ufo = true,
-                noice = true,
                 lsp_trouble = true,
                 telescope = {
                     enabled = true,
@@ -120,13 +103,7 @@ return {
             custom_highlights = function(c)
                 return {
                     HighlightUndo = { bg = c.overlay0 },
-                    CopilotSuggestion = { fg = c.surface1 },
-                    InclineText = { fg = c.pink, bg = c.surface0, style = { "bold" } },
-                    InclineTextInactive = { fg = c.text, bg = c.surface0 },
-                    InclineReverse = { fg = c.surface0, bg = c.base, style = { "bold" } },
-                    InclineModified = { fg = c.red, bg = c.surface0, style = { "bold", "italic" } },
                     MarkSignHL = { fg = c.yellow, style = { "bold" } },
-                    NoiceCursor = { fg = c.base, bg = c.text, blend = 0 },
                     FzfLuaHeaderBind = { fg = c.rosewater },
                     FzfLuaHeaderText = { fg = c.maroon },
                     FzfLuaPathColNr = { fg = c.sky },

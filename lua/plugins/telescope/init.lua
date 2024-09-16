@@ -48,7 +48,7 @@ return {
                     --     },
                 },
                 buffers = {
-                    initial_mode = OPTIONS.buffer_mode.value and "insert" or "normal",
+                    initial_mode = "insert",
                 },
                 spell_suggest = {
                     initial_mode = "normal",
@@ -157,7 +157,7 @@ return {
                 set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
                 color_devicons = true,
                 borderchars = ui.borderchars,
-                winblend = OPTIONS.transparent.value and 100 or 0,
+                winblend = 0,
                 wrap_results = false,
                 path_display = {
                     truncate = 1,
@@ -290,17 +290,11 @@ return {
             require("telescope").setup(opts)
 
             require("telescope.actions")
-            require("telescope").load_extension("scope")
             require("telescope").load_extension("file_browser")
             require("telescope").load_extension("fzf")
             require("telescope").load_extension("live_grep_args")
-            if not vim.g.vscode then
-                require("telescope").load_extension("noice")
-                require("telescope").load_extension("notify")
-            end
             require("telescope").load_extension("project")
             require("telescope").load_extension("themes")
-            require("telescope").load_extension("monorepo")
         end,
     },
 }

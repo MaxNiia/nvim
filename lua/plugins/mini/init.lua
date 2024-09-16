@@ -67,7 +67,6 @@ return {
     },
     {
         "echasnovski/mini.files",
-        cond = (not vim.g.vscode) and OPTIONS.mini_files.value,
         version = false,
         event = "BufEnter",
         keys = {
@@ -99,7 +98,7 @@ return {
         init = file_functions.init,
         opts = {
             options = {
-                permament_delete = true,
+                permanent_delete = true,
                 use_as_default_explorer = true,
             },
             windows = {

@@ -6,11 +6,7 @@ _G.IS_LINUX = OS == "Linux"
 _G.IS_WINDOWS = OS:find("Windows") and true or false
 _G.IS_WSL = IS_LINUX and uname.release:find("Microsoft") and true or false
 
-OPTIONS = require("options")
-require("options.filehandler").load()
-
 CONFIGS = require("configs")
-require("external")
 
 require("settings")
 
@@ -29,5 +25,4 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {})
 
--- Load current theme, decided by <leader>fc.
-require("current-theme")
+vim.cmd("colorscheme catppuccin-mocha")

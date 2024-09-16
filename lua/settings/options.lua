@@ -29,9 +29,9 @@ vim.opt.incsearch = true
 vim.opt.inccommand = "split"
 vim.opt.laststatus = 3
 vim.opt.mousemodel = "extend"
-vim.opt.number = OPTIONS.number.value
+vim.opt.number = true
 vim.opt.numberwidth = 2
-vim.opt.rnu = OPTIONS.relative_number.value
+vim.opt.rnu = true
 vim.opt.ruler = false
 vim.opt.scrolloff = 10
 vim.opt.shiftwidth = 4
@@ -58,14 +58,8 @@ vim.opt.ttimeout = true
 vim.opt.ttimeoutlen = 5
 vim.opt.undofile = true
 vim.opt.wildmenu = true
-
-if OPTIONS.transparent.value then
-    vim.opt.winblend = 100
-    vim.opt.pumblend = 100
-else
-    vim.opt.winblend = 0
-    vim.opt.pumblend = 0
-end
+vim.opt.winblend = 0
+vim.opt.pumblend = 0
 
 local icons = require("utils.icons")
 vim.opt.fillchars:append({

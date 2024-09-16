@@ -71,54 +71,6 @@ return {
                     "mason",
                     "trouble",
                 },
-                tabline = {
-                    lualine_a = {
-                        {
-                            "filename",
-                            newfile_status = true,
-                            path = 1,
-                        },
-                    },
-                    lualine_b = {
-                        {
-                            "filetype",
-                        },
-                        {
-                            "diff",
-                        },
-                        {
-                            "diagnostics",
-                        },
-                    },
-                    lualine_c = {
-                        { symbols.get, cond = symbols.has },
-                    },
-                    lualine_x = {},
-                    lualine_y = {
-                        {
-                            "filesize",
-                        },
-                        {
-                            "fileformat",
-                        },
-                        {
-                            "encoding",
-                        },
-                    },
-                    lualine_z = {
-                        {
-                            "tabs",
-                            mode = 2,
-                            path = 0,
-                            use_mode_colors = true,
-                            show_modified_status = true,
-                            symbols = {
-                                modified = icons.misc.modified,
-                            },
-                        },
-                    },
-                },
-                -- Statusline
                 sections = {
                     lualine_a = { "mode" },
                     lualine_b = {
@@ -161,33 +113,9 @@ return {
                                 return vim.bo.filetype == "python"
                             end,
                         },
-                        {
-                            function()
-                                return require("plugins.lualine.copilot").get_status()
-                            end,
-                        },
                     },
-                    lualine_c = {},
-                    lualine_x = {},
-                    lualine_y = {
-                        {
-                            function()
-                                return require("noice").api.statusline.mode.get()
-                            end,
-                            cond = function()
-                                return package.loaded["noice"]
-                                    and require("noice").api.statusline.mode.has()
-                            end,
-                        },
-                        {
-                            function()
-                                return require("noice").api.status.command.get()
-                            end,
-                            cond = function()
-                                return package.loaded["noice"]
-                                    and require("noice").api.status.command.has()
-                            end,
-                        },
+                    lualine_c = {
+
                         {
                             "progress",
                         },
@@ -195,11 +123,43 @@ return {
                             "location",
                         },
                     },
+                    lualine_x = {
+                        {
+                            "filesize",
+                        },
+                        {
+                            "fileformat",
+                        },
+                        {
+                            "encoding",
+                        },
+                    },
+                    lualine_y = {
+                        {
+                            "diff",
+                        },
+                        {
+                            "diagnostics",
+                        },
+                        {
+                            "filetype",
+                        },
+                    },
                     lualine_z = {
                         {
-                            function()
-                                return icons.misc.clock .. os.date()
-                            end,
+                            "filename",
+                            newfile_status = true,
+                            path = 1,
+                        },
+                        {
+                            "tabs",
+                            mode = 2,
+                            path = 0,
+                            use_mode_colors = true,
+                            show_modified_status = true,
+                            symbols = {
+                                modified = icons.misc.modified,
+                            },
                         },
                     },
                 },
