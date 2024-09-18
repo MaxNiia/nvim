@@ -11,6 +11,12 @@ return {
             { "<esc>", "<c-\\><c-n>", mode = "t" },
             { "<leader>P", '"_dp', mode = { "v", "x" }, desc = "Paste and keep" },
             {
+                "Q",
+                "<cmd>q<cr>",
+                mode = { "n", "v", "o" },
+                desc = "Quit buffer",
+            },
+            {
                 "<leader>y",
                 '"+y',
                 mode = { "n", "v", "o" },
