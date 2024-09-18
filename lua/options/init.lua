@@ -133,7 +133,7 @@ return {
     },
     copilot = {
         value = false,
-        key = "cc",
+        key = "cl",
         description = "Enable copilot",
         prompt = nil,
         callback = nil,

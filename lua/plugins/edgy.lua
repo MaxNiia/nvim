@@ -31,11 +31,6 @@ return {
                 size = { width = 50 },
             },
             {
-                ft = "OverseerList",
-                command = "OverseerOpen",
-                size = { width = 80 },
-            },
-            {
                 ft = "dapui_breakpoints",
                 size = { width = 60, height = 30 },
             },
