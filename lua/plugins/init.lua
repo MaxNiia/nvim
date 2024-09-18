@@ -85,15 +85,6 @@ local plugins = {
         },
     },
     {
-        "nvim-zh/colorful-winsep.nvim",
-        event = { "WinNew" },
-        opts = {
-            hi = {
-                fg = vim.api.nvim_get_hl(0, { name = "WinSep" })["fg"],
-            },
-        },
-    },
-    {
         "folke/lazydev.nvim",
         ft = "lua",
         opts = {
