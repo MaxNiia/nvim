@@ -32,7 +32,7 @@ return {
             dim_inactive = {
                 enabled = OPTIONS.dim_inactive.value,
                 shade = "dark",
-                percentage = 0.10,
+                percentage = 0.15,
             },
             highlight = {
                 enable = true,
