@@ -9,8 +9,9 @@ _G.IS_WSL = IS_LINUX and uname.release:find("Microsoft") and true or false
 OPTIONS = require("options")
 require("options.filehandler").load()
 
-CONFIGS = require("configs")
-require("external")
+local external = require("external")
+CONFIGS = external.configs
+external.load()
 
 require("settings")
 
