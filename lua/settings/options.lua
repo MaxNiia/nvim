@@ -27,13 +27,13 @@ vim.opt.history = 1000
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
 vim.opt.inccommand = "split"
-vim.opt.laststatus = 3
+vim.opt.laststatus = 2
 vim.opt.mousemodel = "extend"
 vim.opt.number = OPTIONS.number.value
 vim.opt.numberwidth = 2
 vim.opt.rnu = OPTIONS.relative_number.value
-vim.opt.ruler = false
-vim.opt.scrolloff = 10
+vim.opt.ruler = true
+vim.opt.scrolloff = 1
 vim.opt.shiftwidth = 4
 vim.opt.showtabline = 0
 vim.opt.sidescroll = 1
@@ -55,7 +55,7 @@ vim.opt.textwidth = 80
 vim.opt.timeout = true
 vim.opt.timeoutlen = 300
 vim.opt.ttimeout = true
-vim.opt.ttimeoutlen = 5
+vim.opt.ttimeoutlen = 100
 vim.opt.undofile = true
 vim.opt.wildmenu = true
 
@@ -92,6 +92,8 @@ vim.cmd([[
     setglobal tags-=./tags tags-=./tags; tags^=./tags;
     set complete-=i
     set nrformats-=octal
+    set sessionoptions-=options
+    set viewoptions-=options
 ]])
 
 if not vim.g.vscode and (not _G.IS_WINDOWS or _G.IS_WSL) then

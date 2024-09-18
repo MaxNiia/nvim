@@ -37,6 +37,11 @@ vim.cmd([[
     autocmd TermOpen * setlocal nonu
 
     autocmd VimLeavePre * lua require("options.filehandler").save()
+    augroup BgHighlight
+        autocmd!
+        autocmd WinEnter * set cul
+        autocmd WinLeave * set nocul
+    augroup END
 ]])
 
 vim.api.nvim_create_autocmd("BufWinEnter", {

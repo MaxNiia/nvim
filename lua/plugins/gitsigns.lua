@@ -9,6 +9,9 @@ return {
             numhl = true,
             linehl = OPTIONS.git_line_hl.value,
             word_diff = false,
+            watch_gitdir = {
+                follow_files = true,
+            },
             current_line_blame = true,
             current_line_blame_opts = {
                 virt_text = true,

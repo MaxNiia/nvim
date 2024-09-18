@@ -107,20 +107,7 @@ return {
             })
         end,
         opts = {
-            options = {
-                "binary",
-                "bufhidden",
-                "buflisted",
-                "diff",
-                "filetype",
-                "modifiable",
-                "previewwindow",
-                "readonly",
-                "scrollbind",
-                "winfixheight",
-                "winfixwidth",
-                "winhighlight",
-            },
+            options = {},
             autosave = {
                 enabled = false,
                 interval = 60,
