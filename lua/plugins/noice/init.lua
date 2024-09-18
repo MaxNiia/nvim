@@ -60,7 +60,7 @@ return {
                     format = {
                         git = {
                             pattern = {
-                                "^:%s*Gi?t?!?%s+",
+                                "^:%s*G(it)?!?%s+",
                             },
                             icon = "",
                             lang = "git",
@@ -68,11 +68,8 @@ return {
                     },
                 },
                 views = {
-                    mini = {
-                        position = {
-                            col = "100%",
-                            row = "80%",
-                        },
+                    notify = {
+                        replace = true,
                     },
                     popup = {
                         border = {
