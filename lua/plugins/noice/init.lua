@@ -60,7 +60,7 @@ return {
                     format = {
                         git = {
                             pattern = {
-                                "^:%s*G(it)?!?%s+",
+                                "^:%s*Gi?t?!?%s+",
                             },
                             icon = "",
                             lang = "git",
