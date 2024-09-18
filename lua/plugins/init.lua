@@ -12,19 +12,7 @@ local plugins = {
             -- Optional settings go here!
             vim.g.unception_delete_replaced_buffer = false
             vim.g.unception_open_buffer_in_new_tab = false
-            vim.g.unception_enable_flavor_text = true
-
-            -- if OPTIONS.toggleterm.value then
-            --     vim.api.nvim_create_autocmd("User", {
-            --         pattern = "UnceptionEditRequestReceived",
-            --         callback = function()
-            --             -- Toggle the terminal off.
-            --             if vim.bo.filetype == "toggleterm" then
-            --                 require("toggleterm").toggle_all(true)
-            --             end
-            --         end,
-            --     })
-            -- end
+            vim.g.unception_enable_flavor_text = false
         end,
     },
     {
@@ -63,25 +51,6 @@ local plugins = {
             },
             timeout = vim.o.timeoutlen,
             clear_empty_lines = false,
-        },
-    },
-    {
-        "tiagovla/scope.nvim",
-        opts = {
-            hooks = {
-                pre_tab_leave = function()
-                    -- if OPTIONS.toggleterm.value then
-                    --     require("toggleterm").toggle_all(true)
-                    -- end
-                end,
-                post_tab_enter = function()
-                    require("incline").refresh()
-                    local current_session = require("resession").get_current()
-                    if current_session ~= nil and current_session ~= "" then
-                        vim.cmd.tcd(current_session)
-                    end
-                end,
-            },
         },
     },
     {
@@ -206,20 +175,20 @@ local plugins = {
         lazy = true,
         event = "BufEnter",
     },
-    {
-        "NvChad/nvim-colorizer.lua",
-        lazy = true,
-        event = "BufEnter",
-        opts = {
-            user_default_options = {
-                RRGGBBAA = true,
-            },
-            filetypes = {
-                "*",
-                "!minifiles",
-            },
-        },
-    },
+    -- {
+    --     "NvChad/nvim-colorizer.lua",
+    --     lazy = true,
+    --     event = "BufEnter",
+    --     opts = {
+    --         user_default_options = {
+    --             RRGGBBAA = true,
+    --         },
+    --         filetypes = {
+    --             "*",
+    --             "!minifiles",
+    --         },
+    --     },
+    -- },
     {
         "folke/ts-comments.nvim",
         opts = {
