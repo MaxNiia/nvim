@@ -14,6 +14,7 @@ return {
                 title = false,
                 filter = { range = true },
                 format = "{kind_icon}{symbol.name:Normal}>",
+                hl_group = "lualine_c_normal",
             })
 
             return {
@@ -61,13 +62,11 @@ return {
                     },
                 },
                 extensions = {
-                    "aerial",
                     "fzf",
                     "fugitive",
                     "lazy",
                     "quickfix",
                     "toggleterm",
-                    "symbols-outline",
                     "mason",
                     "trouble",
                 },
@@ -82,6 +81,7 @@ return {
                     lualine_b = {
                         {
                             "filetype",
+                            icon_only = true,
                         },
                         {
                             "diff",
@@ -89,12 +89,6 @@ return {
                         {
                             "diagnostics",
                         },
-                    },
-                    lualine_c = {
-                        { symbols.get, cond = symbols.has },
-                    },
-                    lualine_x = {},
-                    lualine_y = {
                         {
                             "filesize",
                         },
@@ -105,18 +99,12 @@ return {
                             "encoding",
                         },
                     },
-                    lualine_z = {
-                        {
-                            "tabs",
-                            mode = 2,
-                            path = 0,
-                            use_mode_colors = true,
-                            show_modified_status = true,
-                            symbols = {
-                                modified = icons.misc.modified,
-                            },
-                        },
+                    lualine_c = {
+                        { symbols.get, cond = symbols.has },
                     },
+                    lualine_x = {},
+                    lualine_y = {},
+                    lualine_z = {},
                 },
                 -- Statusline
                 sections = {
@@ -172,34 +160,34 @@ return {
                     lualine_y = {
                         {
                             function()
-                                return require("noice").api.statusline.mode.get()
+                                return require("noice").api.status.mode.get()
                             end,
                             cond = function()
                                 return package.loaded["noice"]
-                                    and require("noice").api.statusline.mode.has()
+                                    and require("noice").api.status.mode.has()
                             end,
-                        },
-                        {
-                            function()
-                                return require("noice").api.status.command.get()
-                            end,
-                            cond = function()
-                                return package.loaded["noice"]
-                                    and require("noice").api.status.command.has()
-                            end,
-                        },
-                        {
-                            "progress",
                         },
                         {
                             "location",
                         },
+                        {
+                            "progress",
+                        },
                     },
                     lualine_z = {
                         {
-                            function()
-                                return icons.misc.clock .. os.date()
-                            end,
+                            "tabs",
+                            mode = 2,
+                            path = 0,
+                            use_mode_colors = true,
+                            show_modified_status = true,
+                            symbols = {
+                                modified = icons.misc.modified,
+                            },
+                        },
+                        {
+                            "datetime",
+                            style = "%H:%M",
                         },
                     },
                 },
