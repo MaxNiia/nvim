@@ -1,4 +1,11 @@
 return {
+    clangd_num_cores = {
+        value = 4,
+        key = "cc",
+        description = "Number of cores to use for clangd",
+        prompt = nil,
+        callback = nil,
+    },
     mini_files = {
         value = true,
         key = "mf",
