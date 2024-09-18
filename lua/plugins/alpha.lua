@@ -78,7 +78,7 @@ local function week_header()
     local daysoftheweek =
         { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }
     local day = daysoftheweek[os.date("*t").wday]
-    return week[day] .. "\n" .. os.date("%Y-%m-%d %H:%M:%S ")
+    return week[day] .. "\n\t\t" .. os.date("%Y-%m-%d %H:%M:%S ")
 end
 
 return {
