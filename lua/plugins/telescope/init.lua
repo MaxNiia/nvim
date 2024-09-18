@@ -131,10 +131,6 @@ return {
                     display_type = "full",
                     layout_config = ui.layouts.vertical,
                 },
-                monorepo = {
-                    initial_mode = "normal",
-                    layout_config = ui.layouts.vertical,
-                },
                 live_grep_args = {
                     auto_quoting = true,
                 },
@@ -300,7 +296,6 @@ return {
             end
             require("telescope").load_extension("project")
             require("telescope").load_extension("themes")
-            require("telescope").load_extension("monorepo")
         end,
     },
 }
