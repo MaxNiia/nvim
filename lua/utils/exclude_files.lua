@@ -3,7 +3,6 @@ return {
     "gitcommit",
     "qf",
     "trouble",
-    "aerial",
     "alpha",
     "dashboard",
     "gitcommit",
