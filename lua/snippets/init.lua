@@ -1,16 +1,28 @@
 local global_snippets = {
     { trigger = "shebang", body = "#!/bin sh" },
 }
-
 local snippets_by_filetype = {
     lua = {},
-    cmake = { { trigger = "copyright", body = CONFIGS.copyright_text.value("#") } },
-    c = { { trigger = "copyright", body = CONFIGS.copyright_text.value("//") } },
-    cpp = { { trigger = "copyright", body = CONFIGS.copyright_text.value("//") } },
+    cmake = {},
+    c = {},
+    cpp = require("snippets.cpp"),
     python = {
         { trigger = "shebang", body = "#!/usr/bin/env python" },
     },
 }
+
+table.insert(
+    snippets_by_filetype.cmake,
+    { trigger = "copyright", body = CONFIGS.copyright_text.value("#") }
+)
+table.insert(
+    snippets_by_filetype.c,
+    { trigger = "copyright", body = CONFIGS.copyright_text.value("//") }
+)
+table.insert(
+    snippets_by_filetype.cpp,
+    { trigger = "copyright", body = CONFIGS.copyright_text.value("//") }
+)
 
 local function get_buf_snips()
     local ft = vim.bo.filetype

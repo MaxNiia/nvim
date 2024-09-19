@@ -66,7 +66,7 @@ return {
                 function()
                     require("refactoring").debug.cleanup({})
                 end,
-                desc = "Cleanup prins",
+                desc = "Cleanup prints",
                 mode = "n",
             },
         },
