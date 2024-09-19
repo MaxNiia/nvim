@@ -2,6 +2,7 @@ return {
     {
         "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
         cond = not vim.g.vscode,
+        branch = "fix-highlighting",
         config = function(_, _)
             local rainbow = require("rainbow-delimiters")
             vim.g.rainbow_delimiters = {
