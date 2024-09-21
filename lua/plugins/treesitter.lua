@@ -5,10 +5,6 @@ return {
         dependencies = {
             {
                 "nvim-treesitter/nvim-treesitter-context",
-                opts = {
-                    max_lines = 5,
-                    multiline_threshold = 0,
-                },
             },
             {
                 "nvim-treesitter/nvim-treesitter-textobjects",
@@ -108,7 +104,7 @@ return {
 
             require("treesitter-context").setup({
                 enable = true,
-                max_lines = 20,
+                max_lines = 5,
                 line_numbers = true,
                 mode = "cursor",
                 zindex = 80,
