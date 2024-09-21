@@ -107,7 +107,21 @@ return {
             })
         end,
         opts = {
-            options = {},
+            options = {
+                "binary",
+                "bufhidden",
+                "buflisted",
+                "cmdheight",
+                "diff",
+                "filetype",
+                "modifiable",
+                "previewwindow",
+                "readonly",
+                "scrollbind",
+                "winfixheight",
+                "winfixwidth",
+                "winhighlight",
+            },
             autosave = {
                 enabled = false,
                 interval = 60,
