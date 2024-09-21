@@ -3,72 +3,62 @@ return {
         "folke/flash.nvim",
         event = "VeryLazy",
         keys = {
-            OPTIONS.jump2d.value
-                    and {
-                        "<cr>",
-                        mode = { "n", "x", "o" },
-                        function()
-                            local Flash = require("flash")
+            {
+                OPTIONS.jump2d.value and "<cr>" or "<leader>j",
+                mode = { "n", "x", "o" },
+                function()
+                    local Flash = require("flash")
 
-                            local function format(opts)
-                                -- always show first and second label
-                                return {
-                                    { opts.match.label1, "FlashMatch" },
-                                    { opts.match.label2, "FlashLabel" },
-                                }
-                            end
+                    local function format(opts)
+                        -- always show first and second label
+                        return {
+                            { opts.match.label1, "FlashMatch" },
+                            { opts.match.label2, "FlashLabel" },
+                        }
+                    end
 
+                    Flash.jump({
+                        search = { mode = "search" },
+                        label = {
+                            after = false,
+                            before = { 0, 0 },
+                            uppercase = false,
+                            format = format,
+                        },
+                        pattern = [[\<]],
+                        action = function(match, state)
+                            state:hide()
                             Flash.jump({
-                                search = { mode = "search" },
-                                label = {
-                                    after = false,
-                                    before = { 0, 0 },
-                                    uppercase = false,
-                                    format = format,
-                                },
-                                pattern = [[\<]],
-                                action = function(match, state)
-                                    state:hide()
-                                    Flash.jump({
-                                        search = { max_length = 0 },
-                                        highlight = { matches = false },
-                                        label = { format = format },
-                                        matcher = function(win)
-                                            -- limit matches to the current label
-                                            return vim.tbl_filter(function(m)
-                                                return m.label == match.label and m.win == win
-                                            end, state.results)
-                                        end,
-                                        labeler = function(matches)
-                                            for _, m in ipairs(matches) do
-                                                m.label = m.label2 -- use the second label
-                                            end
-                                        end,
-                                    })
+                                search = { max_length = 0 },
+                                highlight = { matches = false },
+                                label = { format = format },
+                                matcher = function(win)
+                                    -- limit matches to the current label
+                                    return vim.tbl_filter(function(m)
+                                        return m.label == match.label and m.win == win
+                                    end, state.results)
                                 end,
-                                labeler = function(matches, state)
-                                    local labels = state:labels()
-                                    for m, match in ipairs(matches) do
-                                        match.label1 = labels[math.floor((m - 1) / #labels) + 1]
-                                        match.label2 = labels[(m - 1) % #labels + 1]
-                                        match.label = match.label1
+                                labeler = function(matches)
+                                    for _, m in ipairs(matches) do
+                                        m.label = m.label2 -- use the second label
                                     end
                                 end,
                             })
                         end,
-                        desc = "Jump2D",
-                    }
-                or nil,
-            {
-                "<leader>t",
-                mode = { "n", "x", "o" },
-                function()
-                    require("flash").jump()
+                        labeler = function(matches, state)
+                            local labels = state:labels()
+                            for m, match in ipairs(matches) do
+                                match.label1 = labels[math.floor((m - 1) / #labels) + 1]
+                                match.label2 = labels[(m - 1) % #labels + 1]
+                                match.label = match.label1
+                            end
+                        end,
+                    })
                 end,
-                desc = "Jump",
+                desc = "Jump2D",
             },
             {
-                "<leader>T",
+                "<leader>t",
                 mode = { "n", "o", "x" },
                 function()
                     require("flash").treesitter()
@@ -192,8 +182,8 @@ return {
                     search = { incremental = false },
                     label = { before = true, after = true, style = "inline" },
                     highlight = {
-                        backdrop = true,
-                        matches = true,
+                        backdrop = false,
+                        matches = false,
                     },
                 },
                 treesitter_search = {
