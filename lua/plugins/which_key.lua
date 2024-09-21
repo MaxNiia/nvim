@@ -12,9 +12,9 @@ return {
             { "<leader>P", '"_dp', mode = { "v", "x" }, desc = "Paste and keep" },
             {
                 "Q",
-                "<cmd>q<cr>",
+                "<cmd>wq<cr>",
                 mode = { "n", "v", "o" },
-                desc = "Quit buffer",
+                desc = "Save and quit buffer",
             },
             {
                 "<leader>y",
