@@ -26,7 +26,7 @@ vim.cmd([[
     autocmd FileType markdown setlocal colorcolumn=+1
 
     autocmd User TelescopePreviewerLoaded setlocal wrap
-    autocmd User TelescopePreviewerLoaded setlocal wrap
+    autocmd User TelescopePreviewerLoaded setlocal nu
 
     autocmd CmdwinEnter * nnoremap <CR> <CR>
 
