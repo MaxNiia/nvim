@@ -1,46 +1,68 @@
 vim.cmd([[
-    autocmd FileType gitcommit setlocal textwidth=72
-    autocmd FileType gitcommit setlocal colorcolumn=+1
+    augroup GitCommitOptions
+        autocmd FileType gitcommit setlocal textwidth=72
+        autocmd FileType gitcommit setlocal colorcolumn=+1
+    augroup END
 
-    autocmd FileType minifiles setlocal conceallevel=2
+    augroup MiniFilesOptions
+        autocmd FileType minifiles setlocal conceallevel=2
+    augroup END
 
-    autocmd FileType norg setlocal conceallevel=3
+    augroup COptions
+        autocmd FileType c setlocal textwidth=80
+        autocmd FileType c setlocal colorcolumn=+1
+    augroup END
 
-    autocmd FileType c setlocal textwidth=80
-    autocmd FileType c setlocal colorcolumn=+1
-
+    augroup CppOptions
     autocmd FileType cpp setlocal textwidth=80
     autocmd FileType cpp setlocal colorcolumn=+1
+    augroup END
 
-    autocmd FileType python setlocal textwidth=120
-    autocmd FileType python setlocal colorcolumn=+1
+    augroup PythonOptions
+        autocmd FileType python setlocal textwidth=120
+        autocmd FileType python setlocal colorcolumn=+1
+    augroup END
 
-    autocmd FileType lua setlocal textwidth=100
-    autocmd FileType lua setlocal colorcolumn=+1
+    augroup LuaOptions
+        autocmd FileType lua setlocal textwidth=100
+        autocmd FileType lua setlocal colorcolumn=+1
+    augroup END
 
-    autocmd FileType qf setlocal nonu
-    autocmd FileType qf setlocal nornu
+    augroup QuickfixOptions
+        autocmd FileType qf setlocal nonu
+        autocmd FileType qf setlocal nornu
+    augroup END
 
-    autocmd FileType markdown setlocal conceallevel=2
-    autocmd FileType markdown setlocal textwidth=120
-    autocmd FileType markdown setlocal colorcolumn=+1
+    augroup MarkdownOptions
+        autocmd FileType markdown setlocal conceallevel=2
+        autocmd FileType markdown setlocal textwidth=120
+        autocmd FileType markdown setlocal colorcolumn=+1
+    augroup END
 
-    autocmd User TelescopePreviewerLoaded setlocal wrap
-    autocmd User TelescopePreviewerLoaded setlocal nu
+    augroup TelescopePreview
+        autocmd User TelescopePreviewerLoaded setlocal wrap
+        autocmd User TelescopePreviewerLoaded setlocal nu
+    augroup END
 
-    autocmd CmdwinEnter * nnoremap <CR> <CR>
+    augroup TerminalOptions
+        autocmd TermOpen * setlocal nospell
+        autocmd TermOpen * setlocal nornu
+        autocmd TermOpen * setlocal nonu
+    augroup END
 
-    autocmd BufReadPost quickfix nnoremap <CR> <CR>
-
-    autocmd TermOpen * setlocal nospell
-    autocmd TermOpen * setlocal nornu
-    autocmd TermOpen * setlocal nonu
-
-    autocmd VimLeavePre * lua require("options.filehandler").save()
     augroup BgHighlight
         autocmd!
         autocmd WinEnter * set cul
         autocmd WinLeave * set nocul
+    augroup END
+
+    augroup zoom
+        autocmd!
+        autocmd VimResized * wincmd =
+    augroup END
+
+    augroup FileHandler
+        autocmd VimLeavePre * lua require("options.filehandler").save()
     augroup END
 ]])
 
