@@ -23,7 +23,7 @@ return {
                 options = {
                     enabled = true,
                 },
-                twilight = { enabled = true }, -- enable to start Twilight when zen mode opens
+                twilight = { enabled = OPTIONS.twilight.value }, -- enable to start Twilight when zen mode opens
                 wezterm = {
                     enabled = not vim.g.neovide,
                     -- can be either an absolute font size or the number of incremental steps

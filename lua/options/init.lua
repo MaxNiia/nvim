@@ -6,6 +6,13 @@ return {
         prompt = nil,
         callback = nil,
     },
+    twilight = {
+        value = true,
+        key = "tw",
+        description = "Enable twilight (scope dimming)",
+        prompt = nil,
+        callback = nil,
+    },
     mini_files = {
         value = true,
         key = "mf",
