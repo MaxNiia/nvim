@@ -4,9 +4,6 @@ return {
         cond = not vim.g.vscode,
         dependencies = {
             {
-                "nvim-treesitter/nvim-treesitter-context",
-            },
-            {
                 "nvim-treesitter/nvim-treesitter-textobjects",
                 init = function()
                     -- PERF: no need to load the plugin, if we only need its queries for mini.ai
@@ -101,15 +98,6 @@ return {
             require("nvim-treesitter").setup()
 
             require("nvim-treesitter.configs").setup(opts)
-
-            require("treesitter-context").setup({
-                enable = true,
-                max_lines = 5,
-                line_numbers = true,
-                mode = "cursor",
-                zindex = 20,
-                trim_scope = "outer",
-            })
         end,
     },
 }
