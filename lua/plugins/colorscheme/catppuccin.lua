@@ -121,10 +121,6 @@ return {
                 return {
                     HighlightUndo = { bg = c.overlay0 },
                     CopilotSuggestion = { fg = c.surface1 },
-                    InclineText = { fg = c.pink, bg = c.surface0, style = { "bold" } },
-                    InclineTextInactive = { fg = c.text, bg = c.surface0 },
-                    InclineReverse = { fg = c.surface0, bg = c.base, style = { "bold" } },
-                    InclineModified = { fg = c.red, bg = c.surface0, style = { "bold", "italic" } },
                     MarkSignHL = { fg = c.yellow, style = { "bold" } },
                     NoiceCursor = { fg = c.base, bg = c.text, blend = 0 },
                     FzfLuaHeaderBind = { fg = c.rosewater },

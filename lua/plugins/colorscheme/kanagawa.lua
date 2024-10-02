@@ -46,15 +46,6 @@ return {
                 return {
                     HighlightUndo = { bg = c.sumiInk4 },
                     CopilotSuggestion = { fg = c.fujiGray },
-                    InclineText = { fg = c.oniViolet, bg = c.sumiInk0, bold = true },
-                    InclineTextInactive = { fg = c.text, bg = c.sumiInk0 },
-                    InclineReverse = { fg = c.sumiInk0, bg = c.sumiInk1, bold = true },
-                    InclineModified = {
-                        fg = c.samuraiRed,
-                        bg = c.sumiInk0,
-                        bold = true,
-                        italic = true,
-                    },
                     MarkSignHL = { fg = c.roninYellow, bold = true },
                     NoiceCursor = { bg = c.fujiWhite, fg = c.sumiInk1, blend = 0 },
                 }

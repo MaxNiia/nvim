@@ -179,7 +179,6 @@ return {
             local resession = require("resession")
             resession.setup(opts)
             resession.add_hook("post_load", function()
-                require("incline").refresh()
                 vim.cmd("tabdo wincmd =")
             end)
         end,

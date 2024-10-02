@@ -7,16 +7,6 @@ return {
         -- event = "BufEnter",
         cond = not vim.g.vscode,
         opts = function()
-            local trouble = require("trouble")
-            local symbols = trouble.statusline({
-                mode = "lsp_document_symbols",
-                groups = {},
-                title = false,
-                filter = { range = true },
-                format = "{kind_icon}{symbol.name:Normal}>",
-                hl_group = "lualine_c_normal",
-            })
-
             return {
                 options = {
                     icons_enabled = true,
@@ -70,7 +60,7 @@ return {
                     "mason",
                     "trouble",
                 },
-                tabline = {
+                inactive_winbar = {
                     lualine_a = {
                         {
                             "filename",
@@ -89,6 +79,33 @@ return {
                         {
                             "diagnostics",
                         },
+                    },
+                    lualine_c = {},
+                    lualine_x = {},
+                    lualine_y = {},
+                    lualine_z = {},
+                },
+                winbar = {
+                    lualine_a = {
+                        {
+                            "filename",
+                            newfile_status = true,
+                            path = 1,
+                        },
+                    },
+                    lualine_b = {
+                        {
+                            "filetype",
+                            icon_only = true,
+                        },
+                        {
+                            "diff",
+                        },
+                        {
+                            "diagnostics",
+                        },
+                    },
+                    lualine_c = {
                         {
                             "filesize",
                         },
@@ -98,9 +115,6 @@ return {
                         {
                             "encoding",
                         },
-                    },
-                    lualine_c = {
-                        { symbols.get, cond = symbols.has },
                     },
                     lualine_x = {},
                     lualine_y = {},
