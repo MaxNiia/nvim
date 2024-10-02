@@ -113,12 +113,6 @@ return {
                         enabled = true,
                     },
                 },
-                file_browser = {
-                    hijack_netrw = false,
-                    display_stat = false,
-                    initial_mode = "normal",
-                    layout_config = ui.layouts.vertical,
-                },
                 fzf = {
                     fuzzy = true,
                     override_generic_sorter = true,
@@ -287,7 +281,6 @@ return {
 
             require("telescope.actions")
             require("telescope").load_extension("scope")
-            require("telescope").load_extension("file_browser")
             require("telescope").load_extension("fzf")
             require("telescope").load_extension("live_grep_args")
             if not vim.g.vscode then
