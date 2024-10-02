@@ -1,10 +1,10 @@
 local icons = require("utils.icons").todo
 local plugins = {
-    {
-        "chrisgrieser/nvim-various-textobjs",
-        event = "UIEnter",
-        opts = { useDefaultKeymaps = true },
-    },
+    -- {
+    --     "chrisgrieser/nvim-various-textobjs",
+    --     event = "UIEnter",
+    --     opts = { useDefaultKeymaps = true },
+    -- },
     {
         "MaxNiia/nvim-unception",
         lazy = false,
