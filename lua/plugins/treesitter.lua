@@ -107,7 +107,7 @@ return {
                 max_lines = 5,
                 line_numbers = true,
                 mode = "cursor",
-                zindex = 80,
+                zindex = 20,
                 trim_scope = "outer",
             })
         end,

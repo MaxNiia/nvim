@@ -241,6 +241,9 @@ local plugins = {
     {
         "tpope/vim-abolish",
     },
+    {
+        "tpope/vim-dispatch",
+    },
 }
 
 plugins = vim.tbl_deep_extend("force", plugins, CONFIGS.plugins.value or {})
