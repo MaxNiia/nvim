@@ -126,6 +126,7 @@ return {
     },
     {
         "williamboman/mason.nvim",
+        event = "VeryLazy",
         cmd = "Mason",
         cond = not vim.g.vscode,
         opts = {

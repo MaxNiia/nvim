@@ -5,7 +5,8 @@ return {
         dependencies = {
             "kwkarlwang/bufresize.nvim",
         },
-        lazy = false,
+        lazy = true,
+        event = "VimEnter",
         opts = {
             resize_mode = {
                 silent = true,
