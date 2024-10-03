@@ -20,7 +20,7 @@ return {
                 virt_text_priority = 100,
                 ignore_whitespace = true,
             },
-            current_line_blame_formatter = "<author>:<author_time:%Y/%m/%d>-<summary>",
+            current_line_blame_formatter = "<author> <author_time:%Y %m %d> <summary>",
             max_file_length = 5000,
             trouble = true,
             on_attach = function(bufnr)
