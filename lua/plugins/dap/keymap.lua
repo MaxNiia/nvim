@@ -1,6 +1,6 @@
 return {
     {
-        "<f5>",
+        "<f1>",
         function()
             require("dap").continue()
         end,
@@ -8,15 +8,7 @@ return {
         mode = { "n" },
     },
     {
-        "<f10>",
-        function()
-            require("dap").step_over()
-        end,
-        desc = "Step over",
-        mode = { "n" },
-    },
-    {
-        "<f11>",
+        "<f2>",
         function()
             require("dap").step_into()
         end,
@@ -24,9 +16,25 @@ return {
         mode = { "n" },
     },
     {
-        "<f12>",
+        "<f3>",
+        function()
+            require("dap").step_over()
+        end,
+        desc = "Step over",
+        mode = { "n" },
+    },
+    {
+        "<f4>",
         function()
             require("dap").step_out()
+        end,
+        desc = "Step out",
+        mode = { "n" },
+    },
+    {
+        "<f5>",
+        function()
+            require("dap").step_back()
         end,
         desc = "Step out",
         mode = { "n" },
