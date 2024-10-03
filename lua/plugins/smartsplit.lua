@@ -20,6 +20,7 @@ return {
                     end,
                 },
             },
+            default_amount = 5,
             at_edge = "wrap",
         },
         config = function(_, opts)
