@@ -58,7 +58,7 @@ return {
                 desc = "Jump2D",
             },
             {
-                "<leader>t",
+                "<leader>T",
                 mode = { "n", "o", "x" },
                 function()
                     require("flash").treesitter()
