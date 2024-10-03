@@ -1,31 +1,6 @@
 vim.cmd([[
-    augroup GitCommitOptions
-        autocmd FileType gitcommit setlocal textwidth=72
-        autocmd FileType gitcommit setlocal colorcolumn=+1
-    augroup END
-
     augroup MiniFilesOptions
         autocmd FileType minifiles setlocal conceallevel=2
-    augroup END
-
-    augroup COptions
-        autocmd FileType c setlocal textwidth=80
-        autocmd FileType c setlocal colorcolumn=+1
-    augroup END
-
-    augroup CppOptions
-    autocmd FileType cpp setlocal textwidth=80
-    autocmd FileType cpp setlocal colorcolumn=+1
-    augroup END
-
-    augroup PythonOptions
-        autocmd FileType python setlocal textwidth=120
-        autocmd FileType python setlocal colorcolumn=+1
-    augroup END
-
-    augroup LuaOptions
-        autocmd FileType lua setlocal textwidth=100
-        autocmd FileType lua setlocal colorcolumn=+1
     augroup END
 
     augroup QuickfixOptions
@@ -33,11 +8,6 @@ vim.cmd([[
         autocmd FileType qf setlocal nornu
     augroup END
 
-    augroup MarkdownOptions
-        autocmd FileType markdown setlocal conceallevel=2
-        autocmd FileType markdown setlocal textwidth=120
-        autocmd FileType markdown setlocal colorcolumn=+1
-    augroup END
 
     augroup TelescopePreview
         autocmd User TelescopePreviewerLoaded setlocal wrap
