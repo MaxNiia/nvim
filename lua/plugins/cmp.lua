@@ -172,7 +172,7 @@ return {
                     {
                         name = "cmdline",
                         option = {
-                            ignore_cmds = { "Man", "!", "TermExec" },
+                            ignore_cmds = { "Man", "!", "TermExec", "set makeprg", "Dispatch" },
                         },
                     },
                 }, {

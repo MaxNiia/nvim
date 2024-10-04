@@ -26,6 +26,9 @@ return {
             middle = " * ",
             stop = " */",
         },
+        cxx_make = {
+            makepgr = "g++",
+        },
         plugins = {},
     },
     load = function()
