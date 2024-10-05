@@ -57,6 +57,30 @@ return {
                 end,
                 desc = "Buffer Local Keymaps (which-key)",
             },
+            {
+                "<Tab>",
+                function()
+                    if vim.snippet.active({ direction = 1 }) then
+                        return "<cmd>lua vim.snippet.jump(1)<cr>"
+                    else
+                        return "<Tab>"
+                    end
+                end,
+                expr = true,
+                mode = { "s", "i" },
+            },
+            {
+                "<S-Tab>",
+                function()
+                    if vim.snippet.active({ direction = -1 }) then
+                        return "<cmd>lua vim.snippet.jump(-1)<cr>"
+                    else
+                        return "<S-Tab>"
+                    end
+                end,
+                expr = true,
+                mode = { "s", "i" },
+            },
         },
         lazy = true,
         opts = {
