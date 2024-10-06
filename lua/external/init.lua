@@ -26,8 +26,11 @@ return {
             middle = " * ",
             stop = " */",
         },
+        c_make = {
+            makepgr = "cmake --build --preset",
+        },
         cxx_make = {
-            makepgr = "g++",
+            makepgr = "cmake --build --preset",
         },
         plugins = {},
     },
