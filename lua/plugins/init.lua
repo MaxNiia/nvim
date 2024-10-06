@@ -199,6 +199,7 @@ local plugins = {
                 css = "/* %s */",
                 gleam = "// %s",
                 glimmer = "{{! %s }}",
+                glsl = "// %s",
                 graphql = "# %s",
                 handlebars = "{{! %s }}",
                 hcl = "# %s",

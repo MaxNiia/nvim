@@ -15,7 +15,7 @@ return {
     basedpyright = require("plugins.lsp.servers.basedPyright"),
     clangd = require("plugins.lsp.servers.clangd"),
     cssls = require("plugins.lsp.servers.cssls"),
-    cmake = {},
+    neocmake = {},
     cssmodules_ls = {},
     dockerls = {},
     jsonls = {},

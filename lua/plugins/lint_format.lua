@@ -34,9 +34,6 @@ return {
                 json = {
                     "jsonlint",
                 },
-                cmake = {
-                    -- "cmakelint",
-                },
                 protobuf = { "buf_lint" },
                 bzl = { "buildifier" },
 
@@ -135,7 +132,6 @@ return {
                 "ast-grep",
                 "basedpyright",
                 "clangd",
-                "cmake-language-server",
                 "lua-language-server",
                 "ruff-lsp",
                 "marksman",
@@ -144,7 +140,6 @@ return {
                 -- NOTE: LINT
                 "buf",
                 "buildifier",
-                "cmakelint",
                 "eslint_d",
                 "hadolint",
                 "jsonlint",
