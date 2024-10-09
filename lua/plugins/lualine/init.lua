@@ -152,19 +152,6 @@ return {
                         },
                         {
                             function()
-                                local venv = require("swenv.api").get_current_venv()
-                                if venv then
-                                    return string.format(icons.misc.python .. "%s", venv.name)
-                                else
-                                    return ""
-                                end
-                            end,
-                            cond = function()
-                                return vim.bo.filetype == "python"
-                            end,
-                        },
-                        {
-                            function()
                                 return require("plugins.lualine.copilot").get_status()
                             end,
                         },
