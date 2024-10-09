@@ -126,9 +126,7 @@ return {
             vim.diagnostic.config(opts.diagnostics)
 
             local servers = opts.servers
-            local capabilities = require("cmp_nvim_lsp").default_capabilities(
-                vim.lsp.protocol.make_client_capabilities()
-            )
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
 
             -- Specify otherwise clangd seems to use utf-8.
             capabilities.offsetEncoding = { "utf-16" }

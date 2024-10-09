@@ -81,7 +81,7 @@ return {
                         -- },
                     },
                     popupmenu = {
-                        backend = "cmp",
+                        -- backend = "cmp",
                         border = {
                             style = "rounded",
                             padding = { 0, 0 },

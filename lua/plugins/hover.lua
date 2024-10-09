@@ -41,22 +41,22 @@ return {
                 mode = "n",
                 desc = "hover.nvim (select)",
             },
-            {
-                "<C-p>",
-                function()
-                    require("hover").hover_switch("previous")
-                end,
-                mode = "n",
-                desc = "hover.nvim (previous source)",
-            },
-            {
-                "<C-n>",
-                function()
-                    require("hover").hover_switch("next")
-                end,
-                "n",
-                desc = "hover.nvim (next source)",
-            },
+            -- {
+            --     "<C-p>",
+            --     function()
+            --         require("hover").hover_switch("previous")
+            --     end,
+            --     mode = "n",
+            --     desc = "hover.nvim (previous source)",
+            -- },
+            -- {
+            --     "<C-n>",
+            --     function()
+            --         require("hover").hover_switch("next")
+            --     end,
+            --     "n",
+            --     desc = "hover.nvim (next source)",
+            -- },
         },
         lazy = false,
         -- config = function(_, opts)

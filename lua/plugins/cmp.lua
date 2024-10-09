@@ -38,7 +38,7 @@ return {
             },
         },
         config = function(_, _)
-            require("snippets").register_cmp_source()
+            -- require("snippets").register_cmp_source()
             -- nvim-cmp setup
             local cmp = require("cmp")
             cmp.setup({
@@ -128,14 +128,14 @@ return {
                     end, { "i", "s" }),
                 }),
                 sources = cmp.config.sources({
-                    { name = "lazydev", group_index = 0 },
-                    { name = "nvim_lsp_signature_help", group_index = 0 },
-                    { name = "snp", group_index = 1 },
+                    -- { name = "lazydev", group_index = 0 },
+                    -- { name = "nvim_lsp_signature_help", group_index = 0 },
+                    -- { name = "snp", group_index = 1 },
                     { name = "doxygen", group_index = 1 },
-                    { name = "nvim_lsp", group_index = 2 },
-                    { name = "treesitter", group_index = 3 },
-                    { name = "fuzzy_buffer", group_index = 3 },
-                    { name = "copilot", group_index = 2 },
+                    -- { name = "nvim_lsp", group_index = 2 },
+                    -- { name = "treesitter", group_index = 3 },
+                    -- { name = "fuzzy_buffer", group_index = 3 },
+                    -- { name = "copilot", group_index = 2 },
                 }, {
                     -- {
                     --     name = "buffer",
