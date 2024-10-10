@@ -19,6 +19,7 @@ return {
     },
     {
         "hrsh7th/nvim-cmp",
+        enabled = false,
         cond = not vim.g.vscode,
         event = "InsertEnter",
         dependencies = {
