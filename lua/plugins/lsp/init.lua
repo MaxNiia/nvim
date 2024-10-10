@@ -210,7 +210,6 @@ return {
                     if client.name == "clangd" then
                         require("plugins.lsp.keymaps").clangd(bufnr)
                     end
-                    -- Normal Mode
                 end,
             })
         end,
