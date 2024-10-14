@@ -36,9 +36,9 @@ return {
             keymap = {
                 show = "<C-space>",
                 hide = "<C-e>",
-                accept = "<Tab>",
-                select_prev = { "<Up>", "<C-k>" },
-                select_next = { "<Down>", "<C-j>" },
+                accept = "<CR>",
+                select_prev = { "<Up>", "<C-k>", "<S-Tab>" },
+                select_next = { "<Down>", "<C-j>", "<Tab>" },
 
                 show_documentation = {},
                 hide_documentation = {},
