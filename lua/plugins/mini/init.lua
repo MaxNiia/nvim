@@ -1,6 +1,36 @@
 local file_functions = require("plugins.mini.files")
 return {
     {
+        "echasnovski/mini.move",
+        version = false,
+        event = "BufEnter",
+        opts = {
+            mappings = {
+                left = "<S-left>",
+                right = "<S-right>",
+                down = "<S-down>",
+                up = "<S-up>",
+
+                line_left = "<S-left>",
+                line_right = "<S-right>",
+                line_down = "<S-down>",
+                line_up = "<S-up>",
+            },
+        },
+        config = true,
+    },
+    {
+        "echasnovski/mini.animate",
+        version = false,
+        event = "BufEnter",
+        opts = {
+            scroll = {
+                enable = false,
+            },
+        },
+        config = true,
+    },
+    {
         "echasnovski/mini.ai",
         version = false,
         event = "BufEnter",
