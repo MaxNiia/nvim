@@ -12,7 +12,7 @@ return {
                 -- require('hover.providers.jira')
             end,
             preview_opts = {
-                border = "single",
+                border = "none",
             },
             -- Whether the contents of a currently open hover window should be moved
             -- to a :h preview-window when pressing the hover keymap.

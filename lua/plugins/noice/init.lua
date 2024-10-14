@@ -23,12 +23,13 @@ return {
             local _opts = {
                 presets = {
                     command_palette = false,
-                    inc_rename = true,
+                    inc_rename = false,
                     long_message_to_split = true,
+                    lsp_doc_border = false,
                 },
                 popupmenu = {
                     enabled = true,
-                    backend = "nui",
+                    backend = "cmp",
                 },
                 override = {
                     ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
@@ -83,7 +84,7 @@ return {
                     popupmenu = {
                         backend = "cmp",
                         border = {
-                            style = "rounded",
+                            style = "none",
                             padding = { 0, 0 },
                         },
                         win_options = {

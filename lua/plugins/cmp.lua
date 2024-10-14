@@ -49,8 +49,8 @@ return {
                     },
                 },
                 window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
+                    completion = cmp.config.window.bordered({ border = "none" }),
+                    documentation = cmp.config.window.bordered({ border = "none" }),
                 },
                 experimental = {
                     ghost_text = true,
@@ -64,7 +64,6 @@ return {
                     disallow_symbol_nonprefix_matching = false,
                 },
                 sorting = {
-
                     priority_weight = 2,
                     comparators = {
                         require("copilot_cmp.comparators").prioritize,
@@ -83,7 +82,7 @@ return {
                     },
                 },
                 formatting = {
-                    format = function(entry, vim_item)
+                    format = function(_, vim_item)
                         local icon, hl = MiniIcons.get("lsp", vim_item.kind)
                         vim_item.kind = icon .. " " .. vim_item.kind
                         vim_item.kind_hl_group = hl
