@@ -27,8 +27,6 @@ return {
                     "toggleterm",
                     "qf",
                     "Trouble",
-                    "help",
-                    "git",
                 },
                 bt_ignore = {
                     "Outline",
