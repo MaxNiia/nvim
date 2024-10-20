@@ -104,6 +104,10 @@ return {
             },
             spec = {
                 { "<leader><leader>", group = "Switch Window" },
+                { "<leader>A", group = "Azure" },
+                { "<leader>AL", group = "Load" },
+                { "<leader>AO", group = "Open" },
+                { "<leader>AS", group = "Submit" },
                 { "<leader>D", group = "Debug" },
                 { "<leader>E", group = "Files" },
                 { "<leader>G", group = "Git" },

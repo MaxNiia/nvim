@@ -11,6 +11,9 @@ end
 
 return {
     configs = {
+        azure_remote = {
+            value = "",
+        },
         clangd_query_driver = {
             value = "/usr/bin/clang, /usr/bin/clang++",
         },
