@@ -97,7 +97,7 @@ return {
     },
     {
         "echasnovski/mini.files",
-        cond = (not vim.g.vscode) and OPTIONS.mini_files.value,
+        cond = not vim.g.vscode,
         version = false,
         event = "BufEnter",
         keys = {
