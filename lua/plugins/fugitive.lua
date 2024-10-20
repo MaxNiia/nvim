@@ -40,4 +40,7 @@ return {
     {
         "cedarbaum/fugitive-azure-devops.vim",
     },
+    {
+        "tpope/vim-rhubarb",
+    },
 }
