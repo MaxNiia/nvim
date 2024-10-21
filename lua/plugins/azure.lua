@@ -14,15 +14,14 @@ return {
             local nio = require("nio")
             nio.run(function()
                 local secret_job = nio.process.run({ cmd = "echo", args = { "$AZURE_TOKEN" } })
-                vim.tbl_extend({
-                    "force",
-                    opts,
-                    {
+                if secret_job then
+                    vim.tbl_extend("force", opts, {
                         pat_token = secret_job.stdout.read():sub(1, -2),
-                    },
-                })
+                    })
+                end
+
+                vim.g.adopure = opts
             end)
-            vim.g.adopure = opts
 
             local function set_keymap(keymap, command)
                 vim.keymap.set({ "n", "v" }, keymap, function()
