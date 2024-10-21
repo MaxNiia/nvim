@@ -4,8 +4,8 @@ return {
         event = "VeryLazy",
         opts = {
             signs = {
-                left = "",
-                right = "",
+                left = "",
+                right = "",
                 diag = "●",
                 arrow = "    ",
                 up_arrow = "    ",

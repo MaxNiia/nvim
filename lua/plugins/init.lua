@@ -1,10 +1,5 @@
 local icons = require("utils.icons").todo
 local plugins = {
-    -- {
-    --     "chrisgrieser/nvim-various-textobjs",
-    --     event = "UIEnter",
-    --     opts = { useDefaultKeymaps = true },
-    -- },
     {
         "MaxNiia/nvim-unception",
         lazy = false,
@@ -175,20 +170,6 @@ local plugins = {
         lazy = true,
         event = "BufEnter",
     },
-    -- {
-    --     "NvChad/nvim-colorizer.lua",
-    --     lazy = true,
-    --     event = "BufEnter",
-    --     opts = {
-    --         user_default_options = {
-    --             RRGGBBAA = true,
-    --         },
-    --         filetypes = {
-    --             "*",
-    --             "!minifiles",
-    --         },
-    --     },
-    -- },
     {
         "folke/ts-comments.nvim",
         opts = {
