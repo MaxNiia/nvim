@@ -1,7 +1,7 @@
 return {
     {
         "chentoast/marks.nvim",
-        lazy = true,
+        lazy = false,
         opts = {
             default_mappings = true,
             cyclic = true,
@@ -20,7 +20,7 @@ return {
 
             require("statuscol").setup({
                 relculright = true,
-                thousands = "'",
+                thousands = " ",
                 ft_ignore = {
                     "Outline",
                     "terminal",
@@ -37,45 +37,36 @@ return {
                     "qf",
                     "Trouble",
                 },
-
                 segments = {
-                    {
-                        text = {
-                            builtin.foldfunc,
-                        },
-                        hl = "FoldColumn",
-                        click = "v:lua.ScFa",
-                    },
                     {
                         sign = {
                             name = {
                                 "Mark",
                                 "neotest",
                                 "Dap",
-                                -- "todo*",
                             },
-                            -- namespace = { "diagnostic*" },
                             maxwidth = 5,
                             colwidth = 1,
                             auto = true,
                             foldclosed = true,
                         },
+                        -- click = "v:lua.ScSa",
                     },
-                    -- {
-                    --     sign = {
-                    --         namespace = { "gitsigns" },
-                    --         maxwidth = 2,
-                    --         colwidth = 1,
-                    --         wrap = true,
-                    --         auto = true,
-                    --     },
-                    --     click = "v:lua.ScSa",
-                    -- },
                     {
                         text = {
                             builtin.lnumfunc,
-                            "│",
                         },
+                        click = "v:lua.ScLa",
+                    },
+                    {
+                        sign = {
+                            namespace = { "gitsigns" },
+                            maxwidth = 1,
+                            colwidth = 1,
+                            wrap = true,
+                            fillchar = "│",
+                        },
+                        click = "v:lua.ScSa",
                     },
                 },
             })
