@@ -11,6 +11,15 @@ local plugins = {
         end,
     },
     {
+        "NvChad/showkeys",
+        cmd = "ShowkeysToggle",
+        opts = {
+            timeout = 3,
+            maxkeys = 5,
+            show_count = true,
+        },
+    },
+    {
         "max397574/better-escape.nvim",
         opts = {
             mappings = {
