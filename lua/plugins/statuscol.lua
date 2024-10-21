@@ -41,16 +41,20 @@ return {
                     {
                         sign = {
                             name = {
-                                "Mark",
-                                "neotest",
-                                "Dap",
+                                ".*",
+                            },
+                            text = {
+                                ".*",
+                            },
+                            namespace = {
+                                ".*",
                             },
                             maxwidth = 5,
                             colwidth = 1,
                             auto = true,
                             foldclosed = true,
                         },
-                        -- click = "v:lua.ScSa",
+                        click = "v:lua.ScSa",
                     },
                     {
                         text = {

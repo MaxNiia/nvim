@@ -55,10 +55,12 @@ return {
                 strings = {},
                 variables = {},
             },
+            default_integrations = true,
             integrations = {
                 alpha = true,
                 beacon = true,
                 cmp = true,
+                grug_far = true,
                 colorful_winsep = {
                     enabled = true,
                     color = "pink",

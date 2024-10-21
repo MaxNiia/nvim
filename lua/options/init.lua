@@ -146,7 +146,7 @@ return {
         callback = nil,
     },
     git_signs = {
-        value = false,
+        value = true,
         key = "gs",
         description = "Toggle git signs",
         prompt = nil,

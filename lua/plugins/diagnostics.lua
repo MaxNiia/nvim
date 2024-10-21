@@ -4,15 +4,14 @@ return {
         event = "VeryLazy",
         opts = {
             signs = {
-                left = "",
-                right = "",
+                left = "",
+                right = "",
                 diag = "●",
                 arrow = "    ",
                 up_arrow = "    ",
                 vertical = " │",
                 vertical_end = " └",
             },
-
             options = {
                 multiple_diag_under_cursor = true,
                 multilines = OPTIONS.multi_line_diagnostics.value,
