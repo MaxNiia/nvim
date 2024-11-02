@@ -36,6 +36,12 @@ if (-not (Get-Command fzf -ErrorAction SilentlyContinue)) {
     scoop install fzf
 }
 
+# Install bat
+if (-not (Get-Command bat -ErrorAction SilentlyContinue)) {
+    Write-Host "bat not installed, installing"
+    scoop install bat
+}
+
 # Install NVM
 if (-not (Test-Path "${HOME}/.nvm/.git")) {
     Write-Host "NVM not installed, installing"
