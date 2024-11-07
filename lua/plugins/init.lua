@@ -180,6 +180,15 @@ local plugins = {
         event = "BufEnter",
     },
     {
+        "OXY2DEV/foldtext.nvim",
+        lazy = false,
+        config = true,
+    },
+    -- {
+    --     "3rd/image.nvim",
+    --     opts = {},
+    -- },
+    {
         "folke/ts-comments.nvim",
         opts = {
             lang = {

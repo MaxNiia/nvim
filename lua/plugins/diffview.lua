@@ -67,38 +67,37 @@ return {
                 done = icons.progress.done,
             },
             view = {
+                -- diff_view = {
+                --     layout = "diff2_horizontal",
+                --     winbar_info = true,
+                -- },
                 merge_tool = {
                     layout = "diff3_mixed",
+                    -- winbar_info = true,
                 },
             },
             hooks = {
                 view_opened = function(
                     _ --[[view]]
                 )
-                    vim.cmd("UfoDetach")
-                    vim.cmd("UfoDisable")
-                    vim.cmd("ColorizerDetachFromBuffer")
                 end,
                 view_closed = function(
                     _ --[[view]]
                 )
-                    vim.cmd("UfoAttach")
-                    vim.cmd("UfoEnable")
-                    vim.cmd("ColorizerReloadAllBuffers")
                 end,
                 view_enter = function(
                     _ --[[view]]
                 )
                     vim.cmd("UfoDetach")
                     vim.cmd("UfoDisable")
-                    vim.cmd("ColorizerDetachFromBuffer")
+                    -- vim.cmd("ColorizerDetachFromBuffer")
                 end,
                 view_leave = function(
                     _ --[[view]]
                 )
                     vim.cmd("UfoAttach")
                     vim.cmd("UfoEnable")
-                    vim.cmd("ColorizerReloadAllBuffers")
+                    -- vim.cmd("ColorizerReloadAllBuffers")
                 end,
             },
         },

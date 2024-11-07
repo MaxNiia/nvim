@@ -40,6 +40,9 @@ return {
         "echasnovski/mini.bracketed",
         version = false,
         event = "BufEnter",
+        opts = {
+            comment = { suffix = "z" },
+        },
         config = true,
     },
     {
@@ -129,7 +132,7 @@ return {
         init = file_functions.init,
         opts = {
             options = {
-                permament_delete = true,
+                permanent_delete = true,
                 use_as_default_explorer = true,
             },
             windows = {

@@ -132,8 +132,8 @@ return {
                     { name = "snp", group_index = 1 },
                     { name = "doxygen", group_index = 1 },
                     { name = "nvim_lsp", group_index = 2 },
-                    { name = "treesitter", group_index = 3 },
-                    { name = "fuzzy_buffer", group_index = 3 },
+                    { name = "treesitter", group_index = 3, max_item_count = 5 },
+                    { name = "fuzzy_buffer", group_index = 3, max_item_count = 5 },
                     { name = "copilot", group_index = 2 },
                 }, {
                     -- {

@@ -6,14 +6,15 @@ return {
             "nvim-telescope/telescope.nvim",
         },
         opts = {
-            preerred_remotes = {
+            preferred_remotes = {
                 CONFIGS.azure_remote.value,
             },
         },
         config = function(_, opts)
             local nio = require("nio")
             nio.run(function()
-                local secret_job = nio.process.run({ cmd = "echo", args = { "$AZURE_TOKEN" } })
+                local secret_job =
+                    nio.process.run({ cmd = "echo", args = { "$AZURE_DEVOPS_EXT_PAT" } })
                 if secret_job then
                     vim.tbl_extend("force", opts, {
                         pat_token = secret_job.stdout.read():sub(1, -2),
