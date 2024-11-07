@@ -133,7 +133,7 @@ return {
                 "basedpyright",
                 "clangd",
                 "lua-language-server",
-                "ruff-lsp",
+                "ruff",
                 "marksman",
                 "bzl",
 

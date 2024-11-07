@@ -17,6 +17,15 @@ if (-not (Get-Command rg -ErrorAction SilentlyContinue)) {
     scoop install ripgrep
 }
 
+# Install lazygit
+if (-not (Get-Command rg -ErrorAction SilentlyContinue)) {
+    Write-Host "lazygit could not be found, installing"
+    # Add the extras bucket
+    scoop bucket add extras
+
+    scoop install lazygit
+}
+
 # Install flake8
 if (-not (Get-Command flake8 -ErrorAction SilentlyContinue)) {
     Write-Host "flake8 could not be found, installing"

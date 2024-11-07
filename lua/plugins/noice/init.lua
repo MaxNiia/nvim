@@ -1,21 +1,21 @@
 local icons = require("utils.icons").diagnostics
 
 return {
-    {
-        "rcarriga/nvim-notify",
-        cond = not vim.g.vscode,
-        lazy = true,
-        event = "VeryLazy",
-        opts = {
-            icons = {
-                ERROR = icons.Error,
-                WARN = icons.Warn,
-                INFO = icons.Info,
-            },
-            render = "wrapped-compact",
-            timeout = 3000,
-        },
-    },
+    -- {
+    --     "rcarriga/nvim-notify",
+    --     cond = not vim.g.vscode,
+    --     lazy = true,
+    --     event = "VeryLazy",
+    --     opts = {
+    --         icons = {
+    --             ERROR = icons.Error,
+    --             WARN = icons.Warn,
+    --             INFO = icons.Info,
+    --         },
+    --         render = "wrapped-compact",
+    --         timeout = 3000,
+    --     },
+    -- },
     {
         "folke/noice.nvim",
         event = "BufEnter",
