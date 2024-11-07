@@ -5,11 +5,11 @@ return {
         cond = not vim.g.vscode,
         event = "BufEnter",
         keys = {
-            -- {
-            --     "<leader>gc",
-            --     "<cmd>G commit<cr>",
-            --     desc = "Git commit",
-            -- },
+            {
+                "<leader>gc",
+                "<cmd>G commit<cr>",
+                desc = "Git commit",
+            },
             -- {
             --     "<leader>gl",
             --     "<cmd>G! log --max-count=50<cr>",
