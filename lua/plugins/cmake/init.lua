@@ -11,7 +11,7 @@ return {
             {
                 "<leader>ct",
                 require("plugins.cmake.utils").select_build_target,
-                desc = "Select launch target",
+                desc = "Select build target",
             },
             {
                 "<leader>cl",
