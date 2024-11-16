@@ -1,4 +1,4 @@
-local slash = _G.IS_WINDOWS and "\\" or "/"
+local slash = "/"
 local file_path = vim.fn.stdpath("cache") .. slash .. "niia.txt"
 
 local separator = ":"
