@@ -62,7 +62,9 @@ return {
         ft = "lua",
         opts = {
             library = {
-                "luvit-meta/library",
+                { path = "luvit-meta/library", words = { "vim%.uv" } },
+                { path = "snacks.nvim", words = { "Snacks" } },
+                { path = "lazy.nvim", words = { "LazyVim" } },
             },
         },
     },
@@ -100,15 +102,18 @@ return {
     },
     {
         "echasnovski/mini.icons",
-        opts = {},
         lazy = true,
-        specs = {
-            { "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
+        opts = {
+            file = {
+                [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
+                ["devcontainer.json"] = { glyph = "", hl = "MiniIconsAzure" },
+            },
+            filetype = {
+                dotenv = { glyph = "", hl = "MiniIconsYellow" },
+            },
         },
         init = function()
             package.preload["nvim-web-devicons"] = function()
-                -- needed since it will be false when loading and mini will fail
-                package.loaded["nvim-web-devicons"] = {}
                 require("mini.icons").mock_nvim_web_devicons()
                 return package.loaded["nvim-web-devicons"]
             end
@@ -145,6 +150,7 @@ return {
     },
     {
         "folke/ts-comments.nvim",
+        event = "VeryLazy",
         opts = {
             lang = {
                 astro = "<!-- %s -->",
@@ -191,7 +197,6 @@ return {
                 vue = "<!-- %s -->",
             },
         },
-        event = "VeryLazy",
     },
     {
         "tpope/vim-abolish",

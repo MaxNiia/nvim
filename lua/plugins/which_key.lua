@@ -1,6 +1,7 @@
 return {
     {
         "folke/which-key.nvim",
+        event = "VeryLazy",
         keys = {
             { "H", "^", mode = { "n", "v", "o" }, desc = "End of line" },
             { "L", "$", mode = { "n", "v", "o" }, desc = "Start of line" },
@@ -122,6 +123,7 @@ return {
                 { "<leader>i", group = "Chat" },
                 { "<leader>m", group = "Man" },
                 { "<leader>r", group = "Refactor" },
+                { "<leader>rp", group = "Print" },
                 { "<leader>rd", group = "Document" },
                 { "<leader>t", group = "Test" },
                 { "<leader>u", group = "Options" },

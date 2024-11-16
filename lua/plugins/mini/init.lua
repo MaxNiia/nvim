@@ -3,7 +3,7 @@ return {
     {
         "echasnovski/mini.move",
         version = false,
-        event = "BufEnter",
+        event = "VeryLazy",
         opts = {
             mappings = {
                 left = "<S-left>",
@@ -22,7 +22,7 @@ return {
     {
         "echasnovski/mini.animate",
         version = false,
-        event = "BufEnter",
+        event = "VeryLazy",
         opts = {
             scroll = {
                 enable = false,
@@ -33,13 +33,18 @@ return {
     {
         "echasnovski/mini.ai",
         version = false,
-        event = "BufEnter",
-        config = true,
+        event = "VeryLazy",
+        opts = {
+            n_lines = 500,
+        },
+        config = function(_, opts)
+            require("mini.ai").setup(opts)
+        end,
     },
     {
         "echasnovski/mini.bracketed",
         version = false,
-        event = "BufEnter",
+        event = "VeryLazy",
         opts = {
             comment = { suffix = "z" },
         },
@@ -48,7 +53,7 @@ return {
     {
         "echasnovski/mini.comment",
         version = false,
-        event = "BufEnter",
+        event = "VeryLazy",
         opts = {
             options = {
                 custom_commentstring = nil,
@@ -60,7 +65,7 @@ return {
     {
         "echasnovski/mini.surround",
         version = false,
-        event = "BufEnter",
+        event = "VeryLazy",
         opts = {
             custom_surroundings = {
                 ["("] = { input = { "%b()", "^.().*().$" }, output = { left = "(", right = ")" } },
@@ -74,7 +79,7 @@ return {
     {
         "echasnovski/mini.cursorword",
         version = false,
-        event = "BufEnter",
+        event = "VeryLazy",
         init = function()
             vim.api.nvim_create_autocmd("User", {
                 pattern = "MiniFilesWindowOpen",
@@ -95,14 +100,13 @@ return {
     {
         "echasnovski/mini.pairs",
         version = false,
-        event = "BufEnter",
+        event = "VeryLazy",
         config = true,
     },
     {
         "echasnovski/mini.files",
-        cond = not vim.g.vscode,
         version = false,
-        event = "BufEnter",
+        event = "VeryLazy",
         keys = {
             {
                 "<leader>e",

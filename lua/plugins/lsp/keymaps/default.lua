@@ -14,22 +14,33 @@ return function(bufnr)
             desc = "Go to definition",
         },
         {
-            "gi",
+            "gI",
             vim.lsp.buf.implementation,
             buffer = bufnr,
             desc = "Go to implementation",
         },
+        { "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
         {
             "gr",
             require("fzf-lua").lsp_references,
             buffer = bufnr,
             desc = "Go to references",
         },
+
         {
-            "<c-s>",
-            vim.lsp.buf.signature_help,
-            buffer = bufnr,
-            desc = "Signature",
+            "gK",
+            function()
+                return vim.lsp.buf.signature_help()
+            end,
+            desc = "Signature Help",
+        },
+        {
+            "<c-k>",
+            function()
+                return vim.lsp.buf.signature_help()
+            end,
+            mode = "i",
+            desc = "Signature Help",
         },
         {
             "<leader>d",
@@ -40,10 +51,24 @@ return function(bufnr)
             desc = "Format",
         },
         {
-            "<leader>a",
+            "<leader>aa",
             vim.lsp.buf.code_action,
             buffer = bufnr,
             desc = "Apply fix",
+        },
+        {
+            "<leader>rc",
+            vim.lsp.codelens.run,
+            desc = "Run Codelens",
+            mode = { "n", "v" },
+            has = "codeLens",
+        },
+        {
+            "<leader>rC",
+            vim.lsp.codelens.refresh,
+            desc = "Refresh & Display Codelens",
+            mode = { "n" },
+            has = "codeLens",
         },
         {
             "<leader>rn",

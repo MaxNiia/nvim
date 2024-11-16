@@ -45,7 +45,7 @@ return {
                 mode = { "n", "x" },
             },
             {
-                "<leader>rp",
+                "<leader>rpp",
                 function()
                     require("refactoring").debug.printf({ below = false })
                 end,
@@ -53,7 +53,7 @@ return {
                 mode = "n",
             },
             {
-                "<leader>rV",
+                "<leader>rpV",
                 function()
                     require("refactoring").debug.print_var({})
                 end,
@@ -62,7 +62,7 @@ return {
             },
 
             {
-                "<leader>rc",
+                "<leader>rpc",
                 function()
                     require("refactoring").debug.cleanup({})
                 end,

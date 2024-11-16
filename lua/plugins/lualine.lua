@@ -4,6 +4,16 @@ return {
     {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
+        init = function()
+            vim.g.lualine_laststatus = vim.o.laststatus
+            if vim.fn.argc(-1) > 0 then
+                -- set an empty statusline till lualine loads
+                vim.o.statusline = " "
+            else
+                -- hide the statusline on the starter page
+                vim.o.laststatus = 0
+            end
+        end,
         opts = function()
             return {
                 options = {
@@ -43,11 +53,11 @@ return {
                     ignore_focus = {},
                     always_divide_middle = true,
                     always_show_tabline = true,
-                    globalstatus = true,
+                    globalstatus = vim.o.laststatus == 3,
                     refresh = {
-                        statusline = 1000,
-                        tabline = 1000,
-                        winbar = 1000,
+                        statusline = 100,
+                        tabline = 100,
+                        winbar = 100,
                     },
                 },
                 extensions = {
@@ -143,8 +153,17 @@ return {
                         },
                     },
                     lualine_c = {},
-                    lualine_x = {},
-                    lualine_y = {
+                    lualine_x = {
+                        {
+                            function()
+                                return require("noice").api.status.command.get()
+                            end,
+                            cond = function()
+                                return package.loaded["noice"]
+                                    and require("noice").api.status.command.has()
+                            end,
+                            color = { fg = "#ff9e64" },
+                        },
                         {
                             function()
                                 return require("noice").api.status.mode.get()
@@ -156,10 +175,26 @@ return {
                             color = { fg = "#ff9e64" },
                         },
                         {
-                            "location",
+                            function()
+                                return "  " .. require("dap").status()
+                            end,
+                            cond = function()
+                                return package.loaded["dap"] and require("dap").status() ~= ""
+                            end,
+                            color = { fg = "#ff9e64" },
                         },
                         {
+                            require("lazy.status").updates,
+                            cond = require("lazy.status").has_updates,
+                            color = { fg = "#ff9e64" },
+                        },
+                    },
+                    lualine_y = {
+                        {
                             "progress",
+                        },
+                        {
+                            "location",
                         },
                     },
                     lualine_z = {

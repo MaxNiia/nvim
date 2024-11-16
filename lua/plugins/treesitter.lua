@@ -26,9 +26,85 @@ return {
             },
         },
         build = ":TSUpdate",
-        event = { "BufReadPost", "BufNewFile" },
+        cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
+        lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
+        event = "VeryLazy",
+        keys = {
+            { "<c-space>", desc = "Increment Selection" },
+            { "<bs>", desc = "Decrement Selection", mode = "x" },
+        },
+        init = function(plugin)
+            -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
+            -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
+            -- no longer trigger the **nvim-treesitter** module to be loaded in time.
+            -- Luckily, the only things that those plugins need are the custom queries, which we make available
+            -- during startup.
+            require("lazy.core.loader").add_to_rtp(plugin)
+            require("nvim-treesitter.query_predicates")
+        end,
         opts = {
+            ensure_installed = {
+                "bash",
+                "c",
+                "cpp",
+                "diff",
+                "cmake",
+                "rust",
+                "html",
+                "javascript",
+                "jsdoc",
+                "json",
+                "jsonc",
+                "lua",
+                "luadoc",
+                "luap",
+                "markdown",
+                "markdown_inline",
+                "printf",
+                "python",
+                "query",
+                "regex",
+                "toml",
+                "tsx",
+                "typescript",
+                "vim",
+                "vimdoc",
+                "xml",
+                "yaml",
+            },
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    init_selection = "<C-space>",
+                    node_incremental = "<C-space>",
+                    scope_incremental = false,
+                    node_decremental = "<bs>",
+                },
+            },
             textobjects = {
+                move = {
+                    enable = true,
+                    goto_next_start = {
+                        ["]f"] = "@function.outer",
+                        ["]c"] = "@class.outer",
+                        ["]a"] = "@parameter.inner",
+                    },
+                    goto_next_end = {
+                        ["]F"] = "@function.outer",
+                        ["]C"] = "@class.outer",
+                        ["]A"] = "@parameter.inner",
+                    },
+                    goto_previous_start = {
+                        ["[f"] = "@function.outer",
+                        ["[c"] = "@class.outer",
+                        ["[a"] = "@parameter.inner",
+                    },
+                    goto_previous_end = {
+                        ["[F"] = "@function.outer",
+                        ["[C"] = "@class.outer",
+                        ["[A"] = "@parameter.inner",
+                    },
+                },
                 select = {
                     enable = true,
                     lookahead = true,
@@ -62,9 +138,6 @@ return {
             },
             highlight = {
                 enable = true,
-                use_languagetree = true,
-                -- Uses vim regex highlighting
-                additional_vim_regex_highlighting = true,
             },
             rainbow = {
                 enable = true,
@@ -74,22 +147,6 @@ return {
             },
             indent = {
                 enable = true,
-                disable = { "yaml" },
-            },
-            ensured_install = {
-                "bash",
-                "c",
-                "cpp",
-                "lua",
-                "markdown",
-                "markdown_inline",
-                "python",
-                "regex",
-                "rust",
-                "vim",
-                "vimdoc",
-                "json",
-                "yaml",
             },
             auto_install = true,
         },
