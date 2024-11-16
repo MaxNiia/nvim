@@ -1,27 +1,33 @@
-local toggleTerminal = require("plugins.toggleterm.utils").toggleTerminal
-local termExec = require("plugins.toggleterm.utils").termExec
-
 return {
     {
         "akinsho/toggleterm.nvim",
         keys = {
             {
-                "<f9>",
-                termExec(),
-                desc = "Terminal execute",
-                mode = { "n", "t" },
-                expr = true,
-            },
-            {
                 "<f6>",
-                toggleTerminal("vertical"),
+                function()
+                    local term_number = vim.v.count
+                    return "<cmd>" .. tostring(term_number) .. "ToggleTerm direction=vertical<cr>"
+                end,
                 desc = "Toggle vertical",
                 mode = { "n", "t" },
                 expr = true,
             },
             {
                 "<f7>",
-                toggleTerminal("float"),
+                function()
+                    local term_number = vim.v.count
+                    return "<cmd>" .. tostring(term_number) .. "ToggleTerm direction=horizontal<cr>"
+                end,
+                desc = "Toggle vertical",
+                mode = { "n", "t" },
+                expr = true,
+            },
+            {
+                "<f8>",
+                function()
+                    local term_number = vim.v.count
+                    return "<cmd>" .. tostring(term_number) .. "ToggleTerm direction=float<cr>"
+                end,
                 desc = "Toggle float",
                 mode = { "n", "t" },
                 expr = true,
