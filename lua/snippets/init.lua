@@ -11,18 +11,17 @@ local snippets_by_filetype = {
     },
 }
 
-table.insert(
-    snippets_by_filetype.cmake,
-    { trigger = "copyright", body = CONFIGS.copyright_text.value("#") }
-)
-table.insert(
-    snippets_by_filetype.c,
-    { trigger = "copyright", body = CONFIGS.copyright_text.value("//") }
-)
-table.insert(
-    snippets_by_filetype.cpp,
-    { trigger = "copyright", body = CONFIGS.copyright_text.value("//") }
-)
+local copyright_text = function(comment_string)
+    local output_text = ""
+    for _, v in ipairs(vim.g.copyright_text) do
+        output_text = output_text .. comment_string .. " " .. v .. "\n"
+    end
+    return output_text
+end
+
+table.insert(snippets_by_filetype.cmake, { trigger = "copyright", body = copyright_text("#") })
+table.insert(snippets_by_filetype.c, { trigger = "copyright", body = copyright_text("//") })
+table.insert(snippets_by_filetype.cpp, { trigger = "copyright", body = copyright_text("//") })
 
 local function get_buf_snips()
     local ft = vim.bo.filetype

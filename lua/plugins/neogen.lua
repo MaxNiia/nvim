@@ -1,6 +1,6 @@
-local start = CONFIGS.doxygen_comment_strings.start
-local middle = CONFIGS.doxygen_comment_strings.middle
-local stop = CONFIGS.doxygen_comment_strings.stop
+local start = vim.g.doxygen_comment_strings.start
+local middle = vim.g.doxygen_comment_strings.middle
+local stop = vim.g.doxygen_comment_strings.stop
 local my_doxygen = {}
 
 local i = {
@@ -23,7 +23,7 @@ local i = {
     Kwargs = "kwargs",
 }
 
-if CONFIGS.doxygen_comment_strings.start ~= "" then
+if start ~= "" then
     my_doxygen = {
         { nil, start, { no_results = true, type = { "func", "file", "class" } } },
         { nil, middle .. "@file", { no_results = true, type = { "file" } } },

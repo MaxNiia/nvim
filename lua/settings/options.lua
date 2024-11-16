@@ -1,9 +1,9 @@
 -- Global
+vim.g.have_nerd_font = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
-vim.g.have_nerd_font = true
 
 -- Options
 vim.opt.ai = true
@@ -19,14 +19,15 @@ vim.opt.cul = true
 vim.opt.culopt = "both"
 vim.opt.cursorline = true
 vim.opt.expandtab = true
+vim.opt.exrc = true
 vim.opt.foldcolumn = "auto:1"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 vim.opt.hidden = true
 vim.opt.history = 1000
 vim.opt.ignorecase = true
-vim.opt.incsearch = true
 vim.opt.inccommand = "split"
+vim.opt.incsearch = true
 vim.opt.laststatus = 2
 vim.opt.mousemodel = "extend"
 vim.opt.number = OPTIONS.number.value

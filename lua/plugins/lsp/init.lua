@@ -102,7 +102,6 @@ return {
                 timeout_ms = nil,
             },
             setup = {},
-            servers = require("plugins.lsp.servers"),
         },
         config = function(_, opts)
             local ok, wf = pcall(require, "vim.lsp._watchfiles")
@@ -113,6 +112,7 @@ return {
                 end
             end
 
+            local servers = require("plugins.lsp.servers")
             local lspconfig = require("lspconfig")
 
             for type, icon in pairs(require("utils.icons").diagnostics) do
@@ -125,7 +125,6 @@ return {
 
             vim.diagnostic.config(opts.diagnostics)
 
-            local servers = opts.servers
             local capabilities = require("cmp_nvim_lsp").default_capabilities(
                 vim.lsp.protocol.make_client_capabilities()
             )

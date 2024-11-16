@@ -72,10 +72,10 @@ return {
         },
         opts = {
             printf_statements = {
-                cpp = CONFIGS.cpp_print_statements.default,
+                cpp = vim.g.cpp_print_statements.default,
             },
             print_var_statements = {
-                cpp = CONFIGS.cpp_print_statements.variable,
+                cpp = vim.g.cpp_print_statements.variable,
             },
             extract_var_statements = {
                 cpp = "%s{%s};",

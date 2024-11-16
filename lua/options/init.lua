@@ -249,13 +249,6 @@ return {
         prompt = nil,
         callback = nil,
     },
-    external = {
-        value = {},
-        key = "ex",
-        description = "External modules",
-        prompt = { add = { name = { "path" } }, remove = "name" },
-        callback = nil,
-    },
     multi_line_diagnostics = {
         value = true,
         key = "ml",

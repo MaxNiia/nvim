@@ -7,7 +7,7 @@ return {
         },
         opts = {
             preferred_remotes = {
-                CONFIGS.azure_remote.value,
+                vim.g.azure_remote,
             },
         },
         config = function(_, opts)
