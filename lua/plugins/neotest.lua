@@ -1,15 +1,12 @@
 return {
     {
         "nvim-neotest/neotest",
-        cond = not vim.g.vscode,
         dependencies = {
             "alfaix/neotest-gtest",
             "antoinemadec/FixCursorHold.nvim",
             "nvim-neotest/nvim-nio",
             "nvim-treesitter/nvim-treesitter",
         },
-        lazy = true,
-        event = "VeryLazy",
         keys = {
             {
                 "<leader>tr",

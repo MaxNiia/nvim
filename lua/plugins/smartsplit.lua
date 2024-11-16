@@ -1,12 +1,9 @@
 return {
     {
         "mrjones2014/smart-splits.nvim",
-        cond = not vim.g.vscode,
         dependencies = {
             "kwkarlwang/bufresize.nvim",
         },
-        lazy = true,
-        event = "VimEnter",
         opts = {
             resize_mode = {
                 silent = true,
@@ -23,29 +20,115 @@ return {
             default_amount = 5,
             at_edge = "wrap",
         },
+        keys = {
+            {
+                "<C-h>",
+                function()
+                    require("smart-splits").move_cursor_left()
+                end,
+                desc = "Move cursor left",
+                mode = "n",
+            },
+            {
+                "<C-j>",
+                function()
+                    require("smart-splits").move_cursor_down()
+                end,
+                desc = "Move cursor down",
+                mode = "n",
+            },
+            {
+                "<C-k>",
+                function()
+                    require("smart-splits").move_cursor_up()
+                end,
+                desc = "Move cursor up",
+                mode = "n",
+            },
+            {
+                "<C-l>",
+                function()
+                    require("smart-splits").move_cursor_right()
+                end,
+                desc = "Move cursor right",
+                mode = "n",
+            },
+            {
+                "<C-\\>",
+                function()
+                    require("smart-splits").move_cursor_previous()
+                end,
+                desc = "Move cursor previous",
+                mode = "n",
+            },
+            {
+                "<A-h>",
+                function()
+                    require("smart-splits").resize_left()
+                end,
+                desc = "Resize left",
+                mode = "n",
+            },
+            {
+                "<A-j>",
+                function()
+                    require("smart-splits").resize_down()
+                end,
+                desc = "Resize down",
+                mode = "n",
+            },
+            {
+                "<A-k>",
+                function()
+                    require("smart-splits").resize_up()
+                end,
+                desc = "Resize up",
+                mode = "n",
+            },
+            {
+                "<A-l>",
+                function()
+                    require("smart-splits").resize_right()
+                end,
+                desc = "Resize right",
+                mode = "n",
+            },
+
+            {
+                "<leader><leader>h",
+                function()
+                    require("smart-splits").swap_buf_left()
+                end,
+                desc = "Swap left",
+                mode = "n",
+            },
+            {
+                "<leader><leader>j",
+                function()
+                    require("smart-splits").swap_buf_down()
+                end,
+                desc = "Swap down",
+                mode = "n",
+            },
+            {
+                "<leader><leader>k",
+                function()
+                    require("smart-splits").swap_buf_up()
+                end,
+                desc = "Swap up",
+                mode = "n",
+            },
+            {
+                "<leader><leader>l",
+                function()
+                    require("smart-splits").swap_buf_right()
+                end,
+                desc = "Swap right",
+                mode = "n",
+            },
+        },
         config = function(_, opts)
             require("smart-splits").setup(opts)
-
-            -- moving between splits
-            vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
-            vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
-            vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
-            vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
-            vim.keymap.set("n", "<C-\\>", require("smart-splits").move_cursor_previous)
-
-            -- resizing splits
-            -- these keymaps will also accept a range,
-            -- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
-            vim.keymap.set("n", "<A-h>", require("smart-splits").resize_left)
-            vim.keymap.set("n", "<A-j>", require("smart-splits").resize_down)
-            vim.keymap.set("n", "<A-k>", require("smart-splits").resize_up)
-            vim.keymap.set("n", "<A-l>", require("smart-splits").resize_right)
-
-            -- swapping buffers between windows
-            vim.keymap.set("n", "<leader><leader>h", require("smart-splits").swap_buf_left)
-            vim.keymap.set("n", "<leader><leader>j", require("smart-splits").swap_buf_down)
-            vim.keymap.set("n", "<leader><leader>k", require("smart-splits").swap_buf_up)
-            vim.keymap.set("n", "<leader><leader>l", require("smart-splits").swap_buf_right)
         end,
     },
 }

@@ -3,9 +3,7 @@ local icons = require("utils.icons")
 return {
     {
         "nvim-lualine/lualine.nvim",
-        lazy = false,
-        -- event = "BufEnter",
-        cond = not vim.g.vscode,
+        event = "BufEnter",
         opts = function()
             return {
                 options = {

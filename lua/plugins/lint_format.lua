@@ -2,7 +2,6 @@ return {
     {
         "mfussenegger/nvim-lint",
         event = "BufReadPre",
-        cond = not vim.g.vscode,
         config = function()
             local lint = require("lint")
             lint.linters_by_ft = {
@@ -63,7 +62,6 @@ return {
     },
     {
         "stevearc/conform.nvim",
-        cond = not vim.g.vscode,
         init = function()
             vim.g.disable_autoformat = false
             vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
@@ -123,9 +121,7 @@ return {
     },
     {
         "williamboman/mason.nvim",
-        event = "VeryLazy",
         cmd = "Mason",
-        cond = not vim.g.vscode,
         opts = {
             ensure_installed = {
                 -- NOTE: LSP

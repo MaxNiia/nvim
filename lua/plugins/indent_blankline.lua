@@ -2,7 +2,6 @@ return {
     {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
-        lazy = true,
         event = { "BufEnter" },
         init = function()
             vim.opt.list = true

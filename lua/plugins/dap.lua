@@ -1,20 +1,6 @@
-local function eval()
-    return require("dapui").eval()
-end
-
-local function toggle()
-    return require("dapui").toggle()
-end
-
-local function hover()
-    return require("dap.ui.widgets").hover()
-end
-
 return {
     {
         "mfussenegger/nvim-dap",
-        lazy = true,
-        cond = not vim.g.vscode,
         keys = {
             {
                 "<f1>",
@@ -196,9 +182,30 @@ return {
     {
         "rcarriga/nvim-dap-ui",
         keys = {
-            { "<leader>Dt", toggle, mode = "n", desc = "Toggle UI" },
-            { "<leader>Dh", hover, mode = "n", desc = "Hover" },
-            { "<leader>De", eval, mode = { "n", "x" }, desc = "Evaluate expression" },
+            {
+                "<leader>Dt",
+                function()
+                    return require("dapui").toggle()
+                end,
+                mode = "n",
+                desc = "Toggle UI",
+            },
+            {
+                "<leader>Dh",
+                function()
+                    require("dap.ui.widgets").hover()
+                end,
+                mode = "n",
+                desc = "Hover",
+            },
+            {
+                "<leader>De",
+                function()
+                    require("dapui").eval()
+                end,
+                mode = { "n", "x" },
+                desc = "Evaluate expression",
+            },
         },
         config = function(_, opts)
             local dap, dapui = require("dap"), require("dapui")

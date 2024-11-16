@@ -1,8 +1,6 @@
 return {
     {
         "lewis6991/gitsigns.nvim",
-        lazy = true,
-        cond = not vim.g.vscode,
         event = "BufEnter",
         opts = {
             signcolumn = true,
@@ -150,7 +148,7 @@ return {
                     },
                     {
                         "<leader>gp",
-                        gs.preview_hunk_inline,
+                        gs.preview_hunk,
                         mode = "n",
                         buffer = bufnr,
                         desc = "Preview Hunk",

@@ -2,7 +2,6 @@ local icons = require("utils.icons")
 return {
     {
         "sindrets/diffview.nvim",
-        cond = not vim.g.vscode,
         keys = {
             {
                 "<leader>go",
@@ -20,7 +19,6 @@ return {
                 desc = "Close diffview",
             },
         },
-        event = "BufEnter",
         opts = {
             diff_binaries = false,
             enhanced_diff_hl = true,
@@ -80,14 +78,12 @@ return {
                 )
                     vim.cmd("UfoDetach")
                     vim.cmd("UfoDisable")
-                    -- vim.cmd("ColorizerDetachFromBuffer")
                 end,
                 view_leave = function(
                     _ --[[view]]
                 )
                     vim.cmd("UfoAttach")
                     vim.cmd("UfoEnable")
-                    -- vim.cmd("ColorizerReloadAllBuffers")
                 end,
             },
         },

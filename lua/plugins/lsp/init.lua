@@ -2,8 +2,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         lazy = true,
-        cond = not vim.g.vscode,
-        event = { "BufReadPre", "BufNewFile" },
+        event = { "BufEnter" },
         dependencies = {
             "williamboman/mason-lspconfig.nvim",
             "onsails/lspkind.nvim",
@@ -33,7 +32,7 @@ return {
                     "mortepau/codicons.nvim",
                 },
                 lazy = true,
-                config = function() end,
+                config = true,
                 opts = {
                     ast = {
                         --These require codicons (https://github.com/microsoft/vscode-codicons)

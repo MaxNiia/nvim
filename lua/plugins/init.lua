@@ -68,38 +68,6 @@ return {
     },
     { "Bilal2453/luvit-meta", lazy = true },
     {
-        "tzachar/highlight-undo.nvim",
-        event = { "BufEnter" },
-        opts = {
-            duration = 300,
-            undo = {
-                hlgroup = "HighlightUndo",
-                mode = "n",
-                lhs = "u",
-                map = "undo",
-                opts = {},
-            },
-            redo = {
-                hlgroup = "HighlightUndo",
-                mode = "n",
-                lhs = "<C-r>",
-                map = "redo",
-                opts = {},
-            },
-            highlight_for_count = true,
-        },
-        config = true,
-    },
-    {
-        "NMAC427/guess-indent.nvim",
-        lazy = true,
-        event = "BufEnter",
-        opts = {
-            auto_cmd = true,
-            override_editorconfig = false,
-        },
-    },
-    {
         "stevearc/dressing.nvim",
         lazy = "VeryLazy",
         opts = {
@@ -148,7 +116,6 @@ return {
     },
     {
         "folke/todo-comments.nvim",
-        lazy = true,
         event = "BufEnter",
         opts = {
             signs = true,
@@ -172,19 +139,10 @@ return {
         },
     },
     {
-        "DanilaMihailov/beacon.nvim",
-        lazy = true,
-        event = "BufEnter",
-    },
-    {
         "OXY2DEV/foldtext.nvim",
         lazy = false,
         config = true,
     },
-    -- {
-    --     "3rd/image.nvim",
-    --     opts = {},
-    -- },
     {
         "folke/ts-comments.nvim",
         opts = {
