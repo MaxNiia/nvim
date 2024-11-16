@@ -8,12 +8,6 @@ vim.cmd([[
         autocmd FileType qf setlocal nornu
     augroup END
 
-
-    augroup TelescopePreview
-        autocmd User TelescopePreviewerLoaded setlocal wrap
-        autocmd User TelescopePreviewerLoaded setlocal nu
-    augroup END
-
     augroup TerminalOptions
         autocmd TermOpen * setlocal nospell
         autocmd TermOpen * setlocal nornu

@@ -89,10 +89,6 @@ return {
                 ufo = true,
                 noice = true,
                 lsp_trouble = true,
-                telescope = {
-                    enabled = true,
-                    style = "nvchad",
-                },
                 treesitter = true,
                 treesitter_context = true,
                 rainbow_delimiters = true,

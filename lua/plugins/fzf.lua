@@ -1,7 +1,6 @@
 return {
     {
         "ibhagwan/fzf-lua",
-        cond = OPTIONS.fzf.value,
         cmd = {
             "FzfLua",
         },
@@ -14,12 +13,6 @@ return {
                 desc = "Grep string (root)",
                 mode = { "v" },
             },
-            -- {
-            --     "<leader>S",
-            --     "<cmd>FzfLua grep_visual cwd=false<cr>",
-            --     desc = "Grep string (cwd)",
-            --     mode = { "v" },
-            -- },
             {
                 "<leader>s",
 
@@ -27,19 +20,13 @@ return {
                 desc = "Grep string (root)",
                 mode = { "n" },
             },
-            -- {
-            --     "<leader>S",
-            --     "<cmd>FzfLua grep_cword cwd=false<cr>",
-            --     desc = "Grep string (cwd)",
-            --     mode = { "n" },
-            -- },
             -- LEADER f
-            -- {
-            --     "<leader>fc",
-            --     "<cmd>FzfLua colorschemes<cr>",
-            --     desc = "Colorscheme",
-            --     mode = { "n" },
-            -- },
+            {
+                "<leader>fc",
+                "<cmd>FzfLua colorschemes<cr>",
+                desc = "Colorscheme",
+                mode = { "n" },
+            },
             { "<leader>fr", "<cmd>FzfLua resume<cr>", desc = "Resume", mode = { "v", "n" } },
             {
                 "<leader>ft",

@@ -22,7 +22,6 @@ return {
             "theHamsta/nvim-dap-virtual-text",
             "rcarriga/cmp-dap",
             "jay-babu/mason-nvim-dap.nvim",
-            "nvim-telescope/telescope-dap.nvim",
         },
         opts = {
             enabled = true,
@@ -47,10 +46,6 @@ return {
                     linehl = sign[3],
                     numhl = sign[3],
                 })
-            end
-
-            if not OPTIONS.fzf.value then
-                require("telescope").load_extension("dap")
             end
 
             require("nvim-dap-virtual-text").setup(opts)

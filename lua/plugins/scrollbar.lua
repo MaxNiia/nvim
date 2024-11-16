@@ -121,7 +121,6 @@ return {
                 "cmp_menu",
                 "noice",
                 "prompt",
-                "TelescopePrompt",
             },
             autocmd = {
                 render = {

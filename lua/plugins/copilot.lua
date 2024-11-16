@@ -72,25 +72,6 @@ return {
                 "<cmd>CopilotChatToggle<cr>",
                 desc = "Toggle",
             },
-            -- Show help actions with telescope
-            {
-                "<leader>ih",
-                function()
-                    local actions = require("CopilotChat.actions")
-                    require("CopilotChat.integrations.telescope").pick(actions.help_actions())
-                end,
-                desc = "Help actions",
-            },
-            -- Show prompts actions with telescope
-            {
-                "<leader>ip",
-                function()
-                    local actions = require("CopilotChat.actions")
-                    require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
-                end,
-                desc = "Prompt actions",
-                mode = { "v", "n" },
-            },
             {
                 "<leader>iq",
                 function()

@@ -207,13 +207,6 @@ return {
         prompt = nil,
         callback = nil,
     },
-    fzf = {
-        value = false,
-        key = "fz",
-        description = "Enable fzf",
-        prompt = nil,
-        callback = nil,
-    },
     transparent = {
         value = false,
         key = "tr",

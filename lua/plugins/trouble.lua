@@ -68,9 +68,6 @@ return {
                 diagnostics = {
                     sort = { "severity", "filename", "pos", "message" },
                 },
-                telescope = {
-                    sort = { "pos", "filename", "severity", "message" },
-                },
                 quickfix = {
                     sort = { "pos", "filename", "severity", "message" },
                 },

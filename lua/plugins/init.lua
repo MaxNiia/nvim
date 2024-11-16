@@ -110,10 +110,7 @@ local plugins = {
         config = function(_, opts)
             opts = vim.tbl_extend("force", opts, {
                 select = {
-                    telescope = {
-                        initial_mode = "normal",
-                        layout_strategy = "cursor",
-                    },
+                    backend = { "fzf_lua" },
                 },
             })
             require("dressing").setup(opts)

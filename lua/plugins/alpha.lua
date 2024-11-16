@@ -92,30 +92,11 @@ return {
 
             dashboard.section.header.val = vim.split(logo, "\n")
             dashboard.section.buttons.val = {
-                dashboard.button(
-                    "f",
-                    " " .. " Find file",
-                    OPTIONS.fzf.value and ":FzfLua files<cr>"
-                        or ":lua require('telescope').find_files() <CR>"
-                ),
-                dashboard.button(
-                    "p",
-                    " " .. " Project",
-                    ":lua require('telescope').extensions.project.project{display_type = 'full'}<CR>"
-                ),
+                dashboard.button("f", " " .. " Find file", ":FzfLua files<cr>"),
+                dashboard.button("p", " " .. " Project", ""),
                 dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
-                dashboard.button(
-                    "r",
-                    " " .. " Recent files",
-                    OPTIONS.fzf.value and ":FzfLua oldfiles<cr>"
-                        or ":lua require('telescope').oldfiles()<CR>"
-                ),
-                dashboard.button(
-                    "s",
-                    " " .. " Find text",
-                    OPTIONS.fzf.value and ":FzfLua files<cr>"
-                        or ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>"
-                ),
+                dashboard.button("r", " " .. " Recent files", ":FzfLua oldfiles<cr>"),
+                dashboard.button("s", " " .. " Find text", ":FzfLua files<cr>"),
                 dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
                 dashboard.button("l", "z " .. " Lazy", ":Lazy<CR>"),
                 dashboard.button("q", " " .. " Quit", ":qa<CR>"),
