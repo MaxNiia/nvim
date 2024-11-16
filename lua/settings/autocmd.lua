@@ -1,13 +1,4 @@
 vim.cmd([[
-    augroup MiniFilesOptions
-        autocmd FileType minifiles setlocal conceallevel=2
-    augroup END
-
-    augroup QuickfixOptions
-        autocmd FileType qf setlocal nonu
-        autocmd FileType qf setlocal nornu
-    augroup END
-
     augroup TerminalOptions
         autocmd TermOpen * setlocal nospell
         autocmd TermOpen * setlocal nornu
@@ -23,10 +14,6 @@ vim.cmd([[
     augroup zoom
         autocmd!
         autocmd VimResized * wincmd =
-    augroup END
-
-    augroup FileHandler
-        autocmd VimLeavePre * lua require("options.filehandler").save()
     augroup END
 ]])
 

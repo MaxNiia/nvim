@@ -104,6 +104,14 @@ end
 return {
     init = function()
         vim.api.nvim_create_autocmd("User", {
+            pattern = "MiniFilesWindowUpdate",
+            callback = function(args)
+                vim.wo[args.data.win_id].number = true
+                vim.wo[args.data.win_id].relativenumber = true
+                vim.wo[args.data.win_id].conceallevel = 2
+            end,
+        })
+        vim.api.nvim_create_autocmd("User", {
             pattern = "MiniFilesBufferCreate",
             callback = function(args)
                 local buf_id = args.data.buf_id

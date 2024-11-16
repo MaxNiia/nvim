@@ -20,8 +20,9 @@ return function(bufnr)
             desc = "Go to implementation",
         },
         { "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
+        { "gr", vim.lsp.buf.references, desc = "References", buffer = bufnr },
         {
-            "gr",
+            "gR",
             require("fzf-lua").lsp_references,
             buffer = bufnr,
             desc = "Go to references",
