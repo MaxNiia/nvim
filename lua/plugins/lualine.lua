@@ -153,11 +153,6 @@ return {
                                     .. (require("resession").get_current() ~= nil and "On" or "Off")
                             end,
                         },
-                        {
-                            function()
-                                return require("plugins.lualine.copilot").get_status()
-                            end,
-                        },
                     },
                     lualine_y = {
                         {

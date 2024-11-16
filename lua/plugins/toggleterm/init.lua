@@ -4,8 +4,6 @@ local termExec = require("plugins.toggleterm.utils").termExec
 return {
     {
         "akinsho/toggleterm.nvim",
-        cond = OPTIONS.toggleterm.value and not vim.g.vscode,
-        event = "BufEnter",
         keys = {
             {
                 "<f9>",

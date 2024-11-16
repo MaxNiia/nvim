@@ -4,7 +4,7 @@ return {
         event = "VeryLazy",
         keys = {
             {
-                OPTIONS.jump2d.value and "<cr>" or "<leader>j",
+                "<leader>j",
                 mode = { "n", "x", "o" },
                 function()
                     local Flash = require("flash")

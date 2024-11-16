@@ -1,6 +1,3 @@
-OPTIONS = require("options")
-require("options.filehandler").load()
-
 require("settings")
 
 -- Bootstrap lazy.nvim
@@ -17,6 +14,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins", {})
-
--- Load current theme, decided by <leader>fc.
-require("current-theme")
+vim.cmd("colorscheme catppuccin-mocha")

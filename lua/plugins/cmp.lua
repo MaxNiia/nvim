@@ -9,15 +9,6 @@ local has_words_before = function()
 end
 return {
     {
-        "zbirenbaum/copilot-cmp",
-        lazy = true,
-        config = function()
-            require("copilot_cmp").setup({
-                fix_pairs = false,
-            })
-        end,
-    },
-    {
         "hrsh7th/nvim-cmp",
         cond = not vim.g.vscode,
         event = "InsertEnter",
@@ -66,7 +57,6 @@ return {
                 sorting = {
                     priority_weight = 2,
                     comparators = {
-                        require("copilot_cmp.comparators").prioritize,
                         -- Below is the default comparator list and order for nvim-cmp
                         require("clangd_extensions.cmp_scores"),
                         cmp.config.compare.offset,
@@ -134,7 +124,6 @@ return {
                     { name = "nvim_lsp", group_index = 2 },
                     { name = "treesitter", group_index = 3, max_item_count = 5 },
                     { name = "fuzzy_buffer", group_index = 3, max_item_count = 5 },
-                    { name = "copilot", group_index = 2 },
                 }, {
                     -- {
                     --     name = "buffer",

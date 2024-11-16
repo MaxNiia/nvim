@@ -5,9 +5,9 @@ return {
         cond = not vim.g.vscode,
         event = "BufEnter",
         opts = {
-            signcolumn = OPTIONS.git_signs.value,
+            signcolumn = true,
             numhl = true,
-            linehl = OPTIONS.git_line_hl.value,
+            linehl = false,
             word_diff = false,
             watch_gitdir = {
                 follow_files = true,
