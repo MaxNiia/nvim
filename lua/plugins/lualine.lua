@@ -59,23 +59,6 @@ return {
                     "mason",
                     "trouble",
                 },
-                tabline = {
-                    lualine_a = {
-                        {
-                            "tabs",
-                            mode = 2,
-                            path = 0,
-                            use_mode_colors = true,
-                            show_modified_status = true,
-                            symbols = {
-                                modified = icons.misc.modified,
-                            },
-                        },
-                    },
-                    lualine_b = {
-                        { "aerial", colored = true },
-                    },
-                },
                 inactive_winbar = {
                     lualine_a = {
                         {
@@ -141,18 +124,37 @@ return {
                 },
                 -- Statusline
                 sections = {
-                    lualine_a = { "buffers" },
-                    lualine_b = {},
-                    lualine_c = {},
-                    lualine_x = {
+                    lualine_a = {
                         {
-                            function()
-                                return "󰑓 "
-                                    .. (require("resession").get_current() ~= nil and "On" or "Off")
-                            end,
+                            "tabs",
+                            mode = 2,
+                            path = 0,
+                            use_mode_colors = true,
+                            show_modified_status = true,
+                            symbols = {
+                                modified = icons.misc.modified,
+                            },
                         },
                     },
+                    lualine_b = {
+                        {
+                            "aerial",
+                            colored = true,
+                        },
+                    },
+                    lualine_c = {},
+                    lualine_x = {},
                     lualine_y = {
+                        {
+                            function()
+                                return require("noice").api.status.mode.get()
+                            end,
+                            cond = function()
+                                return package.loaded["noice"]
+                                    and require("noice").api.status.mode.has()
+                            end,
+                            color = { fg = "#ff9e64" },
+                        },
                         {
                             "location",
                         },
