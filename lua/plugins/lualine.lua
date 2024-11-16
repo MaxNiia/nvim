@@ -3,7 +3,7 @@ local icons = require("utils.icons")
 return {
     {
         "nvim-lualine/lualine.nvim",
-        event = "BufEnter",
+        event = "VeryLazy",
         opts = function()
             return {
                 options = {

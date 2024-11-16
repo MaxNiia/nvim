@@ -2,7 +2,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         lazy = true,
-        event = { "BufEnter" },
+        event = "VeryLazy",
         dependencies = {
             "williamboman/mason-lspconfig.nvim",
             "onsails/lspkind.nvim",
