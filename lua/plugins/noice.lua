@@ -12,7 +12,7 @@ return {
         },
         opts = {
             presets = {
-                bottom_search = false,
+                bottom_search = true,
                 command_palette = true,
                 inc_rename = false,
                 long_message_to_split = true,
@@ -49,7 +49,7 @@ return {
                 },
             },
             cmdline = {
-                view = "cmdline_popup",
+                view = "cmdline",
                 format = {
                     git = {
                         pattern = {
