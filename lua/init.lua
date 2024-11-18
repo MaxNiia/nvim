@@ -1,6 +1,7 @@
 return {
     start = function(opts)
         vim.g.cat_oled = opts.cat_oled
+        vim.g.noice_popup = opts.noice_popup
 
         require("settings")
 

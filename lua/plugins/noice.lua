@@ -12,7 +12,7 @@ return {
         },
         opts = {
             presets = {
-                bottom_search = true,
+                bottom_search = not vim.g.noice_popup,
                 command_palette = false,
                 inc_rename = false,
                 long_message_to_split = true,
@@ -49,7 +49,7 @@ return {
                 },
             },
             cmdline = {
-                view = "cmdline",
+                view = vim.g.noice_popup and "cmdline_popup" or "cmdline",
                 format = {
                     git = {
                         pattern = {
@@ -68,6 +68,16 @@ return {
                     border = {
                         style = "rounded",
                         padding = { 0, 0 },
+                    },
+                },
+                cmdline_popup = {
+                    border = {
+                        style = "none",
+                        padding = { 1, 1 },
+                    },
+                    filter_options = {},
+                    win_options = {
+                        winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
                     },
                 },
                 popupmenu = {
