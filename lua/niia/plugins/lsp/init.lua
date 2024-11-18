@@ -76,23 +76,6 @@ return {
                 update_in_insert = false,
                 severity_sort = true,
                 virtual_text = false,
-                --[[
-                {
-                    spacing = 1,
-                    prefix = function(diagnostic)
-                        local icons = require("utils.icons").diagnostics
-                        for d, icon in pairs(icons) do
-                            if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
-                                return " " .. icon
-                            end
-                        end
-                    end,
-                    suffix = " ",
-                    source = "if_many",
-                    virt_text_pos = "eol",
-                    virt_text_hide = true,
-                },
-                ]]
             },
             -- Automatically format on save
             autoformat = true,
@@ -111,10 +94,10 @@ return {
                 end
             end
 
-            local servers = require("plugins.lsp.servers")
+            local servers = require("niia.plugins.lsp.servers")
             local lspconfig = require("lspconfig")
 
-            for type, icon in pairs(require("utils.icons").diagnostics) do
+            for type, icon in pairs(require("niia.utils.icons").diagnostics) do
                 local hl = "DiagnosticSign" .. type
                 vim.fn.sign_define(hl, {
                     text = icon,
@@ -190,9 +173,9 @@ return {
                     vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
                     -- Mappings
-                    require("plugins.lsp.keymaps").default(bufnr)
+                    require("niia.plugins.lsp.keymaps").default(bufnr)
                     if client.server_capabilities.inlayHintProvider then
-                        require("plugins.lsp.keymaps").inlay_hints(bufnr)
+                        require("niia.plugins.lsp.keymaps").inlay_hints(bufnr)
                         vim.lsp.inlay_hint.enable(true)
                     end
 
@@ -206,7 +189,7 @@ return {
                     -- end
 
                     if client.name == "clangd" then
-                        require("plugins.lsp.keymaps").clangd(bufnr)
+                        require("niia.plugins.lsp.keymaps").clangd(bufnr)
                     end
                 end,
             })

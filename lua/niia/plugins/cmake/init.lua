@@ -5,37 +5,37 @@ return {
         keys = {
             {
                 "<leader>cp",
-                require("plugins.cmake.utils").select_presets,
+                require("niia.plugins.cmake.utils").select_presets,
                 desc = "Select CMakePresets",
             },
             {
                 "<leader>ct",
-                require("plugins.cmake.utils").select_build_target,
+                require("niia.plugins.cmake.utils").select_build_target,
                 desc = "Select build target",
             },
             {
                 "<leader>cl",
-                require("plugins.cmake.utils").select_launch_target,
+                require("niia.plugins.cmake.utils").select_launch_target,
                 desc = "Select launch target",
             },
             {
                 "<leader>cc",
-                require("plugins.cmake.utils").configure,
+                require("niia.plugins.cmake.utils").configure,
                 desc = "Run CMake",
             },
             {
                 "<leader>cb",
-                require("plugins.cmake.utils").build,
+                require("niia.plugins.cmake.utils").build,
                 desc = "Build selected build target",
             },
             {
                 "<leader>cd",
-                require("plugins.cmake.utils").debug,
+                require("niia.plugins.cmake.utils").debug,
                 desc = "Debug (start/continue)",
             },
             {
                 "<leader>cs",
-                require("plugins.cmake.utils").close_debug_session,
+                require("niia.plugins.cmake.utils").close_debug_session,
                 desc = "Debug (stop)",
             },
         },

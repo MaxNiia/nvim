@@ -144,7 +144,7 @@ return {
             only_first_definition = true,
         },
         config = function(_, opts)
-            local icons = require("utils.icons")
+            local icons = require("niia.utils.icons")
             vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
             for name, sign in pairs(icons.dap) do

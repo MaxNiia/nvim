@@ -28,7 +28,7 @@ return {
             },
         },
         config = function(_, _)
-            require("snippets").register_cmp_source()
+            require("niia.snippets").register_cmp_source()
             -- nvim-cmp setup
             local cmp = require("cmp")
             cmp.setup({

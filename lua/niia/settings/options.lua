@@ -64,7 +64,7 @@ vim.opt.undofile = true
 vim.opt.wildmenu = true
 vim.opt.winblend = 0
 
-local icons = require("utils.icons")
+local icons = require("niia.utils.icons")
 vim.opt.fillchars:append({
     diff = icons.misc.slash,
     foldopen = icons.fold.open,

@@ -1,4 +1,4 @@
-local icons = require("utils.icons").todo
+local icons = require("niia.utils.icons").todo
 return {
     {
         "MaxNiia/nvim-unception",
@@ -64,6 +64,7 @@ return {
             library = {
                 { path = "luvit-meta/library", words = { "vim%.uv" } },
                 { path = "snacks.nvim", words = { "Snacks" } },
+                { path = "mini.files", words = { "MiniFiles" } },
                 { path = "lazy.nvim", words = { "LazyVim" } },
             },
         },

@@ -1,4 +1,4 @@
-local icons = require("utils.icons")
+local icons = require("niia.utils.icons")
 return {
     {
         "sindrets/diffview.nvim",

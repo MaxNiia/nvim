@@ -1,4 +1,4 @@
-local file_functions = require("plugins.mini.files")
+local file_functions = require("niia.plugins.mini.files")
 return {
     {
         "echasnovski/mini.move",

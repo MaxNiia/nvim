@@ -5,7 +5,7 @@ local snippets_by_filetype = {
     lua = {},
     cmake = {},
     c = {},
-    cpp = require("snippets.cpp"),
+    cpp = require("niia.snippets.cpp"),
     python = {
         { trigger = "shebang", body = "#!/usr/bin/env python" },
     },
