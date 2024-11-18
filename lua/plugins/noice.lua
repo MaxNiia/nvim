@@ -13,7 +13,7 @@ return {
         opts = {
             presets = {
                 bottom_search = true,
-                command_palette = true,
+                command_palette = false,
                 inc_rename = false,
                 long_message_to_split = true,
                 lsp_doc_border = false,
