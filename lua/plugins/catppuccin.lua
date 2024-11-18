@@ -1,3 +1,15 @@
+local oled_override = function(bool)
+    if bool then
+        return {
+            base = "#000000",
+            mantle = "#000000",
+            crust = "#000000",
+        }
+    else
+        return {}
+    end
+end
+
 return {
     {
         "catppuccin/nvim",
@@ -22,6 +34,9 @@ return {
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
+            },
+            color_overrides = {
+                all = oled_override(vim.g.cat_oled),
             },
             styles = {
                 comments = { "bold" },
