@@ -52,7 +52,7 @@ return function(bufnr)
             desc = "Format",
         },
         {
-            "<leader>aa",
+            "<leader>a",
             vim.lsp.buf.code_action,
             buffer = bufnr,
             desc = "Apply fix",
