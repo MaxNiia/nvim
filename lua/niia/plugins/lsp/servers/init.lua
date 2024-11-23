@@ -23,6 +23,15 @@ return {
     marksman = {},
     rust_analyzer = require("niia.plugins.lsp.servers.rust_analyzer"),
     ts_ls = require("niia.plugins.lsp.servers.tsserver"),
+    gdscript = {
+        name = "godot",
+        cmd = { "ncat", "localhost", "6005" },
+        filetypes = { "gd", "gdscript", "gdscript3" },
+        -- root_dir = function()
+        --     return vim.fs.dirname(vim.fs.find("project.godot", { upward = true })[1])
+        -- end,
+        mason = false,
+    },
     ruff = require("niia.plugins.lsp.servers.ruff"),
     -- yamlls = require("niia.plugins.lsp.servers.yamlls"),
 }

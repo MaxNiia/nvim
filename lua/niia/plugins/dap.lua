@@ -209,6 +209,18 @@ return {
         },
         config = function(_, opts)
             local dap, dapui = require("dap"), require("dapui")
+
+            dap.adapters.godot = { type = "server", host = "127.0.0.1", port = 6006 }
+            dap.configurations.gdscript = {
+                {
+                    type = "godot",
+                    request = "launch",
+                    name = "Launch scene",
+                    project = "${workspaceFolder}",
+                    launch_scene = true,
+                },
+            }
+
             dapui.setup(opts)
             dap.listeners.after.event_initialized["dapui_config"] = function()
                 dapui.open()

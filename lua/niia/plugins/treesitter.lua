@@ -47,6 +47,7 @@ return {
                 "bash",
                 "c",
                 "cpp",
+                "gdscript",
                 "diff",
                 "cmake",
                 "rust",

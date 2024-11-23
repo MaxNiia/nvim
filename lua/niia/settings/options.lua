@@ -24,6 +24,7 @@ vim.opt.foldcolumn = "auto:1"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = "v:lua.vim.treesitter.foldtext()"
 vim.opt.hidden = true
+vim.opt.smoothscroll = true
 vim.opt.history = 1000
 vim.opt.ignorecase = true
 vim.opt.inccommand = "split"
