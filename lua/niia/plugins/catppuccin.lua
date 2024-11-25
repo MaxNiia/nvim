@@ -59,6 +59,7 @@ return {
                 diffview = true,
                 gitsigns = true,
                 semantic_tokens = true,
+                snacks = true,
                 dap = true,
                 dap_ui = true,
                 mason = true,
