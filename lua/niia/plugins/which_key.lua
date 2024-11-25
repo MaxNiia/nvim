@@ -112,6 +112,8 @@ return {
                 { "<leader>D", group = "Debug" },
                 { "<leader>E", group = "Files" },
                 { "<leader>G", group = "Git" },
+                { "<leader>h", group = "Perf" },
+                { "<leader>hl", group = "Load" },
                 { "<leader>L", group = "LSP" },
                 { "<leader>W", group = "Sessions" },
                 { "<leader>c", group = "CMake" },
