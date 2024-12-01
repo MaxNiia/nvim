@@ -13,23 +13,25 @@ return {
                 vim.o.laststatus = 0
             end
 
-            -- Copilot
-            local api = require("copilot.api")
-            local copilot_icon = require("utils.icons").kinds.Copilot
-            local offline_icon = require("utils.icons").progress.offline
-            local done_icon = require("utils.icons").progress.done
-            local pending_icon = require("utils.icons").progress.pending
-            api.register_status_notification_handler(function(data)
-                -- customize your message however you want
-                if data.status == "Normal" then
-                    status = done_icon
-                elseif data.status == "InProgress" then
-                    status = pending_icon
-                else
-                    status = offline_icon
-                end
-                status = copilot_icon .. " " .. status
-            end)
+            if vim.g.enable_copilot then
+                -- Copilot
+                local api = require("copilot.api")
+                local copilot_icon = require("utils.icons").kinds.Copilot
+                local offline_icon = require("utils.icons").progress.offline
+                local done_icon = require("utils.icons").progress.done
+                local pending_icon = require("utils.icons").progress.pending
+                api.register_status_notification_handler(function(data)
+                    -- customize your message however you want
+                    if data.status == "Normal" then
+                        status = done_icon
+                    elseif data.status == "InProgress" then
+                        status = pending_icon
+                    else
+                        status = offline_icon
+                    end
+                    status = copilot_icon .. " " .. status
+                end)
+            end
         end,
         opts = {
             options = {
@@ -186,7 +188,9 @@ return {
                         function()
                             return status
                         end,
-                        cond = vim.g.copilot,
+                        cond = function()
+                            return vim.g.enable_copilot
+                        end,
                     },
                 },
                 lualine_c = {},
