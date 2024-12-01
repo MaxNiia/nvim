@@ -1,3 +1,4 @@
+local status = ""
 return {
     {
         "nvim-lualine/lualine.nvim",
@@ -11,6 +12,24 @@ return {
                 -- hide the statusline on the starter page
                 vim.o.laststatus = 0
             end
+
+            -- Copilot
+            local api = require("copilot.api")
+            local copilot_icon = require("utils.icons").kinds.Copilot
+            local offline_icon = require("utils.icons").progress.offline
+            local done_icon = require("utils.icons").progress.done
+            local pending_icon = require("utils.icons").progress.pending
+            api.register_status_notification_handler(function(data)
+                -- customize your message however you want
+                if data.status == "Normal" then
+                    status = done_icon
+                elseif data.status == "InProgress" then
+                    status = pending_icon
+                else
+                    status = offline_icon
+                end
+                status = copilot_icon .. " " .. status
+            end)
         end,
         opts = {
             options = {
@@ -162,6 +181,12 @@ return {
                         require("lazy.status").updates,
                         cond = require("lazy.status").has_updates,
                         color = { fg = "#ff9e64" },
+                    },
+                    {
+                        function()
+                            return status
+                        end,
+                        cond = vim.g.copilot,
                     },
                 },
                 lualine_c = {},
