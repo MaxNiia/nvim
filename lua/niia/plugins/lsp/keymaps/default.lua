@@ -62,14 +62,12 @@ return function(bufnr)
             vim.lsp.codelens.run,
             desc = "Run Codelens",
             mode = { "n", "v" },
-            has = "codeLens",
         },
         {
             "<leader>rC",
             vim.lsp.codelens.refresh,
             desc = "Refresh & Display Codelens",
             mode = { "n" },
-            has = "codeLens",
         },
         {
             "<leader>rn",
