@@ -17,6 +17,14 @@ return {
     cssls = require("niia.plugins.lsp.servers.cssls"),
     neocmake = {},
     cssmodules_ls = {},
+    ols = {
+        init_options = {
+            checker_args = "-strict-style",
+            collections = {
+                { name = "shared", path = vim.fn.expand("$HOME/odin-lib") },
+            },
+        },
+    },
     dockerls = {},
     jsonls = {},
     lua_ls = require("niia.plugins.lsp.servers.lua_ls"),
