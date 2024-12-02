@@ -3,7 +3,7 @@ return {
         "folke/flash.nvim",
         keys = {
             {
-                "<leader>j",
+                vim.g.jump_on_enter and "<cr>" or "<leader>j",
                 mode = { "n", "x", "o" },
                 function()
                     local Flash = require("flash")

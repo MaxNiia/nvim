@@ -16,10 +16,10 @@ return {
             if vim.g.enable_copilot then
                 -- Copilot
                 local api = require("copilot.api")
-                local copilot_icon = require("utils.icons").kinds.Copilot
-                local offline_icon = require("utils.icons").progress.offline
-                local done_icon = require("utils.icons").progress.done
-                local pending_icon = require("utils.icons").progress.pending
+                local copilot_icon = require("niia.utils.icons").kinds.Copilot
+                local offline_icon = require("niia.utils.icons").progress.offline
+                local done_icon = require("niia.utils.icons").progress.done
+                local pending_icon = require("niia.utils.icons").progress.pending
                 api.register_status_notification_handler(function(data)
                     -- customize your message however you want
                     if data.status == "Normal" then
