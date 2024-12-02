@@ -20,7 +20,12 @@ return function(bufnr)
             desc = "Go to implementation",
         },
         { "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
-        { "gr", vim.lsp.buf.references, desc = "References", buffer = bufnr },
+        {
+            "gr",
+            "<cmd>FzfLua lsp_references<cr>",
+            desc = "References",
+            buffer = bufnr,
+        },
         {
             "gR",
             require("fzf-lua").lsp_references,
