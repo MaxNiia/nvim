@@ -1,4 +1,5 @@
 local function week_ascii_text()
+    -- stylua ignore start
     return {
         ["Monday"] = [[
 ███╗   ███╗ ██████╗ ███╗   ██╗██████╗  █████╗ ██╗   ██╗
@@ -50,6 +51,8 @@ local function week_ascii_text()
 ███████║╚██████╔╝██║ ╚████║██████╔╝██║  ██║   ██║   
 ╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝   ╚═╝   ]],
     }
+
+    -- stylua ignore end
 end
 
 local function week_header()
@@ -200,6 +203,45 @@ return {
             notifier = { enabled = true, timeout = 3000 },
             quickfile = { enabled = true },
             bufdelete = { enabled = true },
+            scratch = {
+                ft = "cpp",
+                win_by_ft = {
+                    cpp = {
+                        keys = {
+                            ["Godbolt"] = {
+                                "<cr>",
+                                function(self)
+                                    -- local name = "scratch."
+                                    --     .. vim.fn.fnamemodify(
+                                    --         vim.api.nvim_buf_get_name(self.buf),
+                                    --         ":e"
+                                    --     )
+                                    vim.cmd("Godbolt")
+                                end,
+                                desc = "Godbolt",
+                                mode = { "n", "x" },
+                            },
+                        },
+                    },
+                    lua = {
+                        keys = {
+                            ["source"] = {
+                                "<cr>",
+                                function(self)
+                                    local name = "scratch."
+                                        .. vim.fn.fnamemodify(
+                                            vim.api.nvim_buf_get_name(self.buf),
+                                            ":e"
+                                        )
+                                    Snacks.debug.run({ buf = self.buf, name = name })
+                                end,
+                                desc = "Source buffer",
+                                mode = { "n", "x" },
+                            },
+                        },
+                    },
+                },
+            },
             statuscolumn = {
                 enabled = true,
                 left = { "mark", "sign" }, -- priority of signs on the left (high to low)
@@ -217,6 +259,20 @@ return {
             words = { enabled = true },
         },
         keys = {
+            {
+                "<leader>.",
+                function()
+                    Snacks.scratch()
+                end,
+                desc = "Toggle Scratch Buffer",
+            },
+            {
+                "<leader>S",
+                function()
+                    Snacks.scratch.select()
+                end,
+                desc = "Select Scratch Buffer",
+            },
             {
                 "<leader>un",
                 function()
