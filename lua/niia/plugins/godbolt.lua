@@ -1,6 +1,10 @@
 return {
     {
         url = "https://git.sr.ht/~p00f/godbolt.nvim/",
+        cmd = {
+            "Godbolt",
+            "GodboltCompiler",
+        },
         opts = {
             languages = {
                 cpp = { compiler = "g++ 2.4", options = {} },
@@ -16,7 +20,8 @@ return {
                 enable = true,
                 auto_open = true,
             },
-            url = "http://localhost:10240",
+            url = "localhost:10240",
+            -- url = "https://godbolt.org",
         },
     },
 }
