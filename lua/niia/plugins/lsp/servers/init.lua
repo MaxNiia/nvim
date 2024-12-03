@@ -17,6 +17,7 @@ return {
     cssls = require("niia.plugins.lsp.servers.cssls"),
     neocmake = {},
     cssmodules_ls = {},
+    gopls = {},
     ols = {
         init_options = {
             checker_args = "-strict-style",
