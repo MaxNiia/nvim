@@ -204,7 +204,6 @@ return {
             quickfile = { enabled = true },
             bufdelete = { enabled = true },
             scratch = {
-                ft = "cpp",
                 win_by_ft = {
                     cpp = {
                         keys = {
