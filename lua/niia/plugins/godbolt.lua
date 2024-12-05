@@ -20,8 +20,8 @@ return {
                 enable = true,
                 auto_open = true,
             },
-            url = "localhost:10240",
-            -- url = "https://godbolt.org",
+            -- url = "localhost:10240",
+            url = "https://godbolt.org",
         },
     },
 }
