@@ -258,19 +258,54 @@ return {
             bufdelete = { enabled = true },
             scratch = {
                 win_by_ft = {
-                    cpp = {
+                    c = {
                         keys = {
-                            ["Godbolt"] = {
+                            ["gcc"] = {
                                 "<cr>",
                                 function(self)
-                                    -- local name = "scratch."
-                                    --     .. vim.fn.fnamemodify(
-                                    --         vim.api.nvim_buf_get_name(self.buf),
-                                    --         ":e"
-                                    --     )
+                                    vim.cmd("!gcc -S %")
+                                end,
+                                desc = "Assembly",
+                                mode = { "n", "x" },
+                            },
+                            ["Godbolt"] = {
+                                "<leader><cr>",
+                                function(self)
                                     vim.cmd("Godbolt")
                                 end,
                                 desc = "Godbolt",
+                                mode = { "n", "x" },
+                            },
+                        },
+                    },
+                    cpp = {
+                        keys = {
+                            ["gcc"] = {
+                                "<cr>",
+                                function(self)
+                                    vim.cmd("!gcc -S %")
+                                end,
+                                desc = "Assembly",
+                                mode = { "n", "x" },
+                            },
+                            ["Godbolt"] = {
+                                "<leader><cr>",
+                                function(self)
+                                    vim.cmd("Godbolt")
+                                end,
+                                desc = "Godbolt",
+                                mode = { "n", "x" },
+                            },
+                        },
+                    },
+                    python = {
+                        keys = {
+                            ["run"] = {
+                                "<cr>",
+                                function(self)
+                                    vim.cmd("!python3 %")
+                                end,
+                                desc = "Run file",
                                 mode = { "n", "x" },
                             },
                         },
