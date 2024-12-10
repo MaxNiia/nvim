@@ -83,7 +83,28 @@ return {
                 },
             },
             bigfile = { enabled = true },
-            indent = {},
+            scroll = {
+                animate = {
+                    duration = {
+                        step = 20,
+                        total = 200,
+                    },
+                    easing = "linear",
+                },
+            },
+            input = {},
+            zen = {
+                toggles = {
+                    dim = false,
+                    git_signs = true,
+                    diagnostics = true,
+                    inlay_hints = true,
+                },
+                show = {
+                    statusline = false,
+                    tabline = false,
+                },
+            },
             indent = {
                 scope = {
                     enabled = true,
@@ -92,7 +113,7 @@ return {
                         easing = "linear",
                         duration = {
                             step = 20, -- ms per step
-                            total = 400, -- maximum duration
+                            total = 200, -- maximum duration
                         },
                     },
                     underline = false,
@@ -290,6 +311,27 @@ return {
             words = { enabled = true },
         },
         keys = {
+            {
+                "<leader>Z",
+                function()
+                    Snacks.zen.zoom({
+                        toggles = {},
+                        show = { statusline = true, tabline = true },
+                        win = {
+                            backdrop = false,
+                            width = 0, -- full width
+                        },
+                    })
+                end,
+                desc = "Zoom",
+            },
+            {
+                "<leader>z",
+                function()
+                    Snacks.zen()
+                end,
+                desc = "Zen",
+            },
             {
                 "<leader>.",
                 function()
