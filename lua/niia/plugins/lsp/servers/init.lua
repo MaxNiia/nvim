@@ -1,4 +1,11 @@
 return {
+    asm_lsp = {
+        filetypes = {
+            "asm",
+            "s",
+            "S",
+        },
+    },
     ast_grep = {},
     typos_lsp = {
         init_options = { -- Sent to the LSP on init
