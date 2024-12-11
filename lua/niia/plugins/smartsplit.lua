@@ -4,6 +4,7 @@ return {
         dependencies = {
             "kwkarlwang/bufresize.nvim",
         },
+        lazy = false,
         opts = {
             resize_mode = {
                 silent = true,
