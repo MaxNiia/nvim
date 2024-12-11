@@ -40,7 +40,7 @@ return {
                     view = "mini",
                 },
                 {
-                    view = "vsplit",
+                    view = "split",
                     filter = { event = "msg_show", min_height = 20 },
                 },
                 {
