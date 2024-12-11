@@ -104,6 +104,14 @@ return {
                     statusline = false,
                     tabline = false,
                 },
+                zoom = {
+                    toggles = {},
+                    show = { statusline = true, tabline = true },
+                    win = {
+                        backdrop = false,
+                        width = 0, -- full width
+                    },
+                },
             },
             indent = {
                 scope = {
@@ -349,23 +357,9 @@ return {
             {
                 "<leader>Z",
                 function()
-                    Snacks.zen.zoom({
-                        toggles = {},
-                        show = { statusline = true, tabline = true },
-                        win = {
-                            backdrop = false,
-                            width = 0, -- full width
-                        },
-                    })
+                    Snacks.zen.zoom()
                 end,
                 desc = "Zoom",
-            },
-            {
-                "<leader>z",
-                function()
-                    Snacks.zen()
-                end,
-                desc = "Zen",
             },
             {
                 "<leader>.",
@@ -504,6 +498,7 @@ return {
                     vim.print = _G.dd -- Override print to use snacks for `:=` command
 
                     -- Create some toggle mappings
+                    Snacks.toggle.zen():map("<leader>z")
                     Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
                     Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
                     Snacks.toggle
