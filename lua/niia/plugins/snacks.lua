@@ -265,9 +265,11 @@ return {
             quickfile = { enabled = true },
             bufdelete = { enabled = true },
             scratch = {
+                root = vim.fn.stdpath("data") .. "/scratch",
+                name = "Scratch",
                 win = {
-                    width = 100,
-                    height = 60,
+                    width = 0.5,
+                    height = 0.9,
                     style = "scratch",
                 },
                 ft = function()
@@ -371,6 +373,23 @@ return {
                     Snacks.scratch()
                 end,
                 desc = "Toggle Scratch Buffer",
+            },
+            {
+                "<leader>,",
+                function()
+                    Snacks.scratch.open({
+                        ft = "markdown",
+                        root = vim.fn.expand("$HOME/notes"),
+                        autowrite = true,
+                        filekey = {
+                            cwd = true,
+                            branch = true,
+                            count = true,
+                        },
+                        name = "Notes",
+                    })
+                end,
+                desc = "Toggle Notes Buffer",
             },
             {
                 "<leader>S",
