@@ -366,13 +366,6 @@ return {
         },
         keys = {
             {
-                "<leader>Z",
-                function()
-                    Snacks.zen.zoom()
-                end,
-                desc = "Zoom",
-            },
-            {
                 "<leader>.",
                 function()
                     Snacks.scratch()
@@ -510,6 +503,7 @@ return {
 
                     -- Create some toggle mappings
                     Snacks.toggle.zen():map("<leader>z")
+                    Snacks.toggle.zoom():map("<leader>Z")
                     Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
                     Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
                     Snacks.toggle
