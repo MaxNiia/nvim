@@ -19,7 +19,7 @@ return {
                 },
             },
             default_amount = 5,
-            at_edge = "wrap",
+            at_edge = "stop",
         },
         keys = {
             {
