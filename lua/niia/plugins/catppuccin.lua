@@ -54,7 +54,8 @@ return {
             },
             default_integrations = true,
             integrations = {
-                cmp = true,
+                -- cmp = true,
+                blink_cmp = true,
                 grug_far = true,
                 diffview = true,
                 gitsigns = true,
