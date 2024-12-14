@@ -129,7 +129,7 @@ return {
             "rcarriga/nvim-dap-ui",
             "ofirgall/goto-breakpoints.nvim",
             "theHamsta/nvim-dap-virtual-text",
-            "rcarriga/cmp-dap",
+            -- "rcarriga/cmp-dap",
             "jay-babu/mason-nvim-dap.nvim",
         },
         opts = {
@@ -163,18 +163,18 @@ return {
             map("n", "[b", require("goto-breakpoints").prev, {})
             map("n", "]S", require("goto-breakpoints").stopped, {})
 
-            require("cmp").setup({
-                enabled = function()
-                    return vim.api.nvim_get_option_value("buftype", { buf = 0 }) ~= "prompt"
-                        or require("cmp_dap").is_dap_buffer()
-                end,
-            })
+            -- require("cmp").setup({
+            --     enabled = function()
+            --         return vim.api.nvim_get_option_value("buftype", { buf = 0 }) ~= "prompt"
+            --             or require("cmp_dap").is_dap_buffer()
+            --     end,
+            -- })
 
-            require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-                sources = {
-                    { name = "dap" },
-                },
-            })
+            -- require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+            --     sources = {
+            --         { name = "dap" },
+            --     },
+            -- })
 
             require("dap.ext.vscode").load_launchjs(nil, { cppdbg = { "c", "cpp" } })
         end,

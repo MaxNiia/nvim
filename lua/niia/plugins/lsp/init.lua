@@ -29,7 +29,7 @@ return {
             {
                 "p00f/clangd_extensions.nvim",
                 dependencies = {
-                    "mortepau/codicons.nvim",
+                    -- "mortepau/codicons.nvim",
                 },
                 lazy = true,
                 config = true,
@@ -114,9 +114,19 @@ return {
                 },
             })
 
-            local capabilities = require("cmp_nvim_lsp").default_capabilities(
-                vim.lsp.protocol.make_client_capabilities()
+            local has_blink, blink = pcall(require, "blink.cmp")
+            local capabilities = vim.tbl_deep_extend(
+                "force",
+                {},
+                vim.lsp.protocol.make_client_capabilities(),
+                -- has_cmp and cmp_nvim_lsp.default_capabilities() or {},
+                has_blink and blink.get_lsp_capabilities() or {},
+                opts.capabilities or {}
             )
+
+            -- local capabilities = require("cmp_nvim_lsp").default_capabilities(
+            --     vim.lsp.protocol.make_client_capabilities()
+            -- )
 
             -- Specify otherwise clangd seems to use utf-8.
             capabilities.offsetEncoding = { "utf-16" }
