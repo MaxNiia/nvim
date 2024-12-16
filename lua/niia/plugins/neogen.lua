@@ -1,8 +1,3 @@
-local start = vim.g.doxygen_comment_strings.start
-local middle = vim.g.doxygen_comment_strings.middle
-local stop = vim.g.doxygen_comment_strings.stop
-local my_doxygen = {}
-
 local i = {
     Tparam = "tparam",
     Parameter = "parameters",
@@ -23,39 +18,26 @@ local i = {
     Kwargs = "kwargs",
 }
 
-if start ~= "" then
-    my_doxygen = {
-        { nil, start, { no_results = true, type = { "func", "file", "class" } } },
-        { nil, middle .. "@file", { no_results = true, type = { "file" } } },
-        { nil, middle .. "@brief $1", { no_results = true, type = { "func", "file", "class" } } },
-        { nil, stop, { no_results = true, type = { "func", "file", "class" } } },
-        { nil, "", { no_results = true, type = { "file" } } },
+local start = "/**"
+local middle = " * "
+local stop = " */"
+local my_doxygen = {
+    { nil, start, { no_results = true, type = { "func", "file", "class" } } },
+    { nil, middle .. "@file", { no_results = true, type = { "file" } } },
+    { nil, middle .. "@brief $1", { no_results = true, type = { "func", "file", "class" } } },
+    { nil, stop, { no_results = true, type = { "func", "file", "class" } } },
+    { nil, "", { no_results = true, type = { "file" } } },
 
-        { nil, start, { type = { "func", "class", "type" } } },
-        { i.ClassName, middle .. "@class %s", { type = { "class" } } },
-        { i.Type, middle .. "@typedef %s", { type = { "type" } } },
-        { nil, middle .. "@brief $1", { type = { "func", "class", "type" } } },
-        { nil, middle, { type = { "func", "class", "type" } } },
-        { i.Tparam, middle .. "@tparam %s $1" },
-        { i.Parameter, middle .. "@param %s $1" },
-        { i.Return, middle .. "@return $1" },
-        { nil, stop, { type = { "func", "class", "type" } } },
-    }
-else
-    my_doxygen = {
-        { nil, middle .. "@file", { no_results = true, type = { "file" } } },
-        { nil, middle .. "@brief $1", { no_results = true, type = { "func", "file", "class" } } },
-        { nil, "", { no_results = true, type = { "file" } } },
-
-        { i.ClassName, middle .. "@class %s", { type = { "class" } } },
-        { i.Type, middle .. "@typedef %s", { type = { "type" } } },
-        { nil, middle .. "@brief $1", { type = { "func", "class", "type" } } },
-        { nil, middle, { type = { "func", "class", "type" } } },
-        { i.Tparam, middle .. "@tparam %s $1" },
-        { i.Parameter, middle .. "@param %s $1" },
-        { i.Return, middle .. "@return $1" },
-    }
-end
+    { nil, start, { type = { "func", "class", "type" } } },
+    { i.ClassName, middle .. "@class %s", { type = { "class" } } },
+    { i.Type, middle .. "@typedef %s", { type = { "type" } } },
+    { nil, middle .. "@brief $1", { type = { "func", "class", "type" } } },
+    { nil, middle, { type = { "func", "class", "type" } } },
+    { i.Tparam, middle .. "@tparam %s $1" },
+    { i.Parameter, middle .. "@param %s $1" },
+    { i.Return, middle .. "@return $1" },
+    { nil, stop, { type = { "func", "class", "type" } } },
+}
 
 return {
     {

@@ -61,11 +61,6 @@ return {
                 mode = { "n", "v" },
             },
         },
-        opts = {
-            preferred_remotes = {
-                vim.g.azure_remote,
-            },
-        },
         config = function(_, opts)
             local nio = require("nio")
             nio.run(function()
