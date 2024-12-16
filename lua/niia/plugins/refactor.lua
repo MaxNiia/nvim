@@ -71,12 +71,6 @@ return {
             },
         },
         opts = {
-            printf_statements = {
-                cpp = vim.g.cpp_print_statements.default,
-            },
-            print_var_statements = {
-                cpp = vim.g.cpp_print_statements.variable,
-            },
             extract_var_statements = {
                 cpp = "%s{%s};",
             },
