@@ -21,7 +21,20 @@ return {
         opts = {
             keymap = {
                 preset = "enter",
-                ["<C-y>"] = { "select_and_accept" },
+                ["<Tab>"] = {
+                    "select_next",
+                    "snippet_forward",
+                    "fallback",
+                },
+                ["<S-Tab>"] = {
+                    "select_prev",
+                    "snippet_backward",
+                    "fallback",
+                },
+
+                cmdline = {
+                    preset = "enter",
+                },
             },
 
             appearance = {
@@ -41,7 +54,10 @@ return {
 
             completion = {
                 list = {
-                    selection = "manual",
+                    selection = {
+                        preselect = false,
+                        auto_insert = true,
+                    },
                 },
                 accept = {
                     -- experimental auto-brackets support
@@ -51,6 +67,21 @@ return {
                 },
                 menu = {
                     draw = {
+                        components = {
+                            kind_icon = {
+                                ellipsis = false,
+                                text = function(ctx)
+                                    local kind_icon, _, _ =
+                                        require("mini.icons").get("lsp", ctx.kind)
+                                    return kind_icon
+                                end,
+                                -- Optionally, you may also use the highlights from mini.icons
+                                highlight = function(ctx)
+                                    local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                                    return hl
+                                end,
+                            },
+                        },
                         treesitter = { "lsp" },
                     },
                 },
@@ -64,6 +95,9 @@ return {
             },
 
             signature = { enabled = true },
+            snippets = {
+                preset = "default",
+            },
         },
         config = function(_, opts)
             if vim.g.enable_copilot then
@@ -81,6 +115,7 @@ return {
                             "snippets",
                             "buffer",
                             "copilot",
+                            "documentation",
                         },
                     },
                 }, opts)
