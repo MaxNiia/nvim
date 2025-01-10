@@ -49,7 +49,6 @@ return {
                     "snippets",
                     "buffer",
                 },
-                cmdline = {},
             },
 
             completion = {
