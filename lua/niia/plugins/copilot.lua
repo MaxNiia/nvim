@@ -1,7 +1,9 @@
 return {
     {
         "zbirenbaum/copilot.lua",
-        cond = vim.g.enable_copilot,
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
         cmd = "Copilot",
         event = "InsertEnter",
         config = function()
@@ -50,8 +52,6 @@ return {
     },
     {
         "CopilotC-Nvim/CopilotChat.nvim",
-        branch = "canary",
-        cond = vim.g.enable_copilot,
         init = function()
             vim.api.nvim_create_autocmd("BufEnter", {
                 pattern = "copilot-*",

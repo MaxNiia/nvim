@@ -19,7 +19,6 @@ M.start = function(opts)
 
     vim.g.cat_oled = config.cat_oled
     vim.g.noice_popup = config.noice_popup
-    vim.g.enable_copilot = config.enable_copilot
     vim.g.jump_on_enter = config.jump_on_enter
 
     if vim.fn.has("nvim-0.10.1)") ~= 1 then

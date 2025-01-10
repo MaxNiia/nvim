@@ -4,7 +4,6 @@ return {
         dependencies = {
             {
                 "giuxtaposition/blink-cmp-copilot",
-                cond = vim.g.enable_copilot,
             },
             {
                 "saghen/blink.compat",
@@ -40,14 +39,39 @@ return {
             appearance = {
                 use_nvim_cmp_as_default = false,
                 nerd_font_variant = "mono",
+                -- Blink does not expose its default kind icons so you must copy them all (or set your custom ones) and add Copilot
             },
 
             sources = {
+                -- default = {
+                --     "lsp",
+                --     "path",
+                --     "snippets",
+                --     "buffer",
+                -- },
+                providers = {
+                    copilot = {
+                        name = "copilot",
+                        module = "blink-cmp-copilot",
+                        score_offset = 100,
+                        async = true,
+                        transform_items = function(_, items)
+                            local CompletionItemKind = require("blink.cmp.types").CompletionItemKind
+                            local kind_idx = #CompletionItemKind + 1
+                            CompletionItemKind[kind_idx] = "Copilot"
+                            for _, item in ipairs(items) do
+                                item.kind = kind_idx
+                            end
+                            return items
+                        end,
+                    },
+                },
                 default = {
                     "lsp",
                     "path",
                     "snippets",
                     "buffer",
+                    "copilot",
                 },
             },
 
@@ -70,12 +94,18 @@ return {
                             kind_icon = {
                                 ellipsis = false,
                                 text = function(ctx)
+                                    if ctx.kind == "Copilot" then
+                                        return ""
+                                    end
                                     local kind_icon, _, _ =
                                         require("mini.icons").get("lsp", ctx.kind)
                                     return kind_icon
                                 end,
                                 -- Optionally, you may also use the highlights from mini.icons
                                 highlight = function(ctx)
+                                    -- if ctx.kind == "Copilot" then
+                                    --     return "#FFD700"
+                                    -- end
                                     local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
                                     return hl
                                 end,
@@ -99,26 +129,27 @@ return {
             },
         },
         config = function(_, opts)
-            if vim.g.enable_copilot then
-                opts = vim.tbl_deep_extend("force", {
-                    sources = {
-                        providers = {
-                            copilot = {
-                                name = "copilot",
-                                module = "blink-cmp-copilot",
-                            },
-                        },
-                        default = {
-                            "lsp",
-                            "path",
-                            "snippets",
-                            "buffer",
-                            "copilot",
-                            "documentation",
-                        },
-                    },
-                }, opts)
-            end
+            -- if vim.g.enable_copilot then
+            --     opts = vim.tbl_deep_extend("force", {
+            --         sources = {
+            --             providers = {
+            --                 copilot = {
+            --                     name = "copilot",
+            --                     module = "blink-cmp-copilot",
+            --                     score_offset = 100,
+            --                     async = true,
+            --                 },
+            --             },
+            --             default = {
+            --                 "lsp",
+            --                 "path",
+            --                 "snippets",
+            --                 "buffer",
+            --                 "copilot",
+            --             },
+            --         },
+            --     }, opts)
+            -- end
             require("blink.cmp").setup(opts)
         end,
     },
