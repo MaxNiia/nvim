@@ -103,9 +103,9 @@ return {
                                 end,
                                 -- Optionally, you may also use the highlights from mini.icons
                                 highlight = function(ctx)
-                                    -- if ctx.kind == "Copilot" then
-                                    --     return "#FFD700"
-                                    -- end
+                                    if ctx.kind == "Copilot" then
+                                        return "CmpItemKindCopilot"
+                                    end
                                     local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
                                     return hl
                                 end,
