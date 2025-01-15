@@ -1,11 +1,4 @@
 return {
-    asm_lsp = {
-        filetypes = {
-            "asm",
-            "s",
-            "S",
-        },
-    },
     ast_grep = {},
     typos_lsp = {
         init_options = { -- Sent to the LSP on init
@@ -24,7 +17,6 @@ return {
     cssls = require("niia.plugins.lsp.servers.cssls"),
     neocmake = {},
     cssmodules_ls = {},
-    gopls = {},
     ols = {
         init_options = {
             checker_args = "-strict-style",
