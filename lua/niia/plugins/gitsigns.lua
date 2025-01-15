@@ -127,7 +127,7 @@ return {
                         desc = "List all hunks",
                     },
                     {
-                        "<leader>gs",
+                        "gs",
                         gs.stage_hunk,
                         mode = "n",
                         buffer = bufnr,
@@ -148,7 +148,7 @@ return {
                         desc = "Reset Hunk",
                     },
                     {
-                        "<leader>gS",
+                        "gS",
                         gs.stage_buffer,
                         mode = "n",
                         buffer = bufnr,
@@ -169,7 +169,7 @@ return {
                         desc = "Preview Hunk",
                     },
                     {
-                        "<leader>gs",
+                        "gs",
                         function()
                             gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
                         end,

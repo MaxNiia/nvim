@@ -90,33 +90,6 @@ return {
     },
     { "Bilal2453/luvit-meta", lazy = true },
     {
-        "stevearc/dressing.nvim",
-        lazy = "VeryLazy",
-        opts = {
-            input = {
-                insert_only = false,
-            },
-        },
-        config = function(_, opts)
-            opts = vim.tbl_extend("force", opts, {
-                select = {
-                    backend = { "fzf_lua" },
-                },
-            })
-            require("dressing").setup(opts)
-        end,
-        init = function()
-            vim.ui.select = function(...)
-                require("lazy").load({ plugins = { "dressing.nvim" } })
-                return vim.ui.select(...)
-            end
-            -- vim.ui.input = function(...)
-            --     require("lazy").load({ plugins = { "dressing.nvim" } })
-            --     return vim.ui.input(...)
-            -- end
-        end,
-    },
-    {
         "nvim-lua/plenary.nvim",
         lazy = true,
     },
@@ -142,6 +115,22 @@ return {
     {
         "folke/todo-comments.nvim",
         event = "BufEnter",
+        keys = {
+            {
+                "<leader>st",
+                function()
+                    Snacks.picker.todo_comments()
+                end,
+                desc = "Todo",
+            },
+            {
+                "<leader>sT",
+                function()
+                    Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } })
+                end,
+                desc = "Todo/Fix/Fixme",
+            },
+        },
         opts = {
             signs = true,
             keywords = {

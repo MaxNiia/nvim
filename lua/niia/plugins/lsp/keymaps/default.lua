@@ -7,32 +7,31 @@ return function(bufnr)
             buffer = bufnr,
             desc = "Go to declaration",
         },
-        {
-            "gd",
-            vim.lsp.buf.definition,
-            buffer = bufnr,
-            desc = "Go to definition",
-        },
-        {
-            "gI",
-            vim.lsp.buf.implementation,
-            buffer = bufnr,
-            desc = "Go to implementation",
-        },
-        { "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
-        {
-            "gr",
-            "<cmd>FzfLua lsp_references<cr>",
-            desc = "References",
-            buffer = bufnr,
-        },
-        {
-            "gR",
-            require("fzf-lua").lsp_references,
-            buffer = bufnr,
-            desc = "Go to references",
-        },
-
+        -- {
+        --     "gd",
+        --     vim.lsp.buf.definition,
+        --     buffer = bufnr,
+        --     desc = "Go to definition",
+        -- },
+        -- {
+        --     "gI",
+        --     vim.lsp.buf.implementation,
+        --     buffer = bufnr,
+        --     desc = "Go to implementation",
+        -- },
+        -- { "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
+        -- {
+        --     "gr",
+        --     "<cmd>FzfLua lsp_references<cr>",
+        --     desc = "References",
+        --     buffer = bufnr,
+        -- },
+        -- {
+        --     "gR",
+        --     require("fzf-lua").lsp_references,
+        --     buffer = bufnr,
+        --     desc = "Go to references",
+        -- },
         {
             "gK",
             function()

@@ -5,7 +5,7 @@ return {
         keys = {
             {
                 "<leader>fn",
-                "<cmd>NoiceFzf<cr>",
+                "<cmd>NoicePick<cr>",
                 desc = "Messages",
                 mode = "n",
             },
