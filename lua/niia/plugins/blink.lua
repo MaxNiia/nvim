@@ -71,7 +71,7 @@ return {
                     "path",
                     "snippets",
                     "buffer",
-                    "copilot",
+                    vim.g.enable_copilot and "copilot" or nil,
                 },
             },
 
@@ -128,29 +128,5 @@ return {
                 preset = "default",
             },
         },
-        config = function(_, opts)
-            -- if vim.g.enable_copilot then
-            --     opts = vim.tbl_deep_extend("force", {
-            --         sources = {
-            --             providers = {
-            --                 copilot = {
-            --                     name = "copilot",
-            --                     module = "blink-cmp-copilot",
-            --                     score_offset = 100,
-            --                     async = true,
-            --                 },
-            --             },
-            --             default = {
-            --                 "lsp",
-            --                 "path",
-            --                 "snippets",
-            --                 "buffer",
-            --                 "copilot",
-            --             },
-            --         },
-            --     }, opts)
-            -- end
-            require("blink.cmp").setup(opts)
-        end,
     },
 }

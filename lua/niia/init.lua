@@ -20,6 +20,7 @@ M.start = function(opts)
     vim.g.cat_oled = config.cat_oled
     vim.g.noice_popup = config.noice_popup
     vim.g.jump_on_enter = config.jump_on_enter
+    vim.g.enable_copilot = config.enable_copilot
 
     if vim.fn.has("nvim-0.10.1)") ~= 1 then
         return vim.notify("nvim 0.10.1 is required", vim.log.levels.ERROR, { title = "Niia" })
