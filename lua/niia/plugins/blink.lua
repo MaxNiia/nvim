@@ -30,9 +30,9 @@ return {
                     "snippet_backward",
                     "fallback",
                 },
-
                 cmdline = {
                     preset = "enter",
+                    ["<CR>"] = {},
                 },
             },
 
@@ -83,7 +83,6 @@ return {
                     },
                 },
                 accept = {
-                    -- experimental auto-brackets support
                     auto_brackets = {
                         enabled = true,
                     },

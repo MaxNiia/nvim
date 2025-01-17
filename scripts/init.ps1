@@ -57,8 +57,8 @@ if (-not (Test-Path "${HOME}/.nvm/.git")) {
     Invoke-WebRequest -Uri https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh -OutFile install-nvm.sh
     bash install-nvm.sh
     Remove-Item install-nvm.sh
-    Write-Host "If 'nvm install 16' fails copy NVM config from profile file to bashrc"
-    nvm install 16
+    Write-Host "If 'nvm install 18' fails copy NVM config from profile file to bashrc"
+    nvm install 18
     corepack enable
 }
 
