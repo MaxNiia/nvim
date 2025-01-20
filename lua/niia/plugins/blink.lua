@@ -66,6 +66,11 @@ return {
                         end,
                     },
                 },
+                cmdline = {
+                    enabled = function()
+                        return vim.fn.getcmdline():sub(1, 1) ~= "!"
+                    end,
+                },
                 default = {
                     "lsp",
                     "path",
@@ -94,7 +99,7 @@ return {
                                 ellipsis = false,
                                 text = function(ctx)
                                     if ctx.kind == "Copilot" then
-                                        return ""
+                                        return require("niia.utils.icons").kinds.Copilot
                                     end
                                     local kind_icon, _, _ =
                                         require("mini.icons").get("lsp", ctx.kind)
