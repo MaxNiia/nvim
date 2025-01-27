@@ -2,6 +2,7 @@ return {
     {
         "rachartier/tiny-inline-diagnostic.nvim",
         event = "VeryLazy",
+        enabled = vim.fn.has("nvim-0.11") == 0,
         opts = {
             preset = "classic",
             options = {

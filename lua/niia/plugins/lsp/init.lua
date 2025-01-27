@@ -103,6 +103,7 @@ return {
                 underline = true,
                 update_in_insert = false,
                 severity_sort = true,
+                virtual_lines = vim.fn.has("nvim-0.11") == 1,
                 virtual_text = false,
                 signs = {
                     text = {
