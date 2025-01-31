@@ -19,17 +19,6 @@ return {
         },
         config = true,
     },
-    -- {
-    --     "echasnovski/mini.animate",
-    --     version = false,
-    --     event = "VeryLazy",
-    --     opts = {
-    --         scroll = {
-    --             enable = false,
-    --         },
-    --     },
-    --     config = true,
-    -- },
     {
         "echasnovski/mini.ai",
         version = false,

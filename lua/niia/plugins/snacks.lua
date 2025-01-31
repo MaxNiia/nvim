@@ -82,7 +82,11 @@ return {
                     },
                 },
             },
-            picker = {},
+            explorer = {
+                enabled = true,
+                replace_netrw = false,
+            },
+            picker = { enabled = true },
             bigfile = { enabled = true },
             scroll = {
                 animate = {
@@ -93,7 +97,7 @@ return {
                     easing = "linear",
                 },
             },
-            input = {},
+            input = { enabled = true },
             zen = {
                 toggles = {
                     dim = false,
@@ -369,6 +373,13 @@ return {
         },
         keys = {
             {
+                "<leader>EE",
+                function()
+                    Snacks.explorer.open()
+                end,
+                desc = "Explorer",
+            },
+            {
                 "<leader>,",
                 function()
                     Snacks.picker.buffers()
@@ -599,7 +610,7 @@ return {
                 desc = "Goto Definition",
             },
             {
-                "gr",
+                "grr",
                 function()
                     Snacks.picker.lsp_references()
                 end,
@@ -607,7 +618,7 @@ return {
                 desc = "References",
             },
             {
-                "gI",
+                "gri",
                 function()
                     Snacks.picker.lsp_implementations()
                 end,
@@ -619,6 +630,13 @@ return {
                     Snacks.picker.lsp_type_definitions()
                 end,
                 desc = "Goto T[y]pe Definition",
+            },
+            {
+                "gO",
+                function()
+                    Snacks.picker.lsp_symbols()
+                end,
+                desc = "LSP Symbols",
             },
             {
                 "<leader>ss",
