@@ -2,49 +2,10 @@ return function(bufnr)
     local wk = require("which-key")
     wk.add({
         {
-            "gD",
-            vim.lsp.buf.declaration,
-            buffer = bufnr,
-            desc = "Go to declaration",
-        },
-        -- {
-        --     "gd",
-        --     vim.lsp.buf.definition,
-        --     buffer = bufnr,
-        --     desc = "Go to definition",
-        -- },
-        -- {
-        --     "gI",
-        --     vim.lsp.buf.implementation,
-        --     buffer = bufnr,
-        --     desc = "Go to implementation",
-        -- },
-        -- { "gy", vim.lsp.buf.type_definition, desc = "Goto T[y]pe Definition" },
-        -- {
-        --     "gr",
-        --     "<cmd>FzfLua lsp_references<cr>",
-        --     desc = "References",
-        --     buffer = bufnr,
-        -- },
-        -- {
-        --     "gR",
-        --     require("fzf-lua").lsp_references,
-        --     buffer = bufnr,
-        --     desc = "Go to references",
-        -- },
-        {
             "gK",
             function()
                 return vim.lsp.buf.signature_help()
             end,
-            desc = "Signature Help",
-        },
-        {
-            "<c-k>",
-            function()
-                return vim.lsp.buf.signature_help()
-            end,
-            mode = "i",
             desc = "Signature Help",
         },
         {
@@ -54,12 +15,6 @@ return function(bufnr)
             end,
             buffer = bufnr,
             desc = "Format",
-        },
-        {
-            "<leader>a",
-            vim.lsp.buf.code_action,
-            buffer = bufnr,
-            desc = "Apply fix",
         },
         {
             "<leader>rc",
