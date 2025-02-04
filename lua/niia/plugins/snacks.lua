@@ -86,7 +86,15 @@ return {
                 enabled = true,
                 replace_netrw = false,
             },
-            picker = { enabled = true },
+            picker = {
+                enabled = true,
+                formatters = {
+                    file = {
+                        filename_first = true,
+                        truncate = 40,
+                    },
+                },
+            },
             bigfile = { enabled = true },
             scroll = {
                 animate = {
@@ -416,6 +424,13 @@ return {
                 desc = "Buffers",
             },
             {
+                "<leader>fh",
+                function()
+                    Snacks.picker.files({ cwd = vim.fn.expand("$HOME") })
+                end,
+                desc = "Find home File",
+            },
+            {
                 "<leader>fc",
                 function()
                     Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
@@ -448,6 +463,13 @@ return {
                 "<leader>gc",
                 function()
                     Snacks.picker.git_log()
+                end,
+                desc = "Git Log",
+            },
+            {
+                "<leader>ga",
+                function()
+                    Snacks.picker.git_branches()
                 end,
                 desc = "Git Log",
             },
@@ -588,14 +610,14 @@ return {
                 desc = "Quickfix List",
             },
             {
-                "<leader>uC",
+                "<leader>fC",
                 function()
                     Snacks.picker.colorschemes()
                 end,
                 desc = "Colorschemes",
             },
             {
-                "<leader>qp",
+                "<leader>fp",
                 function()
                     Snacks.picker.projects()
                 end,

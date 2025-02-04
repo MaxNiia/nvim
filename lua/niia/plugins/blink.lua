@@ -20,6 +20,14 @@ return {
         opts = {
             keymap = {
                 preset = "enter",
+                ["<Down>"] = {
+                    "select_next",
+                    "fallback",
+                },
+                ["<Up>"] = {
+                    "select_prev",
+                    "fallback",
+                },
                 ["<Tab>"] = {
                     "select_next",
                     "snippet_forward",
@@ -33,6 +41,24 @@ return {
                 cmdline = {
                     preset = "enter",
                     ["<CR>"] = {},
+                    ["<Down>"] = {
+                        "select_next",
+                        "fallback",
+                    },
+                    ["<Up>"] = {
+                        "select_prev",
+                        "fallback",
+                    },
+                    ["<Tab>"] = {
+                        "select_next",
+                        "snippet_forward",
+                        "fallback",
+                    },
+                    ["<S-Tab>"] = {
+                        "select_prev",
+                        "snippet_backward",
+                        "fallback",
+                    },
                 },
             },
 
@@ -41,14 +67,7 @@ return {
                 nerd_font_variant = "mono",
                 -- Blink does not expose its default kind icons so you must copy them all (or set your custom ones) and add Copilot
             },
-
             sources = {
-                -- default = {
-                --     "lsp",
-                --     "path",
-                --     "snippets",
-                --     "buffer",
-                -- },
                 providers = {
                     copilot = {
                         name = "copilot",
@@ -65,11 +84,11 @@ return {
                             return items
                         end,
                     },
-                },
-                cmdline = {
-                    enabled = function()
-                        return vim.fn.getcmdline():sub(1, 1) ~= "!"
-                    end,
+                    cmdline = {
+                        enabled = function()
+                            return vim.fn.getcmdline():sub(1, 1) ~= "!"
+                        end,
+                    },
                 },
                 default = {
                     "lsp",
@@ -81,10 +100,16 @@ return {
             },
 
             completion = {
+                ghost_text = {
+                    enabled = true,
+                    show_with_selection = true,
+                },
                 list = {
                     selection = {
                         preselect = false,
-                        auto_insert = true,
+                        auto_insert = function(ctx)
+                            return ctx.mode == "cmdline"
+                        end,
                     },
                 },
                 accept = {
@@ -121,9 +146,6 @@ return {
                 documentation = {
                     auto_show = true,
                     auto_show_delay_ms = 200,
-                },
-                ghost_text = {
-                    enabled = true,
                 },
             },
 
