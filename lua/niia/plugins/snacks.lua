@@ -181,7 +181,7 @@ return {
                             icon = " ",
                             key = "f",
                             desc = "Find File",
-                            action = ":lua Snacks.dashboard.pick('files')",
+                            action = "<leader>ff",
                         },
                         {
                             icon = " ",
@@ -193,7 +193,7 @@ return {
                             icon = " ",
                             key = "s",
                             desc = "Find Text",
-                            action = ":lua Snacks.dashboard.pick('live_grep')",
+                            action = "<leader>sg",
                         },
                         {
                             icon = " ",
@@ -205,7 +205,7 @@ return {
                             icon = " ",
                             key = "r",
                             desc = "Recent Files",
-                            action = ":lua Snacks.dashboard.pick('oldfiles')",
+                            action = "<leader>fr",
                         },
                         {
                             icon = " ",
@@ -217,7 +217,7 @@ return {
                             icon = " ",
                             key = "c",
                             desc = "Config",
-                            action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+                            action = "<leader>fc",
                         },
                         {
                             icon = " ",
@@ -631,13 +631,6 @@ return {
                     Snacks.picker.colorschemes()
                 end,
                 desc = "Colorschemes",
-            },
-            {
-                "<leader>fp",
-                function()
-                    Snacks.picker.projects()
-                end,
-                desc = "Projects",
             },
             -- LSP
             {

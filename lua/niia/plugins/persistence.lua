@@ -20,6 +20,14 @@ return {
                 desc = "Pick session",
             },
             {
+                "<leader>fp",
+                function()
+                    require("persistence").select()
+                end,
+                mode = "n",
+                desc = "Pick session",
+            },
+            {
                 "<leader>WL",
                 function()
                     require("persistence").load({ last = true })
