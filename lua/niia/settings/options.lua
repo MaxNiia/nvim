@@ -64,6 +64,7 @@ vim.opt.ttimeoutlen = 100
 vim.opt.undofile = true
 vim.opt.wildmenu = true
 vim.opt.winblend = 0
+vim.opt.diffopt = "filler,internal,closeoff,algorithm:histogram,context:5,linematch:60"
 
 local icons = require("niia.utils.icons")
 vim.opt.fillchars:append({
