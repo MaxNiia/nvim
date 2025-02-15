@@ -12,7 +12,7 @@ return {
         "--background-index=true",
         "--clang-tidy",
         "--completion-style=detailed",
-        "--malloc-trim",
+        vim.fn.has("macunix") and "--malloc-trim" or "",
         "--all-scopes-completion=true",
         "--query-driver=" .. vim.g.clangd_query_driver,
         "--header-insertion=iwyu",
