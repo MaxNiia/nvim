@@ -70,13 +70,18 @@ return {
         lazy = false,
         ---@type snacks.Config
         opts = {
+            image = {
+                enabled = true,
+            },
             styles = {
                 dashboard = {
+                    relative = false,
                     wo = {
                         colorcolumn = "",
                     },
                 },
                 notification = {
+                    relative = false,
                     wo = {
                         wrap = true,
                     },

@@ -5,8 +5,52 @@ return {
         keys = {
             { "H", "^", mode = { "n", "v", "o" }, desc = "End of line" },
             { "L", "$", mode = { "n", "v", "o" }, desc = "Start of line" },
-            { "<c-d>", "<c-d>", mode = "n" },
-            { "<c-u>", "<c-u>", mode = "n" },
+            {
+                "<c-h>",
+                "<c-w>h",
+                mode = "n",
+                desc = "Go to Left Window",
+            },
+            {
+                "<c-j>",
+                "<c-w>j",
+                mode = "n",
+                desc = "Go to Lower Window",
+            },
+            {
+                "<c-k>",
+                "<c-w>k",
+                mode = "n",
+                desc = "Go to Upper Window",
+            },
+            {
+                "<c-l>",
+                "<c-w>l",
+                mode = "n",
+                desc = "Go to Right Window",
+            },
+            {
+                "<",
+                "<gv",
+                mode = "v",
+            },
+            {
+                ">",
+                ">gv",
+                mode = "v",
+            },
+            {
+                "gco",
+                "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>",
+                mode = "n",
+                desc = "Add Comment Below",
+            },
+            {
+                "gcO",
+                "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>",
+                mode = "n",
+                desc = "Add Comment Above",
+            },
             { "n", "nzzzv", mode = "n" },
             { "N", "Nzzzv", mode = "n" },
             { "<esc>", "<c-\\><c-n>", mode = "t" },
@@ -16,6 +60,11 @@ return {
                 "<cmd>wq<cr>",
                 mode = { "n", "v", "o" },
                 desc = "Save and quit buffer",
+            },
+            {
+                "<leader>Q",
+                "<cmd>%bd|e#|bd#<cr>",
+                desc = "Delete Buffer",
             },
             {
                 "<leader>y",
@@ -58,6 +107,7 @@ return {
                 end,
                 desc = "Buffer Local Keymaps (which-key)",
             },
+            -- NOTE: remove on nvim 0.11.
             {
                 "<Tab>",
                 function()

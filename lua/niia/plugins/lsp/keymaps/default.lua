@@ -11,7 +11,7 @@ return function(bufnr)
         {
             "<leader>d",
             function()
-                require("conform").format({ async = true, lsp_fallback = true })
+                require("conform").format({ async = true, lsp_format = "fallback" })
             end,
             buffer = bufnr,
             desc = "Format",

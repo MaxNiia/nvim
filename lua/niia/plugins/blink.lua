@@ -18,27 +18,8 @@ return {
             "sources.default",
         },
         opts = {
-            keymap = {
-                preset = "enter",
-                ["<Down>"] = {
-                    "select_next",
-                    "fallback",
-                },
-                ["<Up>"] = {
-                    "select_prev",
-                    "fallback",
-                },
-                ["<Tab>"] = {
-                    "select_next",
-                    "snippet_forward",
-                    "fallback",
-                },
-                ["<S-Tab>"] = {
-                    "select_prev",
-                    "snippet_backward",
-                    "fallback",
-                },
-                cmdline = {
+            cmdline = {
+                keymap = {
                     preset = "enter",
                     ["<CR>"] = {},
                     ["<Down>"] = {
@@ -59,6 +40,27 @@ return {
                         "snippet_backward",
                         "fallback",
                     },
+                },
+            },
+            keymap = {
+                preset = "enter",
+                ["<Down>"] = {
+                    "select_next",
+                    "fallback",
+                },
+                ["<Up>"] = {
+                    "select_prev",
+                    "fallback",
+                },
+                ["<Tab>"] = {
+                    "select_next",
+                    "snippet_forward",
+                    "fallback",
+                },
+                ["<S-Tab>"] = {
+                    "select_prev",
+                    "snippet_backward",
+                    "fallback",
                 },
             },
 

@@ -6,15 +6,15 @@ return {
         event = "VeryLazy",
         opts = {
             mappings = {
-                left = "<S-left>",
-                right = "<S-right>",
-                down = "<S-down>",
-                up = "<S-up>",
+                left = "<M-h>",
+                right = "<M-l>",
+                down = "<M-j>",
+                up = "<M-k>",
 
-                line_left = "<S-left>",
-                line_right = "<S-right>",
-                line_down = "<S-down>",
-                line_up = "<S-up>",
+                line_left = "<M-h>",
+                line_right = "<M-l>",
+                line_down = "<M-j>",
+                line_up = "<M-k>",
             },
         },
         config = true,

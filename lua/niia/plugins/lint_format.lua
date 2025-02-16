@@ -9,27 +9,13 @@ return {
                 -- NOTE: YAML
                 yaml = { "yamllint" },
 
-                -- NOTE: JS/TS
-                css = { "stylelint" },
-                javascript = { "eslint" },
-                javascriptreact = { "stylelint", "eslint_d" },
-                typescript = { "eslint" },
-                typescriptreact = { "stylelint", "eslint_d" },
-
                 -- NOTE: shellcheck
                 bash = { "shellcheck" },
                 sh = { "shellcheck" },
 
-                python = {
-                    -- "flake8",
-                    -- "mypy",
-                    -- "pydocstyle",
-                    -- "pylint",
-                },
+                python = {},
                 markdown = { "markdownlint" },
-                lua = {
-                    -- "luacheck",
-                },
+                lua = {},
                 json = {
                     "jsonlint",
                 },
@@ -99,19 +85,19 @@ return {
                 bash = { "beautysh", "shfmt" },
                 bzl = { "buildifier" },
                 python = { "ruff_format" },
-                css = { "stylelint" },
-                javascript = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
-                javascriptreact = {
-                    "stylelint",
-                    { "prettierd", "prettier" },
-                    { "eslint_d", "eslint" },
-                },
-                typescript = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
-                typescriptreact = {
-                    "stylelint",
-                    { "prettierd", "prettier" },
-                    { "eslint_d", "eslint" },
-                },
+                -- css = { "stylelint" },
+                -- javascript = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
+                -- javascriptreact = {
+                --     "stylelint",
+                --     { "prettierd", "prettier" },
+                --     { "eslint_d", "eslint" },
+                -- },
+                -- typescript = { { "prettierd", "prettier" }, { "eslint_d", "eslint" } },
+                -- typescriptreact = {
+                --     "stylelint",
+                --     { "prettierd", "prettier" },
+                --     { "eslint_d", "eslint" },
+                -- },
                 json = { "fixjson" },
                 -- yaml = { "yamlfmt" },
                 markdown = { "markdownlint" },
