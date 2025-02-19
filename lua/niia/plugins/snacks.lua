@@ -72,16 +72,15 @@ return {
         opts = {
             image = {
                 enabled = true,
+                force = true,
             },
             styles = {
                 dashboard = {
-                    relative = false,
                     wo = {
                         colorcolumn = "",
                     },
                 },
                 notification = {
-                    relative = false,
                     wo = {
                         wrap = true,
                     },
@@ -104,8 +103,8 @@ return {
             scroll = {
                 animate = {
                     duration = {
-                        step = 20,
-                        total = 200,
+                        step = 10,
+                        total = 100,
                     },
                     easing = "linear",
                 },
@@ -295,7 +294,10 @@ return {
                     },
                 },
             },
-            notifier = { enabled = true, timeout = 3000 },
+            notifier = {
+                enabled = true,
+                timeout = 3000,
+            },
             quickfile = { enabled = true },
             bufdelete = { enabled = true },
             scratch = {
@@ -387,7 +389,7 @@ return {
             statuscolumn = {
                 enabled = true,
                 left = { "mark", "sign" }, -- priority of signs on the left (high to low)
-                right = { "git", "fold" }, -- priority of signs on the right (high to low)
+                right = { "fold", "git" }, -- priority of signs on the right (high to low)
                 folds = {
                     open = true, -- show open fold icons
                     git_hl = true, -- use Git Signs hl for fold icons
@@ -495,7 +497,7 @@ return {
                 desc = "Git Log",
             },
             {
-                "<leader>gs",
+                "<leader>fG",
                 function()
                     Snacks.picker.git_status()
                 end,
@@ -515,6 +517,13 @@ return {
                     Snacks.picker.grep_buffers()
                 end,
                 desc = "Grep Open Buffers",
+            },
+            {
+                "<leader>sD",
+                function()
+                    Snacks.picker.diagnostics_buffer()
+                end,
+                desc = "Buffer Diagnostics",
             },
             {
                 "<leader>sg",
@@ -762,11 +771,45 @@ return {
                 desc = "Lazygit Log (cwd)",
             },
             {
+                "<leader>fl",
+                function()
+                    Snacks.picker.lsp_config()
+                end,
+                desc = "Lsp Info",
+            },
+            {
                 "<leader>rf",
                 function()
                     Snacks.rename.rename_file()
                 end,
                 desc = "Rename File",
+            },
+            {
+                "<leader>tt",
+                function()
+                    Snacks.terminal()
+                end,
+                desc = "Toggle Terminal",
+            },
+            {
+                "<leader>tc",
+                function()
+                    Snacks.terminal(
+                        vim.fn.input("Run command", "", "shellcmdline"),
+                        { auto_close = false }
+                    )
+                end,
+                desc = "Run command in terminal",
+            },
+            {
+                "<leader>tC",
+                function()
+                    Snacks.terminal(
+                        vim.fn.input("Run command", "", "shellcmdline"),
+                        { auto_close = true }
+                    )
+                end,
+                desc = "Run command in terminal (autoclose)",
             },
             {
                 "<c-/>",

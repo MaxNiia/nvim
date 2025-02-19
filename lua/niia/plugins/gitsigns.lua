@@ -127,7 +127,7 @@ return {
                         desc = "List all hunks",
                     },
                     {
-                        "gs",
+                        "<leader>gs",
                         gs.stage_hunk,
                         mode = "n",
                         buffer = bufnr,
@@ -148,7 +148,7 @@ return {
                         desc = "Reset Hunk",
                     },
                     {
-                        "gS",
+                        "<leader>gS",
                         gs.stage_buffer,
                         mode = "n",
                         buffer = bufnr,

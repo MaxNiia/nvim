@@ -24,6 +24,18 @@ return {
                 desc = "Go to Upper Window",
             },
             {
+                "<m-a>",
+                "<esc>mzA;<esc>`z",
+                mode = "n",
+                desc = "Insert ; at end of line",
+            },
+            {
+                "<m-a>",
+                "<esc>mzA;<esc>`za",
+                mode = "i",
+                desc = "Insert ; at end of line",
+            },
+            {
                 "<c-l>",
                 "<c-w>l",
                 mode = "n",

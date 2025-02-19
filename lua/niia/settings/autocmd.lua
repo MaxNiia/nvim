@@ -15,6 +15,9 @@ vim.cmd([[
         autocmd!
         autocmd VimResized * wincmd =
     augroup END
+
+    autocmd InsertLeave,WinEnter * set cursorline
+    autocmd InsertEnter,WinLeave * set nocursorline
 ]])
 
 vim.api.nvim_create_autocmd("BufWinEnter", {

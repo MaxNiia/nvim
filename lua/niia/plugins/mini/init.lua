@@ -1,6 +1,11 @@
 local file_functions = require("niia.plugins.mini.files")
 return {
     {
+        "echasnovski/mini.splitjoin",
+        version = false,
+        config = true,
+    },
+    {
         "echasnovski/mini.move",
         version = false,
         event = "VeryLazy",
