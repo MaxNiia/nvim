@@ -27,6 +27,11 @@ return {
                 ["vim.lsp.util.stylize_markdown"] = true,
                 ["cmp.entry.get_documentation"] = true,
             },
+            lsp = {
+                progress = {
+                    enabled = false,
+                },
+            },
             routes = {
                 {
                     filter = {
@@ -37,7 +42,6 @@ return {
                             { find = "; before #%d+" },
                         },
                     },
-                    view = "mini",
                 },
                 {
                     view = "split",

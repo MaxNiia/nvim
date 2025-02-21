@@ -11,6 +11,7 @@ return {
                     "Azure-Pipelines/**/*.y*l",
                     "Pipelines/*.y*l",
                     "azure/*.y*l",
+                    "azure-pipelines*.y*l",
                 },
                 ["http://json.schemastore.org/composer"] = "/*",
             },
