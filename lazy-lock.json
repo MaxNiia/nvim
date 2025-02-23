@@ -8,6 +8,7 @@
   "blink.cmp": { "branch": "main", "commit": "d2fbc41787d30fbfc6853ba82f2f0c47c9165034" },
   "catppuccin": { "branch": "main", "commit": "4bb938bbba41d306db18bf0eb0633a5f28fd7ba0" },
   "clangd_extensions.nvim": { "branch": "main", "commit": "db28f29be928d18cbfb86fbfb9f83f584f658feb" },
+  "clasp.nvim": { "branch": "master", "commit": "c3bebd9e1c4588b68dff8fff11e60874030b5170" },
   "cmake-tools.nvim": { "branch": "master", "commit": "72a5eb8fd330da3e4a5f9ca0722ebf423f54bc8e" },
   "conform.nvim": { "branch": "master", "commit": "a6f5bdb78caa305496357d17e962bbc4c0b392e2" },
   "copilot.lua": { "branch": "master", "commit": "30321e33b03cb924fdcd6a806a0dc6fa0b0eafb9" },

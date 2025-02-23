@@ -169,7 +169,7 @@ return {
                         desc = "Preview Hunk",
                     },
                     {
-                        "gs",
+                        "<leader>gs",
                         function()
                             gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
                         end,
@@ -179,38 +179,6 @@ return {
                     },
                     {
                         "<leader>gr",
-                        function()
-                            gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-                        end,
-                        mode = "v",
-                        buffer = bufnr,
-                        desc = "Reset Hunk",
-                    },
-                    {
-                        "gh",
-                        gs.stage_hunk("Stage Hunk"),
-                        mode = "n",
-                        buffer = bufnr,
-                        desc = "Stage Hunk",
-                    },
-                    {
-                        "gH",
-                        gs.reset_hunk,
-                        mode = "n",
-                        buffer = bufnr,
-                        desc = "Reset Hunk",
-                    },
-                    {
-                        "gh",
-                        function()
-                            gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-                        end,
-                        mode = "v",
-                        buffer = bufnr,
-                        desc = "Stage Hunk",
-                    },
-                    {
-                        "gH",
                         function()
                             gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
                         end,
