@@ -218,6 +218,12 @@ return {
                             action = "<leader>gg",
                         },
                         {
+                            icon = " ",
+                            key = "G",
+                            desc = "Lazygit config",
+                            action = "<leader>gG",
+                        },
+                        {
                             icon = " ",
                             key = "c",
                             desc = "Config",
@@ -743,6 +749,13 @@ return {
                 desc = "Lazygit",
             },
             {
+                "<leader>gG",
+                function()
+                    require("snacks").terminal("lazygit --git-dir=$HOME/.cfg --work-tree=$HOME")
+                end,
+                desc = "Lazygit dotfiles",
+            },
+            {
                 "<leader>gb",
                 function()
                     Snacks.git.blame_line()
@@ -783,6 +796,27 @@ return {
                     Snacks.rename.rename_file()
                 end,
                 desc = "Rename File",
+            },
+            {
+                "<leader>tf",
+                function()
+                    Snacks.terminal(nil, { win = { position = "float" } })
+                end,
+                desc = "Toggle Terminal (float)",
+            },
+            {
+                "<leader>ts",
+                function()
+                    Snacks.terminal(nil, { win = { position = "bottom" } })
+                end,
+                desc = "Toggle Terminal (bottom)",
+            },
+            {
+                "<leader>tv",
+                function()
+                    Snacks.terminal(nil, { win = { position = "right" } })
+                end,
+                desc = "Toggle Terminal (right)",
             },
             {
                 "<leader>tt",
