@@ -5,7 +5,6 @@ return {
         event = "VeryLazy",
         dependencies = {
             "williamboman/mason-lspconfig.nvim",
-            "onsails/lspkind.nvim",
             {
                 "artemave/workspace-diagnostics.nvim",
                 keys = {
