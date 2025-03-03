@@ -17,38 +17,40 @@ vim.api.nvim_create_autocmd({
         end
 
         git_status_is_busy = true
-        vim.system({
-            "sh",
-            "-c",
-            "git diff | diffstat -sm",
-        }, {
-            text = true,
-            timeout = 1000,
-        }, function(obj)
-            vim.defer_fn(function()
-                git_status_is_busy = false
-            end, 1000)
-            -- Terminated by timeout
-            if obj.signal == 15 then
-                print("Timeout")
-                return
-            end
+        if vim.loop.os_uname().sysname == "Linux" then
+            vim.system({
+                "sh",
+                "-c",
+                "git diff | diffstat -sm",
+            }, {
+                text = true,
+                timeout = 1000,
+            }, function(obj)
+                vim.defer_fn(function()
+                    git_status_is_busy = false
+                end, 1000)
+                -- Terminated by timeout
+                if obj.signal == 15 then
+                    print("Timeout")
+                    return
+                end
 
-            -- Other errors, presume not a git repo
-            if obj.code ~= 0 then
-                print("ERROR")
-                files_changed = "0"
-                insertions = "0"
-                deletions = "0"
-                modifications = "0"
-                return
-            end
-            -- Extract numbers using pattern matching
-            files_changed = obj.stdout:match("(%d+) files? changed") or "0"
-            insertions = obj.stdout:match("(%d+) insertions?") or "0"
-            deletions = obj.stdout:match("(%d+) deletions?") or "0"
-            modifications = obj.stdout:match("(%d+) modifications?%(!%)") or "0"
-        end)
+                -- Other errors, presume not a git repo
+                if obj.code ~= 0 then
+                    print("ERROR")
+                    files_changed = "0"
+                    insertions = "0"
+                    deletions = "0"
+                    modifications = "0"
+                    return
+                end
+                -- Extract numbers using pattern matching
+                files_changed = obj.stdout:match("(%d+) files? changed") or "0"
+                insertions = obj.stdout:match("(%d+) insertions?") or "0"
+                deletions = obj.stdout:match("(%d+) deletions?") or "0"
+                modifications = obj.stdout:match("(%d+) modifications?%(!%)") or "0"
+            end)
+        end
     end,
 })
 

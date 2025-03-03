@@ -10,6 +10,20 @@ else {
     scoop update rustup
 }
 
+if (-not (Get-Command unzip -ErrorAction SilentlyContinue)) {
+    scoop install unzip
+}
+else {
+    scoop update unzip
+}
+
+if (-not (Get-Command curl -ErrorAction SilentlyContinue)) {
+    scoop install curl
+}
+else {
+    scoop update curl
+}
+
 rustup update
 
 # Install ripgrep
