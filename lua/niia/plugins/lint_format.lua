@@ -48,6 +48,7 @@ return {
     },
     {
         "stevearc/conform.nvim",
+        event = "BufEnter",
         init = function()
             vim.g.disable_autoformat = false
             vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
