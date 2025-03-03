@@ -161,7 +161,6 @@ return {
                 { "<leader>g", group = "Git" },
                 { "<leader>i", group = "Chat" },
                 { "<leader>r", group = "Refactor" },
-                { "<leader>re", group = "Extract" },
                 { "<leader>rd", group = "Documentation" },
                 { "<leader>rp", group = "Print" },
                 { "<leader>s", group = "Search" },

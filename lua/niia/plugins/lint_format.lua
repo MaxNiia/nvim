@@ -50,32 +50,38 @@ return {
         "stevearc/conform.nvim",
         event = "BufEnter",
         init = function()
-            vim.g.disable_autoformat = false
+            vim.g.autoformat = true
+            vim.b.autoformat = true
             vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
 
             vim.api.nvim_create_user_command("FormatDisable", function(args)
                 if args.bang then
                     -- FormatDisable! will disable formatting just for this buffer
-                    vim.b.disable_autoformat = true
+                    vim.b.autoformat = false
                 else
-                    vim.g.disable_autoformat = true
+                    vim.g.autoformat = false
                 end
             end, {
                 desc = "Disable autoformat-on-save",
                 bang = true,
             })
-            vim.api.nvim_create_user_command("FormatEnable", function()
-                vim.b.disable_autoformat = false
-                vim.g.disable_autoformat = false
+            vim.api.nvim_create_user_command("FormatEnable", function(args)
+                if args.bang then
+                    -- FormatEnable! will enable formatting just for this buffer
+                    vim.b.autoformat = true
+                else
+                    vim.g.autoformat = true
+                end
             end, {
                 desc = "Re-enable autoformat-on-save",
+                bang = true,
             })
         end,
         opts = {
             format_on_save = nil,
             format_after_save = function(bufnr)
                 -- Disable with a global or buffer-local variable
-                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                if vim.g.autoformat or vim.b[bufnr].autoformat then
                     return
                 end
                 return { timeout_ms = 500, lsp_fallback = true, async = true }

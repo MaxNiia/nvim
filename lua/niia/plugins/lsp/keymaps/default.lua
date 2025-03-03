@@ -22,7 +22,7 @@ return function(bufnr)
             mode = "n",
         },
         {
-            "<leader>rf",
+            "grd",
             function()
                 require("conform").format({ async = true, lsp_format = "fallback" })
             end,

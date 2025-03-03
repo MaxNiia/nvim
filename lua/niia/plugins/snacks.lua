@@ -949,8 +949,11 @@ return {
                     vim.print = _G.dd -- Override print to use snacks for `:=` command
 
                     -- Create some toggle mappings
-                    Snacks.toggle.zen():map("<leader>z")
-                    Snacks.toggle.zoom():map("<leader>Z")
+                    Snacks.toggle.zen():map("<leader>uz")
+                    Snacks.toggle.zoom():map("<leader>uZ")
+                    Snacks.toggle.indent():map("<leader>ui")
+                    Snacks.toggle.words():map("<leader>uW")
+                    Snacks.toggle.scroll():map("<leader>uS")
                     Snacks.toggle.option("spell", { name = "Spelling" }):map("<leader>us")
                     Snacks.toggle.option("wrap", { name = "Wrap" }):map("<leader>uw")
                     Snacks.toggle
@@ -969,6 +972,24 @@ return {
                         .option("background", { off = "light", on = "dark", name = "Dark Background" })
                         :map("<leader>ub")
                     Snacks.toggle.inlay_hints():map("<leader>uh")
+                    Snacks.toggle({
+                        name = "Auto Format global",
+                        get = function()
+                            return vim.g.autoformat
+                        end,
+                        set = function(state)
+                            vim.g.autoformat = state
+                        end,
+                    }):map("<leader>uf")
+                    Snacks.toggle({
+                        name = "Auto Format buffer",
+                        get = function()
+                            return vim.b.autoformat
+                        end,
+                        set = function(state)
+                            vim.b.autoformat = state
+                        end,
+                    }):map("<leader>uF")
                 end,
             })
         end,
