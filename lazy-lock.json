@@ -5,7 +5,7 @@
   "baleia.nvim": { "branch": "main", "commit": "880e97c02edf3148ba2bdc6305ac03eb3c3711e0" },
   "better-escape.nvim": { "branch": "master", "commit": "199dcc2643dec5d8dbdab4ec672cf405224dcb3b" },
   "blink-cmp-copilot": { "branch": "main", "commit": "439cff78780c033aa23cf061d7315314b347e3c1" },
-  "blink.cmp": { "branch": "main", "commit": "bcae8076af3aba729f4eeb2940c6b5dc45304085" },
+  "blink.cmp": { "branch": "main", "commit": "273bb364d8601dd72ca0b657079f4624bc76c3af" },
   "catppuccin": { "branch": "main", "commit": "5b5e3aef9ad7af84f463d17b5479f06b87d5c429" },
   "clangd_extensions.nvim": { "branch": "main", "commit": "db28f29be928d18cbfb86fbfb9f83f584f658feb" },
   "clasp.nvim": { "branch": "master", "commit": "e6db0d0100fb3936132a179b023d4047b9a8c28c" },

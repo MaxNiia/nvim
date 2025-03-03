@@ -3,7 +3,7 @@ return {
         "folke/flash.nvim",
         keys = {
             {
-                vim.g.jump_on_enter and "<cr>" or "<leader>j",
+                vim.g.jump_on_enter and "<cr>" or "gj",
                 mode = { "n", "x", "o" },
                 function()
                     local Flash = require("flash")
@@ -65,20 +65,16 @@ return {
                 desc = "Treesitter",
             },
             {
-                "r",
-                mode = "o",
-                function()
-                    require("flash").remote()
-                end,
-                desc = "Remote",
+                "f",
             },
             {
-                "R",
-                mode = { "o", "x" },
-                function()
-                    require("flash").treesitter_search()
-                end,
-                desc = "Treesitter Search",
+                "F",
+            },
+            {
+                "t",
+            },
+            {
+                "T",
             },
         },
         opts = {

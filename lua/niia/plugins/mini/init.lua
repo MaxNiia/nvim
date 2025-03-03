@@ -79,7 +79,7 @@ return {
                 pattern = "MiniFilesWindowOpen",
                 callback = function(args)
                     local win_id = args.data.win_id
-                    vim.wo[win_id].number = true
+                    vim.wo[win_id].number = false
 
                     -- Customize window-local settings
                     local config = vim.api.nvim_win_get_config(win_id)

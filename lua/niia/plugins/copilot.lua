@@ -56,8 +56,8 @@ return {
             vim.api.nvim_create_autocmd("BufEnter", {
                 pattern = "copilot-*",
                 callback = function()
-                    vim.opt_local.relativenumber = true
-                    vim.opt_local.number = true
+                    vim.opt_local.relativenumber = false
+                    vim.opt_local.number = false
                     -- C-p to print last response
                     vim.keymap.set("n", "<C-p>", function()
                         print(require("CopilotChat").response())
