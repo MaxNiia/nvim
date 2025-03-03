@@ -4,20 +4,12 @@ return {
         event = "BufReadPre", -- this will only start session saving when an actual file was opened
         keys = {
             {
-                "<leader>WS",
+                "<leader>os",
                 function()
                     require("persistence").load()
                 end,
                 mode = "n",
                 desc = "Load session",
-            },
-            {
-                "<leader>WP",
-                function()
-                    require("persistence").select()
-                end,
-                mode = "n",
-                desc = "Pick session",
             },
             {
                 "<leader>fp",
@@ -28,7 +20,7 @@ return {
                 desc = "Pick session",
             },
             {
-                "<leader>WL",
+                "<leader>ol",
                 function()
                     require("persistence").load({ last = true })
                 end,
@@ -36,7 +28,7 @@ return {
                 desc = "Last session",
             },
             {
-                "<leader>WD",
+                "<leader>od",
                 function()
                     require("persistence").stop()
                 end,

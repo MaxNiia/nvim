@@ -203,7 +203,7 @@ return {
                             icon = " ",
                             key = "p",
                             desc = "Pick Project",
-                            action = "<leader>WP",
+                            action = "<leader>fp",
                         },
                         {
                             icon = " ",
@@ -365,7 +365,7 @@ return {
                         keys = {
                             ["run"] = {
                                 "<cr>",
-                                function(self)
+                                function()
                                     vim.cmd("!python3 %")
                                 end,
                                 desc = "Run file",

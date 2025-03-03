@@ -18,6 +18,16 @@ return {
             "sources.default",
         },
         opts = {
+            term = {
+                -- Not working on wsl
+                enabled = false,
+                keymap = {
+                    preset = "inherit",
+                },
+                -- ghost_text = {
+                --     enabled = true,
+                -- },
+            },
             cmdline = {
                 -- completion = { menu = { auto_show = true } },
                 keymap = {
