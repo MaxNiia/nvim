@@ -131,31 +131,6 @@ return {
                 end,
                 desc = "Buffer Local Keymaps (which-key)",
             },
-            -- NOTE: remove on nvim 0.11.
-            {
-                "<Tab>",
-                function()
-                    if vim.snippet.active({ direction = 1 }) then
-                        return "<cmd>lua vim.snippet.jump(1)<cr>"
-                    else
-                        return "<Tab>"
-                    end
-                end,
-                expr = true,
-                mode = { "s", "i" },
-            },
-            {
-                "<S-Tab>",
-                function()
-                    if vim.snippet.active({ direction = -1 }) then
-                        return "<cmd>lua vim.snippet.jump(-1)<cr>"
-                    else
-                        return "<S-Tab>"
-                    end
-                end,
-                expr = true,
-                mode = { "s", "i" },
-            },
         },
         lazy = true,
         opts = {
@@ -179,31 +154,23 @@ return {
             },
             spec = {
                 { "<leader><leader>", group = "Switch Window" },
-                { "<leader>A", group = "Azure" },
-                { "<leader>AL", group = "Load" },
-                { "<leader>AO", group = "Open" },
-                { "<leader>AS", group = "Submit" },
-                { "<leader>D", group = "Debug" },
+                { "<leader>d", group = "Debug" },
                 { "<leader>E", group = "Explore Dir" },
-                { "<leader>G", group = "Git" },
-                { "<leader>L", group = "LSP" },
-                -- { "<leader>w", group = "Create cursor" },
-                -- { "<leader>W", group = "Create all cursor" },
-                { "<leader>c", group = "CMake" },
+                { "<leader>c", group = "Multiple cursors" },
                 { "<leader>f", group = "Find" },
                 { "<leader>g", group = "Git" },
-                { "<leader>h", group = "Perf" },
-                { "<leader>hl", group = "Load" },
                 { "<leader>i", group = "Chat" },
-                { "<leader>m", group = "Man" },
                 { "<leader>r", group = "Refactor" },
-                { "<leader>rd", group = "Document" },
+                { "<leader>re", group = "Extract" },
+                { "<leader>rd", group = "Documentation" },
                 { "<leader>rp", group = "Print" },
                 { "<leader>s", group = "Search" },
-                { "<leader>t", group = "Test" },
+                { "<leader>t", group = "Terminal" },
                 { "<leader>u", group = "Options" },
                 { "<leader>x", group = "Trouble" },
                 { "gr", group = "LSP" },
+                { "grn", name = "Rename symbol" },
+                { "gra", name = "Code action" },
             },
         },
     },

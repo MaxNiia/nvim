@@ -73,7 +73,7 @@ return {
 
             -- Press `mWi"ap` will create a cursor in every match of string captured by `i"` inside range `ap`.
             {
-                "<leader>ww",
+                "<leader>cw",
                 function()
                     require("multicursor-nvim").operator()
                 end,
@@ -83,7 +83,7 @@ return {
 
             -- Add all matches in the document
             {
-                "<leader>wW",
+                "<leader>cW",
                 function()
                     require("multicursor-nvim").matchAllAddCursors()
                 end,
@@ -111,7 +111,7 @@ return {
 
             -- Delete the main cursor.
             {
-                "<leader>wx",
+                "<leader>cx",
                 function()
                     require("multicursor-nvim").deleteCursor()
                 end,
@@ -147,7 +147,7 @@ return {
 
             -- Easy way to add and remove cursors using the main cursor.
             {
-                "<leader>wq",
+                "<leader>cq",
                 function()
                     require("multicursor-nvim").toggleCursor()
                 end,
@@ -157,7 +157,7 @@ return {
 
             -- Clone every cursor and disable the originals.
             {
-                "<leader>wQ",
+                "<leader>cQ",
                 function()
                     require("multicursor-nvim").duplicateCursors()
                 end,
@@ -183,7 +183,7 @@ return {
 
             -- bring back cursors if you accidentally clear them
             {
-                "<leader>wv",
+                "<leader>cv",
                 function()
                     require("multicursor-nvim").restoreCursors()
                 end,
@@ -193,7 +193,7 @@ return {
 
             -- Align cursor columns.
             {
-                "<leader>wa",
+                "<leader>ca",
                 function()
                     require("multicursor-nvim").alignCursors()
                 end,
@@ -241,7 +241,7 @@ return {
 
             -- Rotate visual selection contents.
             {
-                "<leader>wt",
+                "<leader>ct",
                 function()
                     require("multicursor-nvim").transposeCursors(1)
                 end,
@@ -249,7 +249,7 @@ return {
                 mode = "x",
             },
             {
-                "<leader>wT",
+                "<leader>cT",
                 function()
                     require("multicursor-nvim").transposeCursors(-1)
                 end,

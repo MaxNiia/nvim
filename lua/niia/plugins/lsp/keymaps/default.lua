@@ -22,7 +22,7 @@ return function(bufnr)
             mode = "n",
         },
         {
-            "<leader>d",
+            "<leader>rf",
             function()
                 require("conform").format({ async = true, lsp_format = "fallback" })
             end,
@@ -40,50 +40,6 @@ return function(bufnr)
             vim.lsp.codelens.refresh,
             desc = "Refresh & Display Codelens",
             mode = { "n" },
-        },
-        {
-            "<leader>rn",
-            vim.lsp.buf.rename,
-            buffer = bufnr,
-            desc = "Rename",
-        },
-        {
-            "<leader>La",
-            vim.lsp.buf.add_workspace_folder,
-            buffer = bufnr,
-            desc = "Add workspace folder",
-        },
-        {
-            "<leader>Lr",
-            vim.lsp.buf.remove_workspace_folder,
-            buffer = bufnr,
-            desc = "Remove workspace folder",
-        },
-        {
-            "<leader>Ll",
-            function()
-                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-            end,
-            buffer = bufnr,
-            desc = "List workspace folder",
-        },
-        {
-            "<leader>Ld",
-            function()
-                vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = 0 }), { bufnr = 0 })
-            end,
-            buffer = bufnr,
-            desc = "Toggle diagnostics for current buffer",
-        },
-        {
-            "<leader>LD",
-            function()
-                vim.diagnostic.enable(not vim.diagnostic.is_enabled({ bufnr = nil }), {
-                    bufnr = nil,
-                })
-            end,
-            buffer = bufnr,
-            desc = "Toggle diagnostics buffers",
         },
     })
 end

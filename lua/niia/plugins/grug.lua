@@ -3,7 +3,7 @@ return {
         "MagicDuck/grug-far.nvim",
         keys = {
             {
-                "<leader>rr",
+                "<leader>fs",
                 function()
                     require("grug-far").grug_far({})
                 end,
@@ -11,7 +11,7 @@ return {
                 mode = { "n", "v" },
             },
             {
-                "<leader>ra",
+                "<leader>fa",
                 function()
                     require("grug-far").grug_far({ engine = "astgrep" })
                 end,

@@ -431,13 +431,6 @@ return {
                 desc = "Grep",
             },
             {
-                "<leader>fs",
-                function()
-                    Snacks.picker.grep()
-                end,
-                desc = "Grep",
-            },
-            {
                 "<leader>:",
                 function()
                     Snacks.picker.command_history()
@@ -791,7 +784,7 @@ return {
                 desc = "Lsp Info",
             },
             {
-                "<leader>rf",
+                "grf",
                 function()
                     Snacks.rename.rename_file()
                 end,

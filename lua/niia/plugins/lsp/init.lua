@@ -9,7 +9,7 @@ return {
                 "artemave/workspace-diagnostics.nvim",
                 keys = {
                     {
-                        "<leader>Lw",
+                        "<leader>W",
                         function()
                             local clients = vim.lsp.get_clients()
                             for _, client in ipairs(clients) do
@@ -194,7 +194,6 @@ return {
                     -- Mappings
                     require("niia.plugins.lsp.keymaps").default(bufnr)
                     if client.server_capabilities.inlayHintProvider then
-                        require("niia.plugins.lsp.keymaps").inlay_hints(bufnr)
                         vim.lsp.inlay_hint.enable(true)
                     end
 

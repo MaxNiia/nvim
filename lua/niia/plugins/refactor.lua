@@ -3,19 +3,19 @@ return {
         "ThePrimeagen/refactoring.nvim",
         keys = {
             {
-                "<leader>re",
+                "<leader>ree",
                 ":Refactor extract ",
                 desc = "Extract",
                 mode = "x",
             },
             {
-                "<leader>rf",
+                "<leader>ref",
                 ":Refactor extract_to_file ",
                 desc = "Extract to file",
                 mode = "x",
             },
             {
-                "<leader>rv",
+                "<leader>rev",
                 ":Refactor extract_var ",
                 desc = "Extract var",
                 mode = "x",
@@ -27,13 +27,13 @@ return {
                 mode = "n",
             },
             {
-                "<leader>rb",
+                "<leader>reb",
                 ":Refactor extract_block",
                 desc = "Extract block",
                 mode = "n",
             },
             {
-                "<leader>rB",
+                "<leader>reB",
                 ":Refactor extract_block_to_file",
                 desc = "Extract block to file",
                 mode = "n",
