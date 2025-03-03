@@ -189,7 +189,7 @@ if [ "$lazygit_version" != "$LAZYGIT_VERSION" ]; then
 fi
 
 NEOVIM_DIR="$HOME/.neovim"
-neovim_version="5cead869fb6ddc57594c0dc7e6e575f9427630c8"
+neovim_version="948179cb19c75a9e79cdf2c86c441304c5285e81"
 (
     if [ ! -d "$NEOVIM_DIR" ]; then
         git_update https://github.com/neovim/neovim.git "$NEOVIM_DIR" $neovim_version
@@ -200,6 +200,7 @@ neovim_version="5cead869fb6ddc57594c0dc7e6e575f9427630c8"
         cd "$NEOVIM_DIR"
         current_neovim_version=$(git rev-parse HEAD)
         if [ "$neovim_version" != "$current_neovim_version" ]; then
+            git fetch --tags --force
             git_update https://github.com/neovim/neovim.git "$NEOVIM_DIR" $neovim_version
             sudo rm -rf .deps build docs
             make CMAKE_BUILD_TYPE=Release && sudo make install
