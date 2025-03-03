@@ -19,6 +19,7 @@ return {
         },
         opts = {
             cmdline = {
+                -- completion = { menu = { auto_show = true } },
                 keymap = {
                     preset = "enter",
                     ["<CR>"] = {},
@@ -31,6 +32,12 @@ return {
                         "fallback",
                     },
                     ["<Tab>"] = {
+                        function(cmp)
+                            if cmp.is_ghost_text_visible() and not cmp.is_menu_visible() then
+                                return cmp.accept()
+                            end
+                        end,
+                        "show_and_insert",
                         "select_next",
                         "snippet_forward",
                         "fallback",
@@ -53,6 +60,12 @@ return {
                     "fallback",
                 },
                 ["<Tab>"] = {
+                    function(cmp)
+                        if cmp.is_ghost_text_visible() and not cmp.is_menu_visible() then
+                            return cmp.accept()
+                        end
+                    end,
+                    "show_and_insert",
                     "select_next",
                     "snippet_forward",
                     "fallback",
@@ -87,8 +100,12 @@ return {
                         end,
                     },
                     cmdline = {
+                        -- enabled = function()
+                        --     return vim.fn.getcmdline():sub(1, 1) ~= "!"
+                        -- end,
                         enabled = function()
-                            return vim.fn.getcmdline():sub(1, 1) ~= "!"
+                            return vim.fn.getcmdtype() ~= ":"
+                                or not vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
                         end,
                     },
                 },
