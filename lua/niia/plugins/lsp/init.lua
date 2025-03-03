@@ -13,7 +13,7 @@ return {
                         function()
                             local clients = vim.lsp.get_clients()
                             for _, client in ipairs(clients) do
-                                if client.name ~= "typos_lsp" then
+                                if client.name ~= "typos_lsp" and client.name ~= "copilot" then
                                     require("workspace-diagnostics").populate_workspace_diagnostics(
                                         client,
                                         0
