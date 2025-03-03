@@ -9,6 +9,19 @@ return function(bufnr)
             desc = "Signature Help",
         },
         {
+            "K",
+            function()
+                local winid = require("ufo").peekFoldedLinesUnderCursor()
+                if not winid then
+                    vim.lsp.buf.hover()
+                end
+            end,
+
+            desc = "Show help",
+
+            mode = "n",
+        },
+        {
             "<leader>d",
             function()
                 require("conform").format({ async = true, lsp_format = "fallback" })
