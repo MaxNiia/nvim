@@ -30,6 +30,11 @@ return {
             },
         },
         init = function()
+            package.preload["nvim-web-devicons"] = function()
+                require("mini.icons").mock_nvim_web_devicons()
+                return package.loaded["nvim-web-devicons"]
+            end
+
             vim.api.nvim_create_autocmd("User", {
                 pattern = "MiniFilesWindowOpen",
                 callback = function(args)
@@ -46,6 +51,15 @@ return {
         end,
         config = function()
             require("mini.splitjoin").setup()
+            require("mini.icons").setup({
+                file = {
+                    [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
+                    ["devcontainer.json"] = { glyph = "", hl = "MiniIconsAzure" },
+                },
+                filetype = {
+                    dotenv = { glyph = "", hl = "MiniIconsYellow" },
+                },
+            })
             require("mini.move").setup({
                 mappings = {
                     left = "<M-h>",

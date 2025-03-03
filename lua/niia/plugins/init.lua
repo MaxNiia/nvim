@@ -1,21 +1,6 @@
 local icons = require("niia.utils.icons").todo
 return {
     {
-        "m00qek/baleia.nvim",
-        version = "*",
-        lazy = true,
-        event = "VeryLazy",
-        cmd = "Colorize",
-        init = function()
-            vim.api.nvim_create_user_command("Colorize", function()
-                vim.g.baleia.once(vim.api.nvim_get_current_buf())
-            end, { bang = true })
-        end,
-        config = function()
-            vim.g.baleia = require("baleia").setup({})
-        end,
-    },
-    {
         "samjwill/nvim-unception",
         lazy = false,
         init = function()
@@ -24,15 +9,6 @@ return {
             vim.g.unception_open_buffer_in_new_tab = true
             vim.g.unception_enable_flavor_text = false
         end,
-    },
-    {
-        "NvChad/showkeys",
-        cmd = "ShowkeysToggle",
-        opts = {
-            timeout = 3,
-            maxkeys = 5,
-            show_count = true,
-        },
     },
     {
         "max397574/better-escape.nvim",
@@ -90,25 +66,6 @@ return {
         lazy = true,
     },
     {
-        "echasnovski/mini.icons",
-        lazy = true,
-        opts = {
-            file = {
-                [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
-                ["devcontainer.json"] = { glyph = "", hl = "MiniIconsAzure" },
-            },
-            filetype = {
-                dotenv = { glyph = "", hl = "MiniIconsYellow" },
-            },
-        },
-        init = function()
-            package.preload["nvim-web-devicons"] = function()
-                require("mini.icons").mock_nvim_web_devicons()
-                return package.loaded["nvim-web-devicons"]
-            end
-        end,
-    },
-    {
         "folke/todo-comments.nvim",
         event = "BufEnter",
         keys = {
@@ -147,11 +104,6 @@ return {
                 },
             },
         },
-    },
-    {
-        "OXY2DEV/foldtext.nvim",
-        lazy = false,
-        config = true,
     },
     {
         "folke/ts-comments.nvim",
