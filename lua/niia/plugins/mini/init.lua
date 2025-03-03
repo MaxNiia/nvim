@@ -2,12 +2,12 @@ local file_functions = require("niia.plugins.mini.files")
 return {
     {
         "echasnovski/mini.splitjoin",
-        version = false,
+        version = "*",
         config = true,
     },
     {
         "echasnovski/mini.move",
-        version = false,
+        version = "*",
         event = "VeryLazy",
         opts = {
             mappings = {
@@ -26,7 +26,7 @@ return {
     },
     {
         "echasnovski/mini.ai",
-        version = false,
+        version = "*",
         event = "VeryLazy",
         opts = {
             n_lines = 500,
@@ -37,7 +37,7 @@ return {
     },
     {
         "echasnovski/mini.bracketed",
-        version = false,
+        version = "*",
         event = "VeryLazy",
         opts = {
             comment = { suffix = "z" },
@@ -46,7 +46,7 @@ return {
     },
     {
         "echasnovski/mini.comment",
-        version = false,
+        version = "*",
         event = "VeryLazy",
         opts = {
             options = {
@@ -58,7 +58,7 @@ return {
     },
     {
         "echasnovski/mini.surround",
-        version = false,
+        version = "*",
         event = "VeryLazy",
         opts = {
             custom_surroundings = {
@@ -72,7 +72,7 @@ return {
     },
     {
         "echasnovski/mini.cursorword",
-        version = false,
+        version = "*",
         event = "VeryLazy",
         init = function()
             vim.api.nvim_create_autocmd("User", {
@@ -93,13 +93,13 @@ return {
     },
     {
         "echasnovski/mini.pairs",
-        version = false,
+        version = "*",
         event = "VeryLazy",
         config = true,
     },
     {
         "echasnovski/mini.files",
-        version = false,
+        version = "*",
         event = "VeryLazy",
         keys = {
             {

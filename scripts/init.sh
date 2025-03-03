@@ -163,36 +163,5 @@ if [ ! -e "${HOME}/.nvimstty" ]; then
     fi
 fi
 
-currentPath="$HOME/.cache"
-if [ ! -d "$currentPath" ]; then
-    mkdir "$currentPath"
-fi
-
-currentPath="$HOME/.cache/nvim"
-if [ ! -d "$currentPath" ]; then
-    mkdir "$currentPath"
-fi
-
-currentPath="$HOME/.cache/nvim/niia.txt"
-if [ ! -f "$currentPath" ]; then
-    touch "$currentPath"
-fi
-
-currentPath="lua/current-theme.lua"
-if [ ! -f "$currentPath" ]; then
-    touch "$currentPath"
-    echo 'vim.cmd("colorscheme catppuccin-mocha")' >"$currentPath"
-fi
-
-if [ ! -d "$HOME/venvs" ]; then
-    echo "Creating venvs folder"
-    mkdir ~/venvs
-    python3 -m venv ~/venvs/Debug
-    source "$HOME/venvs/Debug/bin/activate"
-    echo "Installing requirements"
-    python -m pip install -r requirements.txt
-    deactivate
-fi
-
 # Clear output
 echo ""

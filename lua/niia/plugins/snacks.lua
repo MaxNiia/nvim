@@ -278,7 +278,7 @@ return {
                         section = "terminal",
                         enabled = function()
                             local ok, _ = vim.uv.fs_stat(vim.loop.cwd() .. "/.git")
-                            return ok
+                            return ok ~= nil
                         end,
                         cmd = "git status --short --branch --renames",
                         height = 5,

@@ -19,6 +19,10 @@ return {
                 desc = "Close diffview",
             },
         },
+        cmd = {
+            "DiffviewOpen",
+            "DiffviewClose",
+        },
         opts = {
             diff_binaries = false,
             enhanced_diff_hl = true,
