@@ -1,161 +1,129 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Install unzip
-if ! command -v unzip &>/dev/null; then
-    echo "unzip could not be found, installing"
-    sudo apt install unzip -y
-fi
+set -e
 
-# Install rust up
-if ! command -v rustup &>/dev/null; then
-    echo "Rustup could not be found, installing"
-    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-fi
-
-# Install lazygit up
-if ! command -v lazygit &>/dev/null; then
-    LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
-    tar xf lazygit.tar.gz lazygit
-    sudo install lazygit /usr/local/bin
-fi
-
-rustup update
-
-# Install ripgrep
-if ! command -v rg &>/dev/null; then
-    echo "rg could not be found, installing"
-    cargo install ripgrep
-fi
-
-# Install bat
-if ! command -v bat &>/dev/null; then
-    echo "bat could not be found, installing"
-    sudo apt install bat -y
-    mkdir -p ~/.local/bin
-    ln -s /usr/bin/batcat ~/.local/bin/bat
-    mkdir -p "$(bat --config-dir)/themes"
-    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Latte.tmTheme
-    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Frappe.tmTheme
-    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Macchiato.tmTheme
-    wget -P "$(bat --config-dir)/themes" https://github.com/catppuccin/bat/raw/main/themes/Catppuccin%20Mocha.tmTheme
-    bat cache --build
-    echo "--theme 'Catppuccin Mocha'" >"$HOME/.config/bat/config"
-fi
-
-# Install flake8
-if ! command -v rg &>/dev/null; then
-    echo "flak8 could not be found, installing"
-    sudo apt install flake8 -y
-fi
-
-if ! command -v fd; then
-    echo "fd could not be found installing"
-    cargo install fd-find
-fi
-
-# Install find
-if ! command -v fdfind &>/dev/null; then
-    echo "fdfind could not be found, installing"
-    sudo apt install fd-find -y
-    cargo install fd-find
-fi
-
-if ! command -v fzf &>/dev/null; then
-    echo "fzf not installed, installing"
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install
-    sudo ln -s "$HOME/.fzf/bin/fzf" /usr/bin/fzf
-fi
-
-if [ ! -d "${HOME}/.nvm/.git" ]; then
-    echo "NVM not installed, installing"
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
-    echo "If 'nvm install 18' fails copy NVM config from profile file to bashrc"
-    nvm install 18
-    corepack enable
-fi
-
-if ! command -v cspell &>/dev/null; then
-    echo "CSPELL is not installed, installing"
-    npm install -g cspell
-fi
-
-handle_file() {
-    local file="$1"
-    local content="$2"
-
-    if [ -e "lua/${file##*/}" ]; then
-        mv "lua/${file##*/}" "$file"
+# UTILS
+# ------------------------------------------------------------------------------
+apt_install() {
+    if [ $# -eq 0 ]; then
+        echo "No arguments provided to '$FUNCNAME'."
+        exit 2
     fi
 
-    if [ ! -e "$file" ]; then
-        # Check if the directory exists else create it
-        if [ ! -d "$(dirname "$file")" ]; then
-            mkdir -p "$(dirname "$file")"
+    apt_upgrade=()
+    apt_install=()
+
+    for var in "$@"; do
+        if ! command -v $var &>/dev/null; then
+            echo "Installing '$var'."
+            apt_install+=("$var")
+        else
+            echo "Updating '$var'."
+            apt_upgrade+=("$var")
         fi
+    done
 
-        touch "$file"
+    sudo apt update
+    sudo apt upgrade -y "${apt_upgrade[@]}"
+    sudo apt install -y "${apt_install[@]}"
+}
 
-        if [ ! -w "$file" ]; then
-            echo cannot write to "$file"
-            exit 1
-        fi
+pipx_install() {
+    if [ $# -lt 1 ]; then
+        echo "No arguments provided to '$FUNCNAME'."
+        exit 2
+    fi
 
-        echo -e "$content" >>"$file"
+    if [ $# -eq 2 ]; then
+        echo "Installing '$1'."
+        pipx install "$1"=="$2" --force
+    else
+        echo "Installing '$1'."
+        pipx install "$1"
+    fi
+
+}
+
+npm_install() {
+    if [ ! $# -eq 1 ]; then
+        echo "No arguments provided to '$FUNCNAME'."
+        exit 2
+    fi
+
+    if ! command -v $1 &>/dev/null; then
+        echo "Installing '$1'."
+        npm install -g $1
+    else
+        npm update -g $1
     fi
 }
 
-if ! command -v ast-grep &>/dev/null; then
-    npm i @ast-grep/cli -g
+git_update() {
+    if [ ! $# -gt 1 ]; then
+        echo "Not enough arguments provided to '$FUNCNAME'."
+        exit 2
+    fi
+
+    if [ ! -d "$2" ]; then
+        git clone "$1" "$2"
+    fi
+
+    cd "$2"
+    git fetch
+    if [ $# -eq 3 ]; then
+        git checkout $3
+    else
+        git pull
+    fi
+    git submodule update --recursive --init
+    cd -
+}
+
+cargo_install() {
+    if [ ! $# -eq 1 ]; then
+        echo "No arguments provided to '$FUNCNAME'."
+        exit 2
+    fi
+
+    cargo install --locked $1
+}
+# ------------------------------------------------------------------------------
+
+apt_install \
+    gettext \
+    curl \
+    build-essential \
+    unzip \
+    libreadline-dev \
+    diffstat \
+    pipx
+
+# INSTALLER
+# ------------------------------------------------------------------------------
+pipx ensurepath
+
+if ! command -v rustup &>/dev/null; then
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+else
+    rustup update
 fi
 
-if ! command -v lua &>/dev/null; then
-    echo "Lua not installed, installing"
-    sudo apt install -y libreadline-dev
-    curl -R -O "https://www.lua.org/ftp/lua-5.1.5.tar.gz"
-    ls .
-    tar -zxf lua-5.1.5.tar.gz
-    (
-        cd lua-5.1.5 || exit
-        make linux test
-        sudo make install
-    )
-    rm -rf lua-5.1.5
-    rm lua-5.1.5.tar.gz
-fi
+curl -fsSL https://fnm.vercel.app/install | bash -s
+source $HOME/.bashrc
 
-if ! command -v luarocks &>/dev/null; then
-    echo "Luarocks not installed, installing"
-    wget https://luarocks.github.io/luarocks/releases/luarocks-3.11.1.tar.gz
-    tar -zxf luarocks-3.11.1.tar.gz
-    (
-        cd luarocks-3.11.1 || exit
-        ./configure --with-lua-include=/usr/local/include
-        make
-        sudo make install
-    )
-    rm -rf luarocks-3.11.1
-    rm luarocks-3.11.1.tar.gz
-fi
-
-if ! command -v yazi &>/dev/null; then
-    echo "yazi not installed, installing"
-    curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-    cargo install --locked yazi-fm yazi-cli
-    git clone https://github.com/catppuccin/yazi "$HOME/.cat_yazi"
-    mkdir "$HOME/.config/yazi"
-    cp "$HOME/.cat_yazi/themes/mocha.toml" "$HOME/.config/yazi/theme.toml"
-    cp "$HOME/.config/bat/themes/Catppuccin Mocha.toml" "$HOME/.config/yazi/Catppuccin-mocha.tmTheme"
-fi
+fnm install 23
+fnm use 23
+# ------------------------------------------------------------------------------
 
 if [ ! -e "${HOME}/.nvimstty" ]; then
     echo "Disabling XON/XOFF flow control"
-    touch "${HOME}/.nvimstty &> /dev/null 2>&1"
+    touch "${HOME}/.nvimstty" &>/dev/null
     echo "stty -ixon" >>"${HOME}/.nvimstty"
     if [ "${SHELL}" = "/usr/bin/zsh" ]; then
         echo "source \"${HOME}/.nvimstty\" &> /dev/null" >>"${HOME}/.zshrc"
     elif [ "${SHELL}" = "/usr/bin/bash" ]; then
+        echo "source \"${HOME}/.nvimstty\"" >>"${HOME}/.bashrc"
+    elif [ "${SHELL}" = "/bin/bash" ]; then
         echo "source \"${HOME}/.nvimstty\"" >>"${HOME}/.bashrc"
     else
         echo "Error, can't find suitable shell. Run the following line but change {shellrc} to applicable shell file"
@@ -163,5 +131,79 @@ if [ ! -e "${HOME}/.nvimstty" ]; then
     fi
 fi
 
-# Clear output
-echo ""
+cargo_install ripgrep
+cargo_install fd-find
+pipx_install debugpy
+npm_install @ast-grep/cli
+
+# Lua.
+LUA_VERSION="5.1.5"
+lua_version=""
+if command -v lua &>/dev/null; then
+    lua_version=$(lua -v 2>&1 | awk '{print $2}')
+fi
+
+if [ "$lua_version" != "$LUA_VERSION" ]; then
+    echo "Lua not installed, installing"
+    sudo apt install -y libreadline-dev
+    curl -R -O "https://www.lua.org/ftp/lua-$LUA_VERSION.tar.gz"
+    tar -zxf "lua-$LUA_VERSION.tar.gz"
+    (
+        cd lua-$LUA_VERSION || exit
+        make linux test
+        sudo make install
+    )
+    rm -rf lua-$LUA_VERSION
+    rm lua-$LUA_VERSION.tar.gz
+fi
+
+LUAROCKS_VERSION="3.11.1"
+luarocks_version=""
+if command -v luarocks &>/dev/null; then
+    luarocks_version=$(luarocks --version | head -n1 | grep -oP '\d+\.\d+\.\d+')
+fi
+if [ "$luarocks_version" != "$LUAROCKS_VERSION" ]; then
+    echo "Luarocks not installed, installing"
+    wget "https://luarocks.github.io/luarocks/releases/luarocks-$LUAROCKS_VERSION.tar.gz"
+    tar -zxf "luarocks-$LUAROCKS_VERSION.tar.gz"
+    (
+        cd "luarocks-$LUAROCKS_VERSION" || exit
+        ./configure && make && sudo make install
+    )
+    rm -rf "luarocks-$LUAROCKS_VERSION"
+    rm "luarocks-$LUAROCKS_VERSION.tar.gz"
+fi
+
+# Lazygit integration.
+lazygit_version=""
+LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+if command -v lazygit &>/dev/null; then
+    lazygit_version=$(lazygit --version | head -n1 | grep -oP '\d+\.\d+\.\d+')
+fi
+if [ "$lazygit_version" != "$LAZYGIT_VERSION" ]; then
+    curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+    tar xf lazygit.tar.gz lazygit
+    sudo install lazygit -D -t /usr/local/bin/
+    rm -rf lazygit
+    rm lazygit.tar.gz
+fi
+
+NEOVIM_DIR="$HOME/.neovim"
+neovim_version="5cead869fb6ddc57594c0dc7e6e575f9427630c8"
+(
+    if [ ! -d "$NEOVIM_DIR" ]; then
+        git_update https://github.com/neovim/neovim.git "$NEOVIM_DIR" $neovim_version
+        cd "$NEOVIM_DIR"
+        sudo rm -rf .deps build docs
+        make CMAKE_BUILD_TYPE=Release && sudo make install
+    else
+        cd "$NEOVIM_DIR"
+        current_neovim_version=$(git rev-parse HEAD)
+        if [ "$neovim_version" != "$current_neovim_version" ]; then
+            git_update https://github.com/neovim/neovim.git "$NEOVIM_DIR" $neovim_version
+            sudo rm -rf .deps build docs
+            make CMAKE_BUILD_TYPE=Release && sudo make install
+        fi
+    fi
+
+)
