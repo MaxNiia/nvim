@@ -132,5 +132,6 @@ return {
                 -- }
             })
         end,
+        file_functions.init(),
     },
 }
