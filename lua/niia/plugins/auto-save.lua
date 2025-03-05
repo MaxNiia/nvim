@@ -3,12 +3,12 @@ return {
         "okuuva/auto-save.nvim",
         event = { "InsertEnter", "BufLeave" },
         keys = {
-            {
-                "<leader>Wa",
-                "<cmd>ASToggle<CR>",
-                desc = "Toggle autosave",
-                mode = "n",
-            },
+            -- {
+            --     "<leader>Wa",
+            --     "<cmd>ASToggle<CR>",
+            --     desc = "Toggle autosave",
+            --     mode = "n",
+            -- },
         },
         opts = {
             enabled = true,
