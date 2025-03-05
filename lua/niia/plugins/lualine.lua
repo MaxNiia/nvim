@@ -403,6 +403,10 @@ return {
                         "datetime",
                         style = "%H:%M",
                         color = getInactiveModeColor,
+                        padding = {
+                            right = 0,
+                            left = 1,
+                        },
                         separator = { left = "", right = "" },
                     },
                 },
