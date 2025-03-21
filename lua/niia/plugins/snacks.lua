@@ -800,14 +800,14 @@ return {
             {
                 "<leader>ts",
                 function()
-                    Snacks.terminal(nil, { win = { position = "bottom" } })
+                    Snacks.terminal(nil, { win = { position = "bottom", height = 50 } })
                 end,
                 desc = "Toggle Terminal (bottom)",
             },
             {
                 "<leader>tv",
                 function()
-                    Snacks.terminal(nil, { win = { position = "right" } })
+                    Snacks.terminal(nil, { win = { position = "right", width = 90 } })
                 end,
                 desc = "Toggle Terminal (right)",
             },
