@@ -76,7 +76,6 @@ return {
                                 return cmp.accept()
                             end
                         end,
-                        "show_and_insert",
                         "select_next",
                         "snippet_forward",
                         "fallback",
@@ -96,9 +95,6 @@ return {
                 sources = {
                     providers = {
                         cmdline = {
-                            -- enabled = function()
-                            --     return vim.fn.getcmdline():sub(1, 1) ~= "!"
-                            -- end,
                             enabled = function()
                                 return vim.fn.getcmdtype() ~= ":"
                                     or not vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
