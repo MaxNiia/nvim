@@ -6,6 +6,7 @@ return {
         },
         cmd = "Copilot",
         event = "InsertEnter",
+        enabled = vim.g.enable_copilot,
         config = function()
             require("copilot").setup({
                 server_ops_overrides = {},
@@ -52,6 +53,7 @@ return {
     },
     {
         "CopilotC-Nvim/CopilotChat.nvim",
+        enabled = vim.g.enable_copilot,
         init = function()
             vim.api.nvim_create_autocmd("BufEnter", {
                 pattern = "copilot-*",
