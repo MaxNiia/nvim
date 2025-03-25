@@ -63,6 +63,7 @@ return {
                 snacks = true,
                 dap = true,
                 dap_ui = true,
+                rainbow_delimiters = true,
                 mason = true,
                 mini = {
                     enabled = true,
