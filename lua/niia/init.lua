@@ -27,6 +27,13 @@ M.start = function(opts)
     vim.g.enable_copilot = config.enable_copilot
     vim.g.nu = config.nu
     vim.g.rnu = config.rnu
+    vim.g.copyright_func = function(comment_string)
+        local output_text = ""
+        for _, v in ipairs(vim.g.copyright_text) do
+            output_text = output_text .. comment_string .. " " .. v .. "\n"
+        end
+        return output_text
+    end
 
     if vim.fn.has("nvim-0.10.1)") ~= 1 then
         return vim.notify("nvim 0.10.1 is required", vim.log.levels.ERROR, { title = "Niia" })

@@ -1,4 +1,5 @@
 return {
+    { "rafamadriz/friendly-snippets" },
     {
         "giuxtaposition/blink-cmp-copilot",
         enabled = vim.g.enable_copilot,
@@ -19,6 +20,7 @@ return {
         },
         opts = function()
             local opts = {
+                snippets = { preset = "mini_snippets" },
                 term = {
                     -- Not working on wsl
                     enabled = false,
@@ -30,63 +32,14 @@ return {
                     -- },
                 },
                 cmdline = {
-                    -- completion = { menu = { auto_show = true } },
+                    completion = { menu = { auto_show = true } },
                     keymap = {
-                        preset = "enter",
-                        ["<CR>"] = {},
-                        ["<Down>"] = {
-                            "select_next",
-                            "fallback",
-                        },
-                        ["<Up>"] = {
-                            "select_prev",
-                            "fallback",
-                        },
-                        ["<Tab>"] = {
-                            function(cmp)
-                                if cmp.is_ghost_text_visible() and not cmp.is_menu_visible() then
-                                    return cmp.accept()
-                                end
-                            end,
-                            "show_and_insert",
-                            "select_next",
-                            "snippet_forward",
-                            "fallback",
-                        },
-                        ["<S-Tab>"] = {
-                            "select_prev",
-                            "snippet_backward",
-                            "fallback",
-                        },
+                        preset = "super-tab",
                     },
                 },
                 keymap = {
-                    preset = "enter",
-                    ["<Down>"] = {
-                        "select_next",
-                        "fallback",
-                    },
-                    ["<Up>"] = {
-                        "select_prev",
-                        "fallback",
-                    },
-                    ["<Tab>"] = {
-                        function(cmp)
-                            if cmp.is_ghost_text_visible() and not cmp.is_menu_visible() then
-                                return cmp.accept()
-                            end
-                        end,
-                        "select_next",
-                        "snippet_forward",
-                        "fallback",
-                    },
-                    ["<S-Tab>"] = {
-                        "select_prev",
-                        "snippet_backward",
-                        "fallback",
-                    },
+                    preset = "super-tab",
                 },
-
                 appearance = {
                     use_nvim_cmp_as_default = false,
                     nerd_font_variant = "mono",
@@ -115,7 +68,10 @@ return {
                     },
                     list = {
                         selection = {
-                            preselect = false,
+                            preselect = function(ctx)
+                                return not require("blink.cmp").snippet_active({ direction = 1 })
+                                    and ctx.mode ~= "cmdline"
+                            end,
                             auto_insert = function(ctx)
                                 return ctx.mode == "cmdline"
                             end,
@@ -159,9 +115,6 @@ return {
                 },
 
                 signature = { enabled = true },
-                snippets = {
-                    preset = "default",
-                },
             }
             if vim.g.enable_copilot then
                 opts = vim.tbl_deep_extend("force", opts, {
@@ -188,7 +141,7 @@ return {
                                 "path",
                                 "snippets",
                                 "buffer",
-                                vim.g.enable_copilot and "copilot" or nil,
+                                "copilot",
                             },
                         },
                     },

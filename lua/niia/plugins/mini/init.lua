@@ -3,6 +3,7 @@ return {
     {
         "echasnovski/mini.nvim",
         version = false,
+        lazy = false,
         keys = {
             {
                 "<leader>e",
@@ -50,6 +51,19 @@ return {
             })
         end,
         config = function()
+            local gen_loader = require("mini.snippets").gen_loader
+            require("mini.snippets").setup({
+                snippets = {
+                    gen_loader.from_file("~/.config/nvim/snippets/global.json"),
+                    gen_loader.from_lang(),
+                },
+                mappings = {
+                    expand = "",
+                    jump_next = "",
+                    jump_prev = "",
+                    stop = "",
+                },
+            })
             require("mini.splitjoin").setup()
             require("mini.icons").setup({
                 file = {
