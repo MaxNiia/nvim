@@ -189,7 +189,7 @@ if [ "$lazygit_version" != "$LAZYGIT_VERSION" ]; then
 fi
 
 NEOVIM_DIR="$HOME/.neovim"
-neovim_version="f4d9a2983a49c1729f78ffbf6b1e6dcc30215d0d"
+neovim_version="v0.11.0"
 (
     if [ ! -d "$NEOVIM_DIR" ]; then
         git_update https://github.com/neovim/neovim.git "$NEOVIM_DIR" $neovim_version
