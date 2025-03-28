@@ -54,6 +54,48 @@ return {
                 desc = "Go to Right Window",
             },
             {
+                "<m-j>",
+                "<c-w>-",
+                mode = "n",
+                desc = "Descreas height",
+            },
+            {
+                "<m-k>",
+                "<c-w>+",
+                mode = "n",
+                desc = "Increase height",
+            },
+            {
+                "<m-l>",
+                "<c-w>>",
+                mode = "n",
+                desc = "Increase width",
+            },
+            {
+                "<m-h>",
+                "<c-w><",
+                mode = "n",
+                desc = "Decrease width",
+            },
+            {
+                "<m-J>",
+                "<c-w>=",
+                mode = "n",
+                desc = "Equal height",
+            },
+            {
+                "<m-K>",
+                "<c-w>_",
+                mode = "n",
+                desc = "Max height",
+            },
+            {
+                "<m-L>",
+                "<c-w>|",
+                mode = "n",
+                desc = "Max width",
+            },
+            {
                 "<",
                 "<gv",
                 mode = "v",
