@@ -11,10 +11,7 @@ return function(bufnr)
         {
             "K",
             function()
-                local winid = require("ufo").peekFoldedLinesUnderCursor()
-                if not winid then
-                    vim.lsp.buf.hover()
-                end
+                vim.lsp.buf.hover()
             end,
 
             desc = "Show help",

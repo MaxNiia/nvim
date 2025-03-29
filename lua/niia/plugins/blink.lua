@@ -34,11 +34,12 @@ return {
                 cmdline = {
                     completion = { menu = { auto_show = true } },
                     keymap = {
-                        preset = "super-tab",
+                        preset = "enter",
+                        ["<CR>"] = {},
                     },
                 },
                 keymap = {
-                    preset = "super-tab",
+                    preset = "enter",
                 },
                 appearance = {
                     use_nvim_cmp_as_default = false,
