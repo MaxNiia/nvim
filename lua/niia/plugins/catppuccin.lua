@@ -100,11 +100,7 @@ return {
                 return {
                     HighlightUndo = { bg = c.overlay0 },
                     MarkSignHL = { fg = c.yellow, style = { "bold" } },
-                    StatusLineFileName = { fg = c.base, bg = c.pink, style = { "bold" } },
-                    StatusLineFiles = { fg = c.pink, bg = c.surface0, style = { "bold" } },
-                    StatusLineAdd = { fg = c.green, bg = c.surface0, style = { "bold" } },
-                    StatusLineChange = { fg = c.yellow, bg = c.surface0, style = { "bold" } },
-                    StatusLineDelete = { fg = c.red, bg = c.surface0, style = { "bold" } },
+                    status_line = { fg = c.blue },
                     FzfLuaHeaderBind = { fg = c.rosewater },
                     FzfLuaHeaderText = { fg = c.maroon },
                     FzfLuaPathColNr = { fg = c.sky },

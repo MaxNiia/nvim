@@ -127,6 +127,8 @@ vim.opt.fillchars:append({
     foldclose = icons.fold.closed,
     foldsep = icons.fold.separator,
     fold = " ",
+    stl = '━',
+    stlnc = '━',
 })
 vim.opt.listchars:append({
     tab = icons.chevron.right .. " ",

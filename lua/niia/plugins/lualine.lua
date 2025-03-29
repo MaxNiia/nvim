@@ -1,58 +1,4 @@
 local status = ""
-local files_changed = "0"
-local insertions = "0"
-local deletions = "0"
-local modifications = "0"
-local git_status_is_busy = false
-
-vim.api.nvim_create_autocmd({
-    "BufEnter", -- When entering a buffer
-    "BufFilePost", -- When a file is renamed
-    "BufWritePost", -- When saving a file
-    "FileChangedShellPost", -- When a file changes outside of Neovim
-}, {
-    callback = function()
-        if git_status_is_busy then
-            return
-        end
-
-        git_status_is_busy = true
-        if vim.loop.os_uname().sysname == "Linux" then
-            vim.system({
-                "sh",
-                "-c",
-                "git diff | diffstat -sm",
-            }, {
-                text = true,
-                timeout = 1000,
-            }, function(obj)
-                vim.defer_fn(function()
-                    git_status_is_busy = false
-                end, 1000)
-                -- Terminated by timeout
-                if obj.signal == 15 then
-                    print("Timeout")
-                    return
-                end
-
-                -- Other errors, presume not a git repo
-                if obj.code ~= 0 then
-                    print("ERROR")
-                    files_changed = "0"
-                    insertions = "0"
-                    deletions = "0"
-                    modifications = "0"
-                    return
-                end
-                -- Extract numbers using pattern matching
-                files_changed = obj.stdout:match("(%d+) files? changed") or "0"
-                insertions = obj.stdout:match("(%d+) insertions?") or "0"
-                deletions = obj.stdout:match("(%d+) deletions?") or "0"
-                modifications = obj.stdout:match("(%d+) modifications?%(!%)") or "0"
-            end)
-        end
-    end,
-})
 
 local getActiveModeColor = function()
     local mode_color = {
@@ -118,7 +64,10 @@ end
 
 local getWinbarConfig = function(active)
     return {
-        "%=",
+        {
+            "%=",
+            padding = 0,
+        },
         {
             "diff",
             separator = { left = "", right = "" },
@@ -147,7 +96,10 @@ local getWinbarConfig = function(active)
             separator = { left = "", right = "" },
             color = getInactiveModeColor,
         },
-        "%=",
+        {
+            "%=",
+            padding = 0,
+        },
     }
 end
 
@@ -259,24 +211,6 @@ return {
                 lualine_b = {},
                 lualine_c = {
                     {
-                        separator = {
-                            left = "",
-                            right = "",
-                        },
-                        function()
-                            return "  " .. require("dap").status()
-                        end,
-                        cond = function()
-                            return package.loaded["dap"] and require("dap").status() ~= ""
-                        end,
-                        color = getInactiveModeColor,
-                    },
-                    {
-                        require("lazy.status").updates,
-                        cond = require("lazy.status").has_updates,
-                        color = getInactiveModeColor,
-                    },
-                    {
                         function()
                             local cwd = vim.uv.cwd()
                             local home = vim.fn.expand("~")
@@ -294,50 +228,16 @@ return {
                         color = getInactiveModeColor,
                         separator = { left = "", right = "" },
                     },
-                    "%=",
                     {
-                        function()
-                            return "" .. files_changed
-                        end,
-                        separator = { left = "", right = "" },
-                        color = "StatusLineFiles",
-                        padding = {
-                            left = 0,
-                            right = 1,
-                        },
+                        "diagnostics",
+                        sources = { "nvim_workspace_diagnostic" },
+                        separator = { left = "", right = "" },
+                        color = getInactiveModeColor,
                     },
                     {
-                        function()
-                            return "+" .. insertions
-                        end,
-                        separator = { left = "", right = "" },
-                        color = "StatusLineAdd",
-                        padding = {
-                            left = 0,
-                            right = 1,
-                        },
-                    },
-                    {
-                        function()
-                            return "~" .. modifications
-                        end,
-                        separator = { left = "", right = "" },
-                        color = "StatusLineChange",
-                        padding = {
-                            left = 0,
-                            right = 1,
-                        },
-                    },
-                    {
-                        function()
-                            return "-" .. deletions
-                        end,
-                        separator = { left = "", right = "" },
-                        color = "StatusLineDelete",
-                        padding = {
-                            left = 0,
-                            right = 1,
-                        },
+                        "%=",
+                        padding = 0,
+                        color = "status_line",
                     },
                     {
                         "b:gitsigns_head",
@@ -347,13 +247,9 @@ return {
                         padding = 0,
                     },
                     {
-                        "diagnostics",
-                        sources = { "nvim_workspace_diagnostic" },
-                        separator = { left = "", right = "" },
-                        color = getInactiveModeColor,
-                    },
-                    {
                         "%=",
+                        padding = 0,
+                        color = "status_line",
                     },
                     {
                         macro_recording,
