@@ -1,7 +1,7 @@
 return {
     copyright = {
         prefix = "copyright",
-        body = require("lua.niia.utils.copyright")("#"),
+        body = vim.g.copyright_func("//"),
         desc = "Insert a copyright header",
     },
 }
