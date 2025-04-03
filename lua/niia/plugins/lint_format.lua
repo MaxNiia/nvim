@@ -80,11 +80,10 @@ return {
         opts = {
             format_on_save = nil,
             format_after_save = function(bufnr)
-                -- Disable with a global or buffer-local variable
+                -- Enable with a global or buffer-local variable
                 if vim.g.autoformat or vim.b[bufnr].autoformat then
-                    return
+                    return { timeout_ms = 500, lsp_fallback = true, async = true }
                 end
-                return { timeout_ms = 500, lsp_fallback = true, async = true }
             end,
             formatters_by_ft = {
                 ["_"] = { "trim_whitespace" },
