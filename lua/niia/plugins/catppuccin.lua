@@ -100,7 +100,6 @@ return {
                 return {
                     HighlightUndo = { bg = c.overlay0 },
                     MarkSignHL = { fg = c.yellow, style = { "bold" } },
-                    status_line = { fg = c.blue },
                     FzfLuaHeaderBind = { fg = c.rosewater },
                     FzfLuaHeaderText = { fg = c.maroon },
                     FzfLuaPathColNr = { fg = c.sky },
@@ -112,6 +111,12 @@ return {
                     FzfLuaTabTitle = { fg = c.sapphire },
                     FzfLuaTabMarker = { fg = c.rosewater },
                     FzfLuaLiveSym = { fg = c.maroon },
+                    lualine_m_normal = { bg = c.base, fg = c.blue },
+                    lualine_m_insert = { bg = c.base, fg = c.green },
+                    lualine_m_visual = { bg = c.base, fg = c.mauve },
+                    lualine_m_replace = { bg = c.base, fg = c.red },
+                    lualine_m_command = { bg = c.base, fg = c.peach },
+                    lualine_m_terminal = { bg = c.base, fg = c.green },
                 }
             end,
         },

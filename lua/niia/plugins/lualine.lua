@@ -54,6 +54,33 @@ local getInactiveModeColor = function()
     return mode_color[mode]
 end
 
+local getStatusLineColor = function()
+    local mode_color = {
+        n = "lualine_m_normal",
+        i = "lualine_m_insert",
+        v = "lualine_m_visual",
+        [""] = "lualine_m_visual",
+        V = "lualine_m_visual",
+        no = "lualine_m_normal",
+        s = "lualine_m_visual",
+        S = "lualine_m_visual",
+        [""] = "lualine_m_visual",
+        ic = "lualine_m_normal",
+        R = "lualine_m_replace",
+        Rv = "lualine_m_replace",
+        c = "lualine_m_command",
+        cv = "lualine_m_command",
+        ce = "lualine_m_command",
+        r = "lualine_m_command",
+        rm = "lualine_m_command",
+        ["r?"] = "lualine_m_command",
+        ["!"] = "lualine_m_command",
+        t = "lualine_m_terminal",
+    }
+    local mode = vim.fn.mode()
+    return mode_color[mode]
+end
+
 local function macro_recording()
     local mode = require("noice").api.statusline.mode.get()
     if mode then
@@ -237,7 +264,7 @@ return {
                     {
                         "%=",
                         padding = 0,
-                        color = "status_line",
+                        color = getStatusLineColor,
                     },
                     {
                         "b:gitsigns_head",
@@ -249,7 +276,7 @@ return {
                     {
                         "%=",
                         padding = 0,
-                        color = "status_line",
+                        color = getStatusLineColor,
                     },
                     {
                         macro_recording,
