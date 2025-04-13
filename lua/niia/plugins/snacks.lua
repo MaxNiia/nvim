@@ -838,6 +838,7 @@ return {
                 end,
                 desc = "Run command in terminal (autoclose)",
             },
+
             {
                 "<c-/>",
                 function()

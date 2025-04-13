@@ -57,6 +57,8 @@ return {
                 { path = "snacks.nvim", words = { "Snacks" } },
                 { path = "mini.files", words = { "MiniFiles" } },
                 { path = "lazy.nvim", words = { "LazyVim" } },
+                { "nvim-dap-ui" },
+                { "nvim-neotest" },
             },
         },
     },

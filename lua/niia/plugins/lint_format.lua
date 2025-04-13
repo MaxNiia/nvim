@@ -116,6 +116,9 @@ return {
         cmd = "Mason",
         opts = {
             ensure_installed = {
+                -- NOTE: DAP
+                "cpptools",
+
                 -- NOTE: LSP
                 "ast-grep",
                 "basedpyright",
