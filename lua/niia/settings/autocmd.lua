@@ -20,6 +20,21 @@ vim.cmd([[
     autocmd InsertEnter,WinLeave * set nocursorline
 ]])
 
+vim.cmd([[
+function! HighlightAsanLeakOutput()
+  " Stack frame like: #0, #1, etc.
+  syntax match AsanStack "#\d\+"
+
+  " Hex memory addresses: 0x...
+  syntax match AsanAddr "0x[0-9a-f]\{8,16\}"
+
+  " File paths (rough match)
+  syntax match AsanFile "[a-zA-Z0-9_/\.*+-]*:\d\+$"
+endfunction
+
+command! AsanHighlight call HighlightAsanLeakOutput()
+]])
+
 vim.api.nvim_create_autocmd("BufWinEnter", {
     pattern = { "\\[dap-repl]\\", "DAP *" },
     callback = function(_)
