@@ -2,6 +2,7 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter-context",
+        cond = not vim.g.vscode,
         event = "BufEnter",
         opts = function()
             local tsc = require("treesitter-context")

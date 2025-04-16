@@ -66,6 +66,7 @@ end
 return {
     {
         "folke/snacks.nvim",
+        cond = not vim.g.vscode,
         priority = 1000,
         lazy = false,
         ---@type snacks.Config
@@ -800,7 +801,7 @@ return {
             {
                 "<leader>ts",
                 function()
-                    Snacks.terminal(nil, { win = { position = "bottom", height = 50 } })
+                    Snacks.terminal(nil, { win = { position = "bottom", height = 10 } })
                 end,
                 desc = "Toggle Terminal (bottom)",
             },

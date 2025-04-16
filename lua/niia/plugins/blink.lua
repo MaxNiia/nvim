@@ -3,14 +3,17 @@ return {
     {
         "giuxtaposition/blink-cmp-copilot",
         enabled = vim.g.enable_copilot,
+        cond = not vim.g.vscode,
     },
     {
         "saghen/blink.compat",
         enabled = vim.g.enable_copilot,
         optional = true,
+        cond = not vim.g.vscode,
         opts = {},
     },
     {
+        cond = not vim.g.vscode,
         "saghen/blink.cmp",
         build = "cargo build --release",
         lazy = false,

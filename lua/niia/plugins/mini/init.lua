@@ -4,7 +4,7 @@ return {
         "echasnovski/mini.nvim",
         version = false,
         lazy = false,
-        keys = {
+        keys = vim.g.vscode and {} or {
             {
                 "<leader>e",
                 "<cmd>lua MiniFiles.open(MiniFiles.get_latest_path())<cr>",
@@ -123,28 +123,30 @@ return {
             })
             require("mini.cursorword").setup()
             require("mini.pairs").setup()
-            require("mini.files").setup({
-                options = {
-                    permanent_delete = true,
-                    use_as_default_explorer = true,
-                },
-                windows = {
-                    preview = true,
-                    width_preview = 80,
-                    width_focus = 50,
-                    width_nofocus = 20,
-                },
-                content = {
-                    filter = file_functions.filter,
-                    sort = file_functions.sort,
-                },
-                -- mappings = {
-                --     go_in = "l",
-                --     go_in_plus = "L",
-                --     go_out = "h",
-                --     go_out_plus = "H",
-                -- }
-            })
+            if not vim.g.vscode then
+                require("mini.files").setup({
+                    options = {
+                        permanent_delete = true,
+                        use_as_default_explorer = true,
+                    },
+                    windows = {
+                        preview = true,
+                        width_preview = 80,
+                        width_focus = 50,
+                        width_nofocus = 20,
+                    },
+                    content = {
+                        filter = file_functions.filter,
+                        sort = file_functions.sort,
+                    },
+                    -- mappings = {
+                    --     go_in = "l",
+                    --     go_in_plus = "L",
+                    --     go_out = "h",
+                    --     go_out_plus = "H",
+                    -- }
+                })
+            end
         end,
         file_functions.init(),
     },

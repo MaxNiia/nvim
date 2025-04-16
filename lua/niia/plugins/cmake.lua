@@ -104,6 +104,7 @@ return {
     {
         "Civitasv/cmake-tools.nvim",
         lazy = false,
+        cond = not vim.g.vscode,
         keys = {
             {
                 "<leader>bp",

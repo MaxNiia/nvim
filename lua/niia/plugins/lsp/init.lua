@@ -1,5 +1,6 @@
 return {
     {
+        cond = not vim.g.vscode,
         "neovim/nvim-lspconfig",
         lazy = true,
         event = "VeryLazy",
