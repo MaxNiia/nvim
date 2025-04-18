@@ -6,7 +6,7 @@ set -e
 # ------------------------------------------------------------------------------
 apt_install() {
     if [ $# -eq 0 ]; then
-        echo "No arguments provided to '$FUNCNAME'."
+        echo "No arguments provided to '${FUNCNAME[0]}'."
         exit 2
     fi
 
@@ -30,7 +30,7 @@ apt_install() {
 
 pipx_install() {
     if [ $# -lt 1 ]; then
-        echo "No arguments provided to '$FUNCNAME'."
+        echo "No arguments provided to '${FUNCNAME[0]}'."
         exit 2
     fi
 
@@ -46,7 +46,7 @@ pipx_install() {
 
 npm_install() {
     if [ ! $# -eq 1 ]; then
-        echo "No arguments provided to '$FUNCNAME'."
+        echo "No arguments provided to '${FUNCNAME[0]}'."
         exit 2
     fi
 
@@ -58,9 +58,21 @@ npm_install() {
     fi
 }
 
+create_dir() {
+    if [ ! $# -eq 1 ]; then
+        echo "'${FUNCNAME[0]}' required a directory input."
+        exit 2
+    fi
+
+    if [ ! -d "$1" ]; then
+        mkdir $1
+        echo "$1 created."
+    fi
+}
+
 git_update() {
     if [ ! $# -gt 1 ]; then
-        echo "Not enough arguments provided to '$FUNCNAME'."
+        echo "Not enough arguments provided to '${FUNCNAME[0]}'."
         exit 2
     fi
 
@@ -81,7 +93,7 @@ git_update() {
 
 cargo_install() {
     if [ ! $# -eq 1 ]; then
-        echo "No arguments provided to '$FUNCNAME'."
+        echo "No arguments provided to '${FUNCNAME[0]}'."
         exit 2
     fi
 
@@ -108,8 +120,17 @@ else
     rustup update
 fi
 
-curl -fsSL https://fnm.vercel.app/install | bash -s
-source $HOME/.bashrc
+if ! command -v fnm &>/dev/null; then
+    curl -fsSL https://fnm.vercel.app/install | bash -s -- --skip-shell
+    # shellcheck source=../../.bashrc
+    source "$HOME/.bashrc"
+fi
+
+if ! command -v uv &>/dev/null; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+else
+    uv self update
+fi
 
 fnm install 23
 fnm use 23
@@ -188,9 +209,12 @@ if [ "$lazygit_version" != "$LAZYGIT_VERSION" ]; then
     rm lazygit.tar.gz
 fi
 
-NEOVIM_DIR="$HOME/.neovim"
-neovim_version="v0.11.0"
+APPLICATIONS="$HOME/applications"
+create_dir "$APPLICATIONS"
+NEOVIM_DIR="neovim"
+neovim_version="a99c469e547fc59472d6d105c0fae323958297a1" # v0.11.0
 (
+    cd "$APPLICATIONS"
     if [ ! -d "$NEOVIM_DIR" ]; then
         git_update https://github.com/neovim/neovim.git "$NEOVIM_DIR" $neovim_version
         cd "$NEOVIM_DIR"
@@ -201,10 +225,11 @@ neovim_version="v0.11.0"
         current_neovim_version=$(git rev-parse HEAD)
         if [ "$neovim_version" != "$current_neovim_version" ]; then
             git fetch --tags --force
+            cd ..
             git_update https://github.com/neovim/neovim.git "$NEOVIM_DIR" $neovim_version
+            cd "$NEOVIM_DIR"
             sudo rm -rf .deps build docs
             make CMAKE_BUILD_TYPE=Release && sudo make install
         fi
     fi
-
 )

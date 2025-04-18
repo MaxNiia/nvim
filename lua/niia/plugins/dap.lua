@@ -286,8 +286,30 @@ return {
                     program = function()
                         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
                     end,
+                    MIMode = "gdb",
                     cwd = "${workspaceFolder}",
                     stopAtBeginningOfMainSubProgram = false,
+                    setupCommands = {
+                        {
+                            text = "-enable-pretty-printing",
+                            description = "enable pretty printing",
+                            ignoreFailures = false,
+                        },
+                    },
+                },
+                {
+                    name = "Debug core dump",
+                    type = "cppdbg",
+                    request = "launch",
+                    program = function()
+                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                    end,
+                    MIMode = "gdb",
+                    cwd = "${workspaceFolder}",
+                    stopAtBeginningOfMainSubProgram = false,
+                    coreDumpPath = function()
+                        return vim.fn.input("Path to core dump: ", vim.fn.getcwd() .. "/", "file")
+                    end,
                     setupCommands = {
                         {
                             text = "-enable-pretty-printing",
@@ -307,6 +329,7 @@ return {
                         local name = vim.fn.input("Executable name (filter): ")
                         return require("dap.utils").pick_process({ filter = name })
                     end,
+                    MIMode = "gdb",
                     cwd = "${workspaceFolder}",
                     setupCommands = {
                         {
@@ -321,6 +344,7 @@ return {
                     type = "cppdbg",
                     request = "attach",
                     target = "localhost:1234",
+                    MIMode = "gdb",
                     program = function()
                         return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
                     end,
