@@ -7,24 +7,17 @@ return {
             local lint = require("lint")
             lint.linters_by_ft = {
                 ["*"] = {},
-                -- NOTE: YAML
                 yaml = { "yamllint" },
-
-                -- NOTE: shellcheck
                 bash = { "shellcheck" },
                 sh = { "shellcheck" },
-
                 python = {},
                 markdown = { "markdownlint" },
                 lua = {},
-                json = {
-                    "jsonlint",
-                },
+                json = { "jsonlint" },
                 protobuf = { "buf_lint" },
                 bzl = { "buildifier" },
-
                 dockerfile = { "hadolint" },
-                zsh = { "zsh", "shellcheck" },
+                zsh = { "zsh" },
             }
             local function debounce(ms, fn)
                 local timer = vim.uv.new_timer()

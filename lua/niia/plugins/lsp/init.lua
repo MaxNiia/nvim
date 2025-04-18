@@ -192,13 +192,11 @@ return {
                     -- Enable completion triggered by <c-x><c-o>
                     vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-                    -- Mappings
-                    require("niia.plugins.lsp.keymaps").default(bufnr)
                     if client.server_capabilities.inlayHintProvider then
                         vim.lsp.inlay_hint.enable(true)
                     end
 
-                    -- -- Codelens
+                    -- Codelens
                     -- if client.server_capabilities.codeLensProvider then
                     --     vim.lsp.codelens.refresh()
                     --     vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
@@ -207,8 +205,11 @@ return {
                     --     })
                     -- end
 
-                    if client.name == "clangd" then
-                        require("niia.plugins.lsp.keymaps").clangd(bufnr)
+                    -- Mappings
+                    local keymaps = require("niia.plugins.lsp.keymaps")
+                    keymaps.default(bufnr)
+                    if keymaps[client.name] ~= nil then
+                        keymaps[client.name](bufnr)
                     end
                 end,
             })
