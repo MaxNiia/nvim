@@ -44,7 +44,7 @@ return {
             },
             current_line_blame_formatter = "<author> <author_time:%Y %m %d> <summary>",
             max_file_length = 5000,
-            attach_on_untracked = true,
+            attach_to_untracked = true,
             trouble = true,
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
