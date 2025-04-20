@@ -168,6 +168,13 @@ return {
                         gs.preview_hunk_inline,
                         mode = "n",
                         buffer = bufnr,
+                        desc = "Preview Hunk Inline",
+                    },
+                    {
+                        "<leader>gP",
+                        gs.preview_hunk,
+                        mode = "n",
+                        buffer = bufnr,
                         desc = "Preview Hunk",
                     },
                     {
