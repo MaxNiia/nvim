@@ -12,6 +12,10 @@ return {
                 changedelete = { text = "▎" },
                 untracked = { text = "▎" },
             },
+            preview_config = {
+                style = "minimal",
+                relative = "cursor",
+            },
             signs_staged = {
                 add = { text = "▎" },
                 change = { text = "▎" },
@@ -22,11 +26,14 @@ return {
             signcolumn = true,
             numhl = true,
             linehl = false,
-            word_diff = false,
+            word_diff = true,
             watch_gitdir = {
                 follow_files = true,
             },
             current_line_blame = true,
+            diff_opts = {
+                ignore_blank_lines = true,
+            },
             current_line_blame_opts = {
                 virt_text = true,
                 virt_text_pos = "eol",
@@ -36,6 +43,7 @@ return {
             },
             current_line_blame_formatter = "<author> <author_time:%Y %m %d> <summary>",
             max_file_length = 5000,
+            attach_on_untracked = true,
             trouble = true,
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
@@ -156,15 +164,8 @@ return {
                         desc = "Stage Buffer",
                     },
                     {
-                        "<leader>gu",
-                        gs.undo_stage_hunk,
-                        mode = "n",
-                        buffer = bufnr,
-                        desc = "Undo stage Hunk",
-                    },
-                    {
                         "<leader>gp",
-                        gs.preview_hunk,
+                        gs.preview_hunk_inline,
                         mode = "n",
                         buffer = bufnr,
                         desc = "Preview Hunk",
