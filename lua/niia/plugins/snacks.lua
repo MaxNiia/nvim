@@ -483,7 +483,7 @@ return {
             },
             -- git
             {
-                "<leader>gc",
+                "<leader>gL",
                 function()
                     Snacks.picker.git_log()
                 end,
@@ -494,7 +494,7 @@ return {
                 function()
                     Snacks.picker.git_branches()
                 end,
-                desc = "Git Log",
+                desc = "Git Branches",
             },
             {
                 "<leader>fG",
