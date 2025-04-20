@@ -81,14 +81,10 @@ return {
                 view_enter = function(
                     _ --[[view]]
                 )
-                    vim.cmd("UfoDetach")
-                    vim.cmd("UfoDisable")
                 end,
                 view_leave = function(
                     _ --[[view]]
                 )
-                    vim.cmd("UfoAttach")
-                    vim.cmd("UfoEnable")
                 end,
             },
         },
