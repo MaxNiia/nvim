@@ -71,7 +71,6 @@ return {
                     indentscope_color = "",
                 },
                 flash = true,
-                ufo = true,
                 noice = true,
                 lsp_trouble = true,
                 treesitter = true,
