@@ -160,6 +160,14 @@ return {
     {
         "tpope/vim-abolish",
         cond = not vim.g.vscode,
+        -- keys = {
+        -- crs coerce to snake_case
+        -- crm coerce to MixedCase
+        -- crc coerce to camelCase
+        -- cru coerce to UPPER_CASE
+        -- cr- coerce to dash-case
+        -- cr. coerce to dot.case
+        -- }
     },
     {
         "tpope/vim-dispatch",
@@ -168,5 +176,17 @@ return {
     {
         "tpope/vim-fugitive",
         cond = not vim.g.vscode,
+        keys = {
+            {
+                "<leader>gc",
+                "<cmd>G commit<cr>",
+                desc = "Git commit",
+            },
+            {
+                "<leader>G",
+                "<cmd>G<cr>",
+                desc = "Git status",
+            },
+        },
     },
 }
