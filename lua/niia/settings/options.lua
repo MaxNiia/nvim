@@ -118,7 +118,8 @@ vim.opt.ttimeoutlen = 100
 vim.opt.undofile = true
 vim.opt.wildmenu = true
 vim.opt.winblend = 0
-vim.opt.diffopt = "filler,internal,closeoff,algorithm:histogram,context:5,linematch:60"
+vim.opt.diffopt =
+    "filler,internal,closeoff,algorithm:histogram,context:12,linematch:200,indent-heuristic"
 
 local icons = require("niia.utils.icons")
 vim.opt.fillchars:append({
@@ -127,8 +128,8 @@ vim.opt.fillchars:append({
     foldclose = icons.fold.closed,
     foldsep = icons.fold.separator,
     fold = " ",
-    stl = '━',
-    stlnc = '━',
+    stl = "━",
+    stlnc = "━",
 })
 vim.opt.listchars:append({
     tab = icons.chevron.right .. " ",
