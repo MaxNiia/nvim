@@ -21,6 +21,10 @@ vim.cmd([[
 ]])
 
 vim.cmd([[
+command! DiffviewBase DiffviewOpen origin/HEAD...HEAD --imply-local
+]])
+
+vim.cmd([[
 function! HighlightAsanLeakOutput()
   " Stack frame like: #0, #1, etc.
   syntax match AsanStack "#\d\+"
