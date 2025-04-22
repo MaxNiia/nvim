@@ -159,6 +159,7 @@ return {
     },
     {
         "tpope/vim-abolish",
+        lazy = false,
         cond = not vim.g.vscode,
         -- keys = {
         -- crs coerce to snake_case
@@ -171,10 +172,12 @@ return {
     },
     {
         "tpope/vim-dispatch",
+        lazy = false,
         cond = not vim.g.vscode,
     },
     {
         "tpope/vim-fugitive",
+        lazy = false,
         cond = not vim.g.vscode,
         keys = {
             {
