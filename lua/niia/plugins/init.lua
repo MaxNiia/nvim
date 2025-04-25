@@ -192,4 +192,13 @@ return {
             },
         },
     },
+    {
+        "bkad/CamelCaseMotion",
+        lazy = false,
+        init = function()
+            vim.cmd([[
+                let g:camelcasemotion_key = "<localleader>"
+            ]])
+        end,
+    },
 }
