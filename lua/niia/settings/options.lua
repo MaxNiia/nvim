@@ -27,6 +27,9 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldcolumn = "auto:1"
 vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.showbreak = ""
+vim.opt.linebreak = false
+vim.opt.breakindent = true
 
 local function fold_virt_text(result, s, lnum, coloff)
     if not coloff then
