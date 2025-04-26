@@ -212,7 +212,7 @@ fi
 APPLICATIONS="$HOME/applications"
 create_dir "$APPLICATIONS"
 NEOVIM_DIR="neovim"
-neovim_version="a99c469e547fc59472d6d105c0fae323958297a1" # v0.11.0
+neovim_version="e324ab2b6bc2923dbdeccc6418758b47626149f0" # v0.12.0 nightly
 (
     cd "$APPLICATIONS"
     if [ ! -d "$NEOVIM_DIR" ]; then
