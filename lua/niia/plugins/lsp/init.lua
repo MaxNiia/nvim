@@ -195,15 +195,20 @@ return {
                     if client.server_capabilities.inlayHintProvider then
                         vim.lsp.inlay_hint.enable(true)
                     end
+                    if client:supports_method("textDocument/documentColor") then
+                        vim.lsp.document_color.enable(true, args.buf, {
+                            style = "virtual",
+                        })
+                    end
 
                     -- Codelens
-                    -- if client.server_capabilities.codeLensProvider then
-                    --     vim.lsp.codelens.refresh()
-                    --     vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-                    --         buffer = bufnr,
-                    --         callback = vim.lsp.codelens.refresh,
-                    --     })
-                    -- end
+                    if client.server_capabilities.codeLensProvider then
+                        vim.lsp.codelens.refresh()
+                        vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+                            buffer = bufnr,
+                            callback = vim.lsp.codelens.refresh,
+                        })
+                    end
 
                     -- Mappings
                     local keymaps = require("niia.plugins.lsp.keymaps")
