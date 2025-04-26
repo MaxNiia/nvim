@@ -155,6 +155,12 @@ vim.cmd([[
     set viewoptions-=options
 ]])
 
-if vim.loop.os_uname().sysname == "Windows_NT" then
+_G.OS = vim.loop.os_uname().sysname
+_G.IS_MAC = OS == "Darwin"
+_G.IS_LINUX = OS == "Linux"
+_G.IS_WINDOWS = OS:find("Windows") and true or false
+_G.IS_WSL = IS_LINUX and vim.loop.os_uname().release:lower():find("microsoft") and true or false
+
+if IS_WINDOWS then
     vim.o.shell = "powershell.exe"
 end

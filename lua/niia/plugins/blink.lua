@@ -25,20 +25,30 @@ return {
             local opts = {
                 snippets = { preset = "mini_snippets" },
                 term = {
+                    
                     -- Not working on wsl
                     enabled = false,
-                    keymap = {
-                        preset = "inherit",
-                    },
                     -- ghost_text = {
                     --     enabled = true,
                     -- },
                 },
                 cmdline = {
-                    completion = { menu = { auto_show = true } },
+                    completion = {
+                        menu = {
+                            -- auto_show = true
+                            auto_show = function(
+                                _ --[[ctx]]
+                            )
+                                return vim.fn.getcmdtype() == ":"
+                                -- enable for inputs as well, with:
+                                -- or vim.fn.getcmdtype() == '@'
+                            end,
+                        },
+                    },
                     keymap = {
-                        preset = "enter",
-                        ["<CR>"] = {},
+                        ["<Tab>"] = { "show", "accept" },
+                        ["<CR>"] = { "accept_and_enter", "fallback" },
+                        preset = "inherit",
                     },
                 },
                 keymap = {
@@ -56,6 +66,13 @@ return {
                                 return vim.fn.getcmdtype() ~= ":"
                                     or not vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
                             end,
+                            min_keyword_length = function(ctx)
+                                -- when typing a command, only show when the keyword is 3 characters or longer
+                                if ctx.mode == "cmdline" and string.find(ctx.line, " ") == nil then
+                                    return 3
+                                end
+                                return 0
+                            end,
                         },
                     },
                     default = {
@@ -72,13 +89,8 @@ return {
                     },
                     list = {
                         selection = {
-                            preselect = function(ctx)
-                                return not require("blink.cmp").snippet_active({ direction = 1 })
-                                    and ctx.mode ~= "cmdline"
-                            end,
-                            auto_insert = function(ctx)
-                                return ctx.mode == "cmdline"
-                            end,
+                            preselect = true,
+                            auto_insert = true,
                         },
                     },
                     accept = {
