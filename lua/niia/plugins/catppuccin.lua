@@ -117,6 +117,7 @@ return {
                     lualine_m_replace = { bg = c.base, fg = c.red },
                     lualine_m_command = { bg = c.base, fg = c.peach },
                     lualine_m_terminal = { bg = c.base, fg = c.green },
+                    SnacksIndentChunk = { fg = c.overlay0 },
                     AsanStack = { fg = c.peach },
                     AsanAddr = { fg = c.mauve },
                     AsanFile = { fg = c.blue },

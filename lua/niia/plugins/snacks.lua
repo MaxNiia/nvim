@@ -110,7 +110,7 @@ return {
                 animate = {
                     duration = {
                         step = 10,
-                        total = 100,
+                        total = 50,
                     },
                     easing = "linear",
                 },
@@ -153,24 +153,24 @@ return {
                 },
             },
             indent = {
+                animate = {
+                    enabled = vim.fn.has("nvim-0.10") == 1,
+                    easing = "linear",
+                    duration = {
+                        step = 20, -- ms per step
+                        total = 100, -- maximum duration
+                    },
+                },
                 scope = {
                     enabled = true,
-                    animate = {
-                        enabled = vim.fn.has("nvim-0.10") == 1,
-                        easing = "linear",
-                        duration = {
-                            step = 20, -- ms per step
-                            total = 200, -- maximum duration
-                        },
-                    },
                     underline = false,
                 },
                 chunk = {
                     -- when enabled, scopes will be rendered as chunks, except for the
                     -- top-level scope which will be rendered as a scope.
-                    enabled = false,
+                    enabled = true,
                     -- only show chunk scopes in the current window
-                    only_current = false,
+                    only_current = true,
                     hl = "SnacksIndentChunk", ---@type string|string[] hl group for chunk scopes
                     char = {
                         corner_top = "┌",
@@ -182,6 +182,12 @@ return {
                         arrow = ">",
                     },
                 },
+                -- filter for buffers to enable indent guides
+                filter = function(buf)
+                    return vim.g.snacks_indent ~= false
+                        and vim.b[buf].snacks_indent ~= false
+                        and vim.bo[buf].buftype == ""
+                end,
             },
             dashboard = {
                 enabled = true,
