@@ -83,7 +83,7 @@ git_update() {
     cd "$2"
     git fetch
     if [ $# -eq 3 ]; then
-        git checkout $3
+        git checkout "$3"
     else
         git pull
     fi
@@ -156,6 +156,7 @@ cargo_install ripgrep
 cargo_install fd-find
 pipx_install debugpy
 npm_install @ast-grep/cli
+apt_install libfuse2
 
 # Lua.
 LUA_VERSION="5.1.5"
@@ -224,7 +225,7 @@ neovim_version="a81d2b6703e03bcee0521772551df750148884ae" # v0.12.0 nightly
         cd "$NEOVIM_DIR"
         current_neovim_version=$(git rev-parse HEAD)
         if [ "$neovim_version" != "$current_neovim_version" ]; then
-            git fetch --tags --force
+            git fetch --all --tags --force
             cd ..
             git_update https://github.com/neovim/neovim.git "$NEOVIM_DIR" $neovim_version
             cd "$NEOVIM_DIR"
@@ -233,3 +234,29 @@ neovim_version="a81d2b6703e03bcee0521772551df750148884ae" # v0.12.0 nightly
         fi
     fi
 )
+
+# Make fzf only install if changed.
+FZF_DIR="fzf"
+fzf_version="d226d841a1f2b849b7e3efab2a44ecbb3e61a5a5"
+(
+    cd "$APPLICATIONS"
+    if [ ! -d "$FZF_DIR" ]; then
+        echo "firsttime"
+        git_update https://github.com/junegunn/fzf.git "$FZF_DIR" $fzf_version
+        "$FZF_DIR/install"
+    fi
+
+    cd "$FZF_DIR"
+    if [ ! "$fzf_version" = "$(git rev-parse HEAD)" ]; then
+        git fetch --all --tags --force
+        cd ..
+        echo "update"
+        git_update https://github.com/junegunn/fzf.git "$FZF_DIR" $fzf_version
+        "$FZF_DIR/install"
+    fi
+)
+
+wget https://imagemagick.org/archive/binaries/magick
+create_dir "$APPLICATIONS/magick"
+sudo chmod +x magick
+mv magick "$APPLICATIONS/magick/magick"
