@@ -73,7 +73,7 @@ return {
         opts = {
             image = {
                 enabled = true,
-                force = true,
+                force = false,
             },
             styles = {
                 dashboard = {

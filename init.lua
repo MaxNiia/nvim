@@ -1,5 +1,4 @@
 if
-    
     vim.loop.os_uname().sysname == "Linux"
     and os.getenv("USER") == "max"
     and vim.fn.getcwd() == vim.fn.expand("$HOME")
