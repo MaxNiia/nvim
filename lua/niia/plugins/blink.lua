@@ -25,7 +25,6 @@ return {
             local opts = {
                 snippets = { preset = "mini_snippets" },
                 term = {
-                    
                     -- Not working on wsl
                     enabled = false,
                     -- ghost_text = {
@@ -34,6 +33,12 @@ return {
                 },
                 cmdline = {
                     completion = {
+                        list = {
+                            selection = {
+                                preselect = false,
+                                auto_insert = true,
+                            },
+                        },
                         menu = {
                             -- auto_show = true
                             auto_show = function(
@@ -48,7 +53,7 @@ return {
                     keymap = {
                         ["<Tab>"] = { "show", "accept" },
                         ["<CR>"] = { "accept_and_enter", "fallback" },
-                        preset = "inherit",
+                        preset = "cmdline",
                     },
                 },
                 keymap = {
