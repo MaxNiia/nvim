@@ -5,7 +5,7 @@ return {
         lazy = true,
         event = "VeryLazy",
         dependencies = {
-            "williamboman/mason-lspconfig.nvim",
+            "mason-org/mason-lspconfig.nvim",
             {
                 "artemave/workspace-diagnostics.nvim",
                 keys = {
@@ -80,13 +80,13 @@ return {
             setup = {},
         },
         config = function(_, opts)
-            local ok, wf = pcall(require, "vim.lsp._watchfiles")
-            if ok then
-                -- disable lsp watcher. Too slow on linux
-                wf._watchfunc = function()
-                    return function() end
-                end
-            end
+            -- local ok, wf = pcall(require, "vim.lsp._watchfiles")
+            -- if ok then
+            --     -- disable lsp watcher. Too slow on linux
+            --     wf._watchfunc = function()
+            --         return function() end
+            --     end
+            -- end
 
             local servers = require("niia.plugins.lsp.servers")
             local lspconfig = require("lspconfig")
@@ -153,7 +153,11 @@ return {
                         return
                     end
                 end
+
                 lspconfig[server].setup(server_opts)
+                vim.lsp.config(server, {
+                    settings = server_opts,
+                })
             end
 
             local mlsp = require("mason-lspconfig")
@@ -169,14 +173,11 @@ return {
                     then
                         ensure_installed[#ensure_installed + 1] = server
                     end
+                    setup(server)
                 end
             end
 
             require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
-
-            for server, _ in pairs(servers) do
-                setup(server)
-            end
 
             -- LspAttach
             vim.api.nvim_create_autocmd("LspAttach", {
@@ -194,6 +195,8 @@ return {
 
                     -- Enable completion triggered by <c-x><c-o>
                     vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+                    vim.bo[args.buf].tagfunc = "v:lua.vim.lsp.tagfunc"
+                    vim.bo[args.buf].formatexpr = "v:lua.vim.lsp.formatexpr"
 
                     if client.server_capabilities.inlayHintProvider then
                         vim.lsp.inlay_hint.enable(true)
