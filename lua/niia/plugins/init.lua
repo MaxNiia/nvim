@@ -105,6 +105,9 @@ return {
                     alt = { "TESTING", "PASSED", "FAILED" },
                 },
             },
+
+            search = { pattern = [[\b(KEYWORDS)(\([^\)]*\))?:]] },
+            highlight = { pattern = [[.*<((KEYWORDS)%(\(.{-1,}\))?):]] },
         },
     },
     {
