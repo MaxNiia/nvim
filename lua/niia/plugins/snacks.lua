@@ -152,6 +152,9 @@ return {
                     end,
                 },
             },
+            scope = {
+                enabled = true
+            },
             indent = {
                 animate = {
                     enabled = vim.fn.has("nvim-0.10") == 1,

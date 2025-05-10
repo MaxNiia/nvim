@@ -196,7 +196,7 @@ return {
             },
             spec = {
                 { "<leader><leader>", group = "Switch Window" },
-                { "<leader>d", group = "Debug" },
+                -- { "<leader>d", group = "Debug" },
                 { "<leader>E", group = "Explore Dir" },
                 { "<leader>c", group = "Multiple cursors" },
                 { "<leader>f", group = "Find" },
