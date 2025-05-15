@@ -19,6 +19,11 @@ return {
                 "<cmd>DiffviewClose<cr>",
                 desc = "Close diffview",
             },
+            {
+                "<leader>gh",
+                "<cmd>DiffviewClose<cr>",
+                desc = "Open review",
+            },
         },
         cmd = {
             "DiffviewOpen",
@@ -68,6 +73,22 @@ return {
                     layout = "diff3_mixed",
                     -- winbar_info = true,
                 },
+            },
+            file_panel = {
+                win_config = function()
+                    local c = { type = "split", position = "left" }
+                    local editor_width = vim.o.columns
+                    c.width = math.min(80, editor_width)
+                    return c
+                end,
+            },
+            commit_log_panel = {
+                win_config = function()
+                    local c = { type = "split", position = "right" }
+                    local editor_width = vim.o.columns
+                    c.width = math.min(80, editor_width)
+                    return c
+                end,
             },
             hooks = {
                 view_opened = function(
