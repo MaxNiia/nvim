@@ -164,16 +164,19 @@ return {
                 if server_opts then
                     server_opts = server_opts == true and {} or server_opts
                     -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-                    if server_opts.mason == false or not vim.tbl_contains(available, server) then
-                        setup(server)
-                    else
+                    if
+                        not (server_opts.mason == false or not vim.tbl_contains(available, server))
+                    then
                         ensure_installed[#ensure_installed + 1] = server
                     end
                 end
             end
 
             require("mason-lspconfig").setup({ ensure_installed = ensure_installed })
-            require("mason-lspconfig").setup_handlers({ setup })
+
+            for server, _ in pairs(servers) do
+                setup(server)
+            end
 
             -- LspAttach
             vim.api.nvim_create_autocmd("LspAttach", {
