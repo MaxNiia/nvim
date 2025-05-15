@@ -52,11 +52,17 @@ return {
         end,
         config = function()
             local gen_loader = require("mini.snippets").gen_loader
+            local snippets = {
+                gen_loader.from_file("~/.config/nvim/snippets/global.json"),
+                gen_loader.from_lang(),
+            }
+
+            if vim.g.extra_snippets ~= nil then
+                snippets = vim.tbl_deep_extend("force", snippets, vim.g.extra_snippets())
+            end
+
             require("mini.snippets").setup({
-                snippets = {
-                    gen_loader.from_file("~/.config/nvim/snippets/global.json"),
-                    gen_loader.from_lang(),
-                },
+                snippets = snippets,
                 mappings = {
                     expand = "",
                     jump_next = "",
