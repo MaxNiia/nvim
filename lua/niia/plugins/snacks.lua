@@ -153,7 +153,7 @@ return {
                 },
             },
             scope = {
-                enabled = true
+                enabled = true,
             },
             indent = {
                 animate = {
@@ -967,6 +967,8 @@ return {
                     -- Create some toggle mappings
                     Snacks.toggle.zen():map("<leader>uz")
                     Snacks.toggle.zoom():map("<leader>uZ")
+                    Snacks.toggle.zen():map("<leader>z")
+                    Snacks.toggle.zoom():map("<leader>Z")
                     Snacks.toggle.indent():map("<leader>ui")
                     Snacks.toggle.words():map("<leader>uW")
                     Snacks.toggle.scroll():map("<leader>uS")
