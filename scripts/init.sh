@@ -261,3 +261,6 @@ wget https://imagemagick.org/archive/binaries/magick
 create_dir "$APPLICATIONS/magick"
 sudo chmod +x magick
 mv magick "$APPLICATIONS/magick/magick"
+
+pip3 install neovim
+npm_install neovim
