@@ -107,37 +107,37 @@ return {
         cond = not vim.g.vscode,
         keys = {
             {
-                "<leader>bp",
+                "<leader>cp",
                 select_presets,
                 desc = "Select CMakePresets",
             },
             {
-                "<leader>bt",
+                "<leader>ct",
                 select_build_target,
                 desc = "Select build target",
             },
             {
-                "<leader>bl",
+                "<leader>cl",
                 select_launch_target,
                 desc = "Select launch target",
             },
             {
-                "<leader>bc",
+                "<leader>cc",
                 configure,
                 desc = "Run CMake",
             },
             {
-                "<leader>bb",
+                "<leader>cb",
                 build,
                 desc = "Build selected build target",
             },
             {
-                "<leader>bd",
+                "<leader>cd",
                 debug_cmake,
                 desc = "Debug (start/continue)",
             },
             {
-                "<leader>bs",
+                "<leader>cs",
                 close_debug_session,
                 desc = "Debug (stop)",
             },
