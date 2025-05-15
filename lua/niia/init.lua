@@ -14,6 +14,7 @@ local config = {
     jump_on_enter = false,
     nu = true,
     rnu = true,
+    snacks_explorer = false,
 }
 
 ---@param opts niia.Config?
@@ -27,6 +28,7 @@ M.start = function(opts)
     vim.g.enable_copilot = config.enable_copilot
     vim.g.nu = config.nu
     vim.g.rnu = config.rnu
+    vim.g.snacks_explorer = config.snacks_explorer
     vim.g.copyright_func = function(comment_string)
         local output_text = ""
         for _, v in ipairs(vim.g.copyright_text) do
