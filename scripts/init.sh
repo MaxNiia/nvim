@@ -154,6 +154,7 @@ fi
 
 cargo_install ripgrep
 cargo_install fd-find
+cargo_install git-delta
 pipx_install debugpy
 npm_install @ast-grep/cli
 apt_install libfuse2
