@@ -93,6 +93,11 @@ return {
             },
             picker = {
                 enabled = true,
+                previewers = {
+                    diff = {
+                        cmd = { "delta" },
+                    },
+                },
                 formatters = {
                     file = {
                         filename_first = true,
