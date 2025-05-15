@@ -132,6 +132,9 @@ end
 
 return {
     {
+        dependencies = {
+            "AndreM222/copilot-lualine",
+        },
         "nvim-lualine/lualine.nvim",
         cond = not vim.g.vscode,
         event = "VeryLazy",
@@ -143,26 +146,6 @@ return {
             else
                 -- hide the statusline on the starter page
                 vim.o.laststatus = 0
-            end
-
-            if vim.g.enable_copilot then
-                -- Copilot
-                local api = require("copilot.api")
-                local copilot_icon = require("niia.utils.icons").kinds.Copilot
-                local offline_icon = require("niia.utils.icons").progress.offline
-                local done_icon = require("niia.utils.icons").progress.done
-                local pending_icon = require("niia.utils.icons").progress.pending
-                api.register_status_notification_handler(function(data)
-                    -- customize your message however you want
-                    if data.status == "Normal" then
-                        status = done_icon
-                    elseif data.status == "InProgress" then
-                        status = pending_icon
-                    else
-                        status = offline_icon
-                    end
-                    status = copilot_icon .. " " .. status
-                end)
             end
         end,
         opts = {
@@ -250,9 +233,8 @@ return {
                         separator = { left = "", right = "" },
                     },
                     {
-                        function()
-                            return status
-                        end,
+                        "copilot",
+                        cond = vim.g.copilot,
                         color = getInactiveModeColor,
                         separator = { left = "", right = "" },
                     },

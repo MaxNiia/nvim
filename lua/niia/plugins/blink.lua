@@ -140,6 +140,13 @@ return {
             if vim.g.enable_copilot then
                 opts = vim.tbl_deep_extend("force", opts, {
                     sources = {
+                        default = {
+                            "lsp",
+                            "path",
+                            "snippets",
+                            "buffer",
+                            "copilot",
+                        },
                         providers = {
                             copilot = {
                                 name = "copilot",
@@ -156,13 +163,6 @@ return {
                                     end
                                     return items
                                 end,
-                            },
-                            default = {
-                                "lsp",
-                                "path",
-                                "snippets",
-                                "buffer",
-                                "copilot",
                             },
                         },
                     },
