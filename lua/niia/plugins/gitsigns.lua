@@ -2,6 +2,7 @@ return {
     {
         "lewis6991/gitsigns.nvim",
         event = "BufEnter",
+        cond = not vim.g.vscode,
         opts = {
             signs = {
                 add = { text = "▎" },

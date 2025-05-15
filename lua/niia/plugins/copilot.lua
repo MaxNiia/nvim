@@ -1,6 +1,7 @@
 return {
     {
         "zbirenbaum/copilot.lua",
+        cond = not vim.g.vscode,
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
@@ -53,6 +54,7 @@ return {
     },
     {
         "CopilotC-Nvim/CopilotChat.nvim",
+        cond = not vim.g.vscode,
         enabled = vim.g.enable_copilot,
         init = function()
             vim.api.nvim_create_autocmd("BufEnter", {

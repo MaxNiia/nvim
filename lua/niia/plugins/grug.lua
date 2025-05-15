@@ -1,6 +1,7 @@
 return {
     {
         "MagicDuck/grug-far.nvim",
+        cond = not vim.g.vscode,
         commands = {
             "GrugFar",
         },

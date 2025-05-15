@@ -159,8 +159,10 @@ return {
     },
     {
         "tpope/vim-abolish",
+        cond = not vim.g.vscode,
     },
     {
         "tpope/vim-dispatch",
+        cond = not vim.g.vscode,
     },
 }

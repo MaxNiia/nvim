@@ -13,6 +13,7 @@ end
 return {
     {
         "catppuccin/nvim",
+        cond = not vim.g.vscode,
         priority = 1000,
         name = "catppuccin",
         opts = {

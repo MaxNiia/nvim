@@ -1,6 +1,7 @@
 return {
     {
         "nvim-neotest/neotest",
+        cond = not vim.g.vscode,
         dependencies = {
             "mfussenegger/nvim-dap",
             "nvim-neotest/nvim-nio",
@@ -58,6 +59,7 @@ return {
     },
     {
         "rcarriga/nvim-dap-ui",
+        cond = not vim.g.vscode,
         dependencies = {
             "mfussenegger/nvim-dap",
             "nvim-neotest/nvim-nio",
@@ -101,6 +103,7 @@ return {
     },
     {
         "mfussenegger/nvim-dap",
+        cond = not vim.g.vscode,
         build = ":helptags ALL",
         name = "dap",
         keys = {

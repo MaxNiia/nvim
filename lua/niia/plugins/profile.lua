@@ -1,6 +1,7 @@
 return {
     {
         "stevearc/profile.nvim",
+        cond = not vim.g.vscode,
         config = function()
             local should_profile = os.getenv("NVIM_PROFILE")
             if should_profile then

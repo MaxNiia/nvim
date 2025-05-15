@@ -1,6 +1,7 @@
 return {
     {
         "OXY2DEV/markview.nvim",
+        cond = not vim.g.vscode,
         ft = { "markdown" },
         opts = {
             preview = {

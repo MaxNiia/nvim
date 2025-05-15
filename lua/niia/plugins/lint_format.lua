@@ -1,6 +1,7 @@
 return {
     {
         "mfussenegger/nvim-lint",
+        cond = not vim.g.vscode,
         event = "BufReadPre",
         config = function()
             local lint = require("lint")
@@ -48,6 +49,7 @@ return {
     },
     {
         "stevearc/conform.nvim",
+        cond = not vim.g.vscode,
         event = "BufEnter",
         init = function()
             vim.g.autoformat = true
