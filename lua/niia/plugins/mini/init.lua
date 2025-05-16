@@ -4,7 +4,7 @@ return {
         "echasnovski/mini.nvim",
         version = false,
         lazy = false,
-        keys = (vim.g.vscode or vim.g.snacks_explorer) and {} or {
+        keys = vim.g.vscode and {} or {
             {
                 "<leader>e",
                 "<cmd>lua MiniFiles.open(MiniFiles.get_latest_path())<cr>",

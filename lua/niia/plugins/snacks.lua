@@ -89,7 +89,7 @@ return {
             },
             explorer = {
                 enabled = true,
-                replace_netrw = true,
+                replace_netrw = false,
             },
             picker = {
                 enabled = true,
@@ -425,16 +425,9 @@ return {
         },
         keys = {
             {
-                vim.g.snacks_explorer and "<leader>e" or "<leader>EE",
+                "<leader>EE",
                 function()
                     Snacks.explorer.open()
-                end,
-                desc = "Explorer",
-            },
-            {
-                vim.g.snacks_explorer and "<leader>EB" or "<leader>ESB",
-                function()
-                    Snacks.explorer.reveal()
                 end,
                 desc = "Explorer",
             },
