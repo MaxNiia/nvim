@@ -215,6 +215,12 @@ return {
                             action = "<leader>sg",
                         },
                         {
+                            icon = " ",
+                            key = "s",
+                            desc = "Find Text",
+                            action = "<leader>fs",
+                        },
+                        {
                             icon = " ",
                             key = "p",
                             desc = "Pick Project",
@@ -640,7 +646,7 @@ return {
                 desc = "Marks",
             },
             {
-                "<leader>sR",
+                "<leader>sr",
                 function()
                     Snacks.picker.resume()
                 end,

@@ -7,7 +7,7 @@ return {
         },
         keys = {
             {
-                "<leader>fs",
+                "<leader>fe",
                 function()
                     require("grug-far").open({})
                 end,
