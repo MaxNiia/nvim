@@ -62,6 +62,7 @@ return {
                 gitsigns = true,
                 semantic_tokens = true,
                 snacks = true,
+                markview = true,
                 dap = true,
                 dap_ui = true,
                 rainbow_delimiters = true,
