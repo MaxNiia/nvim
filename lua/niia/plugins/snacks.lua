@@ -215,12 +215,6 @@ return {
                             action = "<leader>sg",
                         },
                         {
-                            icon = " ",
-                            key = "s",
-                            desc = "Find Text",
-                            action = "<leader>fs",
-                        },
-                        {
                             icon = " ",
                             key = "p",
                             desc = "Pick Project",
@@ -547,6 +541,13 @@ return {
             },
             {
                 "<leader>sg",
+                function()
+                    Snacks.picker.grep()
+                end,
+                desc = "Grep",
+            },
+            {
+                "<leader>fs",
                 function()
                     Snacks.picker.grep()
                 end,
