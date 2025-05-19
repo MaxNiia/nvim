@@ -209,6 +209,7 @@ return {
                 { "<leader>t", group = "Terminal" },
                 { "<leader>u", group = "Options" },
                 { "<leader>x", group = "Trouble" },
+                { "gm", group = "Multicursor" },
                 { "gr", group = "LSP" },
                 { "grn", name = "Rename symbol" },
                 { "gra", name = "Code action" },

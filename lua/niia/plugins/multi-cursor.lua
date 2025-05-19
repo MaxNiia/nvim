@@ -4,61 +4,142 @@ return {
         dependencies = {
             "jake-stewart/multicursor.nvim",
         },
-        config = function()
+        keys = {
+            {
+                "gms",
+                desc = "Multicursor visual",
+                expr = true,
+                mode = { "n", "v" },
+            },
+            {
+                "gmss",
+                function()
+                    require("mcos").bufkeymapfunc()
+                end,
+                desc = "Multicursor entire buffer",
+                mode = "n",
+            },
+        },
+        config = function(_, _)
             local mcos = require("mcos")
             mcos.setup({})
 
             -- mcos doesn't setup any keymaps
             -- here are some recommended ones
             vim.keymap.set({ "n", "v" }, "gms", mcos.opkeymapfunc, { expr = true })
-            vim.keymap.set({ "n" }, "gmss", mcos.bufkeymapfunc)
         end,
     },
     {
         "jake-stewart/multicursor.nvim",
-        lazy = false,
-        keys = {},
-        config = function()
-            local mc = require("multicursor-nvim")
-            mc.setup()
-
-            local set = vim.keymap.set
-
+        keys = {
             -- Add or skip cursor above/below the main cursor.
-            set({ "n", "x" }, "<s-up>", function()
-                mc.lineAddCursor(-1)
-            end)
-            set({ "n", "x" }, "<s-down>", function()
-                mc.lineAddCursor(1)
-            end)
-            set({ "n", "x" }, "<leader><s-up>", function()
-                mc.lineSkipCursor(-1)
-            end)
-            set({ "n", "x" }, "<leader><s-down>", function()
-                mc.lineSkipCursor(1)
-            end)
+            {
+                "<s-up>",
+                function()
+                    require("multicursor-nvim").lineAddCursor(-1)
+                end,
+                desc = "Add cursor above",
+                mode = { "n", "x" },
+            },
+            {
+                "<s-down>",
+                function()
+                    require("multicursor-nvim").lineAddCursor(1)
+                end,
+                desc = "Add cursor below",
+                mode = { "n", "x" },
+            },
+            {
+                "<leader><s-up>",
+                function()
+                    require("multicursor-nvim").lineSkipCursor(-1)
+                end,
+                desc = "Skip cursor above",
+                mode = { "n", "x" },
+            },
+            {
+                "<leader><s-down>",
+                function()
+                    require("multicursor-nvim").lineSkipCursor(1)
+                end,
+                desc = "Skip cursor below",
+                mode = { "n", "x" },
+            },
 
             -- Add or skip adding a new cursor by matching word/selection
-            set({ "n", "x" }, "<localleader>n", function()
-                mc.matchAddCursor(1)
-            end)
-            set({ "n", "x" }, "<localleader>s", function()
-                mc.matchSkipCursor(1)
-            end)
-            set({ "n", "x" }, "<localleader>N", function()
-                mc.matchAddCursor(-1)
-            end)
-            set({ "n", "x" }, "<localleader>S", function()
-                mc.matchSkipCursor(-1)
-            end)
+            {
+                "<localleader>n",
+                function()
+                    require("multicursor-nvim").matchAddCursor(1)
+                end,
+                desc = "Add cursor to next match",
+                mode = { "n", "x" },
+            },
+            {
+                "<localleader>s",
+                function()
+                    require("multicursor-nvim").matchSkipCursor(1)
+                end,
+                desc = "Add cursor to previous match",
+                mode = { "n", "x" },
+            },
+            {
+                "<localleader>N",
+                function()
+                    require("multicursor-nvim").matchAddCursor(-1)
+                end,
+                desc = "Skip next match",
+                mode = { "n", "x" },
+            },
+            {
+                "<localleader>S",
+                function()
+                    require("multicursor-nvim").matchSkipCursor(-1)
+                end,
+                desc = "Skip previous match",
+                mode = { "n", "x" },
+            },
 
             -- Add and remove cursors with control + left click.
-            set("n", "<c-leftmouse>", mc.handleMouse)
-            set("n", "<c-leftdrag>", mc.handleMouseDrag)
-            set("n", "<c-leftrelease>", mc.handleMouseRelease)
+            {
+                "<c-leftmouse>",
+                function()
+                    require("multicursor-nvim").handleMouse()
+                end,
+                desc = "Multicursor mouse click",
+                mode = "n",
+            },
+            {
+                "<c-leftdrag>",
+                function()
+                    require("multicursor-nvim").handleMouseDrag()
+                end,
+                desc = "Multicursor mouse drag",
+                mode = "n",
+            },
+            {
+                "<c-leftrelease>",
+                function()
+                    require("multicursor-nvim").handleMouseRelease()
+                end,
+                desc = "Multicursor mouse release",
+                mode = "n",
+            },
 
             -- Disable and enable cursors.
-            set({ "n", "x" }, "<c-q>", mc.toggleCursor)
+            {
+                "<c-q>",
+                function()
+                    require("multicursor-nvim").toggleCursor()
+                end,
+                desc = "Toggle cursor",
+                mode = { "n", "x" },
+            },
+        },
+        opts = {},
+        config = function(_, _)
+            local mc = require("multicursor-nvim")
+            mc.setup()
 
             -- Mappings defined in a keymap layer only apply when there are
             -- multiple cursors. This lets you have overlapping mappings.
@@ -79,16 +160,6 @@ return {
                     end
                 end)
             end)
-
-            -- Customize how cursors look.
-            local hl = vim.api.nvim_set_hl
-            hl(0, "MultiCursorCursor", { reverse = true })
-            hl(0, "MultiCursorVisual", { link = "Visual" })
-            hl(0, "MultiCursorSign", { link = "SignColumn" })
-            hl(0, "MultiCursorMatchPreview", { link = "Search" })
-            hl(0, "MultiCursorDisabledCursor", { reverse = true })
-            hl(0, "MultiCursorDisabledVisual", { link = "Visual" })
-            hl(0, "MultiCursorDisabledSign", { link = "SignColumn" })
         end,
     },
 }
