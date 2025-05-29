@@ -103,7 +103,11 @@ end
 return {
     {
         "Civitasv/cmake-tools.nvim",
-        lazy = false,
+        ft = {
+            "cpp",
+            "c",
+            "cmake",
+        },
         cond = not vim.g.vscode,
         keys = {
             {
