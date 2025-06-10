@@ -51,6 +51,7 @@ return {
                 end)
                 :totable()
             require("nvim-treesitter").install(parsers_to_install)
+            require("nvim-treesitter").update(already_installed)
         end,
     },
 }
