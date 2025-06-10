@@ -1,9 +1,10 @@
 return {
     analysis = {
         autoSearchPaths = true,
-        diagnosticMode = "workspace",
+        diagnosticMode = "openFilesOnly",
         useLibraryCodeForTypes = true,
         typeCheckingMode = "all",
+        autoImportCompletions = true,
     },
-    disableOrganizeImports = true,
+    disableOrganizeImports = false,
 }
