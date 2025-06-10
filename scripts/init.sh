@@ -153,6 +153,7 @@ if [ ! -e "${HOME}/.nvimstty" ]; then
 fi
 
 cargo_install ripgrep
+cargo_install tree-sitter-cli
 cargo_install fd-find
 cargo_install git-delta
 pipx_install debugpy
