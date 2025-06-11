@@ -52,6 +52,15 @@ return {
                 :totable()
             require("nvim-treesitter").install(parsers_to_install)
             require("nvim-treesitter").update(already_installed)
+
+            vim.api.nvim_create_autocmd("FileType", {
+                pattern = opts.ensure_installed,
+                callback = function()
+                    vim.treesitter.start()
+                    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+                    vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                end,
+            })
         end,
     },
 }
