@@ -2,12 +2,12 @@ return {
     { "rafamadriz/friendly-snippets" },
     {
         "giuxtaposition/blink-cmp-copilot",
-        enabled = vim.g.enable_copilot,
+        enabled = vim.g.enable_copilot_cmp,
         cond = not vim.g.vscode,
     },
     {
         "saghen/blink.compat",
-        enabled = vim.g.enable_copilot,
+        enabled = vim.g.enable_copilot_cmp,
         optional = true,
         cond = not vim.g.vscode,
         opts = {},
@@ -137,7 +137,7 @@ return {
 
                 signature = { enabled = true },
             }
-            if vim.g.enable_copilot then
+            if vim.g.enable_copilot_cmp then
                 opts = vim.tbl_deep_extend("force", opts, {
                     sources = {
                         default = {

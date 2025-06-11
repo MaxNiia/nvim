@@ -58,7 +58,7 @@ return {
             }
 
             if vim.g.extra_snippets ~= nil then
-                snippets = vim.tbl_deep_extend("force", snippets, vim.g.extra_snippets())
+                snippets = vim.tbl_deep_extend("force", snippets, vim.g.extra_snippets(gen_loader))
             end
 
             require("mini.snippets").setup({
