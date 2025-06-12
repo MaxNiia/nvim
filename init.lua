@@ -12,4 +12,4 @@ if vim.g.vscode == nil then
     vim.g.vscode = false
 end
 
-require("niia").start({ enable_copilot = true, enable_copilot_cmp = false })
+require("niia").start({})
