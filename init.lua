@@ -7,7 +7,9 @@ then
     vim.env.GIT_WORK_TREE = vim.fn.expand("$HOME")
     vim.g.fugitive_git_executable = "/usr/bin/git --git-dir=$HOME/.cfg --work-tree=$HOME"
 end
+
 if vim.g.vscode == nil then
     vim.g.vscode = false
 end
+
 require("niia").start({})
