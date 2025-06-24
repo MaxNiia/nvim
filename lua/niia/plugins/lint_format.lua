@@ -30,13 +30,9 @@ return {
                 end
             end
 
-            local function lint_fnc()
-                lint.try_lint()
-            end
-
             vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
                 group = vim.api.nvim_create_augroup("nvim-lint", { clear = true }),
-                callback = debounce(100, lint_fnc),
+                callback = debounce(100, lint.try_lint),
             })
         end,
     },
