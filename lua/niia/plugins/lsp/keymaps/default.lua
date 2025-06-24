@@ -19,14 +19,6 @@ return function(bufnr)
             mode = "n",
         },
         {
-            "grd",
-            function()
-                require("conform").format({ async = true, lsp_format = "fallback" })
-            end,
-            buffer = bufnr,
-            desc = "Format",
-        },
-        {
             "<leader>rc",
             vim.lsp.codelens.run,
             desc = "Run Codelens",

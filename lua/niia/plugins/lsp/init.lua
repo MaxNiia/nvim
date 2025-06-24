@@ -196,7 +196,7 @@ return {
                     -- Enable completion triggered by <c-x><c-o>
                     vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
                     vim.bo[args.buf].tagfunc = "v:lua.vim.lsp.tagfunc"
-                    vim.bo[args.buf].formatexpr = "v:lua.vim.lsp.formatexpr"
+                    -- vim.bo[args.buf].formatexpr = "v:lua.vim.lsp.formatexpr"
 
                     if client.server_capabilities.inlayHintProvider then
                         vim.lsp.inlay_hint.enable(true)
