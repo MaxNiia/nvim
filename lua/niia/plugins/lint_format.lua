@@ -120,7 +120,7 @@ return {
                 "lua-language-server",
                 "ruff",
                 "marksman",
-                "bzl",
+                "starpls",
 
                 -- NOTE: LINT
                 "buf",

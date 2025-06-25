@@ -11,7 +11,7 @@ return {
     glsl_analyzer = {},
     azure_pipelines_ls = require("niia.plugins.lsp.servers.azure_pipelines_ls"),
     bashls = {},
-    bzl = require("niia.plugins.lsp.servers.bzl"),
+    starpls = require("niia.plugins.lsp.servers.starpls"),
     basedpyright = require("niia.plugins.lsp.servers.basedPyright"),
     clangd = require("niia.plugins.lsp.servers.clangd"),
     cssls = require("niia.plugins.lsp.servers.cssls"),
