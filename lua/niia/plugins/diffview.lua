@@ -1,4 +1,33 @@
 local icons = require("niia.utils.icons")
+local review_diff = function()
+    local options = { "main", "master", "dev", "Other..." }
+
+    vim.ui.select(options, {
+        prompt = "Select base branch for PR diff:",
+        format_item = function(item)
+            return item == "Other..." and "Enter custom branch..." or "Compare with " .. item
+        end,
+    }, function(choice)
+        if not choice then
+            print("Cancelled PR diffview")
+            return
+        end
+
+        if choice == "Other..." then
+            vim.ui.input({ prompt = "Enter custom base branch: " }, function(input)
+                if input and input ~= "" then
+                    vim.cmd("DiffviewOpen origin/" .. input .. "...HEAD")
+                else
+                    print("Cancelled custom branch input")
+                end
+            end)
+        else
+            vim.cmd("DiffviewOpen origin/" .. choice .. "...HEAD")
+        end
+    end)
+end
+
+vim.api.nvim_create_user_command("Review", review_diff, {})
 return {
     {
         "sindrets/diffview.nvim",
@@ -21,7 +50,7 @@ return {
             },
             {
                 "<leader>gh",
-                "<cmd>DiffviewClose<cr>",
+                review_diff,
                 desc = "Open review",
             },
         },
