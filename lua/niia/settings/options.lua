@@ -161,5 +161,7 @@ _G.IS_WINDOWS = OS:find("Windows") and true or false
 _G.IS_WSL = IS_LINUX and vim.loop.os_uname().release:lower():find("microsoft") and true or false
 
 if IS_WINDOWS then
-    vim.o.shell = "powershell.exe"
+    vim.opt.shell = "pwsh"
+    vim.opt.shellcmdflag = "-nologo -noprofile -ExecutionPolicy RemoteSigned -command"
+    vim.opt.shellxquote = ""
 end
