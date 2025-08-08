@@ -5,6 +5,8 @@ local M = {}
 ---@field cat_oled? boolean
 ---@field noice_popup? boolean
 ---@field enable_copilot? boolean
+---@field enable_copilot_cmp? boolean
+---@field jump_on_enter? boolean
 ---@field nu? boolean
 ---@field rnu? boolean
 local config = {
@@ -38,7 +40,7 @@ M.start = function(opts)
         return output_text
     end
 
-    if vim.fn.has("nvim-0.10.1)") ~= 1 then
+    if vim.fn.has("nvim-0.10.1") ~= 1 then
         return vim.notify("nvim 0.10.1 is required", vim.log.levels.ERROR, { title = "Niia" })
     end
 
