@@ -321,92 +321,6 @@ return {
             },
             quickfile = { enabled = true },
             bufdelete = { enabled = true },
-            scratch = {
-                root = vim.fn.stdpath("data") .. "/scratch",
-                name = "Scratch",
-                win = {
-                    width = 0.5,
-                    height = 0.9,
-                    style = "scratch",
-                },
-                ft = function()
-                    if vim.bo.buftype == "" and vim.bo.filetype ~= "" then
-                        return vim.bo.filetype
-                    end
-                    return "markdown"
-                end,
-                win_by_ft = {
-                    c = {
-                        keys = {
-                            ["gcc"] = {
-                                "<cr>",
-                                function(self)
-                                    vim.cmd("!gcc -S %")
-                                end,
-                                desc = "Assembly",
-                                mode = { "n", "x" },
-                            },
-                            ["Godbolt"] = {
-                                "<leader><cr>",
-                                function(self)
-                                    vim.cmd("Godbolt")
-                                end,
-                                desc = "Godbolt",
-                                mode = { "n", "x" },
-                            },
-                        },
-                    },
-                    cpp = {
-                        keys = {
-                            ["gcc"] = {
-                                "<cr>",
-                                function(self)
-                                    vim.cmd("!gcc -S %")
-                                end,
-                                desc = "Assembly",
-                                mode = { "n", "x" },
-                            },
-                            ["Godbolt"] = {
-                                "<leader><cr>",
-                                function(self)
-                                    vim.cmd("Godbolt")
-                                end,
-                                desc = "Godbolt",
-                                mode = { "n", "x" },
-                            },
-                        },
-                    },
-                    python = {
-                        keys = {
-                            ["run"] = {
-                                "<cr>",
-                                function()
-                                    vim.cmd("!python3 %")
-                                end,
-                                desc = "Run file",
-                                mode = { "n", "x" },
-                            },
-                        },
-                    },
-                    lua = {
-                        keys = {
-                            ["source"] = {
-                                "<cr>",
-                                function(self)
-                                    local name = "scratch."
-                                        .. vim.fn.fnamemodify(
-                                            vim.api.nvim_buf_get_name(self.buf),
-                                            ":e"
-                                        )
-                                    Snacks.debug.run({ buf = self.buf, name = name })
-                                end,
-                                desc = "Source buffer",
-                                mode = { "n", "x" },
-                            },
-                        },
-                    },
-                },
-            },
             statuscolumn = {
                 enabled = true,
                 left = { "mark", "sign" }, -- priority of signs on the left (high to low)
@@ -432,13 +346,6 @@ return {
                 desc = "Explorer",
             },
             {
-                "<leader>,",
-                function()
-                    Snacks.picker.buffers()
-                end,
-                desc = "Buffers",
-            },
-            {
                 "<leader>/",
                 function()
                     Snacks.picker.grep()
@@ -451,6 +358,27 @@ return {
                     Snacks.picker.command_history()
                 end,
                 desc = "Command History",
+            },
+            {
+                "<leader>,",
+                function()
+                    Snacks.picker.buffers()
+                end,
+                desc = "Buffers",
+            },
+            {
+                "<leader>n",
+                function()
+                    Snacks.picker.notifications()
+                end,
+                desc = "Notification History",
+            },
+            {
+                "<leader><space>",
+                function()
+                    Snacks.picker.smart()
+                end,
+                desc = "Smart Find Files",
             },
             -- find
             {
@@ -497,7 +425,7 @@ return {
             },
             -- git
             {
-                "<leader>gL",
+                "<leader>gA",
                 function()
                     Snacks.picker.git_log()
                 end,
@@ -516,6 +444,20 @@ return {
                     Snacks.picker.git_status()
                 end,
                 desc = "Git Status",
+            },
+            {
+                "<leader>gL",
+                function()
+                    Snacks.picker.git_log_line()
+                end,
+                desc = "Git Log Line",
+            },
+            {
+                "<leader>gF",
+                function()
+                    Snacks.picker.git_log_file()
+                end,
+                desc = "Git Log File",
             },
             -- Grep
             {
@@ -654,6 +596,13 @@ return {
                 desc = "Resume",
             },
             {
+                "<leader>su",
+                function()
+                    Snacks.picker.undo()
+                end,
+                desc = "Undo History",
+            },
+            {
                 "<leader>sq",
                 function()
                     Snacks.picker.qflist()
@@ -710,37 +659,6 @@ return {
                     Snacks.picker.lsp_symbols()
                 end,
                 desc = "LSP Symbols",
-            },
-            {
-                "<leader>.",
-                function()
-                    Snacks.scratch()
-                end,
-                desc = "Toggle Scratch Buffer",
-            },
-            {
-                "<leader>n",
-                function()
-                    Snacks.scratch.open({
-                        ft = "markdown",
-                        root = vim.fn.expand("$HOME/notes"),
-                        autowrite = true,
-                        filekey = {
-                            cwd = true,
-                            branch = true,
-                            count = true,
-                        },
-                        name = "Notes",
-                    })
-                end,
-                desc = "Toggle Notes Buffer",
-            },
-            {
-                "<leader>S",
-                function()
-                    Snacks.scratch.select()
-                end,
-                desc = "Select Scratch Buffer",
             },
             {
                 "<leader>un",
