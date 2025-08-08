@@ -128,6 +128,7 @@ return {
                 },
             })
             require("mini.cursorword").setup()
+            require("mini.align").setup()
             require("mini.pairs").setup()
             if not (vim.g.vscode or vim.g.yazi) then
                 require("mini.files").setup({
