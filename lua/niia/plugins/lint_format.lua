@@ -18,6 +18,7 @@ return {
                 bzl = { "buildifier" },
                 dockerfile = { "hadolint" },
                 zsh = { "zsh" },
+                gdscript = { "gdlint" },
             }
             local function debounce(ms, fn)
                 local timer = vim.uv.new_timer()
@@ -102,6 +103,7 @@ return {
                 -- yaml = { "yamlfmt" },
                 markdown = { "markdownlint" },
                 cpp = { "clang-format" },
+                gdscript = { "gdformat" },
             },
         },
     },
@@ -134,6 +136,7 @@ return {
                 "shellcheck",
                 "stylelint",
                 "yamllint",
+                "gdtoolkit",
 
                 -- NOTE: FORMAT
                 "autoflake",
