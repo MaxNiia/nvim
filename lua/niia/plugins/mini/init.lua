@@ -1,7 +1,7 @@
 local file_functions = require("niia.plugins.mini.files")
 return {
     {
-        "echasnovski/mini.nvim",
+        "nvim-mini/mini.nvim",
         version = false,
         lazy = false,
         keys = vim.g.vscode or vim.g.yazi and {} or {
