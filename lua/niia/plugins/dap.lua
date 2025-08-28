@@ -249,22 +249,134 @@ return {
                 numhl = "",
             })
         end,
-        config = function(
-            _,
-            _ --[[opts]]
-        )
+        opts = {
+            adapters = {
+                gdb = {
+                    type = "executable",
+                    command = "gdb",
+                    stopAtBeginningOfMainSubprogram = false,
+                    stopOnEntry = false,
+                    args = {
+                        "--interpreter=dap",
+                        "--eval-command",
+                        "set print pretty on",
+                    },
+                },
+            },
+            configurations = {
+                c = {
+                    {
+                        name = "Launch",
+                        type = "cppdbg",
+                        request = "launch",
+                        program = function()
+                            return vim.fn.input(
+                                "Path to executable: ",
+                                vim.fn.getcwd() .. "/",
+                                "file"
+                            )
+                        end,
+                        MIMode = "gdb",
+                        cwd = "${workspaceFolder}",
+                        stopAtBeginningOfMainSubProgram = false,
+                        stopOnEntry = false,
+                        setupCommands = {
+                            {
+                                text = "-enable-pretty-printing",
+                                description = "enable pretty printing",
+                                ignoreFailures = false,
+                            },
+                        },
+                    },
+                    {
+                        name = "Debug core dump",
+                        type = "cppdbg",
+                        request = "launch",
+                        program = function()
+                            return vim.fn.input(
+                                "Path to executable: ",
+                                vim.fn.getcwd() .. "/",
+                                "file"
+                            )
+                        end,
+                        MIMode = "gdb",
+                        stopOnEntry = false,
+                        cwd = "${workspaceFolder}",
+                        stopAtBeginningOfMainSubProgram = false,
+                        stopOnEntry = false,
+                        coreDumpPath = function()
+                            return vim.fn.input(
+                                "Path to core dump: ",
+                                vim.fn.getcwd() .. "/",
+                                "file"
+                            )
+                        end,
+                        setupCommands = {
+                            {
+                                text = "-enable-pretty-printing",
+                                description = "enable pretty printing",
+                                ignoreFailures = false,
+                            },
+                        },
+                    },
+                    {
+                        name = "Select and attach to process",
+                        type = "gdb",
+                        request = "attach",
+                        program = function()
+                            return vim.fn.input(
+                                "Path to executable: ",
+                                vim.fn.getcwd() .. "/",
+                                "file"
+                            )
+                        end,
+                        pid = function()
+                            local name = vim.fn.input("Executable name (filter): ")
+                            return require("dap.utils").pick_process({ filter = name })
+                        end,
+                        MIMode = "gdb",
+                        cwd = "${workspaceFolder}",
+                        stopAtBeginningOfMainSubProgram = false,
+                        stopOnEntry = false,
+                        setupCommands = {
+                            {
+                                text = "-enable-pretty-printing",
+                                description = "enable pretty printing",
+                                ignoreFailures = false,
+                            },
+                        },
+                    },
+                    {
+                        name = "Attach to gdbserver :1234",
+                        type = "cppdbg",
+                        request = "attach",
+                        target = "localhost:1234",
+                        MIMode = "gdb",
+                        stopOnEntry = false,
+                        program = function()
+                            return vim.fn.input(
+                                "Path to executable: ",
+                                vim.fn.getcwd() .. "/",
+                                "file"
+                            )
+                        end,
+                        cwd = "${workspaceFolder}",
+                        setupCommands = {
+                            {
+                                text = "-enable-pretty-printing",
+                                description = "enable pretty printing",
+                                ignoreFailures = false,
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        config = function(_, opts)
             local mason = require("mason-nvim-dap")
             local dap = require("dap")
 
-            dap.adapters.gdb = {
-                type = "executable",
-                command = "gdb",
-                args = {
-                    "--interpreter=dap",
-                    "--eval-command",
-                    "set print pretty on",
-                },
-            }
+            dap.adapters.gdb = opts.adapters.gdb
             if vim.loop.os_uname().sysname == "Windows_NT" then
                 dap.adapters.cppdbg = {
                     id = "cppdbg",
@@ -283,90 +395,7 @@ return {
                     command = vim.fn.expand("OpenDebugAD7"),
                 }
             end
-            dap.configurations.c = {
-                {
-                    name = "Launch",
-                    type = "cppdbg",
-                    request = "launch",
-                    program = function()
-                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-                    end,
-                    MIMode = "gdb",
-                    cwd = "${workspaceFolder}",
-                    stopAtBeginningOfMainSubProgram = false,
-                    stopOnEntry = false,
-                    setupCommands = {
-                        {
-                            text = "-enable-pretty-printing",
-                            description = "enable pretty printing",
-                            ignoreFailures = false,
-                        },
-                    },
-                },
-                {
-                    name = "Debug core dump",
-                    type = "cppdbg",
-                    request = "launch",
-                    program = function()
-                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-                    end,
-                    MIMode = "gdb",
-                    stopOnEntry = false,
-                    cwd = "${workspaceFolder}",
-                    stopAtBeginningOfMainSubProgram = false,
-                    coreDumpPath = function()
-                        return vim.fn.input("Path to core dump: ", vim.fn.getcwd() .. "/", "file")
-                    end,
-                    setupCommands = {
-                        {
-                            text = "-enable-pretty-printing",
-                            description = "enable pretty printing",
-                            ignoreFailures = false,
-                        },
-                    },
-                },
-                {
-                    name = "Select and attach to process",
-                    type = "gdb",
-                    request = "attach",
-                    program = function()
-                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-                    end,
-                    pid = function()
-                        local name = vim.fn.input("Executable name (filter): ")
-                        return require("dap.utils").pick_process({ filter = name })
-                    end,
-                    MIMode = "gdb",
-                    cwd = "${workspaceFolder}",
-                    stopOnEntry = false,
-                    setupCommands = {
-                        {
-                            text = "-enable-pretty-printing",
-                            description = "enable pretty printing",
-                            ignoreFailures = false,
-                        },
-                    },
-                },
-                {
-                    name = "Attach to gdbserver :1234",
-                    type = "cppdbg",
-                    request = "attach",
-                    target = "localhost:1234",
-                    MIMode = "gdb",
-                    stopOnEntry = false,
-                    program = function()
-                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-                    end,
-                    cwd = "${workspaceFolder}",
-                    setupCommands = {
-                        {
-                            text = "-enable-pretty-printing",
-                            description = "enable pretty printing",
-                            ignoreFailures = false,
-                        },
-                    },
-                },
-            }
+            dap.configurations.c = opts.configurations.c
             dap.configurations.cpp = dap.configurations.c
             dap.configurations.rust = dap.configurations.c
             mason.setup({
