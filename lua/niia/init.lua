@@ -60,7 +60,9 @@ M.start = function(opts)
     vim.opt.rtp:prepend(lazypath)
 
     require("lazy").setup("niia.plugins", {})
-    vim.cmd("colorscheme catppuccin")
+    if not vim.g.vscode then
+        vim.cmd("colorscheme catppuccin")
+    end
 end
 
 return M

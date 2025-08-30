@@ -4,7 +4,7 @@ return {
         "nvim-mini/mini.nvim",
         version = false,
         lazy = false,
-        keys = vim.g.vscode or vim.g.yazi and {} or {
+        keys = (vim.g.vscode or vim.g.yazi) and {} or {
             {
                 "<leader>e",
                 "<cmd>lua MiniFiles.open(MiniFiles.get_latest_path())<cr>",

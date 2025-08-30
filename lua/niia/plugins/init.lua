@@ -2,6 +2,7 @@ local icons = require("niia.utils.icons").todo
 return {
     {
         "jacksonhvisuals/nvim-treesitter-cpp-tools",
+        cond = not vim.g.vscode,
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         -- Optional: Configuration
         opts = function()

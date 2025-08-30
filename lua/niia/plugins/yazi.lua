@@ -1,7 +1,7 @@
 return {
     {
         "mikavilpas/yazi.nvim",
-        cond = vim.g.yazi,
+        cond = (not vim.g.vscode) and vim.g.yazi,
         event = "VeryLazy",
         dependencies = {
             "folke/snacks.nvim",
