@@ -1,6 +1,6 @@
 return {
     {
-        "folke/trouble.nvim",
+        "MaxNiia/trouble.nvim",
         cond = not vim.g.vscode,
         event = "BufEnter",
         keys = {

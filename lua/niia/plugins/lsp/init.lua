@@ -172,8 +172,9 @@ return {
                         not (server_opts.mason == false or not vim.tbl_contains(available, server))
                     then
                         ensure_installed[#ensure_installed + 1] = server
+                    else
+                        setup(server)
                     end
-                    setup(server)
                 end
             end
 
