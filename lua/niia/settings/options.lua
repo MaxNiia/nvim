@@ -19,7 +19,6 @@ vim.opt.colorcolumn = "+1"
 vim.opt.compatible = false
 vim.opt.cul = true
 vim.opt.culopt = "both"
--- vim.opt.cursorline = true
 vim.opt.expandtab = true
 vim.opt.exrc = true
 vim.opt.foldenable = true
@@ -27,6 +26,7 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldcolumn = "auto:1"
 vim.opt.showbreak = ""
+vim.opt.showmode = false
 vim.opt.linebreak = false
 vim.opt.breakindent = true
 
@@ -130,8 +130,8 @@ vim.opt.fillchars:append({
     foldclose = icons.fold.closed,
     foldsep = icons.fold.separator,
     fold = " ",
-    stl = "━",
-    stlnc = "━",
+    stl = " ",
+    stlnc = " ",
 })
 vim.opt.listchars:append({
     tab = icons.chevron.right .. " ",
