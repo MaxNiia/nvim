@@ -5,7 +5,7 @@ return {
         ft = { "markdown" },
         opts = {
             preview = {
-                modes = { "n", "no", "c" },
+                modes = { "no", "c" },
             },
         },
         config = function(_, opts)
@@ -16,6 +16,15 @@ return {
                     headings = presets.headings.glow,
                     horizontal_rules = presets.horizontal_rules.thin,
                 },
+            })
+            vim.api.nvim_create_autocmd({ "BufEnter" }, {
+                --- Change these to whatever file extensions you want to run this on.
+                pattern = { "*.md" },
+                callback = function()
+                    --- Use `splitToggle` if you use `dev`.
+                    vim.cmd("Markview splitClose")
+                    vim.cmd("Markview splitOpen")
+                end,
             })
             require("markview").setup(opts)
         end,
