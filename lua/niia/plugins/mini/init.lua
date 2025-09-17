@@ -83,6 +83,7 @@ return {
             local opts = { pattern = "MiniSnippetsSessionStart", callback = make_stop }
             vim.api.nvim_create_autocmd("User", opts)
 
+            require("mini.move").setup()
             require("mini.splitjoin").setup()
             require("mini.icons").setup({
                 file = {
