@@ -9,6 +9,13 @@ local M = {}
 ---@field jump_on_enter? boolean
 ---@field nu? boolean
 ---@field rnu? boolean
+---@field statusline? boolean
+---@field finders? boolean
+---@field browser? boolean
+---@field sr? boolean
+---@field multicursor? boolean
+---@field dashboard? boolean
+---@field notify? boolean
 local config = {
     cat_oled = false,
     noice_popup = false,
@@ -17,6 +24,13 @@ local config = {
     jump_on_enter = false,
     nu = true,
     rnu = true,
+    statusline = true,
+    finders = true,
+    browser = true,
+    sr = true,
+    multicursor = true,
+    dashboard = true,
+    notify = true,
 }
 
 ---@param opts niia.Config?
@@ -31,6 +45,13 @@ M.start = function(opts)
     vim.g.enable_copilot_cmp = config.enable_copilot_cmp and config.enable_copilot
     vim.g.nu = config.nu
     vim.g.rnu = config.rnu
+    vim.g.statusline = config.statusline
+    vim.g.finders = config.finders
+    vim.g.browser = config.browser
+    vim.g.sr = config.sr
+    vim.g.multicursor = config.multicursor
+    vim.g.dashboard = config.dashboard
+    vim.g.notify = config.notify
     vim.g.yazi = vim.fn.executable("yazi")
     vim.g.copyright_func = function(comment_string)
         local output_text = ""

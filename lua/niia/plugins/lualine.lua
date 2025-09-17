@@ -12,7 +12,7 @@ return {
             "AndreM222/copilot-lualine",
         },
         "nvim-lualine/lualine.nvim",
-        cond = not vim.g.vscode,
+        cond = not vim.g.vscode and vim.g.statusline,
         event = "VeryLazy",
         init = function()
             vim.g.lualine_laststatus = vim.o.laststatus

@@ -86,7 +86,7 @@ return {
     {
         "folke/todo-comments.nvim",
         event = "BufEnter",
-        keys = {
+        keys = vim.g.finders and {
             {
                 "<leader>st",
                 function()
@@ -101,7 +101,7 @@ return {
                 end,
                 desc = "Todo/Fix/Fixme",
             },
-        },
+        } or {},
         opts = {
             signs = true,
             keywords = {

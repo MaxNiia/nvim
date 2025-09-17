@@ -4,7 +4,7 @@ return {
         "nvim-mini/mini.nvim",
         version = false,
         lazy = false,
-        keys = (vim.g.vscode or vim.g.yazi) and {} or {
+        keys = (vim.g.vscode or (vim.g.yazi and vim.g.browsers)) and {} or {
             {
                 "<leader>e",
                 "<cmd>lua MiniFiles.open(MiniFiles.get_latest_path())<cr>",
@@ -131,7 +131,7 @@ return {
             require("mini.cursorword").setup()
             require("mini.align").setup()
             require("mini.pairs").setup()
-            if not (vim.g.vscode or vim.g.yazi) then
+            if not (vim.g.vscode or (vim.g.yazi and vim.g.browser)) then
                 require("mini.files").setup({
                     options = {
                         permanent_delete = true,

@@ -1,7 +1,7 @@
 return {
     {
         "folke/noice.nvim",
-        cond = not vim.g.vscode,
+        cond = not vim.g.vscode and vim.g.statusline,
         event = "VeryLazy",
         keys = {
             {
