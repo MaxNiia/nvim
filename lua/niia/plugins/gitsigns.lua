@@ -31,18 +31,18 @@ return {
             watch_gitdir = {
                 follow_files = true,
             },
-            current_line_blame = false,
+            current_line_blame = true,
             diff_opts = {
                 ignore_blank_lines = true,
             },
             current_line_blame_opts = {
-                virt_text = true,
+                virt_text = false,
                 virt_text_pos = "eol",
                 delay = 500,
                 virt_text_priority = 100,
                 ignore_whitespace = true,
             },
-            current_line_blame_formatter = "<author> <author_time:%Y %m %d> <summary>",
+            current_line_blame_formatter = "<author>, <author_time:%R> - <summary>",
             max_file_length = 5000,
             attach_to_untracked = true,
             trouble = true,

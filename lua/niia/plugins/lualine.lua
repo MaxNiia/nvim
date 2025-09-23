@@ -131,6 +131,9 @@ return {
                         require("lazy.status").updates,
                         cond = require("lazy.status").has_updates,
                     },
+                    {
+                        "b:gitsigns_blame_line",
+                    },
                 },
                 lualine_x = {
                     {
@@ -171,8 +174,7 @@ return {
                 },
             },
             inactive_winbar = {
-                lualine_a = {},
-                lualine_b = {
+                lualine_a = {
                     {
                         "filetype",
                         icon = { align = "right" },
@@ -188,8 +190,10 @@ return {
                     },
                     {
                         "fileformat",
+                        padding = { left = 1, right = 2 },
                     },
                 },
+                lualine_b = {},
                 lualine_c = {
                     {
                         "diagnostics",
