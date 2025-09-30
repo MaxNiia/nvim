@@ -124,10 +124,6 @@ return {
                             end
                         end,
                     },
-                    -- {
-                    --     "copilot",
-                    --     cond = vim.g.copilot,
-                    -- },
                     {
                         function()
                             return "  " .. require("dap").status()

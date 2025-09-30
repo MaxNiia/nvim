@@ -1,18 +1,6 @@
 return {
     { "rafamadriz/friendly-snippets" },
     {
-        "giuxtaposition/blink-cmp-copilot",
-        enabled = vim.g.enable_copilot_cmp,
-        cond = not vim.g.vscode,
-    },
-    {
-        "saghen/blink.compat",
-        enabled = vim.g.enable_copilot_cmp,
-        optional = true,
-        cond = not vim.g.vscode,
-        opts = {},
-    },
-    {
         cond = not vim.g.vscode,
         "saghen/blink.cmp",
         build = "cargo build --release",
@@ -121,27 +109,6 @@ return {
                     },
                     menu = {
                         draw = {
-                            components = {
-                                kind_icon = {
-                                    ellipsis = false,
-                                    text = function(ctx)
-                                        if ctx.kind == "Copilot" then
-                                            return require("niia.utils.icons").kinds.Copilot
-                                        end
-                                        local kind_icon, _, _ =
-                                            require("mini.icons").get("lsp", ctx.kind)
-                                        return kind_icon
-                                    end,
-                                    -- Optionally, you may also use the highlights from mini.icons
-                                    highlight = function(ctx)
-                                        if ctx.kind == "Copilot" then
-                                            return "CmpItemKindCopilot"
-                                        end
-                                        local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
-                                        return hl
-                                    end,
-                                },
-                            },
                             treesitter = { "lsp" },
                         },
                     },
@@ -153,37 +120,6 @@ return {
 
                 signature = { enabled = true },
             }
-            if vim.g.enable_copilot_cmp then
-                opts = vim.tbl_deep_extend("force", opts, {
-                    sources = {
-                        default = {
-                            "lsp",
-                            "path",
-                            "snippets",
-                            "buffer",
-                            "copilot",
-                        },
-                        providers = {
-                            copilot = {
-                                name = "copilot",
-                                module = "blink-cmp-copilot",
-                                score_offset = 100,
-                                async = true,
-                                transform_items = function(_, items)
-                                    local CompletionItemKind =
-                                        require("blink.cmp.types").CompletionItemKind
-                                    local kind_idx = #CompletionItemKind + 1
-                                    CompletionItemKind[kind_idx] = "Copilot"
-                                    for _, item in ipairs(items) do
-                                        item.kind = kind_idx
-                                    end
-                                    return items
-                                end,
-                            },
-                        },
-                    },
-                })
-            end
             return opts
         end,
     },
