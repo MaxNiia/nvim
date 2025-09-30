@@ -51,12 +51,28 @@ return {
                         },
                     },
                     keymap = {
-                        ["<Tab>"] = { "show", "accept" },
-                        ["<CR>"] = { "accept_and_enter", "fallback" },
+                        ["<Tab>"] = {
+                            "show",
+                            "accept",
+                        },
+                        ["<CR>"] = {
+                            "accept_and_enter",
+                            "fallback",
+                        },
                         preset = "cmdline",
                     },
                 },
                 keymap = {
+                    ["<Tab>"] = {
+                        "snippet_forward",
+                        function() -- sidekick next edit suggestion
+                            return require("sidekick").nes_jump_or_apply()
+                        end,
+                        function() -- if you are using Neovim's native inline completions
+                            return vim.lsp.inline_completion.get()
+                        end,
+                        "fallback",
+                    },
                     preset = "enter",
                 },
                 appearance = {

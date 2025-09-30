@@ -82,7 +82,6 @@ return {
             end,
             formatters_by_ft = {
                 ["_"] = { "trim_whitespace" },
-                lua = { "stylua" },
                 bash = { "beautysh", "shfmt" },
                 bzl = { "buildifier" },
                 python = { "ruff_format" },
@@ -147,7 +146,6 @@ return {
                 "prettier",
                 "prettierd",
                 "shfmt",
-                "stylua",
                 -- "yamlfmt",
             },
             pip = {

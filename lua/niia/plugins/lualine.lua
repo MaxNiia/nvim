@@ -8,9 +8,6 @@ end
 
 return {
     {
-        dependencies = {
-            "AndreM222/copilot-lualine",
-        },
         "nvim-lualine/lualine.nvim",
         cond = not vim.g.vscode and vim.g.statusline,
         event = "VeryLazy",
@@ -116,9 +113,21 @@ return {
                 },
                 lualine_c = {
                     {
-                        "copilot",
-                        cond = vim.g.copilot,
+                        function()
+                            local status = require("sidekick.status").get()
+
+                            if status then
+                                local status = status.kind == "Error" and "error"
+                                    or status.busy and "pending"
+                                    or "ok"
+                                return " " .. status
+                            end
+                        end,
                     },
+                    -- {
+                    --     "copilot",
+                    --     cond = vim.g.copilot,
+                    -- },
                     {
                         function()
                             return "  " .. require("dap").status()
