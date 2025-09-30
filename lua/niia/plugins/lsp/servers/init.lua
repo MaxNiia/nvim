@@ -43,10 +43,10 @@ return {
     ruff = require("niia.plugins.lsp.servers.ruff"),
     -- yamlls = require("niia.plugins.lsp.servers.yamlls"),
     copilot = {
-    --     settings = {
-    --         telemetry = {
-    --             telemetryLevel = "off",
-    --         },
-    --     },
+        settings = {
+            telemetry = {
+                telemetryLevel = "off",
+            },
+        },
     },
 }
