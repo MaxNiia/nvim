@@ -66,13 +66,13 @@ return {
                     "<m-,>",
                     "<esc>mzA,<esc>`z",
                     mode = "n",
-                    desc = "Insert ; at end of line",
+                    desc = "Insert , at end of line",
                 },
                 {
                     "<m-,>",
                     "<esc>mzA,<esc>`za",
                     mode = "i",
-                    desc = "Insert ; at end of line",
+                    desc = "Insert , at end of line",
                 },
                 {
                     "<c-l>",
