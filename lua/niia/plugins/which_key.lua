@@ -84,7 +84,7 @@ return {
                     "<m-j>",
                     "<c-w>-",
                     mode = "n",
-                    desc = "Descreas height",
+                    desc = "Decrease height",
                 },
                 {
                     "<m-k>",
