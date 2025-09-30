@@ -12,7 +12,7 @@ return {
                     enable = true,
                 },
             },
-            proMacro = {
+            procMacro = {
                 enable = true,
             },
         },
