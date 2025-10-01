@@ -167,14 +167,12 @@ return {
             for server, server_opts in pairs(servers) do
                 if server_opts then
                     server_opts = server_opts == true and {} or server_opts
-                    -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
                     if
                         not (server_opts.mason == false or not vim.tbl_contains(available, server))
                     then
                         ensure_installed[#ensure_installed + 1] = server
-                    else
-                        setup(server)
                     end
+                    setup(server)
                 end
             end
 

@@ -34,6 +34,7 @@ return {
     },
     {
         "hat0uma/csvview.nvim",
+        cond = not vim.g.vscode,
         ---@module "csvview"
         ---@type CsvView.Options
         opts = {
@@ -57,6 +58,7 @@ return {
     {
         "samjwill/nvim-unception",
         lazy = false,
+        cond = not vim.g.vscode,
         init = function()
             -- Optional settings go here!
             vim.g.unception_delete_replaced_buffer = false
@@ -66,6 +68,7 @@ return {
     },
     {
         "folke/lazydev.nvim",
+        cond = not vim.g.vscode,
         ft = "lua",
         opts = {
             library = {
@@ -222,5 +225,63 @@ return {
     },
     {
         "habamax/vim-godot",
+        cond = not vim.g.vscode,
+    },
+    {
+        "monaqa/dial.nvim",
+        config = function(_, opts)
+            local augend = require("dial.augend")
+            vim.keymap.set("n", "<C-a>", function()
+                require("dial.map").manipulate("increment", "normal")
+            end)
+            vim.keymap.set("n", "<C-x>", function()
+                require("dial.map").manipulate("decrement", "normal")
+            end)
+            vim.keymap.set("n", "g<C-a>", function()
+                require("dial.map").manipulate("increment", "gnormal")
+            end)
+            vim.keymap.set("n", "g<C-x>", function()
+                require("dial.map").manipulate("decrement", "gnormal")
+            end)
+            vim.keymap.set("x", "<C-a>", function()
+                require("dial.map").manipulate("increment", "visual")
+            end)
+            vim.keymap.set("x", "<C-x>", function()
+                require("dial.map").manipulate("decrement", "visual")
+            end)
+            vim.keymap.set("x", "g<C-a>", function()
+                require("dial.map").manipulate("increment", "gvisual")
+            end)
+            vim.keymap.set("x", "g<C-x>", function()
+                require("dial.map").manipulate("decrement", "gvisual")
+            end)
+            require("dial.config").augends:register_group({
+                default = {
+                    augend.constant.alias.alpha,
+                    augend.constant.alias.Alpha,
+                    augend.constant.alias.bool,
+                    augend.integer.alias.decimal_int,
+                    augend.date.new({
+                        pattern = "%Y-%m-%d",
+                        default_kind = "day",
+                        only_valid = true,
+                    }),
+                    augend.date.new({
+                        pattern = "%m-%d",
+                        default_kind = "day",
+                        only_valid = true,
+                    }),
+
+                    require("dial.augend").constant.new({
+                        elements = { "and", "or" },
+                        word = true,
+                    }),
+                    require("dial.augend").constant.new({
+                        elements = { "True", "False" },
+                        word = true,
+                    }),
+                },
+            })
+        end,
     },
 }
