@@ -18,17 +18,22 @@ return {
         name = "catppuccin",
         opts = {
             flavour = "auto",
+            auto_integrations = true,
             background = {
                 light = "frappe",
                 dark = "mocha",
             },
             transparent_background = false,
+            float = {
+                transparent = false, -- enable transparent floating windows
+                solid = false, -- use solid styling for floating windows, see |winborder|
+            },
             no_italic = false,
             no_bold = false,
             no_underline = false,
             term_colors = false,
             dim_inactive = {
-                enabled = true,
+                enabled = false,
                 shade = "dark",
                 percentage = 0.15,
             },
@@ -55,7 +60,6 @@ return {
             },
             default_integrations = true,
             integrations = {
-                -- cmp = true,
                 blink_cmp = true,
                 grug_far = true,
                 diffview = true,
