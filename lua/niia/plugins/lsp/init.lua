@@ -89,7 +89,6 @@ return {
             -- end
 
             local servers = require("niia.plugins.lsp.servers")
-            local lspconfig = require("lspconfig")
 
             for type, icon in pairs(require("niia.utils.icons").diagnostics) do
                 local hl = "DiagnosticSign" .. type
@@ -154,7 +153,6 @@ return {
                     end
                 end
 
-                lspconfig[server].setup(server_opts)
                 vim.lsp.config(server, {
                     settings = server_opts,
                 })
