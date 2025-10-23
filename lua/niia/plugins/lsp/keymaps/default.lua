@@ -9,6 +9,13 @@ return function(bufnr)
             desc = "Signature Help",
         },
         {
+            "grd",
+            function()
+                return vim.lsp.buf.format()
+            end,
+            desc = "Format buffer",
+        },
+        {
             "K",
             function()
                 vim.lsp.buf.hover()
