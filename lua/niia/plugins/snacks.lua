@@ -58,7 +58,7 @@ end
 local function week_header()
     local week = week_ascii_text()
     local daysoftheweek =
-        { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }
+    { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" }
     local day = daysoftheweek[os.date("*t").wday]
     return week[day]
 end
@@ -84,6 +84,16 @@ return {
                 notification = {
                     wo = {
                         wrap = true,
+                    },
+                },
+            },
+            lazygit = {
+                configure = true,
+                config = {
+                    os = { editPreset = "nvim-remote" },
+                    gui = {
+                        -- set to an empty string "" to disable icons
+                        nerdFontsVersion = "3",
                     },
                 },
             },
@@ -160,7 +170,7 @@ return {
                     enabled = vim.fn.has("nvim-0.10") == 1,
                     easing = "linear",
                     duration = {
-                        step = 20, -- ms per step
+                        step = 20,   -- ms per step
                         total = 100, -- maximum duration
                     },
                 },
@@ -262,7 +272,7 @@ return {
                 },
                 sections = {
                     { section = "header" },
-                    { section = "keys", gap = 1, padding = 2 },
+                    { section = "keys",    gap = 1,    padding = 2 },
                     { section = "startup", padding = 1 },
                     {
                         pane = 2,
@@ -326,8 +336,8 @@ return {
                 left = { "mark", "sign" }, -- priority of signs on the left (high to low)
                 right = { "fold", "git" }, -- priority of signs on the right (high to low)
                 folds = {
-                    open = true, -- show open fold icons
-                    git_hl = true, -- use Git Signs hl for fold icons
+                    open = true,           -- show open fold icons
+                    git_hl = true,         -- use Git Signs hl for fold icons
                 },
                 git = {
                     -- patterns to match Git signs
@@ -842,7 +852,8 @@ return {
                 ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
                 callback = function(ev)
                     local client = vim.lsp.get_client_by_id(ev.data.client_id)
-                    local value = ev.data.params.value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
+                    local value = ev.data.params
+                        .value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
                     if not client or type(value) ~= "table" then
                         return
                     end
@@ -869,7 +880,7 @@ return {
                     end, p)
 
                     local spinner =
-                        { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
+                    { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" }
                     vim.notify(table.concat(msg, "\n"), "info", {
                         id = "lsp_progress",
                         title = client.name,
