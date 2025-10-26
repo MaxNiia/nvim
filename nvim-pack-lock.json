@@ -1,0 +1,9 @@
+{
+  "plugins": {
+    "catppuccin": {
+      "rev": "8c4125e",
+      "src": "https://github.com/catppuccin/nvim",
+      "version": "'main'"
+    }
+  }
+}
