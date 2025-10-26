@@ -76,7 +76,7 @@ local setup_diagnostics = function()
             text = {
                 [vim.diagnostic.severity.ERROR] = diagnostics.Error,
                 [vim.diagnostic.severity.WARN] = diagnostics.Warn,
-                [vim.diagnostic.severity.HINT] = diagnostics.Hihnt,
+                [vim.diagnostic.severity.HINT] = diagnostics.Hint,
                 [vim.diagnostic.severity.INFO] = diagnostics.Info,
             },
         },

@@ -3,21 +3,90 @@ local function statusline()
     local parts_mid   = {}
     local parts_right = {}
     -- ====================================================== LEFT =======================================================
+    local gs          = vim.b.gitsigns_status_dict
     table.insert(parts_left, "%<%f %h%w%m%r")
 
+    do
+        local ok, devicons = pcall(require, "nvim-web-devicons")
+        if ok then
+            local filename = vim.fn.expand("%:t")
+            local ext = vim.fn.expand("%:e")
+            local icon, icon_hl = devicons.get_icon(filename, ext, { default = true })
+
+            if icon then
+                -- add highlight if available
+                if icon_hl then
+                    table.insert(parts_left, "%#" .. icon_hl .. "#" .. icon .. "%#StatusLine#")
+                else
+                    table.insert(parts_left, icon)
+                end
+            end
+        end
+    end
+
     if vim.o.showcmdloc == "statusline" then
-        table.insert(parts_right, "%-10.S ")
+        table.insert(parts_left, "%-10.S ")
+    end
+
+    do
+        if gs then
+            local git_parts = {}
+
+            if gs.added and gs.added > 0 then
+                table.insert(git_parts, "%#GitSignsAdd#" .. gs.added .. "%#StatusLine#")
+            end
+            if gs.changed and gs.changed > 0 then
+                table.insert(git_parts, "%#GitSignsChange#" .. gs.changed .. "%#StatusLine#")
+            end
+            if gs.removed and gs.removed > 0 then
+                table.insert(git_parts, "%#GitSignsDelete#" .. gs.removed .. "%#StatusLine#")
+            end
+
+            if #git_parts > 0 then
+                table.insert(parts_left, table.concat(git_parts, " "))
+            end
+        end
+    end
+
+    do
+        local function count_diagnostics(severity)
+            local diags = vim.diagnostic.get(0, { severity = severity })
+            return #diags
+        end
+
+        local num_errors  = count_diagnostics(vim.diagnostic.severity.ERROR)
+        local num_warns   = count_diagnostics(vim.diagnostic.severity.WARN)
+        local num_infos   = count_diagnostics(vim.diagnostic.severity.INFO)
+        local num_hints   = count_diagnostics(vim.diagnostic.severity.HINT)
+
+        local diagnostics = require("icons").diagnostics
+
+        local items       = {}
+
+        if num_errors > 0 then
+            table.insert(items, "%#DiagnosticError#" .. diagnostics.Error .. num_errors .. "%#StatusLine#")
+        end
+        if num_warns > 0 then
+            table.insert(items, "%#DiagnosticWarn#" .. diagnostics.Warn .. num_warns .. "%#StatusLine#")
+        end
+        if num_infos > 0 then
+            table.insert(items, "%#DiagnosticInfo#" .. diagnostics.Info .. num_infos .. "%#StatusLine#")
+        end
+        if num_hints > 0 then
+            table.insert(items, "%#DiagnosticHint#" .. diagnostics.Hint .. num_hints .. "%#StatusLine#")
+        end
+
+        if #items > 0 then
+            table.insert(parts_left, "%(" .. table.concat(items, " ") .. "%)")
+        end
     end
 
     -- ====================================================== MIDDLE =====================================================
-    local git_status = vim.b.gitsigns_status or ""
-    if git_status ~= "" then
-        table.insert(parts_mid, git_status)
-    end
-
-    local git_head = vim.b.gitsigns_head or ""
-    if git_head ~= "" then
-        table.insert(parts_mid, git_head)
+    if gs then
+        local git_head = gs.head
+        if git_head ~= "" then
+            table.insert(parts_mid, "[" .. git_head ..  "]")
+        end
     end
 
     -- ====================================================== RIGHT ======================================================
@@ -28,20 +97,6 @@ local function statusline()
 
     if vim.o.busy > 0 then
         table.insert(parts_right, "◐ ")
-    end
-
-    do
-        local diag_status = ""
-        local ok, diag = pcall(require, "vim.diagnostic")
-        if ok and diag and diag.status then
-            local s = diag.status()
-            if s and s ~= "" then
-                diag_status = s .. " "
-            end
-        end
-        if diag_status ~= "" then
-            table.insert(parts_right, "%(" .. diag_status .. "%)")
-        end
     end
 
     if vim.o.ruler then
