@@ -40,6 +40,17 @@ require("catppuccin").setup(
         },
         default_integrations = true,
         integrations = {
+            blink_cmp = true,
+            grug_far = true,
+            gitsigns = true,
+            snacks = true,
+            markview = true,
+            mini = {
+                enabled = true,
+                indentscope_color = "",
+            },
+            flash = true,
+            treesitter = true,
             native_lsp = {
                 enabled = true,
                 virtual_text = {

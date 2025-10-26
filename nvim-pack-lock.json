@@ -1,8 +1,83 @@
 {
   "plugins": {
+    "blink.cmp": {
+      "rev": "327fff9",
+      "src": "https://github.com/saghen/blink.cmp",
+      "version": "'main'"
+    },
     "catppuccin": {
       "rev": "8c4125e",
       "src": "https://github.com/catppuccin/nvim",
+      "version": "'main'"
+    },
+    "flash": {
+      "rev": "3be9bf7",
+      "src": "https://github.com/folke/flash.nvim",
+      "version": "'main'"
+    },
+    "gitsigns": {
+      "rev": "20ad441",
+      "src": "https://github.com/lewis6991/gitsigns.nvim",
+      "version": "'main'"
+    },
+    "grug-far": {
+      "rev": "3e72397",
+      "src": "https://github.com/MagicDuck/grug-far.nvim",
+      "version": "'main'"
+    },
+    "markview": {
+      "rev": "c93ea99",
+      "src": "https://github.com/OXY2DEV/markview.nvim",
+      "version": "'main'"
+    },
+    "mcsos": {
+      "rev": "2cd2089",
+      "src": "https://github.com/zaucy/mcos.nvim",
+      "version": "'main'"
+    },
+    "mini": {
+      "rev": "d1a9158",
+      "src": "https://github.com/nvim-mini/mini.nvim",
+      "version": "'main'"
+    },
+    "multicursor-nvim": {
+      "rev": "0c6ceae",
+      "src": "https://github.com/jake-stewart/multicursor.nvim",
+      "version": "'main'"
+    },
+    "nvim-treesitter": {
+      "rev": "c53bb10a",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": "'main'"
+    },
+    "nvim-treesitter-textobjects": {
+      "rev": "1b2d85d",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
+      "version": "'main'"
+    },
+    "plenary": {
+      "rev": "b9fd522",
+      "src": "https://github.com/nvim-lua/plenary.nvim",
+      "version": "'master'"
+    },
+    "snacks": {
+      "rev": "b1a9010",
+      "src": "https://github.com/folke/snacks.nvim",
+      "version": "'main'"
+    },
+    "vim-abolish": {
+      "rev": "dcbfe06",
+      "src": "https://github.com/tpope/vim-abolish",
+      "version": "'master'"
+    },
+    "which-key": {
+      "rev": "b4177e3",
+      "src": "https://github.com/folke/which-key.nvim",
+      "version": "'main'"
+    },
+    "yazi": {
+      "rev": "e091730",
+      "src": "https://github.com/mikavilpas/yazi.nvim",
       "version": "'main'"
     }
   }

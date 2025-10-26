@@ -1,32 +1,20 @@
-require("options")
-require("keymap")
+local year = os.date("%Y")
 
--- Commands
-vim.api.nvim_create_user_command("ReSource", "source $MYVIMRC", {})
-vim.api.nvim_create_user_command("PackUpdate", function()
-    vim.pack.update()
-end, {})
+local setup_external = function(name, value)
+    if vim.g[name] == nil then
+        vim.g[name] = value
+    end
+end
 
-vim.cmd.packadd("nvim.difftool")
-vim.cmd.packadd("nvim.undotree")
-
-vim.lsp.config('*', {
-    root_markers = { '.git', '.hg' },
+setup_external("clangd_query_driver", "/usr/bin/clang, /usr/bin/clang++")
+setup_external("copyright_text", {
+    "Copyright",
+    "Year: " .. year,
 })
 
-vim.lsp.enable({"lua_ls", "clangd", "typos_lsp",})
-
--- Packages
-vim.pack.add(
-    {
-        {
-            src = "https://github.com/catppuccin/nvim",
-            name = "catppuccin",
-            version = "main",
-        },
-    },
-    {
-        load = true,
-        confirm = false,
-    }
-)
+require("option")
+require("plugins")
+require("keybinds")
+require("statusline")
+require("command")
+require("lsp").init()

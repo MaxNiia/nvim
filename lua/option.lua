@@ -4,10 +4,14 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
+vim.g.autoformat = true
+
+-- Buffer local variables
+vim.b.autoformat = true
 
 -- Options
 vim.opt.ai = true
-vim.opt.autocomplete = true
+vim.opt.autocomplete = false -- Interferes with snacks.picker.
 vim.opt.autoindent = true
 vim.opt.autoread = true
 vim.opt.autowrite = true
@@ -27,7 +31,7 @@ vim.opt.foldlevel = 99
 vim.opt.foldmethod = "expr"
 vim.opt.ignorecase = true
 vim.opt.inccommand = "split"
-vim.opt.number = false
+vim.opt.number = true
 vim.opt.numberwidth = 2
 vim.opt.relativenumber = true
 vim.opt.shiftwidth = 0
@@ -51,4 +55,3 @@ vim.opt.ttimeoutlen = 100
 vim.opt.undofile = true
 vim.opt.wildmenu = true
 vim.opt.winblend = 0
-
