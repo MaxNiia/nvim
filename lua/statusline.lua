@@ -1,6 +1,5 @@
 local function statusline()
     local parts_left  = {}
-    local parts_mid   = {}
     local parts_right = {}
     -- ====================================================== LEFT =======================================================
     local mode_map    = {
@@ -33,10 +32,29 @@ local function statusline()
     local mode_hl     = mode_hl_map[m] or "StatusLine"
 
     table.insert(parts_left, 1, ("%#" .. mode_hl .. "# " .. mode_label .. " %#StatusLine#"))
-    --
+
     local gs = vim.b.gitsigns_status_dict
+    if gs then
+        local cwd_head = vim.g.gitsigns_head
+        if cwd_head then
+            table.insert(parts_left, "%#NeogitBranch#" .. "" .. cwd_head .. "%#StatusLine#")
+        end
+    end
     do
-        local filename = "%#DiagnosticError#" .. "%<%f" .. "%#StatusLine#" -- relative file path
+        local filename = vim.fn.expand("%:t")
+        local ok, devicons = pcall(require, "nvim-web-devicons")
+        if ok then
+            local ext = vim.fn.expand("%:e")
+            local icon, icon_hl = devicons.get_icon(filename, ext, { default = true })
+
+            if icon then
+                -- add highlight if available
+                if icon_hl then
+                    icon = "%#" .. icon_hl .. "#" .. icon .. "%#StatusLine#"
+                end
+            end
+            filename =  icon .. " " .. filename
+        end
         local flags = {}
 
         -- Help / preview indicators (%h, %w)
@@ -61,21 +79,6 @@ local function statusline()
     end
 
     do
-        local ok, devicons = pcall(require, "nvim-web-devicons")
-        if ok then
-            local filename = vim.fn.expand("%:t")
-            local ext = vim.fn.expand("%:e")
-            local icon, icon_hl = devicons.get_icon(filename, ext, { default = true })
-
-            if icon then
-                -- add highlight if available
-                if icon_hl then
-                    table.insert(parts_left, "%#" .. icon_hl .. "#" .. icon .. "%#StatusLine#")
-                else
-                    table.insert(parts_left, icon)
-                end
-            end
-        end
     end
 
     if vim.o.showcmdloc == "statusline" then
@@ -136,31 +139,7 @@ local function statusline()
         end
     end
 
-    -- ====================================================== MIDDLE =====================================================
-    if gs then
-        local git_head = gs.head
-        local cwd_head = vim.g.gitsigns_head
-        if git_head and cwd_head and git_head ~= cwd_head then
-            table.insert(parts_mid, "%#NeogitBranch#" .. "" .. cwd_head .. "" .. git_head .. "%#StatusLine#")
-        elseif git_head and git_head ~= "" then
-            table.insert(parts_mid, "%#NeogitBranch#" .. git_head .. "%#StatusLine#")
-        end
-    end
-
     -- ====================================================== RIGHT ======================================================
-    do
-        local clients = {}
-        for _, c in ipairs(vim.lsp.get_clients({ buffer = 0 })) do
-            -- filter out null-ls or whatever you don't care about
-            if c.name ~= "typos_lsp:" then
-                table.insert(clients, c.name)
-            end
-        end
-        if #clients > 0 then
-            table.insert(parts_right, " " .. table.concat(clients, ","))
-        end
-    end
-
     local keymap_name = vim.b.keymap_name
     if keymap_name and keymap_name ~= "" then
         table.insert(parts_right, string.format("<%s> ", keymap_name))
@@ -172,7 +151,7 @@ local function statusline()
 
     if vim.o.ruler then
         if vim.o.rulerformat == "" then
-            table.insert(parts_right, "%-14.(%l,%c%V%) %P")
+            table.insert(parts_right, "%-10.(%l,%c%V%) %P")
         else
             table.insert(parts_right, vim.o.rulerformat)
         end
@@ -181,8 +160,6 @@ local function statusline()
     -- ====================================================== DONE =======================================================
     local stl = table.concat({
         table.concat(parts_left, " "),
-        "%=",
-        table.concat(parts_mid, " "),
         "%=",
         table.concat(parts_right, " "),
     }, " ")
