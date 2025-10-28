@@ -118,24 +118,19 @@ local packages = {
     },
 }
 
-vim.pack.add(
-    packages,
-    {
-        load = true,
-        confirm = false,
-    }
-)
+vim.pack.add(packages, {
+    load = true,
+    confirm = false,
+})
 
 local package_names = {}
-for _, pkg in ipairs(packages
-) do
+for _, pkg in ipairs(packages) do
     table.insert(package_names, pkg.name)
 end
 
 local installed_packages = vim.pack.get(nil, { info = false })
 local installed_package_names = {}
-for _, pkg in ipairs(installed_packages
-) do
+for _, pkg in ipairs(installed_packages) do
     table.insert(installed_package_names, pkg.spec.name)
 end
 
@@ -155,7 +150,5 @@ for _, name in ipairs(installed_package_names) do
 end
 
 if next(uninstall_packages) ~= nil then
-    vim.pack.del(
-        uninstall_packages
-    )
+    vim.pack.del(uninstall_packages)
 end

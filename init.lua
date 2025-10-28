@@ -15,6 +15,5 @@ setup_external("copyright_text", {
 require("option")
 require("plugins")
 require("keybinds")
-require("statusline")
 require("command")
 require("lsp").init()
