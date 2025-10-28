@@ -36,31 +36,30 @@ function M.complete(ArgLead, CmdLine, CursorPos)
     local parts = vim.split(CmdLine, "%s+")
     local command_match = false
     local sub = parts[2]
-    local commands = { "Update", "Remove", }
+    local commands = { "Update", "Remove" }
 
     for _, command in ipairs(commands) do
         if command == sub then
             command_match = true
-            break;
+            break
         end
     end
 
     if command_match == false then
         return vim.tbl_filter(function(items)
-            return items:find('^' .. vim.pesc(ArgLead))
+            return items:find("^" .. vim.pesc(ArgLead))
         end, commands)
     end
 
     if string.lower(sub) == "remove" then
         local packages = vim.pack.get(nil, { info = false })
         local package_names = {}
-        for _, pkg in ipairs(packages
-        ) do
+        for _, pkg in ipairs(packages) do
             table.insert(package_names, pkg.spec.name)
         end
 
         return vim.tbl_filter(function(items)
-            return items:find('^' .. vim.pesc(ArgLead))
+            return items:find("^" .. vim.pesc(ArgLead))
         end, package_names)
     end
 

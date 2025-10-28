@@ -1,10 +1,14 @@
 local M = {}
 
 local function switch_source_header(bufnr, client)
-    local method_name = 'textDocument/switchSourceHeader'
+    local method_name = "textDocument/switchSourceHeader"
     ---@diagnostic disable-next-line:param-type-mismatch
     if not client or not client:supports_method(method_name) then
-        return vim.notify(('method %s is not supported by any servers active on the current buffer'):format(method_name))
+        return vim.notify(
+            ("method %s is not supported by any servers active on the current buffer"):format(
+                method_name
+            )
+        )
     end
     local params = vim.lsp.util.make_text_document_params(bufnr)
     ---@diagnostic disable-next-line:param-type-mismatch
@@ -13,7 +17,7 @@ local function switch_source_header(bufnr, client)
             error(tostring(err))
         end
         if not result then
-            vim.notify('corresponding file cannot be determined')
+            vim.notify("corresponding file cannot be determined")
             return
         end
         vim.cmd.edit(vim.uri_to_fname(result))
@@ -21,10 +25,10 @@ local function switch_source_header(bufnr, client)
 end
 
 local function symbol_info(bufnr, client)
-    local method_name = 'textDocument/symbolInfo'
+    local method_name = "textDocument/symbolInfo"
     ---@diagnostic disable-next-line:param-type-mismatch
     if not client or not client:supports_method(method_name) then
-        return vim.notify('Clangd client not found', vim.log.levels.ERROR)
+        return vim.notify("Clangd client not found", vim.log.levels.ERROR)
     end
     local win = vim.api.nvim_get_current_win()
     local params = vim.lsp.util.make_position_params(win, client.offset_encoding)
@@ -34,24 +38,34 @@ local function symbol_info(bufnr, client)
             -- Clangd always returns an error, there is no reason to parse it
             return
         end
-        local container = string.format('container: %s', res[1].containerName) ---@type string
-        local name = string.format('name: %s', res[1].name) ---@type string
-        vim.lsp.util.open_floating_preview({ name, container }, '', {
+        local container = string.format("container: %s", res[1].containerName) ---@type string
+        local name = string.format("name: %s", res[1].name) ---@type string
+        vim.lsp.util.open_floating_preview({ name, container }, "", {
             height = 2,
             width = math.max(string.len(name), string.len(container)),
             focusable = false,
             focus = false,
-            title = 'Symbol Info',
+            title = "Symbol Info",
         })
     end, bufnr)
 end
 
 local setup_lsps = function()
-    vim.lsp.config('*', {
-        root_markers = { '.git', '.hg' },
+    vim.lsp.config("*", {
+        root_markers = { ".git", ".hg" },
     })
-    vim.lsp.enable({ "lua_ls", "clangd", "typos_lsp", "basedpyright", "dockerls", "jsonls", "marksman",
-        "azure-pipeline-ls", "cmake", "starlark", })
+    vim.lsp.enable({
+        "lua_ls",
+        "clangd",
+        "typos_lsp",
+        "basedpyright",
+        "dockerls",
+        "jsonls",
+        "marksman",
+        "azure-pipeline-ls",
+        "cmake",
+        "starlark",
+    })
 end
 
 local setup_diagnostics = function()
@@ -101,22 +115,27 @@ M.init = function()
             end
 
             -- Enable completion triggered by <c-x><c-o>
-            if client:supports_method('textDocument/completion') then
+            if client:supports_method("textDocument/completion") then
                 vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
             end
 
             vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
 
-            if client:supports_method('textDocument/formatting') then
-                vim.bo[bufnr].formatexpr = 'v:lua.vim.lsp.formatexpr(#{timeout_ms:250})'
+            if client:supports_method("textDocument/formatting") then
+                vim.bo[bufnr].formatexpr = "v:lua.vim.lsp.formatexpr(#{timeout_ms:250})"
 
-                if not client:supports_method('textDocument/willSaveWaitUntil') then
-                    vim.api.nvim_create_autocmd('BufWritePre', {
-                        group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
+                if not client:supports_method("textDocument/willSaveWaitUntil") then
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        group = vim.api.nvim_create_augroup("my.lsp", { clear = false }),
                         buffer = args.buf,
                         callback = function()
                             if vim.b.autoformat and vim.g.autoformat then
-                                vim.lsp.buf.format({ bufnr = args.buf, id = client.id, timeout_ms = 1000, async = true, })
+                                vim.lsp.buf.format({
+                                    bufnr = args.buf,
+                                    id = client.id,
+                                    timeout_ms = 1000,
+                                    async = true,
+                                })
                             end
                         end,
                     })
@@ -143,26 +162,55 @@ M.init = function()
             end
 
             -- Mappings
-            vim.keymap.set("n", "qK", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
-            vim.keymap.set({ "n", "v" }, "grc", vim.lsp.codelens.run, { buffer = bufnr, desc = "Run Codelens" })
-            vim.keymap.set("n", "grC", vim.lsp.codelens.refresh, { buffer = bufnr, desc = "Refresh & DisplayCodelens" })
-            vim.keymap.set("n", "grd", vim.lsp.buf.format, { buffer = bufnr, desc = "Refresh & DisplayCodelens" })
+            vim.keymap.set(
+                "n",
+                "qK",
+                vim.lsp.buf.signature_help,
+                { buffer = bufnr, desc = "Signature Help" }
+            )
+            vim.keymap.set(
+                { "n", "v" },
+                "grc",
+                vim.lsp.codelens.run,
+                { buffer = bufnr, desc = "Run Codelens" }
+            )
+            vim.keymap.set(
+                "n",
+                "grC",
+                vim.lsp.codelens.refresh,
+                { buffer = bufnr, desc = "Refresh & DisplayCodelens" }
+            )
+            vim.keymap.set(
+                "n",
+                "grd",
+                vim.lsp.buf.format,
+                { buffer = bufnr, desc = "Refresh & DisplayCodelens" }
+            )
 
             if client.name == "clangd" then
-                vim.api.nvim_buf_create_user_command(bufnr, "LspClangdSwitchSourceHeader", function()
-                    switch_source_header(bufnr, client)
-                end, { desc = "Switch between source/header" })
+                vim.api.nvim_buf_create_user_command(
+                    bufnr,
+                    "LspClangdSwitchSourceHeader",
+                    function()
+                        switch_source_header(bufnr, client)
+                    end,
+                    { desc = "Switch between source/header" }
+                )
 
                 vim.api.nvim_buf_create_user_command(bufnr, "LspClangdShowSymbolInfo", function()
                     symbol_info(bufnr, client)
                 end, { desc = "Show symbol info" })
 
-            vim.keymap.set("n", "<leader>o", "<cmd>LspClangdSwitchSourceHeader<cr>", { buffer = bufnr, desc = "Switch Header/Source" })
+                vim.keymap.set(
+                    "n",
+                    "<leader>o",
+                    "<cmd>LspClangdSwitchSourceHeader<cr>",
+                    { buffer = bufnr, desc = "Switch Header/Source" }
+                )
             end
         end,
     })
 end
-
 
 local has_blink, blink = pcall(require, "blink.cmp")
 local capabilities = vim.tbl_deep_extend(

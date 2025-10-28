@@ -1,12 +1,15 @@
 local opts = {
-    root_markers = { {
-        "pyproject.toml",
-        "setup.py",
-        "setup.cfg",
-        "requirements.txt",
-        "Pipfile",
-        "pyrightconfig.json",
-    }, ".git" },
+    root_markers = {
+        {
+            "pyproject.toml",
+            "setup.py",
+            "setup.cfg",
+            "requirements.txt",
+            "Pipfile",
+            "pyrightconfig.json",
+        },
+        ".git",
+    },
     filetypes = {
         "python",
     },
@@ -16,9 +19,9 @@ local opts = {
             completion = {
                 completionItem = {
                     snippetSupport = true,
-                }
-            }
-        }
+                },
+            },
+        },
     },
     settings = {
         analysis = {

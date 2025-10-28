@@ -1,12 +1,15 @@
-
 local opts = {
-    root_markers = { {
-        ".clang-format", "compile_commands.json",
-        ".clangd",
-        ".clang-tidy",
-        "compile_flags.txt",
-        "configure.ac", -- AutoTools
-    }, ".git" },
+    root_markers = {
+        {
+            ".clang-format",
+            "compile_commands.json",
+            ".clangd",
+            ".clang-tidy",
+            "compile_flags.txt",
+            "configure.ac", -- AutoTools
+        },
+        ".git",
+    },
     filetypes = {
         "c",
         "cpp",
@@ -29,9 +32,9 @@ local opts = {
             completion = {
                 completionItem = {
                     snippetSupport = true,
-                }
-            }
-        }
+                },
+            },
+        },
     },
     docs = {
         description = [[

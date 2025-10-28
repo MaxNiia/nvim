@@ -1,15 +1,18 @@
 local opts = {
-    cmd = {"lua-language-server"},
-    filetypes = {"lua"},
-    root_markers = {{
-    ".luarc.json",
-    ".luarc.jsonc",
-    ".luacheckrc",
-    ".stylua.toml",
-    "stylua.toml",
-    "selene.toml",
-    "selene.yml",
-}, ".git"},
+    cmd = { "lua-language-server" },
+    filetypes = { "lua" },
+    root_markers = {
+        {
+            ".luarc.json",
+            ".luarc.jsonc",
+            ".luacheckrc",
+            ".stylua.toml",
+            "stylua.toml",
+            "selene.toml",
+            "selene.yml",
+        },
+        ".git",
+    },
     settings = {
         Lua = {
             hint = {
@@ -40,9 +43,9 @@ local opts = {
             completion = {
                 completionItem = {
                     snippetSupport = true,
-                }
-            }
-        }
+                },
+            },
+        },
     },
     docs = {
         description = [[

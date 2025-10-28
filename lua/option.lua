@@ -22,7 +22,8 @@ vim.opt.belloff = "all"
 vim.opt.colorcolumn = "+1"
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "both"
-vim.opt.diffopt = "filler,internal,closeoff,algorithm:histogram,context:12,linematch:200,indent-heuristic"
+vim.opt.diffopt =
+    "filler,internal,closeoff,algorithm:histogram,context:12,linematch:200,indent-heuristic"
 vim.opt.expandtab = true
 vim.opt.exrc = true
 vim.opt.foldcolumn = "auto:1"
@@ -135,4 +136,3 @@ vim.cmd([[
     set sessionoptions-=options
     set viewoptions-=options
 ]])
-

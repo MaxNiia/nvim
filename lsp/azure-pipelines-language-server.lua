@@ -1,9 +1,9 @@
-local opts =  {
-  cmd = { 'azure-pipelines-language-server', '--stdio' },
-  filetypes = { 'yaml' },
-  root_markers = { {'azure-pipelines.yml'}, ".git" },
-  settings = {},
-  capabilities = {},
+local opts = {
+    cmd = { "azure-pipelines-language-server", "--stdio" },
+    filetypes = { "yaml" },
+    root_markers = { { "azure-pipelines.yml" }, ".git" },
+    settings = {},
+    capabilities = {},
     docs = {
         description = [[
 https://github.com/microsoft/azure-pipelines-language-server

@@ -1,8 +1,8 @@
 local opts = {
-  cmd = { 'docker-langserver', '--stdio' },
-  filetypes = { 'dockerfile' },
-  root_markers = { 'Dockerfile' },
-  capabilities = {},
+    cmd = { "docker-langserver", "--stdio" },
+    filetypes = { "dockerfile" },
+    root_markers = { "Dockerfile" },
+    capabilities = {},
     docs = {
         description = [[
 https://github.com/salesforce-misc/bazelrc-lsp

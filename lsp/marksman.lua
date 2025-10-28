@@ -1,8 +1,8 @@
-local opts =  {
-  cmd = { 'marksman', 'server' },
-  filetypes = { 'markdown', 'markdown.mdx' },
-  root_markers = { '.marksman.toml', '.git' },
-  capabilities = {},
+local opts = {
+    cmd = { "marksman", "server" },
+    filetypes = { "markdown", "markdown.mdx" },
+    root_markers = { ".marksman.toml", ".git" },
+    capabilities = {},
     docs = {
         description = [[
 https://github.com/artempyanykh/marksman

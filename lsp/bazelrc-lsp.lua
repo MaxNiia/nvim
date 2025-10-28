@@ -1,14 +1,14 @@
-vim.filetype.add {
+vim.filetype.add({
     pattern = {
-        ['.*.bazelrc'] = 'bazelrc',
+        [".*.bazelrc"] = "bazelrc",
     },
-}
+})
 
 local opts = {
     default_config = {
-        cmd = { 'bazelrc-lsp', 'lsp' },
-        filetypes = { 'bazelrc' },
-        root_dir = { 'WORKSPACE', 'WORKSPACE.bazel', 'MODULE.bazel', ".git" },
+        cmd = { "bazelrc-lsp", "lsp" },
+        filetypes = { "bazelrc" },
+        root_dir = { "WORKSPACE", "WORKSPACE.bazel", "MODULE.bazel", ".git" },
     },
     docs = {
         description = [[
