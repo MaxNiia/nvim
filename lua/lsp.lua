@@ -148,7 +148,7 @@ M.init = function()
             vim.keymap.set("n", "grC", vim.lsp.codelens.refresh, { buffer = bufnr, desc = "Refresh & DisplayCodelens" })
             vim.keymap.set("n", "grd", vim.lsp.buf.format, { buffer = bufnr, desc = "Refresh & DisplayCodelens" })
 
-            if client == "clangd" then
+            if client.name == "clangd" then
                 vim.api.nvim_buf_create_user_command(bufnr, "LspClangdSwitchSourceHeader", function()
                     switch_source_header(bufnr, client)
                 end, { desc = "Switch between source/header" })
