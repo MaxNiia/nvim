@@ -57,7 +57,7 @@ vim.opt.undofile = true
 vim.opt.wildmenu = true
 vim.opt.winblend = 0
 vim.opt.statusline =
-    "%{v:lua.ModeStatus()} %<%f %{get(b:,'gitsigns_status','')} %h%w%m%r%=%S %{v:lua.RecordingStatus()} %{% &busy > 0 ? '◐ ' : '' %}%(%{luaeval('(package.loaded[''vim.diagnostic''] and vim.diagnostic.status()) or '''' ')} %)%{% &ruler ? ( &rulerformat == '' ? '%-14.(%l:%c%) %P' : &rulerformat ) : '' %}"
+    "%{v:lua.ModeStatus()} %<%f %{get(b:,'gitsigns_status','')} %h%w%m%r%=%S %{v:lua.RecordingStatus()} %{% &busy > 0 ? '◐ ' : '' %}%(%{luaeval('(package.loaded[''vim.diagnostic''] and vim.diagnostic.status()) or '''' ')} %) %{%v:lua.SearchCount()%} %{% &ruler ? ( &rulerformat == '' ? '%-14.(%l:%c%) %P' : &rulerformat ) : '' %}"
 vim.opt.showcmdloc = "statusline"
 vim.opt.cmdheight = 0
 require("vim._extui").enable({
@@ -94,6 +94,14 @@ function _G.ModeStatus()
         t = "T",
     }
     return "[" .. (modes[vim.fn.mode()] or vim.fn.mode()) .. "]"
+end
+
+function _G.SearchCount()
+    local sc = vim.fn.searchcount({ maxcount = 9999 })
+    if sc.total > 0 then
+        return string.format("[%d/%d]", sc.current, sc.total)
+    end
+    return ""
 end
 
 local function fold_virt_text(result, s, lnum, coloff)
