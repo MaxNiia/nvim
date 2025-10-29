@@ -56,6 +56,45 @@ vim.opt.ttimeoutlen = 100
 vim.opt.undofile = true
 vim.opt.wildmenu = true
 vim.opt.winblend = 0
+vim.opt.statusline =
+    "%{v:lua.ModeStatus()} %<%f %{get(b:,'gitsigns_status','')} %h%w%m%r%=%S %{v:lua.RecordingStatus()} %{% &busy > 0 ? '◐ ' : '' %}%(%{luaeval('(package.loaded[''vim.diagnostic''] and vim.diagnostic.status()) or '''' ')} %)%{% &ruler ? ( &rulerformat == '' ? '%-14.(%l:%c%) %P' : &rulerformat ) : '' %}"
+vim.opt.showcmdloc = "statusline"
+vim.opt.cmdheight = 0
+require("vim._extui").enable({
+    enable = true, -- Whether to enable or disable the UI.
+})
+function _G.RecordingStatus()
+    local reg = vim.fn.reg_recording()
+    if reg ~= "" then
+        return "recording @" .. reg
+    end
+    return ""
+end
+function _G.ModeStatus()
+    local modes = {
+        n = "N",
+        no = "NO",
+        v = "V",
+        V = "VL",
+        [""] = "VB",
+        s = "S",
+        S = "SL",
+        i = "I",
+        ic = "I",
+        R = "R",
+        Rc = "R",
+        Rv = "VR",
+        c = "C",
+        cv = "VE",
+        ce = "EX",
+        r = "P",
+        rm = "M",
+        ["r?"] = "?",
+        ["!"] = "!",
+        t = "T",
+    }
+    return "[" .. (modes[vim.fn.mode()] or vim.fn.mode()) .. "]"
+end
 
 local function fold_virt_text(result, s, lnum, coloff)
     if not coloff then

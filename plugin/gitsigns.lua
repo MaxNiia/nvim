@@ -7,6 +7,20 @@ require("gitsigns").setup({
         changedelete = { text = "▎" },
         untracked = { text = "▎" },
     },
+    status_formatter = function(status)
+        local added, changed, removed = status.added, status.changed, status.removed
+        local status_txt = {}
+        if added and added > 0 then
+            table.insert(status_txt, "" .. added)
+        end
+        if changed and changed > 0 then
+            table.insert(status_txt, "" .. changed)
+        end
+        if removed and removed > 0 then
+            table.insert(status_txt, "" .. removed)
+        end
+        return table.concat(status_txt, " ")
+    end,
     preview_config = {
         style = "minimal",
         relative = "cursor",

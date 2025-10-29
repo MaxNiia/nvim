@@ -71,7 +71,9 @@ require("catppuccin").setup({
             },
         },
     },
+    custom_highlights = function(colors)
+        return {
+            MsgArea = { bg = colors.Overlay0 },
+        }
+    end,
 })
-
-local colors = require("catppuccin.palettes").get_palette()
-colors.none = "NONE"

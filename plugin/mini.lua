@@ -116,10 +116,3 @@ require("mini.cursorword").setup()
 require("mini.align").setup()
 require("mini.move").setup()
 require("mini.pairs").setup()
-require("mini.statusline").setup({
-    content = {
-        active = statusline,
-        inactive = statusline,
-    },
-    use_icons = true,
-})
