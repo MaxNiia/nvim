@@ -17,6 +17,10 @@ vim.opt.autoread = true
 vim.opt.autowrite = true
 vim.opt.autowriteall = true
 vim.opt.background = "dark"
+local bg = (vim.env.NVIM_BACKGROUND or ""):lower()
+if bg == "light" or bg == "dark" then
+    vim.opt.background = bg
+end
 vim.opt.backspace = "indent,eol,start"
 vim.opt.belloff = "all"
 vim.opt.colorcolumn = "+1"
@@ -98,7 +102,7 @@ end
 
 function _G.SearchCount()
     local sc = vim.fn.searchcount({ maxcount = 9999 })
-    if sc.total > 0 then
+    if sc and sc.total and sc.total > 0 then
         return string.format("[%d/%d]", sc.current, sc.total)
     end
     return ""

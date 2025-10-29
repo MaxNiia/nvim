@@ -162,7 +162,6 @@ local opts = {
         "yacc",
         "yaml",
         "zig",
-        "zsh",
     },
 }
 

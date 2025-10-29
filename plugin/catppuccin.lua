@@ -2,7 +2,7 @@ require("catppuccin").setup({
     flavour = "auto",
     auto_integrations = true,
     background = {
-        light = "frappe",
+        light = "latte",
         dark = "mocha",
     },
     transparent_background = false,
