@@ -1,10 +1,7 @@
 local opts = {
-    root_markers = { { "_typos.toml", "typos.toml", ".typos.toml" }, ".git" },
+    root_markers = { "_typos.toml", "typos.toml", ".typos.toml", ".git" },
     init_options = { -- Sent to the LSP on init
         diagnosticSeverity = "Hint",
-    },
-    filetypes = {
-        "*",
     },
     cmd = {
         "typos-lsp",
