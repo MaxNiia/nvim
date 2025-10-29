@@ -73,7 +73,10 @@ require("catppuccin").setup({
     },
     custom_highlights = function(colors)
         return {
-            MsgArea = { bg = colors.Overlay0 },
+            StatusLine = { fg = colors.pink },
+            StatusLineTerm = { fg = colors.pink },
+            StatusLineNC = { fg = colors.blue },
+            StatusLineTermNC = { fg = colors.blue },
         }
     end,
 })
