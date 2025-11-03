@@ -162,6 +162,13 @@ M.init = function()
             end
 
             -- Mappings
+            vim.keymap.set("n", "<leader>k", vim.diagnostic.open_float, { desc = "Open float" })
+            vim.keymap.set(
+                "n",
+                "<leader>j",
+                vim.diagnostic.setloclist,
+                { desc = "Set diagnostic list" }
+            )
             vim.keymap.set(
                 "n",
                 "qK",
