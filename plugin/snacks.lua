@@ -3,6 +3,7 @@ require("snacks").setup({
         enabled = true,
         force = false,
     },
+    gh = {},
     lazygit = {
         configure = true,
     },
@@ -137,6 +138,19 @@ require("snacks").setup({
 })
 
 local key = vim.keymap.set
+
+key("n", "<leader>gi", function()
+    Snacks.picker.gh_issue()
+end, { desc = "GitHub Issues (open)" })
+key("n", "<leader>gI", function()
+    Snacks.picker.gh_issue({ state = "all" })
+end, { desc = "GitHub Issues (all)" })
+key("n", "<leader>gq", function()
+    Snacks.picker.gh_pr()
+end, { desc = "GitHub Pull Requests (open)" })
+key("n", "<leader>gQ", function()
+    Snacks.picker.gh_pr({ state = "all" })
+end, { desc = "GitHub Pull Requests (all)" })
 key("n", "<leader>/", function()
     Snacks.picker.grep()
 end, { desc = "Grep" })
