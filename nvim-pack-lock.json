@@ -1,17 +1,17 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "327fff9",
+      "rev": "40380e7",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'main'"
     },
     "catppuccin": {
-      "rev": "8c4125e",
+      "rev": "234fc04",
       "src": "https://github.com/catppuccin/nvim",
       "version": "'main'"
     },
     "flash": {
-      "rev": "3be9bf7",
+      "rev": "fcea7ff",
       "src": "https://github.com/folke/flash.nvim",
       "version": "'main'"
     },
@@ -26,7 +26,7 @@
       "version": "'main'"
     },
     "markview": {
-      "rev": "c93ea99",
+      "rev": "5529dc4",
       "src": "https://github.com/OXY2DEV/markview.nvim",
       "version": "'main'"
     },
@@ -36,7 +36,7 @@
       "version": "'main'"
     },
     "mini": {
-      "rev": "d1a9158",
+      "rev": "42dbeaa",
       "src": "https://github.com/nvim-mini/mini.nvim",
       "version": "'main'"
     },
@@ -46,12 +46,12 @@
       "version": "'main'"
     },
     "nvim-treesitter": {
-      "rev": "c53bb10a",
+      "rev": "5eca61b3",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "1b2d85d",
+      "rev": "2e5b873",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
@@ -61,7 +61,7 @@
       "version": "'master'"
     },
     "snacks": {
-      "rev": "b1a9010",
+      "rev": "9a15b31",
       "src": "https://github.com/folke/snacks.nvim",
       "version": "'main'"
     },
@@ -71,12 +71,12 @@
       "version": "'master'"
     },
     "which-key": {
-      "rev": "b4177e3",
+      "rev": "3aab214",
       "src": "https://github.com/folke/which-key.nvim",
       "version": "'main'"
     },
     "yazi": {
-      "rev": "e091730",
+      "rev": "667028e",
       "src": "https://github.com/mikavilpas/yazi.nvim",
       "version": "'main'"
     }
