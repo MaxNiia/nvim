@@ -64,9 +64,152 @@ vim.opt.statusline =
     "%{v:lua.ModeStatus()} %<%f %{get(b:,'gitsigns_status','')} %h%w%m%r%=%S %{v:lua.RecordingStatus()} %{% &busy > 0 ? '◐ ' : '' %}%(%{luaeval('(package.loaded[''vim.diagnostic''] and vim.diagnostic.status()) or '''' ')} %) %{%v:lua.SearchCount()%} %{% &ruler ? ( &rulerformat == '' ? '%-14.(%l:%c%) %P' : &rulerformat ) : '' %}"
 vim.opt.showcmdloc = "statusline"
 vim.opt.cmdheight = 0
+local extui_messages = require("vim._extui.messages")
+local extui_shared = require("vim._extui.shared")
+
+local function flatten_msg_content(content)
+    local chunks = {}
+    for _, chunk in ipairs(content or {}) do
+        chunks[#chunks + 1] = chunk[2]
+    end
+    return (table.concat(chunks):gsub("\r", "")):gsub("\n+$", "")
+end
+
+local function message_title(kind)
+    local base = "Neovim"
+    if not kind or kind == "" then
+        return base
+    end
+    local suffix = ({ emsg = "Error", wmsg = "Warning" })[kind]
+        or ({ errormsg = "Error", warnmsg = "Warning" })[kind]
+    if suffix then
+        return string.format("%s %s", base, suffix)
+    end
+    return string.format("%s (%s)", base, kind)
+end
+
+local function hide_msg_window()
+    if extui_messages.msg.timer then
+        extui_messages.msg.timer:stop()
+    end
+    extui_messages.msg.count = 0
+    extui_messages.msg:close()
+end
+
+local function notifier_from_snacks()
+    local ok, Snacks = pcall(require, "snacks")
+    if not ok or not Snacks.did_setup then
+        return
+    end
+    local notifier = Snacks.notify
+    if type(notifier) == "table" then
+        if type(notifier.notify) == "function" then
+            notifier = notifier.notify
+        else
+            local mt = getmetatable(notifier)
+            if mt and type(mt.__call) == "function" then
+                notifier = function(...)
+                    return mt.__call(notifier, ...)
+                end
+            else
+                notifier = nil
+            end
+        end
+    end
+    if type(notifier) == "function" then
+        return notifier
+    end
+end
+
+local function reroute_messages_to_snacks()
+    if extui_messages._bare_snacks_notify then
+        return true
+    end
+
+    local notify = notifier_from_snacks()
+    if not notify then
+        return false
+    end
+
+    local orig_show_msg = extui_messages.show_msg
+    local orig_msg_show = extui_messages.msg_show
+    local last_kind = ""
+    local level_map = {
+        emsg = vim.log.levels.ERROR,
+        wmsg = vim.log.levels.WARN,
+    }
+
+    extui_messages.msg_show = function(kind, ...)
+        last_kind = kind or ""
+        return orig_msg_show(kind, ...)
+    end
+
+    extui_messages.show_msg = function(tar, content, replace_last, append)
+        if tar == "msg" then
+            local text = flatten_msg_content(content)
+            if text ~= "" then
+                notify(text, {
+                    level = level_map[last_kind] or vim.log.levels.INFO,
+                    title = message_title(last_kind),
+                })
+            end
+            hide_msg_window()
+            return
+        end
+        return orig_show_msg(tar, content, replace_last, append)
+    end
+
+    extui_messages._bare_snacks_notify = true
+    return true
+end
+
+local function move_msg_window_top_right()
+    local win = extui_shared.wins.msg
+    if not (win and win ~= -1 and vim.api.nvim_win_is_valid(win)) then
+        return
+    end
+    local cfg = vim.api.nvim_win_get_config(win)
+    cfg.anchor = "NE"
+    cfg.relative = "editor"
+    cfg.row = 0
+    cfg.col = vim.o.columns
+    vim.api.nvim_win_set_config(win, cfg)
+end
+
+local function enforce_top_right_anchor()
+    if extui_messages._bare_top_right then
+        return
+    end
+    local orig_set_pos = extui_messages.set_pos
+    extui_messages.set_pos = function(type)
+        orig_set_pos(type)
+        if type == nil or type == "msg" then
+            move_msg_window_top_right()
+        end
+    end
+    extui_messages._bare_top_right = true
+end
+
 require("vim._extui").enable({
     enable = true, -- Whether to enable or disable the UI.
 })
+
+vim.schedule(function()
+    local attempts = 40
+    local function attempt()
+        if reroute_messages_to_snacks() then
+            return
+        end
+        attempts = attempts - 1
+        if attempts <= 0 then
+            enforce_top_right_anchor()
+            move_msg_window_top_right()
+            return
+        end
+        vim.defer_fn(attempt, 100)
+    end
+    attempt()
+end)
 function _G.RecordingStatus()
     local reg = vim.fn.reg_recording()
     if reg ~= "" then
