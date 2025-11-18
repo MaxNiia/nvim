@@ -97,8 +97,6 @@ require("snacks").setup({
             char = {
                 corner_top = "┌",
                 corner_bottom = "└",
-                -- corner_top = "╭",
-                -- corner_bottom = "╰",
                 horizontal = "─",
                 vertical = "│",
                 arrow = ">",
