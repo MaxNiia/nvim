@@ -5,7 +5,7 @@ end
 
 local gen_loader = require("mini.snippets").gen_loader
 local snippets = {
-    gen_loader.from_file("~/.config/nvim/snippets/global.json"),
+    gen_loader.from_file(vim.fn.stdpath("config") .. "snippets/global.json"),
     gen_loader.from_lang(),
 }
 
@@ -36,7 +36,6 @@ end
 local opts = { pattern = "MiniSnippetsSessionStart", callback = make_stop }
 vim.api.nvim_create_autocmd("User", opts)
 
-require("mini.move").setup()
 require("mini.splitjoin").setup()
 require("mini.icons").setup({
     file = {
