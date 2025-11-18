@@ -11,7 +11,7 @@ return {
 https://github.com/facebookexperimental/starlark-rust/
 
 Install:
-cargo install starlark_bin 
+cargo install starlark_bin
 ]],
     },
     capabilities = {},

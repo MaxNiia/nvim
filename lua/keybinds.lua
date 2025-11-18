@@ -12,7 +12,7 @@ key("n", "<c-k>", "<c-w>k", { desc = "Go to Upper Window" })
 
 key("n", "<c-l>", "<c-w>l", { desc = "Go to Right Window" })
 
-key("n", "<m-down>", "<c-w>-", { desc = "Descrease height" })
+key("n", "<m-down>", "<c-w>-", { desc = "Decrease height" })
 
 key("n", "<m-up>", "<c-w>+", { desc = "Increase height" })
 
