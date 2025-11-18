@@ -18,8 +18,9 @@ require("which-key").setup({
         { "<auto>", mode = "nxsotv" },
     },
     spec = {
-        { "<leader><leader>", group = "Smart fpicker" },
+        { "<leader><leader>", group = "Smart file picker" },
         { "<leader>E", group = "Explore Dir" },
+        { "<leader>w", group = "Sessions" },
         { "<leader>f", group = "Find" },
         { "<leader>g", group = "Git" },
         { "<leader>s", group = "Search" },

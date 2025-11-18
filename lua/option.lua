@@ -70,8 +70,6 @@ vim.opt.ttimeoutlen = 100
 vim.opt.undofile = true
 vim.opt.wildmenu = true
 vim.opt.winblend = 0
-vim.opt.statusline =
-    "%{v:lua.ModeStatus()} %<%f %{get(b:,'gitsigns_status','')} %h%w%m%r%=%S %{v:lua.RecordingStatus()} %{% &busy > 0 ? '◐ ' : '' %}%(%{luaeval('(package.loaded[''vim.diagnostic''] and vim.diagnostic.status()) or '''' ')} %) %{%v:lua.SearchCount()%} %{% &ruler ? ( &rulerformat == '' ? '%-14.(%l:%c%) %P' : &rulerformat ) : '' %}"
 vim.opt.showcmdloc = "statusline"
 vim.opt.cmdheight = 0
 local extui_messages = require("vim._extui.messages")
@@ -157,11 +155,7 @@ local function reroute_messages_to_snacks()
     extui_messages.show_msg = function(tar, content, replace_last, append)
         if tar == "msg" then
             local text = flatten_msg_content(content)
-            if
-                text ~= ""
-                and not text:match('"[^"]*" %d+L, %d+B written')
-                and not last_kind == "bufwrite"
-            then
+            if text ~= "" then
                 notify(text, {
                     level = level_map[last_kind] or vim.log.levels.INFO,
                     title = message_title(last_kind),
@@ -224,51 +218,6 @@ vim.schedule(function()
     end
     attempt()
 end)
-function _G.RecordingStatus()
-    local ok, reg = pcall(vim.fn.reg_recording)
-    if ok and reg ~= "" then
-        return "recording @" .. reg
-    end
-    return ""
-end
-
-function _G.ModeStatus()
-    local modes = {
-        n = "N",
-        no = "NO",
-        v = "V",
-        V = "VL",
-        [""] = "VB",
-        s = "S",
-        S = "SL",
-        i = "I",
-        ic = "I",
-        R = "R",
-        Rc = "R",
-        Rv = "VR",
-        c = "C",
-        cv = "VE",
-        ce = "EX",
-        r = "P",
-        rm = "M",
-        ["r?"] = "?",
-        ["!"] = "!",
-        t = "T",
-    }
-    local ok, mode = pcall(vim.fn.mode)
-    if not ok then
-        return "[?]"
-    end
-    return "[" .. (modes[mode] or mode) .. "]"
-end
-
-function _G.SearchCount()
-    local ok, sc = pcall(vim.fn.searchcount, { maxcount = 9999 })
-    if ok and sc and sc.total and sc.total > 0 then
-        return string.format("[%d/%d]", sc.current, sc.total)
-    end
-    return ""
-end
 
 local function fold_virt_text(result, s, lnum, coloff)
     if not coloff then

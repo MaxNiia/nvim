@@ -89,6 +89,50 @@ require("mini.sessions").setup({
     autoread = true,
     autowrite = true,
     directory = vim.fn.stdpath("data") .. "/sessions",
-    file = "",
+    file = "Session.vim",
 })
-vim.keymap.set("n", "<leader>ws", "<cmd>lua MiniSessions.write()<cr>", { desc = "Save session" })
+vim.keymap.set(
+    "n",
+    "<leader>ws",
+    "<cmd>lua MiniSessions.write('Session.vim')<cr>",
+    { desc = "Save session" }
+)
+
+-- Custom mini.statusline setup matching original statusline
+local statusline = require("mini.statusline")
+
+statusline.setup({
+    content = {
+        active = function()
+            local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
+            local git = statusline.section_git({ trunc_width = 40 })
+            local diagnostics = statusline.section_diagnostics({ trunc_width = 75 })
+            local lsp = statusline.section_lsp({ trunc_width = 75 })
+            local filename = statusline.section_filename({ trunc_width = 140 })
+            local fileinfo = statusline.section_fileinfo({ trunc_width = 120 })
+            local location = statusline.section_location({ trunc_width = 75 })
+            local search = statusline.section_searchcount({ trunc_width = 75 })
+            local diff = statusline.section_diff({ trunc_width = 75 })
+
+            -- Custom recording status
+            local recording = ""
+            local reg = vim.fn.reg_recording()
+            if reg ~= "" then
+                recording = " recording @" .. reg
+            end
+
+            return statusline.combine_groups({
+                { hl = mode_hl, strings = { mode } },
+                { hl = "MiniStatuslineDevinfo", strings = { git, diff, diagnostics, lsp } },
+                "%<", -- Separator
+                { hl = "MiniStatuslineFilename", strings = { filename } },
+                "%=", -- Separator
+                { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
+                { hl = "MiniStatuslineDevinfo", strings = { recording } },
+                { hl = mode_hl, strings = { search, location } },
+            })
+        end,
+    },
+    use_icons = true,
+    set_vim_settings = true,
+})
