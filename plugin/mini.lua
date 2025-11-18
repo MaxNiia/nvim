@@ -91,3 +91,4 @@ require("mini.sessions").setup({
     directory = vim.fn.stdpath("data") .. "/sessions",
     file = "",
 })
+vim.keymap.set("n", "<leader>ws", "<cmd>lua MiniSessions.write()<cr>", { desc = "Save session" })
