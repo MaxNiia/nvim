@@ -116,3 +116,9 @@ require("mini.cursorword").setup()
 require("mini.align").setup()
 require("mini.move").setup()
 require("mini.pairs").setup()
+require("mini.sessions").setup({
+    autoread = true,
+    autowrite = true,
+    directory = vim.fn.stdpath("data") .. "/sessions",
+    file = "",
+})
