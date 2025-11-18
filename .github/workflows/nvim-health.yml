@@ -15,9 +15,11 @@ jobs:
 
       - name: Install Neovim nightly
         run: |
-          curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
-          tar xzf nvim-linux64.tar.gz
-          echo "$PWD/nvim-linux64/bin" >> $GITHUB_PATH
+          # Get the latest nightly build for x86_64
+          curl -L -o nvim.appimage https://github.com/neovim/neovim/releases/download/nightly/nvim-linux-x86_64.appimage
+          chmod +x nvim.appimage
+          ./nvim.appimage --appimage-extract >/dev/null
+          echo "$PWD/squashfs-root/usr/bin" >> $GITHUB_PATH
 
       - name: Verify Neovim version
         run: nvim --version
@@ -41,3 +43,31 @@ jobs:
             echo "❌ Plugin configuration has errors"
             exit 1
           fi
+
+      - name: Run checkhealth and check for deprecations
+        run: |
+          nvim --headless +"checkhealth" +"quit" 2>&1 | tee checkhealth.log
+
+          # Check for deprecation warnings
+          if grep -i "deprecat" checkhealth.log; then
+            echo ""
+            echo "❌ Deprecation warnings found in checkhealth!"
+            echo "Please review the warnings above."
+            exit 1
+          fi
+
+          # Check for errors
+          if grep -i "error" checkhealth.log; then
+            echo ""
+            echo "❌ Errors found in checkhealth!"
+            exit 1
+          fi
+
+          echo "✓ No deprecations or errors found"
+
+      - name: Upload checkhealth log
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkhealth-log
+          path: checkhealth.log
