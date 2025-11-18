@@ -1,0 +1,40 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended"
+  ],
+  "dependencyDashboard": true,
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "matchManagers": ["pre-commit"],
+      "groupName": "pre-commit hooks",
+      "automerge": false
+    },
+    {
+      "matchManagers": ["regex"],
+      "groupName": "neovim plugins",
+      "automerge": false
+    }
+  ],
+  "pre-commit": {
+    "enabled": true
+  },
+  "regexManagers": [
+    {
+      "fileMatch": ["^nvim-pack-lock\\.json$"],
+      "matchStrings": [
+        "\"(?<depName>[^\"]+)\":\\s*\\{[^}]*\"rev\":\\s*\"(?<currentValue>[^\"]+)\"[^}]*\"src\":\\s*\"(?<packageName>https://github\\.com/[^\"]+)\""
+      ],
+      "datasourceTemplate": "git-refs",
+      "versioningTemplate": "loose"
+    },
+    {
+      "fileMatch": ["^Makefile$"],
+      "matchStrings": [
+        "https://github\\.com/(?<depName>[^/]+/[^/]+)/releases/latest/download/"
+      ],
+      "datasourceTemplate": "github-releases"
+    }
+  ]
+}
