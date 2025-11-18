@@ -225,8 +225,8 @@ vim.schedule(function()
     attempt()
 end)
 function _G.RecordingStatus()
-    local reg = vim.fn.reg_recording()
-    if reg ~= "" then
+    local ok, reg = pcall(vim.fn.reg_recording)
+    if ok and reg ~= "" then
         return "recording @" .. reg
     end
     return ""
@@ -255,12 +255,16 @@ function _G.ModeStatus()
         ["!"] = "!",
         t = "T",
     }
-    return "[" .. (modes[vim.fn.mode()] or vim.fn.mode()) .. "]"
+    local ok, mode = pcall(vim.fn.mode)
+    if not ok then
+        return "[?]"
+    end
+    return "[" .. (modes[mode] or mode) .. "]"
 end
 
 function _G.SearchCount()
-    local sc = vim.fn.searchcount({ maxcount = 9999 })
-    if sc and sc.total and sc.total > 0 then
+    local ok, sc = pcall(vim.fn.searchcount, { maxcount = 9999 })
+    if ok and sc and sc.total and sc.total > 0 then
         return string.format("[%d/%d]", sc.current, sc.total)
     end
     return ""
