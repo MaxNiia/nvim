@@ -87,11 +87,6 @@ local packages = {
         version = "master",
     },
     {
-        src = "https://github.com/tpope/vim-abolish",
-        name = "vim-abolish",
-        version = "master",
-    },
-    {
         src = "https://github.com/zaucy/mcos.nvim",
         name = "mcsos",
         version = "main",
