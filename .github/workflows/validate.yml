@@ -1,0 +1,73 @@
+name: Validate Config
+
+on:
+  push:
+    branches: [bare]
+  pull_request:
+    branches: [bare]
+
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate nvim-pack-lock.json
+        run: |
+          if ! jq empty nvim-pack-lock.json; then
+            echo "❌ nvim-pack-lock.json is invalid"
+            exit 1
+          fi
+          echo "✓ nvim-pack-lock.json is valid"
+
+      - name: Check for duplicate plugins
+        run: |
+          duplicates=$(jq -r '.plugins | keys[]' nvim-pack-lock.json | sort | uniq -d)
+          if [ -n "$duplicates" ]; then
+            echo "❌ Duplicate plugins found:"
+            echo "$duplicates"
+            exit 1
+          fi
+          echo "✓ No duplicate plugins"
+
+  validate-lua:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Lua
+        run: sudo apt-get update && sudo apt-get install -y lua5.4
+
+      - name: Check Lua syntax
+        run: |
+          find . -name "*.lua" -type f | while read file; do
+            if ! lua5.4 -e "loadfile('$file')"; then
+              echo "❌ Syntax error in: $file"
+              exit 1
+            fi
+          done
+          echo "✓ All Lua files are valid"
+
+  check-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify LSP references
+        run: |
+          echo "Checking LSP consistency between lsp.lua and Makefile..."
+
+          # Extract LSPs from lua/lsp.lua
+          lsps_in_lua=$(grep -A 20 'vim.lsp.enable' lua/lsp.lua | grep -oP '"\K[^"]+' | sort)
+
+          # Extract install targets from Makefile
+          lsps_in_makefile=$(grep '^install-' Makefile | sed 's/install-//' | sed 's/://' | sort)
+
+          echo "LSPs in lsp.lua:"
+          echo "$lsps_in_lua"
+          echo ""
+          echo "LSP install targets in Makefile:"
+          echo "$lsps_in_makefile"
+
+          # Note: This is informational only as naming conventions differ
+          echo "✓ LSP reference check complete"

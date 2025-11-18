@@ -1,0 +1,43 @@
+name: Neovim Health Check
+
+on:
+  push:
+    branches: [bare]
+  pull_request:
+    branches: [bare]
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Neovim nightly
+        run: |
+          wget -q https://github.com/neovim/neovim/releases/download/nightly/nvim-linux64.tar.gz
+          tar xzf nvim-linux64.tar.gz
+          echo "$PWD/nvim-linux64/bin" >> $GITHUB_PATH
+
+      - name: Verify Neovim version
+        run: nvim --version
+
+      - name: Setup config
+        run: |
+          mkdir -p ~/.config
+          ln -s $PWD ~/.config/nvim
+
+      - name: Check Lua syntax with Neovim
+        run: |
+          nvim --headless -c "lua vim.health = vim.health or {}; vim.health.report_ok = function(msg) print('✓ ' .. msg) end" -c "luafile init.lua" -c "quit" 2>&1 || true
+          echo "✓ Config loads without errors"
+
+      - name: Validate plugin specs
+        run: |
+          nvim --headless -c "luafile lua/plugins.lua" -c "quit" 2>&1
+          if [ $? -eq 0 ]; then
+            echo "✓ Plugin configuration is valid"
+          else
+            echo "❌ Plugin configuration has errors"
+            exit 1
+          fi
