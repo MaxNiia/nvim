@@ -5,7 +5,7 @@ repos:
   - id: stylua
 
 - repo: https://github.com/crate-ci/typos
-  rev: v1.26.8
+  rev: v1.39.2
   hooks:
   - id: typos
 
