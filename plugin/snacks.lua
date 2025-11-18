@@ -117,6 +117,7 @@ require("snacks").setup({
     notifier = {
         enabled = true,
         timeout = 3000,
+        max_notifications = 4,
     },
     quickfile = { enabled = true },
     bufdelete = { enabled = true },

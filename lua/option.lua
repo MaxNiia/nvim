@@ -157,7 +157,11 @@ local function reroute_messages_to_snacks()
     extui_messages.show_msg = function(tar, content, replace_last, append)
         if tar == "msg" then
             local text = flatten_msg_content(content)
-            if text ~= "" then
+            if
+                text ~= ""
+                and not text:match('"[^"]*" %d+L, %d+B written')
+                and not last_kind == "bufwrite"
+            then
                 notify(text, {
                     level = level_map[last_kind] or vim.log.levels.INFO,
                     title = message_title(last_kind),
@@ -227,6 +231,7 @@ function _G.RecordingStatus()
     end
     return ""
 end
+
 function _G.ModeStatus()
     local modes = {
         n = "N",
