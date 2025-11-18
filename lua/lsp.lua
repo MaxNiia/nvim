@@ -126,7 +126,7 @@ M.init = function()
 
                 if not client:supports_method("textDocument/willSaveWaitUntil") then
                     vim.api.nvim_create_autocmd("BufWritePre", {
-                        group = vim.api.nvim_create_augroup("my.lsp", { clear = false }),
+                        group = vim.api.nvim_create_augroup("BufSave", { clear = false }),
                         buffer = args.buf,
                         callback = function()
                             if vim.b.autoformat and vim.g.autoformat then

@@ -9,6 +9,16 @@ vim.g.autoformat = true
 -- Buffer local variables
 vim.b.autoformat = true
 
+-- Ensure autoformat is enabled for all buffers
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*",
+    callback = function()
+        if vim.b.autoformat == nil then
+            vim.b.autoformat = true
+        end
+    end,
+})
+
 -- Options
 vim.opt.ai = true
 vim.opt.autocomplete = false -- Interferes with snacks.picker.
