@@ -61,7 +61,7 @@ sudo pacman -S python-pipx nodejs npm rust
 
 ## Installation
 
-Check [install](install..md)
+Check [install](INSTALL.md)
 
 ## Supported LSPs
 
