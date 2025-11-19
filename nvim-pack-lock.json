@@ -76,7 +76,7 @@
       "version": "'main'"
     },
     "yazi": {
-      "rev": "56a8c4d",
+      "rev": "0fc745c",
       "src": "https://github.com/mikavilpas/yazi.nvim",
       "version": "'main'"
     }
