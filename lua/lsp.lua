@@ -133,7 +133,6 @@ M.init = function()
                                 vim.lsp.buf.format({
                                     bufnr = args.buf,
                                     id = client.id,
-                                    timeout_ms = 1000,
                                     async = true,
                                 })
                             end

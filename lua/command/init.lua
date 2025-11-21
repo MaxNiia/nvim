@@ -39,6 +39,17 @@ vim.api.nvim_create_autocmd("BufLeave", {
     end,
 })
 
+vim.api.nvim_create_autocmd("InsertEnter", {
+    pattern = "*",
+    callback = function( --[[args]])
+        -- Cancel existing timer if any
+        if autosave_timer then
+            autosave_timer:stop()
+            autosave_timer = nil
+        end
+    end,
+})
+
 vim.api.nvim_create_autocmd("InsertLeave", {
     pattern = "*",
     callback = function(args)
