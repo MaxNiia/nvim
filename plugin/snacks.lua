@@ -342,6 +342,62 @@ end, { desc = "Lazygit Log (cwd)" })
 key("n", "grf", function()
     Snacks.rename.rename_file()
 end, { desc = "Rename File" })
+-- Git conflict resolution
+key("n", "<leader>gx", function()
+    vim.fn.search("^<<<<<<< ", "w")
+end, { desc = "Next git conflict" })
+key("n", "<leader>gX", function()
+    vim.fn.search("^<<<<<<< ", "bw")
+end, { desc = "Previous git conflict" })
+key("n", "<leader>gh", function()
+    local start_line = vim.fn.search("^<<<<<<< ", "bcnW")
+    if start_line == 0 then
+        vim.notify("No conflict marker found", vim.log.levels.WARN)
+        return
+    end
+    local mid_line = vim.fn.search("^=======$", "nW")
+    local end_line = vim.fn.search("^>>>>>>> ", "nW")
+    if mid_line == 0 or end_line == 0 then
+        vim.notify("Incomplete conflict marker", vim.log.levels.ERROR)
+        return
+    end
+    vim.cmd(string.format("%d,%dd", mid_line, end_line))
+    vim.cmd(string.format("%dd", start_line))
+    vim.notify("Kept ours (HEAD)", vim.log.levels.INFO)
+end, { desc = "Git conflict: Keep ours (HEAD)" })
+key("n", "<leader>gt", function()
+    local start_line = vim.fn.search("^<<<<<<< ", "bcnW")
+    if start_line == 0 then
+        vim.notify("No conflict marker found", vim.log.levels.WARN)
+        return
+    end
+    local mid_line = vim.fn.search("^=======$", "nW")
+    local end_line = vim.fn.search("^>>>>>>> ", "nW")
+    if mid_line == 0 or end_line == 0 then
+        vim.notify("Incomplete conflict marker", vim.log.levels.ERROR)
+        return
+    end
+    vim.cmd(string.format("%d,%dd", start_line, mid_line))
+    vim.cmd(string.format("%dd", end_line - (mid_line - start_line + 1)))
+    vim.notify("Kept theirs", vim.log.levels.INFO)
+end, { desc = "Git conflict: Keep theirs" })
+key("n", "<leader>gC", function()
+    local conflicts = {}
+    local bufnr = vim.api.nvim_get_current_buf()
+    local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+    for i, line in ipairs(lines) do
+        if line:match("^<<<<<<< ") then
+            table.insert(conflicts, { bufnr = bufnr, lnum = i, text = line })
+        end
+    end
+    if #conflicts == 0 then
+        vim.notify("No conflicts found in buffer", vim.log.levels.INFO)
+        return
+    end
+    vim.fn.setqflist(conflicts, "r")
+    vim.cmd("copen")
+    vim.notify(string.format("Found %d conflict(s)", #conflicts), vim.log.levels.INFO)
+end, { desc = "List git conflicts in buffer" })
 key("n", "<leader>tf", function()
     Snacks.terminal(nil, { win = { position = "float" } })
 end, { desc = "Toggle Terminal (float)" })
