@@ -72,6 +72,10 @@ vim.opt.wildmenu = true
 vim.opt.winblend = 0
 vim.opt.showcmdloc = "statusline"
 vim.opt.cmdheight = 0
+vim.opt.pumheight = 10
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.updatetime = 250
 local extui_messages = require("vim._extui.messages")
 local extui_shared = require("vim._extui.shared")
 
