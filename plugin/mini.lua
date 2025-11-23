@@ -37,6 +37,7 @@ local opts = { pattern = "MiniSnippetsSessionStart", callback = make_stop }
 vim.api.nvim_create_autocmd("User", opts)
 
 require("mini.splitjoin").setup()
+require("mini.visits").setup()
 require("mini.icons").setup({
     file = {
         [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
@@ -97,6 +98,20 @@ vim.keymap.set(
     "<cmd>lua MiniSessions.write('Session.vim')<cr>",
     { desc = "Save session" }
 )
+
+-- Mini.visits keybinds
+vim.keymap.set("n", "<leader>fm", function()
+    require("snacks").picker.visits()
+end, { desc = "Visit marks" })
+vim.keymap.set("n", "<leader>ma", function()
+    MiniVisits.add_label()
+end, { desc = "Add visit mark" })
+vim.keymap.set("n", "<leader>md", function()
+    MiniVisits.remove_label()
+end, { desc = "Remove visit mark" })
+vim.keymap.set("n", "<leader>ml", function()
+    require("snacks").picker.visits()
+end, { desc = "List visit marks" })
 
 -- Custom mini.statusline setup matching original statusline
 local statusline = require("mini.statusline")
