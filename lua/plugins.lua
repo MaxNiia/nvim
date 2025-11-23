@@ -126,6 +126,11 @@ local packages = {
         name = "nvim-dap-virtual-text",
         version = "master",
     },
+    {
+        src = "https://github.com/nvim-neotest/nvim-nio",
+        name = "nvim-nio",
+        version = "master",
+    },
 }
 
 vim.pack.add(packages, {
