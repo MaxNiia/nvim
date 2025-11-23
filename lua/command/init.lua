@@ -10,6 +10,7 @@ end, {
 
 -- Autosave implementation with debounce for InsertLeave
 local autosave_timer = nil
+local autosave_debounce_ms = 4000
 
 local function autosave(bufnr)
     -- Skip if buffer is not valid
@@ -59,11 +60,11 @@ vim.api.nvim_create_autocmd("InsertLeave", {
             autosave_timer = nil
         end
 
-        -- Create new debounced timer (2 seconds)
+        -- Create new debounced timer
         autosave_timer = vim.defer_fn(function()
             autosave(args.buf)
             autosave_timer = nil
-        end, 2000)
+        end, autosave_debounce_ms)
     end,
 })
 
