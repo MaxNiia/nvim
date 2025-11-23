@@ -53,3 +53,8 @@ end, { expr = true })
 key("n", "j", function()
     return vim.v.count > 0 and "j" or "gj"
 end, { expr = true })
+
+-- Test/Implementation toggle
+key("n", "<leader>tt", function()
+    require("test_toggle").toggle()
+end, { desc = "Toggle Test/Implementation" })
