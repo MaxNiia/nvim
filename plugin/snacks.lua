@@ -222,6 +222,22 @@ end, { desc = "Grep" })
 key({ "n", "x" }, "<leader>sw", function()
     Snacks.picker.grep_word()
 end, { desc = "Visual selection or word" })
+key("x", "<leader>sg", function()
+    local start_pos = vim.fn.getpos("'<")
+    local end_pos = vim.fn.getpos("'>")
+    local lines = vim.fn.getline(start_pos[2], end_pos[2])
+    if #lines == 0 then
+        return
+    end
+    lines[1] = string.sub(lines[1], start_pos[3])
+    if #lines == 1 then
+        lines[1] = string.sub(lines[1], 1, end_pos[3] - start_pos[3] + 1)
+    else
+        lines[#lines] = string.sub(lines[#lines], 1, end_pos[3])
+    end
+    local selection = table.concat(lines, "\n")
+    Snacks.picker.grep({ search = selection })
+end, { desc = "Grep in visual selection" })
 -- search
 key("n", '<leader>s"', function()
     Snacks.picker.registers()
@@ -344,6 +360,20 @@ end, { desc = "Run command in terminal" })
 key("n", "<leader>tC", function()
     Snacks.terminal(vim.fn.input("Run command", "", "shellcmdline"), { auto_close = true })
 end, { desc = "Run command in terminal (autoclose)" })
+
+-- Task runner commands
+key("n", "<leader>tb", function()
+    Snacks.terminal("make build", { auto_close = false })
+end, { desc = "Build project" })
+key("n", "<leader>tT", function()
+    Snacks.terminal("make test", { auto_close = false })
+end, { desc = "Run tests" })
+key("n", "<leader>tr", function()
+    Snacks.terminal("make run", { auto_close = false })
+end, { desc = "Run project" })
+key("n", "<leader>tl", function()
+    Snacks.terminal("make lint", { auto_close = false })
+end, { desc = "Lint project" })
 
 key("n", "<c-_>", function()
     Snacks.terminal()
