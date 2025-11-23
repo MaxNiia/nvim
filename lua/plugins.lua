@@ -111,6 +111,21 @@ local packages = {
         name = "markview",
         version = "main",
     },
+    {
+        src = "https://github.com/mfussenegger/nvim-dap",
+        name = "nvim-dap",
+        version = "master",
+    },
+    {
+        src = "https://github.com/rcarriga/nvim-dap-ui",
+        name = "nvim-dap-ui",
+        version = "master",
+    },
+    {
+        src = "https://github.com/theHamsta/nvim-dap-virtual-text",
+        name = "nvim-dap-virtual-text",
+        version = "master",
+    },
 }
 
 vim.pack.add(packages, {
