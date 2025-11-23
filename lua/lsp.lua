@@ -125,15 +125,19 @@ M.init = function()
                 vim.bo[bufnr].formatexpr = "v:lua.vim.lsp.formatexpr(#{timeout_ms:250})"
 
                 if not client:supports_method("textDocument/willSaveWaitUntil") then
+                    local group = vim.api.nvim_create_augroup(
+                        "BufSave_" .. bufnr .. "_" .. client.id,
+                        { clear = true }
+                    )
                     vim.api.nvim_create_autocmd("BufWritePre", {
-                        group = vim.api.nvim_create_augroup("BufSave", { clear = false }),
+                        group = group,
                         buffer = args.buf,
                         callback = function()
                             if vim.b.autoformat and vim.g.autoformat then
                                 vim.lsp.buf.format({
                                     bufnr = args.buf,
                                     id = client.id,
-                                    async = true,
+                                    async = false,
                                 })
                             end
                         end,
@@ -231,6 +235,16 @@ capabilities.semanticTokensProvider = nil
 capabilities.textDocument.foldingRange = {
     dynamicRegistration = false,
     lineFoldingOnly = true,
+}
+capabilities.textDocument.completion.completionItem = {
+    documentationFormat = { "markdown", "plaintext" },
+    snippetSupport = true,
+    preselectSupport = true,
+    insertReplaceSupport = true,
+    deprecatedSupport = true,
+    commitCharactersSupport = true,
+    tagSupport = { valueSet = { 1 } },
+    resolveSupport = { properties = { "documentation", "detail", "additionalTextEdits" } },
 }
 
 M.capabilities = capabilities
