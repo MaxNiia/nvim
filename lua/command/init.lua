@@ -103,3 +103,61 @@ autocmd InsertEnter,WinLeave * set nocursorline
 
 autocmd FileType gitcommit,gitrebase,gitconfig set bufhidden=delete
 ]])
+
+-- Build error quick jump in terminal buffers
+vim.api.nvim_create_autocmd("TermOpen", {
+    callback = function(args)
+        vim.keymap.set("n", "gf", function()
+            local line = vim.fn.getline(".")
+
+            -- Try different error formats
+            -- Format 1: file.cpp:123:45: error message
+            local file, lnum, col = line:match("([^:%s]+):(%d+):(%d+):")
+
+            -- Format 2: file.cpp:123: error message
+            if not file then
+                file, lnum = line:match("([^:%s]+):(%d+):")
+            end
+
+            -- Format 3: file.cpp(123): error message (MSVC style)
+            if not file then
+                file, lnum = line:match("([^%(]+)%((%d+)%):")
+            end
+
+            if file and lnum then
+                -- Check if file exists
+                if vim.fn.filereadable(file) == 1 then
+                    vim.cmd.edit(file)
+                    vim.fn.cursor(tonumber(lnum), tonumber(col) or 1)
+                    vim.cmd.normal("zz") -- Center screen
+                    vim.notify(string.format("Jumped to %s:%s", file, lnum), vim.log.levels.INFO)
+                else
+                    -- Try finding file in common build directories
+                    local search_paths = {
+                        vim.fn.getcwd() .. "/" .. file,
+                        vim.fn.getcwd() .. "/src/" .. file,
+                        vim.fn.getcwd() .. "/../src/" .. file,
+                    }
+
+                    for _, path in ipairs(search_paths) do
+                        if vim.fn.filereadable(path) == 1 then
+                            vim.cmd.edit(path)
+                            vim.fn.cursor(tonumber(lnum), tonumber(col) or 1)
+                            vim.cmd.normal("zz")
+                            vim.notify(
+                                string.format("Jumped to %s:%s", path, lnum),
+                                vim.log.levels.INFO
+                            )
+                            return
+                        end
+                    end
+
+                    vim.notify(string.format("File not found: %s", file), vim.log.levels.WARN)
+                end
+            else
+                -- Fallback to default gf behavior
+                pcall(vim.cmd.normal, "gf")
+            end
+        end, { buffer = args.buf, desc = "Jump to error/file" })
+    end,
+})
