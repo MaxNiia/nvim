@@ -1,4 +1,4 @@
-.PHONY: help check install install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-cmake-ls install-starlark-lsp
+.PHONY: help check install install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-cmake-ls install-starlark-lsp install-debugpy
 
 INSTALL_DIR := $(HOME)/.local/bin
 LSP_DATA_DIR := $(HOME)/.local/share/nvim-lsp
@@ -6,7 +6,7 @@ LSP_DATA_DIR := $(HOME)/.local/share/nvim-lsp
 help:
 	@echo "Available targets:"
 	@echo "  make check          - Check if package managers are installed"
-	@echo "  make install        - Install all LSPs"
+	@echo "  make install        - Install all LSPs and debug adapters"
 	@echo "  make install-<lsp>  - Install specific LSP"
 	@echo ""
 	@echo "LSPs:"
@@ -20,6 +20,9 @@ help:
 	@echo "  - azure-pipelines-ls"
 	@echo "  - cmake-ls"
 	@echo "  - starlark-lsp"
+	@echo ""
+	@echo "Debug Adapters:"
+	@echo "  - debugpy (Python debugging)"
 
 check:
 	@echo "Checking package managers..."
@@ -30,8 +33,8 @@ check:
 	@command -v unzip >/dev/null 2>&1 || (echo "❌ unzip not found" && exit 1)
 	@echo "✓ All package managers found"
 
-install: check install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-cmake-ls install-starlark-lsp
-	@echo "✓ All LSPs installed"
+install: check install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-cmake-ls install-starlark-lsp install-debugpy
+	@echo "✓ All LSPs and debug adapters installed"
 
 # Lua Language Server (GitHub release)
 install-lua-ls:
@@ -109,3 +112,11 @@ install-starlark-lsp:
 	@echo "Installing starlark-rust..."
 	@cargo install --git https://github.com/facebookexperimental/starlark-rust starlark --locked
 	@echo "✓ starlark installed"
+
+# Debug Adapters
+
+# Debugpy (Python debugging)
+install-debugpy:
+	@echo "Installing debugpy..."
+	@pipx install debugpy
+	@echo "✓ debugpy installed"
