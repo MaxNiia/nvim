@@ -172,5 +172,4 @@ vim.cmd([[
     set nrformats-=octal
     set sessionoptions-=options
     set viewoptions-=options
-    set clipboard+=unnamedplus
 ]])

@@ -198,5 +198,8 @@ install-lazygit:
 	@ln -sf $(LSP_DATA_DIR)/lazygit/lazygit $(INSTALL_DIR)/lazygit
 	@echo "✓ lazygit installed"
 
-# magick
-# mmdc
+# mmdc (npm)
+install-mmdc:
+	@echo "Installing mmdc..."
+	@npm install -g @mermaid-js/mermaid-cli
+	@echo "✓ mmdc installed"
