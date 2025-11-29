@@ -1,4 +1,4 @@
-.PHONY: help check install install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-cmake-ls install-starlark-lsp install-debugpy
+.PHONY: help check install install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-cmake-ls install-starlark-lsp install-debugpy install-yazi install-fzf install-rg install-tree-sitter-cli install-fd install-git-delta install-ast-grep install-lazygit
 
 INSTALL_DIR := $(HOME)/.local/bin
 LSP_DATA_DIR := $(HOME)/.local/share/nvim-lsp
@@ -23,6 +23,16 @@ help:
 	@echo ""
 	@echo "Debug Adapters:"
 	@echo "  - debugpy (Python debugging)"
+	@echo ""
+	@echo "Programs:"
+	@echo "  - yazi      (Terminal file manager)"
+	@echo "  - fzf       (fuzzy finder)"
+	@echo "  - rg        (fuzzy finder)"
+	@echo "  - ts-cli    (tree-sitter helper)"
+	@echo "  - fd        (file finder)"
+	@echo "  - git-delta (git differ)"
+	@echo "  - ast-grep  (ast finder)"
+	@echo "  - lazygit   (Git TUI)"
 
 check:
 	@echo "Checking package managers..."
@@ -33,15 +43,15 @@ check:
 	@command -v unzip >/dev/null 2>&1 || (echo "❌ unzip not found" && exit 1)
 	@echo "✓ All package managers found"
 
-install: check install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-cmake-ls install-starlark-lsp install-debugpy
-	@echo "✓ All LSPs and debug adapters installed"
+install: check install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-cmake-ls install-starlark-lsp install-debugpy install-yazi
+	@echo "✓ All LSPs, debug adapters and programs installed"
 
 # Lua Language Server (GitHub release)
 install-lua-ls:
 	@echo "Installing lua-language-server..."
 	@mkdir -p $(LSP_DATA_DIR)/lua-ls
 	@cd $(LSP_DATA_DIR)/lua-ls && \
-		wget -q --show-progress https://github.com/LuaLS/lua-language-server/releases/latest/download/lua-language-server-$$(uname -s | tr '[:upper:]' '[:lower:]')-x64.tar.gz -O lua-ls.tar.gz && \
+		wget -q --show-progress https://github.com/LuaLS/lua-language-server/releases/download/3.15.0/lua-language-server-3.15.0-linux-x64.tar.gz -O lua-ls.tar.gz && \
 		tar -xzf lua-ls.tar.gz && \
 		rm lua-ls.tar.gz
 	@mkdir -p $(INSTALL_DIR)
@@ -53,7 +63,7 @@ install-clangd:
 	@echo "Installing clangd..."
 	@mkdir -p $(LSP_DATA_DIR)/clangd
 	@cd $(LSP_DATA_DIR)/clangd && \
-		wget -q --show-progress https://github.com/clangd/clangd/releases/latest/download/clangd-linux-$$(uname -m).zip -O clangd.zip && \
+		wget -q --show-progress https://github.com/clangd/clangd/releases/download/21.1.0/clangd-linux-21.1.0.zip -O clangd.zip && \
 		unzip -q -o clangd.zip && \
 		rm clangd.zip
 	@mkdir -p $(INSTALL_DIR)
@@ -63,7 +73,7 @@ install-clangd:
 # Typos LSP (cargo)
 install-typos-lsp:
 	@echo "Installing typos-lsp..."
-	@cargo install typos-lsp --locked
+	@cargo install --git https://github.com/tekumara/typos-lsp typos-lsp
 	@echo "✓ typos-lsp installed"
 
 # BasedPyright (pipx)
@@ -107,16 +117,83 @@ install-cmake-ls:
 	@pipx install cmake-language-server
 	@echo "✓ cmake-language-server installed"
 
-# Starlark LSP (cargo)
+# Starlark LSP (GitHub release)
 install-starlark-lsp:
-	@echo "Installing starlark-rust..."
-	@cargo install --git https://github.com/facebookexperimental/starlark-rust starlark --locked
-	@echo "✓ starlark installed"
+	@echo "Installing starpls..."
+	@mkdir -p $(LSP_DATA_DIR)/starpls
+	@cd $(LSP_DATA_DIR)/starpls && \
+		wget -q --show-progress https://github.com/withered-magic/starpls/releases/download/v0.1.22/starpls-linux-amd64 -O starpls && \
+		chmod +x starpls
+	@mkdir -p $(INSTALL_DIR)
+	@ln -sf $(LSP_DATA_DIR)/starpls/starpls $(INSTALL_DIR)/starpls
+	@echo "✓ starpls installed"
 
 # Debug Adapters
 
-# Debugpy (Python debugging)
+# Debugpy (pipx)
 install-debugpy:
 	@echo "Installing debugpy..."
 	@pipx install debugpy
 	@echo "✓ debugpy installed"
+
+# Programs
+
+# yazi (cargo)
+install-yazi:
+	@echo "Installing yazi..."
+	@cargo install --force yazi-build
+	@echo "✓ yazi installed"
+	
+# fzf (GitHub release)
+install-fzf:
+	@echo "Installing fzf..."
+	@mkdir -p $(LSP_DATA_DIR)/fzf
+	@cd $(LSP_DATA_DIR)/fzf && \
+		wget -q --show-progress https://github.com/junegunn/fzf/releases/download/v0.67.0/fzf-0.67.0-linux_amd64.tar.gz -O fzf.tar.gz && \
+		tar -xzf fzf.tar.gz && \
+		rm fzf.tar.gz
+	@mkdir -p $(INSTALL_DIR)
+	@ln -sf $(LSP_DATA_DIR)/fzf/fzf $(INSTALL_DIR)/fzf
+	@echo "✓ fzf installed"
+
+# Ripgrep (cargo)
+install-rg:
+	@echo "Installing rg..."
+	@cargo install ripgrep
+	@echo "✓ rg installed"
+	
+# Tree-sitter-cli (cargo)
+install-tree-sitter-cli:
+	@echo "Installing tree-sitter-cli..."
+	@cargo install tree-sitter-cli
+	@echo "✓ tree-sitter-cli installed"
+	
+# fd (cargo)
+install-fd:
+	@echo "Installing fd..."
+	@cargo install fd-find
+	@echo "✓ fd installed"
+
+# Git-delta (cargo)
+install-git-delta:
+	@echo "Installing git-delta..."
+	@cargo install git-delta
+	@echo "✓ git-delta installed"
+
+# AstGrep (npm)
+install-ast-grep:
+	@echo "Installing ast-grep/cli..."
+	@npm install -g @ast-grep/cli
+	@echo "✓ ast-grep/cli installed"
+	
+# Lazygit (GitHub release)
+install-lazygit:
+	@echo "Installing lazygit..."
+	@mkdir -p $(LSP_DATA_DIR)/lazygit
+	@cd $(LSP_DATA_DIR)/lazygit && \
+		wget -q --show-progress https://github.com/jesseduffield/lazygit/releases/download/v0.56.0/lazygit_0.56.0_linux_x86_64.tar.gz -O lazygit.tar.gz && \
+		tar -xzf lazygit.tar.gz && \
+		rm lazygit.tar.gz
+	@mkdir -p $(INSTALL_DIR)
+	@ln -sf $(LSP_DATA_DIR)/lazygit/lazygit $(INSTALL_DIR)/lazygit
+	@echo "✓ lazygit installed"

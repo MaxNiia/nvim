@@ -1,6 +1,7 @@
 return {
     default_config = {
-        cmd = { "starlark", "--lsp" },
+        cmd = { 'starpls' },
+        root_markers = { 'WORKSPACE', 'WORKSPACE.bazel', 'MODULE.bazel' },
         filetypes = { "star", "bzl", "BUILD.bazel" },
         root_dir = function(fname)
             return vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
@@ -8,10 +9,10 @@ return {
     },
     docs = {
         description = [[
-https://github.com/facebookexperimental/starlark-rust/
+https://github.com/withered-magic/starpls
 
 Install:
-cargo install starlark_bin
+symlink
 ]],
     },
     capabilities = {},
