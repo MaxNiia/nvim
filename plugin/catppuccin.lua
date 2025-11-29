@@ -77,6 +77,10 @@ require("catppuccin").setup({
             StatusLineTerm = { fg = colors.pink },
             StatusLineNC = { fg = colors.blue },
             StatusLineTermNC = { fg = colors.blue },
+            WinBar = { fg = colors.pink, bg = colors.mantle },
+            WinBarNC = { fg = colors.pink, bg = colors.mantle },
+            WinBarDir = { fg = colors.pink, bg = colors.mantle, italic = true },
+            WinBarSeparator = { fg = colors.mauve, bg = colors.mantle },
         }
     end,
 })

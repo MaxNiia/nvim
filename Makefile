@@ -143,7 +143,7 @@ install-yazi:
 	@echo "Installing yazi..."
 	@cargo install --force yazi-build
 	@echo "✓ yazi installed"
-	
+
 # fzf (GitHub release)
 install-fzf:
 	@echo "Installing fzf..."
@@ -161,13 +161,13 @@ install-rg:
 	@echo "Installing rg..."
 	@cargo install ripgrep
 	@echo "✓ rg installed"
-	
+
 # Tree-sitter-cli (cargo)
 install-tree-sitter-cli:
 	@echo "Installing tree-sitter-cli..."
 	@cargo install tree-sitter-cli
 	@echo "✓ tree-sitter-cli installed"
-	
+
 # fd (cargo)
 install-fd:
 	@echo "Installing fd..."
@@ -185,7 +185,7 @@ install-ast-grep:
 	@echo "Installing ast-grep/cli..."
 	@npm install -g @ast-grep/cli
 	@echo "✓ ast-grep/cli installed"
-	
+
 # Lazygit (GitHub release)
 install-lazygit:
 	@echo "Installing lazygit..."
@@ -197,3 +197,6 @@ install-lazygit:
 	@mkdir -p $(INSTALL_DIR)
 	@ln -sf $(LSP_DATA_DIR)/lazygit/lazygit $(INSTALL_DIR)/lazygit
 	@echo "✓ lazygit installed"
+
+# magick
+# mmdc

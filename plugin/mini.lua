@@ -100,9 +100,6 @@ vim.keymap.set(
 )
 
 -- Mini.visits keybinds
-vim.keymap.set("n", "<leader>fm", function()
-    require("snacks").picker.visits()
-end, { desc = "Visit marks" })
 vim.keymap.set("n", "<leader>ma", function()
     MiniVisits.add_label()
 end, { desc = "Add visit mark" })
@@ -110,7 +107,10 @@ vim.keymap.set("n", "<leader>md", function()
     MiniVisits.remove_label()
 end, { desc = "Remove visit mark" })
 vim.keymap.set("n", "<leader>ml", function()
-    require("snacks").picker.visits()
+    MiniVisits.select_label()
+end, { desc = "List visit marks" })
+vim.keymap.set("n", "<leader>mp", function()
+    MiniVisits.select_path()
 end, { desc = "List visit marks" })
 
 -- Custom mini.statusline setup matching original statusline
@@ -126,24 +126,16 @@ statusline.setup({
                 signs = { ERROR = "", WARN = "", INFO = "", HINT = "" },
             })
             local lsp = statusline.section_lsp({ trunc_width = 75 })
-            local filename = statusline.section_filename({ trunc_width = 140 })
             local fileinfo = statusline.section_fileinfo({ trunc_width = 120 })
             local location = statusline.section_location({ trunc_width = 75 })
             local search = statusline.section_searchcount({ trunc_width = 75 })
             local diff = statusline.section_diff({ trunc_width = 75 })
 
-            -- Custom recording status
-            local recording = ""
-            local reg = vim.fn.reg_recording()
-            if reg ~= "" then
-                recording = " recording @" .. reg
-            end
-
             return statusline.combine_groups({
                 { hl = mode_hl, strings = { mode } },
-                { hl = "MiniStatuslineDevinfo", strings = { git, diff, diagnostics, lsp } },
+                { hl = "MiniStatuslineDevinfo", strings = { diff, diagnostics, lsp } },
                 "%<", -- Separator
-                { hl = "MiniStatuslineFilename", strings = { filename } },
+                { hl = "MiniStatuslineFilename", strings = { git } },
                 "%=", -- Separator
                 { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
                 { hl = "MiniStatuslineDevinfo", strings = { recording } },

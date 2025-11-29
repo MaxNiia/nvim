@@ -5,6 +5,10 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 vim.g.autoformat = true
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
 
 -- Buffer local variables
 vim.b.autoformat = true
@@ -23,6 +27,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.opt.ai = true
 vim.opt.autocomplete = false -- Interferes with snacks.picker.
 vim.opt.autoindent = true
+vim.opt.wildignore:append({ ".DS_Store" })
+vim.o.completeopt = "menuone,noselect,noinsert"
+vim.o.pumheight = 15
+vim.o.pumborder = "rounded"
 vim.opt.autoread = true
 vim.opt.autowrite = true
 vim.opt.autowriteall = true
@@ -37,7 +45,7 @@ vim.opt.colorcolumn = "+1"
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "both"
 vim.opt.diffopt =
-    "inline:char,filler,internal,closeoff,algorithm:histogram,context:12,linematch:60,indent-heuristic"
+    "inline:char,filler,internal,closeoff,algorithm:histogram,context:99,linematch:60,indent-heuristic"
 vim.opt.expandtab = true
 vim.opt.exrc = true
 vim.opt.foldcolumn = "auto:1"
@@ -66,162 +74,25 @@ vim.opt.timeout = true
 vim.opt.timeoutlen = 300
 vim.opt.title = true
 vim.opt.ttimeout = true
-vim.opt.ttimeoutlen = 100
+vim.opt.ttimeoutlen = 10
+vim.o.linebreak = true
 vim.opt.undofile = true
+vim.o.mousescroll = "ver:3,hor:0"
+vim.o.winborder = "rounded"
 vim.opt.wildmenu = true
 vim.opt.winblend = 0
+vim.opt.laststatus = 3
 vim.opt.showcmdloc = "statusline"
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 vim.opt.pumheight = 10
-vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 8
+vim.opt.scrolloff = 4
+vim.opt.sidescrolloff = 4
 vim.opt.updatetime = 250
-local extui_messages = require("vim._extui.messages")
-local extui_shared = require("vim._extui.shared")
-
-local function flatten_msg_content(content)
-    local chunks = {}
-    for _, chunk in ipairs(content or {}) do
-        chunks[#chunks + 1] = chunk[2]
-    end
-    return (table.concat(chunks):gsub("\r", "")):gsub("\n+$", "")
-end
-
-local function message_title(kind)
-    local base = "Neovim"
-    if not kind or kind == "" then
-        return base
-    end
-    local suffix = ({ emsg = "Error", wmsg = "Warning" })[kind]
-        or ({ errormsg = "Error", warnmsg = "Warning" })[kind]
-    if suffix then
-        return string.format("%s %s", base, suffix)
-    end
-    return string.format("%s (%s)", base, kind)
-end
-
-local function hide_msg_window()
-    if extui_messages.msg.timer then
-        extui_messages.msg.timer:stop()
-    end
-    extui_messages.msg.count = 0
-    extui_messages.msg:close()
-end
-
-local function notifier_from_snacks()
-    local ok, Snacks = pcall(require, "snacks")
-    if not ok or not Snacks.did_setup then
-        return
-    end
-    local notifier = Snacks.notify
-    if type(notifier) == "table" then
-        if type(notifier.notify) == "function" then
-            notifier = notifier.notify
-        else
-            local mt = getmetatable(notifier)
-            if mt and type(mt.__call) == "function" then
-                notifier = function(...)
-                    return mt.__call(notifier, ...)
-                end
-            else
-                notifier = nil
-            end
-        end
-    end
-    if type(notifier) == "function" then
-        return notifier
-    end
-end
-
-local function reroute_messages_to_snacks()
-    if extui_messages._bare_snacks_notify then
-        return true
-    end
-
-    local notify = notifier_from_snacks()
-    if not notify then
-        return false
-    end
-
-    local orig_show_msg = extui_messages.show_msg
-    local orig_msg_show = extui_messages.msg_show
-    local last_kind = ""
-    local level_map = {
-        emsg = vim.log.levels.ERROR,
-        wmsg = vim.log.levels.WARN,
-    }
-
-    extui_messages.msg_show = function(kind, ...)
-        last_kind = kind or ""
-        return orig_msg_show(kind, ...)
-    end
-
-    extui_messages.show_msg = function(tar, content, replace_last, append)
-        if tar == "msg" then
-            local text = flatten_msg_content(content)
-            if text ~= "" then
-                notify(text, {
-                    level = level_map[last_kind] or vim.log.levels.INFO,
-                    title = message_title(last_kind),
-                })
-            end
-            hide_msg_window()
-            return
-        end
-        return orig_show_msg(tar, content, replace_last, append)
-    end
-
-    extui_messages._bare_snacks_notify = true
-    return true
-end
-
-local function move_msg_window_top_right()
-    local win = extui_shared.wins.msg
-    if not (win and win ~= -1 and vim.api.nvim_win_is_valid(win)) then
-        return
-    end
-    local cfg = vim.api.nvim_win_get_config(win)
-    cfg.anchor = "NE"
-    cfg.relative = "editor"
-    cfg.row = 0
-    cfg.col = vim.o.columns
-    vim.api.nvim_win_set_config(win, cfg)
-end
-
-local function enforce_top_right_anchor()
-    if extui_messages._bare_top_right then
-        return
-    end
-    local orig_set_pos = extui_messages.set_pos
-    extui_messages.set_pos = function(type)
-        orig_set_pos(type)
-        if type == nil or type == "msg" then
-            move_msg_window_top_right()
-        end
-    end
-    extui_messages._bare_top_right = true
-end
+vim.o.showmode = false
 
 require("vim._extui").enable({
     enable = true, -- Whether to enable or disable the UI.
 })
-
-vim.schedule(function()
-    local attempts = 40
-    local function attempt()
-        if reroute_messages_to_snacks() then
-            return
-        end
-        attempts = attempts - 1
-        if attempts <= 0 then
-            enforce_top_right_anchor()
-            move_msg_window_top_right()
-            return
-        end
-        vim.defer_fn(attempt, 100)
-    end
-    attempt()
-end)
 
 local function fold_virt_text(result, s, lnum, coloff)
     if not coloff then
@@ -301,4 +172,5 @@ vim.cmd([[
     set nrformats-=octal
     set sessionoptions-=options
     set viewoptions-=options
+    set clipboard+=unnamedplus
 ]])

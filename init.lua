@@ -1,5 +1,8 @@
 local year = os.date("%Y")
 
+vim.g.projects_dir = vim.env.HOME .. "/workspace"
+vim.g.work_projects_dir = "/media/max/workspace"
+
 local setup_external = function(name, value)
     if vim.g[name] == nil then
         vim.g[name] = value
@@ -17,3 +20,4 @@ require("plugins")
 require("keybinds")
 require("command")
 require("lsp").init()
+require("winbar")

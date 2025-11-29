@@ -107,6 +107,11 @@ local packages = {
         version = "main",
     },
     {
+        src = "https://github.com/nvim-treesitter/nvim-treesitter-context",
+        name = "nvim-treesitter-context",
+        version = "master",
+    },
+    {
         src = "https://github.com/OXY2DEV/markview.nvim",
         name = "markview",
         version = "main",

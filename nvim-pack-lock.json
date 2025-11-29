@@ -1,12 +1,12 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "b19413d",
+      "rev": "f13226770b4947eb7e66befbeb53c3db39f13e25",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'main'"
     },
     "catppuccin": {
-      "rev": "da33755",
+      "rev": "ce4a8e0d5267e67056f9f4dcf6cb1d0933c8ca00",
       "src": "https://github.com/catppuccin/nvim",
       "version": "'main'"
     },
@@ -16,7 +16,7 @@
       "version": "'main'"
     },
     "gitsigns": {
-      "rev": "cdafc32",
+      "rev": "5813e4878748805f1518cee7abb50fd7205a3a48",
       "src": "https://github.com/lewis6991/gitsigns.nvim",
       "version": "'main'"
     },
@@ -26,7 +26,7 @@
       "version": "'main'"
     },
     "markview": {
-      "rev": "86fcabc",
+      "rev": "bf62f7d173f4b42cd02794c6c5f5a8bd3047a58a",
       "src": "https://github.com/OXY2DEV/markview.nvim",
       "version": "'main'"
     },
@@ -36,7 +36,7 @@
       "version": "'main'"
     },
     "mini": {
-      "rev": "b409fd1",
+      "rev": "c007f4b3822c99b98328bc214589a721c69d1514",
       "src": "https://github.com/nvim-mini/mini.nvim",
       "version": "'main'"
     },
@@ -45,13 +45,38 @@
       "src": "https://github.com/jake-stewart/multicursor.nvim",
       "version": "'main'"
     },
+    "nvim-dap": {
+      "rev": "5860c7c501eb428d3137ee22c522828d20cca0b3",
+      "src": "https://github.com/mfussenegger/nvim-dap",
+      "version": "'master'"
+    },
+    "nvim-dap-ui": {
+      "rev": "cf91d5e2d07c72903d052f5207511bf7ecdb7122",
+      "src": "https://github.com/rcarriga/nvim-dap-ui",
+      "version": "'master'"
+    },
+    "nvim-dap-virtual-text": {
+      "rev": "fbdb48c2ed45f4a8293d0d483f7730d24467ccb6",
+      "src": "https://github.com/theHamsta/nvim-dap-virtual-text",
+      "version": "'master'"
+    },
+    "nvim-nio": {
+      "rev": "21f5324bfac14e22ba26553caf69ec76ae8a7662",
+      "src": "https://github.com/nvim-neotest/nvim-nio",
+      "version": "'master'"
+    },
     "nvim-treesitter": {
-      "rev": "c682a239",
+      "rev": "17885756e63df73ed90db62e4630f744ceda6514",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
+    "nvim-treesitter-context": {
+      "rev": "660861b1849256398f70450afdf93908d28dc945",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter-context",
+      "version": "'master'"
+    },
     "nvim-treesitter-textobjects": {
-      "rev": "227165a",
+      "rev": "63c4dce4a56312ef1bdeafd16bdefa008fcc950a",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
@@ -76,7 +101,7 @@
       "version": "'main'"
     },
     "yazi": {
-      "rev": "0fc745c",
+      "rev": "7f362f046666493047d45e70e8d32429defddf4b",
       "src": "https://github.com/mikavilpas/yazi.nvim",
       "version": "'main'"
     }

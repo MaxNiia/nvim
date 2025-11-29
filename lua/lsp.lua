@@ -218,17 +218,6 @@ M.init = function()
                     { buffer = bufnr, desc = "Switch Header/Source" }
                 )
             end
-
-            -- Call hierarchy navigation (if supported)
-            if client.supports_method("textDocument/prepareCallHierarchy") then
-                vim.keymap.set("n", "<leader>ci", function()
-                    require("call_hierarchy").incoming_calls()
-                end, { buffer = bufnr, desc = "Incoming Calls" })
-
-                vim.keymap.set("n", "<leader>co", function()
-                    require("call_hierarchy").outgoing_calls()
-                end, { buffer = bufnr, desc = "Outgoing Calls" })
-            end
         end,
     })
 end

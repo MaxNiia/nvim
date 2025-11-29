@@ -1,3 +1,21 @@
+require("nvim-treesitter").setup({
+    highlight = { enable = true },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = "<cr>",
+            node_incremental = "<cr>",
+            scope_incremental = false,
+            node_decremental = "<bs>",
+        },
+    },
+    indent = {
+        enable = true,
+        -- Treesitter unindents Yaml lists for some reason.
+        disable = { "yaml" },
+    },
+})
+
 local opts = {
     ensure_installed = {
         "asm",
@@ -173,6 +191,18 @@ local parsers_to_install = vim.iter(opts.ensure_installed)
     :totable()
 require("nvim-treesitter").install(parsers_to_install)
 require("nvim-treesitter").update(already_installed)
+require("treesitter-context").setup({
+    max_lines = 3,
+    multiline_threshold = 1,
+    min_window_height = 20,
+})
+
+vim.keymap.set("n", "[c", function()
+    vim.schedule(function()
+        require("treesitter-context").go_to_context()
+    end)
+    return "<Ignore>"
+end, { desc = "Jump to upper context", expr = true })
 
 vim.api.nvim_create_autocmd("FileType", {
     pattern = opts.filetypes,
