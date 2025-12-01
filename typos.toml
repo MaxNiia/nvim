@@ -6,3 +6,4 @@ locale = "en-us"
 
 [default.extend-words]
 flavour = "flavour"
+tese = "tese"

@@ -1,6 +1,19 @@
 local dap = require("dap")
 local dapui = require("dapui")
 
+local icons = require("icons")
+
+vim.fn.sign_define("DapBreakpoint", { text = icons.dap.Breakpoint[1], texthl = "DiagnosticError" })
+vim.fn.sign_define(
+    "DapBreakpointCondition",
+    { text = icons.dap.BreakpointCondition, texthl = "DiagnosticWarning" }
+)
+vim.fn.sign_define(
+    "DapBreakpointRejected",
+    { text = icons.dap.BreakpointRejected[1], texthl = "DiagnosticError" }
+)
+vim.fn.sign_define("DapStopped", { text = icons.dap.Stopped[1], texthl = "DiagnosticInfo" })
+
 dapui.setup({
     layouts = {
         {
@@ -44,12 +57,24 @@ dap.listeners.before.event_exited["dapui_config"] = function()
     dapui.close()
 end
 
--- Basic C/C++ adapter (can be overridden in .exrc)
 dap.adapters.cppdbg = {
     id = "cppdbg",
     type = "executable",
     command = "gdb",
     args = { "-i", "dap" },
+}
+
+local codelldb_path = vim.fn.expand("~/opt/codelldb/adapter/codelldb")
+local liblldb_path = vim.fn.expand("~/opt/codelldb/lldb/lib/liblldb.so") -- macOS: liblldb.dylib
+dap.adapters.lldb = {
+    type = "server",
+    port = "${port}",
+    executable = {
+        command = codelldb_path,
+        args = { "--port", "${port}" },
+        -- If needed:
+        -- detached = false,
+    },
 }
 
 -- Default C/C++ configuration (can be overridden in .exrc)
@@ -77,6 +102,30 @@ dap.configurations.cpp = {
     },
 }
 dap.configurations.c = dap.configurations.cpp
+
+-- Rust adapter
+dap.configurations.rust = {
+    {
+        name = "Debug current crate",
+        type = "lldb",
+        request = "launch",
+        program = function()
+            -- ask for target/debug binary, defaulting to crate name
+            return vim.fn.input(
+                "Executable: ",
+                vim.fn.getcwd() .. "/target/debug/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":t"),
+                "file"
+            )
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        args = {},
+        runInTerminal = false,
+        env = function()
+            return { LLDB_LAUNCH_FLAG_LAUNCH_ON_ATTACH = "1" }
+        end,
+    },
+}
 
 -- Python adapter
 dap.adapters.python = {

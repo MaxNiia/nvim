@@ -136,6 +136,11 @@ local packages = {
         name = "nvim-nio",
         version = "master",
     },
+    {
+        src = "https://github.com/stevearc/quicker.nvim",
+        name = "quicker",
+        version = "master",
+    },
 }
 
 vim.pack.add(packages, {

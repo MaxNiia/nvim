@@ -128,6 +128,25 @@ install-starlark-lsp:
 	@ln -sf $(LSP_DATA_DIR)/starpls/starpls $(INSTALL_DIR)/starpls
 	@echo "✓ starpls installed"
 
+# Rust analyzer (rustup)
+install-rust-lsp:
+	@echo "Installing rust-analyzer..."
+	@rustup component add rust-src
+	@rustup component add rust-analyzer
+	@echo "✓ rust-analyzer installed"
+
+# Glsl lsp (GitHub release)
+install-glsl-lsp:
+	@echo "installing glsl_analyzer..."
+	@mkdir -p $(LSP_DATA_DIR)/glsl_analyzer
+	@cd $(LSP_DATA_DIR)/glsl_analyzer && \
+		wget -q --show-progress https://github.com/nolanderc/glsl_analyzer/releases/download/v1.7.1/x86_64-linux-musl.zip -O glsl_analyzer.zip && \
+		unzip glsl_analyzer.zip && \
+		rm glsl_analyzer.zip
+	@mkdir -p $(INSTALL_DIR)
+	@ln -sf $(LSP_DATA_DIR)/glsl_analyzer/bin/glsl_analyzer $(INSTALL_DIR)/glsl_analyzer
+	@echo "✓ glsl_analyzer installed"
+
 # Debug Adapters
 
 # Debugpy (pipx)

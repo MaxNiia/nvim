@@ -85,6 +85,11 @@
       "src": "https://github.com/nvim-lua/plenary.nvim",
       "version": "'master'"
     },
+    "quicker": {
+      "rev": "9983d4b28881e1df626e3682167b45c284d4da8c",
+      "src": "https://github.com/stevearc/quicker.nvim",
+      "version": "'master'"
+    },
     "snacks": {
       "rev": "fe7cfe9",
       "src": "https://github.com/folke/snacks.nvim",

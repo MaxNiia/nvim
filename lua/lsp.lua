@@ -57,6 +57,8 @@ local setup_lsps = function()
     vim.lsp.enable({
         "lua_ls",
         "clangd",
+        "glsl_analyzer",
+        "rust-analyzer",
         "typos_lsp",
         "basedpyright",
         "dockerls",
@@ -194,7 +196,7 @@ M.init = function()
                 "n",
                 "grd",
                 vim.lsp.buf.format,
-                { buffer = bufnr, desc = "Refresh & DisplayCodelens" }
+                { buffer = bufnr, desc = "Format buffer" }
             )
 
             if client.name == "clangd" then
