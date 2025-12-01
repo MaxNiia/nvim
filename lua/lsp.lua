@@ -139,7 +139,7 @@ M.init = function()
                                 vim.lsp.buf.format({
                                     bufnr = args.buf,
                                     id = client.id,
-                                    async = false,
+                                    async = true,
                                 })
                             end
                         end,

@@ -45,6 +45,6 @@ key("n", "<leader>R", "<cmd>restart<cr>", { desc = "Restart Neovim" })
 key("c", "dm", "delmarks", { desc = "Delete marks" })
 
 -- Test/Implementation toggle
-key("n", "<leader>tt", function()
+key("n", "<leader>wt", function()
     require("test_toggle").toggle()
 end, { desc = "Toggle Test/Implementation" })

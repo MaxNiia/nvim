@@ -122,9 +122,7 @@ vim.keymap.set("n", "<leader>mp", function()
     MiniVisits.select_path()
 end, { desc = "List visit marks" })
 
--- Custom mini.statusline setup matching original statusline
 local statusline = require("mini.statusline")
-
 statusline.setup({
     content = {
         active = function()
@@ -151,7 +149,18 @@ statusline.setup({
                 { hl = mode_hl, strings = { search, location } },
             })
         end,
+        inactive = function()
+            local filename = statusline.section_filename({ trunc_width = 140 })
+            local fileinfo = statusline.section_fileinfo({ trunc_width = 120 })
+            local diff = statusline.section_diff({ trunc_width = 75 })
+
+            return statusline.combine_groups({
+                "%<", -- Separator
+                { hl = "MiniStatuslineFilename", strings = { filename } },
+                "%=", -- Separator
+                { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
+            })
+        end,
     },
     use_icons = true,
-    set_vim_settings = true,
 })

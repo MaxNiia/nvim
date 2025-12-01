@@ -48,12 +48,6 @@ require("blink.cmp").setup({
                     return 0
                 end,
             },
-            lsp = {
-                score_offset = 100,
-            },
-            snippets = {
-                score_offset = 80,
-            },
         },
         default = {
             "lsp",

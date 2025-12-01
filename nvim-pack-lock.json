@@ -46,22 +46,22 @@
       "version": "'main'"
     },
     "nvim-dap": {
-      "rev": "5860c7c501eb428d3137ee22c522828d20cca0b3",
+      "rev": "5860c7c",
       "src": "https://github.com/mfussenegger/nvim-dap",
       "version": "'master'"
     },
     "nvim-dap-ui": {
-      "rev": "cf91d5e2d07c72903d052f5207511bf7ecdb7122",
+      "rev": "cf91d5e",
       "src": "https://github.com/rcarriga/nvim-dap-ui",
       "version": "'master'"
     },
     "nvim-dap-virtual-text": {
-      "rev": "fbdb48c2ed45f4a8293d0d483f7730d24467ccb6",
+      "rev": "fbdb48c",
       "src": "https://github.com/theHamsta/nvim-dap-virtual-text",
       "version": "'master'"
     },
     "nvim-nio": {
-      "rev": "21f5324bfac14e22ba26553caf69ec76ae8a7662",
+      "rev": "21f5324",
       "src": "https://github.com/nvim-neotest/nvim-nio",
       "version": "'master'"
     },

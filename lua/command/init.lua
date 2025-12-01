@@ -10,7 +10,7 @@ end, {
 
 -- Autosave implementation with debounce for InsertLeave
 local autosave_timer = nil
-local autosave_debounce_ms = 4000
+local autosave_debounce_ms = 10000
 
 local function autosave(bufnr)
     -- Skip if buffer is not valid
