@@ -1,0 +1,36 @@
+require("which-key").setup({
+    preset = "helix",
+    plugins = {
+        registers = true,
+        marks = true,
+        presets = {
+            operators = true,
+            motions = true,
+            text_objects = true,
+            windows = true,
+            nav = true,
+            z = true,
+            g = true,
+        },
+    },
+    triggers = {
+        { "s", mode = "nv" },
+        { "<auto>", mode = "nxsotv" },
+    },
+    spec = {
+        { "<leader><leader>", group = "Smart file picker" },
+        { "<leader>E", group = "Explore Dir" },
+        { "<leader>w", group = "Sessions" },
+        { "<leader>f", group = "Find" },
+        { "<leader>g", group = "Git" },
+        { "<leader>s", group = "Search" },
+        { "<leader>t", group = "Terminal" },
+        { "<leader>u", group = "Options" },
+        { "<leader>h", group = "Jira" },
+        { "<leader>c", group = "Current" },
+        { "gm", group = "Multicursor", mode = { "n", "v" } },
+        { "gr", group = "LSP" },
+        { "gra", name = "Code action" },
+        { "grn", name = "Rename symbol" },
+    },
+})
