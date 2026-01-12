@@ -122,7 +122,7 @@ vim.opt.listchars:append({
 })
 vim.opt.display:append({ "truncate" })
 vim.opt.formatoptions:append({ "j" })
-vim.opt.complete:remove({ "truncate" })
+vim.opt.complete:remove({ "i" })
 vim.opt.nrformats:remove({ "octal" })
 vim.opt.sessionoptions:remove({ "options" })
 vim.opt.sessionoptions:append({ "globals" })

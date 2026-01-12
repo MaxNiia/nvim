@@ -1,7 +1,7 @@
 require("blink.cmp").setup({
     snippets = { preset = "mini_snippets" },
     term = {
-        enabled = true,
+        enabled = false,
         completion = {
             list = {
                 selection = {
