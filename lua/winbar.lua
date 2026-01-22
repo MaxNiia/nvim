@@ -3,6 +3,7 @@
 local icons = require("icons")
 local folder_icon = icons.folder.open
 local arrow = icons.chevron.right
+local modified_icon = icons.files.modified
 
 local M = {}
 
@@ -48,6 +49,9 @@ function M.render()
     -- Remove leading slash.
     path = path:gsub("^/", "")
 
+    -- Add modified indicator if buffer is modified.
+    local modified = vim.bo.modified and string.format(" %%#WinbarModified#%s", modified_icon) or ""
+
     return table.concat({
         " ",
         prefix,
@@ -59,6 +63,7 @@ function M.render()
             :totable(),
             separator
         ),
+        modified,
     })
 end
 
