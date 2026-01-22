@@ -171,7 +171,7 @@ statusline.setup({
                 { hl = "MiniStatuslineFilename", strings = { git, jira } },
                 "%=", -- Separator
                 { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
-                { hl = mode_hl, strings = { search, recording or "", location } },
+                { hl = mode_hl, strings = { search, location } },
             })
         end,
         inactive = function()
