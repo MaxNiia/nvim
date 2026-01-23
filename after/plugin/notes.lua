@@ -30,7 +30,7 @@ function M.get_tags_from_file(file)
 end
 
 function M.get_tags_from_buffer()
-    return get_tags_from_file(vim.fs.normalize(vim.fn.expand("%:p") --[[@as string]]))
+    return M.get_tags_from_file(vim.fs.normalize(vim.fn.expand("%:p") --[[@as string]]))
 end
 
 function M.get_all_tags()
@@ -40,7 +40,7 @@ function M.get_all_tags()
     local files = vim.fn.globpath(M.dirs.notes_dir, "**/*.md", false, true)
 
     for _, file in ipairs(files) do
-        local tags = get_tags_from_file(file)
+        local tags = M.get_tags_from_file(file)
         for _, tag in ipairs(tags) do
             tag_count[tag] = (tag_count[tag] or 0) + 1
         end
@@ -91,7 +91,7 @@ end
 
 -- Show tag picker (fuzzy find by tag)
 function M.tag_picker()
-    local tags = get_all_tags()
+    local tags = M.get_all_tags()
 
     if #tags == 0 then
         vim.notify("No tags found in notes", vim.log.levels.INFO)
@@ -112,14 +112,14 @@ function M.tag_picker()
         end,
     }, function(selected)
         if selected then
-            open_notes_with_tag(selected.tag)
+            M.open_notes_with_tag(selected.tag)
         end
     end)
 end
 
 -- Open notes with specific tag
 function M.open_notes_with_tag(tag)
-    local matches = find_notes_with_tag(tag)
+    local matches = M.find_notes_with_tag(tag)
 
     if #matches == 0 then
         vim.notify(string.format("No notes found with tag #%s", tag), vim.log.levels.INFO)
@@ -154,7 +154,7 @@ function M.tag_complete(findstart, base)
         return start and start - 1 or col
     else
         -- Return matching tags
-        local all_tags = get_all_tags()
+        local all_tags = M.get_all_tags()
         local matches = {}
         local base_clean = base:gsub("^#", "") -- Remove leading # if present
 
@@ -173,7 +173,7 @@ end
 -- Find notes with similar tags to current note
 function M.find_related_notes()
     local current_file = vim.api.nvim_buf_get_name(0)
-    local current_tags = get_tags_from_buffer()
+    local current_tags = M.get_tags_from_buffer()
 
     if #current_tags == 0 then
         vim.notify("Current note has no tags", vim.log.levels.INFO)
@@ -185,7 +185,7 @@ function M.find_related_notes()
 
     for _, file in ipairs(files) do
         if file ~= current_file then
-            local tags = get_tags_from_file(file)
+            local tags = M.get_tags_from_file(file)
             local matches = 0
 
             for _, tag in ipairs(current_tags) do
@@ -247,7 +247,7 @@ function M.find_notes_with_tags(tags, mode, opts)
     local matches = {}
 
     for _, file in ipairs(files) do
-        local file_tags = get_tags_from_file(file)
+        local file_tags = M.get_tags_from_file(file)
         local match = false
 
         if mode == "AND" then
@@ -300,7 +300,7 @@ function M.find_notes_by_tag_prefix(prefix)
     local matches = {}
 
     for _, file in ipairs(files) do
-        local tags = get_tags_from_file(file)
+        local tags = M.get_tags_from_file(file)
         for _, tag in ipairs(tags) do
             if vim.startswith(tag, prefix) then
                 local title = vim.fn.readfile(file, "", 1)[1] or vim.fn.fnamemodify(file, ":t:r")
@@ -359,7 +359,7 @@ end
 
 -- Show tag cloud in floating window
 function M.show_tag_cloud()
-    local tags = get_all_tags()
+    local tags = M.get_all_tags()
 
     if #tags == 0 then
         vim.notify("No tags found", vim.log.levels.INFO)
@@ -463,7 +463,7 @@ end
 
 -- Insert tag at cursor
 function M.insert_tag()
-    local tags = get_all_tags()
+    local tags = M.get_all_tags()
 
     if #tags == 0 then
         vim.ui.input({ prompt = "New tag: " }, function(tag)
@@ -613,6 +613,17 @@ key("n", "<leader>nd", function()
 
     -- Open the journal file
     vim.cmd.edit(journal_file)
+
+    -- Add header if new file
+    if vim.fn.line("$") == 1 and vim.fn.getline(1) == "" then
+        local day_name = os.date("%A")
+        vim.api.nvim_buf_set_lines(0, 0, 1, false, {
+            "# " .. day_name .. ", " .. date,
+            "",
+            "",
+        })
+        vim.api.nvim_win_set_cursor(0, { 3, 0 })
+    end
 end, { desc = "Open today's journal" })
 
 key("n", "<leader>nc", function()
@@ -644,7 +655,44 @@ key("n", "<leader>nt", function()
     vim.api.nvim_buf_set_lines(0, row - 1, row, false, { new_line })
 end, { desc = "Toggle checkbox" })
 
-key("n", "<leader>nf", M.tag_picker, { desc = "Find notes by tag" })
+key("n", "<leader>nf", function()
+    Snacks.picker.files({ cwd = M.dirs.notes_dir })
+end, { desc = "Find notes" })
+key("n", "<leader>ng", function()
+    Snacks.picker.grep({ cwd = M.dirs.notes_dir })
+end, { desc = "Grep notes" })
+key("n", "<leader>nt", function()
+    local tags = M.get_all_tags()
+    if #tags == 0 then
+        vim.notify("No tags found in notes", vim.log.levels.INFO)
+        return
+    end
+    Snacks.picker({
+        title = "Tags",
+        items = vim.tbl_map(function(item)
+            return {
+                text = item.tag,
+                tag = item.tag,
+                count = item.count,
+            }
+        end, tags),
+        format = function(item)
+            return {
+                { "#" .. item.tag, "Tag" },
+                { " (" .. item.count .. ")", "Comment" },
+            }
+        end,
+        confirm = function(picker, item)
+            picker:close()
+            if item then
+                Snacks.picker.grep({
+                    cwd = M.dirs.notes_dir,
+                    search = "#" .. item.tag .. "\\b",
+                })
+            end
+        end,
+    })
+end, { desc = "Find notes by tag" })
 key("n", "<leader>nw", M.show_tag_cloud, { desc = "Show tag cloud" })
 key("n", "<leader>nr", M.find_related_notes, { desc = "Find related notes" })
 key("n", "<leader>nR", M.find_recent_notes, { desc = "Recent notes" })

@@ -25,6 +25,11 @@
       "src": "https://github.com/MagicDuck/grug-far.nvim",
       "version": "'main'"
     },
+    "lazydev": {
+      "rev": "5231c62aa83c2f8dc8e7ba957aa77098cda1257d",
+      "src": "https://github.com/folke/lazydev.nvim",
+      "version": "'main'"
+    },
     "markview": {
       "rev": "18fc148c83925919d94f3fc8e5c74f2d108b9b44",
       "src": "https://github.com/OXY2DEV/markview.nvim",
@@ -90,6 +95,16 @@
       "src": "https://github.com/folke/snacks.nvim",
       "version": "'main'"
     },
+    "todo-comments": {
+      "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
+      "src": "https://github.com/folke/todo-comments.nvim",
+      "version": "'main'"
+    },
+    "trouble": {
+      "rev": "bd67efe408d4816e25e8491cc5ad4088e708a69a",
+      "src": "https://github.com/folke/trouble.nvim",
+      "version": "'main'"
+    },
     "vim-abolish": {
       "rev": "dcbfe065297d31823561ba787f51056c147aa682",
       "src": "https://github.com/tpope/vim-abolish",
@@ -101,7 +116,7 @@
       "version": "'main'"
     },
     "yazi": {
-      "rev": "4a8bd3284708e11e48bcd865892902a46abdcce0",
+      "rev": "5634692fab930cb3ef8359760a11418b2d4d2d85",
       "src": "https://github.com/mikavilpas/yazi.nvim",
       "version": "'main'"
     }
