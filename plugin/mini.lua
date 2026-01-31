@@ -113,12 +113,7 @@ require("mini.sessions").setup({
     directory = vim.fn.stdpath("data") .. "/sessions",
     file = "Session.vim",
 })
-vim.keymap.set(
-    "n",
-    "<leader>ws",
-    "<cmd>lua MiniSessions.write('Session.vim')<cr>",
-    { desc = "Save session" }
-)
+vim.keymap.set("n", "<leader>ws", "<cmd>lua MiniSessions.write('Session.vim')<cr>", { desc = "Save session" })
 
 -- Mini.visits keybinds
 vim.keymap.set("n", "<leader>ma", function()

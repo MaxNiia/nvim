@@ -73,10 +73,7 @@ vim.api.nvim_create_autocmd("VimLeave", {
     callback = function()
         -- Save all modified buffers on exit
         for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-           if vim.api.nvim_buf_is_valid(bufnr)
-                and vim.bo[bufnr].buflisted
-                and vim.bo[bufnr].bufhidden == ""
-            then
+            if vim.api.nvim_buf_is_valid(bufnr) and vim.bo[bufnr].buflisted and vim.bo[bufnr].bufhidden == "" then
                 autosave(bufnr)
             end
         end
@@ -147,10 +144,7 @@ vim.api.nvim_create_autocmd("TermOpen", {
                             vim.cmd.edit(path)
                             vim.fn.cursor(tonumber(lnum), tonumber(col) or 1)
                             vim.cmd.normal("zz")
-                            vim.notify(
-                                string.format("Jumped to %s:%s", path, lnum),
-                                vim.log.levels.INFO
-                            )
+                            vim.notify(string.format("Jumped to %s:%s", path, lnum), vim.log.levels.INFO)
                             return
                         end
                     end

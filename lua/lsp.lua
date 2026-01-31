@@ -3,9 +3,7 @@ local function switch_source_header(bufnr, client)
     ---@diagnostic disable-next-line:param-type-mismatch
     if not client or not client:supports_method(method_name) then
         return vim.notify(
-            ("method %s is not supported by any servers active on the current buffer"):format(
-                method_name
-            )
+            ("method %s is not supported by any servers active on the current buffer"):format(method_name)
         )
     end
     local params = vim.lsp.util.make_text_document_params(bufnr)
@@ -129,10 +127,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             vim.bo[bufnr].formatexpr = "v:lua.vim.lsp.formatexpr(#{timeout_ms:250})"
 
             if not client:supports_method("textDocument/willSaveWaitUntil") then
-                local group = vim.api.nvim_create_augroup(
-                    "BufSave_" .. bufnr .. "_" .. client.id,
-                    { clear = true }
-                )
+                local group = vim.api.nvim_create_augroup("BufSave_" .. bufnr .. "_" .. client.id, { clear = true })
                 vim.api.nvim_create_autocmd("BufWritePre", {
                     group = group,
                     buffer = args.buf,
@@ -170,46 +165,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         -- Mappings
         vim.keymap.set("n", "<leader>k", vim.diagnostic.open_float, { desc = "Open float" })
-        vim.keymap.set(
-            "n",
-            "<leader>j",
-            vim.diagnostic.setloclist,
-            { desc = "Set diagnostic list" }
-        )
-        vim.keymap.set(
-            "n",
-            "qK",
-            vim.lsp.buf.signature_help,
-            { buffer = bufnr, desc = "Signature Help" }
-        )
-        vim.keymap.set(
-            { "n", "v" },
-            "grc",
-            vim.lsp.codelens.run,
-            { buffer = bufnr, desc = "Run Codelens" }
-        )
-        vim.keymap.set(
-            "n",
-            "grC",
-            vim.lsp.codelens.refresh,
-            { buffer = bufnr, desc = "Refresh & DisplayCodelens" }
-        )
-        vim.keymap.set(
-            "n",
-            "grd",
-            vim.lsp.buf.format,
-            { buffer = bufnr, desc = "Format buffer" }
-        )
+        vim.keymap.set("n", "<leader>j", vim.diagnostic.setloclist, { desc = "Set diagnostic list" })
+        vim.keymap.set("n", "qK", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
+        vim.keymap.set({ "n", "v" }, "grc", vim.lsp.codelens.run, { buffer = bufnr, desc = "Run Codelens" })
+        vim.keymap.set("n", "grC", vim.lsp.codelens.refresh, { buffer = bufnr, desc = "Refresh & DisplayCodelens" })
+        vim.keymap.set("n", "grd", vim.lsp.buf.format, { buffer = bufnr, desc = "Format buffer" })
 
         if client.name == "clangd" then
-            vim.api.nvim_buf_create_user_command(
-                bufnr,
-                "LspClangdSwitchSourceHeader",
-                function()
-                    switch_source_header(bufnr, client)
-                end,
-                { desc = "Switch between source/header" }
-            )
+            vim.api.nvim_buf_create_user_command(bufnr, "LspClangdSwitchSourceHeader", function()
+                switch_source_header(bufnr, client)
+            end, { desc = "Switch between source/header" })
 
             vim.api.nvim_buf_create_user_command(bufnr, "LspClangdShowSymbolInfo", function()
                 symbol_info(bufnr, client)
@@ -220,38 +185,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 "<leader>o",
                 "<cmd>LspClangdSwitchSourceHeader<cr>",
                 { buffer = bufnr, desc = "Switch Header/Source" }
-            )
+            )   
         end
     end,
 })
-
-local has_blink, blink = pcall(require, "blink.cmp")
-local capabilities = vim.tbl_deep_extend(
-    "force",
-    {},
-    vim.lsp.protocol.make_client_capabilities(),
-    has_blink and blink.get_lsp_capabilities() or {}
-)
-
-capabilities.offsetEncoding = { "utf-16" }
-capabilities.semanticTokensProvider = nil
-capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true,
-}
-capabilities.textDocument.completion.completionItem = {
-    documentationFormat = { "markdown", "plaintext" },
-    snippetSupport = true,
-    preselectSupport = true,
-    insertReplaceSupport = true,
-    deprecatedSupport = true,
-    commitCharactersSupport = true,
-    tagSupport = { valueSet = { 1 } },
-    resolveSupport = { properties = { "documentation", "detail", "additionalTextEdits" } },
-}
-
-local M = {}
-
-M.capabilities = capabilities
-
-return M

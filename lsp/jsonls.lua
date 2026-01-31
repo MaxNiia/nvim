@@ -16,6 +16,6 @@ npm i -g vscode-langservers-extracted
     },
 }
 
-opts.capabilities = vim.tbl_deep_extend("force", opts.capabilities, require("lsp").capabilities)
+opts.capabilities = vim.tbl_deep_extend("force", opts.capabilities, require("capabilities").capabilities)
 
 return opts

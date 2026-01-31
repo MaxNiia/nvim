@@ -75,11 +75,7 @@ return {
             else
                 vim.schedule(function()
                     vim.notify(
-                        ("[rust_analyzer] cmd failed with code %d: %s\n%s"):format(
-                            output.code,
-                            cmd,
-                            output.stderr
-                        )
+                        ("[rust_analyzer] cmd failed with code %d: %s\n%s"):format(output.code, cmd, output.stderr)
                     )
                 end)
             end

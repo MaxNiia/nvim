@@ -69,19 +69,12 @@ function M.find_notes_with_tag(tag)
     for _, file in ipairs(files) do
         local content = table.concat(vim.fn.readfile(file), "\n")
         -- Match tag followed by non-word char or end of string
-        if
-            content:match("#" .. escaped_tag .. "[^%w_/-]")
-            or content:match("#" .. escaped_tag .. "$")
-        then
+        if content:match("#" .. escaped_tag .. "[^%w_/-]") or content:match("#" .. escaped_tag .. "$") then
             local title = vim.fn.readfile(file, "", 1)[1] or vim.fn.fnamemodify(file, ":t:r")
             table.insert(matches, {
                 file = file,
                 title = title:gsub("^#+ ", ""),
-                display = string.format(
-                    "%s (%s)",
-                    title:gsub("^#+ ", ""),
-                    vim.fn.fnamemodify(file, ":~:.")
-                ),
+                display = string.format("%s (%s)", title:gsub("^#+ ", ""), vim.fn.fnamemodify(file, ":~:.")),
             })
         end
     end

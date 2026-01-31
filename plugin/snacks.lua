@@ -80,7 +80,7 @@ require("snacks").setup({
             enabled = vim.fn.has("nvim-0.10") == 1,
             easing = "linear",
             duration = {
-                step = 20,   -- ms per step
+                step = 20, -- ms per step
                 total = 100, -- maximum duration
             },
         },
@@ -105,9 +105,7 @@ require("snacks").setup({
         },
         -- filter for buffers to enable indent guides
         filter = function(buf)
-            return vim.g.snacks_indent ~= false
-                and vim.b[buf].snacks_indent ~= false
-                and vim.bo[buf].buftype == ""
+            return vim.g.snacks_indent ~= false and vim.b[buf].snacks_indent ~= false and vim.bo[buf].buftype == ""
         end,
     },
     dashboard = {
@@ -125,8 +123,8 @@ require("snacks").setup({
         left = { "mark", "sign" }, -- priority of signs on the left (high to low)
         right = { "fold", "git" }, -- priority of signs on the right (high to low)
         folds = {
-            open = true,           -- show open fold icons
-            git_hl = true,         -- use Git Signs hl for fold icons
+            open = true, -- show open fold icons
+            git_hl = true, -- use Git Signs hl for fold icons
         },
         git = {
             -- patterns to match Git signs
@@ -465,8 +463,7 @@ vim.api.nvim_create_autocmd("LspProgress", {
     ---@param ev {data: {client_id: integer, params: lsp.ProgressParams}}
     callback = function(ev)
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
-        local value = ev.data.params
-            .value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
+        local value = ev.data.params.value --[[@as {percentage?: number, title?: string, message?: string, kind: "begin" | "report" | "end"}]]
         if not client or type(value) ~= "table" then
             return
         end
@@ -536,9 +533,7 @@ Snacks.toggle
     .option("conceallevel", { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
     :map("<leader>uc")
 Snacks.toggle.treesitter():map("<leader>uT")
-Snacks.toggle
-    .option("background", { off = "light", on = "dark", name = "Dark Background" })
-    :map("<leader>ub")
+Snacks.toggle.option("background", { off = "light", on = "dark", name = "Dark Background" }):map("<leader>ub")
 Snacks.toggle.inlay_hints():map("<leader>uh")
 Snacks.toggle({
     name = "Auto Format global",

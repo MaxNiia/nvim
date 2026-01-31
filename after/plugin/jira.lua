@@ -54,26 +54,19 @@ local function show_issue_in_buffer(issue_key)
 end
 
 local function jira_my_issues()
-    jira_picker(
-        'jira issue list -a$(jira me) -s~"Done" -s~"Closed" --plain --no-headers',
-        function(item)
-            local key = extract_issue_key(item.data)
-            if key then
-                set_current_issue(key)
-                show_issue_in_buffer(key)
-            end
-        end,
-        { title = "My Issues" }
-    )
+    jira_picker('jira issue list -a$(jira me) -s~"Done" -s~"Closed" --plain --no-headers', function(item)
+        local key = extract_issue_key(item.data)
+        if key then
+            set_current_issue(key)
+            show_issue_in_buffer(key)
+        end
+    end, { title = "My Issues" })
 end
 
 local function jira_by_status()
     jira_picker('echo "In Progress\nIn Review\nTodo\nDone"', function(status_item)
         jira_picker(
-            string.format(
-                'jira issue list -a$(jira me) -s"%s" --plain --no-headers',
-                status_item.data
-            ),
+            string.format('jira issue list -a$(jira me) -s"%s" --plain --no-headers', status_item.data),
             function(issue_item)
                 local key = extract_issue_key(issue_item.data)
                 if key then
@@ -142,9 +135,8 @@ local function comment_on_issue()
                 return
             end
 
-            local result = vim.fn.system(
-                string.format("jira issue comment add %s %s", issue, vim.fn.shellescape(comment))
-            )
+            local result =
+                vim.fn.system(string.format("jira issue comment add %s %s", issue, vim.fn.shellescape(comment)))
 
             if vim.v.shell_error == 0 then
                 Snacks.notify("Comment added to " .. issue, { title = "Jira" })
@@ -248,8 +240,7 @@ local function view_issue_history()
         return
     end
 
-    local lines =
-        vim.fn.systemlist(string.format("jira issue view %s --plain --comments 20", issue))
+    local lines = vim.fn.systemlist(string.format("jira issue view %s --plain --comments 20", issue))
 
     if vim.v.shell_error ~= 0 or #lines == 0 then
         Snacks.notify.error("Failed to get history", { title = "Jira" })

@@ -1,6 +1,8 @@
 local function indent_string(levels)
     local sw = vim.bo.shiftwidth
-    if sw == 0 then sw = vim.bo.tabstop end
+    if sw == 0 then
+        sw = vim.bo.tabstop
+    end
 
     if vim.bo.expandtab then
         return string.rep(" ", sw * levels)
@@ -10,14 +12,14 @@ local function indent_string(levels)
 end
 
 local function paste_copyright_header()
-    local header         = vim.g.copyright_text
-    local cs             = vim.bo.commentstring
+    local header = vim.g.copyright_text
+    local cs = vim.bo.commentstring
     local prefix, suffix = cs:match("^(.*)%%s(.*)$")
 
-    local is_block       = suffix ~= nil and suffix ~= ""
-    local output         = ""
-    local indent         = indent_string(1)
-    local pre            = prefix
+    local is_block = suffix ~= nil and suffix ~= ""
+    local output = ""
+    local indent = indent_string(1)
+    local pre = prefix
 
     if is_block then
         pre = indent

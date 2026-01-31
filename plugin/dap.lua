@@ -4,14 +4,8 @@ local dapui = require("dapui")
 local icons = require("icons")
 
 vim.fn.sign_define("DapBreakpoint", { text = icons.dap.Breakpoint[1], texthl = "DiagnosticError" })
-vim.fn.sign_define(
-    "DapBreakpointCondition",
-    { text = icons.dap.BreakpointCondition, texthl = "DiagnosticWarning" }
-)
-vim.fn.sign_define(
-    "DapBreakpointRejected",
-    { text = icons.dap.BreakpointRejected[1], texthl = "DiagnosticError" }
-)
+vim.fn.sign_define("DapBreakpointCondition", { text = icons.dap.BreakpointCondition, texthl = "DiagnosticWarning" })
+vim.fn.sign_define("DapBreakpointRejected", { text = icons.dap.BreakpointRejected[1], texthl = "DiagnosticError" })
 vim.fn.sign_define("DapStopped", { text = icons.dap.Stopped[1], texthl = "DiagnosticInfo" })
 
 dapui.setup({

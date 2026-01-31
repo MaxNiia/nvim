@@ -72,7 +72,7 @@ vim.o.number = true
 vim.o.numberwidth = 2
 vim.o.relativenumber = true
 vim.o.shiftwidth = 0
-vim.o.showbreak = ""
+vim.o.showbreak = "> "
 vim.o.smartcase = true
 vim.o.smartindent = true
 vim.o.smarttab = true
@@ -167,13 +167,13 @@ setting({
 setting({
     name = "notes_directory",
     default_value = vim.fn.expand("~/Documents/notes/"),
-    description = "Where to place notes."
+    description = "Where to place notes.",
 })
 
 setting({
     name = "clangd_query_driver",
     default_value = "/usr/bin/clang, /usr/bin/clang++",
-    description = "Query driver for clangd, where clangd retrieves standard library symbols from."
+    description = "Query driver for clangd, where clangd retrieves standard library symbols from.",
 })
 
 setting({
@@ -182,7 +182,7 @@ setting({
         "Copyright",
         "Year: {YEAR}",
     },
-    description = "Text to insert when copyright is invoked."
+    description = "Text to insert when copyright is invoked.",
 })
 
 vim.g.available_settings = settings

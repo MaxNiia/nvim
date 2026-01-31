@@ -28,12 +28,7 @@ end, { desc = "Skip previous match" })
 -- Add and remove cursors with control + left click.
 vim.keymap.set("n", "<c-leftmouse>", mc.handleMouse, { desc = "Multicursor mouse click" })
 vim.keymap.set("n", "<c-leftdrag>", mc.handleMouseDrag, { desc = "Multicursor mouse drag" })
-vim.keymap.set(
-    "n",
-    "<c-leftrelease>",
-    mc.handleMouseRelease,
-    { desc = "Multicursor mouse release" }
-)
+vim.keymap.set("n", "<c-leftrelease>", mc.handleMouseRelease, { desc = "Multicursor mouse release" })
 -- Disable and enable cursors.
 vim.keymap.set({ "n", "x" }, "<c-q>", mc.toggleCursor, { desc = "Toggle cursor" })
 

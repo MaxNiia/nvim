@@ -47,7 +47,7 @@ return {
         test = "⏲",
     },
     git = {
-        icon = '',
+        icon = "",
         added = "",
         modified = "",
         removed = "",
@@ -56,7 +56,7 @@ return {
         closed = "",
         open = "",
     },
-    terminal = '',
+    terminal = "",
     fold = {
         open = "",
         closed = "",
