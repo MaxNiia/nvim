@@ -136,6 +136,21 @@ local packages = {
         name = "nvim-nio",
         version = "master",
     },
+    {
+        src = "https://github.com/folke/lazydev.nvim",
+        name = "lazydev",
+        version = "main",
+    },
+    {
+        src = "https://github.com/folke/trouble.nvim",
+        name = "trouble",
+        version = "main",
+    },
+    {
+        src = "https://github.com/folke/todo-comments.nvim",
+        name = "todo-comments",
+        version = "main",
+    },
 }
 
 vim.pack.add(packages, {
