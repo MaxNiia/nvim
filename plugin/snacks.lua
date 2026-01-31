@@ -350,7 +350,17 @@ key("n", "<leader>gh", function()
         vim.notify("Incomplete conflict marker", vim.log.levels.ERROR)
         return
     end
-    vim.cmd(string.format("%d,%dd", mid_line, end_line))
+    -- Find base marker (zdiff3/diff3) between start and mid
+    local base_line = 0
+    for i = start_line + 1, mid_line - 1 do
+        if vim.fn.getline(i):match("^||||||| ") then
+            base_line = i
+            break
+        end
+    end
+    -- Delete from base marker (or mid if no base) to end
+    local delete_from = base_line > 0 and base_line or mid_line
+    vim.cmd(string.format("%d,%dd", delete_from, end_line))
     vim.cmd(string.format("%dd", start_line))
     vim.notify("Kept ours (HEAD)", vim.log.levels.INFO)
 end, { desc = "Conflict: Keep ours (HEAD)" })
