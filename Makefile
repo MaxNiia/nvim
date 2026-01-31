@@ -1,4 +1,4 @@
-.PHONY: help check install install-lua-ls install-ts_ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-cmake-ls install-starpls install-debugpy install-yazi install-fzf install-rg install-tree-sitter-cli install-fd install-git-delta install-ast-grep install-lazygit install-yamlls install-taplo install-bashls install-bazelrc-lsp
+.PHONY: help check install install-lua-ls install-ts_ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-cmake-ls install-starpls install-stylua install-debugpy install-yazi install-fzf install-rg install-tree-sitter-cli install-fd install-git-delta install-ast-grep install-lazygit install-yamlls install-taplo install-bashls install-bazelrc-lsp
 
 INSTALL_DIR := $(HOME)/.local/bin
 LSP_DATA_DIR := $(HOME)/.local/share/nvim-lsp
@@ -26,6 +26,9 @@ help:
 	@echo "  - bashls"
 	@echo "  - bazelrc-lsp"
 	@echo ""
+	@echo "Formatters:"
+	@echo "  - stylua (lua formatter)"
+	@echo ""
 	@echo "Debug Adapters:"
 	@echo "  - debugpy (Python debugging)"
 	@echo ""
@@ -48,7 +51,7 @@ check:
 	@command -v unzip >/dev/null 2>&1 || (echo "❌ unzip not found" && exit 1)
 	@echo "✓ All package managers found"
 
-install: check install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-cmake-ls install-starpls install-debugpy install-yazi install-ts_ls install-glsl-lsp install-rust-lsp install-yamlls install-taplo install-bashls install-bazelrc-lsp
+install: check install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-cmake-ls install-starpls install-install-stylua debugpy install-yazi install-ts_ls install-glsl-lsp install-rust-lsp install-yamlls install-taplo install-bashls install-bazelrc-lsp
 	@echo "✓ All LSPs, debug adapters and programs installed"
 
 # Lua Language Server (GitHub release)
@@ -157,6 +160,14 @@ install-glsl-lsp:
 	@mkdir -p $(INSTALL_DIR)
 	@ln -sf $(LSP_DATA_DIR)/glsl_analyzer/bin/glsl_analyzer $(INSTALL_DIR)/glsl_analyzer
 	@echo "✓ glsl_analyzer installed"
+
+# Formatters
+
+# Stylua (cargo)
+install-stylua:
+	@echo "Installing stylua..."
+	@cargo install stylua --force
+	@echo "✓ stylua installed"
 
 # Debug Adapters
 

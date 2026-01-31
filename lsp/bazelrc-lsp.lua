@@ -19,6 +19,6 @@ make install-bazelrc-lsp
     },
 }
 
-opts.capabilities = vim.tbl_deep_extend("force", opts.capabilities, require("capabilities").capabilities)
+opts.capabilities = vim.tbl_deep_extend("force", require("capabilities").capabilities, opts.capabilities)
 
 return opts

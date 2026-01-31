@@ -16,17 +16,6 @@ local opts = {
         Lua = {
             format = {
                 enable = true,
-                indent_size = "4",
-                indent_style = "space",
-                quote_style = "double",
-                call_arg_parentheses = "always",
-                trailing_table_separator = "always",
-                align_call_args = true,
-                align_function_params = true,
-                align_continuous_assign_statement = false,
-                align_continuous_rect_table_field = false,
-                align_if_branch = false,
-                align_array_table = false,
             },
             hint = {
                 enable = true,
@@ -52,6 +41,7 @@ local opts = {
         },
     },
     capabilities = {
+        documentFormattingProvider = false,
         textDocument = {
             completion = {
                 completionItem = {
@@ -70,6 +60,6 @@ Symlink a release version.
     },
 }
 
-opts.capabilities = vim.tbl_deep_extend("force", opts.capabilities, require("capabilities").capabilities)
+opts.capabilities = vim.tbl_deep_extend("force", require("capabilities").capabilities, opts.capabilities)
 
 return opts

@@ -44,7 +44,7 @@
 ---
 
 ---@type vim.lsp.Config
-return {
+local opts = {
     init_options = { hostInfo = "neovim" },
     cmd = { "typescript-language-server", "--stdio" },
     filetypes = {
@@ -84,6 +84,7 @@ return {
             return vim.NIL
         end,
     },
+    capabilities = {},
     commands = {
         ["editor.action.showReferences"] = function(command, ctx)
             local client = assert(vim.lsp.get_client_by_id(ctx.client_id))
@@ -149,3 +150,7 @@ return {
         end, { desc = "Go to source definition" })
     end,
 }
+
+opts.capabilities = vim.tbl_deep_extend("force", require("capabilities").capabilities, opts.capabilities)
+
+return opts

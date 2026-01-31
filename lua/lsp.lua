@@ -52,6 +52,7 @@ local setup_lsps = function()
     })
     vim.lsp.enable({
         "lua_ls",
+        "stylua",
         "ts_ls",
         "clangd",
         "glsl_analyzer",
@@ -124,23 +125,26 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
 
         if client:supports_method("textDocument/formatting") then
-            vim.bo[bufnr].formatexpr = "v:lua.vim.lsp.formatexpr(#{timeout_ms:250})"
+            if client.name ~= "lua_ls" then
+                vim.keymap.set("n", "grd", vim.lsp.buf.format, { buffer = bufnr, desc = "Format buffer" })
+                vim.bo[bufnr].formatexpr = "v:lua.vim.lsp.formatexpr(#{timeout_ms:250})"
 
-            if not client:supports_method("textDocument/willSaveWaitUntil") then
-                local group = vim.api.nvim_create_augroup("BufSave_" .. bufnr .. "_" .. client.id, { clear = true })
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    group = group,
-                    buffer = args.buf,
-                    callback = function()
-                        if vim.b.autoformat and vim.g.autoformat then
-                            vim.lsp.buf.format({
-                                bufnr = args.buf,
-                                id = client.id,
-                                async = true,
-                            })
-                        end
-                    end,
-                })
+                if not client:supports_method("textDocument/willSaveWaitUntil") then
+                    local group = vim.api.nvim_create_augroup("BufSave_" .. bufnr .. "_" .. client.id, { clear = true })
+                    vim.api.nvim_create_autocmd("BufWritePre", {
+                        group = group,
+                        buffer = args.buf,
+                        callback = function()
+                            if vim.b.autoformat and vim.g.autoformat then
+                                vim.lsp.buf.format({
+                                    bufnr = args.buf,
+                                    id = client.id,
+                                    async = true,
+                                })
+                            end
+                        end,
+                    })
+                end
             end
         end
 
@@ -169,7 +173,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "qK", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
         vim.keymap.set({ "n", "v" }, "grc", vim.lsp.codelens.run, { buffer = bufnr, desc = "Run Codelens" })
         vim.keymap.set("n", "grC", vim.lsp.codelens.refresh, { buffer = bufnr, desc = "Refresh & DisplayCodelens" })
-        vim.keymap.set("n", "grd", vim.lsp.buf.format, { buffer = bufnr, desc = "Format buffer" })
 
         if client.name == "clangd" then
             vim.api.nvim_buf_create_user_command(bufnr, "LspClangdSwitchSourceHeader", function()
@@ -185,7 +188,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
                 "<leader>o",
                 "<cmd>LspClangdSwitchSourceHeader<cr>",
                 { buffer = bufnr, desc = "Switch Header/Source" }
-            )   
+            )
         end
     end,
 })
