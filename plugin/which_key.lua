@@ -27,7 +27,6 @@ require("which-key").setup({
         { "<leader>t", group = "Terminal" },
         { "<leader>u", group = "Options" },
         { "<leader>h", group = "Jira" },
-        { "<leader>c", group = "Current" },
         { "gm", group = "Multicursor", mode = { "n", "v" } },
         { "gr", group = "LSP" },
         { "gra", name = "Code action" },

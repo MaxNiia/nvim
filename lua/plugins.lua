@@ -87,6 +87,11 @@ local packages = {
         version = "master",
     },
     {
+        src = "https://github.com/rust-lang/rust.vim",
+        name = "rust.vim",
+        version = "master",
+    },
+    {
         src = "https://github.com/zaucy/mcos.nvim",
         name = "mcsos",
         version = "main",
@@ -150,6 +155,11 @@ local packages = {
         src = "https://github.com/folke/todo-comments.nvim",
         name = "todo-comments",
         version = "main",
+    },
+    {
+        src = "https://github.com/stevearc/overseer.nvim",
+        name = "overseer",
+        version = "master",
     },
 }
 
