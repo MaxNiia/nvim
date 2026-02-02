@@ -36,16 +36,16 @@ end
 local key = vim.keymap.set
 
 -- Core overseer commands
-key("n", "<leader>ot", "<cmd>OverseerToggle<cr>", { desc = "Toggle task list" })
-key("n", "<leader>or", "<cmd>OverseerRun<cr>", { desc = "Run task" })
-key("n", "<leader>oq", "<cmd>OverseerQuickAction<cr>", { desc = "Quick action" })
-key("n", "<leader>oi", "<cmd>OverseerInfo<cr>", { desc = "Overseer info" })
-key("n", "<leader>ob", "<cmd>OverseerBuild<cr>", { desc = "Build task" })
-key("n", "<leader>oa", "<cmd>OverseerTaskAction<cr>", { desc = "Task action" })
-key("n", "<leader>oc", "<cmd>OverseerClearCache<cr>", { desc = "Clear cache" })
+key("n", "<leader>rt", "<cmd>OverseerToggle<cr>", { desc = "Toggle task list" })
+key("n", "<leader>rr", "<cmd>OverseerRun<cr>", { desc = "Run task" })
+key("n", "<leader>rq", "<cmd>OverseerQuickAction<cr>", { desc = "Quick action" })
+key("n", "<leader>ri", "<cmd>OverseerInfo<cr>", { desc = "Overseer info" })
+key("n", "<leader>rb", "<cmd>OverseerBuild<cr>", { desc = "Build task" })
+key("n", "<leader>ra", "<cmd>OverseerTaskAction<cr>", { desc = "Task action" })
+key("n", "<leader>rc", "<cmd>OverseerClearCache<cr>", { desc = "Clear cache" })
 
 -- Run :make (uses buffer's makeprg)
-key("n", "<leader>om", function()
+key("n", "<leader>rm", function()
     local overseer = require("overseer")
     local makeprg = vim.bo.makeprg
     if makeprg == "" then
@@ -64,7 +64,7 @@ key("n", "<leader>om", function()
 end, { desc = "Run makeprg" })
 
 -- Quick build command (prompts for command)
-key("n", "<leader>oB", function()
+key("n", "<leader>rB", function()
     local overseer = require("overseer")
     overseer.run_template({ name = "shell" }, function(task)
         if task then
@@ -74,7 +74,7 @@ key("n", "<leader>oB", function()
 end, { desc = "Run shell command" })
 
 -- Re-run last task
-key("n", "<leader>ol", function()
+key("n", "<leader>rl", function()
     local overseer = require("overseer")
     local tasks = overseer.list_tasks({ recent_first = true })
     if vim.tbl_isempty(tasks) then
@@ -85,7 +85,7 @@ key("n", "<leader>ol", function()
 end, { desc = "Re-run last task" })
 
 -- Run project-specific tasks (configure in .nvim.lua or ftplugin)
-key("n", "<leader>op", function()
+key("n", "<leader>rp", function()
     local tasks = get_tasks()
     if vim.tbl_isempty(tasks) then
         vim.notify("No tasks defined (set vim.b.overseer_tasks or vim.g.overseer_tasks)", vim.log.levels.WARN)
@@ -122,8 +122,8 @@ Configure tasks in three ways:
      },
    }
 
-3. Use makeprg directly with <leader>om
+3. Use makeprg directly with <leader>rm
 
 Priority: vim.b.overseer_tasks > vim.g.overseer_tasks
-Then use <leader>op to pick and run, or <leader>om to run makeprg.
+Then use <leader>rp to pick and run, or <leader>rm to run makeprg.
 ]]
