@@ -43,5 +43,3 @@ key("n", "gQ", "mzgggqG`z<cmd>delmarks z<cr>zz", { desc = "Format buffer" })
 
 -- Restart Neovim.
 key("n", "<leader>R", "<cmd>restart<cr>", { desc = "Restart Neovim" })
-
-key("c", "dm", "delmarks", { desc = "Delete marks" })
