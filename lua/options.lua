@@ -98,7 +98,6 @@ vim.o.winblend = 0
 vim.o.laststatus = 3
 vim.o.showcmdloc = "statusline"
 vim.o.cmdheight = 1
-vim.o.pumheight = 10
 vim.o.scrolloff = 4
 vim.o.sidescrolloff = 4
 vim.o.updatetime = 250
