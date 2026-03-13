@@ -104,6 +104,18 @@ vim.o.sidescrolloff = 4
 vim.o.updatetime = 250
 vim.o.showmode = false
 
+require("vim._core.ui2").enable({
+    enable = true,
+    msg = {
+        ---@type 'cmd'|'msg' Default message target, either in the
+        ---cmdline or in a separate ephemeral message window.
+        ---@type string|table<string, 'cmd'|'msg'|'pager'> Default message target
+        ---or table mapping |ui-messages| kinds and triggers to a target.
+        targets = "msg",
+        timeout = 4000, -- Time a message is visible in the message window.
+    },
+})
+
 vim.opt.fillchars:append({
     diff = icons.misc.slash,
     foldopen = icons.fold.open,
