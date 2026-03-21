@@ -5,7 +5,7 @@ require("snacks").setup({
     },
     gh = {},
     lazygit = {
-        enabled = false,
+        enabled = true,
     },
     explorer = {
         enabled = false,
@@ -193,6 +193,9 @@ end, { desc = "Branches" })
 key("n", "<leader>gL", function()
     Snacks.picker.git_log_line()
 end, { desc = "Log Line" })
+key("n", "<leader>gF", function()
+    Snacks.picker.git_log_file()
+end, { desc = "Log File" })
 -- Grep
 key("n", "<leader>sb", function()
     Snacks.picker.lines()
@@ -323,7 +326,7 @@ end, { desc = "Lazygit" })
 key("n", "<leader>gG", function()
     require("snacks").terminal("lazygit --git-dir=$HOME/.cfg --work-tree=$HOME")
 end, { desc = "Lazygit dotfiles" })
-key("n", "<leader>gB", function()
+key("n", "<leader>go", function()
     Snacks.gitbrowse()
 end, { desc = "Browse repo" })
 key("n", "<leader>gf", function()
@@ -544,6 +547,15 @@ Snacks.toggle({
         vim.g.autoformat = state
     end,
 }):map("<leader>uf")
+Snacks.toggle({
+    name = "Git Blame",
+    get = function()
+        return require("gitsigns.config").config.current_line_blame
+    end,
+    set = function()
+        require("gitsigns").toggle_current_line_blame()
+    end,
+}):map("<leader>uG")
 Snacks.toggle({
     name = "Auto Format buffer",
     get = function()

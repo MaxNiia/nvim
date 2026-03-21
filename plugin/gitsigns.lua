@@ -174,7 +174,7 @@ require("gitsigns").setup({
         end, {
             desc = "Blame line",
         })
-        key({ "n" }, "<leader>gf", function()
+        key({ "n" }, "<leader>gB", function()
             gs.blame({ ignore_whitespace = true })
         end, {
             desc = "Blame file",
