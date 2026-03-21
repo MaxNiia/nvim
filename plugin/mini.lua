@@ -131,14 +131,6 @@ end, { desc = "List visit marks" })
 
 local statusline = require("mini.statusline")
 
-local function get_jira_issue()
-    local issue = vim.g.Jira_current_issue
-    if issue then
-        return "🔑 " .. issue
-    end
-    return ""
-end
-
 statusline.setup({
     content = {
         active = function()
@@ -154,16 +146,10 @@ statusline.setup({
             local search = statusline.section_searchcount({ trunc_width = 75 })
             local diff = statusline.section_diff({ trunc_width = 75 })
 
-            local jira = get_jira_issue()
-            if statusline.is_truncated(100) then
-                jira = ""
-            end
-
             return statusline.combine_groups({
                 { hl = mode_hl, strings = { mode } },
                 { hl = "MiniStatuslineDevinfo", strings = { diff, diagnostics, lsp } },
                 "%<", -- Separator
-                { hl = "MiniStatuslineFilename", strings = { git, jira } },
                 "%=", -- Separator
                 { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
                 { hl = mode_hl, strings = { search, location } },

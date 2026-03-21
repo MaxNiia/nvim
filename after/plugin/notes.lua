@@ -542,37 +542,6 @@ function M.find_todos()
     end)
 end
 
--- Open note for current Jira issue
-function M.open_jira_issue_note()
-    local jira_issue = vim.g.Jira_current_issue
-
-    if not jira_issue or jira_issue == "" then
-        vim.notify("No Jira issue currently selected", vim.log.levels.WARN)
-        return
-    end
-
-    -- Create Issues directory if needed
-    vim.fn.mkdir(M.dirs.issues_dir, "p")
-
-    local filename = string.format("%s/%s.md", M.dirs.issues_dir, jira_issue)
-    vim.cmd.edit(filename)
-
-    -- Add header if new file
-    if vim.fn.line("$") == 1 and vim.fn.getline(1) == "" then
-        local date = os.date("%Y-%m-%d")
-        vim.api.nvim_buf_set_lines(0, 0, 1, false, {
-            "# " .. jira_issue,
-            "",
-            string.format("Created: %s", date),
-            "",
-            "## Notes",
-            "",
-            "",
-        })
-        vim.api.nvim_win_set_cursor(0, { 7, 0 })
-    end
-end
-
 vim.api.nvim_create_autocmd("FileType", {
     pattern = "markdown",
     callback = function()
@@ -691,7 +660,6 @@ key("n", "<leader>nr", M.find_related_notes, { desc = "Find related notes" })
 key("n", "<leader>nR", M.find_recent_notes, { desc = "Recent notes" })
 key("n", "<leader>nn", M.create_quick_note, { desc = "Create new note" })
 key("n", "<leader>ni", M.insert_tag, { desc = "Insert tag" })
-key("n", "<leader>nj", M.open_jira_issue_note, { desc = "Open Jira issue note" })
 key("n", "<leader>no", M.find_todos, { desc = "Find todos" })
 
 return M
