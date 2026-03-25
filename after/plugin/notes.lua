@@ -1,11 +1,10 @@
-M = {}
+local M = {}
 
 M.dirs = {
     notes_dir = vim.g.notes_directory,
     journal_dir = vim.g.notes_directory .. "Journal",
     issues_dir = vim.g.notes_directory .. "Issues",
 }
-
 function M.get_tags_from_file(file)
     local ok, content = pcall(vim.fn.readfile, file)
     if not ok then
@@ -598,7 +597,7 @@ key("n", "<leader>nc", function()
     vim.cmd.startinsert({ bang = true })
 end, { desc = "Create checkbox with date" })
 
-key("n", "<leader>nt", function()
+key("n", "<leader>nT", function()
     local line = vim.api.nvim_get_current_line()
     local new_line
 
