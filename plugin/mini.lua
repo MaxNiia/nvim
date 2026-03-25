@@ -155,7 +155,7 @@ statusline.setup({
 
             return statusline.combine_groups({
                 { hl = mode_hl, strings = { mode } },
-                { hl = "MiniStatuslineDevinfo", strings = { diff, diagnostics, lsp } },
+                { hl = "MiniStatuslineDevinfo", strings = { git, diff, diagnostics, lsp } },
                 "%<", -- Separator
                 "%=", -- Separator
                 { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
