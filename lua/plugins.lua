@@ -161,6 +161,11 @@ local packages = {
         name = "overseer",
         version = "master",
     },
+    {
+        src = "https://github.com/HiPhish/rainbow-delimiters.nvim",
+        name = "rainbow-delimiters",
+        version = "master",
+    },
 }
 
 vim.pack.add(packages, {

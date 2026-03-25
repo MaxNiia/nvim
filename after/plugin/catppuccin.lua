@@ -42,6 +42,7 @@ require("catppuccin").setup({
         blink_cmp = true,
         grug_far = true,
         gitsigns = true,
+        rainbow_delimiters = true,
         snacks = true,
         markview = true,
         mini = {
