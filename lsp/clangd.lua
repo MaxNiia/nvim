@@ -19,9 +19,12 @@ local opts = {
     },
     cmd = {
         "clangd",
-        "--background-index=true",
+        "--background-index",
+        "--background-index-priority=low",
         "--clang-tidy",
         "--completion-style=detailed",
+        "--pch-storage=memory",
+        "--function-arg-placeholders=false",
         vim.fn.has("macunix") == 1 and "--malloc-trim" or nil,
         "--all-scopes-completion=true",
         "--query-driver=" .. vim.g.clangd_query_driver,
