@@ -25,7 +25,7 @@ require("which-key").setup({
         { "<leader>g", group = "Git" },
         { "<leader>s", group = "Search" },
         { "<leader>t", group = "Terminal" },
-        { "<leader>w", group = "Overseer" },
+        { "<leader>r", group = "Overseer" },
         { "<leader>u", group = "Options" },
         { "gm", group = "Multicursor", mode = { "n", "v" } },
         { "gr", group = "LSP" },
