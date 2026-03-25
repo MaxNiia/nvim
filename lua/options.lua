@@ -16,6 +16,7 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
 
 vim.b.autoformat = true
+vim.g.autoformat = true
 
 vim.opt.wildignore = {
     ".DS_Store",
@@ -98,7 +99,6 @@ vim.o.winblend = 0
 vim.o.laststatus = 3
 vim.o.showcmdloc = "statusline"
 vim.o.cmdheight = 1
-vim.o.pumheight = 10
 vim.o.scrolloff = 4
 vim.o.sidescrolloff = 4
 vim.o.updatetime = 250
@@ -125,6 +125,7 @@ vim.opt.fillchars:append({
     stl = " ",
     stlnc = " ",
 })
+vim.o.list = true
 vim.opt.listchars:append({
     tab = icons.chevron.right .. " ",
     trail = icons.misc.minus,
