@@ -104,6 +104,16 @@ end
 setup_lsps()
 setup_diagnostics()
 
+-- Global fallback: LSP format if available, otherwise re-indent with =.
+vim.keymap.set("n", "grd", function()
+    local clients = vim.lsp.get_clients({ bufnr = 0, method = "textDocument/formatting" })
+    if #clients > 0 then
+        vim.lsp.buf.format()
+    else
+        vim.cmd("normal! gg=G")
+    end
+end, { desc = "Format buffer" })
+
 vim.api.nvim_create_autocmd("LspAttach", {
     group = vim.api.nvim_create_augroup("UserLspConfig", {}),
     callback = function(args)
