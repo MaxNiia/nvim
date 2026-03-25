@@ -159,7 +159,7 @@ statusline.setup({
                 "%<", -- Separator
                 "%=", -- Separator
                 { hl = "MiniStatuslineFileinfo", strings = { fileinfo } },
-                { hl = mode_hl, strings = { search, location } },
+                { hl = mode_hl, strings = { search, location, "%S" } },
             })
         end,
         inactive = function()
