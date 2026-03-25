@@ -60,15 +60,38 @@ require("snacks").setup({
         keys = {
             q = "hide",
             gf = function(self)
-                local f = vim.fn.findfile(vim.fn.expand("<cfile>"), "**")
-                if f == "" then
-                    Snacks.notify.warn("No file under cursor")
-                else
-                    self:hide()
-                    vim.schedule(function()
-                        vim.cmd("e " .. f)
-                    end)
+                local line = vim.api.nvim_get_current_line()
+                local file, lnum, col_num
+
+                -- gcc/clang: file:line:col:
+                file, lnum, col_num = line:match("([^%s:]+):(%d+):(%d+):")
+                if not file then
+                    -- file:line:
+                    file, lnum = line:match("([^%s:]+):(%d+):")
                 end
+                if not file then
+                    -- MSVC: file(line):
+                    file, lnum = line:match("([^%s%(]+)%((%d+)%)")
+                end
+                if not file then
+                    file = vim.fn.expand("<cfile>")
+                end
+
+                local found = file ~= "" and vim.fn.findfile(file, "**") or ""
+                if found == "" then
+                    Snacks.notify.warn("No file under cursor")
+                    return
+                end
+
+                self:hide()
+                local row = lnum and tonumber(lnum)
+                local col = col_num and math.max(0, tonumber(col_num) - 1) or 0
+                vim.schedule(function()
+                    vim.cmd("e " .. vim.fn.fnameescape(found))
+                    if row then
+                        vim.api.nvim_win_set_cursor(0, { row, col })
+                    end
+                end)
             end,
         },
     },
