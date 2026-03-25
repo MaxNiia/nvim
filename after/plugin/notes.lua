@@ -661,4 +661,5 @@ key("n", "<leader>nn", M.create_quick_note, { desc = "Create new note" })
 key("n", "<leader>ni", M.insert_tag, { desc = "Insert tag" })
 key("n", "<leader>no", M.find_todos, { desc = "Find todos" })
 
+package.loaded["notes"] = M
 return M
