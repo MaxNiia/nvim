@@ -5,7 +5,7 @@ end
 
 local gen_loader = require("mini.snippets").gen_loader
 local snippets = {
-    gen_loader.from_file(vim.fn.stdpath("config") .. "snippets/global.json"),
+    gen_loader.from_file(vim.fn.stdpath("config") .. "/snippets/global.json"),
     gen_loader.from_lang(),
 }
 
