@@ -33,6 +33,8 @@ require("which-key").setup({
         { "<leader>t", group = "Terminal" },
         { "<leader>u", group = "Options" },
         { "<leader>w", group = "Sessions" },
+        { "]c", desc = "Next diff hunk" },
+        { "[c", desc = "Prev diff hunk" },
         { "gm", group = "Multicursor", mode = { "n", "v" } },
         { "gr", group = "LSP" },
         { "gra", name = "Code action" },

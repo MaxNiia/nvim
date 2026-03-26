@@ -95,6 +95,11 @@
       "src": "https://github.com/nvim-lua/plenary.nvim",
       "version": "'master'"
     },
+    "rainbow-delimiters": {
+      "rev": "50080ed0f44dbc18ae13b81278a01b951a06127a",
+      "src": "https://github.com/HiPhish/rainbow-delimiters.nvim",
+      "version": "'master'"
+    },
     "rust.vim": {
       "rev": "889b9a7515db477f4cb6808bef1769e53493c578",
       "src": "https://github.com/rust-lang/rust.vim",
