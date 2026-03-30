@@ -1,7 +1,7 @@
 {
   "plugins": {
     "blink.cmp": {
-      "rev": "7c9777bae52009a198a2e6d56bc9185dbf3d151f",
+      "rev": "8a2060dff4e68ac17f1c92aed526c76fb0c1ac2f",
       "src": "https://github.com/saghen/blink.cmp",
       "version": "'main'"
     },
@@ -41,7 +41,7 @@
       "version": "'main'"
     },
     "mini": {
-      "rev": "debd726e1b620e9934d554c2772de2e99cd3ccbe",
+      "rev": "af5f75c9ce572a4d1f0c77d6fb4ea764d16c1b3c",
       "src": "https://github.com/nvim-mini/mini.nvim",
       "version": "'main'"
     },
@@ -51,7 +51,7 @@
       "version": "'main'"
     },
     "nvim-dap": {
-      "rev": "2a8799ad91a1495c6bdf753f9b2179b3ff0f5bba",
+      "rev": "4f5deb110d9ff8994d96c21df95e2271d11214f9",
       "src": "https://github.com/mfussenegger/nvim-dap",
       "version": "'master'"
     },
@@ -131,7 +131,7 @@
       "version": "'main'"
     },
     "yazi": {
-      "rev": "cb669a55963b390878880a044aacd6f9f136dde6",
+      "rev": "47a224d61cf543ee094134e49994ec1681ceb439",
       "src": "https://github.com/mikavilpas/yazi.nvim",
       "version": "'main'"
     }
