@@ -184,7 +184,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.keymap.set("n", "<leader>j", vim.diagnostic.setloclist, { desc = "Set diagnostic list" })
         vim.keymap.set("n", "qK", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "Signature Help" })
         vim.keymap.set({ "n", "v" }, "grc", vim.lsp.codelens.run, { buffer = bufnr, desc = "Run Codelens" })
-        vim.keymap.set("n", "grC", vim.lsp.codelens.refresh, { buffer = bufnr, desc = "Refresh & DisplayCodelens" })
+        vim.keymap.set("n", "grC", function()
+            vim.lsp.codelens.enable(true)
+        end, { buffer = bufnr, desc = "DisplayCodelens" })
 
         if client.name == "clangd" then
             vim.api.nvim_buf_create_user_command(bufnr, "LspClangdSwitchSourceHeader", function()
