@@ -51,7 +51,7 @@ check:
 	@command -v unzip >/dev/null 2>&1 || (echo "❌ unzip not found" && exit 1)
 	@echo "✓ All package managers found"
 
-install: check install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-neocmake install-starpls install-install-stylua debugpy install-yazi install-ts_ls install-glsl-lsp install-rust-lsp install-yamlls install-taplo install-bashls install-bazelrc-lsp
+install: check install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-neocmake install-starpls install-stylua debugpy install-yazi install-ts_ls install-glsl-lsp install-rust-lsp install-yamlls install-taplo install-bashls install-bazelrc-lsp
 	@echo "✓ All LSPs, debug adapters and programs installed"
 
 # Lua Language Server (GitHub release)
@@ -78,10 +78,11 @@ install-clangd:
 	@ln -sf $(LSP_DATA_DIR)/clangd/clangd_*/bin/clangd $(INSTALL_DIR)/clangd
 	@echo "✓ clangd installed"
 
-# Typos LSP (cargo)
+# Typos LSP (pre-built binary — building from source is broken due to tower_lsp_server API changes)
 install-typos-lsp:
 	@echo "Installing typos-lsp..."
-	@cargo install --git https://github.com/tekumara/typos-lsp typos-lsp
+	@curl -fsSL https://github.com/tekumara/typos-lsp/releases/download/v0.1.52/typos-lsp-v0.1.52-x86_64-unknown-linux-gnu.tar.gz \
+		| tar -xz -C ~/.local/bin typos-lsp
 	@echo "✓ typos-lsp installed"
 
 # BasedPyright (pipx)
