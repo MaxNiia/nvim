@@ -1,4 +1,14 @@
 vim.g.have_nerd_font = true
+
+local win32yank = "/mnt/c/Users/Max/scoop/apps/neovim/current/bin/win32yank.exe"
+if vim.fn.executable(win32yank) == 1 then
+    vim.g.clipboard = {
+        name = "win32yank",
+        copy = { ["+"] = { win32yank, "-i", "--crlf" }, ["*"] = { win32yank, "-i", "--crlf" } },
+        paste = { ["+"] = { win32yank, "-o", "--lf" }, ["*"] = { win32yank, "-o", "--lf" } },
+        cache_enabled = false,
+    }
+end
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
@@ -10,7 +20,7 @@ vim.g.loaded_node_provider = 0
 vim.o.findfunc = "v:lua.FdFind"
 function _G.FdFind(pat)
     local result = vim.system({ "fd", "--type", "f", "--full-path", pat }, { text = true }):wait()
-return vim.split(result.stdout, "\n", { trimempty = true })
+    return vim.split(result.stdout, "\n", { trimempty = true })
 end
 
 vim.opt.wildignore = {
@@ -84,6 +94,7 @@ vim.o.undofile = true
 vim.opt.mousescroll = { "ver:3", "hor:0" }
 vim.o.winborder = "rounded"
 vim.o.wildmenu = true
+vim.opt.wildoptions = { "pum", "fuzzy" }
 vim.o.winblend = 0
 vim.o.laststatus = 3
 vim.o.showcmdloc = "statusline"
@@ -93,12 +104,12 @@ vim.o.sidescrolloff = 4
 vim.o.updatetime = 250
 vim.o.showmode = true
 
-require('vim._core.ui2').enable({})
+require("vim._core.ui2").enable({})
 
 vim.opt.fillchars:append({
-    diff =  "╱",
-    foldopen =  "",
-    foldclose =  "",
+    diff = "╱",
+    foldopen = "",
+    foldclose = "",
     foldsep = "│",
     fold = " ",
     stl = " ",
@@ -110,7 +121,7 @@ vim.opt.listchars:append({
     trail = "",
     extends = "",
     precedes = "",
-    nbsp =  "",
+    nbsp = "",
 })
 vim.opt.display:append({ "truncate" })
 vim.opt.formatoptions:append({ "j" })
@@ -124,10 +135,12 @@ if bg == "light" or bg == "dark" then
     vim.opt.background = bg
 end
 vim.opt.wildmode = "noselect"
+vim.opt.grepprg = "rg --vimgrep"
+vim.opt.grepformat = "%f:%l:%c:%m"
 
 vim.api.nvim_create_autocmd("CmdlineChanged", {
-        pattern = {":", "/", "?"},
-        callback = function ()
-                vim.fn.wildtrigger()
-        end
+    pattern = { ":", "/", "?" },
+    callback = function()
+        vim.fn.wildtrigger()
+    end,
 })

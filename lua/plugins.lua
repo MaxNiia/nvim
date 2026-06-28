@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("PackChanged", {
 })
 
 local gh = function(x)
-        return 'https://github.com/' .. x
+    return "https://github.com/" .. x
 end
 
 local packages = {

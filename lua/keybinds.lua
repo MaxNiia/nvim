@@ -13,7 +13,7 @@ key("n", "<m-left>", "<c-w><", { desc = "Decrease width" })
 key("n", "<m-J>", "<c-w>=", { desc = "Equal height" })
 key("n", "<m-K>", "<c-w>_", { desc = "Max height" })
 key("n", "<m-L>", "<c-w>|", { desc = "Max width" })
-key("t", "<esc>", "<c-\\><c-n>", {})
+key("t", "jk", "<c-\\><c-n>", {})
 key({ "n", "v", "o" }, "<leader>y", '"+y', { desc = "Yank to system" })
 key({ "n", "v", "o" }, "<leader>p", '"+p', { desc = "Paste from system" })
 key("n", "<leader>H", "<cmd>nohl<CR>", { desc = "Clear highlighting" })
@@ -71,3 +71,13 @@ end, { desc = "Toggle Git Num Highlight" })
 key("n", "<leader>uX", function()
     require("gitsigns").toggle_signs()
 end, { desc = "Toggle Git Signs" })
+key("n", "<leader>ug", function()
+    local current = vim.o.grepprg
+    if current:find("-uu") then
+        vim.o.grepprg = "rg --vimgrep"
+        vim.notify("grep: normal (respects .gitignore)")
+    else
+        vim.o.grepprg = "rg -uu --vimgrep"
+        vim.notify("grep: unrestricted (hidden + ignored)")
+    end
+end, { desc = "Toggle grep unrestricted" })
