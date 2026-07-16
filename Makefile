@@ -1,4 +1,4 @@
-.PHONY: help check install install-lua-ls install-ts_ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-neocmake install-starpls install-stylua install-debugpy install-yazi install-fzf install-rg install-tree-sitter-cli install-fd install-git-delta install-ast-grep install-lazygit install-yamlls install-taplo install-bashls install-bazelrc-lsp
+.PHONY: help check install install-lua-ls install-ts_ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-neocmake install-starpls install-stylua install-debugpy install-yazi install-fzf install-rg install-tree-sitter-cli install-fd install-git-delta install-ast-grep install-lazygit install-yamlls install-taplo install-bashls install-bazelrc-lsp install-ols
 
 INSTALL_DIR := $(HOME)/.local/bin
 LSP_DATA_DIR := $(HOME)/.local/share/nvim-lsp
@@ -25,6 +25,7 @@ help:
 	@echo "  - taplo"
 	@echo "  - bashls"
 	@echo "  - bazelrc-lsp"
+	@echo "  - ols"
 	@echo ""
 	@echo "Formatters:"
 	@echo "  - stylua (lua formatter)"
@@ -51,8 +52,23 @@ check:
 	@command -v unzip >/dev/null 2>&1 || (echo "❌ unzip not found" && exit 1)
 	@echo "✓ All package managers found"
 
-install: check install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-neocmake install-starpls install-stylua debugpy install-yazi install-ts_ls install-glsl-lsp install-rust-lsp install-yamlls install-taplo install-bashls install-bazelrc-lsp
+install: check install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-neocmake install-starpls install-stylua debugpy install-yazi install-ts_ls install-glsl-lsp install-rust-lsp install-yamlls install-taplo install-bashls install-bazelrc-lsp install-ols
 	@echo "✓ All LSPs, debug adapters and programs installed"
+
+# OLS (GitHub release)
+install-ols:
+	@echo "Installing ols..."
+	@mkdir -p $(LSP_DATA_DIR)/ols
+	@cd $(LSP_DATA_DIR)/ols && \
+		wget -q --show-progress https://github.com/DanielGavin/ols/releases/download/dev-2026-05/ols-x86_64-unknown-linux-gnu.zip -O ols.zip && \
+		unzip -o ols.zip && \
+		rm ols.zip
+	@mkdir -p $(INSTALL_DIR)
+	@ln -sf $(LSP_DATA_DIR)/ols/odinfmt-x86_64-unknown-linux-gnu $(INSTALL_DIR)/odinfmt
+	@chmod +x $(INSTALL_DIR)/odinfmt
+	@ln -sf $(LSP_DATA_DIR)/ols/ols-x86_64-unknown-linux-gnu $(INSTALL_DIR)/ols
+	@chmod +x $(INSTALL_DIR)/ols
+	@echo "✓ ols installed"
 
 # Lua Language Server (GitHub release)
 install-lua-ls:
@@ -64,6 +80,7 @@ install-lua-ls:
 		rm lua-ls.tar.gz
 	@mkdir -p $(INSTALL_DIR)
 	@ln -sf $(LSP_DATA_DIR)/lua-ls/bin/lua-language-server $(INSTALL_DIR)/lua-language-server
+	@chmod +x $(INSTALL_DIR)/lua-language-server
 	@echo "✓ lua-language-server installed"
 
 # Clangd (GitHub release)
@@ -71,7 +88,7 @@ install-clangd:
 	@echo "Installing clangd..."
 	@mkdir -p $(LSP_DATA_DIR)/clangd
 	@cd $(LSP_DATA_DIR)/clangd && \
-		wget -q --show-progress https://github.com/clangd/clangd/releases/download/21.1.0/clangd-linux-21.1.0.zip -O clangd.zip && \
+		wget -q --show-progress https://github.com/clangd/clangd/releases/download/22.1.0/clangd-linux-22.1.0.zip -O clangd.zip && \
 		unzip -q -o clangd.zip && \
 		rm clangd.zip
 	@mkdir -p $(INSTALL_DIR)

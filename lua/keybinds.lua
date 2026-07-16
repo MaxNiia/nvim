@@ -1,5 +1,7 @@
 local key = vim.keymap.set
 
+key("n", "<leader>e", "<cmd>e %:h<cr>", { desc = "Open (buffer) dir" })
+key("n", "<leader>E", "<cmd>e .<cr>", { desc = "Open (buffer) dir" })
 key({ "n", "v", "o" }, "H", "^", { desc = "End of line" })
 key({ "n", "v", "o" }, "L", "$", { desc = "Start of line" })
 key("n", "<c-h>", "<c-w>h", { desc = "Go to Left Window" })
@@ -71,6 +73,11 @@ end, { desc = "Toggle Git Num Highlight" })
 key("n", "<leader>uX", function()
     require("gitsigns").toggle_signs()
 end, { desc = "Toggle Git Signs" })
+key("n", "<leader>wg", function()
+    local socket = vim.fn.expand("~/.cache/nvim/godot.pipe")
+    vim.fn.serverstart(socket)
+    vim.notify("Godot server started: " .. socket)
+end, { desc = "Start Godot server" })
 key("n", "<leader>ug", function()
     local current = vim.o.grepprg
     if current:find("-uu") then
