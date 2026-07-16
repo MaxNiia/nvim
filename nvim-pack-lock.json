@@ -25,14 +25,15 @@
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
+    "rainbow-delimiters": {
+      "rev": "a798325b7f36acc62741d1029930a7b96d4dd4bf",
+      "src": "https://github.com/HiPhish/rainbow-delimiters.nvim",
+      "version": "'master'"
+    },
     "statuscol": {
       "rev": "c46172d0911aa5d49ba5f39f4351d1bb7aa289cc",
       "src": "https://github.com/luukvbaal/statuscol.nvim",
       "version": "'main'"
-    },
-    "which-key": {
-      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
-      "src": "https://github.com/folke/which-key.nvim"
     },
     "yazi": {
       "rev": "a96d32e5bee13040269e7fa7a6546b7e2982fc86",
