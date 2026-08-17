@@ -1,11 +1,5 @@
 require("yazi").setup({
-    open_for_directories = true,
-    integrations = {
-        -- grep_in_directory = "snacks.picker",
-        -- grep_in_selected_files = "snacks.picker",
-        -- picker_add_copy_relative_path_action = "snacks.picker",
-        -- bufdelete_implementation = "snacks-if-available",
-    },
+    open_for_directories = false,
 })
 vim.keymap.set({ "n", "v" }, "<leader>EB", "<cmd>Yazi<cr>", { desc = "Buffer" })
 vim.keymap.set("n", "<leader>EC", "<cmd>Yazi cwd<cr>", { desc = "CWD" })
