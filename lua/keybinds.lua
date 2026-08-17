@@ -14,7 +14,7 @@ key("n", "<m-J>", "<c-w>=", { desc = "Equal height" })
 key("n", "<m-K>", "<c-w>_", { desc = "Max height" })
 key("n", "<m-L>", "<c-w>|", { desc = "Max width" })
 
-key("t", "jk", "<c-\\><c-n>", {})
+key("t", "<esc>", "<c-\\><c-n>", {})
 
 key({ "n", "v", "o" }, "<leader>y", '"+y', { desc = "Yank to system" })
 key({ "n", "v", "o" }, "<leader>p", '"+p', { desc = "Paste from system" })
