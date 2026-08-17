@@ -237,3 +237,128 @@ statusline.setup({
     },
     use_icons = true,
 })
+
+local win_config = function()
+    local height = math.floor(0.618 * vim.o.lines)
+    local width = math.floor(0.618 * vim.o.columns)
+    return {
+        anchor = "NW",
+        height = height,
+        width = width,
+        border = "none",
+        row = math.floor(0.5 * (vim.o.lines - height)),
+        col = math.floor(0.5 * (vim.o.columns - width)),
+    }
+end
+
+require("mini.pick").setup({ window = { config = win_config } })
+local pick = MiniPick.builtin
+local extra_pick = MiniExtra.pickers
+
+local parent_dir_pattern = vim.fn.has("win32") == 1 and "([^\\/]+)([\\/])" or "([^/]+)(/)"
+local shorten_dirname = function(name, path_sep)
+    local first = vim.fn.strcharpart(name, 0, 1)
+    first = first == "." and vim.fn.strcharpart(name, 0, 2) or first
+    return first .. path_sep
+end
+local make_short_path = function(path)
+    return path:gsub(parent_dir_pattern, shorten_dirname)
+end
+
+local show_short_files = function(buf_id, items_to_show, query)
+    local short_items_to_show = vim.tbl_map(make_short_path, items_to_show)
+    MiniPick.default_show(buf_id, short_items_to_show, query)
+end
+
+MiniPick.registry.files = function()
+    MiniPick.builtin.files({}, { source = { show = show_short_files } })
+end
+
+-- Find
+vim.keymap.set("n", "<leader>,", pick.buffers, { desc = "Buffers" })
+vim.keymap.set("n", "<leader>fb", pick.buffers, { desc = "Buffers" })
+vim.keymap.set("n", "<leader>fh", function()
+    pick.files({ cwd = vim.fn.expand("$HOME") })
+end, { desc = "Find Home File" })
+vim.keymap.set("n", "<leader>fc", function()
+    pick.files({ cwd = vim.fn.stdpath("config") })
+end, { desc = "Find Config File" })
+vim.keymap.set("n", "<leader>ff", pick.files, { desc = "Find Files" })
+vim.keymap.set("n", "<leader>fg", extra_pick.git_files, { desc = "Find Git Files" })
+vim.keymap.set("n", "<leader>fr", extra_pick.oldfiles, { desc = "Recent Files" })
+vim.keymap.set("n", "<leader>fC", extra_pick.colorschemes, { desc = "Colorschemes" })
+-- Grep
+vim.keymap.set("n", "<leader>/", pick.grep_live, { desc = "Grep" })
+vim.keymap.set("n", "<leader>:", function()
+    extra_pick.history({ scope = ":" })
+end, { desc = "Command History" })
+vim.keymap.set("n", "<leader>fs", pick.grep_live, { desc = "Grep" })
+vim.keymap.set("n", "<leader>sb", function()
+    extra_pick.buf_lines({ scope = "current" })
+end, { desc = "Buffer Lines" })
+vim.keymap.set("n", "<leader>sB", extra_pick.buf_lines, { desc = "Grep Open Buffers" })
+vim.keymap.set("n", "<leader>sg", pick.grep_live, { desc = "Grep" })
+vim.keymap.set({ "n", "x" }, "<leader>sw", function()
+    local mode = vim.fn.mode()
+    if mode == "v" or mode == "V" then
+        local saved = vim.fn.getreg('"')
+        vim.cmd('noau normal! "vy"')
+        local word = vim.fn.getreg('"')
+        vim.fn.setreg('"', saved)
+        pick.grep({ pattern = word })
+    else
+        pick.grep({ pattern = vim.fn.expand("<cword>") })
+    end
+end, { desc = "Grep Word" })
+-- Search
+vim.keymap.set("n", '<leader>s"', extra_pick.registers, { desc = "Registers" })
+vim.keymap.set("n", "<leader>sc", function()
+    extra_pick.history({ scope = ":" })
+end, { desc = "Command History" })
+vim.keymap.set("n", "<leader>sC", extra_pick.commands, { desc = "Commands" })
+vim.keymap.set("n", "<leader>sd", extra_pick.diagnostic, { desc = "Diagnostics" })
+vim.keymap.set("n", "<leader>sD", function()
+    extra_pick.diagnostic({ scope = "current" })
+end, { desc = "Buffer Diagnostics" })
+vim.keymap.set("n", "<leader>sh", pick.help, { desc = "Help Pages" })
+vim.keymap.set("n", "<leader>sH", extra_pick.hl_groups, { desc = "Highlights" })
+vim.keymap.set("n", "<leader>sj", function()
+    extra_pick.list({ scope = "jump" })
+end, { desc = "Jumps" })
+vim.keymap.set("n", "<leader>sk", extra_pick.keymaps, { desc = "Keymaps" })
+vim.keymap.set("n", "<leader>sl", function()
+    extra_pick.list({ scope = "location" })
+end, { desc = "Location List" })
+vim.keymap.set("n", "<leader>sm", extra_pick.marks, { desc = "Marks" })
+vim.keymap.set("n", "<leader>sr", pick.resume, { desc = "Resume" })
+vim.keymap.set("n", "<leader>sq", function()
+    extra_pick.list({ scope = "quickfix" })
+end, { desc = "Quickfix List" })
+-- Git
+vim.keymap.set("n", "<leader>gA", extra_pick.git_commits, { desc = "Log" })
+vim.keymap.set("n", "<leader>ga", extra_pick.git_branches, { desc = "Branches" })
+vim.keymap.set("n", "<leader>gF", function()
+    extra_pick.git_commits({ path = vim.fn.expand("%") })
+end, { desc = "Log File" })
+-- LSP
+vim.keymap.set("n", "gd", function()
+    extra_pick.lsp({ scope = "definition" })
+end, { desc = "Goto Definition" })
+vim.keymap.set("n", "grr", function()
+    extra_pick.lsp({ scope = "references" })
+end, { desc = "References", nowait = true })
+vim.keymap.set("n", "gri", function()
+    extra_pick.lsp({ scope = "implementation" })
+end, { desc = "Goto Implementation" })
+vim.keymap.set("n", "gy", function()
+    extra_pick.lsp({ scope = "type_definition" })
+end, { desc = "Goto Type Definition" })
+vim.keymap.set("n", "gO", function()
+    extra_pick.lsp({ scope = "document_symbol" })
+end, { desc = "LSP Symbols" })
+vim.keymap.set("n", "<leader>ss", function()
+    extra_pick.lsp({ scope = "document_symbol" })
+end, { desc = "LSP Symbols" })
+vim.keymap.set("n", "<leader>sS", function()
+    extra_pick.lsp({ scope = "workspace_symbol" })
+end, { desc = "LSP Workspace Symbols" })
