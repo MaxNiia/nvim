@@ -205,7 +205,7 @@ statusline.setup({
             local git = statusline.section_git({ trunc_width = 40 })
             local diagnostics = statusline.section_diagnostics({
                 trunc_width = 75,
-                signs = { ERROR = "", WARN = "", INFO = "", HINT = "" },
+                signs = { ERROR = "", WARN = "", INFO = "", HINT = "" },
             })
             local lsp = statusline.section_lsp({ trunc_width = 75 })
             local fileinfo = statusline.section_fileinfo({ trunc_width = 120 })

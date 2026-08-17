@@ -135,7 +135,7 @@ if bg == "light" or bg == "dark" then
     vim.opt.background = bg
 end
 vim.opt.wildmode = "noselect"
-vim.opt.grepprg = "rg --vimgrep"
+vim.opt.grepprg = "rg --vimgrep --smart-case"
 vim.opt.grepformat = "%f:%l:%c:%m"
 
 vim.api.nvim_create_autocmd("CmdlineChanged", {
