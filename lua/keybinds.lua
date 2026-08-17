@@ -1,7 +1,5 @@
 local key = vim.keymap.set
 
-key("n", "<leader>e", "<cmd>e %:h<cr>", { desc = "Open (buffer) dir" })
-key("n", "<leader>E", "<cmd>e .<cr>", { desc = "Open (buffer) dir" })
 key({ "n", "v", "o" }, "H", "^", { desc = "End of line" })
 key({ "n", "v", "o" }, "L", "$", { desc = "Start of line" })
 key("n", "<c-h>", "<c-w>h", { desc = "Go to Left Window" })
@@ -15,12 +13,17 @@ key("n", "<m-left>", "<c-w><", { desc = "Decrease width" })
 key("n", "<m-J>", "<c-w>=", { desc = "Equal height" })
 key("n", "<m-K>", "<c-w>_", { desc = "Max height" })
 key("n", "<m-L>", "<c-w>|", { desc = "Max width" })
+
 key("t", "jk", "<c-\\><c-n>", {})
+
 key({ "n", "v", "o" }, "<leader>y", '"+y', { desc = "Yank to system" })
 key({ "n", "v", "o" }, "<leader>p", '"+p', { desc = "Paste from system" })
-key("n", "<leader>H", "<cmd>nohl<CR>", { desc = "Clear highlighting" })
+
+key("n", "<leader>h", "<cmd>nohl<CR>", { desc = "Clear highlighting" })
+
 key("n", "j", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']], { expr = true })
 key("n", "k", [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']], { expr = true })
+
 key("n", "<C-d>", function()
     vim.cmd([[execute "normal! \<C-d>zz"]])
 end, { desc = "Scroll downwards" })
@@ -35,6 +38,7 @@ key("n", "N", function()
     pcall(vim.cmd, "normal! N")
     vim.cmd("normal! zzzv")
 end, { desc = "Previous result" })
+
 key("v", "<", "<gv")
 key("v", ">", ">gv")
 
