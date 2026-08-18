@@ -1,3 +1,4 @@
+vim.g.loaded_netrwPlugin = 1
 vim.g.have_nerd_font = true
 
 local win32yank = "/mnt/c/Users/Max/scoop/apps/neovim/current/bin/win32yank.exe"

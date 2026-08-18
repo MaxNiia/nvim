@@ -1,47 +1,49 @@
-.PHONY: help check install install-lua-ls install-ts_ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-neocmake install-starpls install-stylua install-debugpy install-yazi install-fzf install-rg install-tree-sitter-cli install-fd install-git-delta install-ast-grep install-lazygit install-yamlls install-taplo install-bashls install-bazelrc-lsp install-ols
+.PHONY: help check install install-lua-ls install-ts_ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-neocmake install-starpls install-stylua install-debugpy install-cpptools install-yazi install-fzf install-rg install-tree-sitter-cli install-fd install-git-delta install-ast-grep install-lazygit install-yamlls install-taplo install-bashls install-bazelrc-lsp install-ols
 
 INSTALL_DIR := $(HOME)/.local/bin
 LSP_DATA_DIR := $(HOME)/.local/share/nvim-lsp
+CPPTOOLS_VERSION := 1.32.2
 
 help:
-    @echo "Available targets:"
-    @echo "  make check          - Check if package managers are installed"
-    @echo "  make install        - Install all LSPs and debug adapters"
-    @echo "  make install-<lsp>  - Install specific LSP"
-    @echo ""
-    @echo "LSPs:"
-    @echo "  - lua-ls (lua_ls)"
-    @echo "  - clangd"
-    @echo "  - typos-lsp"
-    @echo "  - basedpyright"
-    @echo "  - dockerls"
-    @echo "  - jsonls"
-    @echo "  - marksman"
-    @echo "  - azure-pipelines-ls"
-    @echo "  - neocmake"
-    @echo "  - ts_ls"
-    @echo "  - starpls"
-    @echo "  - yamlls"
-    @echo "  - taplo"
-    @echo "  - bashls"
-    @echo "  - bazelrc-lsp"
-    @echo "  - ols"
-    @echo ""
-    @echo "Formatters:"
-    @echo "  - stylua (lua formatter)"
-    @echo ""
-    @echo "Debug Adapters:"
-    @echo "  - debugpy (Python debugging)"
-    @echo ""
-    @echo "Programs:"
-    @echo "  - yazi      (Terminal file manager)"
-    @echo "  - fzf       (fuzzy finder)"
-    @echo "  - rg        (fuzzy finder)"
-    @echo "  - ts-cli    (tree-sitter helper)"
-    @echo "  - fd        (file finder)"
-    @echo "  - git-delta (git differ)"
-    @echo "  - ast-grep  (ast finder)"
-    @echo "  - lazygit   (Git TUI)"
+	@echo "Available targets:"
+	@echo "  make check          - Check if package managers are installed"
+	@echo "  make install        - Install all LSPs and debug adapters"
+	@echo "  make install-<lsp>  - Install specific LSP"
+	@echo ""
+	@echo "LSPs:"
+	@echo "  - lua-ls (lua_ls)"
+	@echo "  - clangd"
+	@echo "  - typos-lsp"
+	@echo "  - basedpyright"
+	@echo "  - dockerls"
+	@echo "  - jsonls"
+	@echo "  - marksman"
+	@echo "  - azure-pipelines-ls"
+	@echo "  - neocmake"
+	@echo "  - ts_ls"
+	@echo "  - starpls"
+	@echo "  - yamlls"
+	@echo "  - taplo"
+	@echo "  - bashls"
+	@echo "  - bazelrc-lsp"
+    	@echo "  - ols"
+	@echo ""
+	@echo "Formatters:"
+	@echo "  - stylua (lua formatter)"
+	@echo ""
+	@echo "Debug Adapters:"
+	@echo "  - debugpy  (Python debugging)"
+	@echo "  - cpptools (C/C++ debugging via cppdbg)"
+	@echo ""
+	@echo "Programs:"
+	@echo "  - yazi      (Terminal file manager)"
+	@echo "  - fzf       (fuzzy finder)"
+	@echo "  - rg        (fuzzy finder)"
+	@echo "  - ts-cli    (tree-sitter helper)"
+	@echo "  - fd        (file finder)"
+	@echo "  - git-delta (git differ)"
+	@echo "  - ast-grep  (ast finder)"
+	@echo "  - lazygit   (Git TUI)"
 
 check:
     @echo "Checking package managers..."
@@ -52,8 +54,8 @@ check:
     @command -v unzip >/dev/null 2>&1 || (echo "❌ unzip not found" && exit 1)
     @echo "✓ All package managers found"
 
-install: check install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-neocmake install-starpls install-stylua debugpy install-yazi install-ts_ls install-glsl-lsp install-rust-lsp install-yamlls install-taplo install-bashls install-bazelrc-lsp install-ols
-    @echo "✓ All LSPs, debug adapters and programs installed"
+install: check install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-neocmake install-starpls install-stylua debugpy install-cpptools install-yazi install-ts_ls install-glsl-lsp install-rust-lsp install-yamlls install-taplo install-bashls install-bazelrc-lsp install-o
+	@echo "✓ All LSPs, debug adapters and programs installed"
 
 # OLS (GitHub release)
 install-ols:
@@ -85,15 +87,15 @@ install-lua-ls:
 
 # Clangd (GitHub release)
 install-clangd:
-    @echo "Installing clangd..."
-    @mkdir -p $(LSP_DATA_DIR)/clangd
-    @cd $(LSP_DATA_DIR)/clangd && \
-        wget -q --show-progress https://github.com/clangd/clangd/releases/download/22.1.0/clangd-linux-22.1.0.zip -O clangd.zip && \
-        unzip -q -o clangd.zip && \
-        rm clangd.zip
-    @mkdir -p $(INSTALL_DIR)
-    @ln -sf $(LSP_DATA_DIR)/clangd/clangd_*/bin/clangd $(INSTALL_DIR)/clangd
-    @echo "✓ clangd installed"
+	@echo "Installing clangd..."
+	@mkdir -p $(LSP_DATA_DIR)/clangd
+	@cd $(LSP_DATA_DIR)/clangd && \
+		wget -q --show-progress https://github.com/clangd/clangd/releases/download/22.1.0/clangd-linux-22.1.0.zip -O clangd.zip && \
+		unzip -q -o clangd.zip && \
+		rm clangd.zip
+	@mkdir -p $(INSTALL_DIR)
+	@ln -sf $(LSP_DATA_DIR)/clangd/clangd_*/bin/clangd $(INSTALL_DIR)/clangd
+	@echo "✓ clangd installed"
 
 # Typos LSP (pre-built binary — building from source is broken due to tower_lsp_server API changes)
 install-typos-lsp:
@@ -194,6 +196,17 @@ install-debugpy:
     @echo "Installing debugpy..."
     @pipx install debugpy
     @echo "✓ debugpy installed"
+
+# cpptools / OpenDebugAD7 (GitHub VSIX release)
+install-cpptools:
+	@echo "Installing cpptools $(CPPTOOLS_VERSION)..."
+	@mkdir -p $(LSP_DATA_DIR)/cpptools
+	@cd $(LSP_DATA_DIR)/cpptools && \
+		wget -q --show-progress https://github.com/microsoft/vscode-cpptools/releases/download/v$(CPPTOOLS_VERSION)/cpptools-linux-x64.vsix -O cpptools.vsix && \
+		unzip -q -o cpptools.vsix 'extension/debugAdapters/*' && \
+		rm cpptools.vsix && \
+		chmod +x extension/debugAdapters/bin/OpenDebugAD7
+	@echo "✓ cpptools installed"
 
 # Programs
 

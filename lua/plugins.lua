@@ -68,6 +68,16 @@ local packages = {
         name = "statuscol",
         version = "main",
     },
+    {
+        src = gh("mfussenegger/nvim-dap"),
+        name = "nvim-dap",
+        version = "master",
+    },
+    {
+        src = gh("igorlfs/nvim-dap-view"),
+        name = "nvim-dap-view",
+        version = "main",
+    },
 }
 
 vim.pack.add(packages, {
