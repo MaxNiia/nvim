@@ -21,12 +21,12 @@
       "version": "'main'"
     },
     "nvim-dap": {
-      "rev": "531771530d4f82ad2d21e436e3cc052d68d7aebb",
+      "rev": "9e848e09a697ee95302a3ef2dd43fd6eb709e570",
       "src": "https://github.com/mfussenegger/nvim-dap",
       "version": "'master'"
     },
     "nvim-dap-view": {
-      "rev": "91a2b0eab74cc889499587166cc6e3d53a7e1e45",
+      "rev": "4e73e57008df10f9971b60c3a11e6aa11ba9f94a",
       "src": "https://github.com/igorlfs/nvim-dap-view",
       "version": "'main'"
     },
@@ -56,7 +56,7 @@
       "version": "'main'"
     },
     "yazi": {
-      "rev": "a96d32e5bee13040269e7fa7a6546b7e2982fc86",
+      "rev": "edfd763878dfc6e614d40a7128c84408b2d17a1a",
       "src": "https://github.com/mikavilpas/yazi.nvim",
       "version": "'main'"
     }

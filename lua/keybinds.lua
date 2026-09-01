@@ -10,11 +10,15 @@ key("n", "<m-down>", "<c-w>-", { desc = "Decrease height" })
 key("n", "<m-up>", "<c-w>+", { desc = "Increase height" })
 key("n", "<m-right>", "<c-w>>", { desc = "Increase width" })
 key("n", "<m-left>", "<c-w><", { desc = "Decrease width" })
-key("n", "<m-J>", "<c-w>=", { desc = "Equal height" })
-key("n", "<m-K>", "<c-w>_", { desc = "Max height" })
-key("n", "<m-L>", "<c-w>|", { desc = "Max width" })
 
 key("t", "<esc>", "<c-\\><c-n>", {})
+
+key(
+    "n",
+    "<esc>",
+    '<Cmd>nohlsearch<Bar>diffupdate<Bar>call nvim_buf_clear_namespace(0, nvim_create_namespace("nvim.multicursor"), 0, -1)<Bar>normal! <C-L><CR>',
+    { desc = "Redraw, clear search highlight and multicursors (like <C-l>)" }
+)
 
 key({ "n", "v", "o" }, "<leader>y", '"+y', { desc = "Yank to system" })
 key({ "n", "v", "o" }, "<leader>p", '"+p', { desc = "Paste from system" })

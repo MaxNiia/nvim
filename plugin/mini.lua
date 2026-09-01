@@ -184,6 +184,7 @@ miniclue.setup({
         delay = 0,
     },
 })
+vim.keymap.del("n", "Q")
 
 local hipatterns = require("mini.hipatterns")
 hipatterns.setup({
