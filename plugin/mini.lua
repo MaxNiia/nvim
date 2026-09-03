@@ -301,15 +301,17 @@ vim.keymap.set("n", "<leader>sB", extra_pick.buf_lines, { desc = "Grep Open Buff
 vim.keymap.set("n", "<leader>sg", pick.grep_live, { desc = "Grep" })
 vim.keymap.set({ "n", "x" }, "<leader>sw", function()
     local mode = vim.fn.mode()
+    local word
     if mode == "v" or mode == "V" then
         local saved = vim.fn.getreg('"')
         vim.cmd('noau normal! "vy"')
-        local word = vim.fn.getreg('"')
+        word = vim.fn.getreg('"')
         vim.fn.setreg('"', saved)
-        pick.grep({ pattern = word })
     else
-        pick.grep({ pattern = vim.fn.expand("<cword>") })
+        word = vim.fn.expand("<cword>")
     end
+    local escaped = vim.fn.escape(word, "\\^$.|?*+()[]{}")
+    pick.grep({ pattern = "\\b" .. escaped .. "\\b" })
 end, { desc = "Grep Word" })
 -- Search
 vim.keymap.set("n", '<leader>s"', extra_pick.registers, { desc = "Registers" })
