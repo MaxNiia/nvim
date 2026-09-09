@@ -1,4 +1,4 @@
-.PHONY: help check install install-lua-ls install-ts_ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-neocmake install-starpls install-stylua install-debugpy install-cpptools install-yazi install-fzf install-rg install-tree-sitter-cli install-fd install-git-delta install-ast-grep install-lazygit install-yamlls install-taplo install-bashls install-bazelrc-lsp install-ols
+.PHONY: help check install install-lua-ls install-ts_ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-neocmake install-starpls install-stylua install-debugpy install-cpptools install-yazi install-fzf install-rg install-tree-sitter-cli install-fd install-git-delta install-ast-grep install-lazygit install-yamlls install-taplo install-bashls install-ols
 
 INSTALL_DIR := $(HOME)/.local/bin
 LSP_DATA_DIR := $(HOME)/.local/share/nvim-lsp
@@ -25,7 +25,6 @@ help:
 	@echo "  - yamlls"
 	@echo "  - taplo"
 	@echo "  - bashls"
-	@echo "  - bazelrc-lsp"
 	@echo "  - ols"
 	@echo ""
 	@echo "Formatters:"
@@ -54,7 +53,7 @@ check:
 	@command -v unzip >/dev/null 2>&1 || (echo "❌ unzip not found" && exit 1)
 	@echo "✓ All package managers found"
 
-install: check install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-neocmake install-starpls install-stylua debugpy install-cpptools install-yazi install-ts_ls install-glsl-lsp install-rust-lsp install-yamlls install-taplo install-bashls install-bazelrc-lsp install-o
+install: check install-lua-ls install-clangd install-typos-lsp install-basedpyright install-dockerls install-jsonls install-marksman install-azure-pipelines-ls install-neocmake install-starpls install-stylua install-debugpy install-cpptools install-yazi install-ts_ls install-glsl-lsp install-rust-lsp install-yamlls install-taplo install-bashls install-ols
 	@echo "✓ All LSPs, debug adapters and programs installed"
 
 # OLS (GitHub release)
@@ -293,15 +292,3 @@ install-bashls:
 	@echo "Installing bash-language-server..."
 	@npm install -g bash-language-server
 	@echo "✓ bash-language-server installed"
-
-# Bazelrc LSP (GitHub release)
-install-bazelrc-lsp:
-	@echo "Installing bazelrc-lsp..."
-	@mkdir -p $(LSP_DATA_DIR)/bazelrc-lsp
-	@cd $(LSP_DATA_DIR)/bazelrc-lsp && \
-		wget -q --show-progress https://github.com/salesforce-misc/bazelrc-lsp/releases/download/v0.2.1/bazelrc-lsp-v0.2.1-x86_64-unknown-linux-musl.tar.gz -O bazelrc-lsp.tar.gz && \
-		tar -xzf bazelrc-lsp.tar.gz && \
-		rm bazelrc-lsp.tar.gz
-	@mkdir -p $(INSTALL_DIR)
-	@ln -sf $(LSP_DATA_DIR)/bazelrc-lsp/bazelrc-lsp $(INSTALL_DIR)/bazelrc-lsp
-	@echo "✓ bazelrc-lsp installed"
