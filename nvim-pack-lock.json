@@ -16,27 +16,27 @@
       "version": "'main'"
     },
     "mini": {
-      "rev": "e58ad4b0c9e9376096b9704f98fc00d4c9448870",
+      "rev": "25f25d3e6661d942323e56711096de1850d814ec",
       "src": "https://github.com/nvim-mini/mini.nvim",
       "version": "'main'"
     },
     "nvim-dap": {
-      "rev": "9e848e09a697ee95302a3ef2dd43fd6eb709e570",
+      "rev": "c9a0738e45f1bd41d792a126941348dce661cf9b",
       "src": "https://github.com/mfussenegger/nvim-dap",
       "version": "'master'"
     },
     "nvim-dap-view": {
-      "rev": "4e73e57008df10f9971b60c3a11e6aa11ba9f94a",
+      "rev": "e766b3d8acef97e7e8b29f7f421aa4977b9978e1",
       "src": "https://github.com/igorlfs/nvim-dap-view",
       "version": "'main'"
     },
     "nvim-treesitter": {
-      "rev": "074aa4422bf029908338e855d0c0f71470a971bb",
+      "rev": "5cb0114e6242625db56dd6440e945ed1ece10bc7",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
     "nvim-treesitter-textobjects": {
-      "rev": "898ee307df58f854d11cd7edd06472574d48014e",
+      "rev": "5c7b0263797dfd1bd6202f2b219f3b53a80b2187",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
       "version": "'main'"
     },
@@ -46,7 +46,7 @@
       "version": "'master'"
     },
     "rainbow-delimiters": {
-      "rev": "012f1480cd9a5fc99fce7678e0a536421a53fc46",
+      "rev": "3a0fc08dd39e8bf034a4cfef3f2845bd5f565a2e",
       "src": "https://github.com/HiPhish/rainbow-delimiters.nvim",
       "version": "'master'"
     },
@@ -56,7 +56,7 @@
       "version": "'main'"
     },
     "yazi": {
-      "rev": "edfd763878dfc6e614d40a7128c84408b2d17a1a",
+      "rev": "751f6aa78705dc593b0ee1d441af4ee683e853cc",
       "src": "https://github.com/mikavilpas/yazi.nvim",
       "version": "'main'"
     }
