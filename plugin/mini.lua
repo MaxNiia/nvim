@@ -47,11 +47,15 @@ require("mini.extra").setup()
 local gen_ai_spec = require("mini.extra").gen_ai_spec
 local ai = require("mini.ai")
 require("mini.ai").setup({
+    mappings = {
+      around_next = '',
+      inside_next = '',
+      around_last = '',
+      inside_last = '',
+    },
     custom_textobjects = {
-        B = gen_ai_spec.buffer(),
         D = gen_ai_spec.diagnostic(),
         I = gen_ai_spec.indent(),
-        L = gen_ai_spec.line(),
         N = gen_ai_spec.number(),
         f = ai.gen_spec.treesitter({ a = "@function.outer", i = "@function.inner" }),
         c = ai.gen_spec.treesitter({ a = "@class.outer", i = "@class.inner" }),
